@@ -1,0 +1,186 @@
+<meta charset="utf-8">
+<title>Plan de séance — S12 · Séance 2 · Pressostats et régulation</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pressostats et régulation — chantier de remise en état (A3)</td>
+      <td style="width:38%"><span class="lib">Séance n° 2/3</span><b>Pressostats et régulation — la machine s'arrête toute seule</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S12</span> P6 · positionnement : 2<sup>e</sup> année, sem. 9</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 9 · 10-14/11/2026</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A3 + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>8 h (4 h + 4 h) — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>Bi-prof (2 pôles)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation<br><b>S5.5</b> Réseaux fluidiques <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie entre les jalons · sécurité sans rappel · honnêteté de la mesure</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span><br><b>C3.6</b> Câbler, connecter<br><b>C4.1</b> Mettre en service<br><span class="nuance">C3.7 observée en continu</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Le chantier de remise en état se poursuit. <b>Ordre d'intervention n° S12-A3-02</b> : équiper la machine de
+  sa <b>chaîne de sécurité</b> (pressostats HP/BP), régler les seuils de fonctionnement, puis remettre au chef
+  de chantier les <b>feuilles de mise en service</b> (module F4, rubriques 1-2) renseignées. Comme chez un client,
+  des <b>points d'arrêt contractuels</b> jalonnent la journée : rien ne passe à l'étape suivante sans validation.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>expliquer</b> pourquoi la machine doit s'arrêter seule (rôle de la chaîne de sécurité) ;</li>
+        <li><b>câbler</b> les pressostats HP et BP dans le circuit de commande, sans en shunter aucun ;</li>
+        <li><b>régler</b> un pressostat Danfoss KP par approche progressive et noter la valeur réelle observée ;</li>
+        <li><b>vérifier</b> la chaîne de sécurité complète avant un essai prolongé, et le prouver au professeur.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>câbler puissance et commande au schéma (séance 1) ;</li>
+        <li>consigner une armoire avant intervention (NFC 18-510) ;</li>
+        <li>lire une pression sur un manomètre ;</li>
+        <li>situer les organes de la ligne liquide sur un schéma.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode de la séance : autonomie guidée par plan de travail</b> — le professeur ne
+  démontre plus aucun geste. Le binôme avance seul, étape par étape, et se présente à deux <b>jalons</b> obligatoires :
+  <span class="jalon">JALON 1</span> validation professeur avant toute mise sous tension ·
+  <span class="jalon">JALON 2</span> vérification de la chaîne de sécurité complète (aucun pressostat shunté —
+  interdiction formelle de shunter) avant l'essai prolongé.</div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Consignation NFC 18-510</b> à chaque intervention ·
+  un pressostat shunté = chaîne de sécurité inactive, formellement interdit · risque de blessures aux mains sur
+  les organes mécaniques · pression résiduelle au raccordement du manifold : lunettes, ouverture lente des vannes.
+  <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence), alerter le professeur, ne jamais déplacer un élève
+  électrisé avant coupure confirmée — trousse de secours et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S12 · séance 2/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — 10 phases (canon académique), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Matinée — 4 h 00</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation bi-prof (2 pôles) et du plan de travail à jalons de la journée.</td><td>Fait l'appel, distribue le plan de travail.</td><td>S'installent, prennent connaissance du plan de travail.</td><td>Liste d'appel · plan de travail imprimé</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention S12-A3-02 : chaîne de sécurité à équiper, seuils à régler, feuilles F4 à remettre ; points d'arrêt contractuels comme chez un client.</td><td>Présente l'ordre d'intervention et les jalons attendus.</td><td>Reformulent la mission et repèrent les deux jalons sur leur plan.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » lus et affichés ; lien avec la formule (C3.6, C4.1) et avec l'évaluation de fin de séquence.</td><td>Affiche et commente.</td><td>Repèrent l'objectif qui les inquiète.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : lire trois pressions sur des photos de manomètres, puis repérer les bornes du pressostat sur le schéma.</td><td>Distribue l'exercice, contrôle les tenues au vestiaire.</td><td>Se changent par vagues ; en attente, font l'exercice.</td><td>Photos de manomètres · schéma plastifié · feutre effaçable · EPI</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (risques du jour, conduite incident, arrêt d'urgence et trousse localisés) puis <b>planter la notion</b> : le professeur règle volontairement le pressostat HP bas, démarre la machine, elle se coupe seule — OBSERVER en silence → NOMMER « chaîne de sécurité » → EXPLICITER pourquoi la machine doit s'arrêter seule.</td><td>Anime le rituel sécurité, réalise l'accroche, questionne « Qui a arrêté la machine ? ».</td><td>Observent, répondent, verbalisent, notent — ne manipulent pas encore.</td><td>Machine de démonstration · pressostat réglable</td><td class="obs"></td></tr>
+    <tr><td>1 h 40</td><td class="ph">6. Guider l'étude (a) — étape 1</td><td>Autonomie guidée par plan de travail : câblage des pressostats HP et BP dans le circuit de commande, au schéma, sans aucun shunt. <span class="jalon">JALON 1</span> : validation professeur avant mise sous tension.</td><td>Circule, questionne, ne démontre pas ; valide ou refuse le jalon 1 poste par poste.</td><td>Consignent, câblent en autonomie, se présentent au jalon 1 quand ils s'estiment prêts.</td><td>Plan de travail · schémas · pressostats HP/BP · outillage isolé · VAT · cadenas</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause du matin — armoires consignées.</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (b) — étape 2 (début)<td><b>Méthode signature — réglage du pressostat KP Danfoss</b> : ① pré-régler le Cut-in volontairement haut ② stabiliser la pression ③ baisser progressivement jusqu'au déclenchement — question imposée : « et si on avait réglé directement la valeur cible ? ».</td><td>Pose la question imposée après l'étape ③, relance sans donner la réponse.</td><td>Appliquent la méthode pas à pas, discutent la question en binôme.</td><td>Pressostat KP Danfoss · manomètre · tournevis de réglage</td><td class="obs"></td></tr>
+    <tr class="pause"><td>—</td><td colspan="6">Pause méridienne (hors décompte) — armoires consignées, cadenas en place.</td></tr>
+    <tr class="demi"><td colspan="7">Après-midi — 4 h 00</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (c) — étape 2 (fin)</td><td>Méthode signature, suite : ④ noter la valeur réelle observée ⑤ affiner et valider sur un second cycle de réglage.</td><td>Contrôle les valeurs notées, questionne l'écart éventuel.</td><td>Refont un second cycle, comparent et affinent leur réglage.</td><td>idem étape 2</td><td class="obs"></td></tr>
+    <tr><td>1 h 55</td><td class="ph">6. Guider l'étude (d) — étape 3</td><td>Étape 3 : essai prolongé après <span class="jalon">JALON 2</span> — vérification de la chaîne de sécurité complète (aucun pressostat shunté) — puis renseignement des feuilles de mise en service (module F4, rubriques 1-2).</td><td>Valide ou refuse le jalon 2 poste par poste, supervise l'essai, contrôle les feuilles F4.</td><td>Se présentent au jalon 2, réalisent l'essai prolongé, renseignent les feuilles F4.</td><td>Feuilles F4 · installation complète · chronomètre</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord de la journée + bon de commande hebdomadaire (matériel manquant, quantités).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">9. Ranger — nettoyer</td><td>Outillage, tri des chutes, nettoyage des postes, vérification des consignations pour la semaine 10.</td><td>Supervise la remise en ordre.</td><td>Rangent, nettoient, vérifient.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque binôme explique pourquoi sa machine s'est arrêtée seule ; auto-positionnement par compétence (C3.6, C4.1 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Expliquent, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la séance 3 (étanchéité, tirage au vide, évaluation sommative).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : électrotechnique EL13/EL14 (pump down, relais KA, mesures SC/SR) ·
+  technologie (organes de la ligne liquide) · co-intervention français (compte-rendu d'intervention) · chef-d'œuvre (vidéo) · F4 démarre.</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

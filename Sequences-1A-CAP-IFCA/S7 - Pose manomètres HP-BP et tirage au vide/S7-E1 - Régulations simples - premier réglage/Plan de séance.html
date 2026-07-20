@@ -1,0 +1,253 @@
+<meta charset="utf-8">
+<title>Plan de séance — S7-E1 · Régulations simples — premier réglage</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pose manomètres HP-BP et tirage au vide — <b>module atelier S7-E1</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S7-E1</span><b>Régulations simples — premier réglage</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> P4 · semaines 22-23</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 22</b> et <b>passage 2 — semaine 23</b> (dates à caler sur le calendrier réel, cf. <i>_CADRAGE-S7.md</i>) — <b>même démarche, cahier des charges différent aux deux passages</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — postes de réglage (thermostat + pressostat sur circuit d'essai) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier froid S7-F1)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">(pressostat HP, pressostat BP et thermostat identifiés en S5-T1 — rôle, consigne, différentiel COMPRIS mais jamais réglés ; câblage d'un départ moteur avec sécurité thermique acquis en S5-E1/S5-E2, consolidé en S6-E1)</span><br><span class="nuance">Travaillé :</span> <b>S5.6</b> <span class="nuance">augmenté — le premier réglage réel de consigne, sur un organe déjà connu en théorie</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel (NF C 18-510) · geste de réglage sans forcer une vis en butée · <b>honnêteté de la preuve de déclenchement</b> (ne jamais noter un résultat non observé) · patience du réglage progressif</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte → Confortement</span> <b>C4.6</b> Paramétrer ou régler les valeurs de consigne sur organe de régulation ou de sécurité <span class="nuance">sur T11 · S5.6 — le premier réglage réel de la formation</span><br><span class="statut">Confortement</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6 — raccordement de l'organe réglé dans le circuit d'essai, réinvesti depuis S5/S6 (la nuance « vers Maîtrise » arrive en S7-E2)</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S7-3</b> : dans l'arrière-boutique, l'étanchéité de la chambre froide a été
+  <b>prouvée au PV en S6</b> — le groupe est prêt pour sa mise en service. Le commerçant a remis son
+  <b>cahier des charges</b> : la température qu'il veut dans sa chambre, la sécurité qu'il veut sur son groupe.
+  Le professeur, responsable du site, vous demande de <b>régler les organes de régulation du coffret</b> pour
+  qu'ils correspondent exactement à ce cahier des charges.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>lire</b> un cahier des charges client (valeurs remises au poste par le professeur) et en
+        <b>extraire</b> les consignes à régler ;</li>
+        <li><b>traduire</b> chaque valeur du cahier des charges en une consigne précise : quel organe, quelle
+        vis, quelle valeur ;</li>
+        <li><b>régler, guidé(e) par le professeur</b>, la consigne du <b>thermostat de régulation (repère
+        TH1</b>, celui que vous retrouverez dans le coffret en S7-E2<b>)</b> ;</li>
+        <li><b>régler, guidé(e) par le professeur</b>, la consigne — et le <b>différentiel</b> — du
+        <b>pressostat</b> de sécurité ;</li>
+        <li><b>prouver le déclenchement réel</b> de chaque organe réglé (variation observée, voyant, bouton
+        test) et le <b>noter honnêtement</b>.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>nommer le pressostat HP, le pressostat BP et le thermostat, dire leur rôle, et expliquer ce qu'est
+        une <b>consigne</b> et un <b>différentiel</b> (S5-T1, cartes d'identité) — <b>sans jamais les avoir
+        réglés</b> ;</li>
+        <li>câbler un départ moteur complet avec sécurité thermique, en autonomie (S5-E1/S5-E2, consolidé en
+        S6-E1) ;</li>
+        <li>réaliser seul(e) une consignation/VAT avant toute intervention (acquis depuis S1) ;</li>
+        <li>mon plan de progrès personnel après É3 (S7-T0) — s'il concernait le poste ÉLEC (C3.6), une reprise
+        accompagnée m'est proposée pendant l'exercice au fil de l'eau de ce module.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S5-T1</b> — En S5-T1, en classe entière, vous avez
+  observé un pressostat HP, un pressostat BP et un thermostat réels, et vous avez <b>compris</b> ce qu'est une
+  consigne et un différentiel, sans rien régler. <b>Aujourd'hui, en atelier, vous réglez pour de vrai</b> le
+  même type d'organe, sur un circuit d'essai préparé par le professeur, à partir d'un cahier des charges client
+  fourni au poste. Le S6-E1 a consolidé votre câblage de départ moteur en autonomie ; ici, ce câblage sert de
+  support pour <b>raccorder l'organe que vous réglez</b>.</div>
+
+  <div class="plan"><b class="t">Méthode du module : le cahier des charges client → la consigne</b> — chaque
+  poste reçoit du professeur un <b>cahier des charges</b> (valeurs remises au poste, « à faire valider ») :
+  la température que veut le commerçant dans sa chambre, la sécurité qu'il veut sur son groupe. L'élève
+  <b>traduit</b> ces phrases en consignes précises (quel organe, quelle vis, quelle valeur), <b>règle</b>
+  chaque organe guidé(e) par le professeur sur le circuit d'essai, puis <b>prouve</b> le déclenchement réel
+  (variation observée sur le manomètre ou la sonde, voyant qui s'allume/s'éteint, bouton test). Le tableau
+  consigne demandée / consigne réglée / déclenchement constaté clôture chaque réglage.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 22 et 23)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 22 — découverte guidée, un seul organe</h4>
+      Le professeur démontre une fois le geste de réglage sur un poste témoin (phase 5). Le cahier des charges
+      du passage 1 ne porte que sur <b>un organe</b> (le thermostat TH1, le plus simple à lire), avec un guidage
+      pas à pas très serré pour la traduction et le réglage.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 23 — consolidation, les deux organes</h4>
+      Le cahier des charges du passage 2 porte sur <b>les deux organes</b> (thermostat TH1 + pressostat
+      de sécurité, avec son différentiel). L'élève traduit le cahier des charges avec <b>moins d'aide</b> ; le
+      geste de réglage reste guidé par le professeur pour des raisons de sécurité et de fragilité du matériel,
+      mais la lecture et le calcul sont plus autonomes qu'au passage 1.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : choc électrique par contact direct
+  avec une pièce sous tension du circuit d'essai, <b>azote sous pression</b> du circuit de test du pressostat
+  (montée douce, jamais brutale), soufflet du pressostat fragile (une vis forcée en butée peut le percer),
+  brûlure froide si le bulbe du thermostat est manipulé sans précaution. <b>EPI</b> : chaussures de sécurité,
+  lunettes pendant la manipulation du circuit d'essai à l'azote, pas de bijoux ni de montre. <b>Gestes
+  interdits</b> : <b>jamais forcer une vis de réglage en butée</b> ; jamais toucher un conducteur nu ; jamais
+  ouvrir la bouteille d'azote soi-même — <b>seul le professeur</b> règle le détendeur et fait varier la
+  pression du circuit d'essai ; <b>jamais mettre le circuit d'essai sous tension soi-même</b> — seul le
+  professeur le fait, après contrôle. <b>Consignation NF C 18-510</b>, rituel acquis depuis S1 : couper →
+  vérifier l'absence de tension (VAT) au multimètre → condamner/signaler → travailler hors tension.
+  <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence de l'atelier, localisé en phase 5), alerter
+  le professeur, <b>ne jamais déplacer un camarade électrisé</b>.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S7-E1 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 22 et 23</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Durées <b>identiques</b> aux deux passages (seul le cahier des charges et le niveau d'aide à la traduction changent).</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (régulations simples, premier réglage).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S7-3 : l'étanchéité est prouvée (S6), le commerçant a remis son cahier des charges — régler les organes du coffret pour la mise en service.</td><td>Présente l'ordre d'intervention et le lien avec S6.</td><td>Reformulent la mission et son lien avec le fil rouge de la séquence.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec C4.6 (Découverte → Confortement) et C3.6 (Confortement).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : mini-quiz de reprise sur les cartes d'identité S5-T1 (pressostat HP, pressostat BP, thermostat : rôle, consigne, différentiel). <span class="jalon">crochet remédiation É3</span> Groupe de besoin fléché pour les élèves signalés en S7-T0 sur C3.6 (reprise accompagnée du câblage support) ; tutorat pour les plus solides.</td><td>Distribue le mini-quiz, contrôle les tenues et les EPI, encadre les groupes de besoin.</td><td>Se changent par vagues ; en attente, font le mini-quiz ou tutorent un pair.</td><td>Mini-quiz de reprise S5-T1 · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (arrêt d'urgence et trousse relocalisés, gestes interdits rappelés, en particulier autour de l'azote) puis <b>« planter la notion » du geste de réglage</b> : le professeur <b>observe</b> avec la classe un pressostat réel (vis cut-in, vis différentiel), <b>nomme</b> chaque vis, puis <b>explicite</b> pourquoi on règle toujours le point fixe avant le différentiel. Distribution du cahier des charges au poste (recopie des valeurs dans les champs vides).</td><td>Fait la démonstration sur un poste témoin, distribue les cahiers des charges, explique la méthode.</td><td>Observent la démonstration, recopient les valeurs de leur cahier des charges.</td><td>Pressostat témoin · cahiers des charges (un par poste) · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>55 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon A</span></td><td>Traduction du cahier des charges pour le <b>thermostat TH1</b> (quelle valeur de consigne) puis réglage guidé par le professeur sur le circuit d'essai ; observation de la preuve de déclenchement (voyant, variation réelle).</td><td>Guide le réglage geste par geste, fait varier la température du circuit d'essai, valide chaque déclenchement observé.</td><td>Traduisent le cahier des charges, règlent guidés, notent la preuve de déclenchement.</td><td>Circuit d'essai thermostat · cahier des charges · tableau de preuve</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>70 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon B</span></td><td>Traduction du cahier des charges pour le <b>pressostat</b> de sécurité (consigne + différentiel) puis réglage guidé par le professeur sur le circuit d'essai à l'azote (le professeur seul manœuvre le détendeur) ; observation de la preuve de déclenchement ; complétion du tableau consigne demandée / consigne réglée / déclenchement constaté pour les deux organes.</td><td>Guide le réglage, manœuvre seul le détendeur d'azote, valide chaque déclenchement, contrôle le tableau final.</td><td>Traduisent le cahier des charges, règlent guidés, observent, complètent le tableau récapitulatif.</td><td>Circuit d'essai pressostat + azote · cahier des charges · tableau récapitulatif</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque élève présente son tableau consigne/réglage/déclenchement ; auto-positionnement (C4.6, C3.6 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leur tableau, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (fils, cosses, azote, organes de rechange).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Circuits d'essai remis hors tension et hors pression, multimètres remis sur OFF, azote refermé par le professeur, postes vérifiés propres et dégagés.</td><td>Supervise la remise hors tension/pression et le rangement.</td><td>Rangent, vérifient que chaque poste est hors tension.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la suite (passage 2 la semaine suivante, puis S7-E2 câblage du coffret).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  Jalon A (55 min) + pause (15 min) + jalon B (70 min) = 2 h 20 ; synthèse 15 + bon de commande 10 + rangement 10 +
+  clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, identique aux deux passages — seul
+  le cahier des charges et le niveau d'aide à la traduction changent (cf. encadré Passage 1/2, feuille 1).</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  électriques (consignation, NF C 18-510) · manipulation de l'azote sous supervision (acquis S5/S6) · technologie
+  (pressostat, thermostat, consigne, différentiel, S5.6) · co-intervention français (carnet de bord, module F3) ·
+  préparation directe de S7-E2 (câblage complet du coffret) et de S7-T1 (lecture de relevés réels).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Élèves à revoir en priorité (remédiation, C4.6/C3.6)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin:.6em 0 0">D'après : « Pressostats et
+  thermostats », S5-T1, F. Henninot (cartes d'identité, consigne, différentiel — continuité directe) ; « Plan de
+  séance », S6-E1 · Contacteurs et moteurs, F. Henninot (trame atelier 4 h, câblage support, consignation
+  NF C 18-510) ; « reglage bp sous azote », « TRAVAUX PRATIQUES POSE des manifold et réglage Pressostat BP » et
+  « _réglage des pressostat BP sécurité », F. Henninot, 02_CAP-IFCA/C4-MettreEnService (méthode cut-in/
+  différentiel — adapté : circuit d'essai préparé par le professeur) ; « Pressostat », notice technique
+  F. Cabeza, AFPA 2000, _Archives/Themes/Collegues-Partages (méthode « point fixe puis différentiel »). Aucune
+  valeur de consigne n'est affirmée : toutes proviennent du cahier des charges remis au poste par le professeur,
+  « à faire valider ».</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

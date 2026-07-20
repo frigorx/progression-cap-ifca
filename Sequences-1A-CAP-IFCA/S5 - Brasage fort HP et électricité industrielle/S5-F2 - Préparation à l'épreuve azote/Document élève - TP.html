@@ -1,0 +1,644 @@
+<meta charset="utf-8">
+<title>TP élève — S5-F2 · Préparation à l'épreuve azote</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .role{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt;
+    border-radius:8px; padding:1px 9px; margin-right:5px}
+  .role.op{background:#e3e9f2; color:var(--bleu); border:1px solid #b9c8e0}
+  .role.ctrl{background:#fff0e6; color:#c14a17; border:1px solid #f0b989}
+  .annexe{border:3px solid var(--bleu); border-radius:8px; padding:10px 16px; background:var(--fond-doux)}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité (binôme) + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage fort HP et électricité industrielle</td>
+      <td style="width:38%"><span class="lib">Module atelier S5-F2 · 4 h × 2 passages</span><b>Préparation à l'épreuve azote</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> · semaines 16-17</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom, prénom (élève 1)</span>________________</td>
+      <td><span class="lib">Nom, prénom (élève 2)</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S5-2</b> : le commerce alimentaire de <b>l'arrière-boutique</b> a fait préparer sa
+  future chambre froide. En S5-F1, vous avez <b>brasé fort</b> les liaisons cuivre de cette installation. Avant que
+  l'équipe ne réalise <b>l'épreuve officielle</b> du circuit complet (qui viendra en <b>S6</b>), vous devez
+  <b>essayer sous azote</b> votre montage brasé : le mettre sous pression, PAR PALIERS, et contrôler chaque
+  raccord à l'eau savonneuse. Vous travaillez aujourd'hui <b>en binôme</b>, à rôles tournants : <b>passage 1 en
+  semaine 16, passage 2 en semaine 17.</b>
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/manodetendeur-azote-schema-principe.jpg" alt="Schéma de principe : bouteille d'azote, robinet d'arrêt, manodétendeur, vis de réglage"
+         style="max-width:78%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Principe du manodétendeur d'azote : la bouteille pleine indique environ 200 bar,
+    le manodétendeur abaisse cette pression à la valeur d'utilisation réglée par la vis de réglage. Les valeurs
+    affichées ici (« 8 bar ») sont un EXEMPLE du schéma source : la valeur réelle utilisée en séance est
+    <b>toujours fixée et affichée par le professeur</b>. D'après : 1 mise sous azote.docx.</figcaption>
+  </figure></div>
+
+  <div class="change"><b class="t">Ce qui change depuis S3-F1</b> — En S3-F1, vous avez découvert le contrôle
+  d'étanchéité à l'eau savonneuse (compétence <b>C3.9</b>, statut Découverte) : la bouteille et le manodétendeur
+  restaient <b>exclusivement entre les mains du professeur</b>, vous vous contentiez de badigeonner. <b>Aujourd'hui,
+  pour la toute première fois, l'élève-opérateur manipule LUI-MÊME le manodétendeur</b> — toujours sous la
+  supervision directe et permanente du professeur, toujours <b>PAR PALIERS</b> (jamais d'un coup jusqu'à la valeur
+  finale). Votre binôme fonctionne en <b>rôles tournants</b> : <span class="role op">OPÉRATEUR</span> manipule le
+  manodétendeur et conduit la montée ; <span class="role ctrl">CONTRÔLEUR SÉCURITÉ</span> déroule la <b>check-list</b>
+  à voix haute et la signe à chaque étape validée. Puis vous <b>échangez</b> les rôles. Cette check-list signée
+  (en annexe pleine page de ce document) <b>préfigure exactement le PV d'épreuve officiel</b> que vous remplirez en
+  S6. C3.9 passe cette fois en statut <b>Confortement</b> : elle pèse un peu plus que lors de sa découverte.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change</h4>
+  <b>Passage 1 (semaine 16) — rôles attribués, supervision rapprochée</b> : le professeur attribue les rôles de
+  départ. L'<span class="role op">OPÉRATEUR</span> installe le manodétendeur et conduit les premiers paliers ; le
+  <span class="role ctrl">CONTRÔLEUR</span> déroule la check-list à voix haute et badigeonne à l'eau savonneuse à
+  chaque palier. Au jalon 2, vous <b>échangez les rôles</b> pour le dernier palier et le contrôle final, puis vous
+  signez la check-list à deux.<br>
+  <b>Passage 2 (semaine 17) — rôles choisis par le binôme, moins d'aide</b> : c'est votre binôme qui répartit les
+  rôles de départ. Vous installez et menez les premiers paliers <b>plus vite, avec moins d'aide</b>. Au jalon 2',
+  vous échangez de nouveau les rôles pour le dernier palier et la signature finale — une check-list qui ressemble
+  de plus en plus au futur <b>PV d'épreuve officiel de S6</b>.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Vigilance « asphyxie » (gaz inerte invisible) · rigueur des paliers · lecture honnête du manomètre · sécurité dite à voix haute (rôle contrôleur)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service<br><span class="statut">Confortement</span> <b>C2.4</b> Sécuriser l'intervention</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>installer</b> un manodétendeur d'azote sur le montage brasé, sous la supervision directe du professeur ;</li>
+    <li><b>mettre en pression PAR PALIERS</b>, en notant à chaque palier la valeur lue au manomètre ;</li>
+    <li><b>contrôler l'étanchéité</b> à l'eau savonneuse à chaque palier, avant d'autoriser le palier suivant ;</li>
+    <li><b>tenir mon rôle</b> (opérateur ou contrôleur sécurité) dans le binôme, puis <b>échanger</b> les rôles ;</li>
+    <li><b>remplir et signer</b>, avec mon binôme, la check-list de sécurité en annexe.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est <b>pas votre première fois</b> face à un contrôle d'étanchéité : vous
+  l'avez découvert en S3-F1. Aujourd'hui, on réutilise ce que vous savez déjà, et on va plus loin :</p>
+  <ul class="liste-num">
+    <li><b>contrôler l'étanchéité à l'eau savonneuse</b> : badigeonner, observer, repérer une bulle, noter
+    honnêtement (S3-F1) ;</li>
+    <li>que la mise sous pression a <b>toujours été</b>, jusqu'à aujourd'hui, un geste exclusivement professeur ;</li>
+    <li>le <b>montage brasé fort</b> réalisé en S5-F1 (ou un montage équivalent fourni par le professeur, si le
+    vôtre n'est pas encore terminé) ;</li>
+    <li><b>É2 est passée</b> : votre plan de progrès personnel s'applique aussi ici, en particulier sur la rigueur
+    du poste et l'honnêteté du contrôle.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si le contrôle à l'eau savonneuse vous échappe
+  encore, dites-le au professeur avant de commencer : c'est exactement ce que reprend la phase 4 de ce module.</p>
+
+  <h3 class="section">Matériel <span style="font-size:9pt; color:var(--gris); font-weight:normal">(par binôme, sauf mention contraire)</span></h3>
+  <ol class="liste-num">
+    <li>Le montage cuivre brasé fort réalisé en S5-F1 (ou un montage équivalent fourni par le professeur, à faire valider)</li>
+    <li>Bouteille d'azote et son manodétendeur — <b>manipulés par le binôme UNIQUEMENT sous supervision directe du professeur</b></li>
+    <li>Manomètre de contrôle (lecture de la pression à chaque palier)</li>
+    <li>Clé à cliquet ou clé plate, pour le raccordement du flexible de charge</li>
+    <li>Eau savonneuse en flacon + pinceau ou brosse souple, pour le contrôle d'étanchéité à chaque palier <span class="conso">(consommable)</span></li>
+    <li>Check-list opérateur/contrôleur (en annexe de ce document) + stylo</li>
+    <li>Lunettes de protection (× 1 par élève, obligatoires pendant toute mise en pression)</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ DÉVELOPPÉE : AZOTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">L'azote : un gaz qu'on ne voit pas venir</h3>
+  <p style="font-size:10.5pt">L'azote (N₂) est un gaz <b>inerte</b> : il ne brûle pas, il n'est pas toxique au sens
+  chimique. Mais il est <b>incolore et inodore</b> — vous ne le sentez jamais. Dans un local mal ventilé, il peut
+  <b>remplacer l'oxygène de l'air</b> et provoquer une <b>asphyxie</b>, sans aucun signe d'alerte perceptible par
+  la victime elle-même (D'après : FDS - Azote.pdf). C'est pourquoi la ventilation de la zone est vérifiée à chaque
+  début de séance, et pourquoi on ne travaille jamais seul avec la bouteille.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Asphyxie par l'azote (gaz inerte, invisible, inodore) en local mal ventilé</td><td>Zone <b>ventilée</b> vérifiée avant de commencer ; jamais de mise en pression en local totalement confiné ; jamais seul avec la bouteille.</td></tr>
+    <tr><td>Bouteille sous très forte pression (≈ 200 bar pleine)</td><td>Bouteille <b>debout et arrimée</b> en permanence ; jamais tirée, roulée ou traînée ; robinet manipulé avec soin, jamais forcé.</td></tr>
+    <tr><td>Projection si un raccord lâche pendant la montée en pression</td><td><b>Lunettes de protection</b> obligatoires ; <b>personne dans l'axe des raccords</b> pendant toute mise en pression.</td></tr>
+    <tr><td>Montée en pression trop rapide, non contrôlée</td><td>Montée <b>PAR PALIERS uniquement</b> : jamais directement à la valeur finale ; contrôle à l'eau savonneuse à chaque palier avant de poursuivre.</td></tr>
+    <tr><td>Utilisation d'un gaz dangereux à la place de l'azote</td><td><b>Jamais d'oxygène ni d'air comprimé</b> pour un essai d'étanchéité — geste strictement interdit, quelle que soit la situation.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">La mise en pression PAR PALIERS — un geste désormais partagé, jamais seul</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Le montage brasé est terminé et contrôlé visuellement</b> par le binôme, avant tout appel au professeur.<br>
+  2. <b>Le professeur reste présent en permanence</b> pendant toute manipulation du manodétendeur — c'est votre
+  toute première fois.<br>
+  3. <b>L'élève-opérateur</b>, sous supervision directe, raccorde le manodétendeur et ouvre le robinet de la
+  bouteille.<br>
+  4. <b>La montée se fait PAR PALIERS</b> : l'opérateur règle un premier palier, faible, jamais la valeur finale
+  directement.<br>
+  5. <b>Le contrôleur badigeonne</b> chaque raccord à l'eau savonneuse à ce palier, et note le résultat sur la
+  check-list.<br>
+  6. <b>On ne passe au palier suivant qu'après validation</b> du contrôleur ET du professeur.<br>
+  7. Ce cycle se répète jusqu'à la <b>pression fixée par le professeur</b>, affichée au poste — jamais une valeur
+  décidée par les élèves.<br>
+  8. <b>En fin de séance, le professeur dépressurise et ferme la bouteille</b> ; la vis de réglage du manodétendeur
+  est détendue avant tout rangement.</p>
+  </div>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li><b>Jamais d'oxygène ni d'air comprimé pour un essai d'étanchéité</b> — geste interdit central, quelle que
+    soit la situation ;</li>
+    <li><b>Jamais dépasser la pression fixée par le professeur</b> — la valeur affichée au poste est la seule
+    autorisée ce jour ;</li>
+    <li>Jamais monter en pression <b>autrement que par paliers</b> ;</li>
+    <li>Jamais se placer, ni placer un camarade, <b>dans l'axe des raccords</b> pendant une montée en pression ;</li>
+    <li>Jamais l'élève-opérateur n'agit <b>sans professeur présent</b> à côté de lui ;</li>
+    <li>Jamais signer la check-list pour une étape qu'on n'a pas <b>réellement</b> contrôlée.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous (lunettes
+  portées, poste dégagé, zone ventilée vérifiée) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, poste de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — arrêtez immédiatement toute manipulation, alertez le
+  professeur. En cas de malaise (possible signe d'asphyxie) : le professeur coupe l'arrivée d'azote à la bouteille,
+  ventile la zone, fait sortir la personne à l'air libre, alerte, ne la laisse jamais seule. La trousse de secours
+  et l'arrêt d'urgence sont localisés en phase 5 de la séance.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON 1 : INSTALLATION + PREMIERS PALIERS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 16 · JALON 1 — installation + premiers paliers — ≈ 85 min</span>
+
+  <h3 class="section">Répartition des rôles (attribués par le professeur)</h3>
+  <p style="font-size:10.5pt">Élève <span class="role op">OPÉRATEUR</span> : ________________ &nbsp;&nbsp;&nbsp;
+  Élève <span class="role ctrl">CONTRÔLEUR SÉCURITÉ</span> : ________________</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Présenter le montage brasé au professeur pour contrôle visuel avant tout raccordement</p>
+    <p>☐ 2. <b class="role op" style="background:none;border:none;padding:0;color:var(--bleu)">Opérateur</b> : sous supervision du professeur, raccorder le manomètre de contrôle au montage</p>
+    <p>☐ 3. <b class="role op" style="background:none;border:none;padding:0;color:var(--bleu)">Opérateur</b> : ouvrir le robinet de la bouteille d'azote (professeur présent)</p>
+    <p>☐ 4. <b class="role ctrl" style="background:none;border:none;padding:0;color:#c14a17">Contrôleur</b> : lire le 1<sup>er</sup> item de la check-list à voix haute (EPI, zone ventilée, personne dans l'axe)</p>
+    <p>☐ 5. <b class="role op" style="background:none;border:none;padding:0;color:var(--bleu)">Opérateur</b> : régler le 1<sup>er</sup> palier au manodétendeur (valeur faible, fixée par le professeur)</p>
+    <p>☐ 6. <b class="role ctrl" style="background:none;border:none;padding:0;color:#c14a17">Contrôleur</b> : badigeonner chaque raccord à l'eau savonneuse, observer, noter le résultat</p>
+    <p>☐ 7. Faire valider le palier par le professeur avant de passer au palier suivant</p>
+    <p>☐ 8. Recommencer les points 5 à 7 pour chaque palier suivant, jusqu'à la valeur fixée par le professeur pour ce jalon</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — mes paliers (jalon 1)</h4>
+  <table class="releve">
+    <tr><th>Palier</th><th>Pression lue (bar)</th><th>Bulles observées ?</th><th>Conforme ?</th><th>Visa prof.</th></tr>
+    <tr><td>1</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>2</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>3</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Nombre de paliers et valeur de chacun : fixés par
+  le professeur au poste, à faire valider — aucune valeur n'est imposée par ce document. Pour mémoire : une
+  bouteille pleine indique environ 200 bar (D'après : 1 mise sous azote.docx) ; la valeur d'épreuve officielle
+  utilise un manodétendeur qui l'abaisse largement en dessous.</p>
+
+  <div class="encadre-question"><b>Question — agir → noter → réfléchir</b> — Pourquoi contrôle-t-on à l'eau
+  savonneuse à <b>chaque</b> palier, et pas seulement au dernier ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Indice : si une fuite apparaît tôt, à faible
+  pression, que se passe-t-il si on continue quand même à monter en pression sans la voir ?</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1</h4>
+  <p>☐ Rôles tenus correctement &nbsp;&nbsp; ☐ Chaque palier contrôlé avant le suivant &nbsp;&nbsp; ☐ Aucun geste interdit observé &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · JALON 2 : ÉCHANGE DES RÔLES + CONTRÔLE FINAL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 16 · JALON 2 — échange des rôles + contrôle final — ≈ 40 min</span>
+  <p style="font-size:10.5pt">Vous allez maintenant <b>échanger vos rôles</b> : celui qui contrôlait devient
+  opérateur, celui qui opérait devient contrôleur. C'est ce dernier palier, jusqu'à la pression fixée par le
+  professeur pour ce jalon, que vous allez conduire et signer ensemble.</p>
+
+  <h3 class="section">Échange des rôles</h3>
+  <p style="font-size:10.5pt">Nouvel élève <span class="role op">OPÉRATEUR</span> : ________________
+  &nbsp;&nbsp;&nbsp; Nouvel élève <span class="role ctrl">CONTRÔLEUR SÉCURITÉ</span> : ________________</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Le nouvel opérateur reprend la vis de réglage du manodétendeur, professeur toujours présent</p>
+    <p>☐ 2. Le nouveau contrôleur relit à voix haute les 3 derniers items de la check-list avant de continuer</p>
+    <p>☐ 3. Monter le dernier palier de ce jalon, valeur fixée par le professeur</p>
+    <p>☐ 4. Badigeonner l'ensemble des raccords à l'eau savonneuse, observer chaque point</p>
+    <p>☐ 5. Noter honnêtement le résultat, même en cas de fuite</p>
+    <p>☐ 6. Signer la check-list à deux (voir annexe)</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche de relevé — dernier palier (jalon 2)</h4>
+  <table class="releve">
+    <tr><th>Point contrôlé</th><th>Pression lue (bar)</th><th>Bulles observées ?</th><th>Conforme ?</th></tr>
+    <tr><td>Raccord 1 (à préciser)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Raccord 2 (à préciser)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Vous venez de vivre les deux rôles, opérateur puis contrôleur.
+  Lequel demande le plus d'attention selon vous, et pourquoi ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="encadre-question"><b>Question</b> — Si votre montage n'est pas étanche à ce contrôle, est-ce un
+  échec ? Que va-t-il se passer ensuite ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : ce n'est pas un échec,
+  c'est le résultat d'un contrôle — le professeur dépressurise, vous reprenez le raccord concerné (retour à
+  S5-F1 si besoin), puis vous recommencez le contrôle. Trouver une fuite AVANT l'épreuve officielle de S6, c'est
+  justement le but de ce module.</p>
+
+  <div class="secu"><b class="t">⚠ Rappel — fin du passage 1</b> — Vous ne touchez jamais à la dépressurisation :
+  c'est le professeur qui coupe l'arrivée d'azote et ferme la bouteille avant toute manipulation du montage.
+  Rendez-vous en <b>semaine 17</b> pour le passage 2 (rôles choisis par le binôme, moins d'aide).</div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2</h4>
+  <p>☐ Échange des rôles réalisé &nbsp;&nbsp; ☐ Contrôle final réalisé sur tous les raccords &nbsp;&nbsp; ☐ Résultat noté honnêtement &nbsp;&nbsp; ☐ Montage dépressurisé par le professeur en fin de contrôle</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 2 · JALON 1' : RÔLES CHOISIS, MOINS D'AIDE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 17 · JALON 1' — rôles choisis, moins d'aide — ≈ 50 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Cette fois, c'est votre <b>binôme
+  qui répartit lui-même</b> les rôles de départ, sans attendre la consigne du professeur. Vous installez le
+  manodétendeur et menez les premiers paliers <b>plus vite, avec moins d'aide</b> — le professeur reste bien sûr
+  présent en permanence pendant toute manipulation, mais il redémontre moins.</div>
+
+  <h3 class="section">Répartition des rôles (choisie par le binôme)</h3>
+  <p style="font-size:10.5pt">Élève <span class="role op">OPÉRATEUR</span> : ________________ &nbsp;&nbsp;&nbsp;
+  Élève <span class="role ctrl">CONTRÔLEUR SÉCURITÉ</span> : ________________</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Présenter le montage au professeur pour contrôle visuel</p>
+    <p>☐ 2. Raccorder le manomètre de contrôle, sous supervision du professeur</p>
+    <p>☐ 3. Ouvrir le robinet de la bouteille (professeur présent)</p>
+    <p>☐ 4. Dérouler la check-list de sécurité à voix haute avant le premier palier</p>
+    <p>☐ 5. Monter les paliers un par un, valeurs fixées par le professeur, en contrôlant à chaque fois à l'eau savonneuse</p>
+    <p>☐ 6. Faire valider chaque palier par le professeur avant de passer au suivant</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — mes paliers (jalon 1')</h4>
+  <table class="releve">
+    <tr><th>Palier</th><th>Pression lue (bar)</th><th>Bulles observées ?</th><th>Conforme ?</th><th>Visa prof.</th></tr>
+    <tr><td>1</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>2</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>3</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Qu'est-ce qui, dans votre organisation de binôme, vous permet
+  d'aller plus vite qu'au passage 1 sans sauter une seule étape de sécurité ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1'</h4>
+  <p>☐ Rôles répartis sans intervention du professeur &nbsp;&nbsp; ☐ Chaque palier contrôlé avant le suivant &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2'</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON 2' : ÉCHANGE DES RÔLES + CONTRÔLE FINAL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 17 · JALON 2' — échange des rôles + contrôle final signé — ≈ 75 min</span>
+  <p style="font-size:10.5pt">Comme au passage 1, vous échangez les rôles pour conduire le dernier palier et le
+  contrôle final. Cette fois, votre check-list signée se rapproche encore davantage de ce que sera le <b>vrai PV
+  d'épreuve officiel de S6.</b></p>
+
+  <h3 class="section">Échange des rôles</h3>
+  <p style="font-size:10.5pt">Nouvel élève <span class="role op">OPÉRATEUR</span> : ________________
+  &nbsp;&nbsp;&nbsp; Nouvel élève <span class="role ctrl">CONTRÔLEUR SÉCURITÉ</span> : ________________</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Le nouvel opérateur reprend le manodétendeur, professeur toujours présent</p>
+    <p>☐ 2. Le nouveau contrôleur relit la check-list en entier, à voix haute, avant le dernier palier</p>
+    <p>☐ 3. Monter le dernier palier, valeur fixée par le professeur pour ce jalon</p>
+    <p>☐ 4. Badigeonner l'ensemble des raccords, observer, noter honnêtement</p>
+    <p>☐ 5. Faire valider le résultat final par le professeur</p>
+    <p>☐ 6. Remplir et signer, à deux, la check-list complète en annexe</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche de relevé — dernier palier (jalon 2')</h4>
+  <table class="releve">
+    <tr><th>Point contrôlé</th><th>Pression lue (bar)</th><th>Bulles observées ?</th><th>Conforme ?</th></tr>
+    <tr><td>Raccord 1 (à préciser)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Raccord 2 (à préciser)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Raccord 3 (à préciser)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — En quoi la check-list que vous venez de signer
+  ressemble-t-elle à ce que sera le PV d'épreuve officiel de S6 ? Qu'est-ce qui, à votre avis, sera <b>différent</b>
+  dans l'épreuve réelle (durée du contrôle, pression, document remis) ?</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Piste de réflexion : la vraie épreuve d'étanchéité
+  se contrôle sur une durée bien plus longue qu'un contrôle immédiat (D'après : 1 mise sous azote.docx — un essai
+  de référence se vérifie sur au moins 24 h) et donne lieu à un document réglementaire signé, remis au client.</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2'</h4>
+  <p>☐ Échange des rôles réalisé &nbsp;&nbsp; ☐ Contrôle final complet &nbsp;&nbsp; ☐ Check-list signée par les deux élèves &nbsp;&nbsp; ☐ Montage dépressurisé par le professeur</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état (à chaque passage)</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que le professeur a bien dépressurisé et fermé la bouteille avant d'y toucher</p>
+    <p>☐ 2. Vérifier que la vis de réglage du manodétendeur est détendue (dévissée)</p>
+    <p>☐ 3. Débrancher le manomètre du montage, sous supervision</p>
+    <p>☐ 4. Nettoyer l'établi de mon poste, essuyer les traces d'eau savonneuse</p>
+    <p>☐ 5. Vérifier que la zone de travail est dégagée et propre pour le poste suivant</p>
+    <p>☐ 6. Retirer les EPI en dernier, une fois le poste totalement rangé</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis</h4>
+  <p>☐ Passage 1 : montage installé, paliers contrôlés, rôles échangés, check-list signée<br>
+  ☐ Passage 2 : moins d'aide, rôles choisis par le binôme, paliers contrôlés, rôles échangés, check-list signée</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C3.9 Confortement</b> (déjà rencontrée en
+  Découverte à S3-F1) · <b>C2.4 Confortement</b> — poids réduit, aucune de ces deux compétences n'est remontée sur
+  École Directe dans ce module (S5 ne comporte aucun statut Évaluation).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service</td><td>sur T11 · T12 · S5.5</td><td>Compétence non observée ce jour.</td><td>Ne conduit pas le contrôle par paliers malgré l'aide (monte trop vite, oublie de contrôler un palier, ne repère pas une bulle).</td><td>Conduit le contrôle par paliers avec l'aide du professeur (rappel du palier suivant, où badigeonner).</td><td>Conduit seul(e), dans son rôle du moment, la montée par paliers et le contrôle à l'eau savonneuse, note honnêtement le résultat (passage 1 : rôles attribués ; passage 2 : rôles choisis, moins d'aide).</td><td>Comme « Acquis », et explique à un pair pourquoi on ne monte jamais directement à la pression finale.</td></tr>
+    <tr><td><b>C2.4</b> Sécuriser l'intervention</td><td>sur T12</td><td>Compétence non observée ce jour.</td><td>Geste dangereux malgré rappel (ne respecte pas l'axe des raccords, tente d'agir sans professeur présent).</td><td>Respecte la sécurité avec des rappels du professeur ou du contrôleur.</td><td>Tient son rôle (opérateur ou contrôleur) sans rappel, déroule ou fait dérouler la check-list complètement, EPI et gestes respectés.</td><td>Comme « Acquis », et dans le rôle de contrôleur, interrompt spontanément une manœuvre si un point de la check-list n'est pas respecté.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux (agit sans professeur présent, dépasse la pression fixée) ou signature de la check-list sans contrôle réel : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>EPI et gestes respectés sans rappel, contrôle honnête, signature engagée sur une observation réelle.</td><td>Comme « Acquis », et signale spontanément un doute plutôt que de signer trop vite.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.9 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C2.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous étiez concerné(e) par un objectif de
+  progrès à É2 sur la rigueur du poste ou l'honnêteté du contrôle : avez-vous progressé aujourd'hui ?</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : relevés de paliers, questions répondues)</li>
+    <li><b>Check-list opérateur/contrôleur signée</b> (en annexe), aux deux passages</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (eau savonneuse, consommables)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : 1 mise sous
+  azote.docx (procédure manodétendeur, bouteille pleine ≈ 200 bar, essai de référence 10 bar minimum pendant
+  24 h — seule valeur d'essai sourcée) ; FDS - Azote.pdf (Air Liquide — gaz sous pression, asphyxie, ventilation,
+  EPI) ; Évaluation pose des manomètres épreuve à l'azote tirage au vide.docx (inspiration de grille) ; tp mise
+  sous azote PFC.docx ; Charte pédagogique FrigorX (§7 sécurité — geste interdit : jamais d'oxygène ni d'air
+  comprimé pour une épreuve d'étanchéité) ; référentiel CAP IFCA (codes C3.9, C2.4, T11, T12, S5.5). Valeur de
+  pression des paliers et nombre de paliers : fixés par le professeur au poste, à faire valider — aucune valeur
+  inventée dans ce document ; l'écart entre la valeur d'épreuve du maître de séquence (20 bar) et la seule valeur
+  sourcée de la base (10 bar/24 h) reste consigné dans <i>_ETAT.md</i> pour arbitrage. L'épreuve complète (durée,
+  pression d'épreuve de l'installation, PV réglementaire) se fera en <b>S6</b>.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — ANNEXE PLEINE PAGE : CHECK-LIST OPÉRATEUR / CONTRÔLEUR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · ANNEXE pleine page · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section" style="margin-top:0">ANNEXE — Check-list opérateur / contrôleur sécurité (essai sous azote)</h3>
+  <p style="font-size:10pt; color:var(--gris)">À dérouler <b>à voix haute</b> par l'élève-contrôleur, à chaque
+  palier. Une copie par passage. <b>Cette check-list signée préfigure le PV d'épreuve officiel de S6.</b></p>
+
+  <div class="annexe">
+  <p style="font-size:10.5pt"><b>Montage contrôlé</b> : ________________________________ &nbsp;&nbsp;
+  <b>Passage</b> : ☐ 1 ☐ 2</p>
+
+  <table class="grille" style="font-size:9.3pt">
+    <tr><th style="width:6%">N°</th><th style="width:64%">Item de sécurité (lu à voix haute par le contrôleur)</th><th style="width:15%">Vérifié</th><th style="width:15%">Visa contrôleur</th></tr>
+    <tr><td>1</td><td>Lunettes de protection portées par les deux élèves</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>2</td><td>Zone ventilée, personne dans l'axe des raccords</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>3</td><td>Bouteille debout, arrimée ; professeur présent avant toute manipulation</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>4</td><td>Manodétendeur raccordé correctement, vis de réglage dévissée avant ouverture du robinet</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>5</td><td>Montée en pression réalisée PAR PALIERS (jamais directement à la valeur finale)</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>6</td><td>Contrôle à l'eau savonneuse effectué à CHAQUE palier avant de continuer</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>7</td><td>Pression ne dépasse jamais la valeur fixée par le professeur</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>8</td><td>Aucun usage d'oxygène ni d'air comprimé pour ce contrôle</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>9</td><td>En fin d'essai, dépressurisation et fermeture de la bouteille réalisées par le professeur</td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+
+  <p style="font-size:10pt; margin-top:10px"><b>Rôles tenus (rôles tournants — cocher les deux si échangés en séance)</b></p>
+  <table class="grille" style="font-size:9.3pt">
+    <tr><th style="width:34%">Élève</th><th>Rôle jalon 1 / 1'</th><th>Rôle jalon 2 / 2'</th></tr>
+    <tr><td>Élève 1 : ________________</td><td>☐ Opérateur ☐ Contrôleur</td><td>☐ Opérateur ☐ Contrôleur</td></tr>
+    <tr><td>Élève 2 : ________________</td><td>☐ Opérateur ☐ Contrôleur</td><td>☐ Opérateur ☐ Contrôleur</td></tr>
+  </table>
+
+  <div class="jalon" style="margin-top:14px"><h4>Signatures — engagement sur une observation réelle</h4>
+  <p style="font-size:10pt">En signant ci-dessous, nous certifions avoir réellement vérifié chaque item listé
+  ci-dessus, dans le rôle qui était le nôtre à chaque instant, sans en cocher aucun par complaisance.</p>
+  <p>Signature élève 1 : ________________________ &nbsp;&nbsp;&nbsp; Signature élève 2 : ________________________</p>
+  <p>Visa professeur : ________________________ &nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin-top:10px">Ce document préfigure le PV
+  d'épreuve d'étanchéité officiel que vous remplirez en S6, sur le circuit complet de l'installation, à la pression
+  d'épreuve réelle et sur la durée réglementaire.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 9 — ANNEXE PLEINE PAGE : SCHÉMA DU MONTAGE D'ESSAI ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F2 · ANNEXE pleine page · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section" style="margin-top:0">ANNEXE — Schéma du montage d'essai sous azote (document de travail)</h3>
+  <p style="font-size:10pt; color:var(--gris)">Schéma à garder <b>sous les yeux pendant toute la manipulation</b>.
+  Une feuille par binôme.</p>
+
+  <div class="annexe">
+    <img src="../images/manodetendeur-azote-schema-principe.jpg" alt="Schéma de principe : bouteille d'azote, manodétendeur et raccordement au montage" style="width:100%; max-width:100%; display:block; margin:0 auto 10px">
+    <p style="font-size:9.5pt; color:var(--gris); font-style:italic; margin:0 0 12px">D'après : « 1 mise sous
+    azote » (document de l'enseignant). ⚠ La pression indiquée sur ce schéma source est un <b>exemple</b> —
+    en séance, la pression de chaque palier est <b>fixée par le professeur</b>.</p>
+
+    <table class="grille" style="font-size:10pt">
+      <tr><th style="width:8%">Repère</th><th style="width:34%">Élément de la chaîne</th><th>Rôle dans l'essai</th></tr>
+      <tr><td><b>1</b></td><td>Bouteille d'azote (debout, arrimée)</td><td>Réserve de gaz neutre sous haute pression (≈ 200 bar pleine — D'après : « 1 mise sous azote »)</td></tr>
+      <tr><td><b>2</b></td><td>Robinet de bouteille</td><td>Ouverture/fermeture générale — manœuvré sous le contrôle du professeur</td></tr>
+      <tr><td><b>3</b></td><td>Manodétendeur azote</td><td>Abaisse la pression de la bouteille à la pression d'essai ; ses DEUX manomètres se lisent : amont (bouteille) et aval (montage)</td></tr>
+      <tr><td><b>4</b></td><td>Flexible de liaison</td><td>Relie le manodétendeur au montage — état vérifié AVANT ouverture (item 4 de la check-list)</td></tr>
+      <tr><td><b>5</b></td><td>Montage brasé à contrôler</td><td>Votre assemblage de S5-F1 (ou montage équivalent fourni) — chaque brasure se contrôle à l'eau savonneuse à CHAQUE palier</td></tr>
+    </table>
+
+    <div class="cadre-dessin" style="margin-top:14px; min-height:150px"><p style="font-size:9.5pt; color:var(--gris); margin:4px 6px">À vous : redessinez ci-dessous la chaîne complète 1 → 5 de VOTRE poste, avec les repères, telle que vous la voyez à l'atelier.</p></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon, .annexe{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

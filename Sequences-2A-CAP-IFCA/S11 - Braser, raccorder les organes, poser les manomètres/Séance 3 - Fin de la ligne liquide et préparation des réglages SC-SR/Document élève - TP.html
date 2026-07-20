@@ -1,0 +1,502 @@
+<meta charset="utf-8">
+<title>TP élève — S11 · Module A2-c · Fin de la ligne liquide, pose complète des manomètres, relevé des pressions et préréglage au banc</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .notion{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:10px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--violet); font-size:11pt; margin:0 0 4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Braser, raccorder les organes, poser les manomètres</td>
+      <td style="width:38%"><span class="lib">Module atelier A2-c · 4 h</span><b>Fin de la ligne liquide, pose complète des manomètres, relevé des pressions et préréglage au banc</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> · sem. 6 · 06/10/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  La ligne liquide a été <b>brasée</b> (module A2-a) puis <b>équipée de ses premiers manomètres</b> (module
+  A2-b). <b>Ordre d'intervention n° OI-2026-S11-03</b> : le client demande aujourd'hui de <b>terminer la ligne
+  liquide</b>, de <b>compléter la pose des manomètres</b> restants, de <b>relever les pressions BP et HP</b>
+  après mise sous pression contrôlée, puis de <b>préparer le préréglage des consignes de régulation</b>. Cette
+  dernière étape se fait <b>au banc, hors tension et hors fluide</b> : aucune mise en service aujourd'hui.
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-ligne-liquide-equipee.svg" alt="Schéma technique réduit : ligne liquide équipée — filtre déshydrateur, voyant liquide, détendeur, prises de pression BP/HP"
+         style="max-width:92%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Ligne liquide équipée — schéma réduit pour le repérage. Le schéma complet figure en <b>annexe A3 paysage</b> en fin de document.</figcaption>
+  </figure></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T14</b> Régler l'installation en fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.2</b> Fluides frigorigènes, huiles <span class="nuance">prérequis</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">prérequis</span><br><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">nouveau</span><br><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du relevé · esprit d'analyse (comparer mesuré / attendu) · sécurité</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement→Évaluation</span> <b>C4.5</b> Mesurer, comparer des grandeurs<br><span class="statut">Découverte</span> <b>C4.6</b> Paramétrer ou régler les valeurs de consigne sur organe de régulation/sécurité</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>terminer</b> les brasures et raccordements restants de la ligne liquide et <b>compléter la pose</b> des manomètres BP/HP ;</li>
+    <li><b>relever</b>, après mise sous pression contrôlée, les pressions BP et HP et <b>lire</b> la double graduation (pression↔température) ;</li>
+    <li><b>observer</b> un écart entre température lue et température de saturation, sans en faire le calcul détaillé ;</li>
+    <li><b>préparer</b> un préréglage de consigne sur un organe de régulation, au banc, hors tension et hors fluide.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li><b>lire un manomètre</b> à double graduation pression↔température (S5.2, acquis au module A2-b) ;</li>
+    <li><b>convertir</b> une pression en température de saturation à l'aide de la table du fluide (module A2-b) ;</li>
+    <li>respecter les <b>consignes de sécurité</b> de l'atelier (S6.1) sans rappel ;</li>
+    <li><b>nommer les organes</b> de la ligne liquide (filtre déshydrateur, voyant liquide, détendeur).</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous ne cochez pas tous ces prérequis, prévenez le professeur avant de commencer : un rappel court est possible pendant l'exercice au fil de l'eau (phase 4), mais <b>jamais pendant la démonstration de mise sous pression</b>.</p>
+
+  <h3 class="section">Exercice au fil de l'eau — lecture de manomètres (pendant le passage en tenue)</h3>
+  <p style="font-size:10.3pt">Pendant que vous attendez votre tour pour vous changer, lisez le poste de
+  manomètres BP/HP ci-dessous (cadrans réalistes EN 837-1, fluide R-134a) et notez la pression lue sur
+  chaque cadran ainsi que la température de saturation correspondante, sur l'échelle intérieure du bon
+  fluide.</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/cadran-manometre-en837-cas1-r134a.png" alt="Cadrans réalistes EN 837-1 : manomètre BP à gauche, manomètre HP à droite, échelles bar/psi et température R-134a/R-1234, zone verte de fonctionnement normal"
+         style="max-width:85%;">
+    <figcaption class="legende">À gauche : manomètre BP · à droite : manomètre HP · échelle extérieure noire = pression (bar) · échelle intérieure bleue/rouge = température de saturation pour R-134a/R-1234 · la zone verte indique la plage de fonctionnement normal.</figcaption>
+  </figure>
+  <table class="releve">
+    <tr><th>P0 — manomètre BP (bar)</th><th>T0 (°C, échelle R-134a)</th><th>PK — manomètre HP (bar)</th><th>TK (°C, échelle R-134a)</th></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Ligne liquide brasée et partiellement équipée (modules A2-a et A2-b) (× 1 par poste)</li>
+    <li>Chalumeau oxyacétylénique complet + bouteille d'azote et détendeur BP (× 1 par poste, sous surveillance professeur, pour les raccords restants)</li>
+    <li>Baguettes de brasure argent ou cuivre-phosphore selon consigne du professeur <span class="conso">(consommable)</span></li>
+    <li>Manomètres BP/HP restants à poser + raccords de service (× 1 jeu par poste)</li>
+    <li>Vanne et dispositif de mise sous pression contrôlée (azote ou fluide selon consigne du professeur) (× 1 par poste)</li>
+    <li>Fiche de sécurité à cocher (permis de feu pour la finition des brasures) (× 1 par poste)</li>
+    <li>Fiche d'auto-contrôle qualité de brasure (rappel module A2-a) (× 1 par poste)</li>
+    <li>Fiche de contrôle croisé binôme à binôme, pose des manomètres (× 1 par poste)</li>
+    <li>Table de conversion pression → température de saturation (× 1 par élève)</li>
+    <li>Banc de réglage hors tension et hors fluide, avec organe de régulation/sécurité à préréglage (× 1 par poste)</li>
+    <li>Fiche de préréglage de consigne (× 1 par poste)</li>
+    <li>Lunettes de protection teintées brasage, gants cuir, tablier ignifugé (rappel module A2-a, pour la finition des brasures)</li>
+    <li>Carnet de bord + bon de commande hebdomadaire (module F3) + crayon</li>
+  </ol>
+
+  <h3 class="section">EPI, risques, gestes interdits et urgence</h3>
+  <div class="secu"><b class="t">⚠ Mise sous pression contrôlée, aucune mise sous tension aujourd'hui</b> — le
+  module comporte trois activités bien distinctes : finir des brasures (mêmes règles qu'au module A2-a), poser
+  des manomètres restants puis relever des pressions sous mise sous pression <b>contrôlée et sécurisée</b>, et
+  préparer un préréglage <b>au banc, hors tension et hors fluide</b>. Aucune installation n'est mise en service
+  ce jour.</div>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade / EPI</th></tr>
+    <tr><td>Brûlure par flamme ou par le cuivre chauffé (finition des brasures)</td><td><b>Gants cuir</b>, <b>tablier ignifugé</b>, <b>lunettes teintées brasage</b> obligatoires. <b>Permis de feu</b> visé par le professeur avant toute flamme. Laisser refroidir avant de toucher un raccord.</td></tr>
+    <tr><td>Oxydation interne pendant la finition des brasures</td><td><b>Balayage d'azote obligatoire</b>, comme au module A2-a.</td></tr>
+    <tr><td>Blessure lors de la pose des manomètres restants</td><td>Vannes de service <b>fermées</b> avant raccordement, pas de purge brutale, contrôle croisé binôme à binôme.</td></tr>
+    <tr><td>Projection ou éclatement lors de la mise sous pression</td><td><b>Montée progressive et contrôlée</b>, jamais brutale. Zone dégagée, lunettes de protection, professeur présent qui valide chaque étape avant d'ouvrir la vanne.</td></tr>
+    <tr><td>Choc électrique ou coup de bélier au banc de réglage</td><td><b>Toujours vérifier que le banc est hors tension et hors fluide</b> avant toute manipulation de l'organe de régulation. Ne jamais brancher une alimentation pendant le préréglage.</td></tr>
+    <tr><td>Poste de brasage abandonné flamme allumée</td><td><b>Ne jamais quitter un poste flamme allumée</b>, même quelques secondes.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10pt"><b>Gestes interdits aujourd'hui</b> : jamais de flamme sans permis de feu visé ;
+  jamais de mise sous pression sans validation du professeur ; jamais de réglage d'un organe de sécurité
+  <b>sous tension ou sous pression</b> ; jamais de mise en service d'une installation ; ne jamais quitter un
+  poste de brasage flamme allumée.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — pour un incident de brasage : couper l'arrivée
+  de gaz aux bouteilles, utiliser l'<b>extincteur localisé</b>, alerter immédiatement le professeur. Pour une
+  brûlure : refroidir sous le <b>point d'eau localisé</b> puis prévenir le professeur. Pour une fuite ou un
+  bruit anormal pendant la mise sous pression : <b>fermer la vanne immédiatement</b>, alerter le professeur.
+  Au banc de réglage : en cas de doute sur l'état hors tension/fluide, <b>arrêter et appeler le professeur</b>
+  avant toute manipulation.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — OBSERVER : AMORCE (RENVOYÉE À T2) + FINITION DE LA LIGNE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-c · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">OBSERVER — une courte amorce avant de passer à l'atelier</h3>
+  <p style="font-size:10.5pt">Le professeur vous montre <b>un seul couple de valeurs</b> déjà relevé sur une
+  installation : une <b>pression</b> lue au manomètre, convertie en <b>température de saturation</b>, et une
+  <b>température réelle</b> mesurée au même endroit au thermomètre de contact.</p>
+
+  <div class="encadre-question"><b>Observation</b> — La température réelle est-elle <b>la même</b> que la
+  température de saturation lue en face de la pression, ou y a-t-il un <b>écart</b> ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="notion"><h4>Ce que vous devez retenir aujourd'hui</h4>
+  <p style="font-size:10.5pt">Il existe un <b>écart</b> entre la température réelle mesurée sur le circuit et la
+  température de saturation donnée par le manomètre. Cet écart a un nom et il se mesure : on l'appelle
+  <b>surchauffe</b> côté aspiration (BP) et <b>sous-refroidissement</b> côté liquide (HP). <b>La surchauffe et
+  le sous-refroidissement sont définis et quantifiés au module théorie T2</b> : aujourd'hui, vous vous
+  contentez de repérer que cet écart existe. Retenez seulement, comme repère à approfondir en T2 : une
+  surchauffe se situe en général entre <b>5 et 10 K</b>, un sous-refroidissement entre <b>4 et 8 K</b> — toute
+  autre valeur rencontrée en atelier reste « selon plaque/notice, à faire valider ».</p></div>
+
+  <p style="font-size:10.5pt">Terminez maintenant la ligne liquide et complétez la pose des manomètres : c'est
+  sur ce montage terminé que vous ferez tout à l'heure votre propre relevé de pressions.</p>
+
+  <h3 class="section">Réalisation — jalon 1 : finition de la ligne liquide et manomètres</h3>
+  <span class="poste-titre">JALON 1 — ≈ 1 h 05</span>
+  <p style="font-size:10.5pt">Terminez les brasures et raccordements restants, <b>sous les mêmes règles de
+  sécurité qu'au module A2-a</b> : permis de feu visé, EPI complets, balayage d'azote pendant toute la durée
+  du chauffage. Complétez ensuite la pose des manomètres BP/HP restants, hors pression.</p>
+  <div class="liste-num">
+    <p>☐ 1. Faire viser le <b>permis de feu</b> par le professeur avant toute flamme</p>
+    <p>☐ 2. Revêtir lunettes teintées, gants cuir, tablier ignifugé</p>
+    <p>☐ 3. Raccorder le tuyau d'azote et régler un faible débit avant d'allumer le chalumeau</p>
+    <p>☐ 4. Terminer chaque brasure restante en suivant la procédure démontrée au module A2-a</p>
+    <p>☐ 5. Éteindre le chalumeau dès la brasure terminée — jamais de poste abandonné flamme allumée</p>
+    <p>☐ 6. Laisser refroidir sans toucher à main nue, puis fermer le détendeur d'azote</p>
+    <p>☐ 7. Vérifier que la vanne de service de chaque manomètre restant est <b>fermée</b> avant raccordement</p>
+    <p>☐ 8. Raccorder le manomètre BP (bleu) sur la prise de pression bleue, le manomètre HP (rouge) sur la prise de pression rouge</p>
+    <p>☐ 9. Faire un <b>contrôle croisé</b> avec le binôme voisin : chacun vérifie le repérage couleur de l'autre poste</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche d'auto-contrôle qualité — brasures terminées ce jour</h4>
+  <table class="releve">
+    <tr><th style="width:30%">Critère observable</th><th>Raccord terminé n° 1</th><th>Raccord terminé n° 2</th></tr>
+    <tr><td style="text-align:left"><b>Pas de coulure</b> visible</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left"><b>Pénétration</b> complète du métal d'apport</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left"><b>Propreté</b> du raccord (pas de suie, pas de flux)</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <h4 style="font-size:11pt">Fiche de contrôle croisé — pose des manomètres restants</h4>
+  <table class="releve">
+    <tr><th>Manomètre</th><th>Repérage couleur conforme (BP bleu / HP rouge) ?</th><th>Raccordement étanche visuellement ?</th><th>Vérifié par le binôme voisin</th></tr>
+    <tr><td>BP</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>________</td></tr>
+    <tr><td>HP</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>________</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — DÉMONSTRATION + JALON 2a : RELEVÉ DES PRESSIONS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-c · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">OBSERVER — la démonstration de mise sous pression contrôlée</h3>
+  <p style="font-size:10.5pt">La mise sous pression est un geste à risque : elle se <b>démontre</b>, elle ne se
+  découvre pas seul. Le professeur réalise devant vous une mise sous pression contrôlée complète, de
+  l'ouverture progressive de la vanne à la lecture des manomètres. <b>Observez sans toucher</b>, avant de
+  répondre.</p>
+
+  <div class="encadre-question"><b>Observation</b> — Le professeur ouvre-t-il la vanne d'un coup ou
+  progressivement ? Que vérifie-t-il avant chaque augmentation de pression ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-pose-manometre.svg" alt="Schéma technique : lecture d'un manomètre BP (bleu) et HP (rouge) à double graduation, après mise sous pression"
+         style="max-width:82%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Lecture d'un manomètre après mise sous pression — <b>BP en bleu</b>, <b>HP en rouge</b>. Chaque cadran porte une <b>double graduation</b> : la pression en bar, et en face, la température de saturation correspondante en °C.</figcaption>
+  </figure>
+
+  <h3 class="section">Réalisation — jalon 2 (partie a) : relevé des pressions BP et HP</h3>
+  <span class="poste-titre">JALON 2 — ≈ 45 min</span>
+  <p style="font-size:10.5pt">Sur validation du professeur, mettez votre montage <b>sous pression contrôlée</b>
+  et relevez vos pressions.</p>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la zone est dégagée et que les EPI (lunettes) sont portés</p>
+    <p>☐ 2. Faire valider par le professeur l'ouverture de la vanne de mise sous pression</p>
+    <p>☐ 3. Ouvrir la vanne <b>progressivement</b>, jamais d'un coup, en surveillant les manomètres</p>
+    <p>☐ 4. Contrôler l'absence de fuite visuelle ou sonore à chaque palier</p>
+    <p>☐ 5. Relever la <b>pression BP</b> stabilisée sur le manomètre bleu</p>
+    <p>☐ 6. Relever la <b>pression HP</b> stabilisée sur le manomètre rouge</p>
+    <p>☐ 7. Lire, en face de chaque pression, la <b>température de saturation</b> sur la double graduation</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — pressions BP et HP</h4>
+  <table class="releve">
+    <tr><th>Manomètre</th><th>Pression relevée (bar)</th><th>Température de saturation lue (°C)</th></tr>
+    <tr><td>BP (bleu)</td><td></td><td></td></tr>
+    <tr><td>HP (rouge)</td><td></td><td></td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi le manomètre BP et le manomètre HP n'affichent-ils
+  pas la même pression, alors qu'ils sont sur le même circuit ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Le calcul détaillé de l'écart entre température
+  réelle et température de saturation (surchauffe, sous-refroidissement) est traité au module théorie T2, pas
+  aujourd'hui.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — JALON 2 (PARTIE b) : PRÉRÉGLAGE AU BANC (C4.6) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-c · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Réalisation — jalon 2 (partie b) : préréglage d'une consigne au banc (découverte C4.6)</h3>
+  <span class="poste-titre">JALON 2 (suite) — inclus dans les 45 min</span>
+  <div class="secu"><b class="t">⚠ Hors tension et hors fluide</b> — le banc de réglage n'est <b>ni sous
+  tension ni sous fluide</b>. Vous ne mettez rien en service aujourd'hui : vous préparez seulement un réglage
+  de consigne sur un organe démonté ou sur banc dédié.</div>
+
+  <p style="font-size:10.5pt">Sur le banc mis à disposition, repérez l'organe de régulation ou de sécurité
+  (pressostat BP ou HP selon le poste) et sa ou ses vis de réglage. Prérèglez-le à la <b>valeur de la table de
+  réglage réelle</b> ci-dessous, <b>sans mise en service</b>.</p>
+
+  <div class="notion"><h4>Table de réglage — pressostat BP sécurité (méthode réelle du métier)</h4>
+  <p style="font-size:10pt; margin:0 0 6px">Deux vis : la <b>vis de réglage du point de consigne</b> (point de
+  coupure) et la <b>vis de réglage du différentiel</b>. Si le pressostat est à différentiel <b>fixe</b>, ne
+  régler que le point de coupure.</p>
+  <table class="releve" style="font-size:9pt">
+    <tr><th>T° d'évaporation</th><th>Fluide</th><th>Coupure</th><th>Différentiel</th><th>Enclenchement</th></tr>
+    <tr><td>−5 °C</td><td>R134a</td><td>0,2 bar</td><td>1,2 bar</td><td>1,4 bar</td></tr>
+    <tr><td>−5 °C</td><td>R404A</td><td>0,2 bar</td><td>3,8 bar</td><td>4 bar</td></tr>
+    <tr><td>−25 °C</td><td>R404A</td><td>0,2 bar</td><td>1,3 bar</td><td>1,5 bar</td></tr>
+  </table></div>
+
+  <div class="notion"><h4>Table de réglage — pressostat HP sécurité (méthode réelle du métier)</h4>
+  <p style="font-size:10pt; margin:0 0 6px"><b>Coupure</b> = pression correspondant à (T° maxi de la région +
+  10 °C de réchauffement de l'air au condenseur + 10 °C de pincement air/réfrigérant). <b>Exemple réel</b> :
+  région Nîmes, Pc = 35 + 10 + 10 = 55 °C, soit pour le R134a Pc = 15 bar effectif. <b>Différentiel</b> :
+  fixe, 3 ou 4 bar selon l'appareil (non réglable).</p></div>
+
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que le banc est <b>hors tension</b> (rien de branché) et <b>hors fluide</b> (aucune bouteille raccordée)</p>
+    <p>☐ 2. Identifier l'organe de votre poste (pressostat BP ou HP) et repérer sa ou ses vis de réglage</p>
+    <p>☐ 3. Lire dans la table ci-dessus la valeur de coupure (et de différentiel si réglable) pour le fluide et la T° d'évaporation — ou la région — indiqués par le professeur pour votre poste</p>
+    <p>☐ 4. Prérégler le point de coupure en tournant la vis de réglage du point de consigne jusqu'à la valeur visée</p>
+    <p>☐ 5. Si le différentiel est réglable, le prérégler à son tour en tournant la vis de réglage du différentiel jusqu'à la valeur visée</p>
+    <p>☐ 6. Noter les valeurs préréglées dans le tableau ci-dessous</p>
+    <p>☐ 7. Faire valider le préréglage par le professeur avant de démonter le poste</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche de préréglage de consigne</h4>
+  <table class="releve">
+    <tr><th style="width:16%">Organe (BP/HP)</th><th>Fluide / région</th><th>Coupure visée</th><th>Différentiel visé</th><th>Enclenchement (coupure + différentiel)</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Toute valeur ne figurant pas dans les
+  tables ci-dessus (autre fluide, autre T° d'évaporation, autre région) doit être vérifiée : « selon la
+  plaque constructeur ou la notice, à faire valider ». La <b>vérification du préréglage sous pression réelle</b>
+  (fermeture/ouverture de la vanne de départ liquide, installation en fonctionnement) se fait lors d'une
+  <b>séance ultérieure de mise en service</b> : aujourd'hui, seul le préréglage mécanique aux valeurs de la
+  table est réalisé, hors tension et hors fluide.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi ce préréglage se fait-il <b>hors tension et hors fluide</b>, et non pas directement sur l'installation en fonctionnement ?</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+
+  <div class="jalon"><h4>Jalons franchis aujourd'hui</h4>
+  <p>☐ Brasures restantes terminées et auto-contrôlées, permis de feu respecté<br>
+  ☐ Manomètres restants posés, repérage BP/HP contrôlé en binôme croisé<br>
+  ☐ Mise sous pression contrôlée réalisée sous validation professeur, pressions BP et HP relevées<br>
+  ☐ Double graduation lue, écart pression/température repéré (amorce, à approfondir en T2)<br>
+  ☐ Préréglage de consigne réalisé au banc, hors tension et hors fluide, validé par le professeur</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CONTRÔLES + RANGEMENT + GRILLE 0-4 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-c · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Contrôles</h3>
+  <p style="font-size:10.5pt">Avant le rangement, contrôlez l'ensemble de la ligne liquide terminée.</p>
+  <div class="liste-num">
+    <p>☐ 1. Contrôle visuel de <b>toutes les brasures</b> de la ligne liquide (celles d'aujourd'hui et celles du module A2-a)</p>
+    <p>☐ 2. Contrôle du <b>repérage couleur</b> de tous les manomètres posés (BP bleu, HP rouge)</p>
+    <p>☐ 3. Vérifier qu'<b>aucune vanne</b> n'a été laissée ouverte par erreur après le relevé</p>
+    <p>☐ 4. Vérifier que le <b>banc de réglage</b> est bien resté hors tension et hors fluide pendant tout le préréglage</p>
+    <p>☐ 5. Relire ses relevés de pression et son préréglage : sont-ils complets et lisibles ?</p>
+  </div>
+
+  <h3 class="section">Rangement et remise en état</h3>
+  <div class="liste-num">
+    <p>☐ 1. Fermer les bouteilles d'oxygène, d'acétylène et d'azote (robinet fermé, pas seulement le détendeur)</p>
+    <p>☐ 2. Dépressuriser le montage progressivement avant de le démonter</p>
+    <p>☐ 3. Ranger le chalumeau et les flexibles enroulés sans coude serré</p>
+    <p>☐ 4. Ranger le banc de réglage, s'assurer qu'il reste hors tension et hors fluide</p>
+    <p>☐ 5. Ranger la ligne liquide terminée à l'emplacement indiqué, étiquetée avec votre nom de poste</p>
+    <p>☐ 6. Remplir le carnet de bord et le <b>bon de commande hebdomadaire</b> (matériel manquant, consommables)</p>
+    <p>☐ 7. Vérifier que la zone de travail est dégagée et propre pour le poste suivant</p>
+    <p>☐ 8. Retirer les EPI en dernier, une fois le poste totalement sécurisé</p>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:14.4%">0<br>Non évalué</th><th style="width:14.4%">1<br>Non acquis</th><th style="width:14.4%">2<br>En cours d'acquisition</th><th style="width:14.4%">3<br>Acquis</th><th style="width:14.4%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>sur T11 · S5.2</td><td>Compétence non observée ce jour.</td><td>Relevé de pression non réalisé, mal fait, ou double graduation non lue.</td><td>Relevé réalisé avec aide du professeur pour la lecture de la double graduation.</td><td>Mise sous pression contrôlée réalisée seul sous validation, pressions BP/HP relevées et lues correctement.</td><td>Comme « Acquis », et l'élève explique à un pair pourquoi BP et HP affichent des pressions différentes.</td></tr>
+    <tr><td><b>C4.6</b> Paramétrer ou régler les valeurs de consigne sur organe de régulation/sécurité</td><td>sur T14 · S5.6</td><td>Compétence non observée ce jour.</td><td>Préréglage non réalisé, ou manipulation engagée sans vérifier l'état hors tension/fluide du banc.</td><td>Préréglage réalisé avec aide du professeur pour repérer l'organe ou la vis de réglage.</td><td>Organe repéré seul, préréglage réalisé à la valeur demandée, hors tension et hors fluide vérifié avant manipulation.</td><td>Comme « Acquis », et l'élève justifie clairement, sans aide, pourquoi ce préréglage ne se fait jamais sur une installation en fonctionnement.</td></tr>
+    <tr><td>Savoir-être — rigueur du relevé, esprit d'analyse, sécurité</td><td>observation continue</td><td>Non observé ce jour.</td><td>Relevés approximatifs ou non honnêtes, sécurité non respectée (permis de feu, mise sous pression non validée, banc hors tension/fluide).</td><td>Sécurité globalement respectée, relevés globalement rigoureux, quelques rappels nécessaires.</td><td>Sécurité respectée sans rappel, relevés rigoureux, écart mesuré/attendu correctement discuté.</td><td>Comme « Acquis », et l'élève repère et signale spontanément une incohérence dans un relevé du binôme voisin.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C4.5 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (finition, relevés de pression, préréglage, questions répondues)</li>
+    <li>Fiche de sécurité à cocher (permis de feu) visée par le professeur</li>
+    <li>Fiche de contrôle croisé — pose des manomètres restants</li>
+    <li>Bon de commande hebdomadaire (matériel manquant, quantités)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Activité n°10 Ligne liquide avec prise de pression ; TP Complet Manomètres Pressostat BP CAP IFCA ; Fiche CAP IFCA — Pose Manomètres ; F gaz et recherche de fuite (support sécurité) ; PROCEDURE REGLAGE PRESSOSTAT BP SECURITE et PROCEDURE REGLAGE PRESSOSTAT HP SECURITE (F. Henninot) ; cadran EN 837-1 — Exercice_lecture_manometres_SC_SR.html (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE A3 : LIGNE LIQUIDE COMPLÈTE (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe A3 — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Ligne liquide équipée complète — emplacements des manomètres et de la vanne de mise sous pression</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par poste) : c'est le document à garder sous les yeux pendant la finition de la ligne liquide et le relevé des pressions.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-ligne-liquide-equipee.svg" alt="Schéma technique pleine page A3 : ligne liquide complète — compresseur, condenseur, filtre déshydrateur, voyant liquide, détendeur, évaporateur, prises de pression BP/HP"
+         style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:10pt; color:#5a6472; margin-top:6px;">Ligne liquide complète : compresseur → condenseur → filtre déshydrateur → voyant liquide → détendeur → évaporateur, avec les <b>prises de pression BP (bleu) et HP (rouge)</b> et l'emplacement des <b>manomètres</b> à terminer aujourd'hui.</figcaption>
+  </figure>
+
+  <figure style="margin:14px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-pose-manometre.svg" alt="Schéma technique pleine page : détail de la lecture d'un manomètre BP et HP après mise sous pression, double graduation"
+         style="max-width:60%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:10pt; color:#5a6472; margin-top:6px;">Détail de la lecture d'un manomètre après mise sous pression — repère de couleur BP/HP et double graduation (pression / température de saturation).</figcaption>
+  </figure>
+
+  <p style="font-size:10pt; color:var(--gris)">Repères à vérifier sur votre montage réel : couleur du manomètre conforme à la couleur de la prise de pression, montée en pression progressive et contrôlée, lecture faite sur l'échelle double avant tout report dans le carnet de bord.</p>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

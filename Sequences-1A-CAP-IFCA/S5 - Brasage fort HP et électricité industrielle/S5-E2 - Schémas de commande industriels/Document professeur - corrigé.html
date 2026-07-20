@@ -1,0 +1,457 @@
+<meta charset="utf-8">
+<title>Document professeur — S5-E2 · Schémas de commande industriels</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .decouverte{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .decouverte b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .banque{border:1.5px solid var(--bleu); border-radius:6px; background:#fff; padding:6px 12px; margin:.4em 0 .8em; font-size:10pt}
+  .banque b{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Schémas de commande industriels</td>
+      <td style="width:38%"><span class="lib">Module atelier S5-E2 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Classe puzzle (P1) puis transfert autonome (P2)</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> · semaines 16-17</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone de l'armoire arrière-boutique + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — deux demi-journées distinctes (semaine 16 et semaine 17)</td>
+      <td><span class="lib">Modalité</span>Classe puzzle (5 blocs experts) puis câblage collectif ; transfert autonome au passage 2</td>
+      <td><span class="lib">Encadrement</span>1 professeur, consignation appliquée sans rappel</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.2</b> Lecture de plan et <b>S5.6</b> Réseaux, matériels électriques <span class="nuance">AUGMENTÉS — schéma industriel complet</span><br><span class="nuance">Prérequis réactivés :</span> S2.2 (S3-E2), S5.6 (S5-E1)</div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel · rigueur du câblage collectif · coopération du puzzle · honnêteté du contrôle</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · T11 · T12 · S2.2 · S5.6 — cible spiralaire : vers Maîtrise</span><br><span class="statut">Confortement</span> <b>C3.2</b> Identifier sur site les réseaux d'alimentation <span class="nuance">sur T10 · S2.2</span></div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S5-E1 — à annoncer explicitement aux élèves</b> — En S5-E1,
+  les élèves ont manipulé <b>un contacteur isolé</b> et câblé un départ moteur simple, avec l'aide constante du
+  professeur. <b>S5-E2 introduit un schéma complet</b> qui coordonne plusieurs éléments (bouton marche, bouton
+  arrêt, auto-maintien, sécurité thermique, voyants) — changement d'échelle électrique, comme le passage du
+  brasage tendre au brasage fort côté froid. La méthode nouvelle est la <b>classe puzzle (jigsaw)</b> : personne ne
+  voit le schéma entier d'un coup, chacun devient expert d'un bloc puis le partage. La mise sous tension et les
+  essais restent, comme en S5-E1, des gestes <b>exclusivement professeur</b>.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change (conduite professeur)</h4>
+  <b>Passage 1 (semaine 16) — classe puzzle, très guidé.</b> Jalon A (≈ 60 min) : constitution de 5 groupes experts
+  (bouton marche NO, bouton arrêt NF, auto-maintien 13-14, sécurité thermique 95-96, voyants marche/défaut), étude
+  de la fiche experte, préparation de l'explication, puis restitution croisée en groupes mélangés (un représentant
+  par bloc). Jalon B (≈ 65 min) : câblage collectif de l'armoire, chaque groupe expert câble sa zone, contrôle hors
+  tension par zone, mise sous tension et essais par le professeur.<br>
+  <b>Passage 2 (semaine 17) — transfert autonome, sans puzzle.</b> Jalon A' (≈ 40 min) : <b>plus de groupes
+  experts</b> — lecture individuelle ou en binôme du schéma complet sans repère ; laisser l'élève chercher quelques
+  instants avant d'intervenir, même en cas d'hésitation visible. Jalon B' (≈ 85 min) : câblage d'une <b>variante</b>
+  (même logique de circuit, implantation différente), contrôle hors tension, essais par le professeur, en
+  autonomie guidée — le professeur valide sans démontrer, sauf à la mise sous tension, geste qui reste, dans les
+  deux passages, un geste exclusivement professeur.</div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève : mêmes questions, même
+  numérotation, même séquençage en 2 passages × 2 jalons, mêmes 5 blocs experts. Il y ajoute : les réponses
+  attendues aux questions de chaque bloc, la répartition physique du câblage collectif, les critères de contrôle,
+  les erreurs typiques d'élèves avec leur remédiation, l'organisation du plateau, le minutage recompté pour les
+  deux passages, et la différenciation (consolidation / standard / approfondissement + FLE + TDAH-DYS). <b>Aucune
+  valeur non autorisée n'est donnée</b> : les repères KM1, S1, S2, F1, H1, H2 et les numéros de contacts auxiliaires
+  (13-14, 95-96, 97-98) correspondent à un usage professionnel répandu, <b>à faire valider selon le matériel réel de
+  l'atelier</b> ; aucune autre valeur (calibre exact, tension de bobine) n'est affirmée au-delà de « selon le
+  matériel, à faire valider ».</p>
+
+  <h3 class="section">Trame horaire — passage 1 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (puzzle, puis câblage collectif).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S5-4 : câbler la commande complète de l'armoire, à la suite du départ moteur de S5-E1.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés, lien avec C3.6/C3.2, statuts du jour.</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, mini-quiz <b>sans schéma</b> : 4 étapes de la consignation, schéma commande/puissance simple (télérupteur), les deux parties d'un contacteur.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (ARU, trousse, gestes interdits) puis « planter la notion » sur commande/puissance et présentation du principe du puzzle, répartition des 5 blocs.</td></tr>
+    <tr><td>60 min</td><td class="ph">6. Guider l'étude (a) — jalon A : puzzle</td><td>Groupes experts (5), étude de la fiche-support et du schéma zoomé de leur bloc, préparation de l'explication, puis restitution croisée en groupes mélangés.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>65 min</td><td class="ph">6. Guider l'étude (b) — jalon B : câblage collectif</td><td>Câblage de l'armoire par zones (un groupe expert par bloc de commande + un groupe pour la puissance), contrôle hors tension par zone, appel professeur, mise sous tension et essais (marche, auto-maintien, arrêt, défaut si simulé).</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Présentation des zones câblées et du schéma complété, auto-positionnement, validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Carnet de bord + bon de commande hebdomadaire.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Armoire hors tension, multimètres sur OFF, rangement.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour tenue de ville, annonce du passage 2 (semaine 17).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 1 :</b> préparation 1 h 00 + jalon A (60) +
+  pause (15) + jalon B (65) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b></p>
+
+  <h3 class="section">Trame horaire — passage 2 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00, identique)</td></tr>
+    <tr><td>60 min</td><td class="ph">Phases 1-5 (identiques au passage 1)</td><td>Accueil, situation (rappeler le passage 1 et l'objectif du jour : transposer sans puzzle), objectifs, prérequis, mise en sécurité.</td></tr>
+    <tr><td>40 min</td><td class="ph">6. Guider l'étude (a) — jalon A' : lecture autonome</td><td>Lecture individuelle ou en binôme des schémas complets sans repère, complétion de mémoire des repères, sans groupes experts.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>85 min</td><td class="ph">6. Guider l'étude (b) — jalon B' : câblage de la variante</td><td>Câblage individuel ou en binôme d'une variante, contrôle hors tension, essais professeur — autonomie guidée.</td></tr>
+    <tr><td>40 min</td><td class="ph">7-8-8bis-9-10</td><td>Synthèse, auto-positionnement, bon de commande, rangement, clôture — annonce de la suite (S5-T1 selon rotation).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 2 :</b> préparation 1 h 00 + jalon A' (40) +
+  pause (15) + jalon B' (85) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b>
+  Les deux passages totalisent bien 240 min chacun ; seule la répartition entre jalons change, conforme au plan de
+  séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ + DISTRIBUTION DES BLOCS + CORRIGÉ DES 5 FICHES EXPERTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Sécurité — rituel déjà acquis, un seul geste qui ne s'allège jamais</h3>
+  <p style="font-size:10.3pt">La consignation (NF C 18-510) et la VAT ne sont <b>plus démontrées</b> en S5 : elles
+  sont exigées <b>sans rappel</b>. Nouveauté du câblage <b>collectif</b> : ne fermer le sectionneur Q1 qu'après
+  avoir personnellement vérifié le contrôle hors tension de <b>chaque</b> zone câblée par les groupes experts,
+  jamais par lot ni sur simple déclaration. Un seul point de vigilance ne change jamais entre S5-E1 et S5-E2, ni
+  entre passage 1 et passage 2 : <b>la mise sous tension et les essais après câblage restent des gestes
+  exclusivement professeur.</b></p>
+
+  <h3 class="section">Distribution des 5 blocs experts (passage 1)</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Bloc</th><th style="width:30%">Contenu attribué</th><th>Organisation conseillée</th></tr>
+    <tr><td><b>1 — bouton marche</b></td><td>Contact NO (S1), fonctionnement, raccordement</td><td>1 à 2 binômes selon effectif ; matériel : un bouton poussoir NO démontable si possible</td></tr>
+    <tr><td><b>2 — bouton arrêt</b></td><td>Contact NF (S2), fonctionnement, priorité sur S1</td><td>1 à 2 binômes ; matériel : un bouton poussoir NF démontable</td></tr>
+    <tr><td><b>3 — auto-maintien</b></td><td>Contact auxiliaire KM1 13-14 (NO), principe du maintien</td><td>1 à 2 binômes ; matériel : contacteur ouvert (repris de S5-E1) montrant le contact auxiliaire</td></tr>
+    <tr><td><b>4 — sécurité thermique</b></td><td>Contacts F1 95-96 (NF) et 97-98 (NO), rôle de chacun</td><td>1 à 2 binômes ; matériel : relais thermique ouvert (repris de S5-E1)</td></tr>
+    <tr><td><b>5 — voyants</b></td><td>H1 vert (marche, parallèle bobine), H2 rouge (défaut, circuit F1 97-98)</td><td>1 à 2 binômes ; matériel : voyants de signalisation, si possible démontés</td></tr>
+  </table>
+  <p style="font-size:9.5pt; color:var(--gris)">Constituer les groupes <b>mélangés</b> de restitution en veillant à
+  ce que chacun comporte un représentant de chaque bloc (1 à 5). Le professeur circule pendant l'étude experte pour
+  valider au fil de l'eau, sans donner la réponse aux questions à préparer.</p>
+
+  <h3 class="section">Corrigé des questions des 5 fiches expertes</h3>
+  <div class="reponse"><b class="t">Bloc 1 — si l'on relâche S1 juste après avoir appuyé</b><br><br>
+  <b>Réponse attendue :</b> sans le bloc auto-maintien, le circuit de commande s'ouvre dès que l'on relâche le
+  bouton NO, et la bobine KM1 n'est plus alimentée : le moteur s'arrête. C'est justement ce que le bloc 3
+  (auto-maintien) vient corriger — la question prépare la découverte du bloc 3 lors de la restitution croisée.</div>
+
+  <div class="reponse"><b class="t">Bloc 2 — pourquoi le bouton arrêt avant le bouton marche</b><br><br>
+  <b>Réponse attendue :</b> le bouton arrêt (NF, en série, en premier) a la <b>priorité</b> : si l'on appuie sur
+  arrêt ET marche en même temps, ou si l'arrêt est resté enclenché, le circuit reste ouvert. Placé après, un défaut
+  du bouton arrêt ne pourrait plus être garanti prioritaire.</div>
+
+  <div class="reponse"><b class="t">Bloc 3 — faut-il garder le doigt sur S1 en permanence ?</b><br><br>
+  <b>Réponse attendue :</b> sans l'auto-maintien, oui, il faudrait garder le doigt en permanence, ce qui est
+  impossible en usage réel. Le contact auxiliaire KM1 13-14, fermé dès que la bobine est alimentée, <b>relaie</b> le
+  bouton marche : le circuit reste fermé même après relâchement de S1, tant que rien ne l'interrompt (arrêt ou
+  défaut thermique).</div>
+
+  <div class="reponse"><b class="t">Bloc 4 — pourquoi deux contacts différents sur le relais thermique</b><br><br>
+  <b>Réponse attendue :</b> le contact <b>95-96 (NF)</b> sert à <b>couper l'alimentation de la bobine</b> en cas de
+  surcharge (fonction de protection, en série dans le circuit de commande). Le contact <b>97-98 (NO)</b> sert à
+  <b>signaler</b> le défaut (allumer H2) sur un circuit séparé : une seule fonction ne peut pas remplir les deux
+  rôles, car l'un doit couper et l'autre doit fermer au même instant.</div>
+
+  <div class="reponse"><b class="t">Bloc 5 — H1 et H2 allumés en même temps</b><br><br>
+  <b>Réponse attendue :</b> ce n'est <b>pas normal</b> en usage courant, car H1 (marche) suppose la bobine KM1
+  alimentée, alors que H2 (défaut) suppose que F1 a coupé cette même alimentation. Si les deux sont allumés, il
+  faut vérifier le câblage (H1 mal raccordé, ou contact F1 97-98 resté fermé par erreur de câblage).</div>
+
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Pendant la restitution croisée,
+  circuler pour vérifier que chaque explication mentionne au moins : le nom du repère (S1, S2, KM1, F1, H1 ou H2),
+  NO ou NF, et sa place dans le circuit (commande ou puissance, série ou parallèle).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ SCHÉMAS + CÂBLAGE COLLECTIF + LE MOMENT DÉCOUVERTE DE L'AUTO-MAINTIEN ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — schéma de commande complet (légendé)</h3>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-commande-marche-arret.svg" alt="Schéma de commande légendé complet" style="max-width:96%">
+    <figcaption class="legende">Schéma de commande — version légendée (corrigé). Version élève sans repères en annexe 1.</figcaption>
+  </figure>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>F1 (95-96, NF) et S2 (arrêt, NF)</td><td>En série, avant le bloc marche/auto-maintien. Le relais thermique coupe l'alimentation de la bobine dès qu'il détecte une surcharge, quel que soit l'état des boutons.</td></tr>
+    <tr><td>S1 (marche, NO) // KM1 (13-14, NO)</td><td>Montés strictement <b>en parallèle</b>. Erreur fréquente : élève qui les câble en série (perd l'auto-maintien) ou inverse le sens du bouton arrêt et du bouton marche.</td></tr>
+    <tr><td>Bobine KM1 (A1-A2)</td><td>Reçoit le courant du bloc parallèle ; ses bornes A1/A2 ne se raccordent jamais directement en série avec les contacts de puissance (deux circuits séparés).</td></tr>
+    <tr><td>H1 (vert) en parallèle de la bobine</td><td>S'allume exactement quand la bobine est alimentée : signalement fidèle de l'état « marche ».</td></tr>
+    <tr><td>F1 (97-98, NO) + H2 (rouge)</td><td>Circuit <b>séparé</b>, alimenté directement depuis Ph (indépendant du bouton arrêt et de S1) : H2 s'allume uniquement quand F1 est en défaut.</td></tr>
+  </table>
+
+  <div class="decouverte"><b class="t">Erreur typique transformée en moment de DÉCOUVERTE — l'auto-maintien oublié</b><br><br>
+  Il est très fréquent qu'un groupe câble S1 seul, sans la branche KM1 13-14 en parallèle. <b>Ne pas corriger
+  immédiatement</b> : laisser le groupe faire son essai (avec l'accord et la présence du professeur pour la mise
+  sous tension). L'élève observera alors que <b>le moteur s'arrête dès qu'il relâche le bouton marche</b>. C'est
+  exactement la question posée dans le bloc 1 de la fiche experte : faire reformuler ce que l'élève observe, puis
+  demander « quel bloc, parmi les 5, répond à ce problème ? » avant de recâbler. Cette erreur, bien exploitée,
+  fait <b>comprendre</b> l'auto-maintien mieux qu'une explication frontale — conforme au principe de la charte
+  « pédagogie de la découverte, autant que faire se peut ».</div>
+
+  <h3 class="section">Corrigé — schéma de puissance complet (légendé)</h3>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-puissance-moteur.svg" alt="Schéma de puissance légendé complet" style="max-width:75%">
+    <figcaption class="legende">Schéma de puissance — version légendée (corrigé). Version élève sans repères en annexe 2.</figcaption>
+  </figure>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Q1 — sectionneur général</td><td>Toujours ouvert avant toute intervention (consignation) : c'est l'organe de coupure visible et cadenassable.</td></tr>
+    <tr><td>KM1 — contacts de puissance (3 pôles)</td><td>Fermés uniquement quand la bobine KM1 (circuit de commande) est alimentée — lien mécanique/électrique entre les deux schémas à faire expliciter.</td></tr>
+    <tr><td>F1 — relais thermique</td><td>Un seul appareil, deux fonctions : la partie puissance (3 éléments chauffants en série avec le moteur) ET les deux contacts auxiliaires du schéma de commande — même repère F1 dans les deux schémas, à faire remarquer explicitement.</td></tr>
+    <tr><td>M1 — moteur</td><td><b>Un seul moteur</b> sur ce départ (niveau 1A) — ne pas ajouter de second départ ni de second moteur, même si des élèves rapides le proposent (cf. variante approfondissement).</td></tr>
+  </table>
+
+  <h3 class="section">Câblage collectif — répartition physique</h3>
+  <p style="font-size:10.3pt">Chaque groupe expert câble <b>sa propre zone</b> sur l'armoire commune, dans l'ordre
+  du schéma (F1 95-96 → S2 → bloc S1/KM1 13-14 → bobine → H1 → F1 97-98/H2), pendant qu'un groupe supplémentaire
+  reprend et complète la puissance (prolongement direct de S5-E1). Le professeur valide <b>zone par zone</b> le
+  contrôle hors tension avant de fermer le sectionneur : ne jamais mettre l'ensemble sous tension avant que
+  <b>toutes</b> les zones soient contrôlées conformes.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 2 + ORGANISATION DU PLATEAU + ERREURS + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — passage 2 (transfert autonome, sans puzzle)</h3>
+  <p style="font-size:10.3pt">La variante conserve <b>rigoureusement</b> la même logique électrique (un moteur,
+  marche/arrêt, auto-maintien, relais thermique, voyants — rien de plus) : seule l'implantation physique change.
+  Le professeur ne redonne <b>aucun</b> repère : un élève qui redemande le rôle de l'auto-maintien doit être
+  renvoyé à ses notes du passage 1 (fiche du bloc 3, ou notes prises pendant la restitution croisée) avant toute
+  nouvelle explication — c'est le principe même de l'autonomie guidée.</p>
+  <div class="reponse"><b class="t">Question de synthèse — ce qui ne change jamais</b><br><br>
+  <b>Réponse attendue :</b> la logique du circuit de commande (priorité de l'arrêt, auto-maintien en parallèle du
+  bouton marche, sécurité thermique en série avant la bobine, voyants sur les deux états) ne change jamais, quelle
+  que soit l'implantation physique de l'armoire ou la position des appareils sur la platine.</div>
+
+  <h3 class="section">Organisation du plateau</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Postes experts — passage 1</b></td><td>5 postes thématiques (un par bloc), chacun avec le composant réel démonté si possible (bouton, contacteur ouvert, relais thermique ouvert, voyants) + fiche-support agrandie.</td><td>Prévoir un jeu de fiches-supports en plus grand format ou vidéoprojetées pour faciliter la circulation du professeur.</td></tr>
+    <tr><td><b>Armoire collective — jalon B</b></td><td>1 armoire ou grande platine commune par demi-groupe, zones délimitées visuellement (adhésif de couleur) pour chaque bloc expert.</td><td>Vérifier avant la séance que l'armoire dispose bien d'assez d'espace pour 5 zones distinctes accessibles simultanément.</td></tr>
+    <tr><td><b>Postes individuels — passage 2</b></td><td>1 platine « variante » par élève ou binôme, implantation différente de l'armoire collective.</td><td>Prévoir une implantation réellement différente (pas un simple copier-coller) pour que le transfert soit réel.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Auto-maintien oublié (S1 seul, sans KM1 13-14 en parallèle)</td><td><b>Voir encadré découverte, feuille 3</b> : laisser l'essai révéler le problème avant de recâbler, avec la présence du professeur pour la mise sous tension.</td></tr>
+    <tr><td>Sécurité thermique câblée en parallèle au lieu d'en série (F1 95-96)</td><td>Faire vérifier au multimètre : en parallèle, F1 ne pourrait jamais couper l'alimentation de la bobine en cas de surcharge — reformuler la fonction de protection.</td></tr>
+    <tr><td>H2 câblé sur le même circuit que H1 au lieu du circuit séparé F1 97-98</td><td>Faire recolorier au feutre, sur le schéma papier, les deux circuits de signalisation avant de recâbler physiquement.</td></tr>
+    <tr><td>Coordination défaillante entre groupes experts (zones qui se chevauchent)</td><td>Redonner les limites de zone (adhésif de couleur) et rappeler que l'on ne touche pas la zone d'un autre groupe sans le prévenir.</td></tr>
+    <tr><td>Passage 2 : élève qui redemande le vocabulaire déjà vu au passage 1</td><td>Renvoyer systématiquement à ses notes du passage 1 avant de réexpliquer.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Élèves positionnés 1-2 à C3.6 lors d'É2 (voir S5-T0) : leur attribuer le bloc « bouton marche » ou « voyants » (plus simples) et prévoir un accompagnement renforcé du professeur au jalon B.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, 2 jalons par passage, aides retirées au passage 2.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de sa zone, l'élève explique à un pair d'un autre bloc le lien entre schéma de commande et schéma de puissance (même repère KM1 dans les deux), sans jamais câbler à sa place ; peut esquisser, à l'oral seulement, ce que donnerait un second départ moteur (sans le câbler : hors niveau 1A).</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire nouveau (commande, puissance, auto-maintien, relais thermique, voyant) introduit avec pictogramme + geste (montrer le composant réel, pas seulement le nommer) ; repères KM1/S1/S2/F1/H1/H2 toujours accompagnés de la couleur ou de la forme du composant comme repère visuel.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Chaque bloc expert traité sur sa propre fiche, visuellement isolé des autres ; étapes de câblage collectif découpées en cases à cocher séparées par zone ; visa professeur matérialisé par une case bien visible à ne pas sauter.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statuts du jour : C3.6 et C3.2 <b>Confortement</b> —
+  <b>aucune compétence en statut Évaluation</b> dans ce module (rappel : pas d'éval propre dans S5, cf. cadrage ;
+  l'évaluation É3 est rangée en S6). Les positionnements du jour alimentent le repérage pour la remédiation
+  continue.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · T11 · T12 · S2.2 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Câblage non conforme au schéma complété malgré aide, ou circuit de commande et circuit de puissance confondus, ou auto-maintien absent non corrigé après contrôle.</td>
+      <td>Câble avec l'aide du professeur pour au moins un bloc (bouton, auto-maintien, protection ou voyant).</td>
+      <td>Câble seul(e) (au sein du groupe collectif ou en autonomie) la commande ET la puissance conformes aux schémas complétés, contrôle hors tension réalisé avant tout appel.</td>
+      <td>Comme « Acquis », et explique à un pair le rôle de l'auto-maintien et de la sécurité thermique dans le circuit.</td>
+    </tr>
+    <tr>
+      <td><b>C3.2</b> Identifier sur site les réseaux d'alimentation <span class="nuance">sur T10 · S2.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne repère pas l'arrivée ni les circuits sur l'armoire réelle, même avec aide.</td>
+      <td>Repère l'arrivée et les circuits avec l'aide du professeur.</td>
+      <td>Repère seul(e), sur l'armoire réelle, l'arrivée, le circuit de commande et le circuit de puissance concernés.</td>
+      <td>Comme « Acquis », et explique pourquoi ce repérage est indispensable avant toute intervention collective.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, coopération du puzzle, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste interdit commis (fil touché sans VAT, intervention sur la zone d'un autre groupe) : <b>niveau 1 automatique</b> ; ou ne participe pas au partage d'expertise.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires ; explication de son bloc incomplète mais tentée.</td>
+      <td>Consignation et VAT appliquées sans rappel, explique clairement son bloc, écoute activement les autres blocs.</td>
+      <td>Comme « Acquis », et facilite la compréhension d'un pair en difficulté sur un bloc qui n'est pas le sien.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité entraîne
+  automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du câblage réalisé
+  ce jour-là : principe non négociable, cohérent avec les grilles S1 à S4. Les positionnements de ce module <b>ne
+  sont pas remontés</b> (aucun statut Évaluation dans S5) mais nourrissent le repérage des élèves à revoir en
+  priorité avant l'évaluation É3 (S6).</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques électriques</b> — consignation, NF C 18-510 ;</li>
+    <li><b>Technologie</b> — lecture de plan industriel (S2.2, S5.6), appui direct de S5-E1 et S3-E2 ;</li>
+    <li><b>Co-intervention français</b> — préparation de l'explication orale du bloc expert (carnet de bord F3) ;</li>
+    <li><b>Remédiation post-É2</b> — les élèves positionnés 1-2 à C3.6 lors d'É2 bénéficient d'un accompagnement
+    renforcé au jalon B (voir S5-T0 et variante consolidation ci-dessus) ;</li>
+    <li><b>Vers S5-F1/F2 et S6</b> — la rigueur de câblage collectif et le contrôle hors tension par zone préparent
+    la coordination attendue lors de l'épreuve azote (S5-F2) et de l'évaluation É3 (S6).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : SCHEMA DE
+  PUISSANCE.docx (schéma type, repères KM — Fiche Communication technique, 02_CAP-IFCA/C1-Communiquer) ; Activité
+  n°1 câblage schémas de commande.docx et Activité n°3 câblage schémas de puissance.docx (02_CAP-IFCA/C3-Realiser,
+  documents 2A — allégés ici à UN moteur, marche/arrêt + auto-maintien + relais thermique + voyants, pour le niveau
+  1A) ; TP formatif horloge et contacteur.docx (02_CAP-IFCA/S4-Electricite, visuels) ; C06 les contacteurs
+  principaux, C07 les relais thermiques, C08 moteur — ELEVE/PROF (02_CAP-IFCA/S4-Electricite, prérequis directs de
+  S5-E1) ; modèle 2A de référence : Séance 1 — Câblage de l'armoire électrique (09_Progressions-Sequences/
+  Usine-26-27/S12, allégé de 2 moteurs à 1 seul moteur pour ce niveau). Repères normalisés (KM1, S1, S2, F1, H1, H2 ;
+  contacts auxiliaires 13-14, 95-96, 97-98) : usage professionnel courant, à faire valider selon le matériel réel de
+  l'atelier — aucune autre valeur (calibre, tension de bobine) n'est affirmée au-delà de « selon le matériel, à
+  faire valider ». Symboles graphiques : bibliothèque de symboles normalisés FrigorX
+  (catalogue interne de l'usine de contenu) — bobine_contacteur, contacts NO/NF, contact_
+  puissance_3p_no, relais_thermique, contact_thermique_nf, moteur_triphase, bp_no_marche, bp_nf_arret, sectionneur_
+  3p, voyant_vert, voyant_rouge, copiés dans `images\` de ce dossier ; schémas de commande et de puissance composés
+  à partir de ce vocabulaire graphique par le rédacteur, fidèles à la topologie des fiches sources et à la méthode
+  déjà appliquée en S3-E2 (télérupteur/minuterie). Continuité directe des documents S3-E2 et S5-E1 produits pour
+  cette même classe.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .passage, .decouverte{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

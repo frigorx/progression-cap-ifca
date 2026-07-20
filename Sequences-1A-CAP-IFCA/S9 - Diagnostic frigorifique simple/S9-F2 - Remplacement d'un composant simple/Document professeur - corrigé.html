@@ -1,0 +1,432 @@
+<meta charset="utf-8">
+<title>Document professeur — S9-F2 · Remplacement d'un composant simple</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .avenir{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:9.8pt}
+  .avenir b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .distinguo{border:3px double var(--bleu); border-radius:8px; background:#fff; padding:9px 15px; margin:.5em 0 1em; font-size:10.3pt}
+  .distinguo b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif; font-size:10.8pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Remplacement d'un composant simple — sans manipulation de fluide</td>
+      <td style="width:38%"><span class="lib">Module S9-F2 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Remplacement d'un composant simple</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span> · semaines 29-36</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — poste électrique (pressostat, thermostat, relais, condensateur, ventilateur) + poste circuit inerté à l'azote par le professeur (filtre déshydrateur) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage, deux demi-journées (semaines 31 et 33)</td>
+      <td><span class="lib">Modalité</span>Gamme opératoire + auto-contrôle qualité, posture « je signe mon travail » — méthode imposée du module</td>
+      <td><span class="lib">Encadrement</span>1 professeur, demi-groupe — présence permanente pendant toute intervention électrique et toute manipulation du circuit inerté ; <b>aucune manipulation de fluide par l'élève</b></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T16</b> Assurer l'entretien d'une installation <span class="nuance">cœur métier de S9</span><br><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span><br><span class="nuance">Prérequis :</span> mesures électriques (S1-S6), azote et manodétendeur (S5-S6), manomètres (S7-F1), diagnostic S9-F1</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la gamme · sécurité NF C 18-510 et azote · honnêteté de l'auto-contrôle et du compte rendu · posture « je signe mon travail »</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C5.1</b> Remplacer des composants de l'installation — <i>sans manipulation de fluide</i> <span class="nuance">sur T16 · S5.1</span><br><span class="statut">Confortement — visé M</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><span class="statut">Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques</div>
+  </div>
+
+  <div class="distinguo"><b class="t">⚠ Distinguo 1<sup>re</sup> / 2<sup>e</sup> année — pourquoi aucune
+  manipulation de fluide</b> — La manipulation d'un fluide frigorigène réel est soumise en France à une
+  <b>attestation d'aptitude</b>, délivrée après un examen théorique et pratique. Les élèves de 1<sup>re</sup>
+  année CAP IFCA ne la détiennent pas encore : elle se prépare en <b>2<sup>e</sup> année</b>. Ce module ne fait
+  donc jamais récupérer de fluide, jamais ouvrir un circuit en charge, jamais braser ni couper un circuit
+  contenant du fluide à un élève. Deux familles d'organes seulement : <b>électriques</b> (pressostat, thermostat,
+  relais, condensateur, ventilateur — aucun contact avec le circuit fluidique) ou sur un <b>circuit que le
+  professeur a inerté à l'azote en amont</b>, hors de la présence des élèves (récupération réelle du fluide faite
+  par le professeur seul, avant la séance). Source de cadrage : <i>repere_fluides_frigorigenes_et_attestation_
+  daptitude_.docx</i> (catégories I-V, document réservé au professeur). Ne jamais laisser un élève ouvrir une
+  vanne de service sur un circuit dont l'état de charge n'est pas connu avec certitude.</div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module S9-F2 :
+  mêmes 2 passages, mêmes 2 jalons par passage, même gamme en 8 étapes. Il y ajoute : la <b>préparation des
+  postes</b> (composants de rechange, circuit inerté à l'azote), les corrigés des questions, les <b>erreurs
+  typiques</b> et leur remédiation, le minutage 4 h recompté, la différenciation, et le lien avec S9-F1, É4 et
+  S9-T2. <b>Aucune valeur de réglage n'est imposée</b> : les valeurs cibles (ex. seuils d'un pressostat) restent
+  un champ « selon la plaque signalétique du composant réellement posé, à faire valider par le professeur »,
+  jamais une valeur affirmée par ce document.</p>
+
+  <h3 class="section">Méthode pédagogique du module — la gamme + auto-contrôle</h3>
+  <p style="font-size:10.5pt">Le remplacement d'un composant est découpé en <b>8 étapes fixes</b> (sécurisation,
+  constat, dépose, inspection, montage, auto-contrôle qualité, essai de remise en service, compte rendu),
+  présentées comme la démarche d'un artisan qui <b>engage sa signature</b> sur un travail vérifié. Chaque étape
+  est <b>cochée et visée</b> ; le binôme mène la gamme <b>2 fois</b> sur les deux passages (1 fois guidée au
+  passage 1, 1 fois en autonomie au passage 2), en cherchant la <b>preuve</b> — jamais la déclaration sur
+  parole.</p>
+  <div class="vigilance"><b class="t">Point de vigilance central du module</b> — Ne jamais laisser un binôme
+  déclarer son travail terminé sans être passé par l'auto-contrôle des 4 critères (propreté, serrage, étanchéité,
+  essai). Un composant reposé « qui a l'air bon » n'est pas un composant contrôlé : c'est la preuve qui autorise
+  la signature, pas l'impression.</div>
+
+  <h3 class="section">Préparation des postes (avant la séance)</h3>
+  <table class="mini">
+    <tr><th style="width:24%">Poste</th><th>Préparation</th></tr>
+    <tr><td><b>Poste électrique</b> (passage 1)</td><td>Un composant neuf disponible par binôme (pressostat, thermostat, relais, condensateur ou ventilateur selon le stock) avec son joint si concerné ; disjoncteur du poste accessible et clairement identifié ; multimètre vérifié.</td></tr>
+    <tr><td><b>Poste circuit inerté à l'azote</b> (passage 2)</td><td><b>Préparé par le professeur avant la séance</b> : fluide récupéré, circuit purgé, remis sous azote à faible pression, robinet accessible mais fermé à l'arrivée des élèves. Composant neuf (ex. filtre déshydrateur) disponible par binôme.</td></tr>
+    <tr><td><b>Quel composant, quel poste ?</b></td><td><b>Champ à compléter par le professeur</b> avant chaque séance selon le stock de rechange réellement disponible : ________________. Le choix n'affecte pas la gamme (générique), seulement l'exemple travaillé.</td></tr>
+    <tr><td><b>Machine ou banc support</b></td><td>Contrôlé avant la séance (aucun autre défaut que celui volontairement introduit par le remplacement du composant) ; accès dégagé au disjoncteur ou au circuit concerné.</td></tr>
+  </table>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (gamme opératoire + auto-contrôle qualité, « je signe mon travail »).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S9-2 : composant identifié en S9-F1 à remplacer, remise en état à prouver, compte rendu à rédiger.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Objectifs affichés et commentés, lien avec la formule (C5.1 Confortement, C3.4 Confortement visé M, C3.7 Confortement).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; quiz éclair sur les mesures électriques, l'azote et le manodétendeur, la lecture manomètres et le composant désigné par S9-F1.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité (NF C 18-510 rappelée, gestes interdits fluide, azote sans odeur) puis « planter la notion » : question « pourquoi un artisan signe-t-il son compte rendu ? » → NOMMER « gamme + auto-contrôle qualité » → EXPLICITER pourquoi vérifier avant de déclarer terminé. Rappel bref du distinguo 1<sup>re</sup>/2<sup>e</sup> année. Distribution des gammes par poste.</td></tr>
+    <tr><td><b>80 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — jalon 1 / 1' : constat + dépose + repose</td><td>Passage 1 (80 min) : démonstration professeur sur un composant électrique, puis gamme guidée (constat, dépose, inspection, montage). Passage 2 (50 min) : rappel bref, 2<sup>e</sup> composant sur circuit inerté azote, gamme en autonomie.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td><b>45 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — jalon 2 / 2' : auto-contrôle + remise en service + compte rendu</td><td>Passage 1 (45 min) : auto-contrôle qualité guidé, essai de remise en service, 1<sup>er</sup> compte rendu. Passage 2 (75 min) : auto-contrôle complet en autonomie, essai de remise en service, compte rendu complet, verdict « je signe mon travail ».</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des comptes rendus et des verdicts, auto-positionnement (C5.1, C3.4, C3.7 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord (F3) + bon de commande.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Vérification des postes (circuit refermé, outillage complet, déchets évacués), nettoyage des établis.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la suite (É4 semaine 32 / S9-E1 et bilan de 1<sup>re</sup> année).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; jalon 1/1' + pause 15 min + jalon 2/2' = 2 h 20 (passage 1 : 80+15+45 ; passage 2 :
+  50+15+75) ; synthèse 15 + bon de commande 10 + rangement 10 + clôture 5 = 40 min. Total module : 1 h 00 + 2 h 20
+  + 40 min = <b>4 h 00 exactes</b>, aux deux passages, conforme au plan de séance.</p>
+
+  <div class="avenir"><b class="t">Ce que ce module prépare</b> — Ce module reste un module de
+  <b>Confortement</b> pour les trois compétences travaillées : C5.1 avait été découverte en S9-F1 (diagnostic),
+  elle est ici <b>reconfortée</b> par le geste réel de remplacement ; C3.4 et C3.7 réinvestissent des gestes déjà
+  rencontrés (raccordement, contrôle). La rigueur de gamme et d'auto-contrôle acquise ici est directement
+  <b>évaluée à É4</b> (semaine 32, poste FROID : remplacer un composant désigné, statut Évaluation) et sert de
+  base au poste de reprise « <b>REMPLACEMENT</b> » du dispositif <b>S9-T2</b> (semaines 33-36) pour les élèves
+  positionnés en difficulté sur C5.1. Elle prépare aussi le teasing de fin de séquence : « la recherche de panne
+  approfondie et la vraie manipulation du fluide, c'est la 2<sup>e</sup> année ».</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ JALON 1/1' : CONSTAT, DÉPOSE, ORGANISATION DES POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Le pressostat, exemple travaillé du passage 1</h3>
+  <p style="font-size:10.3pt">Le passage 1 s'appuie de préférence sur un <b>pressostat</b> (BP, thermostat ou
+  relais selon le stock) : organe purement <b>électrique et mécanique</b>, aucun contact avec le circuit
+  fluidique, adapté à la découverte guidée de la gamme.</p>
+  <figure style="margin:8px 0; text-align:center">
+    <img class="fig" src="../images/pressostat-vis-cut-in-dif-danfoss.png" alt="Pressostat basse pression, vis de réglage cut-in et différentiel visibles, type Danfoss" style="max-width:55%">
+    <figcaption class="legende">Le pressostat neuf porte ses propres vis de réglage (cut-in, différentiel) :
+    elles ne se règlent qu'une fois le composant reposé et câblé, jamais avant. D'après : ressources pressostat
+    (05_Ressources-Partagees/Pressostats-Manometres, AFPA 02_CAP-IFCA/C5-Maintenir).</figcaption>
+  </figure>
+
+  <h3 class="section">Corrigé — question jalon 1 : pourquoi photographier avant de déposer ?</h3>
+  <div class="reponse"><b class="t">Réponse attendue</b> — La photo du câblage est l'assurance qui permet de
+  revenir à l'état d'origine à tout moment. Si l'élève recâble de travers un pressostat au montage (inversion,
+  borne oubliée), le compresseur peut griller au redémarrage. La photo prise <b>avant</b> toute dépose supprime
+  ce risque : on ne recâble jamais « de mémoire ».</div>
+
+  <h3 class="section">Organisation des postes</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Poste électrique</b></td><td>Composant électrique neuf, multimètre, outillage adapté (clé plate, tournevis) — un poste par binôme au passage 1.</td><td>Vérifier avant la séance que le disjoncteur de chaque poste est clairement identifié et accessible pour la VAT.</td></tr>
+    <tr><td><b>Poste circuit inerté azote</b></td><td>Préparé exclusivement par le professeur avant la séance (fluide récupéré, azote à faible pression) — un poste par binôme au passage 2.</td><td>Vérifier la pression résiduelle annoncée à chaque binôme avant qu'il ne touche au raccord ; ne jamais laisser un élève ouvrir une vanne dont l'état n'est pas connu.</td></tr>
+    <tr><td><b>Poste témoin (phase 5)</b></td><td>Préparé à l'avance pour la démonstration professeur du jalon 1.</td><td>Prévoir la photo « avant » déjà prise pour comparer avec celle de la démonstration.</td></tr>
+    <tr><td><b>Combien de postes simultanés ?</b></td><td>Autant que de binômes si le stock de composants de rechange le permet ; sinon, rotation organisée avec un carnet de bord d'attente (quiz éclair).</td><td>Point ouvert (cf. <i>_ETAT.md</i>) : composants de rechange réellement disponibles, nombre de circuits inertables à l'azote.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — critères observables du jalon 1 / 1'</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Consignation NF C 18-510 respectée avant tout démontage électrique</td><td>Disjoncteur ouvert, VAT 3 points 0 V vérifiée ; aucune exception, même pour « juste regarder ».</td></tr>
+    <tr><td>Constat photographique complet avant dépose</td><td>2 photos nettes, fils ou raccords repérés, tableau rempli ; une dépose commencée sans constat doit être interrompue.</td></tr>
+    <tr><td>Dépose sans forcer, outil adapté</td><td>Clé plate à la bonne taille ; une clé à molette utilisée doit être immédiatement remplacée.</td></tr>
+    <tr><td>Montage conforme (joint neuf, serrage, câblage identique à la photo)</td><td>Serrage au quart de tour franc après butée ; câblage vérifié deux fois avant fermeture du capot.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1 / 1'</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Dépose commencée sans VAT ni photo</b></td><td>Arrêt immédiat, faire reprendre l'étape 0 puis l'étape 1 dans leur intégralité avant de continuer.</td></tr>
+    <tr><td><b>Clé à molette sur un raccord fileté</b></td><td>Interruption immédiate, remplacement de l'outil, rappel que le filet abîmé rend le composant inutilisable.</td></tr>
+    <tr><td><b>Serrage « au maximum » à la clé</b></td><td>Recadrage ferme : rappeler la règle du quart de tour franc après butée, refaire le serrage si le joint semble déjà écrasé.</td></tr>
+    <tr><td><b>Élève qui touche à une vanne du circuit inerté sans validation de la pression</b></td><td>Interruption immédiate, rappel que seul le professeur confirme l'état du circuit avant toute action de l'élève.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 2/2' : AUTO-CONTRÔLE, COMPTE RENDU, VERDICT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — auto-contrôle qualité (4 critères)</h3>
+  <table class="releve">
+    <tr><th style="width:18%">Critère</th><th>Ce qui est attendu</th></tr>
+    <tr><td>Propreté</td><td>Poste et zone nettoyés avant de déclarer le travail terminé ; aucune trace de savon ou de graisse laissée.</td></tr>
+    <tr><td>Serrage</td><td>Composant neuf serré au quart de tour franc après butée ; aucun jeu perceptible à la main.</td></tr>
+    <tr><td>Étanchéité</td><td>Eau savonneuse sur le raccord <b>hors fluide</b> (azote résiduel ou air) : 30 s d'observation, aucune bulle. Une bulle = reprise du serrage puis nouveau contrôle.</td></tr>
+    <tr><td>Essai de remise en service</td><td>Remise sous tension par le professeur ; fonctionnement régulier écouté, cyclage ou commande de l'organe vérifié.</td></tr>
+  </table>
+
+  <h3 class="section">Pourquoi l'étanchéité se contrôle « hors fluide », uniquement à l'eau savonneuse</h3>
+  <div class="vigilance"><b class="t">Point de vigilance central</b> — Ce module ne fait jamais manipuler de
+  fluide frigorigène réel à un élève : le contrôle d'étanchéité porte donc uniquement sur des raccords soit
+  <b>secs</b> (organe électrique, aucune pression), soit sous <b>azote résiduel</b> laissé par le professeur (gaz
+  inerte, sans enjeu réglementaire F-Gaz). L'eau savonneuse suffit à ce niveau : elle rend la fuite <b>visible</b>
+  et sensibilise au geste professionnel, sans nécessiter de détecteur électronique de fluide, réservé aux
+  circuits réellement chargés (2<sup>e</sup> année). Ce choix est délibéré (cadrage S9, principe fondateur sans
+  fluide) : il permet de faire vivre la <b>logique</b> du contrôle d'étanchéité — geste obligatoire après toute
+  intervention — sans jamais exposer un élève de 1<sup>re</sup> année à un fluide réel.</div>
+
+  <h3 class="section">Corrigé — compte rendu d'intervention</h3>
+  <p style="font-size:10.3pt">Aucune valeur n'est imposée par ce document. Le professeur valide que :</p>
+  <ul class="liste-num">
+    <li>le <b>client</b> renseigné reste générique (le fil rouge SAV « arrière-boutique »), <b>jamais</b> de nom
+    propre d'élève ni de tiers réel ;</li>
+    <li>le <b>descriptif de la mission</b> est écrit en style télégraphique et précis (composant remplacé,
+    contrôles réalisés, résultat), jamais vague (« j'ai réparé ») ;</li>
+    <li>les <b>réglages</b> éventuellement notés (ex. seuils d'un pressostat) sont systématiquement qualifiés
+    « <b>selon la plaque signalétique, à faire valider</b> » — <b>aucune valeur n'est affirmée comme universelle</b>
+    dans ce module ; seule la relation générale <b>Cut-in = Cut-out + Différentiel</b> peut être rappelée comme
+    principe de réglage d'un pressostat, sans jamais imposer de chiffre ;</li>
+    <li>le compte rendu est <b>signé</b> : c'est la trace de la posture « je signe mon travail ».</li>
+  </ul>
+
+  <h3 class="section">Corrigé — verdict « je signe mon travail » (passage 2)</h3>
+  <p style="font-size:10.3pt">Le professeur valide un verdict <b>TRAVAIL PROUVÉ</b> si : la gamme complète a été
+  suivie dans l'ordre, les 4 critères d'auto-contrôle sont documentés (pas seulement cochés « OK » sans preuve
+  observable), et le compte rendu est complet et signé. Un composant reposé sans étanchéité vérifiée ou sans
+  essai de remise en service ne peut <b>jamais</b> recevoir ce verdict, même si le résultat final « semble »
+  fonctionner.</p>
+
+  <h3 class="section">Erreurs typiques — jalon 2 / 2'</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Auto-contrôle coché sans preuve observable</b></td><td>Faire refaire le contrôle devant le professeur : propreté, serrage, étanchéité et essai se démontrent, ne se déclarent pas.</td></tr>
+    <tr><td><b>Compte rendu vague (« j'ai réparé »)</b></td><td>Faire réécrire le descriptif en style télégraphique précis, sur le modèle vu en séance.</td></tr>
+    <tr><td><b>Valeur de réglage inventée ou recopiée d'un autre poste</b></td><td>Rappeler que toute valeur non mesurée reste « à faire valider », jamais affirmée.</td></tr>
+    <tr><td><b>Verdict « travail prouvé » sans essai de remise en service</b></td><td>Invalider le verdict, faire réaliser l'essai avant toute nouvelle déclaration.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td><b>Consolidation</b></td><td>Au passage 1, le professeur reste au poste pour l'intégralité de la dépose et de la repose, avec validation à chaque sous-geste ; au passage 2, une fiche photo étape par étape reste affichée au poste, et le professeur confirme systématiquement la pression résiduelle avant chaque action.</td></tr>
+    <tr><td><b>Standard</b></td><td>Déroulement tel que décrit dans le document élève : démonstration puis gamme guidée au passage 1, gamme en autonomie au passage 2.</td></tr>
+    <tr><td><b>Approfondissement</b><br><span class="nuance">tutorat</span></td><td>Après le jalon 2' validé, ces élèves expliquent à un pair pourquoi une étape de la gamme vient à sa place précise (ex. pourquoi le constat photographié précède toujours la dépose), et traitent un 3<sup>e</sup> composant si le temps et le stock le permettent — sans jamais manipuler le poste d'un autre binôme.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire répété à l'identique (« constat », « dépose », « serrer », « signer »), gamme très visuelle (une icône par étape), même ordre des 8 étapes répété verbalement à chaque intervention.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Le rituel des 8 cases identiques d'une intervention à l'autre rassure par sa régularité ; annoncer explicitement en phase 5 que « la gamme ne change jamais, seul le composant change » limite l'anxiété face à la nouveauté du composant à traiter.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>S9-F1</b> « Diagnostic guidé sur machine » — fournit le composant identifié, en amont de ce module ;</li>
+    <li><b>S9-E1</b> « Coffret clim en autonomie » — même semaines, autre demi-groupe, même logique d'autonomie
+    croissante sur un défaut électrique ;</li>
+    <li><b>Co-intervention français</b> — rédaction du compte rendu d'intervention (module F3) ;</li>
+    <li><b>Modules S1 à S8</b> — mesures électriques, raccordements et brasage, azote et manodétendeur,
+    manomètres HP/BP ;</li>
+    <li><b>É4</b> (semaine 32) — C5.1 y est évaluée (statut Évaluation) sur un geste de remplacement comparable ;</li>
+    <li><b>S9-T2</b> (semaines 33-36) — poste de reprise « REMPLACEMENT » pour les élèves positionnés en
+    difficulté à É4 sur C5.1, rejouant une gamme de dépose/repose guidée.</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C5.1 Confortement</b> (découverte faite
+  en S9-F1, reconfortée ici par le geste réel) ; <b>C3.4 Confortement, visé M</b> (raccordement/isolement sur le
+  poste circuit inerté) ; <b>C3.7 Confortement</b> (auto-contrôle qualité). Aucune remontée École Directe dans ce
+  module : la remontée officielle se fait à É4 (semaine 32). <b>0 = compétence non observée ce jour</b> (à ne
+  jamais confondre avec une absence, codée séparément).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C5.1</b> Remplacer des composants de l'installation — sans manipulation de fluide <span class="nuance">sur T16 · S5.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne parvient pas à mener la gamme même avec l'aide du professeur (dépose forcée, câblage inversé, joint oublié, geste interdit fluide).</td>
+      <td>Mène la gamme avec l'aide du professeur (rappel d'une étape).</td>
+      <td>Mène seul(e) la gamme complète dans l'ordre, aucun geste interdit fluide, composant reposé conforme.</td>
+      <td>Comme « Acquis », et repère et corrige une anomalie non prévue avant de continuer, explique une étape à un pair.</td>
+    </tr>
+    <tr>
+      <td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">poste circuit inerté azote</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Raccordement/isolement non conforme malgré aide (fuite, mauvais serrage, sens de montage inversé).</td>
+      <td>Raccorde/isole avec l'aide du professeur.</td>
+      <td>Raccorde/isole seul(e), sans fuite, conforme au sens de montage.</td>
+      <td>Comme « Acquis », et vérifie et corrige seul(e) le raccordement d'un pair.</td>
+    </tr>
+    <tr>
+      <td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">auto-contrôle qualité</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Auto-contrôle absent ou bâclé (étanchéité non vérifiée, serrage non contrôlé, essai omis).</td>
+      <td>Auto-contrôle partiel, avec l'aide du professeur.</td>
+      <td>Auto-contrôle complet et honnête (propreté, serrage, étanchéité, essai), mené seul(e).</td>
+      <td>Comme « Acquis », et repère une anomalie non prévue et la signale avant de continuer.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, « je signe mon travail »</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste dangereux malgré rappel (touche au fluide, ouvre un circuit en charge, manipule sans professeur présent) : niveau 1 automatique.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>EPI et consignation respectés sans rappel, compte rendu honnête et complet.</td>
+      <td>Comme « Acquis », et signale spontanément un doute plutôt que de deviner, assume et corrige une erreur repérée seul(e).</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité
+  (toucher au fluide, ouvrir un circuit en charge, manipuler sans professeur présent) entraîne automatiquement un
+  niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du geste par ailleurs. Une valeur ou
+  un contrôle inventé dans le compte rendu est traité comme un manquement grave à l'honnêteté de la mesure, non
+  comme une simple imprécision.</div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : TP1B « Remplacement +
+  réglage pressostat BP » (Package_EP3_CAP_IFCA_final/S2_04-05-2026 — pas-à-pas VAT, photo/repérage du câblage,
+  dépose/inspection/montage, recherche de fuite, réglage — <b>simplifié ici pour le niveau CAP 1<sup>re</sup>
+  année</b> : les valeurs de réglage Cut-in/Cut-out/Différentiel de la source, 2,5/0,5/2 bar, sont propres à cette
+  machine 2<sup>e</sup> année et <b>ne sont pas reprises</b> ; ce document retient uniquement la relation générale
+  Cut-in = Cut-out + Différentiel) ; TP1C « Dépose + étanchéité + remise en service » (Package_EP3_CAP_IFCA_final/
+  S3_11-05-2026 — structure du contrôle d'étanchéité à 2 procédés et du bon d'intervention, <b>simplifiée ici</b> :
+  un seul procédé retenu, l'eau savonneuse, car aucun fluide réel n'est en jeu en 1<sup>re</sup> année ; le
+  pump-down réel sur circuit chargé n'est pas repris, remplacé par la vérification de la pression résiduelle
+  d'azote annoncée par le professeur) ; Activité 241 « Remplacement d'un filtre déshydrateur »
+  (03_BAC-MFER/S2-Systemes — mise en situation « échauffement du compresseur / colmatage du filtre », <b>réécrite
+  ici sans récupération de fluide par l'élève</b> : le professeur inerte le circuit en amont) ; ressources
+  pressostat (05_Ressources-Partagees/Pressostats-Manometres, AFPA 02_CAP-IFCA/C5-Maintenir — photos du pressostat
+  et de ses vis de réglage, réutilisées en feuille 2) ; rapport-dintervention.docx et fiche d'intervention clim
+  froid.docx (02_CAP-IFCA/C4-MettreEnService, C5-Maintenir — structure du compte rendu) ; repere_fluides_
+  frigorigenes_et_attestation_daptitude_.docx (catégories I-V, encadré professeur ci-dessus, non distribué aux
+  élèves) ; Charte pédagogique FrigorX (§7 sécurité) ; référentiel CAP IFCA (codes C5.1, C3.4, C3.7, T16, T1,
+  S5.1). Aucune image portant un filigrane commercial tiers n'a été retenue ; symboles techniques (filtre
+  déshydrateur, pressostat) issus de la bibliothèque de symboles FrigorX, jamais dessinés à la main ni générés par
+  IA. Aucune valeur de réglage ni masse de fluide n'est affirmée dans ce document.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .avenir, .distinguo{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

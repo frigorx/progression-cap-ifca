@@ -1,0 +1,652 @@
+<meta charset="utf-8">
+<title>TP élève — S5-F1 · Brasage fort HP</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .brevet{border:2px solid var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.5em 0}
+  .brevet h4{margin:0 0 4px; font-size:11.5pt}
+  .brevet .num{display:inline-block; background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:50%; width:26px; height:26px; text-align:center; line-height:26px; margin-right:8px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage fort HP et électricité industrielle</td>
+      <td style="width:38%"><span class="lib">Module atelier S5-F1 · 4 h × 2 passages</span><b>Brasage fort HP</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> · semaines 14-15</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S5-1</b> : un <b>commerce alimentaire de proximité</b> prépare l'installation
+  d'une <b>chambre froide</b> dans son arrière-boutique. On <b>change d'échelle</b> par rapport au pavillon de
+  S3-S4 : les liaisons sont plus grosses, la tenue mécanique et la température de service l'exigent. Le
+  <b>brasage tendre</b> que vous avez appris en S3-F2 ne suffit plus pour cette installation : il faut
+  <b>braser FORT</b> les liaisons cuivre de la future chambre. <b>La flamme HP (haute pression) ne se découvre
+  pas seul(e), elle se démontre</b> : le professeur commence toujours par une démonstration commentée, avant
+  toute prise en main. Ensuite, vous progressez par des <b>brevets validés dans l'ordre</b> (carte de brevets en
+  annexe de ce document). Ce module se vit <b>deux fois</b> : <b>passage 1 en semaine 14</b> (brevets 1 et 2 :
+  allumer/régler la flamme HP, puis chauffer au rouge sans percer) et <b>passage 2 en semaine 15</b> (brevets 3
+  et 4 pour tous : déposer le métal d'apport par capillarité, puis réaliser l'assemblage complet du client).</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4>Prérequis : gestes cuivre + brasage tendre (S1-S2, S3-F2), étanchéité à l'eau savonneuse (S3-F1)<br><b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">augmenté (flamme HP)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur face à un risque plus intense (flamme HP) · respect absolu des gestes interdits renforcés · honnêteté du contrôle avant brasage</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → vers Maîtrise</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><span class="statut">Confortement</span> <b>C2.4</b> Sécuriser l'intervention</div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S3-F2 et depuis É2</b> — Jusqu'à S3-F2, vous brasiez
+  <b>TENDRE</b> (métal d'apport fondant sous 450 °C) : la marge d'erreur était plus confortable, la flamme
+  restait modeste. <b>Aujourd'hui, on change d'échelle</b> : le brasage devient <b>FORT</b>, la flamme est
+  <b>HP</b> (haute pression), et de nouveaux gestes interdits s'ajoutent à tout ce que vous savez déjà sur la
+  sécurité (notamment le risque de <b>retour de flamme</b>, qui n'existait pas en tendre). <b>É2 est passée</b> :
+  vos 2 objectifs de progrès personnels (posés en S5-T0) s'appliquent ici, particulièrement si vous étiez
+  positionné(e) 1 ou 2 sur C3.4 — vous reprenez d'abord un geste de brasage tendre avant d'attaquer le fort
+  (phase 4, exercice au fil de l'eau). Statut des deux compétences aujourd'hui : <b>C3.4 Confortement → vers
+  Maîtrise</b>, <b>C2.4 Confortement</b> — S5 ne comporte aucune Évaluation remontée (elle aura lieu en É3,
+  S6).</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change</h4>
+  <b>Passage 1 (semaine 14) — brevets 1 et 2, maîtrise de la flamme HP</b> : après la démonstration commentée du
+  professeur, vous <b>allumez et réglez</b> vous-même une flamme HP à un poste en rotation (brevet 1), sous
+  supervision rapprochée. Puis, sur une chute de tube, vous <b>chauffez au rouge sans percer</b> (brevet 2) —
+  pas encore de métal d'apport, seule la maîtrise de la chauffe compte aujourd'hui.<br>
+  <b>Passage 2 (semaine 15) — brevets 3 et 4, l'assemblage du client</b> : sur une emboîture décapée, vous
+  <b>déposez le métal d'apport par capillarité</b> (brevet 3), que vous <b>montrez au professeur AVANT</b>
+  l'assemblage final — c'est une obligation, pas une option. Vous réalisez ensuite <b>l'assemblage complet
+  OI-S5-1</b> (brevet 4) et vous <b>contrôlez visuellement votre cordon</b>. Moins de démonstration qu'au
+  passage 1, plus d'autonomie : c'est la pièce que le client attend réellement.</div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>allumer et régler</b> une flamme HP en sécurité (brevet 1) ;</li>
+    <li><b>distinguer le brasage tendre (&lt; 450 °C) du brasage fort (&gt; 450 °C)</b>, sans en connaître
+    encore la valeur exacte de flamme (selon la notice du matériel de l'atelier) ;</li>
+    <li><b>chauffer un tube au rouge sans le percer</b> (brevet 2) ;</li>
+    <li><b>déposer le métal d'apport par capillarité</b> sur une emboîture décapée, et le montrer au professeur
+    AVANT l'assemblage final (brevet 3) ;</li>
+    <li><b>réaliser un assemblage brasé fort qui tient</b>, cordon contrôlé visuellement (brevet 4) ;</li>
+    <li><b>respecter la procédure de sécurité renforcée HP</b> : EPI, gestes interdits, procédure retour de
+    flamme.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est pas votre première séance avec une flamme : vous avez déjà <b>brasé
+  tendre</b> en S3-F2 (métal d'apport sous 450 °C), vous savez <b>décaper, emboîturer</b> un tube cuivre et
+  <b>contrôler l'étanchéité</b> à l'eau savonneuse (S3-F1). Vous connaissez déjà les gestes interdits de base
+  face à une flamme. Ce qui est <b>nouveau aujourd'hui</b>, c'est la flamme <b>HP</b> (plus intense), le
+  brasage <b>FORT</b> (température de chauffe plus élevée), et le risque de <b>retour de flamme</b>.</p>
+  <ul class="liste-num">
+    <li>couper, ébavurer, cintrer, dudgeonner, emboîturer un tube cuivre (S1-S2, S3-F2) ;</li>
+    <li>définir et réaliser un brasage tendre complet, cordon contrôlé (S3-F2) ;</li>
+    <li>contrôler l'étanchéité d'un circuit à l'eau savonneuse (S3-F1) ;</li>
+    <li>mes 2 objectifs de progrès posés après É2 (S5-T0), et où j'en suis.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si un prérequis vous échappe encore,
+  signalez-le au professeur pendant l'exercice au fil de l'eau (phase 4), avant que la démonstration ne
+  commence : c'est exactement le sens du crochet de remédiation post-É2.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Tube cuivre, plusieurs longueurs (chutes pour les essais, tube neuf pour l'assemblage OI-S5-1) —
+    diamètre et quantités selon le stock de l'atelier, à faire valider par le professeur</li>
+    <li>Poste de brasage <b>HP</b> (chalumeau oxy-combustible, bouteille d'oxygène + bouteille de gaz
+    combustible) — <span class="conso">consommable</span>, type et réglage selon l'équipement de l'atelier ;
+    l'oxygène est stocké à <b>200 bar</b> (D'après INRS ED 742)</li>
+    <li><b>Dispositifs anti-retour de flamme</b>, en place sur chaque poste (obligatoires, vérifiés avant
+    allumage)</li>
+    <li>Métal d'apport (baguette de brasage <b>cuivre-phosphore</b>, la plus courante pour un assemblage
+    cuivre-cuivre, D'après la fiche CCCA-BTP) <span class="conso">(consommable)</span> — alliage exact selon
+    la notice du produit utilisé à l'atelier, à faire valider</li>
+    <li>Flux décapant <span class="conso">(consommable)</span> — selon la notice du produit utilisé à
+    l'atelier, à faire valider</li>
+    <li>Tampon abrasif ou toile émeri (décapage mécanique avant brasage)</li>
+    <li>Outil d'expansion (pince à emboîture), déjà utilisé en S3-F2</li>
+    <li>Pare-flamme (protection d'un mur ou d'une surface proche du brasage, D'après la fiche CCCA-BTP)</li>
+    <li>Gants de soudeur (résistants à la chaleur, manchettes), tablier en cuir, chaussures de sécurité (× 1
+    jeu par élève, obligatoires)</li>
+    <li>Lunettes de protection à verres teintés, <b>indice de teinte 4 à 7</b> (D'après fiche de poste CDG 50)</li>
+    <li>Extincteur et trousse de secours localisés au poste de brasage (vérifiés en phase 5)</li>
+    <li>Bac de récupération des chutes de cuivre</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — LE BRASAGE FORT + SÉCURITÉ RENFORCÉE HP ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Le brasage fort — une définition à connaître</h3>
+  <p style="font-size:10.5pt">Le <b>brasage FORT</b> (parfois appelé soudo-brasage) est un procédé
+  d'assemblage qui utilise un <b>métal d'apport</b> dont la température de fusion est <b>supérieure à
+  450 °C</b> (définition normalisée, la même limite que vous avez apprise en S3-F2 pour le brasage tendre — au
+  dessous de 450 °C, c'est tendre ; au-dessus, c'est fort). D'après la fiche procédure du <b>CCCA-BTP</b>, la
+  mise en œuvre suit toujours le même enchaînement : nettoyer les deux parties à assembler au tampon abrasif,
+  appliquer un flux décapant adapté, chauffer les pièces à une <b>température d'environ 750 °C</b> (coloration
+  rouge sombre), puis positionner la baguette de métal d'apport dans l'intervalle des pièces pour obtenir une
+  <b>aspiration par capillarité</b> ; enfin, laisser refroidir et nettoyer à l'eau le surplus de décapant. Le
+  métal d'apport le plus couramment utilisé pour un assemblage cuivre-cuivre est la <b>brasure
+  cuivre-phosphore</b> (D'après CCCA-BTP). <b>Attention</b> : une surchauffe détériore le tube — c'est
+  exactement ce que le brevet 2 vous apprend à éviter.</p>
+  <div class="encadre-question"><b>Question</b> — Vous avez appris en S3-F2 que le brasage tendre utilise un
+  métal d'apport fondant sous 450 °C. Avec vos propres mots, expliquez ce qui distingue le brasage fort du
+  brasage tendre.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/brasage-capillarite-schema-source.png" alt="Schéma du brasage par capillarité : dard de la flamme, panache, métal d'apport au phosphore, tube de cuivre" style="max-width:88%">
+    <figcaption class="legende">Le brasage par capillarité — le métal d'apport est aspiré dans l'intervalle
+    des deux tronçons chauffés. D'après : T.P Assemblage par brasure forte du tube cuivre, fiche atelier CAP
+    IFCA (C3-Réaliser, F. Henninot).</figcaption>
+  </figure>
+
+  <h3 class="section">Sécurité renforcée — la flamme HP</h3>
+  <p style="font-size:10.3pt">Vous avez déjà travaillé avec une flamme en S3-F2. Aujourd'hui, la flamme est
+  <b>HP</b> (haute pression) : les risques déjà connus s'intensifient, et un risque nouveau apparaît, le
+  <b>retour de flamme</b>. Ces risques ne s'apprennent pas en tâtonnant : le professeur vous les démontre avant
+  toute prise en main.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Brûlure par un tube fraîchement brasé</td><td>Le tube reste chaud <b>LONGTEMPS</b> après l'extinction de la flamme. <b>Gants de soudeur</b> obligatoires ; ne jamais toucher un tube qui vient d'être brasé à main nue.</td></tr>
+    <tr><td>Brûlure ou projection par la flamme HP elle-même</td><td><b>Lunettes à verres teintés (indice 4 à 7)</b> obligatoires pendant tout allumage, tablier de cuir. Ne jamais approcher son visage ou ses mains de la flamme.</td></tr>
+    <tr><td><b>Retour de flamme</b> (nouveau par rapport au tendre) — le chalumeau « claque »</td><td><b>Dispositifs anti-retour de flamme</b> en place sur chaque poste, vérifiés avant allumage. En cas d'incident : voir procédure d'urgence ci-dessous.</td></tr>
+    <tr><td>Explosion ou fuite au niveau d'une bouteille de gaz (l'oxygène est stocké à 200 bar)</td><td>Bouteilles <b>DEBOUT et arrimées</b>, jamais couchées ; vérification du poste avant tout allumage ; jamais de flamme à proximité d'une bouteille.</td></tr>
+    <tr><td>Incendie par contact avec un matériau gras ou inflammable</td><td><b>Jamais de graisse sur un détendeur d'oxygène</b> ni sur les raccords du circuit d'oxygène (D'après INRS ED 742) ; poste dégagé de tout inflammable ; extincteur localisé et vérifié au rituel d'entrée.</td></tr>
+    <tr><td>Inhalation des fumées de flux ou de brasage</td><td>Ventilation du poste vérifiée avant d'allumer.</td></tr>
+    <tr><td>Chalumeau laissé allumé sans surveillance</td><td><b>Jamais poser un chalumeau allumé</b>, même quelques secondes.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Gestes interdits — à respecter sans exception</h3>
+  <ul class="liste-num">
+    <li><b>Jamais</b> de flamme dirigée vers un pair, même « pour rire » ;</li>
+    <li><b>Jamais</b> de flamme à proximité d'une bouteille de gaz ;</li>
+    <li><b>Jamais</b> de graisse sur un détendeur d'oxygène ni sur les raccords du circuit d'oxygène ;</li>
+    <li><b>Jamais</b> de flamme pour détecter une fuite de gaz — seule l'eau savonneuse détecte une fuite
+    (D'après INRS ED 742) ;</li>
+    <li><b>Jamais</b> toucher un tube qui vient d'être brasé à main nue ;</li>
+    <li><b>Jamais</b> poser le chalumeau allumé, même un instant ;</li>
+    <li><b>Jamais</b> coucher une bouteille de gaz : elle reste toujours debout.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous
+  (EPI portés, poste dégagé, anti-retours de flamme vérifiés, extincteur et trousse localisés) et faites-la
+  viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, poste de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 Procédure d'urgence — retour de flamme</b> — Si le chalumeau « claque » et
+  que la flamme ne réapparaît pas normalement à l'extrémité de la buse : <b>fermez immédiatement le robinet du
+  gaz combustible en premier</b>, puis celui de l'oxygène ; alertez le professeur sans attendre. Cette procédure
+  est <b>sourcée INRS ED 742</b> (« en cas d'incident, dans tous les cas, commencez par fermer l'alimentation
+  en gaz combustible »). <b class="t">🚨 Procédure d'urgence — brûlure</b> : refroidir immédiatement la zone
+  touchée sous l'eau tempérée pendant 15 minutes, sans interrompre le refroidissement — règle standard de
+  premiers secours, à faire confirmer et affiner par le SST de l'établissement. Ne percez jamais une cloque,
+  n'appliquez jamais de corps gras. Alertez immédiatement le professeur.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON 1 : DÉMONSTRATION + BREVET 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 14 · JALON 1 — démonstration + brevet 1 — ≈ 55 min</span>
+
+  <h3 class="section">1. Observer la démonstration commentée</h3>
+  <p style="font-size:10.5pt">Le professeur réalise devant vous, en commentant chaque étape, un allumage, un
+  réglage de flamme HP, une chauffe et un brasage fort complets. <b>Vous n'avez pas encore de chalumeau en
+  main</b> : vous observez et vous notez. Aucune question pendant que la flamme est allumée — vos questions
+  viennent juste après.</p>
+  <div class="liste-num">
+    <p>☐ 1. Vérification du poste (bouteilles debout et arrimées, anti-retour de flamme en place, extincteur à proximité)</p>
+    <p>☐ 2. Allumage du chalumeau HP (procédure du poste, rappelée par le professeur)</p>
+    <p>☐ 3. Réglage de la flamme (le dard doit rester net, sans décollement de la buse)</p>
+    <p>☐ 4. Chauffe uniforme du raccord jusqu'à la coloration rouge sombre</p>
+    <p>☐ 5. Avancée du métal d'apport au point le plus chaud, aspiré par capillarité</p>
+    <p>☐ 6. Retrait de la flamme dès que le cordon est complet, refroidissement sans y toucher</p>
+    <p>☐ 7. Rappel : azote interne — pourquoi l'intérieur du tube reste propre (démonstration uniquement, débit réglé par le professeur, selon notice)</p>
+  </div>
+  <div class="encadre-question"><b>Question</b> — Parmi ces 7 étapes, laquelle vous semble la plus délicate à
+  réussir, et pourquoi ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="brevet"><h4><span class="num">1</span>Brevet 1 — « J'allume et je règle »</h4>
+  <p style="font-size:10.3pt">À votre tour, sous la supervision rapprochée du professeur, réalisez
+  l'allumage et le réglage de votre flamme HP à un poste de brasage en rotation. Vous ne chauffez pas encore de
+  tube : ce brevet valide seulement votre capacité à obtenir et régler une flamme correcte, en sécurité.</p>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier le poste avant tout allumage (EPI portés, zone dégagée, anti-retour de flamme en place)</p>
+    <p>☐ 2. Allumer le chalumeau selon la procédure démontrée</p>
+    <p>☐ 3. Régler la flamme jusqu'à obtenir un dard net et stable</p>
+    <p>☐ 4. Éteindre le chalumeau selon la procédure (gaz combustible, puis oxygène)</p>
+  </div>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — brevet 1</h4>
+  <table class="releve">
+    <tr><th>Allumage réussi du 1<sup>er</sup> coup ?</th><th>Dard net et stable ?</th><th>Extinction dans l'ordre correct ?</th><th>Conforme ?</th></tr>
+    <tr><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi ne faut-il jamais poser un chalumeau allumé, même
+  un instant ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="jalon"><h4>Visa professeur — brevet 1</h4>
+  <p>☐ Poste vérifié avant allumage &nbsp;&nbsp; ☐ Flamme réglée en sécurité &nbsp;&nbsp; ☐ Brevet 1 validé — autorisé(e) à poursuivre vers le brevet 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · JALON 2 : BREVET 2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 14 · JALON 2 — brevet 2 : chauffe au rouge sans percer — ≈ 70 min</span>
+
+  <div class="brevet"><h4><span class="num">2</span>Brevet 2 — « Je chauffe au rouge sans percer »</h4>
+  <p style="font-size:10.3pt">Sur une chute de tube, à un poste de brasage en rotation, chauffez uniformément
+  le tube jusqu'à obtenir la <b>coloration rouge sombre</b> décrite par la fiche CCCA-BTP (température
+  d'environ 750 °C), <b>sans percer ni brûler</b> le tube. Vous n'utilisez <b>pas encore</b> de métal d'apport :
+  ce brevet valide votre maîtrise de la chauffe, avant de passer au dépôt du métal (brevet 3, réservé au
+  passage 2).</p>
+  </div>
+
+  <div class="liste-num">
+    <p>☐ 1. Vérifier le poste : zone dégagée, extincteur à proximité, EPI portés</p>
+    <p>☐ 2. Allumer et régler le chalumeau (brevet 1 déjà acquis)</p>
+    <p>☐ 3. Chauffer <b>uniformément</b> le tube, en déplaçant la flamme, jamais en un seul point fixe</p>
+    <p>☐ 4. Observer la coloration : elle doit devenir rouge sombre, uniforme</p>
+    <p>☐ 5. Retirer la flamme dès la coloration atteinte, <b>avant</b> tout risque de percement</p>
+    <p>☐ 6. Laisser refroidir <b>sans y toucher</b> — rappel : le tube reste chaud longtemps</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — À quelle température, environ, doit-on chauffer les pièces
+  pour obtenir la coloration rouge sombre décrite par la fiche CCCA-BTP ? Cette valeur est-elle la même que la
+  température de fusion du métal d'apport ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h4 style="font-size:11pt">Tableau de contrôle — brevet 2</h4>
+  <table class="releve">
+    <tr><th>Coloration uniforme ?</th><th>Pas de percement ?</th><th>Pas de point noirci (surchauffe) ?</th><th>Conforme ?</th></tr>
+    <tr><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de savoir-être</b> — Vous avez chauffé un peu trop longtemps et
+  vous voyez un petit trou se former dans le tube. Que faites-vous : vous cachez la chute et vous en reprenez
+  une autre discrètement, ou vous le signalez au professeur ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : on signale toujours
+  au professeur, même une chute d'essai ratée. Un frigoriste honnête montre ses erreurs d'apprentissage plutôt
+  que de les cacher : c'est ainsi qu'on progresse vraiment vers le brevet suivant.</p>
+
+  <div class="jalon"><h4>Visa professeur — brevet 2</h4>
+  <p>☐ Chauffe uniforme maîtrisée &nbsp;&nbsp; ☐ Aucun percement sur l'essai final &nbsp;&nbsp; ☐ Brevet 2 validé</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 2 · JALON A' : BREVET 3 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 15 · JALON A' — brevet 3 : dépôt du métal d'apport — ≈ 60 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Aujourd'hui, tous les
+  élèves passent aux brevets 3 et 4 : plus une simple maîtrise de la chauffe, mais le <b>geste complet de
+  brasage</b>. Moins de démonstration (vous l'avez déjà vue), plus d'autonomie — mais une règle ne change
+  jamais : <b>vous devez montrer votre dépôt de métal d'apport au professeur AVANT l'assemblage final.</b></div>
+
+  <div class="encadre-question"><b>Rappel</b> — Sans regarder vos notes, quelle est la valeur au-dessus de
+  laquelle un métal d'apport doit fondre pour qu'on parle de brasage <b>fort</b> ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="brevet"><h4><span class="num">3</span>Brevet 3 — « Je dépose le métal d'apport (capillarité) »</h4>
+  <p style="font-size:10.3pt">Reprenez d'abord, si besoin, une emboîture décapée comme vous savez le faire
+  depuis S3-F2 (crochet de remédiation si vous étiez positionné(e) 1-2 sur C3.4 à É2 : refaites d'abord un
+  décapage soigné). Chauffez le raccord jusqu'à la coloration rouge sombre (brevet 2 déjà acquis), puis
+  présentez la baguette de métal d'apport <b>au point le plus chaud</b> : elle doit être <b>aspirée</b> par
+  capillarité tout autour du joint, pas « poussée » à la main.</p>
+  </div>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/emboiture-brasage-fort-etapes-source.png" alt="3 étapes de préparation de l'emboîture : coupe et recuit, mise en place de la pince, façonnage" style="max-width:92%">
+    <figcaption class="legende">Rappel — les 3 étapes de préparation de l'emboîture (déjà vues en S3-F2).
+    D'après : T.P Assemblage par brasure forte du tube cuivre, fiche atelier CAP IFCA (F. Henninot).</figcaption>
+  </figure>
+
+  <div class="liste-num">
+    <p>☐ 1. Vérifier le décapage de l'emboîture (surface propre, sans oxydation)</p>
+    <p>☐ 2. Appliquer le flux décapant</p>
+    <p>☐ 3. Chauffer uniformément jusqu'à la coloration rouge sombre</p>
+    <p>☐ 4. Présenter le métal d'apport au point le plus chaud : il doit être aspiré, pas poussé</p>
+    <p>☐ 5. Retirer la flamme dès que le cordon est complet, sans surchauffer</p>
+  </div>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/pince-emboiture-outil-source.png" alt="Pince à emboîture, outil d'expansion utilisé pour préparer les tronçons de tube" style="max-width:60%">
+    <figcaption class="legende">La pince à emboîture (outil d'expansion), déjà utilisée en S3-F2. D'après :
+    T.P Assemblage par brasure forte du tube cuivre, fiche atelier CAP IFCA (F. Henninot).</figcaption>
+  </figure>
+
+  <h4 style="font-size:11pt">Tableau de relevé — brevet 3</h4>
+  <table class="releve">
+    <tr><th>Décapage vérifié ?</th><th>Métal d'apport aspiré (capillarité) ?</th><th>Cordon amorcé sans manque ?</th><th>Conforme ?</th></tr>
+    <tr><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="secu"><b class="t">⚠ AVANT L'ASSEMBLAGE FINAL</b> — Montrez votre dépôt de métal d'apport au
+  professeur. C'est une obligation, pas une option : on ne poursuit jamais vers l'assemblage complet sans ce
+  contrôle.</div>
+
+  <div class="jalon"><h4>Visa professeur — brevet 3 (contrôle obligatoire avant l'assemblage final)</h4>
+  <p>☐ Décapage conforme &nbsp;&nbsp; ☐ Métal d'apport correctement aspiré par capillarité &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le brevet 4</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON B' : BREVET 4 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 15 · JALON B' — brevet 4 : l'assemblage OI-S5-1 — ≈ 65 min</span>
+  <p style="font-size:10.5pt">Votre dépôt de métal d'apport validé, réalisez maintenant <b>l'assemblage complet
+  des liaisons cuivre</b> de la future chambre froide (ordre d'intervention OI-S5-1), à un poste de brasage en
+  rotation. Après le brasage, laissez refroidir <b>sans toucher</b>, puis contrôlez visuellement le cordon.</p>
+
+  <div class="brevet"><h4><span class="num">4</span>Brevet 4 — « J'assemble et l'assemblage tient »</h4>
+  <p style="font-size:10.3pt">Ce brevet valide l'ensemble du geste : préparation, chauffe, dépôt du métal
+  d'apport, refroidissement et contrôle. C'est le geste complet que le client attend pour sa chambre froide.</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de contrôle visuel — l'assemblage OI-S5-1</h4>
+  <table class="releve">
+    <tr><th>Cordon continu ?</th><th>Brillant ?</th><th>Sans manque ?</th><th>Sans surchauffe ?</th><th>Conforme ?</th></tr>
+    <tr><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de savoir-être</b> — Votre cordon vous semble « limite » — pas
+  franchement mauvais, mais pas net non plus. Que faites-vous : vous continuez en espérant que ça passe, ou
+  vous le signalez au professeur ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : on alerte toujours
+  le professeur. Un frigoriste honnête signale un doute plutôt que de livrer une pièce non conforme, surtout sur
+  un assemblage définitif qui ne se refait pas facilement.</p>
+
+  <h3 class="section">Pour aller plus loin (non noté aujourd'hui)</h3>
+  <p style="font-size:10.3pt">Vous savez depuis S3-F1 contrôler l'étanchéité d'un circuit à l'eau savonneuse.
+  Une fois votre assemblage brasé et refroidi, vous pouvez, si le temps le permet, <b>re-contrôler votre
+  pièce</b> avec cette méthode. Ce n'est pas évalué aujourd'hui, mais c'est exactement le geste qu'un frigoriste
+  réalise après un assemblage définitif — et c'est aussi une manière de vous préparer à <b>S5-F2</b>, où vous
+  découvrirez le montage d'essai sous azote de ce même type d'assemblage, avant l'épreuve officielle qui viendra
+  plus tard en S6.</p>
+
+  <div class="jalon"><h4>Visa professeur — brevet 4 et assemblage complet</h4>
+  <p>☐ Cordon conforme (continu, brillant, sans manque, sans surchauffe) &nbsp;&nbsp; ☐ Refroidissement respecté avant manipulation &nbsp;&nbsp; ☐ Brevet 4 validé — les 4 brevets sont acquis</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE + VARIANTES + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Contrôles finaux</h3>
+  <div class="liste-num">
+    <p>☐ 1. L'assemblage OI-S5-1 est brasé, cordon continu, brillant, sans manque, sans surchauffe</p>
+    <p>☐ 2. La pièce a entièrement refroidi avant toute manipulation à main nue</p>
+    <p>☐ 3. Les 4 brevets sont visés sur ma carte de brevets (annexe)</p>
+    <p>☐ 4. Ma pièce est posée avec mon nom, prête à être présentée</p>
+  </div>
+
+  <h3 class="section">Rangement et remise en état — spécifique au brasage HP</h3>
+  <div class="liste-num">
+    <p>☐ 1. Éteindre le chalumeau (gaz combustible, puis oxygène) et <b>vérifier qu'il est froid</b></p>
+    <p>☐ 2. Fermer les bouteilles de gaz du poste, vérifier qu'elles restent debout et arrimées</p>
+    <p>☐ 3. Vérifier qu'<b>aucun tube brasé n'est encore chaud</b> avant de quitter la zone</p>
+    <p>☐ 4. Trier les chutes de cuivre dans le bac de récupération</p>
+    <p>☐ 5. Nettoyer le poste, ranger l'outillage à sa place</p>
+    <p>☐ 6. Retirer les EPI en dernier, une fois le poste totalement sécurisé</p>
+  </div>
+
+  <div class="jalon"><h4>Variantes — selon votre positionnement</h4>
+  <p style="font-size:10.3pt"><b>Consolidation</b> <i>(fléchée remédiation É2 — élèves positionnés 1-2 sur
+  C3.4)</i> : avant le brevet 2, reprise accompagnée d'un geste de brasage <b>tendre</b> (S3-F2) pour retrouver
+  la confiance dans le geste, puis passage au fort avec supervision renforcée à chaque étape.<br>
+  <b>Standard</b> : déroulement tel que décrit dans ce document, brevets 1-2 au passage 1, brevets 3-4 au
+  passage 2.<br>
+  <b>Approfondissement</b> <i>(tutorat)</i> : après validation de votre brevet 4, vous expliquez à un pair les 4
+  critères du contrôle visuel du cordon et le principe de la capillarité, sans jamais manipuler la flamme à sa
+  place.</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C3.4 Confortement → vers Maîtrise</b>,
+  <b>C2.4 Confortement</b> — aucune Évaluation remontée dans S5 (l'évaluation É3 aura lieu plus tard, en S6).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)</td><td>sur T10 · S6.2</td><td>Compétence non observée ce jour.</td><td>Assemblage refusé au contrôle visuel (manque, surchauffe) et/ou percement lors de la chauffe, malgré aide ou reprise.</td><td>Assemblage conforme avec l'aide du professeur ou après une reprise.</td><td>Réalise seul(e) les 4 brevets : allumage/réglage, chauffe sans percer, dépôt du métal d'apport par capillarité, assemblage OI-S5-1 conforme (cordon continu, brillant, sans manque, sans surchauffe).</td><td>Comme « Acquis », et repère seul(e) un défaut sur son cordon avant de le présenter — vers la Maîtrise.</td></tr>
+    <tr><td><b>C2.4</b> Sécuriser l'intervention</td><td>sur T12 · S6.2</td><td>Compétence non observée ce jour.</td><td>Geste interdit commis (flamme vers un pair, flamme près d'une bouteille de gaz, graisse sur un détendeur d'oxygène, tube chaud touché à main nue, chalumeau posé allumé, bouteille couchée) : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires (EPI, zone dégagée, anti-retour de flamme).</td><td>EPI et gestes respectés sans rappel, poste vérifié avant chaque allumage, aucun geste interdit.</td><td>Comme « Acquis », et alerte spontanément un pair sur un risque qu'il n'a pas vu.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux ou précipitation qui compromet la sécurité : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>Applique les consignes sans rappel, montre son dépôt de métal d'apport avant l'assemblage final sans qu'on le lui demande.</td><td>Comme « Acquis », et signale spontanément un doute sur son propre cordon plutôt que de le livrer tel quel.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C2.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : relevés, dessins, questions répondues)</li>
+    <li>Carte de brevets (annexe) visée par le professeur, aux deux passages</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (tube, métal d'apport, flux, gaz)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : T.P Assemblage
+  par brasure forte du tube cuivre, fiche atelier CAP IFCA 1<sup>re</sup> année (C3-Réaliser, F. Henninot,
+  2010-2011) — schémas et outillage restitués depuis cette source ; fiche procédure CCCA-BTP « Brasure forte »
+  (chauffe ≈ 750 °C, fusion &gt; 450 °C, capillarité, cuivre-phosphore) ; INRS ED 742 « Soudage et coupage au
+  chalumeau » (pression de stockage de l'oxygène, gestes interdits, procédure retour de flamme) ; fiche de
+  poste CDG 50 « Utilisation d'un chalumeau » (EPI, indice de teinte des lunettes) ; règles chalumeau élève et
+  fiche chalumeau C6-Sécurité (risques et règles niveau CAP). Continuité directe des documents S3-F2 (brasage
+  tendre, même élève) et S3-F1 (étanchéité à l'eau savonneuse). <b>Sources anciennes non extraites, à rouvrir
+  par le professeur si souhaité</b> : « 5.CHALUMEAU OA.doc », « Le poste de soudage oxyacétylénique.doc » (4
+  versions), « brasure forte.doc » — aucun contenu de ce TP n'a été inventé à partir de ces sources illisibles.
+  L'alliage exact du métal d'apport et les réglages de flamme restent, comme annoncé, « selon la notice du
+  matériel de l'atelier, à faire valider par le professeur ».</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE : CARTE DE BREVETS (pleine page, à coller au carnet F3) ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Annexe — carte de brevets individuelle · S5-F1 · CAP IFCA 1A</div>
+  </div>
+
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63; text-align:center">Ma carte de brevets —
+  Brasage fort HP</h2>
+  <p style="font-size:10.5pt; color:var(--gris); font-style:italic; text-align:center">À découper et à coller
+  dans mon carnet de bord F3. Chaque brevet se valide dans l'ordre, jamais dans le désordre : je ne passe au
+  brevet suivant qu'une fois le précédent visé par le professeur.</p>
+
+  <div class="brevet"><h4><span class="num">1</span>« J'allume et je règle »</h4>
+  <p style="font-size:10.3pt">J'allume et je règle une flamme HP en sécurité, sous supervision, sur un poste
+  de brasage en rotation.</p>
+  <p style="font-size:10pt">Visa : ________________&nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+
+  <div class="brevet"><h4><span class="num">2</span>« Je chauffe au rouge sans percer »</h4>
+  <p style="font-size:10.3pt">Je chauffe uniformément un tube jusqu'à la coloration rouge sombre, sans le
+  percer ni le surchauffer.</p>
+  <p style="font-size:10pt">Visa : ________________&nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+
+  <div class="brevet"><h4><span class="num">3</span>« Je dépose le métal d'apport (capillarité) »</h4>
+  <p style="font-size:10.3pt">Je dépose le métal d'apport sur une emboîture décapée et chauffée, aspiré par
+  capillarité, et je le montre au professeur avant l'assemblage final.</p>
+  <p style="font-size:10pt">Visa : ________________&nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+
+  <div class="brevet"><h4><span class="num">4</span>« J'assemble et l'assemblage tient »</h4>
+  <p style="font-size:10.3pt">Je réalise un assemblage brasé fort complet (OI-S5-1), cordon continu, brillant,
+  sans manque, sans surchauffe.</p>
+  <p style="font-size:10pt">Visa : ________________&nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+
+  <p style="font-size:9pt; color:var(--gris); margin-top:1em">Méthode du module : démonstration commentée PUIS
+  parcours à brevets (charte pédagogique §1 — les gestes à risque se démontrent, ils ne se découvrent pas
+  seuls). Passage 1 (semaine 14) = brevets 1 et 2. Passage 2 (semaine 15) = brevets 3 et 4, pour tous.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon, .brevet{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

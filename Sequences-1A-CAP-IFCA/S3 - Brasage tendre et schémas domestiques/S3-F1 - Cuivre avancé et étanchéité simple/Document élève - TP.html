@@ -1,0 +1,578 @@
+<meta charset="utf-8">
+<title>TP élève — S3-F1 · Cuivre avancé et étanchéité simple</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité (binôme) + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre et schémas domestiques</td>
+      <td style="width:38%"><span class="lib">Module atelier S3-F1 · 4 h × 2 passages</span><b>Cuivre avancé et étanchéité simple</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · semaines 8-9</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom, prénom (élève 1)</span>________________</td>
+      <td><span class="lib">Nom, prénom (élève 2)</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S3-1</b> : un client fait préparer son <b>pavillon</b> pour l'installation future
+  d'un <b>climatiseur</b>. Avant que l'équipe pose la machine, vous devez <b>préparer un petit réseau cuivre</b>
+  pour la future liaison frigorifique, <b>et prouver qu'il est étanche</b>. Un réseau qui fuit ne se livre jamais.
+  Vous travaillez aujourd'hui <b>en binôme</b>, sur une pièce commune, deux fois : <b>passage 1 en semaine 8,
+  passage 2 en semaine 9.</b> Ce module prépare directement <b>S3-F2</b> : la prochaine fois, cette même liaison
+  sera assemblée <b>de façon définitive</b>, au brasage tendre.
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/tubes-cuivre-couronne-et-barres.jpeg" alt="Photo : tube cuivre en couronne (recuit) utilisé pour le petit réseau"
+         style="max-width:70%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Comme en S1 et S2, vous travaillez un tube cuivre <b>recuit</b>, livré en
+    <b>couronne</b>. D'après : Tube cuivre.pdf (notice AFPA).</figcaption>
+  </figure></div>
+
+  <div class="change"><b class="t">Ce qui change depuis S2</b> — En S2-F1, vous réalisiez <b>une seule pièce</b>
+  enchaînée (coupe → cintrage → dudgeon), seul(e) à votre poste, sans jamais vérifier si elle était étanche.
+  <b>Aujourd'hui, vous travaillez en BINÔME</b> sur une pièce commune : un <b>petit réseau</b> qui <b>RACCORDE</b>
+  plusieurs tronçons entre eux (2 dudgeons reliés par un raccord union), puis vous <b>PROUVEZ qu'il est
+  étanche</b> — c'est votre <b>toute première rencontre</b> avec cette vérification (compétence <b>C3.9</b>,
+  statut <b>Découverte</b> : elle ne compte pas encore dans votre note, mais elle compte pour votre métier).
+  La mise sous pression reste, comme la mise sous tension en électricité, un geste <b>exclusivement
+  professeur</b>. <b>É1 est passée : tes 2 objectifs de progrès s'appliquent ici.</b> Si tu es concerné(e), la
+  phase 4 reprend exactement les 2 points du poste FROID d'É1 : les cotes du dudgeon et la propreté de la coupe.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change</h4>
+  <b>Passage 1 (semaine 8) — 1<sup>er</sup> réseau + 1<sup>er</sup> contrôle sur sa propre pièce</b> : vous
+  réalisez un petit réseau à <b>2 tronçons</b> cintrés, reliés par <b>1 raccord union</b> (2 dudgeons raccordés).
+  Puis, après mise sous pression par le professeur, vous badigeonnez <b>votre propre pièce</b> à l'eau savonneuse
+  et vous notez honnêtement le résultat.<br>
+  <b>Passage 2 (semaine 9) — pièce plus complexe + contrôle qualité CROISÉ</b> : vous réalisez un réseau
+  <b>plus complexe</b> (<b>3 tronçons</b>, <b>2 raccords union</b>), avec <b>moins d'aide et plus vite</b>. Puis
+  vous vivez la méthode imposée du module : <b>le contrôle qualité CROISÉ</b>. Votre binôme échange sa pièce avec
+  un <b>autre binôme</b>, vous contrôlez sa pièce à l'eau savonneuse, et vous <b>SIGNEZ</b> votre contrôle. C'est
+  exactement la forme que prendra un vrai contrôle qualité en entreprise.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.1</b> Outils, normes et représentation <span class="nuance">augmenté</span><br><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité cuivre sans rappel · vigilance « pression » (jamais toucher la bouteille) · rigueur d'assemblage · honnêteté du contrôle</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><span class="statut">Découverte</span> <b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>assembler</b> un petit réseau cuivre en <b>raccordant</b> plusieurs tronçons entre eux : coupe et
+    ébavurage, cintrage, dudgeon, puis assemblage par un <b>raccord union</b> ;</li>
+    <li><b>contrôler l'étanchéité</b> d'un circuit à l'eau savonneuse, sous la pression mise par le professeur,
+    en badigeonnant <b>tous</b> les raccords ;</li>
+    <li><b>lire et noter honnêtement</b> un résultat de contrôle, même quand il montre une fuite ;</li>
+    <li>(passage 2) <b>contrôler la pièce d'un autre binôme</b> et <b>signer</b> mon contrôle en toute
+    honnêteté ;</li>
+    <li><b>m'auto-positionner</b> honnêtement, en tenant compte de mes 2 objectifs de progrès fixés à É1, si je
+    suis concerné(e).</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est <b>pas votre première fois</b> à un poste cuivre : vous avez déjà vécu les
+  gestes de base <b>4 fois</b> pendant les séquences S1 et S2. Aujourd'hui, on réutilise ce que vous savez déjà,
+  et on va plus loin :</p>
+  <ul class="liste-num">
+    <li><b>couper</b> un tube cuivre au coupe-tube (minimum 8 tours) et <b>l'ébavurer</b> ;</li>
+    <li><b>cintrer</b> un tube au ressort à cintrer, en respectant le <b>rayon minimum de cintrage</b> (3 fois le
+    diamètre extérieur du tube) ;</li>
+    <li><b>réaliser un dudgeon</b> (collerette d'une conicité de 45°) après avoir enfilé l'écrou ;</li>
+    <li><b>organiser mon poste</b> et enchaîner les gestes sans interruption (S2-F1) ;</li>
+    <li>mon <b>positionnement à É1</b> sur C3.4, et mes 2 objectifs de progrès, si j'en ai.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si un de ces gestes vous échappe encore, ce
+  n'est pas grave : c'est exactement ce que reprend la phase 4 de ce module. Demandez un rappel au professeur
+  avant de commencer, plutôt que de deviner.</p>
+
+  <h3 class="section">Matériel <span style="font-size:9pt; color:var(--gris); font-weight:normal">(par binôme, sauf mention contraire)</span></h3>
+  <ol class="liste-num">
+    <li>Tube cuivre recuit en couronne, plusieurs diamètres — selon le stock de l'atelier, à faire valider par le professeur</li>
+    <li>Coupe-tube, ébavureur (× 1 jeu)</li>
+    <li>Ressort à cintrer, adapté au diamètre du tube (× 1 jeu)</li>
+    <li>Dudgeonnière avec mors adaptés au diamètre (× 1)</li>
+    <li>Raccords union (2 embouts filetés à visser, un de chaque côté) <span class="conso">(consommable)</span></li>
+    <li>Écrous, un par extrémité dudgeonnée <span class="conso">(consommable)</span></li>
+    <li>Clé plate ou clé à molette, pour serrer les raccords union sans forcer</li>
+    <li>Mètre ou réglet, feutre marqueur pour le traçage des repères <span class="conso">(consommable)</span></li>
+    <li>Bac de récupération des chutes de cuivre</li>
+    <li>Eau savonneuse en flacon + pinceau ou brosse souple, pour le contrôle d'étanchéité <span class="conso">(consommable)</span></li>
+    <li>Station de mise en pression (bouteille + détendeur + manomètre) — <b>manipulée uniquement par le professeur</b></li>
+    <li>Gants anti-coupure (× 1 paire par élève, obligatoires)</li>
+    <li>Lunettes de protection (× 1 par élève, obligatoires)</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ DÉVELOPPÉE : CUIVRE + PRESSION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Sécurité cuivre — un rituel déjà acquis, qui ne s'allège jamais</h3>
+  <p style="font-size:10.5pt">Les risques de coupe, d'ébavurage, de cintrage et de dudgeonnage sont
+  <b>les mêmes</b> qu'en S1 et S2 : personne ne vous les redémontre, vous les appliquez seul(e). Ce qui est
+  <b>nouveau aujourd'hui</b>, c'est le risque lié à la <b>mise sous pression</b> du réseau que vous venez
+  d'assembler.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Coupure sur une arête de cuivre non ébavurée</td><td><b>Gants anti-coupure</b> obligatoires. <b>Toujours ébavurer</b> chaque tronçon avant de continuer.</td></tr>
+    <tr><td>Projection de limaille ou de copeaux dans les yeux</td><td><b>Lunettes de protection</b> obligatoires pendant toute la coupe, l'ébavurage, le cintrage et le dudgeonnage.</td></tr>
+    <tr><td>Doigts pincés à la cintreuse ou à la dudgeonnière</td><td>Ne jamais placer les doigts entre le tube et l'outil pendant le serrage ou le cintrage.</td></tr>
+    <tr><td>Projection si un raccord lâche pendant que le réseau est <b>sous pression</b></td><td>Lunettes gardées pendant tout le contrôle sous pression. On ne s'approche du raccord contrôlé qu'après confirmation du professeur que la pression est stable.</td></tr>
+    <tr><td>Explosion ou incendie si on teste l'étanchéité avec le mauvais gaz</td><td><b>Jamais d'oxygène ni d'air comprimé</b> pour une épreuve d'étanchéité : ce sont des gestes strictement interdits, quelle que soit la situation.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">La mise sous pression — un geste exclusivement professeur</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Le réseau est terminé et contrôlé visuellement</b> par le binôme, avant tout appel au professeur.<br>
+  2. <b>Le professeur raccorde seul</b> la bouteille de mise en pression au réseau.<br>
+  3. <b>Le professeur règle seul</b> la pression d'essai — la valeur est affichée au manomètre, à faire valider
+  par lui.<br>
+  4. <b>Le binôme badigeonne</b> les raccords à l'eau savonneuse, seulement une fois la pression stabilisée et
+  confirmée par le professeur.<br>
+  5. <b>Le professeur dépressurise seul</b> avant toute reprise du réseau, en fin de contrôle.</p>
+  </div>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li>Jamais de scie à métaux pour couper le cuivre (rappel S1-S2) ;</li>
+    <li>Jamais de dudgeon forcé au-delà de la butée ;</li>
+    <li><b>Jamais d'oxygène ni d'air comprimé pour une épreuve d'étanchéité</b> — geste interdit central de ce
+    module ;</li>
+    <li>Jamais toucher, ouvrir ou fermer la bouteille de mise en pression — <b>seul le professeur le fait</b> ;
+    la manipulation de la bouteille de gaz neutre du professeur, vous l'apprendrez en <b>S5</b> ;</li>
+    <li>Jamais desserrer ou resserrer un raccord tant que le circuit est <b>sous pression</b> ;</li>
+    <li>Jamais orienter un raccord sous pression vers soi-même ou vers un camarade ;</li>
+    <li>Jamais signer un contrôle qu'on n'a pas <b>réellement</b> observé — c'est une faute professionnelle
+    grave, pas un détail.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous (gants et
+  lunettes portés, poste dégagé) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, poste de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — arrêtez immédiatement le poste, alertez le
+  professeur, ne déplacez pas une personne électrisée ou blessée. Si le réseau est sous pression : le professeur
+  coupe la pression, personne d'autre n'y touche. En cas de coupure : <b>désinfectez tout de suite</b>, même une
+  petite coupure — le cuivre s'infecte très facilement. La trousse de secours est localisée en phase 5 de la
+  séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON 1 : ASSEMBLAGE DU PETIT RÉSEAU ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 8 · JALON 1 — assemblage du petit réseau — ≈ 85 min</span>
+
+  <h3 class="section">Ce que vous allez assembler</h3>
+  <p style="font-size:10.5pt">Un <b>petit réseau à 2 tronçons</b> : chaque tronçon est <b>cintré</b> à un angle
+  donné, puis <b>dudgeonné</b> à une extrémité. Les 2 tronçons sont ensuite <b>raccordés entre eux</b> par un
+  <b>raccord union</b> : chaque écrou se visse sur un des 2 filetages du raccord, qui relie les 2 dudgeons face à
+  face. C'est ce que vous emporterez au passage 1 : « 2 dudgeons raccordés ».</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Mesurer et tracer au feutre la longueur de chaque tronçon, demandée par le professeur (en prévoyant la longueur nécessaire au cintrage et au dudgeon de chacun)</p>
+    <p>☐ 2. Couper et ébavurer les <b>2 tronçons</b> séparément, comme vous savez déjà le faire</p>
+    <p>☐ 3. Cintrer chaque tronçon au ressort, à l'angle demandé, en respectant le rayon minimum</p>
+    <p>☐ 4. Enfiler l'écrou sur chaque tronçon <b>avant</b> de dudgeonner</p>
+    <p>☐ 5. Dudgeonner l'extrémité de chaque tronçon qui doit être raccordée</p>
+    <p>☐ 6. Présenter les 2 dudgeons face à face contre le raccord union</p>
+    <p>☐ 7. Visser chaque écrou sur le raccord union, à la main d'abord, puis serrer à la clé <b>sans forcer</b></p>
+    <p>☐ 8. Vérifier que le réseau assemblé tient debout sans jeu au niveau du raccord</p>
+  </div>
+
+  <h4 style="font-size:11pt">Ce que je dessine — mon petit réseau assemblé</h4>
+  <div class="cadre-dessin"><span class="consigne-cadre">Dessinez le réseau complet : les 2 tronçons, leurs coudes, et le raccord union au milieu. Indiquez les longueurs mesurées.</span></div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — jalon 1</h4>
+  <table class="releve">
+    <tr><th>Tronçon</th><th>Longueur (mm)</th><th>Angle obtenu</th><th>Pincement ?</th><th>Dudgeon conforme ?</th></tr>
+    <tr><td>1</td><td></td><td>________ °</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>2</td><td></td><td>________ °</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <table class="releve" style="margin-top:8px">
+    <tr><th>Raccord union serré sans jeu ?</th><th>Serrage vérifié à la main avant la clé ?</th></tr>
+    <tr><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Diamètre et longueurs exacts des tronçons distribués : selon le stock de l'atelier, à faire valider par le professeur.</p>
+
+  <div class="encadre-question"><b>Question</b> — Le raccord union permet de relier 2 tronçons <b>sans les
+  braser</b>. À votre avis, pourquoi est-ce utile aujourd'hui, alors qu'en S3-F2 vous apprendrez à braser des
+  assemblages définitifs ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Indice : un raccord union se dévisse. Si votre
+  contrôle d'étanchéité montre une fuite, que devez-vous pouvoir faire sans tout recommencer au chalumeau ?</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1</h4>
+  <p>☐ Coupes ébavurées conformes &nbsp;&nbsp; ☐ Cintrages sans pincement, rayon respecté &nbsp;&nbsp; ☐ Dudgeons conformes, raccord union serré &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · JALON 2 : 1re VÉRIFICATION D'ÉTANCHÉITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 8 · JALON 2 — 1<sup>re</sup> vérification d'étanchéité — ≈ 40 min</span>
+  <p style="font-size:10.5pt">Votre réseau est assemblé et validé. Vous allez maintenant <b>prouver</b> qu'il est
+  étanche, sur <b>votre propre pièce</b>. C'est la toute première fois que vous réalisez ce contrôle : personne
+  n'attend la perfection, mais une observation honnête.</p>
+
+  <h3 class="section">1. Mise sous pression — uniquement par le professeur</h3>
+  <div class="liste-num">
+    <p>☐ 1. Appeler le professeur une fois le réseau assemblé et contrôlé visuellement</p>
+    <p>☐ 2. Le professeur raccorde la station de mise en pression à votre réseau</p>
+    <p>☐ 3. Le professeur règle la pression d'essai (valeur affichée au manomètre, fixée par lui)</p>
+    <p>☐ 4. Attendre la confirmation du professeur que la pression est stable avant de toucher au réseau</p>
+  </div>
+
+  <h3 class="section">2. Badigeonner à l'eau savonneuse</h3>
+  <div class="liste-num">
+    <p>☐ 1. Tremper le pinceau ou la brosse dans l'eau savonneuse</p>
+    <p>☐ 2. Badigeonner <b>chaque raccord</b> du réseau, un par un, sans en oublier</p>
+    <p>☐ 3. Observer chaque raccord pendant quelques instants après l'avoir badigeonné</p>
+    <p>☐ 4. Repérer si des <b>bulles</b> se forment : des bulles qui grossissent signalent une fuite</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche de relevé — contrôle d'étanchéité, ma propre pièce</h4>
+  <table class="releve">
+    <tr><th>Point contrôlé</th><th>Bulles observées ?</th><th>Conforme (étanche) ?</th></tr>
+    <tr><td>Raccord union (dudgeon 1)</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Raccord union (dudgeon 2)</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si vous observez des bulles, ne cherchez jamais à
+  resserrer vous-même : le réseau est sous pression, ce geste est interdit. Signalez le résultat, même en cas de
+  fuite, <b>tel qu'il est</b> — l'honnêteté du contrôle fait partie de l'évaluation du savoir-être.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi utilise-t-on de l'eau savonneuse et jamais de l'air
+  comprimé ou de l'oxygène pour chercher une fuite ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="encadre-question"><b>Question</b> — Si votre réseau n'est pas étanche au premier contrôle, est-ce
+  un échec ? Que va-t-il se passer ensuite ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : ce n'est pas un échec,
+  c'est le résultat d'un contrôle — le professeur dépressurise, vous reprenez le raccord concerné, puis vous
+  recommencez le contrôle. Trouver une fuite AVANT de braser, c'est justement le but de ce module.</p>
+
+  <div class="secu"><b class="t">⚠ Rappel — fin du passage 1</b> — Vous ne touchez jamais à la dépressurisation :
+  c'est le professeur qui coupe la pression avant toute manipulation du réseau. Rendez-vous en <b>semaine 9</b>
+  pour le passage 2 (réseau plus complexe + contrôle qualité croisé).</div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2</h4>
+  <p>☐ Contrôle réalisé sur tous les raccords &nbsp;&nbsp; ☐ Résultat noté honnêtement &nbsp;&nbsp; ☐ Réseau dépressurisé par le professeur en fin de contrôle</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 2 · JALON 1' : RÉSEAU PLUS COMPLEXE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 9 · JALON 1' — un réseau plus complexe — ≈ 50 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Le réseau d'aujourd'hui est
+  <b>plus complexe</b> : <b>3 tronçons</b> cintrés, reliés par <b>2 raccords union</b> (4 dudgeons au total),
+  comme si le tube devait contourner un obstacle pour rejoindre l'unité intérieure du climatiseur.
+  <b>Moins d'aide, plus vite</b> : personne ne vous redémontre les gestes, vous les enchaînez en autonomie.</div>
+
+  <h3 class="section">Ce que vous allez assembler</h3>
+  <p style="font-size:10.5pt">3 tronçons cintrés, reliés entre eux par 2 raccords union : tronçon 1 — raccord
+  union — tronçon 2 — raccord union — tronçon 3. Chaque tronçon intermédiaire (le tronçon 2) est dudgeonné
+  <b>aux deux extrémités</b>.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Mesurer et tracer au feutre la longueur des 3 tronçons, en pensant déjà aux 2 cintrages et aux 4 dudgeons à venir</p>
+    <p>☐ 2. Couper et ébavurer les 3 tronçons</p>
+    <p>☐ 3. Cintrer les tronçons 1 et 3 (un seul coude chacun) ; le tronçon 2 reste droit</p>
+    <p>☐ 4. Enfiler les écrous <b>avant</b> chaque dudgeon (4 écrous au total)</p>
+    <p>☐ 5. Dudgeonner : une extrémité pour le tronçon 1, les deux extrémités pour le tronçon 2, une extrémité pour le tronçon 3</p>
+    <p>☐ 6. Assembler avec les 2 raccords union : tronçon 1 – union – tronçon 2 – union – tronçon 3</p>
+    <p>☐ 7. Serrer chaque écrou à la main puis à la clé, sans forcer</p>
+    <p>☐ 8. Contrôler l'ensemble avant de présenter au professeur</p>
+  </div>
+
+  <h4 style="font-size:11pt">Ce que je dessine — mon réseau à 3 tronçons</h4>
+  <div class="cadre-dessin"><span class="consigne-cadre">Dessinez le réseau complet : les 3 tronçons, les 2 coudes, les 2 raccords union.</span></div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — jalon 1'</h4>
+  <table class="releve">
+    <tr><th>Tronçon</th><th>Longueur (mm)</th><th>Cintré ?</th><th>Dudgeon(s) conforme(s) ?</th></tr>
+    <tr><td>1</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>2 (droit)</td><td></td><td>—</td><td>☐ Oui ☐ Non (× 2)</td></tr>
+    <tr><td>3</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <table class="releve" style="margin-top:8px">
+    <tr><th>Raccord union 1 serré sans jeu ?</th><th>Raccord union 2 serré sans jeu ?</th></tr>
+    <tr><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Vous allez plus vite qu'au passage 1, avec moins d'aide.
+  Qu'est-ce qui, dans votre organisation, vous permet d'aller plus vite sans bâcler la qualité ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1'</h4>
+  <p>☐ Coupes ébavurées conformes &nbsp;&nbsp; ☐ Cintrages sans pincement &nbsp;&nbsp; ☐ 4 dudgeons conformes, 2 raccords union serrés &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2'</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON 2' : CONTRÔLE QUALITÉ CROISÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 9 · JALON 2' — contrôle qualité CROISÉ — ≈ 75 min</span>
+  <p style="font-size:10.5pt">Aujourd'hui, vous ne contrôlez plus votre propre réseau. Le professeur organise un
+  <b>échange de pièces entre binômes</b> : vous allez contrôler la pièce d'un <b>autre</b> binôme, exactement
+  comme un contrôleur qualité en entreprise contrôle le travail d'un collègue qu'il n'a pas réalisé lui-même.</p>
+
+  <h3 class="section">1. Échange des pièces</h3>
+  <div class="liste-num">
+    <p>☐ 1. Le professeur organise l'échange : votre binôme reçoit le réseau d'un autre binôme</p>
+    <p>☐ 2. Vous ne connaissez pas le résultat que ce binôme a déclaré pour sa propre pièce</p>
+    <p>☐ 3. Le professeur remet le réseau reçu sous pression, selon la même procédure qu'au passage 1</p>
+  </div>
+
+  <h3 class="section">2. Contrôle à l'eau savonneuse</h3>
+  <div class="liste-num">
+    <p>☐ 1. Badigeonner <b>chacun des raccords</b> du réseau reçu, un par un</p>
+    <p>☐ 2. Observer chaque raccord, repérer d'éventuelles bulles</p>
+    <p>☐ 3. Noter le résultat, raccord par raccord, sur la fiche ci-dessous</p>
+    <p>☐ 4. Ne pas se laisser influencer par ce que dit le binôme propriétaire de la pièce : vous contrôlez ce que <b>vous</b> observez</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche de contrôle qualité croisé</h4>
+  <table class="releve">
+    <tr><th style="width:34%">Binôme contrôlé (initiales de poste)</th><th>Raccord contrôlé</th><th>Bulles observées ?</th><th>Conforme ?</th></tr>
+    <tr><td rowspan="2">________________</td><td>Raccord union 1</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Raccord union 2</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="jalon"><h4>Visa de contrôle croisé — à signer par le binôme CONTRÔLEUR</h4>
+  <p style="font-size:10pt">En signant ci-dessous, nous certifions avoir réellement observé chaque raccord listé
+  ci-dessus, et avoir noté le résultat tel qu'il est, sans le modifier.</p>
+  <p>Signature élève 1 (contrôleur) : ________________&nbsp;&nbsp;&nbsp; Signature élève 2 (contrôleur) : ________________</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h3 class="section">3. Retour au binôme propriétaire</h3>
+  <p style="font-size:10.5pt">Restituez la pièce et la fiche de contrôle croisé au binôme qui l'a réalisée.
+  Comparez ensemble : votre résultat déclaré au passage 1 correspond-il au résultat trouvé par le binôme
+  contrôleur ?</p>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — Pourquoi est-il important que ce soit un <b>autre</b>
+  binôme, et non vous-même, qui contrôle votre pièce aujourd'hui ? Que se passerait-il si chacun contrôlait
+  toujours sa propre pièce ?</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : un contrôle croisé
+  évite qu'on se persuade soi-même que sa pièce est bonne. Un frigoriste honnête accepte qu'un collègue vérifie
+  son travail — c'est une pratique professionnelle réelle, pas une punition.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état (à chaque passage)</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que le professeur a bien dépressurisé le réseau avant d'y toucher</p>
+    <p>☐ 2. Ranger chaque outil à sa place (coupe-tube, ébavureur, ressort, dudgeonnière, clés)</p>
+    <p>☐ 3. Trier les chutes de cuivre dans le bac de récupération</p>
+    <p>☐ 4. Nettoyer l'établi de mon poste, essuyer les traces d'eau savonneuse</p>
+    <p>☐ 5. Vérifier que la zone de travail est dégagée et propre pour le poste suivant</p>
+    <p>☐ 6. Retirer les EPI en dernier, une fois le poste totalement rangé</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis</h4>
+  <p>☐ Passage 1 : réseau à 2 tronçons assemblé, contrôle d'étanchéité réalisé sur sa propre pièce, résultat noté honnêtement<br>
+  ☐ Passage 2 : réseau à 3 tronçons assemblé avec moins d'aide, contrôle qualité croisé réalisé et signé sur la pièce d'un autre binôme</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C3.4 Confortement</b> (poids réduit) ·
+  <b>C3.9 Découverte</b> (première rencontre, <b>aucun poids</b> — ni C3.4 ni C3.9 ne sont remontées sur École
+  Directe dans ce module).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)</td><td>sur T10 · T12 · S2.1</td><td>Compétence non observée ce jour.</td><td>Le réseau ne passe pas les contrôles malgré l'aide (coupe non ébavurée, cintrage pincé, dudgeon non conforme, raccord union mal serré).</td><td>Le réseau passe les contrôles avec l'aide ou la répétition d'un geste par le professeur, ou après une reprise.</td><td>Réalise seul(e), en binôme, un réseau conforme : coupes ébavurées, cintrages sans pincement, dudgeons conformes, raccords union bien serrés (passage 1 : 2 tronçons ; passage 2 : 3 tronçons, moins d'aide).</td><td>Comme « Acquis », et repère seul(e) un défaut avant de présenter la pièce, ou aide un autre binôme.</td></tr>
+    <tr><td><b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service</td><td>sur T11 · T12 · S5.5 — Découverte</td><td>Compétence non observée ce jour.</td><td>Ne sait pas conduire le contrôle à l'eau savonneuse malgré l'aide (oublie des raccords, ne sait pas repérer une bulle).</td><td>Réalise le contrôle avec l'aide du professeur (où badigeonner, comment lire le résultat).</td><td>Réalise seul(e) le contrôle sur tous les raccords et note honnêtement le résultat (passage 1 : sur sa propre pièce ; passage 2 : sur la pièce d'un autre binôme, contrôle signé).</td><td>Comme « Acquis », et explique à un pair pourquoi on ne teste jamais à l'oxygène ni à l'air comprimé.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux (touche la bouteille, force un raccord sous pression) ou signature d'un contrôle non réellement observé : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>EPI et gestes respectés sans rappel, contrôle honnête, signature engagée sur une observation réelle.</td><td>Comme « Acquis », et signale spontanément un doute plutôt que de signer trop vite.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C3.9 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous étiez positionné(e) 1 ou 2 sur C3.4 à
+  É1 : avez-vous progressé sur les cotes du dudgeon et la propreté de la coupe, repris en phase 4 ?</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : dessins, relevés, questions répondues)</li>
+    <li>Fiche de contrôle qualité croisé signée (passage 2)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (tubes, raccords union, écrous, eau savonneuse)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : documents S1-F1 et
+  S2-F1 (F. Henninot — continuité des consignes, du vocabulaire et des critères de conformité du cuivre) ; Tube
+  cuivre.pdf et Tube cuivre2.pdf (notice technique AFPA, F. Cabeza — rayon de cintrage 3 × D, minimum 8 tours de
+  coupe-tube, conicité 45° du dudgeon) ; Charte pédagogique FrigorX (§7 sécurité — geste interdit : jamais
+  d'oxygène ni d'air comprimé pour une épreuve d'étanchéité) ; référentiel CAP IFCA (codes C3.4, C3.9, T10, T11,
+  T12, S2.1, S5.5). Valeur et gaz de la pression d'essai : fixés par le professeur au poste, à faire valider —
+  aucune valeur inventée dans ce document.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

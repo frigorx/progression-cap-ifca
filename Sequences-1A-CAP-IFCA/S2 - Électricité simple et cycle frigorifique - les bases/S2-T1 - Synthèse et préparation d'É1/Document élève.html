@@ -1,0 +1,384 @@
+<meta charset="utf-8">
+<title>Cours élève — S2 · Module théorie T1 · Synthèse et préparation d'É1</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .equipe{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em}
+  .equipe h4{color:var(--violet); font-size:10.5pt; margin:0 0 4px}
+  .manche{border-left:4px solid var(--bleu); background:var(--fond-doux); border-radius:0 6px 6px 0; padding:6px 12px; margin:.5em 0}
+  .manche h4{font-size:10.5pt; margin:0 0 4px}
+  table.score{font-size:9.5pt; margin:.4em 0 .9em}
+  table.score th{background:var(--violet); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.score td{border:1px solid var(--filet); padding:8px 6px; text-align:center}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE : ANNONCE D'É1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Synthèse cycle frigorifique + grandeurs électriques · préparation d'É1</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S2-T1 · 2 h</span><b>Synthèse et préparation d'É1</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S2</span> · sem. 5-7</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — révision en classe entière, avant É1</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Revoir la croix du frigoriste et les grandeurs U, I, R vues en S1, en équipe puis seul(e), pour arriver prêt(e) à É1</div>
+    <div class="case"><h4>Savoir-être</h4>Jouer le jeu du quiz honnêtement · s'entraîner seul(e) sans regarder le voisin · être honnête dans mon auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui d'É1 — grille indicative, non remontée</span> ce cours révise S1-T1 et S1-T2 ; l'évaluation, c'est É1, semaine 7</div>
+  </div>
+
+  <div class="situation"><h4>Accroche — à quoi ressemblera É1 ?</h4>
+  Dans deux semaines, en <b>semaine 7</b>, vous passerez votre <b>toute première évaluation notée de l'année : É1</b>.
+  Pas de piège : voici exactement à quoi elle ressemblera, sur les 3 créneaux de la semaine.
+
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:18%">Poste</th><th style="width:14%">Durée</th><th>Ce qui sera demandé</th></tr>
+    <tr><td>FROID</td><td>4 h</td><td style="text-align:left">Enchaîner coupe → cintrage → dudgeon sur une pièce de cuivre (comme en S1-F1/S2-F1), puis repérer les 4 organes sur une machine réelle en fonctionnement (comme en S1-F2/S2-F2).</td></tr>
+    <tr><td>ÉLEC</td><td>4 h</td><td style="text-align:left">Câbler un montage domestique et mesurer U, I, R au multimètre (comme en S1-E1/E2 et S2-E1).</td></tr>
+    <tr><td>THÉORIE</td><td>2 h</td><td style="text-align:left">Un écrit individuel : la croix à compléter, un organe à associer à son rôle, des calculs guidés loi d'Ohm, une lecture de plaque — <b>exactement le format de ce cours</b>.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:10pt; margin:.4em 0 0">É1 positionne officiellement 3 compétences : <b>C3.4</b> (façonner/raccorder les circuits),
+  <b>C3.6</b> (câbler/repérer les liaisons électriques), <b>C4.5</b> (mesurer, comparer des grandeurs). Vous les
+  connaissez déjà : vous les avez pratiquées en S1 et vous les pratiquez encore en S2. É1 ne demande <b>rien de
+  nouveau</b> — seulement de refaire, seul(e) et dans des conditions d'examen, ce que vous savez déjà faire.</p>
+  </div>
+
+  <div class="seuil"><b class="t">Ce qui change depuis S1</b> — En S1, le professeur vous a montré pas à pas (démonstration).
+  Aujourd'hui, c'est vous qui répondez d'abord : en équipe pendant le quiz, puis seul(e) pendant l'entraînement.
+  Le professeur ne reprend que ce qui coince encore. C'est exactement ce qu'on attendra de vous à É1.</div>
+
+  <div class="encadre-question"><b>Avant de commencer</b> — Sur une échelle de 0 à 4, comment vous sentez-vous
+  aujourd'hui face à É1 ? (Vous répondrez à nouveau à cette question à la fin du cours, pour voir votre progression.)</div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — RÉVISION ACTIVE : QUIZ-TOURNOI PAR ÉQUIPES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">RÉVISION ACTIVE — le quiz-tournoi par équipes</h3>
+  <div class="equipe"><h4>Règles du jeu</h4>
+  <ul class="liste-num">
+    <li>La classe est répartie en équipes de 3-4. Chaque équipe choisit un nom.</li>
+    <li>4 manches courtes, une question à la fois, projetée ou lue à voix haute.</li>
+    <li>Chaque équipe écrit sa réponse sur son ardoise/feuille et la montre au signal du professeur.</li>
+    <li>1 point par bonne réponse (2 points si l'équipe est la seule à avoir trouvé). Le professeur note les
+    points au tableau, <b>par équipe</b> : aucune note individuelle n'est remontée sur École Directe.</li>
+    <li>Notez vos propres réponses ci-dessous au fur et à mesure : cette feuille vous servira à réviser ensuite.</li>
+  </ul>
+  </div>
+
+  <div class="manche"><h4>Manche 1 — la croix du frigoriste (4 questions)</h4>
+  <ol class="liste-num">
+    <li>Sur la croix du frigoriste, quel organe se trouve à GAUCHE ?</li>
+    <li>Quel organe se trouve en HAUT ?</li>
+    <li>Le fluide sort du compresseur : dans quel organe entre-t-il en premier ?</li>
+    <li>Quel organe absorbe la chaleur et fait naître le froid ?</li>
+  </ol>
+  <div class="zone-reponse" style="min-height:3.4em"></div>
+  </div>
+
+  <div class="manche"><h4>Manche 2 — vrai ou faux (4 questions)</h4>
+  <ol class="liste-num">
+    <li>Le condenseur transforme le liquide en gaz. <i>(Vrai/Faux)</i></li>
+    <li>Le compresseur est du côté chaud de la croix. <i>(Vrai/Faux)</i></li>
+    <li>Le multimètre peut mesurer la tension, l'intensité ET la résistance. <i>(Vrai/Faux)</i></li>
+    <li>On peut mesurer une résistance sur un circuit resté sous tension. <i>(Vrai/Faux)</i></li>
+  </ol>
+  <div class="zone-reponse" style="min-height:3.4em"></div>
+  </div>
+
+  <div class="manche"><h4>Manche 3 — les 3 grandeurs U, I, R (4 questions)</h4>
+  <ol class="liste-num">
+    <li>Quelle est l'unité de la tension, et son symbole ?</li>
+    <li>Quel appareil (ou quelle position du multimètre) sert à mesurer l'intensité ?</li>
+    <li>Quelle est l'unité de la résistance, et son symbole ?</li>
+    <li>Complétez la formule de la loi d'Ohm : U = ____ × ____</li>
+  </ol>
+  <div class="zone-reponse" style="min-height:3.4em"></div>
+  </div>
+
+  <div class="manche"><h4>Manche 4 — lecture de plaque, en éclair (2 questions)</h4>
+  <ol class="liste-num">
+    <li>Sur une plaque signalétique, à quoi reconnaît-on une grandeur électrique plutôt qu'une grandeur mécanique
+    (poids, vitesse) ?</li>
+    <li>Sur la plaque du moteur vue en S1-T2 (ligne 440 V / 60 Hz), quelle était l'intensité relevée ?</li>
+  </ol>
+  <div class="zone-reponse" style="min-height:2em"></div>
+  </div>
+
+  <table class="score">
+    <tr><th>Équipe</th><th>Manche 1</th><th>Manche 2</th><th>Manche 3</th><th>Manche 4</th><th>Total</th></tr>
+    <tr><td>________________</td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — APPLICATION : CROIX + ORGANE→RÔLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION — entraînement individuel, format É1</h3>
+  <p style="font-size:10pt; color:var(--gris); font-style:italic">À partir d'ici, vous travaillez seul(e), en
+  silence, comme à É1. Le professeur ne corrige qu'à la toute fin.</p>
+
+  <h4 style="font-size:11pt">Exercice 1 — compléter la croix</h4>
+  <p style="font-size:10.3pt">Dans le cadre ci-dessous, dessinez une croix à 4 branches pour une machine à
+  compression. Respectez la convention (identique depuis S1) :</p>
+  <ol class="liste-num">
+    <li>le <b>détendeur</b> à GAUCHE ;</li>
+    <li>le <b>compresseur</b> à DROITE ;</li>
+    <li>le <b>condenseur</b> en HAUT ;</li>
+    <li>l'<b>évaporateur</b> en BAS ;</li>
+    <li>une flèche continue qui montre le sens de circulation du fluide, en boucle fermée.</li>
+  </ol>
+  <div class="cadre-dessin" style="min-height:230px"><span class="consigne-cadre">Croix vierge — 4 organes (détendeur gauche · compresseur droite · condenseur haut · évaporateur bas) + flèche de circulation</span></div>
+
+  <h4 style="font-size:11pt">Exercice 2 — associer chaque organe à son rôle</h4>
+  <p style="font-size:10.3pt">Écrivez la lettre du rôle qui correspond à chaque organe.</p>
+  <table class="releve">
+    <tr><th style="width:60%">Organe</th><th style="width:20%">Rôle (lettre)</th></tr>
+    <tr><td>Compresseur</td><td></td></tr>
+    <tr><td>Détendeur</td><td></td></tr>
+    <tr><td>Condenseur</td><td></td></tr>
+    <tr><td>Évaporateur</td><td></td></tr>
+  </table>
+  <table class="releve" style="font-size:9pt">
+    <tr><th>Rôles à associer</th></tr>
+    <tr><td style="text-align:left">A. Refroidit le gaz chaud jusqu'à le rendre liquide.</td></tr>
+    <tr><td style="text-align:left">B. Absorbe la chaleur et transforme le fluide en gaz : c'est ici que naît le froid.</td></tr>
+    <tr><td style="text-align:left">C. Aspire le fluide et le comprime : il chauffe et monte en pression.</td></tr>
+    <tr><td style="text-align:left">D. Fait chuter la pression du liquide.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — APPLICATION : CALCULS LOI D'OHM + LECTURE DE PLAQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 3 — 2 calculs guidés, loi d'Ohm</h4>
+  <p style="font-size:10.3pt">Rappel de la formule vue en S1-T2 :</p>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/loi-d-ohm-thermique.png" alt="Schéma de la loi d'Ohm électrique U=R×I" style="max-width:60%;">
+    <figcaption class="legende">La loi d'Ohm : U = R × I (D'après : « Loi d'Ohm », F. Henninot).</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Calcul guidé 1</b> — On a mesuré au multimètre, hors tension, la résistance
+  d'un enroulement de moteur : <b>R = 7,3 Ω</b> (TP 04 – multimètre, S1-T2). Le secteur français utilisé dans
+  nos ateliers est <b>U = 230 V</b>. En exercice de calcul seulement (formule I = U ÷ R) : quelle serait
+  l'intensité I ?</div>
+  <p style="font-size:10.5pt; margin:.4em 0"><b>I = U ÷ R = ____________ ÷ ____________ = ____________</b></p>
+
+  <div class="encadre-question"><b>Calcul guidé 2</b> — Sur la plaque du moteur revue en S1-T2 (ligne 440 V /
+  60 Hz), on lit <b>U = 440 V</b> et <b>I = 3,60 A</b>. En appliquant la formule <b>R = U ÷ I</b> : quelle
+  valeur obtenez-vous ?</div>
+  <p style="font-size:10.5pt; margin:.4em 0"><b>R = U ÷ I = ____________ ÷ ____________ = ____________</b></p>
+
+  <h4 style="font-size:11pt">Exercice 4 — lecture de plaque signalétique</h4>
+  <p style="font-size:10.3pt">Même plaque qu'en S1-T2. Relisez la ligne <b>440 V / 60 Hz</b> et complétez, sans
+  aide cette fois :</p>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/plaque-signaletique-moteur-leroysomer.png" alt="Plaque signalétique moteur Leroy Somer LS 90L-T" style="max-width:55%;">
+    <figcaption class="legende">Plaque signalétique d'un moteur Leroy Somer LS 90L-T.</figcaption>
+  </figure>
+  <table class="releve">
+    <tr><th style="width:46%">Grandeur (ligne 440 V)</th><th>Valeur lue</th></tr>
+    <tr><td style="text-align:left">1. Intensité absorbée</td><td></td></tr>
+    <tr><td style="text-align:left">2. Puissance mécanique nominale</td><td></td></tr>
+    <tr><td style="text-align:left">3. Vitesse nominale</td><td></td></tr>
+    <tr><td style="text-align:left">4. Poids du moteur</td><td></td></tr>
+  </table>
+  <div class="encadre-question"><b>Question</b> — Parmi ces 4 valeurs, laquelle (ou lesquelles) sont des
+  <b>grandeurs électriques</b> ?</div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — SYNTHÈSE : « JE SUIS PRÊT POUR É1 » ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — « je suis prêt(e) pour É1 »</h3>
+  <p style="font-size:10.3pt">É1 positionne 3 compétences. Avant correction du professeur, positionnez-vous
+  honnêtement, en repensant au quiz et aux exercices de ce cours.</p>
+
+  <div class="trace">
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:30%">Compétence (en mes mots)</th><th style="width:14%">0</th><th style="width:14%">1</th><th style="width:14%">2</th><th style="width:14%">3</th><th style="width:14%">4</th></tr>
+    <tr><td><b>C3.4</b> — Je sais façonner et raccorder un tube de cuivre (couper, cintrer, dudgeonner) en
+    enchaînant les étapes <span class="nuance">Confortement</span></td>
+    <td>Non évalué ce jour.</td><td>Je ne sais pas enchaîner les étapes seul(e).</td>
+    <td>J'enchaîne les étapes avec de l'aide.</td><td>J'enchaîne les étapes seul(e), la pièce passe les contrôles.</td>
+    <td>Comme « Acquis », en expliquant mes choix à un camarade.</td></tr>
+    <tr><td><b>C3.6</b> — Je sais câbler un montage électrique domestique simple à partir d'un schéma
+    <span class="nuance">Confortement</span></td>
+    <td>Non évalué ce jour.</td><td>Je ne sais pas câbler seul(e) à partir du schéma.</td>
+    <td>Je câble avec de l'aide.</td><td>Je câble seul(e), le montage fonctionne au contrôle du professeur.</td>
+    <td>Comme « Acquis », en expliquant mes choix à un camarade.</td></tr>
+    <tr><td><b>C4.5</b> — Je sais mesurer une grandeur (U, I, R) avec le bon appareil et comparer ma mesure à
+    une valeur attendue <span class="nuance">Confortement</span></td>
+    <td>Non évalué ce jour.</td><td>Je ne sais pas choisir/utiliser le bon appareil.</td>
+    <td>Je mesure avec de l'aide.</td><td>Je mesure seul(e) et je compare ma valeur à ce qui est attendu.</td>
+    <td>Comme « Acquis », en expliquant ma démarche à un camarade.</td></tr>
+    <tr><td>Savoir-être — je joue le jeu du quiz honnêtement, je m'entraîne seul(e) sans regarder le voisin</td>
+    <td>Non observé.</td><td>Je copie ou je ne participe pas.</td><td>Je participe mais j'ai besoin d'un rappel.</td>
+    <td>Je joue le jeu honnêtement, je travaille seul(e) pendant l'entraînement.</td>
+    <td>Comme « Acquis », et j'aide une autre équipe à rester honnête.</td></tr>
+  </table>
+  </div>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement global aujourd'hui :</b>
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Ce que je révise d'ici la semaine 7</h3>
+  <p style="font-size:10.3pt">Cochez ce qui vous semble encore fragile, à revoir seul(e) ou avec le professeur
+  avant É1 :</p>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:70%">Point à réviser</th><th>Je coche si fragile</th></tr>
+    <tr><td style="text-align:left">La croix : position des 4 organes + sens de circulation</td><td>☐</td></tr>
+    <tr><td style="text-align:left">Le rôle de chaque organe (une phrase par organe)</td><td>☐</td></tr>
+    <tr><td style="text-align:left">Les 3 grandeurs U, I, R : symboles, unités, appareils de mesure</td><td>☐</td></tr>
+    <tr><td style="text-align:left">La formule de la loi d'Ohm et son maniement (I = U÷R, R = U÷I)</td><td>☐</td></tr>
+    <tr><td style="text-align:left">La lecture d'une plaque signalétique (repérer les grandeurs électriques)</td><td>☐</td></tr>
+    <tr><td style="text-align:left">Mes gestes cuivre (coupe, cintrage, dudgeon) — à revoir en atelier</td><td>☐</td></tr>
+    <tr><td style="text-align:left">Mon câblage et mes mesures au multimètre — à revoir en atelier</td><td>☐</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Retour sur la question du début</b> — Sur une échelle de 0 à 4, comment vous
+  sentez-vous <b>maintenant</b> face à É1 ? Comparez à votre réponse de la feuille 1.</div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe :
+  c'est votre outil personnel pour préparer É1, semaine 7 (postes froid, élec, théorie).</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : documents S1-T1
+  « Le cycle frigorifique, les bases » et S1-T2 « Les grandeurs électriques U, I, R » (F. Henninot, 2026) ;
+  schéma « La Croix du Frigoriste » (F. Henninot) ; plaque signalétique moteur Leroy Somer LS 90L-T et TP 04 –
+  multimètre + correction, résistance d'enroulement 7,3 Ω (F. Henninot) ; schéma « Loi d'Ohm » (F. Henninot) ;
+  format d'exercice « croix à compléter » inspiré de « eval croix du frigo » (F. Henninot, base 25-26, éléments
+  compresseur/détendeur/évaporateur/condenseur repris, capillaire et pressions HP/BP non repris — non vus en
+  S1-T1).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .cadre-dessin, .equipe, .manche{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

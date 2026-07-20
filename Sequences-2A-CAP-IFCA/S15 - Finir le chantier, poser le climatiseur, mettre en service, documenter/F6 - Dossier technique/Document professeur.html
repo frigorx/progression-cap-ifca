@@ -1,0 +1,349 @@
+<meta charset="utf-8">
+<title>Document professeur — S15 · Module F6 · Dossier technique</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#fff6cc; color:#8a6d00; border:1px solid #e3cf6b}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .etape{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px;
+    padding:2px 9px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  table.mes{font-size:9.3pt; margin:.4em 0 .9em}
+  table.mes th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mes td{border:1px solid var(--filet); padding:6px; vertical-align:middle}
+  table.mes td.champ{background:var(--fond-doux); font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); width:38%}
+  table.mes td.val{text-align:left}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + MINUTAGE AU FIL DE A6-a/A6-b ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Finir le chantier, documenter</td>
+      <td style="width:38%"><span class="lib">Module F6 · fil de l'eau · 2 h — DOCUMENT PROFESSEUR</span><b>Dossier technique de l'installation</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S15</span> · sem. 19-21</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Atelier — au fil des modules A6-a et A6-b</td>
+      <td><span class="lib">Durée</span>2 h cumulées, réparties en 4 étapes, pas de module isolé</td>
+      <td><span class="lib">Modalité</span>Production documentaire réelle, en autonomie guidée</td>
+      <td><span class="lib">Encadrement</span>1 professeur, atelier, postes tournants</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi<br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><b>S1.1</b> Les intervenants<br><b>S3.1</b> Communication technique</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du dossier · honnêteté (zéro invention) · sens de l'organisation (dossier rangé dans l'ordre du sommaire, pas tout d'un coup en fin de chantier)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → Évaluation</span> <b>C1.1</b> Compléter, transmettre <span class="nuance">sur T1·T15 · S1.1·S3.1</span><br><span class="statut">Confortement</span> <b>C2.1</b> Organiser des informations</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au support élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même structure en 6 pièces (fiche
+  d'identification, schéma de principe, liste des organes, relevés de MES, fiche machine, attestation
+  simplifiée) que le support élève, réparties sur les 4 étapes au fil de A6-a et A6-b. Il y ajoute, pour chaque
+  pièce, les <b>attendus</b> et un <b>exemple entièrement rempli</b> avec des valeurs plausibles, marquées
+  <span class="nuance">« exemple — selon installation »</span>. <b>Aucune valeur cible n'est inventée</b> :
+  seuls la surchauffe (5-10 K) et le sous-refroidissement (4-8 K) sont des seuils réglementaires généraux ;
+  charge nominale, longueur de liaison, couples de serrage flare et consignes de pressostat restent propres au
+  climatiseur split réellement posé, à relever sur sa plaque/notice.</p>
+
+  <div class="vigilance"><b class="t">Sur l'attestation de conformité simplifiée</b> — Bien faire dire aux
+  élèves qu'il s'agit d'un document <b>pédagogique</b>, qui valide la méthode enseignée, et non d'une
+  attestation réglementaire d'aptitude ou de capacité (celles-ci exigent une habilitation professionnelle que
+  l'élève n'a pas encore). Le libellé de la feuille 4 élève le précise déjà.</div>
+
+  <h3 class="section">Minutage — 2 h réparties au fil de A6-a et A6-b (8 h d'atelier)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:16%">Moment</th><th style="width:14%">Durée</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">F6 n'est pas un module isolé : il s'intercale dans A6-a (4 h) et A6-b (4 h)</td></tr>
+    <tr><td>Début A6-a</td><td>20 min</td><td>Fiche d'identification de l'installation : lecture des plaques signalétiques UE/UI, repérage du poste. Fait en même temps que la préparation de chantier d'A6-a, pas en plus.</td></tr>
+    <tr><td>Fin A6-a</td><td>25 min</td><td>Schéma de principe (dessin de l'installation réellement posée) et liste des organes, une fois la pose terminée. C'est le moment où le circuit est visible en entier.</td></tr>
+    <tr><td>Pendant A6-b</td><td>35 min</td><td>Relevés de mise en service (synthèse finale, valeurs validées seulement) et constitution de la fiche machine avec emplacement du QR. Intégré au temps de validation d'A6-b.</td></tr>
+    <tr><td>Fin A6-b</td><td>40 min</td><td>Attestation de conformité simplifiée, bon d'intervention, vérification du sommaire (6 pièces cochées), auto-positionnement C1.1/C2.1.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 20 + 25 + 35 + 40 = <b>120 min exactes (2 h)</b>, conforme
+  à la trame « Module F6 — fil de l'eau · 2 h » du cadrage S15. Ce temps est prélevé <b>sur</b> les 8 h
+  d'atelier A6-a/A6-b, pas ajouté en dehors.</p>
+
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser les élèves reporter tout le
+  remplissage à la toute fin d'A6-b « pour aller plus vite » : le schéma de principe doit être dessiné pendant
+  que l'installation est encore visible et démontée si besoin, et les relevés de MES doivent être les
+  <b>dernières valeurs validées</b>, pas des estimations. C'est précisément l'objet de la ligne savoir-être de
+  la grille.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — EXEMPLE REMPLI : FICHE D'IDENTIFICATION + SCHÉMA + ORGANES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module F6 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <span class="etape">EXEMPLE — selon installation, à adapter au poste réel</span>
+  <h3 class="section">Exemple rempli — fiche d'identification</h3>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><td class="champ">Nom / repère</td><td class="val">Climatiseur split — atelier pédagogique, poste n° 1 <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Marque / Type / Référence / N° série</td><td class="val">selon le climatiseur réellement affecté au poste — <span class="nuance">à relever sur la plaque, non inventé ici</span></td></tr>
+    <tr><td class="champ">Nature du fluide</td><td class="val"><b>R32</b> — Type : <b>HFO/HFC faiblement inflammable</b> <span class="nuance">(exemple — split récent typique ; à vérifier sur la plaque réelle, un R410A reste possible sur du matériel plus ancien)</span></td></tr>
+    <tr><td class="champ">Charge nominale</td><td class="val"><b>selon plaque signalétique, à faire valider</b> <span class="nuance">(dépend de la puissance et de la longueur de liaison du modèle posé)</span></td></tr>
+    <tr><td class="champ">Longueur de liaison posée</td><td class="val"><b>selon distance réelle UE/UI, à relever au mètre</b> <span class="nuance">(exemple — aucune valeur générale)</span></td></tr>
+    <tr><td class="champ">Alimentation électrique</td><td class="val">Mono 230V <span class="nuance">(exemple — split de faible puissance ; certains modèles atelier peuvent être en triphasé, à vérifier)</span></td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Exemple rempli — schéma de principe et liste des organes</h3>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Le schéma de principe n'est <b>pas fourni
+  tout fait</b> : chaque élève dessine <b>sa</b> propre installation, telle qu'elle est réellement posée
+  (angle mort signalé dans la bibliothèque : aucun schéma type de split n'existe, volontairement, pour éviter
+  que les élèves recopient un schéma générique au lieu d'observer leur machine).</p>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><th style="width:8%">Repère</th><th style="width:30%">Organe</th><th>Marque / référence</th><th style="width:22%">Remarque</th></tr>
+    <tr><td class="val">1</td><td class="champ">Compresseur</td><td class="val">selon modèle posé <span class="nuance">(exemple : rotatif)</span></td><td class="val">accessible en pied d'UE</td></tr>
+    <tr><td class="val">2</td><td class="champ">Détendeur</td><td class="val">selon modèle posé <span class="nuance">(exemple : capillaire ou électronique)</span></td><td class="val">intégré à l'UI sur la plupart des splits</td></tr>
+    <tr><td class="val">3</td><td class="champ">Échangeur UE (condenseur)</td><td class="val">selon modèle posé</td><td class="val">ventilé, en extérieur</td></tr>
+    <tr><td class="val">4</td><td class="champ">Échangeur UI (évaporateur)</td><td class="val">selon modèle posé</td><td class="val">avec bac à condensats</td></tr>
+    <tr><td class="val">5</td><td class="champ">Vanne(s) de service</td><td class="val">flare 2 voies (liquide) et 3 voies (gaz)</td><td class="val">côté UE, servent au raccordement</td></tr>
+    <tr><td class="val">6</td><td class="champ">Pompe de relevage des condensats</td><td class="val">si présente sur le poste</td><td class="val">selon configuration du local</td></tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Vérifier que chaque élève a bien identifié le
+  <b>détendeur</b> (souvent capillaire, donc peu visible, intégré à l'UI) : rappeler le vu au module T1 de S11
+  si besoin.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — EXEMPLE REMPLI : RELEVÉS MES + FICHE MACHINE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module F6 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <span class="etape">EXEMPLE — valeurs finales validées en A6-b</span>
+  <h3 class="section">Exemple rempli — relevés de mise en service (synthèse finale)</h3>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><td class="champ">Surchauffe mesurée</td><td class="val"><b>7 K</b> <span class="nuance">(exemple, dans la plage 5-10 K)</span></td></tr>
+    <tr><td class="champ">Sous-refroidissement mesuré</td><td class="val"><b>5 K</b> <span class="nuance">(exemple, dans la plage 4-8 K)</span></td></tr>
+    <tr><td class="champ">Pression HP / BP en service</td><td class="val"><b>selon fluide et conditions du jour, à relever</b> <span class="nuance">(aucune valeur générale : dépend du R32/R410A et de la température ambiante)</span></td></tr>
+    <tr><td class="champ">Intensité absorbée compresseur</td><td class="val"><b>selon plaque signalétique, à comparer à l'intensité nominale</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Point de consigne régulation</td><td class="val"><b>+21 °C</b> <span class="nuance">(exemple, mode confort)</span></td></tr>
+  </table>
+  </div>
+  <div class="reponse"><b class="t">Décision attendue dans cet exemple</b> — SC = 7 K et SR = 5 K : les deux
+  valeurs sont <b>dans la plage</b>, la case « Dans la plage » est cochée, la machine est « validée ». <b>Prévoir
+  aussi un cas volontairement hors plage</b> en variante ou en rattrapage, pour vérifier que l'élève ne coche
+  pas automatiquement « dans la plage » sans comparer réellement ses valeurs aux seuils.</div>
+
+  <h3 class="section">Exemple rempli — fiche machine</h3>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><td class="champ">Repère</td><td class="val">Climatiseur split — poste n° 1 <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Fluide / charge</td><td class="val">R32 — charge selon plaque, à faire valider</td></tr>
+    <tr><td class="champ">Organes</td><td class="val">voir liste feuille 2 (compresseur, détendeur, échangeurs, vannes de service)</td></tr>
+    <tr><td class="champ">Réglages</td><td class="val">SC 7 K, SR 5 K, consigne +21 °C <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Historique</td><td class="val">pose + MES du <span class="nuance">[date du chantier]</span> — première entrée du dossier</td></tr>
+    <tr><td class="champ">Emplacement QR</td><td class="val">à coller sur l'unité intérieure, près du panneau de commande <span class="nuance">(exemple de bonne pratique — visible, accessible sans démontage)</span></td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si l'établissement dispose de l'outil réel
+  <b>inerWeb Fluide — fiche machine</b> (module « fiche machine vivante », route <code>#/m/:code</code>), cette
+  fiche papier peut être doublée d'une vraie étiquette QR imprimée depuis l'outil. Sinon, la fiche papier
+  suffit pour ce module : ne pas présenter le QR comme obligatoire s'il n'est pas disponible sur le poste.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — EXEMPLE REMPLI : ATTESTATION + BON D'INTERVENTION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module F6 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <span class="etape">EXEMPLE — clôture du dossier</span>
+  <h3 class="section">Exemple rempli — attestation de conformité simplifiée</h3>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><td class="champ">Contrôle visuel de l'installation effectué</td><td class="val"><b>Oui</b></td></tr>
+    <tr><td class="champ">Essai d'étanchéité réalisé</td><td class="val"><b>Oui</b> — détecteur électronique <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Mise en service conforme (SC/SR dans les seuils)</td><td class="val"><b>Oui</b> (SC 7 K, SR 5 K)</td></tr>
+    <tr><td class="champ">Absence de fuite détectée</td><td class="val"><b>Oui</b></td></tr>
+    <tr><td class="champ">Dossier technique complet (6 pièces du sommaire)</td><td class="val"><b>Oui</b></td></tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un dossier ne peut être coché « conforme » que si
+  <b>toutes</b> les cases sont à « Oui ». Si une réponse est « Non » (par exemple une fuite détectée), le
+  dossier reste ouvert : l'élève retourne en A6-b corriger avant de clore F6. C'est cohérent avec la logique de
+  répétition du CCF EP3 : on ne rend pas un dossier incomplet.</div>
+
+  <h3 class="section">Exemple rempli — bon d'intervention (descriptif de la mission)</h3>
+  <div class="reponse"><b class="t">Exemple de descriptif attendu</b><br><br>
+  « Implantation de l'unité extérieure et de l'unité intérieure selon plan fourni. Perçage et pose de la
+  liaison frigorifique (dudgeons/flare), raccordement électrique UE/UI, pose de l'évacuation des condensats.
+  Mise sous azote et tirage au vide de la liaison. Charge et mise en service : relevés SC/SR dans les seuils,
+  réglage de la consigne à +21 °C. Contrôle d'étanchéité : aucune fuite détectée. Dossier technique constitué
+  au fil du chantier. »</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Le descriptif doit suivre <b>l'ordre réel</b> du
+  chantier (comme dans l'exemple), pas une liste en vrac : c'est ce qui distingue un bon descriptif d'un simple
+  copier-coller de la liste des organes.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 CORRIGÉE + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module F6 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>C1.1 est en Confortement → Évaluation</b> (remontée
+  École Directe) ; C2.1 en Confortement.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:16%">Compétence</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:18%">3-4</th></tr>
+    <tr>
+      <td><b>C1.1</b> Compléter, transmettre <span class="nuance">sur T1·T15 · S1.1·S3.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Dossier incomplet ou illisible malgré aide et rappel (pièces manquantes, cases vides sans mention « à faire valider »).</td>
+      <td>Dossier rempli avec l'aide du professeur, quelques erreurs de report (charge non reprise de la plaque, valeurs SC/SR mal recopiées).</td>
+      <td>Dossier complet (6 pièces), cohérent entre elles (mêmes valeurs entre le schéma, la liste des organes et la fiche machine) et exact, en autonomie (niveau 4 : peut expliquer à un pair pourquoi telle pièce est renseignée ainsi).</td>
+    </tr>
+    <tr>
+      <td><b>C2.1</b> Organiser des informations <span class="nuance">sur T1 · S1.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Informations éparpillées, dossier sans ordre reconnaissable, malgré aide.</td>
+      <td>Dossier organisé avec l'aide du professeur, ordre du sommaire respecté partiellement.</td>
+      <td>Dossier rangé dans l'ordre exact du sommaire, chaque pièce renvoie clairement à l'étape du chantier qui l'a produite (niveau 4 : anticipe une pièce manquante avant que le professeur ne le signale).</td>
+    </tr>
+    <tr>
+      <td>Savoir-être</td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Valeurs inventées ou dossier rempli d'un coup en fin de séquence, sans lien avec les étapes réelles du chantier.</td>
+      <td>Rigueur avec rappel du professeur.</td>
+      <td>Dossier construit au fil de l'eau sans rappel, signale spontanément une valeur douteuse plutôt que de l'inventer, aide un pair sans perturber son propre dossier.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fournir une trame de schéma de principe déjà pré-tracée (positions UE/UI marquées) à compléter par les liaisons, plutôt qu'un cadre entièrement vierge ; limiter la liste des organes aux 4 organes principaux.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, les 6 pièces réparties dans A6-a/A6-b, en autonomie guidée.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus : « si un mainteneur intervient dans 5 ans sur cette machine sans jamais l'avoir vue, quelles 3 pièces de votre dossier lui seront les plus utiles en premier, et pourquoi ? » (lien direct avec le rôle du DOE vu en T1).</td></tr>
+    <tr><td>FLE</td><td>Sommaire des 6 pièces annoté avec pictogramme pour chaque pièce (fiche = feuille ; schéma = crayon ; organes = engrenage ; relevés = thermomètre ; fiche machine = étiquette ; attestation = tampon) ; vocabulaire « conformité / consigne / étanchéité » réaffiché avec image avant l'attestation.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Chaque pièce du dossier présentée comme une fiche séparée à sortir une par une plutôt qu'un document unique dense ; zone de dessin du schéma bien délimitée par un quadrillage (déjà prévu dans le document élève) ; pause courte entre le schéma (feuille 2) et les relevés (feuille 3) si besoin, sans rallonger le total de 2 h.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence</h3>
+  <ul class="liste-num">
+    <li>Le carnet de bord <b>F3</b> peut accueillir une trace courte de chaque étape de F6 si le professeur le
+    souhaite (non obligatoire) ;</li>
+    <li>La <b>validation formative « machine validée »</b> de fin de S15 (répétition de MES autonome) s'appuie
+    directement sur les relevés de F6 ;</li>
+    <li>Le <b>CCF EP3 blanc</b> (produit avec S16) reprendra la même exigence de dossier technique complet, sur
+    une machine différente et en temps limité.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Dossier des
+  Ouvrages Exécutés.docx, fiche d'intervention clim froid.docx, rapport-dintervention.docx (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .mes{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

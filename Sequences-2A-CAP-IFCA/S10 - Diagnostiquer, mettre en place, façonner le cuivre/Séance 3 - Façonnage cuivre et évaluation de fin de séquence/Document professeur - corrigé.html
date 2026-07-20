@@ -1,0 +1,350 @@
+<meta charset="utf-8">
+<title>Document professeur — S10 · Module atelier A2 · Façonnage cuivre</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .cadre{border:1.5px solid var(--bleu); border-radius:6px; padding:10px 14px; margin:.5em 0 .9em; background:var(--fond-doux)}
+  .cadre h4{margin:0 0 5px; font-size:9.5pt; text-transform:uppercase; letter-spacing:.08em; color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .rep{font-size:10.3pt; margin:.3em 0 .8em}
+  .rep th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8.3pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .rep td{border:1px solid var(--filet); padding:6px 6px; vertical-align:top}
+  .rep tr:nth-child(even) td{background:var(--fond-doux)}
+  .vigi{border-left:4px solid var(--orange); background:#fff7f3; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .vigi b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .poste{border:1.5px solid var(--bleu); border-radius:6px; padding:10px 14px; margin:.5em 0 1em}
+  .poste h4{margin:0 0 6px; font-size:10.5pt; color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .grillePoste{font-size:9pt; margin:.4em 0}
+  .grillePoste th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grillePoste td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grillePoste tr:nth-child(even) td{background:var(--fond-doux)}
+  .grillePoste .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .tbl-wrap{overflow-x:auto}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 : IDENTIFICATION + ORGANISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Façonnage cuivre (chantier A2)</td>
+      <td style="width:38%"><span class="lib">Module atelier A2 · 4 h — DOCUMENT PROFESSEUR</span><b>Façonnage cuivre</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> · sem. 3 · 15/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A2 + poste façonnage + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée (pas 4 h + 4 h)</td>
+      <td><span class="lib">Modalité</span>Démonstration commentée courte + pratique guidée jalonnée (2 jalons) + contrôle qualité individuel du chef d'atelier</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.1</b> Outils, normes et représentation <span class="nuance">appliqué (traçage cuivre)</span><br><b>S6.1</b> Santé et sécurité <span class="nuance">augmenté (outils coupants)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste de façonnage · sécurité outils coupants sans rappel · entraide/tutorat entre pairs · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler <span class="nuance">sur T10 · S2.1</span><br><span class="statut">Confortement → Évaluation</span> <b>C4.5</b> Mesurer, comparer <span class="nuance">sur T11 · S2.1</span><br><span class="statut">Évaluation (reprise)</span> <b>C3.3</b> Implanter, fixer <span class="nuance">sur T11 · S6.1</span></div>
+  </div>
+
+  <h4 class="section">Ce que ce document ajoute au TP élève</h4>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module A2 : mêmes
+  observations/questions, même numérotation, même séquençage en 2 jalons (jalon 1 traçage/coupe/ébavurage,
+  jalon 2 cintrage/dudgeon/assemblage à blanc). Il y ajoute : les réponses attendues à chaque question, les
+  critères observables de conformité du cintrage et du dudgeon, les erreurs typiques d'élèves avec leur
+  remédiation, l'organisation du plateau, le minutage 4 h recompté, la grille 0-4 <b>formative</b> détaillée et
+  la différenciation (consolidation / standard / approfondissement + FLE + TDAH-DYS). <b>Aucune valeur non
+  autorisée n'est donnée</b> : le seuil de sous-refroidissement (4-8 K) est un rappel de prérequis, pas une
+  valeur travaillée ici ; toute cote de cintrage ou d'emboîture reste <b>« selon plan/gabarit fourni, à faire
+  valider »</b>.</p>
+
+  <div class="cadre">
+    <h4>Décision d'évaluation (rappel du cadrage, à ne pas oublier en séance)</h4>
+    <p style="margin:0; font-size:10.3pt">L'ancienne « évaluation de fin de séquence » embarquée dans cette
+    séance (version 8 h) est <b>retirée</b> de ce module : il n'y a <b>plus d'épreuve formelle ni de grille
+    sommative</b> ici. Elle est remplacée par un <b>contrôle qualité individuel</b> du chef d'atelier (le
+    professeur), qui seul autorise le passage au brasage en S11, et par une <b>grille 0-4 formative</b> +
+    auto-positionnement. Le <b>positionnement OFFICIEL</b> de C3.3 · C3.4 · C4.5 se fait à l'<b>évaluation
+    sommative conjointe S10-S11</b> (semaine 7, déjà produite, dossier S11). Ce module reste un <b>atelier de
+    4 h</b>, pas une séance d'évaluation.</p>
+  </div>
+
+  <h4 class="section">Méthode pédagogique du module</h4>
+  <p style="font-size:10.5pt"><b>Démonstration commentée courte, puis pratique guidée jalonnée.</b> Le
+  professeur démontre et commente les gestes clés du façonnage (traçage, coupe, ébavurage, cintrage, dudgeon)
+  sur une chute, avant toute pratique élève. Les élèves façonnent ensuite en autonomie jalonnée, par
+  <b>2 jalons successifs validés</b> par le professeur (traçage/coupe/ébavurage → cintrage/dudgeon/assemblage
+  à blanc), avec <b>entraide/tutorat entre pairs</b> encouragé (les plus rapides aident, sans faire à la
+  place). Chaque jalon se clôture par un <b>contrôle qualité individuel</b> du chef d'atelier. Module resserré
+  sur 4 h : la pratique tient en ~2 h 35 (2 jalons, contre 4 jalons + évaluation sur l'ancienne version 8 h).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : TRAME HORAIRE + ORGANISATION DU PLATEAU ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Document professeur — S10 · module atelier A2 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation du module (démonstration courte puis pratique guidée par 2 jalons, contrôle qualité du chef d'atelier).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S10-03 : fabrication de la ligne liquide commandée par le client ; contrôle qualité individuel du chef d'atelier avant autorisation de brasage en S11.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » affichés et commentés, lien avec la formule (C3.4, C4.5, C3.3) et le positionnement du jour (confortement, en préparation de la sommative conjointe S10-S11).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, exercice au fil de l'eau : reconnaissance visuelle des diamètres de tube (1/4", 3/8", 1/2", 5/8") + rappel du seuil de sous-refroidissement autorisé (4-8 K).</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (gants, lunettes, doigts à l'écart des mors, jamais de flamme aujourd'hui, jamais d'air comprimé vers une personne, conduite en cas d'incident) puis « planter la notion » : OBSERVER en silence les 2 photos de tubes cuivre → NOMMER (diamètre, épaisseur, rigidité) → EXPLICITER la lecture des diamètres en pouces.</td></tr>
+    <tr><td>15 min</td><td class="ph">6. Guider l'étude (a) — démonstration commentée</td><td>Démonstration commentée courte et resserrée du professeur sur chute : traçage avec marge d'emboîture, coupe, ébavurage, cintrage à 90°, dudgeon. Un seul poste, tous les élèves regroupés. Support des questions de réflexion du TP (feuilles 3-4).</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (b) — jalon 1 : traçage, coupe, ébavurage</td><td>Chaque élève/binôme repère les longueurs sur le plan, trace avec marge d'emboîture, coupe au coupe-tube, ébavure. Contrôle qualité individuel du chef d'atelier avant de continuer.</td></tr>
+    <tr><td>1 h 05</td><td class="ph">6. Guider l'étude (c) — jalon 2 : cintrage, dudgeon, assemblage à blanc</td><td>Cintrage à 90°, dudgeon, puis assemblage à blanc de la ligne liquide complète (sans brasage). Entraide/tutorat entre pairs. Contrôle qualité individuel du chef d'atelier, autorisation de passage au brasage en S11.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des fiches de contrôle qualité, auto-positionnement formatif par compétence (C3.4, C4.5, C3.3 + savoir-être) puis validation professeur. Rappel explicite : positionnement officiel à la sommative conjointe S10-S11 (semaine 7).</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord + bon de commande hebdomadaire (baguettes de brasure, azote pour S11).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Outillage rangé, copeaux évacués proprement, nettoyage des postes, contrôle visuel de l'ensemble du façonnage du module.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S11 = brasage de la ligne liquide façonnée aujourd'hui).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; démonstration 15 min + pause 15 min + jalon 1 (1 h 00) + jalon 2 (1 h 05) = 2 h 35 ;
+  synthèse 15 min + bon de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  1 h 00 + 2 h 35 + 40 min = <b>4 h 00 exactes</b>, conforme au plan de séance.</p>
+
+  <h4 class="section">Organisation du plateau — postes, rotation, sécurité</h4>
+  <table class="rep">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Postes de façonnage</b></td><td>Coupe-tube, ébavureur, cintreuse à main, dudgeonnière (mors 3/8"), pied à coulisse, tube 3/8" en barres, EPI complets par élève.</td><td>Le professeur (chef d'atelier) contrôle chaque jalon individuellement avant d'autoriser le suivant ; ne pas laisser un élève enchaîner sans validation.</td></tr>
+    <tr><td><b>Zone de démonstration</b></td><td>Un seul poste équipé, chute de tube pour la démonstration, classe entière regroupée à distance de sécurité.</td><td>Aucune manipulation élève pendant la démonstration ; insister sur les 3 points de contrôle (bavure, angle/ovalisation, collerette).</td></tr>
+    <tr><td><b>Zone assemblage à blanc</b></td><td>Machines du chantier, raccords préparés non brasés, carnet de bord.</td><td>Vérifier qu'aucun tronçon n'est en tension avant de valider le jalon 2 : un défaut d'alignement se règle maintenant, pas au brasage.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 : CORRIGÉ OBSERVATIONS + CRITÈRES DE CONFORMITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Document professeur — S10 · module atelier A2 · CAP IFCA 2A</div>
+  </div>
+
+  <h4 class="section">Corrigé — questions d'observation et de réflexion (document élève)</h4>
+  <table class="rep">
+    <tr><th style="width:32%">Question du TP élève</th><th>Réponse attendue / élément de correction</th></tr>
+    <tr><td>Différence tube en barre / tube en couronne</td><td>Un tube en barre est rigide et droit, livré en longueur fixe (usage général, tronçons rectilignes). Un tube en couronne est souple, enroulé, plus facile à dérouler et à cintrer à la main sur de courtes longueurs, mais plus fragile à l'ovalisation si mal manipulé. Les tubes en barres sont dits « écrouis » (durcis par leur fabrication), ce qui les rend plus rigides que le tube en couronne.</td></tr>
+    <tr><td>Pourquoi une bavure non retirée est un défaut grave</td><td>Une bavure interne réduit le passage du fluide, peut se détacher et circuler dans le circuit (risque de bouchage d'un filtre ou d'un détendeur), et gêne un bon emboîtement avant brasage.</td></tr>
+    <tr><td>Effet d'un tube ovalisé au cintrage</td><td>Un tube ovalisé (aplati) réduit localement la section de passage : le fluide frigorigène subit une perte de charge supplémentaire à cet endroit, ce qui peut nuire au bon fonctionnement du circuit.</td></tr>
+    <tr><td>Pourquoi une collerette de dudgeon fissurée empêche un brasage étanche</td><td>Une fissure, même petite, laisse un passage pour le gaz ou pour l'alliage de brasure qui ne remplira pas uniformément le joint : le brasage réalisé sur une collerette fissurée en séquence S11 ne serait pas étanche, même si le geste de brasage est correct.</td></tr>
+  </table>
+
+  <h4 class="section">Corrigé — calcul métier (longueur développée du cintrage)</h4>
+  <table class="rep">
+    <tr><th style="width:22%">Diamètre</th><th style="width:20%">Rc</th><th>Longueur développée à 90° = 1,57 × Rc</th></tr>
+    <tr><td>3/8"</td><td>28 mm</td><td>1,57 × 28 = 43,96 ≈ <b>44 mm</b></td></tr>
+    <tr><td>1/4"</td><td>14 mm</td><td>1,57 × 14 = 21,98 ≈ <b>22 mm</b></td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Rc = 28 mm (3/8") et 14 mm (1/4") sont les
+  valeurs de référence de l'Activité n°7 CINTRAGES + brasures. <b>Vérifier le gabarit réellement monté sur la
+  cintreuse de l'atelier</b> : c'est lui qui fait foi en cas d'écart avec ces valeurs théoriques, jamais une
+  valeur donnée de mémoire.</p>
+
+  <h4 class="section">Critères de conformité — cintrage et dudgeon (observables, sans norme chiffrée inventée)</h4>
+  <table class="rep">
+    <tr><th style="width:22%">Geste</th><th>Critères observables de conformité</th></tr>
+    <tr><td>Coupe et ébavurage</td><td>Coupe perpendiculaire au tube (pas de biseau), sans écrasement du diamètre. <b>Ébavurage</b> vérifié au doigt ganté à l'intérieur et à l'extérieur : aucune arête ne doit accrocher.</td></tr>
+    <tr><td>Cintrage à 90°</td><td><b>Angle</b> : contrôlé à l'équerre ou au gabarit, visuellement à 90° (pas de sur-cintrage ni de sous-cintrage perceptible). <b>Ovalisation</b> : la section du tube reste ronde au niveau du coude, pas aplatie ni « en œuf ». <b>Plissement</b> : la paroi intérieure du coude ne présente pas de pli visible.</td></tr>
+    <tr><td>Dudgeon (évasement)</td><td><b>Régularité de la collerette</b> : le bord évasé est uniforme sur tout le tour. <b>Absence de fissure</b> : aucune fissure visible, même petite. <b>Emboîtement</b> : le tube de même diamètre s'insère dans la collerette sans forcer et sans jeu excessif.</td></tr>
+    <tr><td>Assemblage à blanc</td><td>Chaque emboîture s'ajuste sans forcer ; l'alignement général suit le tracé du plan ; aucun tronçon n'est en tension (contrainte visible sur un support ou un raccord).</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris)"><i>Ces critères sont volontairement formulés en observables
+  (ce que le professeur voit ou mesure au poste), sans valeur chiffrée de tolérance : les cotes de cintrage et
+  d'emboîture restent « selon plan/gabarit fourni, à faire valider ». Si le lycée dispose d'un gabarit de
+  contrôle normé (jauge d'ovalisation, calibre de collerette), l'intégrer ici après vérification.</i></p>
+
+  <h4 class="section">Erreurs typiques d'élèves + remédiation</h4>
+  <div class="vigi"><b class="t">Erreur 1 —</b> ne pas ébavurer avant de dudgeonner, ce qui rend la collerette
+  irrégulière dès le départ. Rappeler que le jalon 1 (traçage/coupe/ébavurage) conditionne la qualité du jalon
+  2 (cintrage/dudgeon).</div>
+  <div class="vigi"><b class="t">Erreur 2 —</b> cintrer trop vite, sans contrôle intermédiaire, provoquant une
+  ovalisation qui n'est repérée qu'après coup. Imposer l'arrêt au contrôle qualité avant de continuer.</div>
+  <div class="vigi"><b class="t">Erreur 3 —</b> forcer un tronçon en tension lors de l'assemblage à blanc plutôt
+  que de reprendre le façonnage. Rappeler qu'un tronçon en tension aujourd'hui devient une brasure fissurée
+  demain : mieux vaut reprendre maintenant qu'en S11.</div>
+  <div class="vigi"><b class="t">Erreur 4 —</b> vouloir souffler les copeaux à l'air comprimé vers un camarade
+  en plaisantant. Sanctionner immédiatement en savoir-être, geste interdit explicite du module.</div>
+  <div class="vigi"><b class="t">Erreur 5 —</b> précipitation en fin de jalon 2 pour « finir à tout prix ».
+  Rappeler que la qualité du façonnage conditionne directement l'étanchéité du brasage en S11 : un tronçon non
+  terminé proprement se termine au module suivant, il ne se bâcle pas.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 : GRILLE FORMATIVE (CORRIGÉ) + DIFFÉRENCIATION + LIEN SOMMATIVE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Document professeur — S10 · module atelier A2 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Corrigé de la grille formative 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>Grille FORMATIVE, non remontée</b> : elle prépare
+  l'évaluation sommative conjointe S10-S11 (semaine 7), elle ne s'y substitue pas.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits</td>
+      <td class="nuance">sur T10 · S2.1</td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Cintrage ou dudgeon non conformes malgré aide et rappel.</td>
+      <td>Cintrage et dudgeon conformes avec aide ou rappel du professeur.</td>
+      <td>Cintrage et dudgeon conformes, en autonomie, sans aide.</td>
+      <td>Comme « Acquis », geste sûr et rapide, peut expliquer un point de contrôle à un pair.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs</td>
+      <td class="nuance">sur T11 · S2.1</td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Traçage imprécis ou contrôle de conformité erroné malgré aide.</td>
+      <td>Traçage et contrôle corrects avec aide du professeur.</td>
+      <td>Trace, mesure et contrôle la conformité seul, sans erreur.</td>
+      <td>Comme « Acquis », et vérifie aussi la conformité du travail d'un pair.</td>
+    </tr>
+    <tr>
+      <td><b>C3.3</b> Implanter, manutentionner, fixer les supportages et équipements <span class="nuance">(reprise du module A1)</span></td>
+      <td class="nuance">sur T11 · S6.1</td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Assemblage à blanc non conforme (tronçon en tension, alignement non respecté) malgré aide.</td>
+      <td>Assemblage à blanc conforme avec aide ou reprise.</td>
+      <td>Assemblage à blanc conforme, en autonomie, sans aide.</td>
+      <td>Comme « Acquis », et anticipe un point de vigilance pour le brasage à venir en S11.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, sécurité, entraide, honnêteté de l'auto-positionnement</td>
+      <td class="nuance">observation continue</td>
+      <td>Non observé ce jour.</td>
+      <td>Sécurité non respectée malgré rappel, ou auto-positionnement non honnête (défaut caché).</td>
+      <td>Sécurité respectée avec rappel, entraide occasionnelle.</td>
+      <td>Sécurité sans rappel, entraide spontanée envers un pair, auto-positionnement honnête.</td>
+      <td>Comme « Acquis », et veille spontanément à la sécurité d'un autre poste.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigi"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité (mains
+  proches des mors, air comprimé vers une personne) entraîne automatiquement un niveau <b>1 — Non acquis</b>
+  sur le savoir-être, quelle que soit la qualité du reste du travail réalisé ce jour-là : principe de sécurité
+  non négociable, cohérent avec la règle déjà appliquée pour le perçage en module A1.</div>
+
+  <h4 class="section">Remédiation — que fait-on des niveaux 1 et 2 ?</h4>
+  <p style="font-size:10pt">Les élèves positionnés à 1 ou 2 sur C3.4 (façonnage) ou C4.5 (contrôle/mesure)
+  bénéficient d'une reprise ciblée en tout début de module suivant (S11), avant le lancement du brasage : un
+  temps court de démonstration individuelle sur le geste en défaut (cintrage ou dudgeon), puis un nouvel essai
+  sur chute avant d'attaquer le brasage réel de leur ligne liquide. Les élèves positionnés à 1 ou 2 sur C3.3
+  (assemblage/fixation) sont orientés vers une relecture guidée du carnet de bord du module A1 (mise en place
+  mécanique) avec le professeur, en tutorat si possible avec un pair positionné à 3 ou 4.</p>
+
+  <h4 class="section">Lien avec l'évaluation sommative officielle S10-S11 (semaine 7)</h4>
+  <p style="font-size:10pt">Ce module <b>ne comporte pas d'évaluation formelle</b> : le contrôle qualité
+  individuel du chef d'atelier autorise le passage au brasage, la grille ci-dessus reste <b>formative</b>. Le
+  <b>positionnement officiel</b> de C3.3, C3.4 et C4.5 (+ savoir-être) se fait à l'<b>évaluation sommative
+  conjointe S10-S11</b> de la semaine 7 (dossier S11, déjà produite), remontée sur École Directe avec plein
+  poids. Le contrôle qualité de ce jour permet au professeur de repérer, dès la semaine 3, les besoins de
+  remédiation avant l'échéance certificative de la semaine 7 — sans attendre celle-ci pour intervenir.</p>
+
+  <h4 class="section">Différenciation</h4>
+  <table class="rep">
+    <tr><th style="width:20%">Niveau</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Le professeur réalise le premier cintrage et le premier dudgeon du binôme en les commentant geste par geste avant de laisser l'élève reproduire sur chute ; jalons démontrés une seconde fois individuellement avant l'entraînement en autonomie.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, pratique guidée par les 2 jalons, contrôle qualité à chaque jalon.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de ses propres jalons, l'élève assiste le professeur en surveillant le geste d'un pair en difficulté (sans jamais tenir l'outil à sa place) et explique à voix haute le critère de conformité qu'il contrôle.</td></tr>
+    <tr><td>FLE</td><td>Fiche de contrôle qualité en pictogrammes (coupe nette = coche verte, bavure = croix rouge ; cintrage rond = coche, ovalisé = croix) plutôt que texte seul ; démonstration doublée de gestes mimés (montrer la distance des doigts aux mors) ; vocabulaire de sécurité répété à l'identique à chaque poste (« gants », « lunettes », « stop »).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Fiche de contrôle qualité découpée en cases à cocher séparées, une par critère ; n'autoriser qu'un seul geste à la fois (poser l'outil avant de manipuler le tube suivant) ; temps de pause court entre deux tronçons façonnés pour éviter la précipitation liée à l'attente.</td></tr>
+  </table>
+
+  <h4 class="section">Croisements interdisciplinaires</h4>
+  <ul style="font-size:10.5pt; margin:.2em 0 .6em 1.2em">
+    <li><b>Mathématiques</b> — lecture et conversion de diamètres, travaillées en séance précédente ;</li>
+    <li><b>Prévention des risques professionnels</b> — outils coupants, EPI, gestes interdits ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (voir module F3) ;</li>
+    <li><b>Chef-d'œuvre</b> — captation possible pour le dossier ;</li>
+    <li><b>Module A2</b> — chantier de projet qui se poursuit en S11 (brasage de la ligne liquide façonnée aujourd'hui).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Activité n°1
+  TUBES CUIVRE (+ corrigé) ; Activité n°7 CINTRAGES + brasures ; Dossier de présentation pédagogique —
+  Chantier de remise en état (F. Henninot, 2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .poste, .cadre{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

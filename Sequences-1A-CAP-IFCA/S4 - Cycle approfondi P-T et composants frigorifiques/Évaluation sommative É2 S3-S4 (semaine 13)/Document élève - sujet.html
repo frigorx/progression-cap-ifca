@@ -1,0 +1,659 @@
+<meta charset="utf-8">
+<title>Évaluation sommative É2 — sujet élève — semaine 13 — CAP IFCA 1A</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e; --jaune:#fff6cc; --jaune-bord:#e0c34a}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .bandeau-eval{border:2.5px solid var(--jaune-bord); background:var(--jaune); border-radius:6px;
+    padding:8px 16px; margin:0 0 12px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .bandeau-eval b.titre{font-family:'Trebuchet MS',sans-serif; font-size:12.5pt; color:#7a5b00; letter-spacing:.02em}
+  .bandeau-eval .sousligne{font-size:9.5pt; color:#7a5b00}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--jaune)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord)}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .tirage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10.3pt}
+  .tirage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .chrono{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord); margin-bottom:6px; margin-left:8px}
+  .attente{border:1.5px dashed var(--gris); border-radius:6px; background:#f5f5f5; padding:6px 12px; margin:.3em 0 .9em; font-size:9pt; color:var(--gris)}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + CONSIGNES + VUE D'ENSEMBLE DES 3 POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 ÉVALUATION SOMMATIVE É2 — POSITIONNEMENT OFFICIEL</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Cycle approfondi P/T et composants frigorifiques</td>
+      <td style="width:38%"><span class="lib">Évaluation sommative</span><b>É2 — semaine 13 — clôture conjointe S3-S4</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquences</span><span class="grand">S3 · S4</span> · sem. 13, dates à caler</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Contexte professionnel</h4>
+  Vous voici à la <b>13<sup>e</sup> semaine</b> de votre première année de formation. <b>Ordre d'intervention
+  n° OI-2026-EVAL-S3S4-01</b> : le chantier d'évaluation reprend le pavillon que vous avez préparé depuis la
+  rentrée — la liaison frigorifique brasée, le circuit d'éclairage câblé. Aujourd'hui, sur <b>3 postes
+  indépendants</b> (froid, électricité, théorie), vous montrez <b>seul(e)</b> ce que vous savez faire : assembler
+  par <b>brasage tendre</b> et prouver l'étanchéité, câbler un <b>télérupteur</b> d'après un schéma, expliquer à
+  l'écrit la relation pression/température et les composants d'une installation réelle. On évalue <b>ce que vous
+  avez déjà travaillé plusieurs fois</b> depuis É1 — rien de nouveau ne vous est demandé aujourd'hui, mais
+  l'exigence monte d'un cran par rapport à É1.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.1</b> Outils, normes et représentation<br><b>S2.2</b> Lecture de plan<br><b>S5.1</b> Systèmes thermodynamiques à détente directe<br><b>S5.5</b> Réseaux fluidiques et mécanique des fluides</div>
+    <div class="case"><h4>Savoir-être</h4>La sécurité <b>EST</b> le savoir-être aujourd'hui, comme à É1 : EPI portés sans qu'on vous le rappelle, gestes interdits respectés (flamme, pression, tension), honnêteté du relevé et de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétences (≤ 4) — Évaluation</h4><span class="statut eval">Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><span class="statut eval">Évaluation</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques<br><span class="statut eval">Évaluation</span> <b>C4.5</b> Mesurer, comparer des grandeurs<br><span class="statut" style="background:#e9edf6">Confortement</span> <b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service — observée au poste froid, poids réduit</div>
+  </div>
+
+  <h3 class="section">Ce qui est évalué aujourd'hui — les 3 postes</h3>
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:16%">Poste</th><th style="width:14%">Durée</th><th style="width:26%">Contenu</th><th>Compétence(s) — ancrage</th></tr>
+    <tr><td><b>FROID</b></td><td>4 h</td><td>Réaliser 2 emboîtures brasées au chalumeau (assemblage définitif), montrées au professeur avant brasage, puis prouver l'étanchéité à l'eau savonneuse (mise en pression par le professeur)</td><td><span class="statut eval">Évaluation</span> <b>C3.4</b> — sur T10 · S2.1<br><span class="statut" style="background:#e9edf6">Confortement</span> <b>C3.9</b> — sur T11 · T12 · S5.5</td></tr>
+    <tr><td><b>ÉLEC</b></td><td>4 h</td><td>Câbler un télérupteur d'après le schéma fourni, circuit protégé (DDR + disjoncteur identifiés sur le tableau réel), contrôle hors tension consigné avant tout appel</td><td><span class="statut eval">Évaluation</span> <b>C3.6</b> — sur T10 · S2.2</td></tr>
+    <tr><td><b>THÉORIE</b></td><td>2 h</td><td>Écrit individuel : lecture d'un couple pression/température sur une réglette fournie par le professeur, identification de composants sur photos et fonction (9 fonctions sourcées de S3-T1)</td><td><span class="statut eval">Évaluation</span> <b>C4.5</b> — sur T11 · S5.1 (lecture P/T)<br>appui — croise C3.4 (composants)</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Le poste théorie porte lui-même une compétence
+  notée (C4.5, sur la lecture de la relation pression/température) : c'est une différence avec É1, où le poste
+  théorie n'était qu'un appui. La partie « composants » du poste théorie reste, elle, un appui qui croise C3.4.</p>
+
+  <div class="secu"><b class="t">⏱ Consignes générales — valables pour les 3 postes</b>
+  <ul style="margin:.3em 0 0 1.1em; padding:0; font-size:10pt">
+    <li><b>Poste individuel</b> : vous travaillez seul(e), sans aide ni échange avec un camarade, sur chacun des 3 postes.</li>
+    <li>Chaque poste est <b>autoportant</b> : ce document contient tout ce qu'il faut, lisez chaque partie en entier avant d'agir.</li>
+    <li><b>Matériel autorisé</b> : uniquement celui indiqué à chaque poste ; pas de note personnelle, pas de téléphone.</li>
+    <li>La sécurité renforcée de S3-F2 (flamme) et de S3-F1 (pression) et de S3-E2 (électricité) s'applique
+    <b>sans exception</b> : l'évaluation n'exonère de rien.</li>
+    <li>En cas de doute de sécurité, <b>levez la main</b> et attendez le professeur avant d'agir — c'est le seul
+    moment où il intervient sur votre geste.</li>
+    <li>Vous complétez votre <b>auto-positionnement</b> honnêtement, avant que le professeur ne corrige (feuille finale).</li>
+  </ul></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — POSTE FROID · PARTIE A : LES 2 EMBOÎTURES COTÉES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — partie A : 2 emboîtures brasées</h3>
+  <span class="poste-titre">C3.4 sur T10 · S2.1 — Évaluation</span><span class="chrono">≈ 90 min</span>
+
+  <p style="font-size:10.5pt">Vous avez réalisé des emboîtures brasées plusieurs fois depuis S3-F2 : le geste de
+  décapage, d'emboîture, de brasage au chalumeau et de contrôle visuel du cordon vous est acquis. Aujourd'hui,
+  vous réalisez <b>2 emboîtures cotées</b> sur un tube cuivre 14 × 1, <b>seul(e)</b>, dans les conditions d'une
+  évaluation.</p>
+
+  <h4 style="font-size:11pt">Matériel autorisé pour ce poste</h4>
+  <ul class="liste-num">
+    <li>1 longueur de tube cuivre 14 × 1 <span class="nuance">(longueur totale selon le poste, à faire valider par le professeur)</span></li>
+    <li>Poste de brasage (chalumeau, gaz) — <span class="conso">consommable</span></li>
+    <li>Métal d'apport (baguette de brasage tendre) + flux décapant <span class="conso">(consommables, selon la notice du produit de l'atelier)</span></li>
+    <li>Toile abrasive ou brosse métallique (décapage mécanique avant brasage)</li>
+    <li>Outil d'expansion (pince à emboîture), adapté au diamètre 14 mm</li>
+    <li>Mètre ou réglet + feutre marqueur</li>
+    <li>Support ou pince pour maintenir le tube pendant le brasage</li>
+    <li>Gants anti-chaleur, lunettes de protection (obligatoires)</li>
+    <li>Extincteur localisé au poste de brasage (vérifié en début de créneau)</li>
+    <li>Bac de récupération des chutes de cuivre</li>
+  </ul>
+
+  <div class="secu"><b class="t">⚠ Rappel sécurité — la flamme, comme en S3-F2</b> — Gants anti-chaleur et lunettes
+  portés avant tout allumage ; jamais de flamme dirigée vers un camarade ; jamais de flamme à proximité d'une
+  bouteille de gaz ; jamais toucher un tube qui vient d'être brasé à main nue ; jamais poser le chalumeau allumé,
+  même un instant. <b class="t">🚨 En cas d'incident :</b> arrêtez le poste, alertez le professeur ; en cas de
+  brûlure, refroidissez sous l'eau tempérée, sans interrompre le refroidissement. Trousse de secours et
+  extincteur localisés au rituel d'entrée de l'atelier.</div>
+
+  <h4 style="font-size:11pt">Les 2 emboîtures demandées</h4>
+  <p style="font-size:10.3pt">Cotes reprises à l'identique de l'exercice source de S3-F2 (intervalle de
+  100 mm entre deux repères) : vous réalisez <b>2 emboîtures</b>, la première à <b>100 mm</b> d'une extrémité du
+  tube, la seconde à <b>200 mm</b> de la même extrémité (soit 100 mm après la première), tolérance <b>± 2 mm</b>
+  sur chaque cote, comme en S3-F2.</p>
+  <div class="liste-num">
+    <p>☐ 1. Tracer au feutre les 2 repères, aux cotes 100 mm et 200 mm depuis l'extrémité indiquée par le professeur</p>
+    <p>☐ 2. Décaper chaque zone d'emboîture (toile abrasive)</p>
+    <p>☐ 3. Réaliser les 2 emboîtures à l'outil d'expansion</p>
+    <p>☐ 4. Vérifier les 2 cotes obtenues avant d'appeler le professeur</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — les 2 emboîtures</h4>
+  <table class="releve">
+    <tr><th>Emboîture</th><th>Cote demandée</th><th>Cote obtenue</th><th>Dans la tolérance (± 2 mm) ?</th></tr>
+    <tr><td>1</td><td>100 mm</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>2</td><td>200 mm</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="secu"><b class="t">⚠ AVANT DE BRASER</b> — Montrez vos <b>2 emboîtures</b> au professeur. C'est une
+  obligation, pas une option, comme en S3-F2 : on ne brase jamais une emboîture qui n'a pas été validée.</div>
+
+  <div class="jalon"><h4>Visa professeur — contrôle obligatoire avant brasage</h4>
+  <p>☐ Les 2 emboîtures sont conformes à la cote (± 2 mm) &nbsp;&nbsp; ☐ Décapage vérifié &nbsp;&nbsp; ☐ Autorisé(e) à braser</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — POSTE FROID · SUITE : BRASAGE + CONTRÔLE VISUEL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — brasage des 2 emboîtures et contrôle visuel</h3>
+  <span class="poste-titre">C3.4 sur T10 · S2.1 — Évaluation</span><span class="chrono">≈ 45 min</span>
+  <p style="font-size:10.5pt">Une fois vos 2 emboîtures validées par le professeur, brasez-les l'une après
+  l'autre, au poste de brasage. Après chaque brasage, laissez refroidir <b>sans toucher</b>, puis contrôlez
+  visuellement le cordon avant de passer à la suivante.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Allumer le chalumeau selon la procédure du poste</p>
+    <p>☐ 2. Chauffer <b>uniformément</b> le raccord, jamais la baguette directement</p>
+    <p>☐ 3. Approcher le métal d'apport au point le plus chaud : il doit être aspiré tout autour du joint</p>
+    <p>☐ 4. Retirer la flamme dès que le cordon est complet, sans surchauffer</p>
+    <p>☐ 5. Laisser refroidir sans y toucher — le tube reste chaud longtemps</p>
+    <p>☐ 6. Contrôler visuellement chaque cordon avant de passer au suivant</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de contrôle visuel — les 2 cordons</h4>
+  <table class="releve">
+    <tr><th>Emboîture</th><th>Continu ?</th><th>Brillant ?</th><th>Sans manque ?</th><th>Sans surchauffe ?</th><th>Conforme ?</th></tr>
+    <tr><td>1</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td></tr>
+    <tr><td>2</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Un de vos deux cordons vous semble « limite », pas franchement
+  mauvais mais pas net non plus. Que faites-vous : vous continuez en espérant que ça passe, ou vous le signalez
+  au professeur ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="jalon"><h4>Visa professeur — pièce brasée</h4>
+  <p>☐ Les 2 cordons sont conformes &nbsp;&nbsp; ☐ Refroidissement respecté avant manipulation &nbsp;&nbsp; ☐ Pièce présentée</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — POSTE FROID · PARTIE B : ÉTANCHÉITÉ À L'EAU SAVONNEUSE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — partie B : prouver l'étanchéité à l'eau savonneuse</h3>
+  <span class="poste-titre" style="background:#7b5cf5">C3.9 sur T11 · T12 · S5.5 — Confortement</span><span class="chrono">≈ 25 min</span>
+  <p style="font-size:10.5pt">Comme en S3-F1, vous prouvez que votre pièce brasée est étanche <b>avant de la
+  livrer</b>. Cette compétence est en statut <b>Confortement</b> aujourd'hui (poids réduit) : elle est observée,
+  mais pèse moins que C3.4 dans votre positionnement global.</p>
+
+  <h3 class="section">La mise sous pression — un geste exclusivement professeur</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Votre pièce brasée et refroidie est contrôlée visuellement</b> par vous-même, avant tout appel.<br>
+  2. <b>Le professeur raccorde seul</b> la station de mise en pression à votre pièce, au gaz neutre.<br>
+  3. <b>Le professeur règle seul</b> la pression d'essai — valeur affichée au manomètre, à faire valider par lui.<br>
+  4. <b>Vous badigeonnez</b> les 2 emboîtures à l'eau savonneuse, seulement une fois la pression stabilisée et
+  confirmée par le professeur.<br>
+  5. <b>Le professeur dépressurise seul</b> en fin de contrôle.</p>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Gestes interdits — rappel absolu</b> — <b>Jamais d'oxygène ni d'air comprimé</b>
+  pour une épreuve d'étanchéité, quelle que soit la situation : seul un gaz neutre, mis en place par le
+  professeur, est utilisé. Jamais toucher, ouvrir ou fermer la bouteille de mise en pression. Jamais desserrer un
+  raccord tant que la pièce est sous pression.</div>
+
+  <h4 style="font-size:11pt">Fiche de relevé — contrôle d'étanchéité</h4>
+  <table class="releve">
+    <tr><th>Point contrôlé</th><th>Bulles observées ?</th><th>Conforme (étanche) ?</th></tr>
+    <tr><td>Emboîture 1</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Emboîture 2</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Signalez le résultat tel qu'il est, même en cas
+  de fuite : l'honnêteté du contrôle fait partie de l'évaluation du savoir-être, comme en S3-F1.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi utilise-t-on un gaz neutre et jamais de l'oxygène ni de
+  l'air comprimé pour cette épreuve ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="jalon"><h4>Visa professeur — contrôle d'étanchéité</h4>
+  <p>☐ Contrôle réalisé sur les 2 emboîtures &nbsp;&nbsp; ☐ Résultat noté honnêtement &nbsp;&nbsp; ☐ Pièce dépressurisée par le professeur</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h4 style="font-size:11pt">Rangement — poste froid</h4>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier qu'aucun tube brasé n'est encore chaud avant de quitter le poste</p>
+    <p>☐ 2. Éteindre le chalumeau et fermer la bouteille de gaz du poste</p>
+    <p>☐ 3. Trier les chutes de cuivre, nettoyer le poste, ranger l'outillage</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — POSTE ÉLEC · INTRO + SÉCURITÉ + REPÉRAGE SUR SITE + MATÉRIEL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE ÉLEC — câblage d'un télérupteur, circuit protégé</h3>
+  <span class="poste-titre">C3.6 sur T10 · S2.2 — Évaluation</span><span class="chrono">≈ 4 h</span>
+
+  <p style="font-size:10.3pt">Comme en S3-E2, vous câblez un <b>télérupteur</b> qui commande une lampe depuis
+  plusieurs boutons poussoirs. Vous suivez la méthode déjà connue : <b>lire le schéma → repérer la protection sur
+  le tableau réel → préparer la platine → câbler → CONTRÔLE HORS TENSION → mise sous tension UNIQUEMENT par le
+  professeur.</b> Vous ne mettez <b>jamais</b> votre platine sous tension vous-même.</p>
+
+  <h3 class="section">La consignation — rituel en 4 étapes (rappel NF C 18-510)</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Couper</b> — le disjoncteur du poste reste ouvert pendant tout le câblage.<br>
+  2. <b>Vérifier l'absence de tension (VAT)</b> — au multimètre, position voltmètre.<br>
+  3. <b>Condamner / signaler</b> — personne d'autre ne remet l'alimentation ; seul le professeur ferme le disjoncteur.<br>
+  4. <b>Travailler hors tension</b> — tout le câblage et le contrôle se font disjoncteur ouvert.</p>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Gestes interdits</b> — jamais toucher un fil ou une platine sans avoir vérifié
+  l'absence de tension ; jamais câbler ou modifier une platine sous tension ; jamais mettre une platine sous
+  tension vous-même ; jamais raccorder un bouton poussoir en série (toujours en parallèle). <b class="t">🚨 En cas
+  d'incident :</b> couper (arrêt d'urgence de l'atelier), alerter le professeur, ne jamais déplacer un camarade
+  électrisé.</div>
+
+  <h4 style="font-size:11pt">Repérer sur site — DDR et disjoncteur (avant tout câblage)</h4>
+  <p style="font-size:10.3pt">Comme en S3-E2, rendez-vous devant le tableau électrique <b>réel</b> de l'atelier,
+  avec le professeur. Repérez le <b>DDR</b> (dispositif différentiel résiduel, protège les personnes) et le
+  <b>disjoncteur</b> (protège le circuit) du départ concerné par votre poste. Cochez et complétez.</p>
+  <div class="liste-num">
+    <p>☐ 1. J'ai repéré le DDR du circuit concerné par mon poste</p>
+    <p>☐ 2. J'ai repéré le disjoncteur du circuit concerné par mon poste</p>
+    <p>☐ 3. J'ai lu, sur l'étiquette du DDR, sa sensibilité (en mA)</p>
+  </div>
+  <table class="releve">
+    <tr><th style="width:50%">Repère</th><th>Ce que je lis sur l'appareil réel</th></tr>
+    <tr><td style="text-align:left">Sensibilité du DDR (mA)</td><td></td></tr>
+    <tr><td style="text-align:left">Calibre du disjoncteur (A)</td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Repère : la norme <b>NF C 15-100</b> impose,
+  pour l'habitat, un DDR de <b>30 mA</b> (D'après : documents S3-E1). La valeur exacte lue sur le tableau du poste
+  est à confirmer avec le professeur.</p>
+
+  <h4 style="font-size:11pt">Matériel autorisé</h4>
+  <ul class="liste-num">
+    <li>Platine en bois équipée d'un rail oméga</li>
+    <li>Disjoncteur magnétothermique (repère <b>Q2</b> sur votre schéma)</li>
+    <li>Télérupteur (repère <b>T1</b>)</li>
+    <li>3 boutons poussoirs (repères <b>S1, S2, S3</b>)</li>
+    <li>1 support de lampe + ampoule adaptée (repère <b>L1</b>)</li>
+    <li>Bornier de phase, de neutre, de terre</li>
+    <li>Fils électriques souples, couleurs normalisées (phase rouge/marron, neutre bleu, terre vert/jaune) <span class="conso">(consommable)</span></li>
+    <li>Tournevis plat et cruciforme, pince à dénuder, pince coupante</li>
+    <li>Multimètre (positions ohmmètre et voltmètre)</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — POSTE ÉLEC · CÂBLAGE DU TÉLÉRUPTEUR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Câblage du télérupteur — d'après le schéma</h3>
+  <p style="font-size:10.3pt">Le schéma développé du télérupteur (repères Q2, T1, S1/S2/S3, L1) figure ci-dessous
+  en réduit et en <b>annexe pleine page</b> en fin de document : gardez l'annexe sous les yeux pendant tout le
+  câblage.</p>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-telerupteur-developpe.svg" alt="Schéma développé du télérupteur, repères Q2 (disjoncteur), T1 (télérupteur), S1-S2-S3 (boutons poussoirs), L1-L2-L3 (lampes)" style="max-width:80%">
+  </figure>
+
+  <h4 style="font-size:11pt">Préparer et câbler</h4>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est <b>hors tension</b> (disjoncteur Q2 ouvert)</p>
+    <p>☐ 2. Positionner Q2, T1, les 3 boutons poussoirs S1/S2/S3 et le support de lampe L1 selon le schéma, fixer sans forcer</p>
+    <p>☐ 3. Câbler le <b>circuit de commande</b> : phase (après Q2) → S1, S2, S3 <b>en parallèle</b> → borne A1 (ou B) de T1 → borne A2 → neutre</p>
+    <p>☐ 4. Câbler le <b>circuit de puissance</b> : phase (après Q2) → contact de sortie de T1 → lampe L1 → neutre</p>
+    <p>☐ 5. Vérifier que chaque connexion est bien serrée et conforme aux couleurs normalisées</p>
+  </div>
+
+  <table class="releve">
+    <tr><th style="width:44%">Mesure de continuité (multimètre, disjoncteur ouvert)</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité du circuit de commande (un bouton poussoir appuyé)</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité du circuit de commande (aucun bouton appuyé)</td><td>résistance infinie</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si une valeur ne correspond pas à celle
+  attendue, signalez-le vous-même au professeur avant de l'appeler pour le contrôle final : l'honnêteté du
+  contrôle fait partie de l'évaluation du savoir-être. <b>Une fois votre contrôle conforme, appelez le
+  professeur : lui seul ferme le disjoncteur.</b></p>
+
+  <h4 style="font-size:11pt">Essais (réalisés par le professeur)</h4>
+  <div class="jalon"><h4>Contrôle et essais</h4>
+  <p>☐ Câblage vérifié conforme au schéma par le professeur<br>
+  ☐ Appui sur S1 : la lampe change d'état<br>
+  ☐ Appui sur S2 : la lampe change d'état<br>
+  ☐ Appui sur S3 : la lampe change d'état</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — QUESTION + RANGEMENT POSTE ÉLEC ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Question — pourquoi un DDR en plus du disjoncteur ?</h3>
+  <div class="encadre-question"><b>Question</b> — Le disjoncteur (Q2) protège déjà votre circuit contre les
+  surcharges et les courts-circuits. Pourquoi le tableau comporte-t-il, en plus, un DDR ? Que protège-t-il, que le
+  disjoncteur seul ne protège pas ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h3 class="section">Rangement — poste élec</h3>
+  <div class="liste-num">
+    <p>☐ 1. Remettre la platine <b>hors tension</b> (disjoncteur ouvert, débranché)</p>
+    <p>☐ 2. Remettre la molette du multimètre sur OFF, ranger les cordons sans coude serré</p>
+    <p>☐ 3. Ranger les fils, sans les plier de façon serrée</p>
+    <p>☐ 4. Vérifier que le poste est propre et dégagé pour l'élève suivant</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — POSTE THÉORIE : EXERCICE 1 — RELATION P/T ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE THÉORIE — écrit individuel (2 h)</h3>
+  <span class="poste-titre">C4.5 sur T11 · S5.1 — Évaluation</span>
+  <p style="font-size:10.3pt">Cet écrit reprend, sous une autre forme, ce que vous avez travaillé en S4-T1 (la
+  relation pression/température) et en S3-T1 (les composants). Vous répondez seul(e), sans note ni téléphone.</p>
+
+  <h4 style="font-size:11pt">Exercice 1 — lire un couple pression/température</h4>
+  <div class="attente">⚠ Le tableau ci-dessous est <b>à compléter par le professeur</b>, avec la réglette P/T
+  réelle de l'atelier ou un tableau fourni, <b>avant la passation</b>. Aucune valeur n'est imprimée dans ce
+  document : c'est une consigne, pas un oubli — comme en S4-T1, on ne recopie jamais un couple pression/température
+  de mémoire.</div>
+  <table class="releve">
+    <tr><th style="width:20%">Fluide (précisé par le professeur)</th><th style="width:26%">Pression donnée (bar)</th><th>Température de changement d'état à lire (°C)</th></tr>
+    <tr><td></td><td style="height:1.8em"></td><td style="height:1.8em"></td></tr>
+    <tr><td></td><td style="height:1.8em"></td><td style="height:1.8em"></td></tr>
+  </table>
+  <p style="font-size:10.3pt">À partir de la réglette ou du tableau fourni par le professeur, complétez la
+  température de changement d'état correspondant à chaque pression donnée.</p>
+
+  <div class="encadre-question"><b>Question a</b> — Sur les deux lignes du tableau, la pression est-elle plus
+  haute ou plus basse sur la première ligne que sur la seconde ? La température de changement d'état suit-elle le
+  même sens (elle monte quand la pression monte, ou l'inverse) ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="encadre-question"><b>Question b</b> — Avec vos propres mots, complétez la phrase à retenir vue en
+  S4-T1 : « La ______________ choisit la ______________ à laquelle un fluide change d'état. »</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <div class="encadre-question"><b>Question c</b> — Sur la croix du frigoriste, l'évaporateur travaille à
+  <b>basse</b> pression et le condenseur à <b>haute</b> pression. Expliquez avec vos mots pourquoi c'est cette
+  différence de pression qui permet à la machine de « fabriquer » du froid dans l'évaporateur.</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 9 — POSTE THÉORIE : EXERCICE 2 — LES COMPOSANTS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 2 — identifier des composants et donner leur fonction</h4>
+  <p style="font-size:10.3pt">Vous avez nommé les 13 composants d'une installation frigorifique réelle en
+  S3-T1. Sur les 4 photos ci-dessous, plusieurs repères sont entourés : <b>seuls les repères listés dans le
+  tableau</b> sont notés aujourd'hui (les autres repères visibles sur les photos ne font pas partie de cette
+  évaluation). Pour chacun, écrivez le <b>nom</b> du composant et sa <b>fonction</b>.</p>
+
+  <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:.4em 0">
+    <figure style="margin:0; text-align:center">
+      <img class="fig" src="../images/composants-installation-photo1-compresseur-condenseur.jpg" alt="Photo 1 — groupe compresseur-condenseur, repères vides" style="max-width:170px">
+      <figcaption class="legende">Photo 1</figcaption>
+    </figure>
+    <figure style="margin:0; text-align:center">
+      <img class="fig" src="../images/composants-installation-photo2-manometres-pressostat.jpg" alt="Photo 2 — réservoir, manomètres, pressostat, filtre, voyant, repères vides" style="max-width:170px">
+      <figcaption class="legende">Photo 2</figcaption>
+    </figure>
+    <figure style="margin:0; text-align:center">
+      <img class="fig" src="../images/composants-installation-photo3-electrovanne-filtre.jpg" alt="Photo 3 — détendeur, électrovanne, vanne d'aspiration, repères vides" style="max-width:170px">
+      <figcaption class="legende">Photo 3</figcaption>
+    </figure>
+    <figure style="margin:0; text-align:center">
+      <img class="fig" src="../images/composants-installation-photo4-evaporateur.jpg" alt="Photo 4 — évaporateur, repère vide" style="max-width:170px">
+      <figcaption class="legende">Photo 4</figcaption>
+    </figure>
+  </div>
+
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:10%">Photo</th><th style="width:26%">Repère (position)</th><th style="width:22%">Nom du composant</th><th>Fonction</th></tr>
+    <tr><td>1</td><td style="text-align:left">Gros cylindre noir, bas</td><td></td><td></td></tr>
+    <tr><td>1</td><td style="text-align:left">Roue à ailettes (ventilateur), centre</td><td></td><td></td></tr>
+    <tr><td>2</td><td style="text-align:left">Cylindre noir, centre</td><td></td><td></td></tr>
+    <tr><td>2</td><td style="text-align:left">Cylindre rouge, gauche</td><td></td><td></td></tr>
+    <tr><td>2</td><td style="text-align:left">Petit élément, bas gauche</td><td></td><td></td></tr>
+    <tr><td>2</td><td style="text-align:left">Petit boîtier, droite</td><td></td><td></td></tr>
+    <tr><td>3</td><td style="text-align:left">Raccord laiton, haut gauche</td><td></td><td></td></tr>
+    <tr><td>3</td><td style="text-align:left">Boîtier jaune et noir, bas droite</td><td></td><td></td></tr>
+    <tr><td>4</td><td style="text-align:left">Bloc blanc, haut gauche</td><td></td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Seules les <b>9 fonctions sourcées</b> vues en
+  S3-T1 sont exigibles aujourd'hui (compresseur, condenseur, détendeur thermostatique, évaporateur, réservoir de
+  liquide, filtre déshydrateur, voyant liquide, électrovanne, pressostat combiné).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 10 — GRILLE D'ÉVALUATION + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É2 · semaine 13 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 GRILLE D'ÉVALUATION — POSITIONNEMENT OFFICIEL</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.2pt">
+    <tr><th style="width:14%">Compétence / savoir-être</th><th style="width:8%">Ancrage</th><th style="width:15.5%">0<br>Non évalué</th><th style="width:15.5%">1<br>Non acquis</th><th style="width:15.5%">2<br>En cours d'acquisition</th><th style="width:15.5%">3<br>Acquis</th><th style="width:15.5%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits</td><td>sur T10 · S2.1</td><td>Compétence non observée ce jour.</td><td>Emboîture(s) hors tolérance et/ou cordon refusé au contrôle visuel, malgré aide.</td><td>Emboîtures et brasage conformes avec l'aide du professeur.</td><td>Réalise seul(e) les 2 emboîtures cotées (± 2 mm) ET des cordons conformes (continus, brillants, sans manque, sans surchauffe).</td><td>Comme « Acquis », et repère seul(e) un défaut avant de présenter la pièce.</td></tr>
+    <tr><td><b>C3.9</b> Vérifier l'étanchéité (Confortement)</td><td>sur T11 · T12 · S5.5</td><td>Compétence non observée ce jour.</td><td>Ne sait pas conduire le contrôle malgré l'aide, ou fait un geste interdit (touche la bouteille).</td><td>Réalise le contrôle avec l'aide du professeur.</td><td>Réalise seul(e) le contrôle sur les 2 emboîtures, note honnêtement le résultat.</td><td>Comme « Acquis », et explique pourquoi on ne teste jamais à l'oxygène ni à l'air comprimé.</td></tr>
+    <tr><td><b>C3.6</b> Câbler, repérer, connecter les liaisons</td><td>sur T10 · S2.2</td><td>Compétence non observée ce jour.</td><td>Câblage non conforme au schéma, ou consignation non respectée, ou DDR/disjoncteur non repérés.</td><td>Câblage fonctionnel avec l'aide du professeur ; repérage DDR/disjoncteur réalisé avec aide.</td><td>Câble seul(e) le télérupteur, conforme au schéma et aux couleurs, repère seul(e) le DDR et le disjoncteur, contrôle hors tension réalisé avant tout appel.</td><td>Comme « Acquis », et explique pourquoi un DDR est nécessaire en plus du disjoncteur.</td></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>sur T11 · S5.1</td><td>Compétence non observée ce jour.</td><td>Ne sait pas lire un couple pression/température sur la réglette fournie, même avec aide.</td><td>Lit un couple avec l'aide du professeur, ou explique le sens de variation avec aide.</td><td>Lit seul(e) les couples pression/température demandés, explique correctement le sens de variation et le lien avec l'évaporateur/condenseur.</td><td>Comme « Acquis », et relie spontanément la lecture au rallye de relevés vécu en S4-F1.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>EPI incomplets, geste dangereux (flamme, pression, tension) ou valeur inventée : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>Sécurité et rigueur respectées sans rappel, mesures et lectures honnêtes, défauts signalés spontanément.</td><td>Comme « Acquis », et reste rigoureux(se) jusqu'au rangement complet des postes.</td></tr>
+  </table>
+  </div>
+
+  <div class="jalon"><h4>Mon auto-positionnement (avant correction professeur)</h4>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">C3.9 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">C3.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">C4.5 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">Savoir-être : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Positionnez-vous honnêtement AVANT que le
+  professeur ne corrige : l'écart entre votre auto-positionnement et la correction fait partie de l'observation
+  du savoir-être.</p>
+  <p style="margin-top:8px">Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure de fin : ________________</p></div>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce sujet complété (3 postes : tableaux, câblage contrôlé, écrit théorie, auto-positionnement)</li>
+    <li>La pièce cuivre brasée (poste froid) et la platine câblée (poste élec), contrôlées par le professeur</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : documents S3-F2
+  (EXERCICE emboîture et brasage, F. Henninot — cotes 100 mm et tolérance ± 2 mm reprises à l'identique, réduites
+  à 2 emboîtures) ; documents S3-F1 (contrôle d'étanchéité à l'eau savonneuse, geste interdit oxygène/air
+  comprimé) ; documents S3-E2 (le-telerupteur.pdf + le-telerupteur-a-completer.pdf, Fiche Communication
+  technique Électricité bâtiment, 02_CAP-IFCA/S4-Electricite — schéma repères Q2/T1/S1-S2-S3/L1, version corrigée) ;
+  documents S3-E1 (DDR 30 mA, NF C 15-100) ; documents S3-T1 (TP 02 — Les composants frigorifiques et son corrigé,
+  F. Henninot — 9 fonctions sourcées) ; documents S4-T1 (Le froid — exercices élèves, manuel de physique du froid
+  du lycée Jacques Raynaud — relation pression/température). Aucune valeur n'est inventée : cotes reprises des
+  sources, valeurs P/T à lire sur la réglette réelle de l'atelier, valeurs électriques sourcées NF C 15-100.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE 1 : TÉLÉRUPTEUR — SCHÉMA DÉVELOPPÉ COMPLET (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail, poste élec</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Télérupteur — schéma développé de travail complet</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par
+  poste) : c'est le document à garder sous les yeux pendant tout le câblage. Repères Q2 (disjoncteur), T1
+  (télérupteur), S1/S2/S3 (boutons poussoirs), L1 (lampe) — version corrigée, identique à celle vue en S3-E2.</p>
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-telerupteur-developpe.svg" alt="Schéma technique pleine page : télérupteur, repères Q2, T1, S1, S2, S3, L1" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .tirage, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .bandeau-eval, .jalon, .attente, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

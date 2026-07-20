@@ -1,0 +1,384 @@
+<meta charset="utf-8">
+<title>Document professeur — S8-F2 · Tirage au vide et charge enchaînés</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .avenir{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:9.8pt}
+  .avenir b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .fms{font-size:8.6pt; margin:.3em 0 .9em}
+  .fms th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.5pt; text-transform:uppercase; padding:4px 6px; text-align:left}
+  .fms td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .fms .lbl{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); background:var(--fond-doux); width:26%}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Simulation de charge au poids et lecture de relevés</td>
+      <td style="width:38%"><span class="lib">Module S8-F2 · 4 h × 1 — DOCUMENT PROFESSEUR</span><b>Tirage au vide et charge enchaînés</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S8</span> · semaine 28</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — postes binôme (montage vidé + azote + balance) + zone dédiée + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h, passage UNIQUE (semaine 28)</td>
+      <td><span class="lib">Modalité</span>Mini-mise en service intégrale en autonomie (méthode imposée du module)</td>
+      <td><span class="lib">Encadrement</span>1 professeur, demi-groupe</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension <span class="nuance">(SIMULÉ : charge à l'azote)</span><br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de l'enchaînement · honnêteté du relevé · autonomie · sécurité (azote, jamais de fluide réel, charge lourde)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C4.1</b> Tirer au vide le circuit frigorifique <span class="nuance">sur T13 · S5.5</span><br><span class="statut">Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">niveau visé Maîtrise — sur T13 · T15 · S5.5</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document explique <b>comment organiser</b> les postes (montages vidés, balances,
+  bouteilles d'azote), donne un <b>exemple corrigé</b> de feuille de relevés de mise en service, les critères
+  observables des deux jalons, les erreurs typiques et leur remédiation, le minutage 4 h recompté en <b>passage
+  unique</b>, la différenciation, et l'encadré sur la vraie mise en service de 2<sup>e</sup> année. Aucune valeur
+  non autorisée n'est donnée : la masse cible de charge simulée et le niveau de vide visé restent <b>« fixés par
+  le professeur, à faire valider »</b>, comme dans S7-F2 et S8-F1.</p>
+
+  <h3 class="section">Méthode pédagogique du module — mini-mise en service intégrale en autonomie</h3>
+  <p style="font-size:10.5pt">Le tirage au vide est <b>déjà acquis</b> (S7-F2, C4.1 Découverte → Confortement) et
+  la simulation de charge au poids <b>déjà pratiquée</b> à l'identique en S8-F1 (C4.2 Découverte). Ce module
+  n'introduit donc <b>aucun geste nouveau</b> : il change l'exigence, en demandant l'<b>enchaînement complet, en
+  autonomie</b>, des deux gestes déjà séparément maîtrisés, suivi du renseignement intégral de la feuille de
+  relevés de mise en service. C'est une répétition générale de ce que l'élève fera réellement en 2<sup>e</sup>
+  année : le professeur ne redémontre plus l'ordre des étapes, il supervise uniquement la sécurité (pompe,
+  azote) et valide les deux jalons.</p>
+  <div class="vigilance"><b class="t">Point de vigilance central du module</b> — L'intérêt pédagogique repose sur
+  le <b>passage de la juxtaposition à l'enchaînement</b> : jusqu'ici, l'élève a vécu le vide (S7-F2) et la charge
+  (S8-F1) comme deux modules distincts, chacun démontré et guidé. Aujourd'hui, c'est la <b>continuité</b> qui est
+  évaluée — respecter l'ordre (vide avant charge, jamais l'inverse), sans qu'on le lui rappelle. Ce point doit
+  être nommé explicitement devant la classe dès la phase 5.</div>
+
+  <h3 class="section">Organiser les postes avant l'arrivée des élèves</h3>
+  <p style="font-size:10.3pt">Aucune procédure n'est imposée par ce document : les suggestions suivantes sont
+  <b>à faire valider selon le matériel réellement disponible à l'atelier</b> (cf. <i>_ETAT.md</i>).</p>
+  <table class="mini">
+    <tr><th style="width:28%">À préparer avant la séance</th><th>Remarque</th></tr>
+    <tr><td>Montages remis à l'état « vidé » (ou laissés dans l'état de fin S7-F2)</td><td>Autant que de binômes si possible ; sinon rotation organisée. Vérifier qu'aucun montage n'a repris d'humidité depuis S7-F2.</td></tr>
+    <tr><td>Balances électroniques de charge, calibrées</td><td>Une par poste si possible ; sinon rotation — prévoir un créneau d'attente organisé (fiche de relevés à commencer pendant l'attente).</td></tr>
+    <tr><td>Bouteilles d'azote et manodétendeurs</td><td>Nombre selon le matériel de l'atelier ; point ouvert cf. <i>_ETAT.md</i> (« balance(s) de charge et bouteilles d'azote disponibles, combien de postes »).</td></tr>
+    <tr><td>Feuilles de relevés de mise en service vierges (version pédagogique)</td><td>Une par binôme, imprimées à partir de l'annexe de ce module ou du gabarit source.</td></tr>
+  </table>
+
+  <h3 class="section">Trame horaire — module 4 h, passage UNIQUE (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — PASSAGE UNIQUE</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel du format (passage unique, mini-mise en service intégrale).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S8-2 : enchaîner seul(e) vide + charge simulée, remplir la feuille de relevés. Lien avec la mise en service réelle de 2<sup>e</sup> année.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés et commentés, lien avec la formule (C4.1 Confortement, C4.5 Confortement niveau visé Maîtrise).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; quiz éclair REPRENANT séparément le vide (S7-F2) et la charge simulée (S8-F1), pour vérifier les deux gestes AVANT de les enchaîner.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité (gestes interdits : jamais de fluide réel) puis « planter la notion » : démonstration professeur de l'ENCHAÎNEMENT complet sur poste témoin → NOMMER « une mise en service, c'est un enchaînement sans étape sautée » → EXPLICITER pourquoi l'ordre compte. Attribution des postes.</td></tr>
+    <tr><td><b>70 min</b></td><td class="ph">6. Guider l'étude (a) — jalon 1 : reprise du vide, en autonomie</td><td>Chaque binôme reprend seul le montage déjà vidé : branchement, relevés, palier, fermeture vannes/arrêt pompe, casse du vide à l'azote sous supervision.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td><b>55 min</b></td><td class="ph">6. Guider l'étude (b) — jalon 2 : charge simulée + feuille de relevés</td><td>Charge simulée au poids à l'azote (masse cible), relevés complets (pressions, températures, intensités), calcul SC/SR, renseignement intégral de la feuille de relevés de mise en service.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des feuilles de relevés, auto-positionnement (C4.1, C4.5 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord (F3) + bon de commande (azote, feuilles vierges).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Dépressurisation et fermeture des bouteilles d'azote par le professeur, rangement des balances, nettoyage.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce : la vraie mise en service avec charge FF, c'est en 2<sup>e</sup> année ; transition vers S8-E1 puis É4 (S9).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; jalon 1 (70 min) + pause 15 min + jalon 2 (55 min) = 2 h 20 ; synthèse 15 + bon de
+  commande 10 + rangement 10 + clôture 5 = 40 min. Total module : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00
+  exactes</b>, en un seul passage, conforme au plan de séance.</p>
+
+  <div class="avenir"><b class="t">Pourquoi un passage unique, et pourquoi ce n'est pas un module au rabais</b> —
+  Contrairement à S8-F1 (vécu deux fois), S8-F2 ne comporte qu'<b>un seul passage</b> : le calendrier de S8 (3
+  semaines) ne permet pas de vivre deux fois à la fois F1 et F2. Ce module n'est pas un nouvel apprentissage :
+  c'est la <b>synthèse</b>, l'intégration en autonomie de deux gestes déjà maîtrisés séparément (le vide en
+  S7-F2, la charge simulée en S8-F1). Le renforcement ne vient donc pas d'un second passage ici, mais de
+  l'<b>enchaînement lui-même</b> — la continuité, l'ordre respecté sans aide — puis du réinvestissement à
+  <b>É4</b> (semaine 32, S9). <b>La vraie mise en service, avec un fluide frigorigène réel, se fera en
+  2<sup>e</sup> année</b>, une fois l'attestation d'aptitude obtenue : c'est le teasing annoncé en
+  phase 10 et rappelé dans l'encadré « Ce que je ferai en vrai » du document élève.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ JALON 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Phase 4 — corrigé du quiz éclair (reprise séparée S7-F2 / S8-F1)</h3>
+  <div class="reponse"><b class="t">Item vide (S7-F2)</b> — Avant de démarrer la pompe : vérifier le niveau
+  d'huile. Après le palier : fermer les vannes du manifold D'ABORD, puis arrêter la pompe — jamais l'inverse.</div>
+  <div class="reponse"><b class="t">Item charge simulée (S8-F1)</b> — La balance se tare AVANT tout raccordement ;
+  la masse cible est toujours fixée par le professeur, jamais choisie par l'élève.</div>
+
+  <h3 class="section">Corrigé — jalon 1 (reprise du vide en autonomie) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Autonomie de procédure</td><td>Le binôme mène le branchement, les relevés et la fermeture vannes/pompe SANS que le professeur rappelle l'ordre des étapes — signe que S7-F2 est réellement acquis.</td></tr>
+    <tr><td>Rigueur du relevé</td><td>Chaque valeur est reportée au moment du relevé, jamais reconstituée après coup.</td></tr>
+    <tr><td>Respect de l'ordre vannes/pompe</td><td>Vannes fermées AVANT l'arrêt de la pompe, systématiquement — un manquement ici doit être interrompu immédiatement (risque de rentrée d'air).</td></tr>
+    <tr><td>Casse du vide à l'azote</td><td>Toujours en douceur, au manodétendeur, sous supervision directe — jamais de montée brutale.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Le binôme attend un rappel du professeur avant chaque étape, alors que la procédure est censée être acquise</td><td>Renvoyer la question au binôme lui-même (« qu'avez-vous fait à cette étape en S7-F2 ? ») plutôt que de redonner la réponse — objectif : réactiver la mémoire procédurale, pas la remplacer.</td></tr>
+    <tr><td>Arrêt de la pompe avant la fermeture des vannes</td><td>Interruption immédiate, rappel ferme du risque (rentrée d'air, perte du vide obtenu) — reprendre le geste dans le bon ordre.</td></tr>
+    <tr><td>Relevés espacés de façon irrégulière ou notés « à la fin, de mémoire »</td><td>Rappeler que la valeur d'un relevé de mise en service tient à son horodatage réel — faire reprendre les relevés si le palier n'est pas encore atteint.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 2 + EXEMPLE DE FEUILLE DE RELEVÉS TYPE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 2 (charge simulée + feuille de relevés) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Tare correcte de la balance</td><td>Tare effectuée AVEC la bouteille posée dessus, avant tout raccordement — sinon la masse relevée sera fausse.</td></tr>
+    <tr><td>Respect de la masse cible</td><td>Le binôme s'arrête à la masse cible fixée par le professeur, ne cherche pas à « faire plus » ou « faire au hasard ».</td></tr>
+    <tr><td>Exhaustivité de la feuille de relevés</td><td>Aucune case laissée vide sans annotation ; les valeurs calculées (SC, SR) sont cohérentes avec les relevés bruts.</td></tr>
+    <tr><td>Exploitabilité par un tiers</td><td>Un collègue qui n'a pas assisté à l'intervention pourrait reconstituer ce qui a été fait à la seule lecture de la feuille (lien C1.1, carnet F3).</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 2</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Tare effectuée sans la bouteille posée dessus</td><td>Faire recommencer la pesée : la masse relevée en fin de transfert doit être comparable à la masse cible, à partir de la même référence de tare.</td></tr>
+    <tr><td>Feuille de relevés remplie « globalement », après coup, plutôt que poste par poste</td><td>Rappeler qu'un document professionnel de mise en service se renseigne AU FUR ET À MESURE ; faire vérifier chaque case avec la valeur réellement lue.</td></tr>
+    <tr><td>Calcul de la surchauffe ou du sous-refroidissement incohérent avec les relevés bruts</td><td>Reprendre la formule avec le binôme (SC = θ0 − θ bulbe détendeur ; SR = θk − θ sortie condenseur) plutôt que de corriger directement le résultat.</td></tr>
+  </table>
+
+  <div style="border:1.5px solid var(--bleu); border-radius:6px; background:#eef4ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt">
+  <b>📄 Ressource fournie — table pression/température.</b> Pour trouver la température de saturation qui correspond à une pression (indispensable pour estimer la surchauffe SC et le sous-refroidissement SR), utilisez la <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Reglette%20P-T%20multi-fluides%20(imprimable).pdf">réglette P/T multi-fluides</a> ou la table du fluide de votre banc : <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R134a%20(saturation,%20-100%20a%20+100%20C).pdf">R134a</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R404A%20(saturation).pdf">R404A</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R410A%20(saturation).pdf">R410A</a>. N'inventez jamais une valeur : lisez-la sur la table.
+  </div>
+
+  <h4 class="section">Exemple de feuille de relevés remplie — type <span style="font-size:8.5pt; font-weight:normal; color:var(--gris)">(valeurs fictives, illustratives, à adapter au matériel réellement disponible)</span></h4>
+  <div class="tbl-wrap">
+  <table class="fms">
+    <tr><td class="lbl">Type d'installation</td><td colspan="3">PÉDAGOGIQUE — machine école</td></tr>
+    <tr><th colspan="4">Relevés (exemple illustratif — aucune valeur ici n'est une consigne à respecter)</th></tr>
+    <tr><td class="lbl">Pression BP (P0)</td><td>≈ 2 bar (exemple)</td><td class="lbl">Température évaporation (T0)</td><td>valeur cohérente lue au manomètre BP</td></tr>
+    <tr><td class="lbl">Pression HP (PK)</td><td>≈ 12 bar (exemple)</td><td class="lbl">Température condensation (TK)</td><td>valeur cohérente lue au manomètre HP</td></tr>
+    <tr><td class="lbl">Θ sortie évaporateur</td><td>légèrement supérieure à T0</td><td class="lbl">Θ sortie condenseur</td><td>légèrement inférieure à TK</td></tr>
+    <tr><td class="lbl">Valeur de surchauffe (SC)</td><td><b>dans la fourchette 5-10 K</b> (charte)</td><td class="lbl">Valeur de sous-refroidissement (SR)</td><td><b>dans la fourchette 4-8 K</b> (charte)</td></tr>
+    <tr><td class="lbl">Masse cible / masse relevée</td><td colspan="3">identiques à ± la tolérance fixée par le professeur</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Cet exemple illustre le NIVEAU D'EXPLOITABILITÉ
+  attendu (aucune case vide, cohérence entre les colonnes), pas des valeurs à imposer : les valeurs réelles de
+  pression et de température dépendent du montage et du réglage effectivement en place à l'atelier (cf. feuille
+  1 — point ouvert dans <i>_ETAT.md</i>). Seuls les intervalles de surchauffe (5-10 K) et de sous-refroidissement
+  (4-8 K) sont ceux retenus par la charte FrigorX ; ne pas confondre avec les 5-8 °C / 4-7 °C cités « D'après »
+  par le document source (cahier mise en service.docx), non retenus ici.</p>
+
+  <div class="reponse"><b class="t">Question de synthèse (jalon 2, document élève)</b> — Pourquoi remplit-on la
+  feuille de relevés tout de suite, poste par poste ?<br><br>
+  <b>Réponse attendue :</b> une feuille de relevés est un document professionnel destiné à être lu par un tiers
+  qui n'a pas assisté à l'intervention (le collègue qui prend la suite, le bureau de contrôle). Une valeur
+  reconstituée de mémoire perd sa valeur de preuve ; seul un relevé horodaté, fait sur le moment, est réellement
+  exploitable — c'est exactement ce qu'exige la compétence C1.1 travaillée dans le carnet de bord F3.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — ORGANISATION DU PLATEAU + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation du plateau</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Poste binôme</b></td><td>Montage vidé (S7-F2), manifold posé, pompe à vide + vacuomètre, balance électronique, bouteille d'azote + manodétendeur, feuille de relevés vierge.</td><td>Vérifier avant l'arrivée des élèves que chaque montage a bien tenu le vide depuis S7-F2 (pas de remontée anormale).</td></tr>
+    <tr><td><b>Poste témoin (phase 5)</b></td><td>Préparé à l'avance pour la démonstration de l'ENCHAÎNEMENT complet (vide → casse azote → charge simulée → début de feuille).</td><td>Vérifier que la démonstration tient dans les 20 min de la phase 5 : ne montrer qu'un extrait de chaque étape, pas l'intégralité de l'enchaînement.</td></tr>
+    <tr><td><b>Combien de postes complets (vide + charge + balance) ?</b></td><td>Point ouvert (cf. <i>_ETAT.md</i>) : nombre de balances et de bouteilles d'azote disponibles selon le matériel réel.</td><td>Prévoir un ordre de rotation si le nombre de postes complets est inférieur au nombre de binômes.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td><b>Consolidation</b><br><span class="nuance">élèves encore fragiles sur le vide ou la charge</span></td><td>Repérés dès la phase 4 (quiz éclair). Le professeur reste à proximité immédiate du poste et confirme chaque changement d'étape (vide → charge) avant que le binôme ne l'engage, sans reprendre la procédure elle-même.</td></tr>
+    <tr><td><b>Standard</b></td><td>Déroulement tel que décrit dans le document élève : enchaînement mené en autonomie, professeur présent pour la sécurité seulement.</td></tr>
+    <tr><td><b>Approfondissement</b><br><span class="nuance">tutorat</span></td><td>Une fois sa propre feuille de relevés validée, le binôme peut, à la demande du professeur, expliquer à un binôme voisin pourquoi l'ordre vide → charge est obligatoire — sans jamais toucher le montage d'un autre binôme.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire répété à l'identique (« vide », « charge », « feuille de relevés »), enchaînement affiché sous forme d'étapes numérotées très visuelles, gestes montrés avant d'être dits.</td></tr>
+    <tr><td>TDAH / DYS</td><td>La check-list numérotée de chaque jalon cadre l'enchaînement ; la feuille de relevés pré-imprimée (une case = une valeur) limite l'ambiguïté sur « qu'ai-je déjà relevé ».</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C4.1 Confortement</b> ; <b>C4.5
+  Confortement — niveau visé Maîtrise</b> (le niveau spiralaire VISÉ n'est jamais le statut de l'activité :
+  aucune des deux compétences n'est remontée sur École Directe dans ce module — le statut Évaluation arrivera à
+  É4, semaine 32).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C4.1</b> Tirer au vide le circuit frigorifique <span class="nuance">sur T13 · S5.5</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne conduit pas le branchement ni les relevés malgré rappel de procédure.</td>
+      <td>Conduit le vide avec l'aide du professeur (rappel de l'ordre des étapes).</td>
+      <td>Conduit seul(e) l'ensemble du jalon 1 : branchement, relevés réguliers, ordre vannes/pompe respecté.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi la casse du vide se fait en douceur, à l'azote.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T13 · T15 · S5.5</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Relevés incohérents ou incomplets sur la feuille de mise en service.</td>
+      <td>Renseigne la feuille de relevés avec l'aide du professeur.</td>
+      <td>Renseigne seul(e) l'intégralité de la feuille, calcule SC/SR correctement, valeurs cohérentes entre elles.</td>
+      <td>Comme « Acquis », et repère une incohérence dans ses propres relevés avant que le professeur ne l'ait signalée.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, honnêteté, autonomie</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste dangereux (azote sous pression aspiré à la pompe, fluide réel évoqué comme manipulé) ou relevés inventés : niveau 1 automatique.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires sur l'ordre des étapes.</td>
+      <td>EPI et gestes respectés sans rappel, enchaînement mené du début à la fin sans étape sautée, feuille honnête et exploitable.</td>
+      <td>Comme « Acquis », et mène l'ensemble du module en autonomie complète — feuille de relevés exploitable telle quelle par un tiers.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> toute confusion entre l'azote simulé et
+  un fluide frigorigène réel (l'élève affirme ou laisse entendre avoir manipulé du fluide réel) entraîne
+  automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du reste de la
+  feuille : le principe non négociable du module est que rien de réel n'a été chargé aujourd'hui.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques</b> — poursuite directe des risques azote (S5→S8-F1) et manutention (charge lourde de la balance) ;</li>
+    <li><b>Réglementation F-Gas</b> — aperçu en S8-T1 (familles de fluides, PRP) ; ce module ne l'aborde pas directement, sinon par la mention du fluide qui serait utilisé en 2<sup>e</sup> année ;</li>
+    <li><b>Co-intervention français</b> — rédaction du bon d'intervention et du carnet de bord (module F3) ;</li>
+    <li><b>Séquence É4</b> — le geste d'aujourd'hui (enchaîner vide et charge, renseigner la feuille de relevés) est réinvesti à l'Évaluation d'É4, semaine 32 (S9) ;</li>
+    <li><b>2<sup>e</sup> année</b> — cette feuille de relevés est celle que l'élève remplira réellement, avec un fluide frigorigène, une fois l'attestation d'aptitude obtenue.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Fiche de mise en
+  service et identification.docx (version pédagogique, gabarit de la feuille de relevés) ; Feuille de relevé de
+  mise en service.docx (F. Henninot, LPP — structure des mesures, du bon d'intervention et du barème EP3, ici
+  adapté sans notation chiffrée puisque S8 ne comporte aucun statut Évaluation) ; cahier mise en service.docx
+  (principe et schéma du by-pass 3/4 voies — les passages sur la récupération et la charge en fluide réel de ce
+  document source sont explicitement FILTRÉS, non utilisés ici) ; documents S7-F2 (tirage au vide) et S8-F1
+  (simulation de charge) ; Charte pédagogique FrigorX (§7 sécurité, seuils SC 5-10 K / SR 4-8 K) ; référentiel
+  CAP IFCA (codes C4.1, C4.5, T13, T15, S5.5). Masse de charge simulée, niveau de vide visé et nombre de postes
+  complets disponibles : décisions du professeur, à faire valider — aucune valeur inventée dans ce document
+  (cf. <i>_CADRAGE-S8.md</i> et <i>_ETAT.md</i>). Formats anciens non extraits, à rouvrir pour une prochaine
+  édition : « réglage thermostat.doc », « tableau de valeur Eleve.doc », « CHARGE EN GAZ.docx » (chemin égaré).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .avenir{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,404 @@
+<meta charset="utf-8">
+<title>Document professeur — S3-E1 · Protections électriques et DDR</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Protections électriques et DDR</td>
+      <td style="width:38%"><span class="lib">Module atelier S3-E1 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Situation-problème : « le circuit du garage disjoncte »</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · semaines 8-9</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des platines + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — deux demi-journées distinctes (semaine 8 et semaine 9)</td>
+      <td><span class="lib">Modalité</span>Situation-problème + manipulation : observer le déclenchement AVANT la théorie</td>
+      <td><span class="lib">Encadrement</span>1 professeur, consignation appliquée sans rappel</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">prérequis réactivé (nouveau S1-E1, augmenté S1-E2 et S2-E1) — travaillé, augmenté encore aujourd'hui (rôle des appareils de protection, DDR)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel · jamais provoquer un vrai défaut · rigueur du câblage · honnêteté du contrôle</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6</span><br><span class="statut">Découverte → Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T11 · S5.6</span></div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S2 — à annoncer explicitement aux élèves</b> — En
+  S1-E1/S2-E1, le disjoncteur était un « objet du poste », jamais interrogé pour lui-même. <b>S3-E1 en fait le
+  sujet</b> : l'élève découvre ce que fait chaque appareil de protection, et un appareil nouveau apparaît, le
+  <b>DDR</b>, qui protège les <b>personnes</b> — pas seulement le matériel. Statut : <b>Confortement</b> pour
+  C3.6 (câblage, 3<sup>e</sup> rencontre) ; <b>Découverte au passage 1 → Confortement au passage 2</b> pour C3.7
+  (première rencontre de cette compétence dans la progression). <b>Ce module porte aussi la remédiation
+  post-É1</b> : la phase 4 reprend les items du poste ÉLEC d'É1, avec une variante consolidation fléchée pour
+  les élèves positionnés 1-2 sur C3.6, et une variante approfondissement (tutorat) pour les positionnés 3-4.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change (conduite professeur)</h4>
+  <b>Passage 1 (semaine 8) — découverte guidée + câblage protégé par disjoncteur seul.</b> Jalon A (≈ 55 min) :
+  exercice à compléter (fusible, disjoncteur, DDR), identification sur façade réelle, rotation au test du
+  bouton T sur la platine de démonstration. Jalon B (≈ 70 min) : câblage d'un circuit lampe protégé par le
+  disjoncteur Q1 seul (le DDR n'est pas câblé par l'élève ce jour-là), contrôle hors tension (continuité),
+  mise sous tension par le professeur.<br>
+  <b>Passage 2 (semaine 9) — câblage complet, en autonomie guidée.</b> Jalon A' (≈ 50 min) : câblage complet —
+  DDR (Q0) en tête + disjoncteur (Q1) + circuit — moins d'aide, plus vite qu'au passage 1 ; ne pas redonner le
+  schéma légendé directement, laisser l'élève chercher avant d'intervenir. Jalon B' (≈ 75 min) : contrôle hors
+  tension complet (continuité <b>et</b> serrage des connexions, en autonomie), mise sous tension, <b>essais de
+  déclenchement au bouton test</b> — le professeur valide sans démontrer, mais reste positionné à proximité de
+  chaque mise sous tension, comme aux modules précédents.</div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève : mêmes questions, même
+  numérotation, même séquençage en 2 passages × 2 jalons. Il y ajoute : les réponses attendues aux 3 fiches de
+  découverte, les critères de contrôle du câblage, la conduite détaillée de la situation-problème, les erreurs
+  typiques d'élèves avec leur remédiation, l'organisation du plateau (platine de démonstration comprise), le
+  minutage recompté pour les deux passages, et la différenciation (consolidation fléchée remédiation-É1 /
+  standard / approfondissement-tutorat + FLE + TDAH-DYS). <b>Aucune valeur non autorisée n'est donnée</b> : la
+  sensibilité <b>30 mA</b> du DDR en habitat est la valeur normalisée par la <b>NF C 15-100</b> (source :
+  « Les appareils de protection et de commande », F. Henninot) ; le calibre exact du disjoncteur du poste reste
+  <b>« selon le matériel de l'atelier, à faire valider »</b>.</p>
+
+  <h3 class="section">Trame horaire — passage 1 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (protections électriques et DDR).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S3-3 : « le circuit du garage disjoncte » ; annoncer la question guide « qui protège quoi ? ».</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés, lien avec C3.6/C3.7, statuts du jour.</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, mini-quiz de reprise du poste ÉLEC d'É1. <b>Crochet remédiation</b> : groupe consolidation fléché pour les positionnés 1-2 sur C3.6, tutorat pour les positionnés 3-4.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (ARU, trousse, gestes interdits dont « jamais de vrai défaut ») puis <b>situation-problème</b> : déclencher disjoncteur puis DDR (bouton T) devant la classe, observation avant explication (voir encadré ci-dessus).</td></tr>
+    <tr><td>55 min</td><td class="ph">6. Guider l'étude (a) — jalon A : découverte</td><td>Exercice à compléter (fusible, disjoncteur, DDR), identification sur façade réelle, rotation au test du bouton T.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>70 min</td><td class="ph">6. Guider l'étude (b) — jalon B : câblage protégé par disjoncteur</td><td>Câblage du circuit lampe protégé par Q1 seul, contrôle hors tension (continuité), appel professeur, mise sous tension, vérification de l'allumage.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Présentation du circuit et du contrôle, auto-positionnement, validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Carnet de bord + bon de commande hebdomadaire.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Platines hors tension, multimètres sur OFF, rangement.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour tenue de ville, annonce du passage 2 (semaine 9).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 1 :</b> préparation 1 h 00 + jalon A (55) +
+  pause (15) + jalon B (70) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b></p>
+
+  <h3 class="section">Trame horaire — passage 2 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00, identique)</td></tr>
+    <tr><td>60 min</td><td class="ph">Phases 1-5 (identiques au passage 1)</td><td>Accueil, situation (rappeler le passage 1 et l'objectif du jour : câblage complet), objectifs, prérequis (reprise du passage 1 sans support), mise en sécurité, nouvelle situation-problème plus exigeante.</td></tr>
+    <tr><td>50 min</td><td class="ph">6. Guider l'étude (a) — jalon A' : câblage complet</td><td>DDR (Q0) en tête + disjoncteur (Q1) + circuit, moins d'aide, plus vite qu'au passage 1.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>75 min</td><td class="ph">6. Guider l'étude (b) — jalon B' : contrôle complet + essais</td><td>Contrôle hors tension complet (continuité + serrage), visa professeur, mise sous tension, essais de déclenchement (DDR obligatoire, disjoncteur si le poste le permet) — autonomie guidée.</td></tr>
+    <tr><td>40 min</td><td class="ph">7-8-8bis-9-10</td><td>Synthèse, auto-positionnement, bon de commande, rangement, clôture — annonce de la suite (S3-E2 selon rotation).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 2 :</b> préparation 1 h 00 + jalon A' (50) +
+  pause (15) + jalon B' (75) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b>
+  Les deux passages totalisent bien 240 min chacun ; seule la répartition entre jalons change, conforme au plan
+  de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ + CORRIGÉ DES 3 FICHES (JALON A) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Sécurité — un rituel acquis, une règle nouvelle</h3>
+  <p style="font-size:10.3pt">La consignation (NF C 18-510) et la VAT ne sont <b>plus démontrées</b> : elles sont
+  exigées sans rappel. La règle nouvelle de ce module : <b>ne jamais provoquer un vrai défaut</b> pour tester
+  une protection — seul le bouton T est autorisé, sous contrôle direct du professeur.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Le test du bouton T se fait
+  <b>toujours</b> en présence du professeur, jamais en autonomie complète, même au passage 2 : c'est un geste
+  encadré, pas un geste laissé à l'initiative de l'élève.</div>
+
+  <h3 class="section">Corrigé — les 3 fiches de découverte (jalon A)</h3>
+  <table class="mini">
+    <tr><th style="width:16%">Appareil</th><th>Texte à compléter — réponses</th></tr>
+    <tr><td><b>Fusible</b></td><td>Protège contre les <b>surcharges</b> et les <b>courts-circuits</b>. Un fil calibré <b>fond</b> sous l'effet de la chaleur. Une fois fondu, le fusible <b>n'est pas</b> réutilisable : il faut le <b>remplacer</b>.</td></tr>
+    <tr><td><b>Disjoncteur</b></td><td>Protège contre les <b>surcharges ET les courts-circuits</b>. Mécanisme <b>thermique</b> (bilame qui chauffe, pour les surcharges) et mécanisme <b>magnétique</b> (bobine, réaction quasi instantanée, pour les courts-circuits). Contrairement au fusible, il <b>se réarme</b> après un déclenchement.</td></tr>
+    <tr><td><b>DDR</b></td><td>Protège les <b>personnes</b>. Détecte une <b>fuite de courant</b> (déséquilibre phase/neutre) vers la terre et coupe le circuit. Sensibilité en <b>milliampères (mA)</b>. Valeur normalisée dans l'habitat : <b>30 mA</b> (norme <b>NF C 15-100</b>).</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance pédagogique</b> — Un élève qui écrit « le fusible et le
+  disjoncteur protègent les personnes » n'a pas encore saisi la distinction essentielle du module : reformuler
+  par une question (« un fusible réagit-il à un courant qui passe dans le corps d'une personne, sans
+  court-circuit ni surcharge ? ») plutôt que de corriger directement.</div>
+
+  <h3 class="section">Corrigé — façade réelle et bouton test</h3>
+  <div class="reponse"><b class="t">Question — quelle lettre repère le bouton test ?</b><br><br>
+  <b>Réponse attendue :</b> la lettre <b>T</b>, comme « Test ». Sur la façade réelle (matériel de l'atelier),
+  le bouton T est visible en façade, distinct de la manette principale MARCHE/ARRÊT et de tout bouton de
+  réarmement d'un autre appareil du tableau — d'où l'importance de lire l'étiquette avant d'appuyer.</div>
+
+  <h3 class="section">Corrigé — question de synthèse jalon A</h3>
+  <div class="reponse"><b class="t">Un fusible protège-t-il une personne contre l'électrocution ?</b><br><br>
+  <b>Réponse attendue : non.</b> Le fusible (comme le disjoncteur) réagit à une <b>surintensité</b> — un courant
+  trop fort dans le circuit. Or une personne électrisée ne provoque pas forcément une surintensité détectable
+  par ces appareils : le courant qui traverse son corps peut rester bien inférieur au calibre du fusible ou du
+  disjoncteur, tout en étant mortel. <b>Seul le DDR</b>, en comparant en permanence le courant entrant et le
+  courant sortant, détecte cette fuite minime et coupe — c'est la seule protection fiable des personnes contre
+  l'électrocution par contact indirect.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ CÂBLAGE (JALON B ET A') ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — passage 1, jalon B (circuit protégé par disjoncteur)</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Câblage Q1 → S1 → H1</td><td>Phase du bornier vers l'entrée de Q1, sortie de Q1 vers S1, S1 vers H1 ; neutre direct du bornier vers H1. Un fil branché en amont du disjoncteur sans passer par lui est un défaut de sécurité à corriger immédiatement (le circuit ne serait plus protégé).</td></tr>
+    <tr><td>Couleurs des conducteurs</td><td>Phase en rouge ou marron, neutre en bleu, comme en S1/S2 — un fil de couleur non conforme reste un défaut à corriger.</td></tr>
+    <tr><td>Contrôle hors tension</td><td>Continuité proche de 0 Ω interrupteur fermé, résistance infinie interrupteur ouvert — identique aux corrigés précédents.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — passage 2, jalon A' (câblage complet)</h3>
+  <div class="reponse"><b class="t">Question — quel appareil protège les personnes ?</b><br><br>
+  <b>Réponse attendue :</b> le <b>DDR (Q0)</b>. Le disjoncteur (Q1) protège le circuit et le matériel contre les
+  surcharges et les courts-circuits ; le DDR, placé en tête, protège les personnes contre l'électrocution en
+  détectant une fuite de courant vers la terre. Les deux protections sont complémentaires, jamais l'une ne
+  remplace l'autre — l'élève doit retrouver cette hiérarchie sans note, à partir du passage 1.</div>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Ordre des appareils</td><td>DDR (Q0) toujours <b>en amont</b> (en tête), disjoncteur (Q1) <b>en aval</b>. Un élève qui inverse l'ordre n'a pas compris la hiérarchie des protections — reprendre avec le schéma d'annexe.</td></tr>
+    <tr><td>Câblage des 2 pôles de Q0 et Q1</td><td>Phase <b>et</b> neutre traversent les deux appareils (ce sont des appareils 1P+N / 2P) : un neutre qui contourne le DDR ou le disjoncteur est un défaut de câblage à corriger.</td></tr>
+    <tr><td>Vitesse de câblage</td><td>Un temps de câblage nettement réduit par rapport au passage 1 est un signe positif de consolidation — ne pas presser un élève encore lent, mais le noter pour le suivi.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ CONTRÔLE/ESSAIS + ORGANISATION + ERREURS + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — passage 2, jalon B' (contrôle complet + essais de déclenchement)</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Serrage des bornes</td><td>Chaque borne (Q0, Q1, S1, H1) contrôlée à la main, tournevis en appui : aucun fil qui ressort visible. Une borne desserrée peut chauffer et provoquer un incendie — vigilance non négociable de C3.7.</td></tr>
+    <tr><td>Essai bouton T (DDR)</td><td>Coupure attendue, quasi instantanée. Un DDR qui ne coupe pas au test est <b>défectueux</b> : ne jamais utiliser un tel appareil en installation réelle (point à mentionner même si non testable en atelier).</td></tr>
+    <tr><td>Essai disjoncteur (si testable)</td><td>Selon le modèle du poste, à faire valider par le professeur — aucune valeur ni procédure imposée au-delà de ce document.</td></tr>
+  </table>
+  <div class="reponse"><b class="t">Question de synthèse — pourquoi uniquement le bouton T ?</b><br><br>
+  <b>Réponse attendue :</b> provoquer un vrai défaut (court-circuit, fil à la terre) est <b>dangereux</b> et
+  <b>imprévisible</b> — risque de choc électrique, d'arc, de dommage au matériel. Le bouton T simule le
+  déclenchement <b>en toute sécurité</b>, sans mettre personne en danger, tout en vérifiant que l'appareil
+  fonctionne réellement.</div>
+
+  <h3 class="section">Organisation du plateau</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Platine de démonstration (prof)</b></td><td>DDR réel pré-câblé, façade visible de tous, bouton test accessible en rotation.</td><td>Une seule platine pour la classe : organiser une rotation courte (2-3 élèves à la fois) pendant que les autres avancent sur les fiches à compléter.</td></tr>
+    <tr><td><b>Postes élèves — passage 1</b></td><td>1 platine par élève ou binôme, disjoncteur Q1 seul, multimètre par poste.</td><td>Le DDR n'est volontairement pas fourni au passage 1 : il apparaît au passage 2 comme un ajout explicite.</td></tr>
+    <tr><td><b>Postes élèves — passage 2</b></td><td>1 platine par élève ou binôme, DDR + disjoncteur + circuit complet.</td><td>Prévoir un DDR par poste ; vérifier avant la séance que chaque DDR fonctionne au test (sinon le signaler et l'écarter).</td></tr>
+    <tr><td><b>Surveillance renforcée</b></td><td>Le professeur reste positionné à proximité de chaque mise sous tension et de chaque essai au bouton test.</td><td>Ne jamais valider plusieurs mises sous tension simultanément sans contrôle individuel de chaque poste.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Confusion fusible/disjoncteur/DDR (rôles inversés)</td><td>Reprendre la situation-problème vécue en phase 5 : « lequel des deux a coupé quand j'ai appuyé sur T ? » ; renvoyer aux 3 fiches complétées.</td></tr>
+    <tr><td>Tentative de provoquer un vrai défaut « pour voir »</td><td>Interrompre immédiatement, rappeler la règle non négociable (seul le bouton T), sans exception aux deux passages.</td></tr>
+    <tr><td>Neutre câblé en contournant le DDR ou le disjoncteur (passage 2)</td><td>Faire reprendre le câblage : les 2 pôles (phase et neutre) doivent traverser chaque appareil, sinon la protection n'est plus effective.</td></tr>
+    <tr><td>Serrage non vérifié avant l'appel au professeur</td><td>Refuser le contrôle tant que chaque borne n'a pas été vérifiée une à une ; ne pas faire le contrôle à la place de l'élève.</td></tr>
+    <tr><td>Remise sous tension sans attendre le visa du professeur</td><td>Couper immédiatement, rappeler la règle du visa obligatoire, sans exception aux deux passages.</td></tr>
+    <tr><td>Élève qui panique ou sursaute au déclenchement du DDR (bouton T)</td><td>Rassurer : c'est le fonctionnement normal et attendu de l'appareil ; reformuler que c'est justement ce que l'on voulait observer.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation <span class="nuance">(fléchée remédiation É1, positionnés 1-2 sur C3.6)</span></td><td>Reprise accompagnée d'un geste de câblage simple (raccorder un fil au bornier) en phase 4 ; le professeur reste au poste pour le premier raccordement de chaque appareil au passage 1.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, 2 jalons par passage.</td></tr>
+    <tr><td>Approfondissement <span class="nuance">(tutorat, positionnés 3-4)</span></td><td>Après validation de son propre montage, l'élève explique à un pair pourquoi le DDR protège les personnes et pas seulement le matériel, sans jamais câbler ou tester à sa place.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire nouveau (fusible, disjoncteur, DDR, bouton test) introduit un mot à la fois, toujours associé au geste ou à l'image ; couleurs des fils toujours prioritaires sur le vocabulaire comme repère.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Les 3 fiches de découverte sont volontairement courtes et séparées (une par appareil) ; le visa professeur du contrôle avant mise sous tension matérialisé par une case bien visible à ne pas sauter.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statuts : <b>C3.6 Confortement</b> (poids réduit) ·
+  <b>C3.7 Découverte (passage 1) → Confortement (passage 2)</b> — jamais Évaluation dans ce module.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Câblage non conforme au schéma, malgré aide, ou consignation non respectée.</td>
+      <td>Câble avec l'aide du professeur pour positionner le matériel ou suivre le schéma.</td>
+      <td>Câble seul(e) le circuit protégé par disjoncteur (P1) ET l'installation complète DDR + disjoncteur (P2), conformes au schéma.</td>
+      <td>Comme « Acquis », et câble plus vite et avec plus d'assurance au passage 2 qu'au passage 1.</td>
+    </tr>
+    <tr>
+      <td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T11 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne réalise pas de contrôle hors tension avant d'appeler le professeur, même avec aide.</td>
+      <td>Réalise le contrôle hors tension (continuité) avec l'aide du professeur.</td>
+      <td>Réalise seul(e), au passage 2, le contrôle hors tension complet (continuité <b>et</b> serrage) avant d'appeler le professeur.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi le contrôle du serrage est aussi important que la continuité.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste interdit commis (fil touché sans VAT, tentative de provoquer un vrai défaut, protection shuntée) : <b>niveau 1 automatique</b>, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Consignation, VAT et règle du bouton T appliquées sans rappel, contrôles honnêtes même en cas d'erreur.</td>
+      <td>Comme « Acquis », et veille spontanément à la sécurité d'un pair.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> toute tentative de provoquer un vrai
+  défaut entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la
+  qualité du câblage réalisé ce jour-là : principe non négociable. Les positionnements de ce module
+  <b>alimentent le repérage des élèves à revoir en priorité</b> — utiliser la ligne « élèves à revoir » du plan
+  de séance, en lien avec la remédiation post-É1 (S3-T2).</div>
+  <div class="vigilance"><b class="t">Repérage du pavillon</b> — Q0 (DDR) et Q1 (disjoncteur du garage)
+  appartiennent au module S3-E1 ; Q2 protège le circuit éclairage du couloir (S3-E2). Les repères S… sont
+  locaux à chaque schéma de circuit.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques électriques</b> — consignation, NF C 18-510, règle du bouton T ;</li>
+    <li><b>Technologie</b> — réseaux électriques (S5.6), protections du tableau, norme NF C 15-100 ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (F3) ;</li>
+    <li><b>Remédiation post-É1</b> — module S3-T2 (semaine 8, classe entière), crochet phase 4 de ce module.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Les appareils de
+  protection et de commande — exercice d'apprentissage, élève et corrigé (fusible, disjoncteur, DDR),
+  F. Henninot ; Appareils_Protection_ELEVE.docx et Appareils_Protection_PROF.docx (base indexée,
+  _Archives\Divers). Sources anciennes non extraites, à rouvrir si souhaité : « Cours le DDR élèves.doc » et
+  « prof.doc », « 1-Appareillage de protection domestique bis.doc » — non utilisées ici, rien n'y a été
+  inventé à leur place ; module2_mesures_protection.html : consultée, sans contenu exploitable, non utilisée.
+  Continuité directe des documents S1-E1 et S2-E1 produits pour cette même classe.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .passage{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

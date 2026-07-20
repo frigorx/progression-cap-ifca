@@ -1,0 +1,385 @@
+<meta charset="utf-8">
+<title>Document élève — S11 · Module théorie T2 · Surchauffe, sous-refroidissement et incondensables</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE + DÉCOUVERTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Surchauffe · sous-refroidissement · incondensables</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE T2 · 1 h</span><b>Surchauffe, sous-refroidissement et incondensables</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> · sem. 6</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Sur une installation en fonctionnement, votre chef d'équipe relève les pressions BP et HP au
+  manomètre, puis pose son thermomètre de contact sur la conduite d'aspiration : <b>la température lue
+  ne correspond pas</b> à la température de saturation indiquée par le manomètre. « Normal, dit-il,
+  c'est même voulu — à condition que l'écart reste dans la bonne plage. » Aujourd'hui, vous apprenez à
+  nommer cet écart, à le calculer, et à repérer quand il signale un problème dans le circuit.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><span class="nuance">Module théorie — pas de tâche d'atelier associée ce jour</span></div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">confortement</span><br><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">confortement</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du calcul · honnêteté de l'auto-positionnement · attention aux ordres de grandeur</div>
+    <div class="case comp"><h4>Statut</h4><span class="statut">Découverte→Confortement</span> renforcement — prépare l'évaluation sommative S10-S11 <span class="nuance">(non remontée ce jour ; la remontée École Directe se fait à la sommative)</span></div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>nommer</b> l'écart entre température lue au thermomètre et température de saturation lue au manomètre : <b>surchauffe</b> côté BP, <b>sous-refroidissement</b> côté HP ;</li>
+    <li><b>calculer</b> cet écart à partir d'un couple de mesures pression/température fourni ;</li>
+    <li><b>qualifier</b> un écart calculé par rapport aux seuils autorisés (surchauffe 5-10 K, sous-refroidissement 4-8 K) ;</li>
+    <li><b>expliquer</b> qualitativement ce qu'est un incondensable, d'où il vient, et comment on l'évite.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li>lire une pression sur un manomètre BP/HP (module A2-b) ;</li>
+    <li>situer le compresseur, le condenseur, le détendeur et l'évaporateur sur un schéma de circuit (S5.1) ;</li>
+    <li>convertir une température en kelvin ou raisonner en écart de température (le kelvin et le degré Celsius ont le même « pas ») ;</li>
+    <li>le brasage sous azote vu en module A2-a (utile pour la partie incondensables).</li>
+  </ul>
+
+  <h3 class="section">1. ACCROCHE — un relevé qui interroge</h3>
+  <span class="poste-titre">Phase 1 · Accroche — 5 min</span>
+  <p style="font-size:10.5pt">Sur une installation neuve, à peine mise en service, votre collègue relève au
+  manomètre une <b>pression HP anormalement haute</b> par rapport à d'habitude sur ce type de matériel. Le
+  condenseur est propre, le ventilateur tourne, rien ne semble bouché.</p>
+
+  <div class="encadre-question"><b>Question de lancement</b> — À votre avis, qu'est-ce qui pourrait faire
+  monter la pression HP alors que rien ne semble en panne sur le condenseur ? Notez une ou deux hypothèses,
+  sans chercher la bonne réponse tout de suite.</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Gardez cette question en tête : la
+  réponse arrive à la fin de la phase 3, avec la notion d'<b>incondensable</b>.</p>
+
+  <h3 class="section">2. DÉCOUVERTE — observer, puis nommer</h3>
+  <span class="poste-titre">Phase 2 · Découverte — 20 min</span>
+  <p style="font-size:10.5pt">Voici deux relevés réels effectués sur une installation, l'un côté aspiration
+  (BP), l'autre côté sortie condenseur (HP). Dans chaque cas, la <b>température de saturation</b> est lue
+  directement sur l'échelle du manomètre (elle dépend du fluide et de la pression) ; la <b>température
+  réelle</b> est mesurée au thermomètre de contact posé sur le tube.</p>
+
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th>Relevé</th><th>Emplacement</th><th>Pression lue</th><th>Température de saturation (manomètre)</th><th>Température réelle (thermomètre)</th></tr>
+    <tr><td>Relevé A</td><td>Aspiration (sortie évaporateur)</td><td>BP</td><td>0 °C</td><td>7 °C</td></tr>
+    <tr><td>Relevé B</td><td>Sortie condenseur (ligne liquide)</td><td>HP</td><td>45 °C</td><td>39 °C</td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-question"><b>Observation 1</b> — Dans le relevé A, la température réelle est-elle
+  <b>plus haute</b> ou <b>plus basse</b> que la température de saturation ? Calculez l'écart.</div>
+  <div class="zone-reponse" style="min-height:2.4em">Écart = <span class="lignes" style="min-width:40%"></span> K</div>
+
+  <div class="encadre-question"><b>Observation 2</b> — Dans le relevé B, la température réelle est-elle
+  <b>plus haute</b> ou <b>plus basse</b> que la température de saturation ? Calculez l'écart.</div>
+  <div class="zone-reponse" style="min-height:2.4em">Écart = <span class="lignes" style="min-width:40%"></span> K</div>
+
+  <p style="font-size:10.5pt">Ces deux écarts portent un nom différent selon l'endroit du circuit où on les
+  mesure. Sur le schéma ci-dessous, repérez les deux points de mesure.</p>
+
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-surchauffe-sous-refroidissement.svg" alt="Schéma technique : circuit frigorifique avec points de mesure de la surchauffe (sortie évaporateur, aspiration BP) et du sous-refroidissement (sortie condenseur, ligne liquide HP)"
+         style="max-width:92%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Circuit frigorifique — points de mesure de la surchauffe (BP, en bleu) et du sous-refroidissement (HP, en orange).</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Question</b> — D'après le schéma, comment s'appelle l'écart mesuré côté
+  BP (relevé A) ? Et celui mesuré côté HP (relevé B) ? Essayez de proposer un nom avant de lire la suite.</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — TRACE ÉCRITE DÉFINITIONS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module théorie T2 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Ce qu'il faut retenir — définitions</h3>
+  <div class="duo">
+    <div><h4>Surchauffe (côté BP)</h4>
+    Pour un bon fonctionnement, à la sortie de l'évaporateur, le fluide doit être en <b>vapeur sèche</b> : la
+    surchauffe est la marge de sécurité qui le garantit — assez chaud pour être sûr d'être en vapeur, mais pas
+    plus. Écart entre la <b>température réelle</b> mesurée à l'aspiration (sortie évaporateur) et la
+    <b>température de saturation</b> correspondant à la pression BP lue au manomètre.<br>
+    <b>Surchauffe = T réelle − T saturation (BP)</b><br>
+    Elle est <b>toujours positive</b> : le gaz aspiré est un peu plus chaud que sa température de
+    changement d'état, preuve qu'il est complètement évaporé avant d'entrer dans le compresseur.<br>
+    <b>Plage attendue : 5 à 10 K.</b></div>
+    <div><h4>Sous-refroidissement (côté HP)</h4>
+    Pour un bon fonctionnement, à la sortie du condenseur, le fluide doit être en <b>liquide pur</b> : le
+    sous-refroidissement est la marge de sécurité côté liquide — c'est aussi un excellent indicateur de la
+    charge en fluide de l'installation. Écart entre la <b>température de saturation</b> correspondant à la
+    pression HP lue au manomètre et la <b>température réelle</b> mesurée en sortie de condenseur (ligne
+    liquide).<br>
+    <b>Sous-refroidissement = T saturation (HP) − T réelle</b><br>
+    Il est <b>toujours positif</b> : le liquide sortant du condenseur est un peu plus froid que sa
+    température de changement d'état, preuve qu'il est complètement liquéfié avant le détendeur.<br>
+    <b>Plage attendue : 4 à 8 K.</b></div>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Moyen mnémotechnique : <b>surchauffe ↔
+  compresseur</b> (protège le compresseur du liquide) · <b>sous-refroidissement ↔ charge et condenseur</b>
+  (renseigne sur la quantité de fluide et l'état du condenseur).</p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Toute autre valeur de seuil rencontrée
+  sur un matériel réel (plaque signalétique, notice constructeur) prime sur ces plages générales : « à
+  faire valider selon plaque/notice ».</p>
+
+  <h3 class="section">Qualifier un écart : dans la plage ou hors plage ?</h3>
+  <p style="font-size:10.5pt">Une fois l'écart calculé, on le compare à la plage attendue :</p>
+  <ul class="liste-num">
+    <li>écart <b>dans la plage</b> → fonctionnement normal, rien à signaler ;</li>
+    <li>écart <b>en dessous</b> de la plage → à surveiller, cause possible à rechercher (par exemple,
+    manque de charge en fluide côté surchauffe trop faible, ou condenseur surdimensionné/trop froid côté
+    sous-refroidissement) ;</li>
+    <li>écart <b>au-dessus</b> de la plage → à surveiller, cause possible à rechercher (par exemple,
+    évaporateur mal alimenté côté surchauffe trop forte, ou présence d'incondensables côté HP trop
+    élevée).</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Le diagnostic précis des causes n'est
+  pas l'objet de ce module théorie : il s'agit ici de savoir <b>calculer et qualifier</b> l'écart, pas de
+  dépanner l'installation.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — APPLICATION : CALCULS GUIDÉS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module théorie T2 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">3. APPLICATION — calculer et qualifier plusieurs cas</h3>
+  <span class="poste-titre">Phase 3 · Application — 25 min</span>
+  <p style="font-size:10.5pt">Pour chaque cas, calculez l'écart, indiquez son nom (surchauffe ou
+  sous-refroidissement), puis qualifiez-le : <b>dans la plage</b> ou <b>hors plage</b>.</p>
+
+  <h4 style="font-size:11pt">Tableau de calcul — 2 installations réelles (4 relevés)</h4>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Chaque installation donne deux relevés au
+  même instant : un côté aspiration (BP) et un côté sortie condenseur (HP).</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:8%">Cas</th><th>Emplacement</th><th>T° saturation</th><th>T° réelle</th><th>Écart calculé</th><th>Nom de l'écart</th><th>Dans / hors plage</th></tr>
+    <tr><td>1</td><td>Installation A — Aspiration (BP)</td><td>−22 °C</td><td>−16 °C</td><td></td><td></td><td></td></tr>
+    <tr><td>2</td><td>Installation A — Sortie condenseur (HP)</td><td>+35 °C</td><td>+30 °C</td><td></td><td></td><td></td></tr>
+    <tr><td>3</td><td>Installation B — Aspiration (BP)</td><td>−30 °C</td><td>−15 °C</td><td></td><td></td><td></td></tr>
+    <tr><td>4</td><td>Installation B — Sortie condenseur (HP)</td><td>+30 °C</td><td>+27 °C</td><td></td><td></td><td></td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Rappel des plages : surchauffe 5-10 K,
+  sous-refroidissement 4-8 K. Toute autre valeur rencontrée sur un matériel réel = selon plaque/notice, à
+  faire valider.</p>
+
+  <div class="encadre-question"><b>Question</b> — Parmi les cas 1 à 4, lequel (ou lesquels) sortent de la
+  plage attendue ? Pour chacun, l'écart est-il trop faible ou trop fort ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h4 style="font-size:11pt">Cas 5 — un indice d'incondensables</h4>
+  <p style="font-size:10.5pt">Sur une installation qui vient d'être mise en service après brasage et
+  tirage au vide, le technicien relève une <b>pression HP nettement plus haute</b> que ce qu'indique la
+  notice du constructeur pour la température ambiante du jour, alors que le condenseur est propre et bien
+  ventilé.</p>
+  <div class="encadre-question"><b>Question</b> — D'après ce que vous savez du brasage sous azote (module
+  A2-a), quelle pourrait être la cause de cette pression HP anormalement haute si le circuit n'a pas été
+  correctement traité avant la mise en service ?</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — INCONDENSABLES + SYNTHÈSE + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module théorie T2 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Les incondensables — ce qu'il faut savoir</h3>
+  <p style="font-size:10.5pt">Un <b>incondensable</b> est un gaz qui reste piégé dans le circuit
+  frigorifique sans jamais se liquéfier, contrairement au fluide frigorigène (c'est le plus souvent de
+  l'<b>air</b>, donc de l'azote et de l'oxygène atmosphériques, éventuellement mêlés d'humidité).</p>
+
+  <div class="duo">
+    <div><h4>D'où viennent les incondensables ?</h4>
+    <ul>
+      <li>un circuit <b>mal tiré au vide</b> avant la charge (de l'air est resté à l'intérieur) ;</li>
+      <li>un <b>brasage réalisé sans balayage d'azote</b>, ou balayage insuffisant (air resté piégé
+      pendant l'assemblage) ;</li>
+      <li>une intervention qui a ouvert le circuit sans reprendre la procédure complète ensuite.</li>
+    </ul></div>
+    <div><h4>Quel est leur effet ?</h4>
+    <ul>
+      <li>l'air incondensable s'accumule dans le condenseur, où il occupe une place que devrait
+      prendre le fluide frigorigène en train de se condenser ;</li>
+      <li>résultat : la <b>pression HP est anormalement haute</b> par rapport à la température de
+      condensation attendue ;</li>
+      <li>l'échange de chaleur au condenseur est <b>moins bon</b>, ce qui pénalise le rendement de
+      toute l'installation.</li>
+    </ul></div>
+  </div>
+
+  <div class="encadre-question"><b>Retour sur l'accroche</b> — Reprenez votre réponse de la phase 1 (feuille
+  1). À la lumière de ce que vous venez de lire, corrigez ou complétez votre hypothèse sur la cause de la
+  pression HP anormalement haute.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h4 style="font-size:11pt">Comment évite-t-on les incondensables ?</h4>
+  <ul class="liste-num">
+    <li><b>brasage sous azote</b> : le balayage chasse l'air du circuit pendant l'assemblage (vu en module A2-a) ;</li>
+    <li><b>tirage au vide</b> avant la charge en fluide, pour extraire l'air et l'humidité restants (vu plus tard en S12) ;</li>
+    <li>respect de la procédure complète à chaque ouverture du circuit, même pour une reprise ou une réparation.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce volet reste qualitatif : aucune
+  valeur chiffrée de pression ou de vide n'est donnée ici, ces valeurs dépendent du fluide et du matériel
+  (selon plaque/notice, à faire valider).</p>
+
+  <h3 class="section">4. SYNTHÈSE — trace écrite à conserver</h3>
+  <span class="poste-titre">Phase 4 · Synthèse — 10 min</span>
+  <div class="jalon"><h4>À retenir</h4>
+  <p style="font-size:10.5pt">
+  <b>Surchauffe</b> (côté BP, aspiration) = T réelle − T saturation → attendu <b>5 à 10 K</b><br>
+  <b>Sous-refroidissement</b> (côté HP, sortie condenseur) = T saturation − T réelle → attendu <b>4 à 8 K</b><br>
+  <b>Incondensables</b> : air piégé dans le circuit (mauvais tirage au vide, brasage sans azote) → pression
+  HP anormalement haute, échange dégradé → prévenus par le brasage sous azote et le tirage au vide.<br>
+  <b>Mémo :</b> surchauffe ↔ compresseur · sous-refroidissement ↔ charge & condenseur.</p></div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">S5.1 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; S5.2 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Échelle FrigorX : 0 Non évalué · 1 Non
+  acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut Découverte/Confortement —
+  <b>non remontée</b> ce jour : la remontée École Directe se fait à l'évaluation sommative S10-S11.</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (tableaux de calcul, questions, trace écrite)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : kit
+  « Surchauffe et sous-refroidissement » (F. Henninot) — <i>cours_surchauffe_sous_refroidissement.html</i>,
+  <i>dossier_eleve_surchauffe.html</i>, <i>corrige_prof_surchauffe.html</i> ; cas 1 et 2 du tableau de calcul
+  = cas « installation conforme » et « manque de fluide » du cours (seuils recalibrés sur la charte 5-10 K
+  / 4-8 K) ; volet incondensables complété.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

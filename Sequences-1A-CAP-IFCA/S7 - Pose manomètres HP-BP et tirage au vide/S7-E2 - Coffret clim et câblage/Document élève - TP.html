@@ -1,0 +1,556 @@
+<meta charset="utf-8">
+<title>TP élève — S7-E2 · Coffret clim et câblage</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .role{border:2px solid var(--bleu); border-radius:6px; padding:8px 14px; margin:.5em 0 .9em; background:#fbfcfe}
+  .role h4{margin:0 0 4px; font-size:10.8pt; color:var(--bleu)}
+  .role.exec{border-color:var(--violet)}
+  .role.exec h4{color:var(--violet)}
+  .signature{border-top:1px dotted var(--leger); margin-top:14px; padding-top:6px; font-size:9.5pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pose manomètres HP/BP et tirage au vide</td>
+      <td style="width:38%"><span class="lib">Module atelier S7-E2 · 4 h × 2 passages</span><b>Coffret clim et câblage</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> · semaines 24-25</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S7-4</b> : dans l'arrière-boutique, le coffret électrique de la chambre froide
+  doit être <b>entièrement câblé</b> avant la mise en service. Le professeur, responsable du site, vous confie ce
+  chantier en <b>binôme</b> : vous n'êtes plus seul(e) face au circuit comme en S6-E1 — vous devez vous organiser
+  à deux, l'un lisant le plan et guidant, l'autre exécutant. C'est le <b>dernier coffret</b> avant que le groupe
+  froid ne soit prêt à recevoir sa charge (S8, plus tard).</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">augmenté — intégration du thermostat dans la commande, aucun composant totalement inconnu</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel · <b>communication technique claire</b> (chef d'équipe) · exécution fidèle et rigoureuse (exécutant) · honnêteté du contrôle avant appel professeur</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">C3.6 Confortement → vers Maîtrise</span> Câbler, repérer, connecter les liaisons électriques et électroniques<br><span class="statut">C3.7 Confortement</span> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">— exercée par le rôle de chef d'équipe</span></div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S6</b> — En S6-E1, vous avez recâblé <b>seul(e)</b> le
+  départ moteur complet (puissance, commande, auto-maintien, sécurité thermique, voyants) : c'était de
+  l'autonomie individuelle. <b>Ici, le circuit s'enrichit d'un organe nouveau dans son intégration</b> : le
+  thermostat de régulation que vous avez réglé (ou que vous réglez en parallèle) en S7-E1 vient s'insérer <b>en
+  série</b> dans la commande, entre l'auto-maintien et la bobine du contacteur. Vous ne travaillez plus seul(e) :
+  vous êtes en <b>binôme organisé</b>, avec deux rôles qui tournent — c'est cette organisation du travail à deux
+  qui est le vrai objet nouveau de ce module, bien plus que le câblage lui-même.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change</h4>
+  <b>Passage 1 (semaine 24) — rôles longs, guidage détaillé</b> : le chef d'équipe annonce <b>étape par étape</b>
+  (un repère, un geste), l'exécutant attend chaque annonce avant d'agir. La rotation des rôles a lieu <b>une seule
+  fois, à la pause</b> (entre la partie puissance et la partie commande). Chacun découvre le rôle de chef
+  d'équipe pour la première fois.<br>
+  <b>Passage 2 (semaine 25) — rôles raccourcis, plus d'autonomie</b> : nouveau partenaire si possible. Le chef
+  d'équipe annonce désormais <b>par blocs</b> (« la partie puissance », « l'auto-maintien ») plutôt que geste par
+  geste, et l'exécutant <b>anticipe</b> les étapes suivantes sans attendre chaque instruction. <b>Deux rotations
+  courtes</b> remplacent la rotation unique : la première <b>pendant le jalon A</b> (après les 2/3 de la
+  puissance), la seconde <b>à mi-commande</b>, pendant le jalon B — la pause n'est alors pas une nouvelle
+  rotation. Chacun pratique ainsi davantage le contrôle en situation réelle (C3.7).</div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>lire un plan de coffret</b> et <b>repérer</b> chaque appareil (Q1, KM1, F1, S1, S2, TH1, H1, H2, M1)
+    et chaque borne utilisée, <b>avant</b> tout câblage — exercice de repérage réalisé en binôme ;</li>
+    <li><b>tenir le rôle de chef d'équipe</b> : annoncer à voix haute le repère à câbler, l'ordre des étapes et
+    les points de contrôle, sans câbler moi-même à la place de mon binôme ;</li>
+    <li><b>tenir le rôle d'exécutant</b> : câbler fidèlement ce que le chef d'équipe annonce, en signalant toute
+    incompréhension ou difficulté ;</li>
+    <li><b>câbler le coffret complet</b> : la partie puissance (sectionneur Q1 → contacteur KM1 → relais
+    thermique F1 → moteur M1) puis la partie commande (arrêt S2 → marche S1 → auto-maintien KM1 13-14 → <b>le
+    thermostat de régulation TH1 en série</b> → bobine KM1, avec les voyants H1 marche et H2 défaut) ;</li>
+    <li><b>réaliser le contrôle hors tension complet</b> avant tout appel au professeur, et observer l'essai
+    <b>avec la régulation en action</b> : le thermostat coupe et enclenche réellement le moteur selon la
+    température.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà… (et ce qui se travaille en parallèle)</h3>
+  <p style="font-size:10.5pt">Vous savez déjà <b>câbler le départ moteur complet</b> : la partie puissance
+  (S5-E1), la partie commande avec auto-maintien, sécurité thermique et voyants (S5-E2), et vous l'avez consolidé
+  en autonomie croissante en S6-E1. <b>É3 est passée</b> (semaine 21) : votre positionnement sur le poste ÉLEC
+  (C3.6) est connu, et votre plan de progrès personnel (travaillé en S7-T0) s'applique directement à ce module.
+  Le <b>thermostat de régulation</b> — sa fonction, son réglage de consigne — est vu ou en cours d'acquisition en
+  S7-E1, module vécu la même semaine, en parallèle : si vous ne l'avez pas encore réglé vous-même, vous en
+  connaissez déjà le principe (cahier des charges du commerçant → consigne réglée sur l'organe). Vous savez
+  <b>réaliser seul(e) une consignation et une vérification d'absence de tension (VAT)</b> avant toute
+  intervention, acquis depuis S1.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Platine coffret équipée d'un rail oméga (× 1 par binôme)</li>
+    <li>Sectionneur tripolaire (Q1), contacteur (KM1) avec contact auxiliaire NO 13-14, relais thermique (F1)
+    avec ses deux contacts auxiliaires (95-96 NF et 97-98 NO) — modules réels de l'atelier</li>
+    <li>1 bouton poussoir marche NO (S1), 1 bouton poussoir arrêt NF (S2)</li>
+    <li>1 thermostat de régulation (TH1), réglé ou en cours de réglage en S7-E1 <span class="nuance">(matériel
+    selon l'atelier, à faire valider)</span></li>
+    <li>2 voyants (H1 vert marche, H2 rouge défaut)</li>
+    <li>Moteur du poste école (M1), avec plaque signalétique — couplage selon notice, à faire valider par le
+    professeur</li>
+    <li>Bornier de phase, bornier de neutre, bornier de terre (× 1 chacun)</li>
+    <li>Vis à bois pour la fixation du matériel <span class="conso">(consommable)</span></li>
+    <li>Fils électriques souples, section du poste école (à faire valider par le professeur), couleurs
+    normalisées : noir/marron/violet (phases puissance), rouge (phase commande), bleu (neutre), vert/jaune
+    (terre) <span class="conso">(consommable)</span></li>
+    <li>Tournevis plat et tournevis cruciforme, pince à dénuder, pince coupante</li>
+    <li>Multimètre numérique + jeu de cordons de mesure (rouge + noir)</li>
+    <li>Fiche de rôle (ce document) + annexe A3 <i>sans repères</i> à compléter (une par binôme) + fiche de
+    sécurité à cocher + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ ÉLECTRIQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-E2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Sécurité électrique — un rituel acquis, appliqué sans aucun rappel</h3>
+  <p style="font-size:10.5pt">Vous connaissez la consignation et la vérification d'absence de tension (VAT)
+  depuis S1. Aujourd'hui, <b>personne ne vous les redémontre</b>. Un risque <b>nouveau</b> s'ajoute à ceux déjà
+  connus : un thermostat mal câblé (hors circuit, ou shunté) peut donner l'illusion que le coffret fonctionne
+  alors que la sécurité de régulation est absente — d'où l'importance du contrôle avant tout essai.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Choc électrique par contact direct avec une pièce sous tension</td><td>Ne <b>jamais</b> toucher un fil ou une platine sans avoir vérifié l'absence de tension (VAT). Travailler <b>toujours</b> hors tension pour tout câblage.</td></tr>
+    <tr><td>Pièces tournantes du moteur (mains, cheveux, vêtements happés)</td><td>Ne <b>jamais</b> s'approcher de l'arbre du moteur en rotation. Cheveux attachés, manches ajustées.</td></tr>
+    <tr><td>Déclenchement non maîtrisé si un défaut réel est provoqué « pour tester »</td><td><b>Jamais</b> de court-circuit ni de surcharge volontaire. Le <b>seul</b> essai autorisé est le bouton test du relais thermique, réalisé par le professeur.</td></tr>
+    <tr><td>Thermostat câblé <b>hors</b> circuit de commande ou <b>shunté</b> « pour que ça démarre plus vite »</td><td>Le thermostat est une <b>sécurité de régulation</b>, jamais un obstacle à contourner. Un coffret qui « marche » sans thermostat câblé correctement est un <b>défaut de sécurité</b>, jamais acceptable même si le moteur tourne.</td></tr>
+    <tr><td>Borne mal serrée qui s'échauffe (risque d'incendie)</td><td>Vérifier <b>chaque</b> borne à la main avant tout appel au professeur — c'est une partie du contrôle hors tension.</td></tr>
+    <tr><td>Remise sous tension accidentelle pendant le câblage ou le contrôle</td><td>Sectionneur du poste maintenu ouvert pendant tout le câblage. <b>Seul le professeur</b> ferme le circuit, après contrôle systématique.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">La consignation — rituel NF C 18-510, appliqué sans rappel</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Couper</b> — ouvrir le sectionneur (Q1) du poste.<br>
+  2. <b>Vérifier l'absence de tension (VAT)</b> — contrôler au multimètre, position voltmètre.<br>
+  3. <b>Condamner / signaler</b> — le professeur garde la main sur la mise sous tension.<br>
+  4. <b>Travailler hors tension</b> — je câble, je mesure la continuité, <b>toujours</b> sectionneur ouvert.</p>
+  </div>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li>Jamais toucher un fil ou une platine sans avoir vérifié l'absence de tension ;</li>
+    <li><b>Jamais provoquer un vrai défaut thermique</b> pour tester le relais — seul le bouton test est autorisé,
+    réalisé par le professeur ;</li>
+    <li>Jamais s'approcher du moteur en rotation ;</li>
+    <li><b>Jamais shunter (ponter)</b> le relais thermique, une protection ou le thermostat, quel qu'il soit ;</li>
+    <li>Jamais mettre le coffret sous tension moi-même — <b>seul le professeur le fait</b>, après contrôle ;</li>
+    <li>En tant que chef d'équipe, jamais câbler à la place de l'exécutant « pour aller plus vite » — le rôle de
+    chef d'équipe est de <b>guider et contrôler</b>, pas de faire.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous et
+  faites-la viser par le professeur. Tenue et EPI exigés :</p>
+  <ul class="liste-num">
+    <li>Chaussures de sécurité ; Pas de bijoux ni de montre ; Manches ajustées ; Cheveux longs attachés.</li>
+  </ul>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, zone de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — <b>couper</b> (interrupteur général ou arrêt
+  d'urgence de l'atelier, localisé dès l'entrée), <b>alerter</b> immédiatement le professeur, <b>ne jamais
+  déplacer</b> un camarade électrisé sans certitude sur son état. La trousse de secours est localisée dès
+  l'entrée dans l'atelier.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — MÉTHODE : CHEF D'ÉQUIPE TOURNANT + LECTURE DU PLAN ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-E2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">La méthode du module — chef d'équipe tournant</h3>
+  <p style="font-size:10.5pt">Vous travaillez en <b>binôme</b>. Deux rôles se partagent le chantier, et vous les
+  tiendrez <b>tous les deux</b> dans la séance : <b>rotation à mi-câblage</b>, entre la partie puissance et la
+  partie commande (à la pause). Chaque rôle a des droits et des interdits précis — les respecter est la vraie
+  compétence travaillée aujourd'hui (C3.7 : contrôler la mise en œuvre).</p>
+
+  <div class="role"><h4>Rôle 1 — le chef d'équipe (celui qui lit et qui guide)</h4>
+  <p style="font-size:10.3pt; margin:0"><b>Ce qu'il DIT</b> : le repère de l'appareil à câbler (« maintenant, KM1,
+  bornes 1-3-5 »), l'ordre des étapes tel qu'il figure sur le plan légendé, et les points de contrôle à voix haute
+  (« vérifie que le fil est bien serré avant de continuer »). Il <b>lit le plan</b>, le tient à disposition de
+  l'exécutant, mais c'est <b>lui qui parle</b> — pas l'exécutant qui devine. Il <b>observe</b> en continu ce que
+  fait l'exécutant et <b>arrête immédiatement</b> tout geste qui ne correspond pas au plan.</p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic; margin:6px 0 0">Interdit : câbler lui-même,
+  toucher aux fils ou aux outils, laisser filer une erreur « pour ne pas interrompre ».</p></div>
+
+  <div class="role exec"><h4>Rôle 2 — l'exécutant (celui qui câble)</h4>
+  <p style="font-size:10.3pt; margin:0"><b>Ce qu'il FAIT</b> : il câble <b>exactement</b> ce que le chef d'équipe
+  annonce, dans l'ordre annoncé, sans anticiper de sa propre initiative même s'il pense connaître la suite. S'il
+  ne comprend pas une instruction, ou s'il pense repérer une erreur, il le <b>signale au chef d'équipe</b> —
+  jamais directement au professeur, sauf blocage réel ou question de sécurité. Il tient les outils et les fils ;
+  le chef d'équipe ne les touche pas.</p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic; margin:6px 0 0">Interdit : câbler « de mémoire »
+  sans attendre l'annonce, ignorer une consigne du chef d'équipe parce qu'on pense savoir mieux.</p></div>
+
+  <p style="font-size:10.3pt"><b>Rotation à mi-câblage</b> : à la pause, entre la partie puissance et la partie
+  commande, échangez les rôles. Celui qui était exécutant devient chef d'équipe pour la commande (avec le
+  thermostat) ; celui qui était chef d'équipe devient exécutant. <b>Chacun tient les deux rôles</b> dans la
+  séance — c'est ce qui permet d'évaluer C3.7 sur les deux : guider ET exécuter.</p>
+
+  <h3 class="section">Avant de câbler : l'exercice de repérage (lecture du plan)</h3>
+  <p style="font-size:10.5pt">D'après la démarche du TP modèle de repérage de votre professeur : <b>on ne câble
+  jamais avant d'avoir lu et repéré</b>. En binôme, sur l'<b>annexe A3 sans repères</b> (schéma du coffret vierge
+  de ses lettres) et en consultant le schéma légendé fourni par le professeur :</p>
+  <ol class="liste-num">
+    <li><b>Distinguer les réseaux</b> : surlignez en couleurs distinctes la partie <b>puissance</b> (alimentation
+    → Q1 → KM1 → F1 → moteur) et la partie <b>commande</b> (arrêt, marche, auto-maintien, thermostat, voyants) ;</li>
+    <li><b>Inscrire les repères</b> de chaque appareil sur votre annexe : Q1, KM1, F1, M1 (puissance) ; S1, S2,
+    TH1, H1, H2 (commande) ;</li>
+    <li><b>Inscrire les bornes utilisées</b> pour chaque appareil : Q1 (1-3-5 / 2-4-6), KM1 (1-3-5 / 2-4-6 en
+    puissance, A1-A2 pour la bobine, 13-14 pour l'auto-maintien), F1 (95-96 NF, 97-98 NO), moteur (U1-V1-W1) ;</li>
+    <li><b>Faire valider</b> votre annexe complétée par le professeur <b>avant</b> de commencer à câbler.</li>
+  </ol>
+
+  <div class="encadre-question"><b>Question</b> — Sur votre annexe, où avez-vous placé le repère TH1 (thermostat)
+  par rapport à l'auto-maintien KM1 13-14 ? Avant ou après lui dans la chaîne qui mène à la bobine ? Justifiez
+  avec vos mots.</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Cet exercice de repérage n'est pas une perte de
+  temps : un repérage bâclé se paie en erreurs de câblage, et donc en temps perdu ensuite. C'est la même
+  discipline que celle exigée dans le TP modèle de repérage puissance/commande de votre professeur.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — JALON A : CÂBLER LA PUISSANCE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-E2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">JALON A — câbler la partie puissance — ≈ 55 min — chef d'équipe n° 1 / exécutant n° 1</span>
+
+  <p style="font-size:10.5pt">Le schéma complet et légendé du coffret figure en <b>annexe pleine page</b>
+  (référence, à consulter par le chef d'équipe). Votre annexe A3 <i>sans repères</i>, complétée en phase 5, sert de
+  support de guidage. Le chef d'équipe annonce, l'exécutant câble.</p>
+
+  <h3 class="section">1. Préparer la platine</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est <b>hors tension</b> (sectionneur du poste ouvert)</p>
+    <p>☐ 2. Le chef d'équipe annonce l'implantation : rail oméga, sectionneur Q1, contacteur KM1, relais
+    thermique F1, en suivant l'annexe complétée</p>
+    <p>☐ 3. Positionner les boutons S1 (marche) et S2 (arrêt), le thermostat TH1, et les voyants H1 et H2</p>
+    <p>☐ 4. Fixer chaque élément à la vis, sans forcer, sur annonce du chef d'équipe</p>
+  </div>
+
+  <h3 class="section">2. Câbler la puissance</h3>
+  <div class="liste-num">
+    <p>☐ 1. Raccorder les 3 phases (L1, L2, L3) de l'alimentation à l'entrée du sectionneur Q1</p>
+    <p>☐ 2. Raccorder la sortie de Q1 à l'entrée des contacts de puissance de KM1 (bornes 1-3-5)</p>
+    <p>☐ 3. Raccorder la sortie de KM1 (bornes 2-4-6) à l'entrée du relais thermique F1</p>
+    <p>☐ 4. Raccorder la sortie de F1 au moteur M1, selon le couplage indiqué par le professeur</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — Pendant ce jalon, le chef d'équipe a-t-il annoncé chaque étape
+  <b>avant</b> que l'exécutant ne commence à câbler, ou l'exécutant a-t-il parfois anticipé ? Notez un exemple
+  concret vécu dans votre binôme.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <h3 class="section">Rotation des rôles</h3>
+  <p style="font-size:10.3pt"><b>Passage 1 :</b> à la pause, <b>échangez vos rôles</b> : l'exécutant du jalon A
+  devient chef d'équipe pour le jalon B (la commande, avec le thermostat), et réciproquement. Prenez un instant
+  pour vous transmettre ce que vous avez compris de l'annexe avant de reprendre.</p>
+  <p style="font-size:10.3pt"><b>Passage 2 :</b> la première rotation courte a lieu <b>pendant ce jalon</b>, après
+  les 2/3 de la puissance — la pause n'est alors <b>pas</b> une nouvelle rotation : vous reprenez le jalon B dans
+  les rôles pris à cette première rotation. La <b>seconde rotation courte</b> aura lieu à <b>mi-commande</b>,
+  pendant le jalon B.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — JALON B : COMMANDE + THERMOSTAT + CONTRÔLE + ESSAI ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-E2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">JALON B — commande + régulation + contrôle + essai — ≈ 70 min — rôles échangés</span>
+
+  <h3 class="section">1. Câbler la commande, avec le thermostat en série</h3>
+  <div class="liste-num">
+    <p>☐ 1. Raccorder une phase de commande au contact 95 du relais thermique F1 (sécurité thermique en série,
+    avant tout le reste)</p>
+    <p>☐ 2. Raccorder la sortie 96 de F1 à l'entrée du bouton arrêt S2 (normalement fermé)</p>
+    <p>☐ 3. Raccorder la sortie de S2 à l'entrée du bouton marche S1 (normalement ouvert)</p>
+    <p>☐ 4. Raccorder le contact auxiliaire KM1 (13-14) <b>en parallèle</b> du bouton S1 — c'est l'auto-maintien,
+    déjà connu depuis S5-E2</p>
+    <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Passage 2 uniquement — <b>seconde rotation
+    courte ici, à mi-commande</b> : échangez à nouveau vos rôles avant de câbler le thermostat et les voyants,
+    pour que chacun tienne le rôle de chef d'équipe sur une partie de la commande.</p>
+    <p>☐ 5. <b>Raccorder le thermostat TH1 en série</b>, juste après le nœud de l'auto-maintien et avant la
+    bobine — c'est l'élément <b>nouveau</b> de ce coffret</p>
+    <p>☐ 6. Raccorder la sortie de TH1 à la borne A1 de la bobine KM1 ; raccorder la borne A2 au neutre</p>
+    <p>☐ 7. Raccorder le voyant H1 (vert) <b>en parallèle</b> de la bobine KM1, <b>après</b> le thermostat — pour
+    qu'il reflète le fonctionnement réel du moteur, régulation comprise</p>
+    <p>☐ 8. Raccorder le voyant H2 (rouge) sur le circuit <b>séparé</b> du contact F1 97-98 (normalement ouvert),
+    inchangé depuis S6-E1</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — Si le voyant H1 était câblé <b>avant</b> le thermostat (donc en
+  parallèle de l'auto-maintien, pas de la bobine), que verrait-on d'anormal une fois le thermostat en action ?
+  Répondez avec vos mots, sans consulter l'annexe.</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">2. Contrôle hors tension complet</h3>
+  <table class="releve">
+    <tr><th style="width:34%">Point de contrôle</th><th>Bouton S1 / TH1</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité de la partie commande</td><td>S1 appuyé, TH1 fermé</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité de la partie commande</td><td>TH1 ouvert (simulé)</td><td>résistance infinie</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité Q1 → KM1 → F1 → M1 (par phase)</td><td>—</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <div class="liste-num">
+    <p>☐ Serrage vérifié à la main sur <b>chaque</b> borne (Q1, KM1, F1, S1, S2, TH1, M1, H1, H2)</p>
+    <p>☐ Couleurs normalisées respectées sur tout le montage (puissance et commande)</p>
+    <p>☐ Le thermostat TH1 est bien <b>en série</b> dans la chaîne qui alimente la bobine — pas en dérivation,
+    pas court-circuité</p>
+  </div>
+
+  <div class="jalon"><h4>Contrôle professeur obligatoire avant remise sous tension</h4>
+  <p>☐ Continuité conforme (puissance et commande)<br>☐ Serrage de toutes les bornes vérifié<br>☐ Aucun
+  conducteur nu accessible<br>☐ Le thermostat TH1 est bien câblé en série, ni shunté ni oublié<br>☐ Les deux
+  rôles (chef d'équipe / exécutant) ont bien été tenus par chaque élève du binôme</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h3 class="section">3. Mise sous tension et essai avec la régulation en action — réalisés par le professeur</h3>
+  <p style="font-size:10.3pt">Le professeur ferme le sectionneur de votre poste après avoir vérifié votre
+  contrôle. Il actionne S1 et S2, puis fait varier ou simule une variation de la consigne du thermostat pour vous
+  montrer la régulation <b>en fonctionnement réel</b>.</p>
+  <table class="releve">
+    <tr><th>Essai</th><th>Résultat attendu</th><th>Observé ?</th></tr>
+    <tr><td>Appui sur S1, thermostat en appel de froid</td><td>Le moteur démarre, H1 s'allume</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Relâchement de S1</td><td>Le moteur continue de tourner (auto-maintien)</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Le thermostat atteint sa consigne (simulé par le professeur)</td><td>Le moteur s'arrête, H1 s'éteint — <b>sans que S2 n'ait été actionné</b></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Appui sur S2</td><td>Le moteur s'arrête (arrêt général)</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Bouton test de F1</td><td>Le moteur s'arrête, H2 s'allume</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — Quelle différence avez-vous observée entre un arrêt
+  provoqué par S2 (bouton arrêt) et un arrêt provoqué par le thermostat TH1 ? Qu'est-ce que cela vous apprend sur
+  le rôle de chacun dans le circuit ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="secu"><b class="t">⚠ Rappel — fin de séance</b> — Avant de ranger, remettez votre platine <b>hors
+  tension</b> (sectionneur ouvert, débranché) : c'est vous qui coupez, jamais le professeur seul en votre
+  absence.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — RANGEMENT + GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-E2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état (à chaque passage)</h3>
+  <div class="liste-num">
+    <p>☐ 1. Remettre la platine <b>hors tension</b> (sectionneur ouvert, débranchée)</p>
+    <p>☐ 2. Remettre la molette du multimètre sur <b>OFF</b>, débrancher et ranger les cordons sans coude serré</p>
+    <p>☐ 3. Ranger les fils, sans les plier de façon serrée ; jeter les chutes dans le bac approprié</p>
+    <p>☐ 4. Ranger l'outillage (tournevis, pinces, multimètre) à son emplacement</p>
+    <p>☐ 5. Vérifier que le poste est propre et dégagé pour le poste suivant</p>
+  </div>
+
+  <div class="jalon"><h4>Bilan de fin de passage</h4>
+  <p>☐ Passage 1 : coffret complet et conforme ☐ Oui ☐ Non — rôle de chef d'équipe le plus solide pour moi :
+  ☐ puissance ☐ commande<br>
+  ☐ Passage 2 : coffret complet et conforme ☐ Oui ☐ Non — progrès observé sur le rôle de chef d'équipe : ________</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statuts du jour : <b>C3.6 Confortement → vers Maîtrise</b> ·
+  <b>C3.7 Confortement</b> — jamais Évaluation dans ce module (Évaluation = É4, semaine 32).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.5%">0<br>Non évalué</th><th style="width:14.5%">1<br>Non acquis</th><th style="width:14.5%">2<br>En cours</th><th style="width:14.5%">3<br>Acquis</th><th style="width:14.5%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques</td><td>sur T10 · S5.6</td><td>Compétence non observée ce jour.</td><td>Câblage non conforme, thermostat oublié ou shunté, ou consignation non respectée.</td><td>Coffret câblé avec une ou plusieurs erreurs corrigées après contrôle du professeur.</td><td>Coffret câblé conforme (puissance, commande, thermostat en série), contrôlé et validé.</td><td>Comme « Acquis », et repérage préalable exemplaire (annexe complétée sans erreur avant câblage).</td></tr>
+    <tr><td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques</td><td>rôle de chef d'équipe</td><td>Compétence non observée ce jour.</td><td>N'annonce pas les étapes, ou câble à la place de l'exécutant, ou ne relève aucune erreur.</td><td>Guide et contrôle avec l'aide du professeur pour relancer les annonces.</td><td>Guide clairement, contrôle chaque étape avant de passer à la suivante, sans câbler à la place de l'exécutant.</td><td>Comme « Acquis », et adapte son guidage (plus concis, par blocs) au niveau de l'exécutant.</td></tr>
+    <tr><td>Savoir-être — sécurité, communication, rigueur du contrôle</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux, ou communication confuse qui met en danger la logique du câblage.</td><td>Sécurité respectée, communication fonctionnelle mais peu claire.</td><td>Sécurité sans rappel, communication claire et posée dans les deux rôles.</td><td>Comme « Acquis », et aide un autre binôme en difficulté sans câbler à sa place.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C3.7 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Variantes</h3>
+  <ul class="liste-num">
+    <li><b>Consolidation</b> <span class="nuance">(fléchée, élèves fragiles à É3 sur C3.6)</span> : le professeur
+    reste au poste, le rôle de chef d'équipe est tenu en premier par l'élève le plus solide du binôme, avant
+    rotation guidée.</li>
+    <li><b>Standard</b> : déroulement tel que décrit dans ce document.</li>
+    <li><b>Approfondissement</b> <span class="nuance">(tutorat)</span> : après validation, le binôme explique à un
+    autre binôme la différence entre un arrêt par S2 et un arrêt par TH1 ; défi transfert : « et si deux
+    thermostats devaient réguler deux zones différentes du même coffret ? » <span class="nuance">(question
+    ouverte, non traitée dans ce module — RIEN de plus n'est câblé)</span>.</li>
+  </ul>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : questions répondues, contrôles, essais)</li>
+    <li><b>L'annexe A3 complétée</b> (repérage réalisé en binôme, visée par le professeur avant câblage)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (fils, cosses, fusibles, voyants de rechange)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « TP câblage
+  puissance/commande avec repérage » de l'enseignant, 2025-2026 (démarche de lecture/colorisation des réseaux,
+  repérage et numérotation des bornes, câblage puissance puis commande, auto-contrôle avant mise sous tension) ;
+  « Plan de séance », « Document élève - TP » et « Document professeur - corrigé », S5-E2 · Schémas de commande
+  industriels et S6-E1 · Contacteurs et moteurs, F. Henninot (départ moteur complet réinvesti : Q1, KM1, F1, S1,
+  S2, H1, H2) ; documents S7-E1 · Régulations simples (thermostat de régulation, vu ou en cours en parallèle).
+  Schémas composés dans <code>images/</code> de S7 (bibliothèque de symboles inerWeb). Aucune valeur non
+  autorisée : couplage du moteur, calibrage du relais thermique et référence exacte du thermostat restent
+  <b>« selon le matériel de l'atelier, à faire valider »</b>.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE : SCHÉMA DU COFFRET SANS REPÈRES (impression A3 paysage, une feuille par binôme) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — exercice de repérage (une feuille par binôme, à compléter AVANT le câblage)</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma du coffret clim — à compléter</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b>. En binôme,
+  inscrivez les repères (Q1, KM1, F1, M1, S1, S2, TH1, H1, H2) et les bornes utilisées, en vous appuyant sur le
+  schéma légendé de référence fourni par le professeur. Faites viser par le professeur avant de câbler.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-coffret-clim--sans-reperes.svg" alt="Schéma technique pleine page du coffret clim, à compléter avec les repères" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .role{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

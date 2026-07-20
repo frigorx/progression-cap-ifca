@@ -1,0 +1,442 @@
+<meta charset="utf-8">
+<title>Corrigé professeur — S12 · Séance 1 · Câblage de l'armoire électrique</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  section{margin:0 0 1.1em}
+  .rep{border-left:3px solid #2e7d4f; background:#f2f8f4; padding:6px 10px; margin:.3em 0; font-size:10.3pt}
+  .rep b{color:#2e7d4f; font-family:'Trebuchet MS',sans-serif}
+  .vig{border-left:3px solid var(--orange); background:#fff7f3; padding:6px 10px; margin:.3em 0; font-size:10.3pt}
+  .vig b{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .erreur{border-left:3px solid #b23b3b; background:#fbf0f0; padding:6px 10px; margin:.3em 0; font-size:10.3pt}
+  .erreur b{color:#b23b3b; font-family:'Trebuchet MS',sans-serif}
+  .etape{border:1px solid var(--filet); border-radius:6px; margin:0 0 .8em; overflow:hidden}
+  .etape .tit{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:6px 12px; display:flex; justify-content:space-between; align-items:center; gap:8px}
+  .etape .tit b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu); font-size:11.5pt}
+  .etape .duree{font-size:8.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--gris); background:#fff; border:1px solid var(--filet); border-radius:10px; padding:1px 9px; white-space:nowrap}
+  .etape .corps{padding:8px 14px}
+  .tsec{font-size:9.5pt}
+  .tsec th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8.5pt; text-transform:uppercase; padding:5px 7px; text-align:left}
+  .tsec td{border:1px solid var(--filet); padding:5px 7px; vertical-align:top}
+  .tsec tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille{font-size:9.3pt}
+  .grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .tbl-wrap{overflow-x:auto}
+  .source{font-size:7.8pt; color:var(--leger); font-style:italic; text-align:right; margin-top:6px}
+  .diff{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; font-size:9.7pt}
+  .diff>div{border:1px solid var(--filet); border-radius:6px; padding:8px 10px}
+  .diff h4{font-size:8.5pt; letter-spacing:.06em; text-transform:uppercase; color:var(--gris); margin:0 0 4px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:190px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 : CADRAGE + ORGANISATION MATÉRIELLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Câblage électrotechnique — chantier de remise en état (A3)</td>
+      <td style="width:38%"><span class="lib">Séance n° 1/3 — CORRIGÉ PROF</span><b>Câblage de l'armoire électrique — puissance et commande</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S12</span></td>
+    </tr>
+    <tr>
+      <td><span class="lib">Durée</span>8 h (bi-prof, 2 pôles)</td>
+      <td><span class="lib">Compétences</span><span class="statut">Confortement</span> C3.6 · C3.7</td>
+      <td><span class="lib">Tâches / Savoirs</span>T11 · T13 — S5.2 · S6.1</td>
+      <td><span class="lib">Encadrement</span>Bi-prof, rotation à mi-journée</td>
+    </tr>
+  </table></div>
+
+  <section>
+    <h3 style="font-size:12.5pt">Organisation matérielle du plateau</h3>
+    <p style="font-size:10.5pt">Prévoir <b>deux zones distinctes</b> avant l'arrivée des élèves :</p>
+    <div class="tbl-wrap"><table class="tsec">
+      <tr><th style="width:20%">Zone</th><th style="width:50%">Contenu à préparer</th><th style="width:30%">Point de vigilance</th></tr>
+      <tr><td>Pôle Puissance</td><td>Armoires à câbler + sectionneurs, contacteurs, relais thermiques, multimètres, VAT, cadenas individuels étiquetés à l'avance</td><td>Vérifier que chaque armoire est bien hors tension AVANT le début de séance</td></tr>
+      <tr><td>Pôle Commande</td><td>Auxiliaires, boutons poussoirs, voyants, gaines repère-fils, schémas plastifiés en nombre suffisant (1 jeu par binôme)</td><td>Prévoir un jeu de schémas de secours (élèves qui abîment le leur)</td></tr>
+      <tr><td>Zone démonstration</td><td>Armoire de référence déjà câblée, visible des deux pôles pour la phase « planter la notion »</td><td>Ne jamais la mettre sous tension devant les élèves sans rappel de sécurité</td></tr>
+      <tr><td>Zone repos / carnet</td><td>Espace pour rédiger le rapport de synthèse et le bon de commande hebdomadaire</td><td>Éloigné des zones sous tension</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3 style="font-size:12.5pt">Minutage conseillé (journée de 8 h)</h3>
+    <div class="tbl-wrap"><table class="tsec">
+      <tr><th style="width:14%">Créneau</th><th style="width:86%">Contenu</th></tr>
+      <tr><td>0 h 00 – 0 h 40</td><td>Accueil, mise en situation, objectifs, prérequis (exercice au fil de l'eau pendant le passage en tenue)</td></tr>
+      <tr><td>0 h 40 – 1 h 10</td><td>Mise en sécurité de la zone + « planter la notion » (observer / nommer / expliciter)</td></tr>
+      <tr><td>1 h 10 – 2 h 50</td><td>Rotation 1 (Puissance ou Commande selon le binôme) — étape 5 (lecture du schéma, commune aux deux pôles), puis étapes 6 à 9, ou 10 à 13</td></tr>
+      <tr><td>2 h 50 – 3 h 05</td><td>Pause du matin, armoires consignées</td></tr>
+      <tr><td>3 h 05 – 4 h 00</td><td>Fin de la rotation 1, contrôle croisé</td></tr>
+      <tr><td>4 h 00 – 6 h 35</td><td>Rotation 2 : échange des pôles, reconsignation obligatoire</td></tr>
+      <tr><td>6 h 35 – 7 h 00</td><td>Mise en commun croisée entre binômes (étape 14)</td></tr>
+      <tr><td>7 h 00 – 7 h 20</td><td>Auto-positionnement puis validation professeur</td></tr>
+      <tr><td>7 h 20 – 7 h 35</td><td>Carnet de bord + bon de commande hebdomadaire</td></tr>
+      <tr><td>7 h 35 – 8 h 00</td><td>Rangement, retour en tenue de ville, annonce séance 2 (pressostats)</td></tr>
+    </table></div>
+  </section>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : RÉPONSES ATTENDUES 1 à 4 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">Corrigé — S12 · séance 1/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Réponses attendues — Étapes 1 à 4</h3>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 1 — Observer les deux armoires</b><span class="duree">5 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 1 (réponse attendue) —</b> Les fils n'ont pas tous la même couleur ni la même
+      épaisseur parce qu'ils n'appartiennent pas au même circuit : certains transportent le courant qui fait
+      tourner le moteur (fils épais, forte section), d'autres pilotent seulement l'ouverture/fermeture du
+      contacteur (fils fins, faible section). L'élève n'a pas encore les mots « puissance » et « commande » à
+      ce stade : accepter toute formulation qui approche l'idée de deux fonctions différentes.</div>
+      <div class="vig"><b>Point de vigilance —</b> Ne pas corriger immédiatement une réponse imprécise. Cette
+      étape est une phase d'observation libre ; le vocabulaire exact arrive à l'étape 2. Laisser l'élève écrire
+      son hypothèse même approximative.</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 2 — Nommer : puissance et commande</b><span class="duree">10 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Tableau attendu —</b> Circuit de puissance : sectionneur, contacteur (partie puissance),
+      relais thermique. Circuit de commande : bobine du contacteur, boutons poussoirs, voyants, auxiliaires.</div>
+      <div class="erreur"><b>Erreur typique —</b> Certains élèves placent le contacteur uniquement du côté
+      « commande » car ils confondent la bobine (commande) et les pôles de puissance (puissance) du même
+      appareil. Profiter de cette confusion pour bien montrer sur l'armoire de référence que le contacteur a
+      deux parties distinctes.</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 3 — Expliciter par la démonstration</b><span class="duree">15 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 2 (réponse attendue) —</b> « Le circuit de <u>puissance</u> alimente
+      directement le moteur, le circuit de <u>commande</u> commande l'ouverture et la fermeture du contacteur. »</div>
+      <div class="rep"><b>Question 3 (réponse attendue) —</b> On ne peut pas câbler le circuit de puissance
+      avec des fils fins parce qu'il transporte un courant beaucoup plus fort : un fil trop fin chaufferait
+      excessivement et pourrait prendre feu ou fondre. Accepter toute formulation évoquant l'échauffement lié à
+      l'intensité, sans exiger de valeur chiffrée (aucune section ni intensité précise n'est imposée par le
+      référentiel de cette séance).</div>
+      <div class="vig"><b>Point de vigilance —</b> Ne jamais donner de valeur de section de câble ou d'intensité
+      non sourcée : rester sur l'explication qualitative (fort courant → besoin de plus de section).</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 4 — Consigner l'armoire (NFC 18-510)</b><span class="duree">20 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Relevé attendu —</b> Tension avant coupure : valeur mesurée sur l'installation réelle
+      (à renseigner par l'élève, dépend de l'armoire). Tension après consignation : 0 V sur tous les points
+      contrôlés au VAT.</div>
+      <div class="rep"><b>Question 4 (réponse attendue) —</b> Seul l'élève qui a posé son propre cadenas peut
+      le retirer. C'est une règle absolue de la consignation individuelle (NFC 18-510).</div>
+      <div class="erreur"><b>Erreur typique —</b> Un élève qui vérifie l'absence de tension seulement sur une
+      phase et pas sur les trois. Insister : le VAT doit être testé sur CHAQUE point de connexion prévu, sans
+      exception.</div>
+      <div class="vig"><b>Point de vigilance —</b> Vérifier physiquement chaque cadenas et étiquette avant
+      d'autoriser le début du câblage. Ne jamais laisser un binôme commencer sans consignation complète.</div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 bis : RÉPONSES ATTENDUES — LECTURE GUIDÉE DU SCHÉMA ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">Corrigé — S12 · séance 1/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Réponses attendues — Étape 5 (lecture guidée du schéma)</h3>
+  <img class="fig" src="../images/schema-ccf-complet-puissance-commande.png" alt="Schéma de câblage complet de la machine : circuit de puissance et circuit de commande 24 V">
+  <p class="legende">Schéma de câblage de la machine — document CAP (base CCF 2022), F. Henninot.</p>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 5 — Lire le schéma avant de câbler</b><span class="duree">15 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Tracé attendu (surlignage) —</b> En ROUGE : tout le circuit de puissance, c'est-à-dire
+      Q0 (sectionneur de tête), Q1 (disjoncteur moteur), Q2 (sectionneur porte-fusibles), F1 (coupe-circuit
+      unipolaire + neutre), F2 (relais thermique), KM1 et KM2 (contacteurs), les moteurs M1 et M2, et le
+      transformateur 230/24 V. En BLEU : tout le circuit de commande 24 V, c'est-à-dire s0, b1, b2, b3, km1,
+      km2, vem (électrovanne), et les voyants h1/h3, entre les bornes x9 et x22.</div>
+      <div class="erreur"><b>Erreur typique —</b> Un élève surligne le transformateur en bleu en le confondant
+      avec le circuit de commande parce qu'il alimente le 24 V. Rappeler que le transformateur lui-même
+      (primaire 230 V) appartient au circuit de puissance : c'est sa sortie 24 V qui alimente le circuit de
+      commande.</div>
+      <div class="rep"><b>Tableau attendu (repère → nom → rôle), d'après le schéma —</b>
+      <br><b>Q1</b> — disjoncteur moteur — protège le circuit de puissance et permet la coupure du moteur.
+      <br><b>KM1</b> — contacteur moteur 1 — établit ou coupe l'alimentation du moteur M1 sur ordre du circuit de commande.
+      <br><b>F2</b> — relais thermique — protège le moteur contre les surintensités prolongées (surcharge).
+      <br><b>b1</b> — bouton poussoir HP (repéré « HP » sur le schéma, entre x11 et x12) — associé à la fonction d'arrêt/sécurité du circuit de commande.
+      <br><b>b2</b> — bouton poussoir BP (repéré « BP » sur le schéma, entre x12 et x14) — associé à la fonction de marche du circuit de commande.</div>
+      <div class="vig"><b>Point de vigilance —</b> Le rôle exact de b1 (HP) et b2 (BP) dépend du câblage précis
+      de la machine du chantier : faire confirmer à l'élève, sur l'armoire réelle, quel bouton est l'arrêt et
+      lequel est la marche, plutôt que d'imposer une réponse toute faite. Ne jamais inventer de valeur de seuil
+      (pression, courant) non fournie par le schéma ou la plaque signalétique.</div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 : RÉPONSES ATTENDUES — PÔLE PUISSANCE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">Corrigé — S12 · séance 1/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Réponses attendues — Pôle Puissance (étapes 6 à 9)</h3>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 6 — Câbler le sectionneur Q1</b><span class="duree">20 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 6 (réponse attendue) —</b> Trois phases (L1, L2, L3) pour une alimentation
+      triphasée, selon le schéma remis, câblées sur les bornes 1-3-5 de Q1. Vérifier que le relevé de l'élève
+      correspond exactement au repérage du schéma validé, sans invention de repère.</div>
+      <div class="vig"><b>Point de vigilance —</b> Vérifier le sens de câblage entrée/sortie de Q1
+      avant que l'élève ne fixe définitivement les fils : une inversion à ce stade oblige à tout redéfaire.</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 7 — Câbler le contacteur KM1</b><span class="duree">25 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 7 (réponse attendue) —</b> Un court-circuit se produirait entre les deux
+      bornes : risque d'échauffement brutal, de disjonction, voire d'arc électrique et de brûlure pour l'élève
+      si l'armoire était sous tension.</div>
+      <div class="erreur"><b>Erreur typique —</b> Brins de fils dénudés qui dépassent après le serrage de la
+      borne (mauvaise dénudation ou serrage insuffisant). Toujours faire vérifier visuellement chaque borne par
+      l'élève avant de passer à la suivante.</div>
+      <div class="rep"><b>Critère de correction du dessin (symbole du contacteur KM1) —</b> D'après le schéma :
+      trois pôles de puissance en trait plein (contacts normalement ouverts, 1-3-5 vers 2-4-6), représentés par
+      trois traits parallèles avec un trait oblique de commutation, et un repère « KM1 » à côté. Accepter toute
+      variante graphique correcte du symbole normalisé ; refuser un simple rectangle sans les trois pôles
+      distincts.</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 8 — Câbler le relais thermique F2</b><span class="duree">20 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 8 (réponse attendue) —</b> F2 protège le moteur contre une
+      surintensité prolongée (surcharge) : il coupe l'alimentation si le courant dépasse le seuil réglé, pour
+      éviter que le moteur ne surchauffe et ne s'endommage.</div>
+      <div class="vig"><b>Point de vigilance —</b> Aucun réglage chiffré de F2 n'est demandé
+      dans cette séance 1 : le réglage précis (intensité nominale) relève d'une séance ultérieure. Se limiter
+      ici au rôle fonctionnel du composant.</div>
+      <div class="rep"><b>Critère de correction du dessin (symbole du relais thermique F2) —</b> D'après le
+      schéma : trois pôles de puissance (bornes 1-3-5 vers 2-4-6) avec le symbole de bilame en dessous du
+      contact, et le repère « F2 » à côté. Accepter toute variante graphique correcte ; refuser un symbole
+      confondu avec celui d'un simple sectionneur (sans le signe de bilame/surcharge).</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 9 — Contrôler la continuité au multimètre</b><span class="duree">15 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Relevé attendu —</b> Continuité « OK » sur chaque liaison câblée (Q1 →
+      KM1 → F2 → moteur M1). Toute liaison « non OK » doit être reprise avant la remise sous tension.</div>
+      <div class="rep"><b>Question 9 (réponse attendue) —</b> On contrôle la continuité avant remise sous
+      tension pour vérifier qu'il n'y a ni coupure (mauvais contact, fil non serré) ni court-circuit accidentel
+      entre deux points qui ne doivent pas être reliés. Cela évite d'endommager le matériel ou de mettre
+      l'élève en danger à la mise sous tension.</div>
+      <div class="erreur"><b>Erreur typique —</b> Élève qui teste la continuité armoire sous tension : rappeler
+      systématiquement que le contrôle au multimètre en mode ohmmètre se fait TOUJOURS hors tension, armoire
+      consignée.</div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 : RÉPONSES ATTENDUES — PÔLE COMMANDE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">Corrigé — S12 · séance 1/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Réponses attendues — Pôle Commande (étapes 10 à 13)</h3>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 10 — Câbler la bobine km1</b><span class="duree">20 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 10 (réponse attendue) —</b> Les fils de commande sont plus fins que ceux de
+      puissance, car le courant qui pilote la bobine km1 est beaucoup plus faible que le courant qui traverse le
+      moteur. Aucune valeur chiffrée de section n'est exigée ; se limiter à la comparaison qualitative.</div>
+      <div class="vig"><b>Point de vigilance —</b> Vérifier le repérage A1/A2 de la bobine km1 avant le serrage :
+      une bobine mal repérée peut être confondue avec un contact auxiliaire lors du contrôle.</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 11 — Câbler les boutons poussoirs b1 et b2</b><span class="duree">25 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 11 (réponse attendue) —</b> En inversant b1 et b2, le bouton
+      censé arrêter le moteur le mettrait en route, et inversement. C'est un risque grave pour la sécurité de
+      l'opérateur, qui doit toujours pouvoir arrêter la machine de façon fiable.</div>
+      <div class="erreur"><b>Erreur typique —</b> Étiquette de repérage posée après le câblage plutôt qu'avant :
+      exiger que l'étiquetage précède le serrage définitif pour éviter les confusions lors du contrôle croisé.</div>
+      <div class="vig"><b>Point de vigilance —</b> Faire confirmer sur l'armoire réelle laquelle de b1 (HP) ou
+      b2 (BP) assure la fonction d'arrêt et laquelle assure la marche, avant toute réponse écrite : ne pas
+      l'imposer de mémoire.</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 12 — Câbler les voyants h1/h3 et contrôler</b><span class="duree">20 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Relevé attendu —</b> Continuité « OK » sur chaque liaison de commande câblée
+      (km1 → h3, s0 → h1). Toute anomalie doit être reprise avant contrôle croisé.</div>
+      <div class="vig"><b>Point de vigilance —</b> Le voyant est souvent câblé en direct sur l'alimentation
+      plutôt qu'en parallèle du circuit qu'il signale : vérifier au schéma avant validation.</div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 13 — Contrôle croisé entre binômes</b><span class="duree">15 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 12 —</b> Réponse libre selon l'écart réellement constaté (repérage inversé,
+      borne mal serrée, fil oublié…). Valoriser tout écart correctement identifié, même mineur : c'est l'objectif
+      pédagogique de ce contrôle croisé (développer le regard critique C3.7).</div>
+      <div class="vig"><b>Point de vigilance —</b> Le contrôle croisé se fait armoire toujours consignée, sans
+      qu'aucun élève ne touche au câblage du binôme voisin — seule une vérification visuelle et au schéma est
+      autorisée à cette étape.</div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 : SYNTHÈSE, GRILLE, DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">Corrigé — S12 · séance 1/3 · CAP IFCA 2A</div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 14 — Mise en commun</b><span class="duree">25 min</span></div>
+    <div class="corps">
+      <div class="rep"><b>Question 13 (réponse attendue) —</b> « Le circuit de puissance alimente directement
+      le moteur avec un courant fort, le circuit de commande pilote seulement l'ouverture/fermeture du
+      contacteur avec un courant faible. » Accepter toute reformulation correcte de cette idée centrale.</div>
+    </div>
+  </div>
+
+  <section>
+    <h3 style="font-size:12.5pt">Grille d'évaluation — échelle 0-4, repères de correction</h3>
+    <div class="tbl-wrap"><table class="grille" style="font-size:8.1pt">
+      <tr><th style="width:8%">Compétence</th><th style="width:15%">0 — Non évalué</th><th style="width:16.5%">1 — Non acquis</th><th style="width:16.5%">2 — En cours</th><th style="width:16.5%">3 — Acquis</th><th style="width:16.5%">4 — Parfaitement maîtrisé</th><th style="width:11%">Vigilance correction</th></tr>
+      <tr><td><b>C3.6</b><br><span class="nuance" style="font-size:7.3pt">sur T11 · S5.2</span></td>
+        <td>Compétence non observée ce jour</td>
+        <td>Erreurs de repérage puissance/commande, câblage non conforme au schéma</td>
+        <td>Câblage globalement conforme, 1 à 2 erreurs mineures corrigées après remarque</td>
+        <td>Câblage conforme au schéma, aucune erreur de repérage ni de serrage, réalisé seul</td>
+        <td>Câblage conforme réalisé seul, et l'élève explique à un pair la logique de repérage ou l'aide à corriger son erreur</td>
+        <td>Toujours vérifier au schéma, pas d'appréciation « à l'œil »</td></tr>
+      <tr><td><b>C3.7</b><br><span class="nuance" style="font-size:7.3pt">sur T13 · S6.1</span></td>
+        <td>Compétence non observée ce jour</td>
+        <td>Contrôle absent, ou remise sous tension sans vérification</td>
+        <td>Contrôle réalisé mais partiel ou mal interprété</td>
+        <td>Contrôle de continuité systématique et correctement interprété avant remise sous tension, réalisé seul</td>
+        <td>Contrôle systématique et interprété seul, et l'élève explique à un pair pourquoi on contrôle avant remise sous tension</td>
+        <td>Vérifier que le relevé écrit correspond à un contrôle réellement effectué, pas recopié</td></tr>
+      <tr><td>Savoir-être</td>
+        <td>Non observé ce jour</td>
+        <td>Oubli répété de la consignation ou des EPI</td>
+        <td>Consignation et EPI corrects mais nécessitent un rappel ponctuel</td>
+        <td>Consignation spontanée, EPI portés sans rappel</td>
+        <td>Consignation et EPI spontanés toute la journée, et l'élève rappelle la règle à un camarade qui l'oublie</td>
+        <td>Noter les oublis observés pendant la rotation, pas seulement en fin de séance</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h3 style="font-size:12.5pt">Différenciation</h3>
+    <div class="diff">
+      <div><h4>Consolidation</h4>Schéma simplifié avec repères de couleur pré-indiqués. Professeur reste au poste pendant tout le câblage du sectionneur. Réduire le nombre de liaisons à contrôler (se concentrer sur puissance OU commande, pas les deux rotations).</div>
+      <div><h4>Standard</h4>Déroulement tel que décrit dans le document élève, rotation complète sur les deux pôles.</div>
+      <div><h4>Approfondissement</h4>Demander en plus la réalisation du schéma multifilaire complet à partir du schéma unifilaire, avant câblage. Confier le rôle de contrôleur croisé en priorité.</div>
+    </div>
+    <div class="vig" style="margin-top:.6em"><b>TDAH / DYS —</b> Fractionner chaque étape en sous-consignes orales en plus de l'écrit. Autoriser un surlignage couleur du schéma (puissance en rouge, commande en bleu) avant le câblage. Prévoir des pauses courtes entre les étapes 6 et 7 si besoin. Reformuler chaque question de compréhension à l'oral avant que l'élève n'écrive sa réponse.</div>
+  </section>
+
+  <section>
+    <h3 style="font-size:12.5pt">Points de vigilance généraux de la séance</h3>
+    <ul style="font-size:10.3pt">
+      <li>Ne jamais autoriser une mise sous tension sans contrôle de continuité validé par le professeur.</li>
+      <li>Vérifier physiquement chaque cadenas de consignation avant le début du câblage, et son retrait par le bon élève en fin de séance.</li>
+      <li>Garder le vocabulaire « puissance / commande » cohérent entre les deux pôles (risque de dérive de langage entre les deux professeurs).</li>
+      <li>Toute valeur de pression, de tension exacte de service ou de section de câble non fournie par le schéma du chantier ne doit pas être inventée : renvoyer à la plaque signalétique ou au schéma validé.</li>
+    </ul>
+  </section>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+  <p class="source">D'après : Activité n°1 câblage schémas de commande, Activité n°3 câblage schémas de puissance (base pédagogique CAP IFCA)</p>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

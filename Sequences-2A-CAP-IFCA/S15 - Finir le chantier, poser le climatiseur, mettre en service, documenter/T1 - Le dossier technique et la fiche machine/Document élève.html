@@ -1,0 +1,298 @@
+<meta charset="utf-8">
+<title>Cours élève — S15 · Module théorie T1 · Le dossier technique et la fiche machine</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE + DÉCOUVERTE (LE DOE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Le dossier technique · la fiche machine</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE T1 · 1 h</span><b>Le dossier technique et la fiche machine (QR)</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S15</span> · sem. 19</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi</div>
+    <div class="case"><h4>Savoirs</h4><b>S1.2</b> Pièces et autorisations administratives<br><b>S2.1</b> Outils, normes et représentation</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du classement · honnêteté (jamais de valeur inventée sur un document officiel)</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte → Confortement</span> <b>C1.1</b> Compléter, transmettre <span class="nuance">module de renforcement, préparatoire au module F6</span></div>
+  </div>
+
+  <div class="situation"><h4>Accroche</h4>
+  <b>Ordre d'intervention n° S15-T1-01</b> : le climatiseur split que vous venez de poser et de mettre en service
+  (module A6) est terminé. Le client va venir réceptionner l'installation. Votre professeur vous demande de
+  préparer <b>les documents à lui remettre</b>.
+  <div class="encadre-question"><b>Question de départ</b> — Dans 3 ans, si la machine tombe en panne et qu'un
+  autre technicien intervient (pas vous), comment saura-t-il quel fluide elle contient, quelle est sa charge, et
+  quels réglages ont été faits le jour de la mise en service ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — le Dossier des Ouvrages Exécutés (DOE)</h3>
+  <p style="font-size:10.5pt">Observez le schéma ci-dessous : il montre <b>qui remet le DOE à qui</b>, et à
+  quel moment du chantier.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-doe-flux.svg" alt="Schéma du flux du Dossier des Ouvrages Exécutés : avant les travaux la maîtrise d'ouvrage remet le DOE existant à l'entreprise, après réception l'entreprise remet le DOE à jour à la maîtrise d'ouvrage qui le conserve pour le fonctionnement, la maintenance et la garantie"
+         style="max-width:92%;">
+    <figcaption class="legende">Le circuit du DOE : avant le chantier (en haut) et après la réception des travaux (en bas).</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Observation 1</b> — D'après le schéma, <b>avant</b> le début des travaux, qui
+  remet le DOE existant, et à qui ?</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <div class="encadre-question"><b>Observation 2</b> — D'après le schéma, <b>après</b> la réception des travaux,
+  qui remet le DOE à jour, et à qui ? Que devient ce dossier ensuite ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="notion"><h4>Ce qu'est le DOE</h4>
+  <p style="margin:0; font-size:10.5pt">Le <b>Dossier des Ouvrages Exécutés</b> est un document <b>obligatoire</b>
+  qui retrace toute la <b>traçabilité technique et historique</b> d'un chantier. Une fois les travaux reçus, il
+  est <b>conservé par le client</b> (la maîtrise d'ouvrage) pour le <b>fonctionnement</b>, la <b>maintenance</b>
+  et la <b>garantie</b> de l'installation. C'est une <b>archive</b> : sans lui, un futur intervenant repart de
+  zéro sur une machine qu'il ne connaît pas.</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — À votre avis, qui a besoin de consulter le DOE plusieurs
+  années après la mise en service, et pourquoi ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE DE LA FICHE MACHINE ET DU QR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module théorie T1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — la fiche machine et le QR hors-ligne</h3>
+  <p style="font-size:10.5pt">Le DOE, c'est le dossier complet du chantier. Mais sur le terrain, un technicien
+  n'a pas toujours ce dossier entier avec lui. Il existe un document plus court, collé <b>sur la machine
+  elle-même</b> : la <b>fiche machine</b>.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/pictogramme-qr-fiche-machine.svg" alt="Schéma pictogramme : une fiche machine papier listant repère, fluide, charge, organes, réglages et historique, avec un QR à scanner qui renvoie à une fiche numérique inerWeb consultable hors ligne"
+         style="max-width:95%;">
+    <figcaption class="legende">La fiche machine (à gauche) porte un QR. En le scannant, on accède à la fiche numérique de la machine (à droite).</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Observation 3</b> — D'après le schéma, quelles sont les <b>5 informations</b>
+  qui figurent sur la fiche machine papier ? Recopiez la liste.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="encadre-question"><b>Observation 4</b> — Que se passe-t-il quand on <b>scanne le QR</b> de la
+  fiche machine ? Le schéma précise une particularité importante de cette fiche numérique : laquelle ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="notion"><h4>Ce qu'est la fiche machine (avec QR hors-ligne inerWeb)</h4>
+  <p style="margin:0; font-size:10.5pt">La <b>fiche machine</b> résume les informations essentielles d'une
+  installation : son <b>repère</b>, son <b>fluide et sa charge</b>, ses <b>organes</b> (compresseur, détendeur,
+  vannes…), ses <b>réglages</b> (pressostats, consigne). Elle porte une <b>étiquette QR</b> : en la scannant avec
+  un smartphone, on ouvre la <b>fiche numérique</b> de cette machine précise, dans l'outil <b>inerWeb</b>.</p>
+  <p style="margin:.5em 0 0; font-size:10.5pt">Particularité importante : cette fiche numérique reste
+  <b>consultable même sans connexion internet</b> (« hors-ligne »). Un technicien peut donc la lire dans une
+  chaufferie ou un local technique où le réseau ne passe pas.</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — Quelle est la différence entre le DOE (feuille 1) et la fiche
+  machine (cette feuille) ? Lequel des deux tiendrait dans votre poche sur le chantier ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — APPLICATION (EXERCICES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module théorie T1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION</h3>
+
+  <h4 style="font-size:11pt">Exercice 1 — DOE ou fiche machine ?</h4>
+  <p style="font-size:10.3pt">Pour chaque situation, cochez le document le plus adapté.</p>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:60%">Situation</th><th>DOE</th><th>Fiche machine</th></tr>
+    <tr><td style="text-align:left">Un technicien seul, sur le chantier, veut connaître en 30 secondes le fluide et la charge de la machine.</td><td>☐</td><td>☐</td></tr>
+    <tr><td style="text-align:left">Le client archive tous les plans, notices et PV d'essais du chantier pendant 20 ans.</td><td>☐</td><td>☐</td></tr>
+    <tr><td style="text-align:left">On veut scanner un code directement collé sur la machine.</td><td>☐</td><td>☐</td></tr>
+    <tr><td style="text-align:left">Un bureau d'études a besoin de la traçabilité complète de tous les travaux réalisés.</td><td>☐</td><td>☐</td></tr>
+  </table>
+
+  <h4 style="font-size:11pt">Exercice 2 — classer les informations</h4>
+  <p style="font-size:10.3pt">Voici des informations trouvées lors de la mise en service du climatiseur split
+  (module A6). Rangez chacune dans la bonne catégorie de la fiche machine.</p>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:55%">Information</th><th>Catégorie de la fiche machine</th></tr>
+    <tr><td style="text-align:left">R32, 0,85 kg</td><td><span class="lignes"></span></td></tr>
+    <tr><td style="text-align:left">Compresseur rotatif, détendeur électronique</td><td><span class="lignes"></span></td></tr>
+    <tr><td style="text-align:left">Pressostat HP réglé à 28 bar</td><td><span class="lignes"></span></td></tr>
+    <tr><td style="text-align:left">Poste UE/UI n° 3, salle B12</td><td><span class="lignes"></span></td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Catégories possibles : repère · fluide/charge ·
+  organes · réglages.</p>
+
+  <h4 style="font-size:11pt">Exercice 3 — vrai ou faux</h4>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:70%">Affirmation</th><th>Vrai / Faux</th></tr>
+    <tr><td style="text-align:left">Le DOE est remis une seule fois, avant le début des travaux.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">La fiche numérique liée au QR reste consultable sans connexion internet.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Une valeur absente de la plaque signalétique peut être inventée sur la fiche machine.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Le DOE sert notamment à la maintenance future de l'installation.</td><td>☐ Vrai ☐ Faux</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Dans l'affirmation sur la valeur inventée, que doit écrire un
+  technicien honnête si une donnée manque sur la plaque signalétique ?</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — SYNTHÈSE / TRACE ÉCRITE + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module théorie T1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — ma fiche de trace écrite</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec vos propres mots : elle vous servira de repère au
+  module F6, où vous constituerez le dossier technique de votre propre machine.</p>
+
+  <div class="trace">
+    <p style="font-size:10.5pt; margin:0 0 8px"><b>1. Le DOE — je retiens :</b></p>
+    <div class="zone-reponse" style="min-height:3.2em"></div>
+
+    <p style="font-size:10.5pt; margin:14px 0 8px"><b>2. La fiche machine et le QR — je retiens :</b></p>
+    <div class="zone-reponse" style="min-height:3.2em"></div>
+
+    <p style="font-size:10.5pt; margin:14px 0 8px"><b>3. La règle à ne jamais oublier :</b></p>
+    <div class="zone-reponse" style="min-height:1.8em">Une valeur absente de la plaque signalétique s'écrit
+    « <span class="lignes" style="min-width:55%"></span> », jamais inventée.</div>
+  </div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:22%">Savoirs</th><th style="width:14%">Ancrage</th><th style="width:16%">0<br>Non évalué</th><th style="width:16%">1<br>Non acquis</th><th style="width:16%">2<br>En cours</th><th style="width:16%">3-4<br>Acquis / maîtrisé</th></tr>
+    <tr><td><b>S1.2 · S2.1</b> Le DOE et la fiche machine QR <span class="nuance">Découverte → Confortement</span></td><td>module T1</td><td>Compétence non observée ce jour.</td><td>Ne sait pas dire à quoi sert un DOE ni ce que contient une fiche machine.</td><td>Distingue DOE et fiche machine avec de l'aide.</td><td>Distingue seul DOE et fiche machine, cite les 5 catégories d'une fiche machine et la règle de la valeur non inventée.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">S1.2 · S2.1 — le DOE et la fiche machine :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce module de renforcement n'est pas remonté
+  en compétence sur École Directe : il prépare le module F6, où vous constituerez réellement le dossier
+  technique de votre machine (C1.1 en Confortement → Évaluation).</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Dossier des
+  Ouvrages Exécutés.docx, fiche d'intervention clim froid.docx, rapport-dintervention.docx (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

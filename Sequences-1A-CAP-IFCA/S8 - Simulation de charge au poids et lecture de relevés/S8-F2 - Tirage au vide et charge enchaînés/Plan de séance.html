@@ -1,0 +1,214 @@
+<meta charset="utf-8">
+<title>Plan de séance — S8-F2 · Tirage au vide et charge enchaînés</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Simulation de charge au poids et lecture de relevés — <b>module atelier S8-F2</b> (4 h × 1, PASSAGE UNIQUE)</td>
+      <td style="width:38%"><span class="lib">Module S8-F2 · vide + charge enchaînés</span><b>Tirage au vide et charge enchaînés (mini-mise en service)</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S8</span> P4 · semaine 28</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Semaine 28</b> (date à caler, cf. <i>_CADRAGE-S8.md</i>) — <b>passage UNIQUE, pas de passage 2</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — postes binôme (montage vidé + azote + balance) + zone dédiée + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe : créneau libre côté élec, préparation/révisions)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension <span class="nuance">(SIMULÉ : charge à l'azote, geste à blanc)</span><br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> tirage au vide réel + courbe de descente (Confortement S7-F2) · simulation de charge au poids à l'azote (Découverte S8-F1) · lecture de relevés réels (S7-T1) · manodétendeur azote maîtrisé (S5-F2, S6-F1, S7-F2)<br><span class="nuance">Travaillé :</span> <b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de l'enchaînement (aucune étape sautée, aucun ordre inversé) · honnêteté du relevé (feuille exploitable par un tiers, cf. C1.1 de F3) · autonomie · sécurité (azote, fluide jamais réel, charge lourde de la balance)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C4.1</b> Tirer au vide le circuit frigorifique <span class="nuance">sur T13 · S5.5</span><br><span class="statut">Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">niveau visé Maîtrise — sur T13 · T15 · S5.5. Aucun statut Évaluation dans ce module (rien n'est remonté sur École Directe) : le niveau spiralaire VISÉ n'est pas le statut de l'activité.</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S8-2</b> : le montage de l'<b>arrière-boutique</b>, déjà <b>tiré au vide en S7-F2</b>
+  et dont la <b>charge simulée au poids</b> a été apprise séparément en <b>S8-F1</b>, doit maintenant être mis en
+  service <b>intégralement, en autonomie</b>. Vous allez <b>enchaîner</b>, SEUL(E), les deux gestes : reprendre
+  le tirage au vide, puis simuler la charge à l'azote (aucun fluide réel — l'attestation d'aptitude s'obtient
+  en 2<sup>e</sup> année), et <b>remplir la FEUILLE DE RELEVÉS DE MISE EN SERVICE</b> (version pédagogique) à
+  partir de vos propres mesures. C'est la répétition générale de ce que vous ferez « en vrai » l'an prochain.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>reprendre en autonomie</b> le tirage au vide du montage (branchement, relevés, palier, casse à l'azote) ;</li>
+        <li><b>enchaîner</b> la simulation de charge au poids à l'azote (tare, raccordement, pesée, complément) ;</li>
+        <li><b>renseigner intégralement</b> la feuille de relevés de mise en service, à partir de mes propres mesures ;</li>
+        <li><b>respecter l'ordre</b> des opérations d'une mise en service (vide → charge → contrôle), sans en sauter une ;</li>
+        <li><b>rendre compte</b>, en fin de séance, de ce que serait la suite « en vrai » avec un fluide réel.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>tirer au vide, tracer et interpréter une courbe temps/pression (S7-F2, C4.1 Découverte → Confortement) ;</li>
+        <li>simuler une charge au poids à l'azote : tare, pesée, complément (S8-F1, C4.2 Découverte) ;</li>
+        <li>lire des relevés réels et repérer une valeur aberrante (S7-T1) ;</li>
+        <li>manipuler le manodétendeur d'azote par paliers, sous supervision (S5-F2, S6-F1, S7-F2).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Pourquoi une seule séance, cette fois</b> — Contrairement à S8-F1 (vécu deux
+  fois, semaines 26 et 27), ce module ne se vit qu'<b>UNE seule fois</b>, en semaine 28. Ce n'est pas un module au
+  rabais : il ne s'agit pas d'un geste nouveau à répéter, mais de la <b>SYNTHÈSE</b> — l'intégration, en autonomie,
+  de deux gestes déjà maîtrisés séparément (le vide en S7-F2, la charge simulée en S8-F1). Le renforcement ne
+  vient donc pas d'un deuxième passage ici, mais de l'<b>enchaînement lui-même</b>, puis du réinvestissement à
+  É4 (semaine 32, S9) et de la vraie mise en service en 2<sup>e</sup> année.</div>
+
+  <div class="plan"><b class="t">Méthode du module : mini-mise en service intégrale en autonomie</b> — Chaque
+  binôme reçoit un montage déjà vidé (ou remis en état par le professeur), une bouteille d'azote et sa balance de
+  charge, et enchaîne SEUL(E) les deux gestes déjà vus séparément : reprendre le tirage au vide, casser le vide à
+  l'azote, puis simuler la charge au poids (masse cible fixée par le professeur). Le binôme renseigne au fur et à
+  mesure la feuille de relevés de mise en service (version pédagogique), qui devient le document final de la
+  séance. Le professeur ne guide plus l'ordre des étapes (déjà connu) : il supervise la sécurité et valide les
+  deux jalons.</div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : azote = gaz inerte, asphyxie en local
+  mal ventilé (rappel S5→S8-F1) ; pompe à vide = appareil électrique, huile chaude, jamais aspirer de l'azote sous
+  pression avec la pompe ; balance de charge = charge lourde (dos, pieds) ; projections lors des raccordements.
+  <b>EPI</b> : lunettes de protection portées pendant toute la séance. <b>Gestes interdits</b> : <b>jamais de
+  fluide frigorigène réel manipulé</b> (pas d'attestation d'aptitude en 1<sup>re</sup> année) ; jamais d'oxygène ni
+  d'air comprimé à la place de l'azote ; jamais ouvrir un circuit en charge ; jamais dépasser la pression fixée
+  par le professeur ; jamais manipuler la bouteille d'azote ou son manodétendeur sans le professeur présent.
+  <b class="t">🚨 En cas d'incident :</b> le professeur dépressurise, ventile la zone, alerte, ne déplace pas une
+  personne en malaise — trousse de secours et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S8-F2 · module atelier (passage UNIQUE) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), passage unique — semaine 28</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Comme S8-F1 mais sans second passage : le tableau ci-dessous ne présente donc qu'une seule colonne de durée par ligne.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — PASSAGE UNIQUE</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel du format (passage unique, mini-mise en service intégrale).</td><td>Fait l'appel, annonce le format du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S8-2 : enchaîner seul(e) vide + charge simulée, remplir la feuille de relevés. Lien explicite avec la vraie mise en service de 2<sup>e</sup> année.</td><td>Présente l'ordre d'intervention et son enjeu.</td><td>Reformulent la mission : quel enchaînement, dans quel ordre, pourquoi.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C4.1 Confortement, C4.5 Confortement niveau visé Maîtrise).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : quiz éclair REPRENANT séparément le tirage au vide (S7-F2) et la simulation de charge (S8-F1) — pour vérifier que les deux gestes sont bien acquis AVANT de les enchaîner.</td><td>Distribue le quiz éclair, contrôle les tenues et les EPI.</td><td>Se changent par vagues ; en attente, répondent au quiz éclair entre pairs.</td><td>Quiz éclair (items S7-F2/S8-F1) · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (gestes interdits : jamais de fluide réel, jamais toucher au manodétendeur sans le professeur) puis <b>planter la notion</b> : démonstration professeur sur un poste témoin montrant l'ENCHAÎNEMENT complet (vide → casse azote → charge simulée → début de feuille de relevés) → élèves OBSERVENT → NOMMER « une mise en service, c'est un enchaînement sans étape sautée » → EXPLICITER pourquoi l'ordre compte (un circuit chargé avant d'être vidé serait inexploitable). Attribution des montages aux binômes.</td><td>Localise ARU/trousse, réalise la démonstration commentée, attribue les postes.</td><td>Observent la démonstration, identifient l'ordre exact des étapes.</td><td>Poste témoin · montages vidés préparés · balances + bouteilles d'azote · feuilles de relevés vierges · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>70 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon 1</span> : reprise du vide, en autonomie</td><td>Chaque binôme reprend, SEUL, le montage déjà vidé en S7-F2 : branchement pompe/vacuomètre, ouverture des vannes, démarrage de la pompe, relevés à intervalles réguliers jusqu'au palier, fermeture des vannes puis arrêt de la pompe, casse du vide à l'azote en douceur au manodétendeur.</td><td>Circule, supervise UNIQUEMENT la sécurité (pompe, azote), ne rappelle plus l'ordre des étapes.</td><td>Mènent l'ensemble du geste de vide sans aide sur la procédure, relèvent et notent.</td><td>Montage vidé, pompe à vide, vacuomètre, bouteille d'azote + manodétendeur</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>55 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon 2</span> : charge simulée + feuille de relevés</td><td>Chaque binôme enchaîne la simulation de charge au poids à l'azote (tare de la balance, raccordement à la voie d'intervention du manifold, pesée du transfert simulé, complément jusqu'à la masse cible fixée par le professeur), puis renseigne INTÉGRALEMENT la feuille de relevés de mise en service (annexe) à partir de ses propres mesures (pressions, températures, intensités, sens de rotation, réglages de consigne déjà posés en S7, surchauffe/sous-refroidissement).</td><td>Valide la charge simulée, contrôle la feuille de relevés avant signature.</td><td>Chargent en autonomie, renseignent la feuille de relevés, font viser.</td><td>Balance électronique, bouteille d'azote + manodétendeur, feuille de relevés de mise en service (annexe), thermomètre à sondes, pince ampèremétrique</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque binôme présente sa feuille de relevés complétée ; auto-positionnement par compétence (C4.1, C4.5 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leur feuille de relevés, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module (F3) + bon de commande hebdomadaire (azote, feuilles de relevés vierges).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Le professeur dépressurise et ferme les bouteilles d'azote ; rangement des balances, des postes, nettoyage.</td><td>Dépressurise, ferme les bouteilles, supervise le rangement.</td><td>Rangent, nettoient leur poste.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce : « la vraie mise en service, avec un fluide réel et l'attestation d'aptitude, c'est en 2<sup>e</sup> année » ; transition vers S8-E1 puis É4 (S9).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond). Jalon 1 (70 min) + pause (15 min)
+  + jalon 2 (55 min) = 2 h 20. Synthèse 15 + bon de commande 10 + rangement 10 + clôture 5 = 40 min. Total :
+  1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, en un seul passage.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  (azote, charge lourde — rappel S5→S8-F1) · réglementation F-Gas (aperçu S8-T1, le fluide réel arrive en
+  2<sup>e</sup> année) · co-intervention français (feuille de relevés, carnet de bord F3) · réinvestissement
+  immédiat à <b>É4</b> (semaine 32, S9), puis en S9.</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:44px"></div></div>
+    <div><h4>Binômes à revoir en priorité avant É4</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Matériel manquant / à commander</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .plan{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

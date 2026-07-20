@@ -1,0 +1,423 @@
+<meta charset="utf-8">
+<title>Document professeur — S9-F1 · Diagnostic guidé sur machine</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .avenir{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:9.8pt}
+  .avenir b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .distinguo{border:3px double var(--bleu); border-radius:8px; background:#fff; padding:9px 15px; margin:.5em 0 1em; font-size:10.3pt}
+  .distinguo b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif; font-size:10.8pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Diagnostic frigorifique simple</td>
+      <td style="width:38%"><span class="lib">Module S9-F1 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Diagnostic guidé sur machine</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span> · semaines 29-30</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — poste de diagnostic (machine pédagogique en marche, manomètres HP/BP, thermomètre de contact) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage, deux demi-journées (semaines 29 et 30)</td>
+      <td><span class="lib">Modalité</span>Enquête « frigoriste-détective » — OBSERVER → RELEVER → CALCULER → COMPARER → CONCLURE — méthode imposée du module</td>
+      <td><span class="lib">Encadrement</span>1 professeur, demi-groupe — <b>seul habilité</b> à mettre/remettre la machine sous tension, après consignation NF C 18-510</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T16</b> Assurer l'entretien d'une installation <span class="nuance">cœur métier du jour</span><br><b>T14</b> Régler l'installation en fonctionnement <span class="nuance">réactivé</span></div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span><br><b>S4.2</b> Action du froid sur la conservation des denrées <span class="nuance">amorcé, approfondi en S9-T1</span><br><span class="nuance">Prérequis :</span> réglette P/T et calcul SC/SR (S4, S5-T2, S7-T1), manomètres HP/BP (S7-F1)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la mesure · respect strict de la consignation · méthode avant précipitation · autonomie croissante (passage 2)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">pivot, visé V</span><br><span class="statut">Découverte</span> <b>C5.1</b> Remplacer des composants — 1<sup>re</sup> rencontre, désigner le suspect, sans fluide<br><span class="statut">Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements</div>
+  </div>
+
+  <div class="distinguo"><b class="t">⚠ Distinguo — pourquoi on diagnostique par la mesure, sans manipuler de fluide</b> —
+  En 1<sup>re</sup> année, l'élève ne détient pas encore l'attestation d'aptitude à la manipulation des fluides
+  frigorigènes (elle se prépare en 2<sup>e</sup> année). Ce module ne fait donc <b>aucune ouverture de circuit</b>
+  et <b>aucune manipulation de fluide</b> : le diagnostic se fait entièrement par la <b>mesure</b> sur une machine
+  pédagogique <b>mise et remise sous tension exclusivement par le professeur</b>, après consignation NF C 18-510.
+  La désignation du composant suspect en fin d'enquête (C5.1 Découverte) reste une <b>hypothèse intellectuelle</b> :
+  son remplacement réel, sans fluide, se fera au module suivant (S9-F2). La recherche de fuite approfondie et la
+  manipulation réelle du fluide sont réservées à la 2<sup>e</sup> année (S10, attestation d'aptitude). Ne jamais
+  laisser un élève ouvrir le circuit, manipuler une vanne ou toucher au câblage/condensateur, même « juste pour
+  vérifier ».</div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module S9-F1 :
+  mêmes 2 passages, mêmes 2 jalons par passage, même démarche en 5 étapes (OBSERVER, RELEVER, CALCULER, COMPARER,
+  CONCLURE), même arbre à 3 suspects. Il y ajoute : la <b>préparation des postes</b> (quelle panne poser à chaque
+  passage), les corrigés des observations et questions, les <b>erreurs typiques</b> et leur remédiation, le
+  minutage 4 h recompté, la différenciation, et le lien avec S9-F2 et S9-T1. <b>Aucune corrélation panne↔symptôme
+  autre que les 3 cas archi-classiques n'est affirmée</b> : toute autre panne rencontrée reste « à confirmer selon
+  la machine, à faire valider ».</p>
+
+  <h3 class="section">Méthode pédagogique du module — « le frigoriste-détective »</h3>
+  <p style="font-size:10.5pt">Le diagnostic est découpé en <b>5 étapes fixes et ordonnées</b> (OBSERVER, RELEVER,
+  CALCULER, COMPARER, CONCLURE), présentées comme l'enquête d'un détective qui ne désigne jamais un coupable sans
+  indices vérifiés. L'élève observe <b>en silence, sans rien toucher</b>, avant toute mesure ; il ne conclut
+  <b>qu'après</b> avoir mesuré et calculé. Le binôme mène <b>deux enquêtes complètes</b> sur les deux passages
+  (semaines 29 et 30), sur deux symptômes différents mais tous deux ramenés à la même famille de 3 suspects.</p>
+  <div class="vigilance"><b class="t">Point de vigilance central du module</b> — Ne jamais laisser un binôme
+  « deviner » le suspect avant d'avoir mesuré : si la conclusion précède la mesure, la faire recommencer dans
+  l'ordre. L'arbre de diagnostic en annexe du document élève est un outil de <b>vérification</b> a posteriori, pas
+  un raccourci pour éviter la mesure.</div>
+
+  <h3 class="section">Préparation des postes (avant la séance)</h3>
+  <table class="mini">
+    <tr><th style="width:24%">Poste</th><th>Préparation</th></tr>
+    <tr><td><b>Machine pédagogique de diagnostic</b></td><td>Vérifier son bon état général avant d'y poser un symptôme ; prévoir l'accès dégagé aux manomètres, au voyant liquide (si équipé) et aux points de mesure de température ; <b>hors tension avant l'arrivée des élèves</b>, mise sous tension par le professeur en phase 5 uniquement.</td></tr>
+    <tr><td><b>Symptôme du passage 1</b></td><td><b>Champ à compléter par le professeur</b>, cohérent avec l'un des 3 suspects de l'arbre (ex. : filtre à air de l'évaporateur partiellement obstrué, ou détendeur légèrement fermé, ou charge légèrement réduite si le poste le permet en toute sécurité) : ________________________. Prévoir les valeurs cibles HP/BP attendues pour CE symptôme, à connaître avant la séance pour valider les relevés des élèves.</td></tr>
+    <tr><td><b>Symptôme du passage 2</b></td><td><b>Champ à compléter par le professeur</b>, si possible un <b>suspect différent</b> du passage 1 pour élargir l'expérience du binôme, sur la même machine ou une autre : ________________________.</td></tr>
+    <tr><td><b>Manomètres HP/BP + réglette P/T</b></td><td>Vérifiés et étalonnés avant la séance (cf. S7-F1) ; un jeu par poste de diagnostic.</td></tr>
+    <tr><td><b>Thermomètre de contact</b></td><td>Piles vérifiées, un appareil par poste, sonde propre.</td></tr>
+    <tr><td><b>Pince ampèremétrique</b></td><td>Si disponible sur le poste : préparée en complément, non indispensable à la conclusion (mesure facultative de contrôle).</td></tr>
+  </table>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (une enquête à mener, méthode du frigoriste-détective).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S9-1 : le client rappelle, l'armoire positive ne descend plus en température — fil rouge SAV, on passe côté maintenance.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les « je serai capable de… » affichés et commentés, lien avec la formule (C4.5 Confortement pivot, C5.1 Découverte, C3.7 Confortement).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; quiz éclair sur la réglette P/T et le calcul SC/SR (S4, S5-T2, S7-T1), la pose et la lecture des manomètres HP/BP (S7-F1).</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité (consignation NF C 18-510 rappelée, mise sous tension réalisée par le professeur, parties chaudes/tournantes signalées) puis « planter la notion » : question « comment un détective conclut-il sans se précipiter ? » → NOMMER « le frigoriste-détective » → EXPLICITER OBSERVER→RELEVER→CALCULER→COMPARER→CONCLURE. Le professeur met la machine sous tension et distribue la fiche démarche.</td></tr>
+    <tr><td><b>75 / 45 min</b></td><td class="ph">6. Guider l'étude (a) — jalon 1 / 1' : OBSERVER + relever les indices</td><td>Passage 1 (75 min) : observation guidée en silence, repérage commenté des indices, démonstration de la lecture manomètre par le professeur. Passage 2 (45 min) : rappel bref, nouveau symptôme posé par le professeur, observation en autonomie croissante.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td><b>50 / 80 min</b></td><td class="ph">6. Guider l'étude (b) — jalon 2 / 2' : mesurer, calculer, comparer, conclure</td><td>Passage 1 (50 min) : mesures encadrées, calcul guidé SC/SR, comparaison aux cibles, hypothèse formulée avec appui du professeur. Passage 2 (80 min) : mesures et calcul en autonomie, conclusion argumentée, bilan comparé des deux enquêtes.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des hypothèses et de leur justification, auto-positionnement (C4.5, C5.1, C3.7 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord (F3) + bon de commande.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Remise hors tension par le professeur, re-consignation NF C 18-510, rangement des instruments, nettoyage des établis.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S9-F2, remplacement du composant identifié, sans fluide).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; jalon 1/1' + pause 15 min + jalon 2/2' = 2 h 20 (passage 1 : 75+15+50 ; passage 2 :
+  45+15+80) ; synthèse 15 + bon de commande 10 + rangement 10 + clôture 5 = 40 min. Total module : 1 h 00 + 2 h 20
+  + 40 min = <b>4 h 00 exactes</b>, aux deux passages, conforme au plan de séance.</p>
+
+  <div class="avenir"><b class="t">Ce que ce module prépare</b> — Ce module reste un module de
+  <b>Confortement</b> pour C4.5 (le geste de mesure est acquis depuis S7/S8, réinvesti ici dans un but d'enquête)
+  et de <b>Découverte</b> pour C5.1 (première fois que l'élève désigne un composant à remplacer, même sans le
+  remplacer). Le suspect désigné ici nourrit directement <b>S9-F2</b> (semaine 31), où l'élève remplacera
+  réellement un composant hors fluide — pressostat, filtre sur circuit inerté azote, ventilateur — et rédigera le
+  compte rendu d'intervention. Il prépare aussi <b>S9-T1</b> (même période), où l'arbre de diagnostic ébauché ici
+  sera repris et co-construit collectivement à partir des cas vécus par toute la classe, et le teasing de fin de
+  séquence : « la vraie recherche de panne, avec le fluide réel, c'est la 2<sup>e</sup> année ».</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ JALON 1/1' : OBSERVATION, ORGANISATION DES POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — pourquoi observer avant de mesurer ?</h3>
+  <div class="reponse"><b class="t">Réponse attendue</b> — Un indice visuel ou sonore (givre, ventilateur à
+  l'arrêt, bruit anormal) oriente déjà l'enquête et évite de mesurer au hasard ou d'oublier un symptôme visible
+  une fois les mains occupées par les instruments. Observer en premier, c'est comme un détective qui regarde la
+  scène avant de sortir sa loupe : on ne perturbe rien, on ne risque pas de « polluer » un indice fragile
+  (ex. : rester devant l'évaporateur assez longtemps pour voir si le givre progresse).</div>
+
+  <h3 class="section">Organisation des postes</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Poste de diagnostic</b></td><td>Machine pédagogique en marche, manomètres HP/BP, thermomètre de contact, réglette P/T — un poste par binôme aux deux passages.</td><td>Vérifier avant la séance que le symptôme posé produit bien des mesures cohérentes avec l'un des 3 suspects ; ne jamais poser une panne électrique (ne démarre pas/disjoncte) sur ce poste, hors du cadre de cette enquête.</td></tr>
+    <tr><td><b>Poste témoin (phase 5)</b></td><td>Préparé à l'avance pour la démonstration de lecture manomètre.</td><td>Choisir une machine en état normal (sans symptôme) pour cette démonstration, afin de ne pas anticiper la conclusion des postes de diagnostic.</td></tr>
+    <tr><td><b>Combien de postes simultanés ?</b></td><td>Autant que de binômes si le nombre de machines pédagogiques le permet ; sinon, rotation organisée avec un carnet de bord d'attente (quiz éclair).</td><td>Point ouvert (cf. <i>_ETAT.md</i>) : nombre réel de machines pédagogiques de diagnostic disponibles à l'atelier, composants de rechange pour S9-F2.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — tableau des indices observés</h3>
+  <div class="reponse"><b class="t">Réponse attendue —</b> Selon le symptôme réellement posé par le professeur —
+  à relever lors de la préparation du poste. Aucune valeur type ne peut être donnée ici : chaque symptôme produit
+  un tableau d'indices différent. Le professeur circule pour valider que l'observation a bien précédé toute
+  mesure, sans donner la conclusion à l'avance.</div>
+
+  <h3 class="section">Corrigé — critères observables du jalon 1 / 1'</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Observation avant mesure</td><td>Les 3 minutes de silence sont respectées avant toute prise en main d'un instrument ; un binôme qui sort le manomètre en premier doit reprendre l'observation.</td></tr>
+    <tr><td>Tableau des indices complet et honnête</td><td>Chaque case renseignée selon ce qui est réellement constaté, jamais une case cochée « par habitude » ou copiée sur un autre poste.</td></tr>
+    <tr><td>Respect de la consignation</td><td>Aucun élève ne touche au câblage, à un condensateur ou à une vanne ; toute question sur un point non observable directement est posée au professeur, jamais résolue en manipulant.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1 / 1'</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Mesure avant observation</b></td><td>Arrêt immédiat, faire reprendre l'observation silencieuse en entier avant de continuer.</td></tr>
+    <tr><td><b>Conclusion annoncée dès le jalon 1 (« c'est sûrement le détendeur »)</b></td><td>Recadrer fermement : aucune conclusion n'est valable avant le calcul de SC et SR au jalon 2.</td></tr>
+    <tr><td><b>Élève qui touche au câblage ou à une vanne « pour vérifier »</b></td><td>Interruption immédiate, rappel du geste interdit, reprise de l'observation à distance.</td></tr>
+    <tr><td><b>Tableau des indices recopié entre binômes voisins</b></td><td>Faire réobserver la machine du binôme : chaque poste peut présenter un symptôme différent.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 2/2' : MESURES, ARBRE DE DIAGNOSTIC, CONCLUSION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <div style="border:1.5px solid var(--bleu); border-radius:6px; background:#eef4ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt">
+<b>📄 Ressource fournie — table pression/température.</b> Pour transformer une pression lue en température de saturation et la comparer à ce qui est attendu, utilisez la <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Reglette%20P-T%20multi-fluides%20(imprimable).pdf">réglette P/T multi-fluides</a> ou la table du fluide de votre banc : <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R134a%20(saturation,%20-100%20a%20+100%20C).pdf">R134a</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R404A%20(saturation).pdf">R404A</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R410A%20(saturation).pdf">R410A</a>. N'inventez jamais une valeur : lisez-la sur la table.
+</div>
+
+  <h3 class="section">Corrigé — tableau de mesures et calcul SC/SR</h3>
+  <p style="font-size:10.3pt">Aucune valeur n'est imposée par ce document : chaque binôme mesure sa propre machine,
+  affectée du symptôme réellement posé par le professeur. Le professeur valide que :</p>
+  <ul class="liste-num">
+    <li>HP et BP sont lues aux <b>bons manomètres</b> (repère rouge = HP, repère bleu = BP), sans confusion ;</li>
+    <li>les températures de condensation et d'évaporation sont <b>correctement déduites</b> de HP et BP via la
+    réglette P/T, et non mesurées directement ;</li>
+    <li>le calcul <b>SC = T° aspiration − T° évaporation</b> et <b>SR = T° condensation − T° liquide</b> est
+    posé sans erreur de signe ni de sens de soustraction ;</li>
+    <li>un résultat négatif ou aberrant est <b>signalé et repris</b>, jamais laissé tel quel ni « arrondi » pour
+    coller à la plage cible.</li>
+  </ul>
+
+  <h3 class="section">Corrigé — l'arbre de diagnostic (3 suspects archi-classiques)</h3>
+  <p style="font-size:10.3pt">Pour le symptôme « la température ne descend plus », si les mesures donnent
+  <b>BP basse ET SC élevée (&gt; 10 K)</b>, l'enquête se limite à 3 hypothèses, retenues du cadrage de séquence
+  (aucune autre corrélation n'est affirmée) :</p>
+  <table class="mini">
+    <tr><th style="width:20%">Suspect</th><th style="width:40%">Discriminant (indice qui tranche)</th><th>Lien avec S9-F2</th></tr>
+    <tr><td><b>A — Manque de charge / fuite</b></td><td>HP également basse <b>ET</b> bulles au voyant liquide (si la machine en est équipée).</td><td>Recherche de fuite et complément de charge : hors programme 1A, teasing vers la 2<sup>e</sup> année.</td></tr>
+    <tr><td><b>B — Évaporateur givré / filtre à air colmaté / ventilateur évaporateur défaillant</b></td><td>Givre anormal visible à l'évaporateur et/ou débit d'air faible constaté à l'observation.</td><td>Composant à contrôler/nettoyer/remplacer en S9-F2 (filtre, ventilateur — hors fluide).</td></tr>
+    <tr><td><b>C — Détendeur trop fermé</b></td><td>Pas de givre anormal, débit d'air normal, HP côté normal.</td><td>Réglage ou remplacement du détendeur en S9-F2 (sans manipulation de fluide si le circuit est inerté à l'azote par le professeur).</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance central — cas hors de cette enquête</b> — Si les mesures
+  d'un binôme ne correspondent à <b>aucun</b> des 3 cas (BP normale ou haute, SC très faible ou négative,
+  intensité anormalement élevée) : ne pas inventer une 4<sup>e</sup> hypothèse pour ce module. Signaler que la
+  machine sort du cas simple étudié ici — « à confirmer selon la machine » — et orienter oralement vers ce que
+  cela pourrait signifier (ex. détendeur trop ouvert, condenseur encrassé), sans l'exiger de l'élève à ce niveau.</div>
+
+  <h3 class="section">Corrigé — valeurs cibles retenues</h3>
+  <table class="releve">
+    <tr><th>Mesure</th><th>Seuil retenu (charte FrigorX)</th><th>Source</th></tr>
+    <tr><td>Surchauffe (SC)</td><td>5 à 10 K</td><td>Charte pédagogique FrigorX §7 ; cohérent avec S4, S5-T2, S7-F1/T1</td></tr>
+    <tr><td>Sous-refroidissement (SR)</td><td>4 à 8 K</td><td>Charte pédagogique FrigorX §7 ; cohérent avec S4, S5-T2, S7-F1/T1</td></tr>
+  </table>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Toute valeur cible autre que celles de la charte
+  (par exemple lue dans une notice constructeur) reste « selon la machine/notice, à faire valider » : elle n'est
+  jamais affirmée comme seuil général dans ce document.</p>
+
+  <h3 class="section">Erreurs typiques — jalon 2 / 2'</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Confusion HP/BP</b> (repère couleur non respecté)</td><td>Reprendre la démonstration de la phase 5 : rouge = HP, bleu = BP, toujours vérifier avant de lire.</td></tr>
+    <tr><td><b>Calcul SC/SR avec un mauvais sens de soustraction</b></td><td>Refaire poser le calcul par écrit, terme à terme, avant de reporter le résultat.</td></tr>
+    <tr><td><b>Conclusion qui ignore un discriminant contradictoire</b> (ex. givre ET voyant qui montre des bulles à la fois)</td><td>Faire reformuler : un seul suspect doit être retenu, en expliquant pourquoi les autres indices sont écartés ou secondaires ; en cas de doute réel, consulter le professeur plutôt que de trancher au hasard.</td></tr>
+    <tr><td><b>Valeur mesurée « arrangée » pour tomber dans la plage cible</b></td><td>Traiter comme un manquement grave à l'honnêteté de la mesure, faire remesurer devant le professeur.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td><b>Consolidation</b></td><td>Au jalon 1, le professeur reste au poste pendant toute l'observation et pointe lui-même 2 des indices attendus, laissant le binôme en trouver au moins un troisième. Au jalon 2, le tableau de mesures est pré-rempli pour HP et BP, seuls les calculs SC/SR et la comparaison restant à faire. L'arbre de diagnostic (annexe) peut être consulté dès le jalon 2, avec le professeur qui aide à choisir entre les 3 branches.</td></tr>
+    <tr><td><b>Standard</b></td><td>Déroulement tel que décrit dans le document élève : observation puis mesure en autonomie encadrée au passage 1, autonomie croissante au passage 2.</td></tr>
+    <tr><td><b>Approfondissement</b><br><span class="nuance">tutorat</span></td><td>Après la conclusion de l'enquête 2 validée, ces élèves formulent par écrit ce qui se passerait si le symptôme était inversé (BP haute, SC faible) et pourquoi ce cas sort du cadre de l'arbre étudié ici — sans qu'aucune valeur ne soit affirmée, seulement un raisonnement qualitatif. Ils peuvent aussi devenir tuteurs d'un binôme en difficulté sur le calcul SC/SR.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire répété à l'identique (« observer », « mesurer », « comparer », « conclure »), fiche démarche très visuelle (une icône par étape), les 3 suspects présentés avec un seul discriminant-clé par carte plutôt qu'une phrase longue.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Le rituel des 5 étapes toujours dans le même ordre rassure par sa régularité ; annoncer explicitement en phase 5 que « la démarche ne change jamais, seul le symptôme change » limite l'anxiété face à la nouveauté du symptôme ; autoriser une pause courte entre l'observation (jalon 1) et le calcul (jalon 2) pour éviter la précipitation liée au changement de tâche.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>S9-T1</b> « La démarche de diagnostic et le froid et les denrées » — même période, reprend et
+    co-construit collectivement l'arbre de diagnostic à partir des cas vécus en F1, puis relie au pourquoi de la
+    conservation des denrées (S4.2, S5.7) ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord (module F3) ;</li>
+    <li><b>Modules S4 / S5-T2 / S7-F1 / S7-T1</b> — la réglette P/T, les manomètres HP/BP, le calcul SC/SR déjà
+    maîtrisés ;</li>
+    <li><b>S9-F2</b> (remplacement du composant identifié, sem. 31) — même fil rouge SAV, le suspect désigné ici
+    devient l'organe réellement contrôlé/remplacé, hors fluide ;</li>
+    <li><b>S9-E1</b> (coffret clim en autonomie, autre demi-groupe, mêmes semaines) — même logique de diagnostic,
+    appliquée cette fois à un défaut électrique.</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C4.5 Confortement</b> (pivot du
+  diagnostic, geste de mesure déjà acquis, réinvesti dans un but d'enquête) ; <b>C5.1 Découverte</b> (première
+  désignation d'un composant suspect, sans remplacement réel) ; <b>C3.7 Confortement</b>. Aucune remontée École
+  Directe dans ce module : pas de statut Évaluation dans S9-F1 (il arrivera à É4). <b>0 = compétence non observée
+  ce jour</b> (à ne jamais confondre avec une absence, codée séparément).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:14%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T16 · S5.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Mesures HP/BP/T° erronées ou calcul SC/SR faux malgré l'aide du professeur.</td>
+      <td>Mesures et calcul corrects avec l'aide du professeur (rappel d'une étape).</td>
+      <td>Mesure, calcule et compare seul(e), résultats corrects, relevés honnêtes.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi on compare SC/SR aux cibles avant de conclure.</td>
+    </tr>
+    <tr>
+      <td><b>C5.1</b> Remplacer des composants — désigner le suspect <span class="nuance">Découverte</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Suspect désigné sans lien avec les mesures, ou copié sans justification.</td>
+      <td>Suspect désigné avec l'aide du professeur.</td>
+      <td>Suspect désigné seul(e) et justifié par les indices et les mesures.</td>
+      <td>Comme « Acquis », et distingue seul(e) les 3 suspects par leurs discriminants respectifs.</td>
+    </tr>
+    <tr>
+      <td><b>C3.7</b> Contrôler la mise en œuvre des équipements <span class="nuance">sur T14</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne respecte pas la consignation ou touche au circuit sans validation.</td>
+      <td>Respecte la consignation avec rappel.</td>
+      <td>Respecte la consignation sans rappel, n'intervient jamais seul(e) sur le circuit.</td>
+      <td>Comme « Acquis », et rappelle spontanément la règle à un pair.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, sécurité, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste dangereux malgré rappel (touche au câblage, manipule une vanne) : niveau 1 automatique.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Consignation et EPI respectés sans rappel, mesures relevées honnêtement.</td>
+      <td>Comme « Acquis », et signale spontanément une mesure douteuse plutôt que de l'arranger.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité
+  (toucher au câblage, manipuler une vanne, intervenir sans le professeur) entraîne automatiquement un niveau
+  <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du raisonnement par ailleurs. Une mesure
+  arrangée pour coller à une conclusion est traitée comme un manquement grave à l'honnêteté, cohérent avec le
+  principe « zéro invention » de la charte FrigorX.</div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : tableau de référence
+  prudent des corrélations panne↔symptôme du cadrage de séquence S9 (19/07/2026 — cas archi-classiques et
+  univoques du niveau CAP, seuls retenus ici) ; trame de diagnostic/état des lieux de la 2A S10 Séance 1
+  « Diagnostic de la machine et état des lieux » (principe observer→relever→constater, honnêteté du relevé,
+  jamais de valeur inventée — repris et adapté pour une machine EN MARCHE plutôt qu'à l'arrêt) ; structure
+  générale du tableau symptôme/cause/solution inspirée de <i>02_CAP-IFCA/C5-Maintenir/Diagnostic de pannes.pdf</i>
+  (méthode de dépannage par tableau à colonnes « nature du défaut / cause / solutions » — contenu non repris car
+  relatif au solaire thermique, hors périmètre froid) ; réglette P/T et calcul SC/SR (S4, S5-T2, S7-T1) ; pose et
+  lecture des manomètres HP/BP (S7-F1) ; charte pédagogique FrigorX (§7 sécurité, seuils SC 5-10 K / SR 4-8 K) ;
+  référentiel CAP IFCA (codes C4.5, C5.1, C3.7, T16, T14, S5.1, S4.2). L'arbre de diagnostic à 3 suspects est
+  <b>construit pour ce document</b> : aucun arbre décisionnel prêt à l'emploi n'a été trouvé dans la base
+  documentaire pour ce cas (angle mort confirmé au cadrage) ; il ne retient que les corrélations panne↔symptôme
+  validées par le cadrage, et sera repris et complété collectivement en S9-T1.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .avenir, .distinguo{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

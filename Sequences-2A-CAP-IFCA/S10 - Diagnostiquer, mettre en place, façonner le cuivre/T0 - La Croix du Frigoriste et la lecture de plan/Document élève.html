@@ -1,0 +1,308 @@
+<meta charset="utf-8">
+<title>Cours élève — S10 · Module théorie T0 · La Croix du Frigoriste et la lecture de plan</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE + DÉCOUVERTE (LA CROIX) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>La Croix du Frigoriste · les 4 organes · lecture de plan</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE T0 · 1 h</span><b>La Croix du Frigoriste et la lecture de plan</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> · sem. 1</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Module d'ouverture — pas de tâche d'atelier ancrée ce jour</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe<br><b>S2.2</b> Lecture de plan<br><b>S2.3</b> Croquis à main levée <span class="nuance">en application</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur d'observation · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte — non remontée</span> module d'ouverture de la séquence S10, prépare le module atelier A0 (diagnostic)</div>
+  </div>
+
+  <div class="situation"><h4>Accroche</h4>
+  Un technicien arrive devant une machine frigorifique inconnue, à l'arrêt. Avant de toucher à quoi que ce soit,
+  il doit comprendre <b>où va le fluide</b> à l'intérieur : par quels organes il passe, dans quel ordre, et où se
+  trouve la haute pression, où se trouve la basse pression.
+  <div class="encadre-question"><b>Question de départ</b> — D'après vous, combien d'organes principaux
+  faut-il, au minimum, pour qu'un circuit frigorifique fonctionne ? Notez votre réponse et le nom de ceux que
+  vous connaissez déjà.</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — la Croix du Frigoriste</h3>
+  <p style="font-size:10.5pt">Observez le schéma ci-dessous <b>avant de lire la suite</b> : c'est la
+  représentation la plus simple d'un circuit frigorifique à détente directe, en forme de croix. Chaque branche
+  de la croix porte un organe.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.svg" alt="Schéma de principe de la croix du frigoriste : condenseur, compresseur, détendeur, évaporateur, avec repères 1 à 4 sur les conduites haute et basse pression"
+         style="max-width:90%;">
+    <figcaption class="legende">La croix du frigoriste : 4 organes, 4 branches, un sens de circulation unique.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Observation 1</b> — Sans regarder la suite du document, essayez de nommer
+  les 4 organes que vous voyez sur le schéma, un par branche de la croix. Écrivez ce que vous pensez, même si
+  vous n'êtes pas sûr.</div>
+  <div class="zone-reponse" style="min-height:3em"></div>
+
+  <div class="encadre-question"><b>Observation 2</b> — D'après la légende du schéma, repérez le repère 1 (juste
+  après le compresseur) : le fluide y est-il liquide ou gazeux ? Et au repère 3 (juste après le détendeur) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — LES 4 ORGANES + HP/BP ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Les 4 organes de la Croix du Frigoriste</h3>
+  <div class="notion"><h4>Les 4 organes, dans l'ordre de circulation du fluide</h4>
+  <p style="margin:0; font-size:10.5pt">
+  1. <b>Le compresseur</b> — aspire le fluide gazeux à basse pression et le refoule à haute pression.<br>
+  2. <b>Le condenseur</b> — reçoit le gaz chaud haute pression et le refroidit jusqu'à le rendre liquide.<br>
+  3. <b>Le détendeur</b> — fait chuter la pression du liquide haute pression vers la basse pression.<br>
+  4. <b>L'évaporateur</b> — reçoit le fluide basse pression et le vaporise en captant de la chaleur.</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — D'après ce que vous venez de lire, à quel organe le fluide
+  retourne-t-il une fois sorti de l'évaporateur, pour recommencer le cycle ?</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <div class="notion"><h4>Haute pression (HP) et basse pression (BP)</h4>
+  <p style="margin:0; font-size:10.5pt">La croix se lit aussi en <b>deux moitiés</b> : côté <b>haute pression
+  (HP)</b>, du refoulement du compresseur jusqu'à l'entrée du détendeur (compresseur → condenseur → ligne
+  liquide) ; côté <b>basse pression (BP)</b>, du détendeur jusqu'à l'aspiration du compresseur (détendeur →
+  évaporateur → ligne d'aspiration). Le <b>compresseur</b> et le <b>détendeur</b> sont les deux organes qui
+  <b>séparent</b> les deux pressions.</p>
+  </div>
+
+  <div class="encadre-question"><b>Observation 3</b> — Sur le schéma de la feuille 1, coloriez ou surlignez
+  (ou décrivez avec des mots) la partie haute pression d'un côté, la partie basse pression de l'autre.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — APPLICATION : LECTURE DE PLAN + CROIX VIERGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION</h3>
+
+  <h4 style="font-size:11pt">Exercice 1 — compléter la croix vierge</h4>
+  <p style="font-size:10.3pt">Dans le cadre ci-dessous, dessinez à main levée une croix à 4 branches pour une
+  installation frigorifique à compression et détente directe. Consigne en 4 points, comme sur un vrai relevé de
+  chantier :</p>
+  <ol class="liste-num">
+    <li>dessinez et nommez les <b>4 éléments de base</b> (compresseur, condenseur, détendeur, évaporateur) ;</li>
+    <li>indiquez sur chaque branche si elle est <b>HP</b> (haute pression) ou <b>BP</b> (basse pression) ;</li>
+    <li>indiquez l'<b>état du fluide</b> à chaque point (liquide ou vapeur) ;</li>
+    <li>utilisez, si vous les connaissez déjà, les <b>symboles normalisés</b> de chaque organe (voir la légende
+    du schéma ci-dessus) — sinon, un rectangle légendé du nom de l'organe suffit.</li>
+  </ol>
+  <div class="cadre-dessin" style="min-height:260px"><span class="consigne-cadre">Croix vierge — 4 organes, HP/BP, état du fluide (liquide/vapeur), symboles si connus</span></div>
+
+  <h4 style="font-size:11pt">Exercice 2 — lecture de plan</h4>
+  <p style="font-size:10.3pt">Sur le schéma de la croix du frigoriste (celui de la feuille 1), repérez et
+  notez :</p>
+  <table class="releve">
+    <tr><th>Repère sur le schéma</th><th>Nom de l'organe ou de la canalisation</th><th>HP ou BP ?</th></tr>
+    <tr><td>Repère 1</td><td></td><td></td></tr>
+    <tr><td>Repère 2</td><td></td><td></td></tr>
+    <tr><td>Repère 3</td><td></td><td></td></tr>
+    <tr><td>Repère 4</td><td></td><td></td></tr>
+  </table>
+
+  <h4 style="font-size:11pt">Exercice 3 — vrai ou faux</h4>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:70%">Affirmation</th><th>Vrai / Faux</th></tr>
+    <tr><td style="text-align:left">Le compresseur aspire le fluide côté basse pression.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Le condenseur transforme le gaz haute pression en liquide.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Le détendeur fait monter la pression du fluide.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">L'évaporateur est situé côté basse pression.</td><td>☐ Vrai ☐ Faux</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — APPLICATION : CROQUIS À MAIN LEVÉE (OUTIL DE DIAGNOSTIC) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Le croquis à main levée — l'outil du diagnostic</h3>
+  <p style="font-size:10.5pt">Sur un chantier réel, on n'a pas toujours le plan de la machine sous la main. Le
+  <b>croquis à main levée</b> de la croix du frigoriste sert alors à <b>noter rapidement</b> ce qu'on observe :
+  la position des 4 organes, le sens de circulation, et éventuellement l'état du fluide à chaque endroit. C'est
+  un outil de communication technique, pas un dessin d'art : il doit juste être <b>clair et complet</b>.</p>
+
+  <div class="encadre-question"><b>Question</b> — À votre avis, pourquoi un technicien ferait-il un croquis
+  rapide de la croix avant de commencer un diagnostic, plutôt que de se fier uniquement à sa mémoire ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h4 style="font-size:11pt">Exercice 4 — croquis à main levée d'une machine observée</h4>
+  <p style="font-size:10.3pt">Dans le cadre ci-dessous, réalisez le croquis à main levée d'une croix du
+  frigoriste : les 4 organes, le sens de circulation, et une légende HP/BP. Ce croquis vous servira de point de
+  départ au module atelier <b>A0</b> (diagnostic de la machine).</p>
+  <div class="cadre-dessin" style="min-height:280px"><span class="consigne-cadre">Croquis à main levée — 4 organes + sens de circulation + légende HP/BP</span></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — SYNTHÈSE / TRACE ÉCRITE + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — ma fiche de trace écrite</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec vos propres mots : c'est elle que vous garderez et
+  relirez avant le module atelier A0.</p>
+
+  <div class="trace">
+    <p style="font-size:10.5pt; margin:0 0 8px"><b>1. Les 4 organes de la Croix du Frigoriste — je retiens :</b></p>
+    <div class="zone-reponse" style="min-height:3.2em"></div>
+
+    <p style="font-size:10.5pt; margin:14px 0 8px"><b>2. Haute pression / basse pression — je retiens :</b></p>
+    <div class="zone-reponse" style="min-height:2.6em"></div>
+
+    <p style="font-size:10.5pt; margin:14px 0 8px"><b>3. Ma croix, en mémoire (schéma minute, sans regarder) :</b></p>
+    <div class="cadre-dessin" style="min-height:180px"><span class="consigne-cadre">Redessinez la croix de mémoire, sans regarder les feuilles précédentes</span></div>
+  </div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:22%">Savoir</th><th style="width:14%">Ancrage</th><th style="width:16%">0<br>Non évalué</th><th style="width:16%">1<br>Non acquis</th><th style="width:16%">2<br>En cours</th><th style="width:16%">3-4<br>Acquis / maîtrisé</th></tr>
+    <tr><td><b>S5.1 · S2.2</b> Les 4 organes de la croix et lecture de plan <span class="nuance">Découverte — non remontée</span></td><td>module T0</td><td>Compétence non observée ce jour.</td><td>Ne nomme pas les 4 organes ni leur position sur la croix.</td><td>Nomme les 4 organes avec de l'aide, repère HP/BP avec de l'aide.</td><td>Nomme seul les 4 organes, les place sur un plan, distingue HP/BP et trace un croquis lisible.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">S5.1 / S2.2 — la Croix du Frigoriste et la lecture de plan :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce module d'ouverture n'est pas remonté en
+  compétence sur École Directe : il prépare le module atelier A0, où vous ferez le diagnostic réel d'une
+  machine à partir de ce que vous venez d'apprendre.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : schéma « La croix
+  du frigoriste » (F. Henninot) ; exercice 1 adapté d'« eval croix du frigo » (F. Henninot, 2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .cadre-dessin{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

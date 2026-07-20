@@ -1,0 +1,639 @@
+<meta charset="utf-8">
+<title>Évaluation sommative É1 — sujet élève — semaine 7 — CAP IFCA 1A</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e; --jaune:#fff6cc; --jaune-bord:#e0c34a}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .bandeau-eval{border:2.5px solid var(--jaune-bord); background:var(--jaune); border-radius:6px;
+    padding:8px 16px; margin:0 0 12px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .bandeau-eval b.titre{font-family:'Trebuchet MS',sans-serif; font-size:12.5pt; color:#7a5b00; letter-spacing:.02em}
+  .bandeau-eval .sousligne{font-size:9.5pt; color:#7a5b00}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--jaune)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord)}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .tirage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10.3pt}
+  .tirage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:260px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .chrono{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord); margin-bottom:6px; margin-left:8px}
+  .variante{border-radius:8px; padding:2px 10px; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt; display:inline-block; margin-bottom:6px}
+  .variante.a{background:#e3e9f2; color:var(--bleu); border:1px solid #b9c8e0}
+  .variante.b{background:#fde3e1; color:#a13a2e; border:1px solid #f0b0a8}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + CONSIGNES + VUE D'ENSEMBLE DES 3 POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 ÉVALUATION SOMMATIVE É1 — POSITIONNEMENT OFFICIEL</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Électricité simple et cycle frigorifique — les bases</td>
+      <td style="width:38%"><span class="lib">Évaluation sommative</span><b>É1 — semaine 7 — clôture du bloc S1-S2</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquences</span><span class="grand">S1 · S2</span> · sem. 7, dates à caler</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Contexte professionnel</h4>
+  Vous voici à la <b>7<sup>e</sup> semaine</b> de votre première année de formation. <b>Ordre d'intervention
+  n° OI-2026-EVAL-S1S2-01</b> : comme dans toute entreprise sérieuse, votre atelier-école fait le point avant
+  d'ouvrir de nouveaux chantiers. Aujourd'hui, sur <b>3 postes indépendants</b> (froid, électricité, théorie),
+  vous montrez <b>seul(e)</b> ce que vous savez déjà faire : enchaîner un façonnage cuivre complet, repérer les
+  organes d'une machine frigorifique réelle, câbler une installation domestique et mesurer des grandeurs
+  électriques, expliquer à l'écrit le cycle et les grandeurs. On évalue <b>ce que vous avez déjà travaillé au
+  moins deux fois</b> depuis la rentrée — rien de nouveau ne vous est demandé aujourd'hui.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T6</b> Préparer, vérifier les matériels et outillages<br><b>T8</b> Sécuriser son intervention sur site<br><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.1</b> Outils, normes et représentation<br><b>S5.1</b> Systèmes thermodynamiques à détente directe<br><b>S5.6</b> Réseaux, matériels électriques et de régulation</div>
+    <div class="case"><h4>Savoir-être</h4>La sécurité <b>EST</b> le savoir-être aujourd'hui : EPI portés sans qu'on vous le rappelle, consignation appliquée d'elle-même, honnêteté du relevé et de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétences (≤ 4) — Évaluation</h4><span class="statut eval">Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><span class="statut eval">Évaluation</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques<br><span class="statut eval">Évaluation</span> <b>C4.5</b> Mesurer, comparer des grandeurs</div>
+  </div>
+
+  <h3 class="section">Ce qui est évalué aujourd'hui — les 3 postes</h3>
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:16%">Poste</th><th style="width:14%">Durée</th><th style="width:26%">Contenu</th><th>Compétence(s) — ancrage</th></tr>
+    <tr><td><b>FROID</b></td><td>4 h</td><td>Enchaîner coupe → cintrage → dudgeon sur une pièce d'un seul tenant, puis repérer les 4 organes sur une machine réelle et compléter la croix</td><td><span class="statut eval">Évaluation</span> <b>C3.4</b> — sur T10 · S2.1</td></tr>
+    <tr><td><b>ÉLEC</b></td><td>4 h</td><td>Câbler un simple allumage OU un va-et-vient (tirage au sort) ; mesurer la continuité hors tension et la tension en service</td><td><span class="statut eval">Évaluation</span> <b>C3.6</b> — sur T10 · S5.6 (câblage) · <b>C4.5</b> — sur T11 · S5.6 (mesures)</td></tr>
+    <tr><td><b>THÉORIE</b></td><td>2 h</td><td>Écrit individuel : croix à compléter, organes et rôles, lecture d'une plaque signalétique réelle, calculs guidés (loi d'Ohm)</td><td>appui — croise et valide les savoirs S2.1 · S5.1 · S5.6 qui portent C3.4 et C4.5</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Le poste théorie ne crée pas une 4<sup>e</sup>
+  compétence notée : c'est un écrit qui vérifie, avec d'autres exercices, les savoirs qui soutiennent les
+  3 compétences pratiques ci-dessus. Seules <b>C3.4, C3.6 et C4.5</b> sont remontées sur École Directe.</p>
+
+  <div class="secu"><b class="t">⏱ Consignes générales — valables pour les 3 postes</b>
+  <ul style="margin:.3em 0 0 1.1em; padding:0; font-size:10pt">
+    <li><b>Poste individuel</b> : vous travaillez seul(e), sans aide ni échange avec un camarade, sur chacun des 3 postes.</li>
+    <li>Chaque poste est <b>autoportant</b> : ce document contient tout ce qu'il faut, lisez chaque partie en entier avant d'agir.</li>
+    <li><b>Matériel autorisé</b> : uniquement celui indiqué à chaque poste ; pas de note personnelle, pas de téléphone.</li>
+    <li>Toute valeur relevée doit être <b>lue réellement</b> sur le poste, la machine ou la plaque fournie —
+    <b>aucune valeur n'est à deviner ni à recopier d'un camarade</b>.</li>
+    <li>En cas de doute de sécurité, <b>levez la main</b> et attendez le professeur avant d'agir.</li>
+    <li>Vous complétez votre <b>auto-positionnement</b> honnêtement, avant que le professeur ne corrige (feuille finale).</li>
+  </ul></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — POSTE FROID · PARTIE A : FAÇONNAGE ENCHAÎNÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — partie A : façonnage enchaîné sur une pièce d'un seul tenant</h3>
+  <span class="poste-titre">C3.4 sur T10 · S2.1 — Évaluation</span><span class="chrono">≈ 35 min</span>
+
+  <p style="font-size:10.5pt">Vous avez déjà coupé, cintré et dudgeonné du tube cuivre à plusieurs reprises depuis
+  la rentrée (S1-F1, puis S2-F1). Aujourd'hui, vous réalisez les <b>3 gestes à la suite, sur une seule et même
+  longueur de tube</b>, sans repartir d'un tube neuf à chaque geste : c'est le <b>passage à l'aisance</b>.</p>
+
+  <h4 style="font-size:11pt">Matériel autorisé pour cette partie</h4>
+  <ul class="liste-num">
+    <li>1 longueur de tube cuivre recuit, d'un seul tenant <span class="nuance">(diamètre et longueur selon le stock de l'atelier, à faire valider par le professeur)</span></li>
+    <li>Coupe-tube, ébavureur</li>
+    <li>Ressort à cintrer adapté au diamètre du tube</li>
+    <li>Dudgeonnière avec mors adapté + écrou et raccord mâle pour vérifier l'emboîtement</li>
+    <li>Mètre ou réglet, feutre marqueur</li>
+    <li>Gants anti-coupure et lunettes de protection (obligatoires)</li>
+  </ul>
+
+  <div class="secu"><b class="t">⚠ Rappel sécurité</b> — gants anti-coupure et lunettes portés avant tout outil ;
+  jamais de scie à métaux sur le cuivre ; un seul outil en main à la fois ; chaque outil retourne à sa place après
+  usage. <b class="t">🚨 En cas d'incident :</b> arrêtez le poste, alertez le professeur ; en cas de coupure,
+  désinfectez immédiatement (le cuivre s'infecte vite) — trousse de secours et arrêt d'urgence localisés dès
+  l'entrée dans l'atelier.</div>
+
+  <h4 style="font-size:11pt">Étapes à réaliser, dans l'ordre, sans repartir d'un tube neuf</h4>
+  <div class="liste-num">
+    <p>☐ 1. Mesurer et tracer au feutre la longueur totale demandée par le professeur (elle comprend la portion qui sera cintrée et la portion qui sera dudgeonnée)</p>
+    <p>☐ 2. Couper le tube au coupe-tube (au moins 8 tours), puis ébavurer les deux extrémités</p>
+    <p>☐ 3. Enfiler l'écrou sur le tube <b>avant</b> le dudgeon et avant le cintrage (sinon il ne pourra plus passer le coude)</p>
+    <p>☐ 4. Cintrer au ressort, à l'endroit tracé, jusqu'à l'angle demandé par le professeur, en respectant le rayon minimum (3 fois le diamètre du tube)</p>
+    <p>☐ 5. Réaliser le dudgeon à l'extrémité indiquée, sans forcer au-delà de la butée de la dudgeonnière</p>
+    <p>☐ 6. Visser l'écrou sur le raccord mâle pour vérifier l'emboîtement du dudgeon</p>
+  </div>
+
+  <div class="cadre-dessin" style="min-height:200px">
+    <span class="consigne-cadre">Cadre de dessin — reportez ici le croquis coté de votre pièce enchaînée (longueur, angle, emplacement du dudgeon)</span>
+  </div>
+
+  <h4 style="font-size:11pt">Auto-contrôle de la pièce enchaînée</h4>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:38%">Critère observable</th><th>Constat</th></tr>
+    <tr><td style="text-align:left">Longueur totale conforme à la cote demandée</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Coupe nette, ébavurée aux deux extrémités</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Cintrage sans pincement, angle demandé respecté, rayon minimum tenu</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Dudgeon régulier, sans fente, écrou emboîté correctement</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Les 3 gestes réalisés à la suite, sur la même pièce, sans interruption ni tube de secours</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si une case est cochée « Non », signalez-le
+  vous-même au professeur avant le contrôle final : l'honnêteté de l'auto-contrôle fait partie du savoir-être évalué.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — POSTE FROID · PARTIE B : REPÉRAGE MACHINE + CROIX ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — partie B : repérer les 4 organes sur la machine et compléter la croix</h3>
+  <span class="poste-titre">C3.4 sur T10 · S2.1 — Évaluation</span><span class="chrono">≈ 20 min</span>
+
+  <p style="font-size:10.5pt">Une machine frigorifique du parc TP est en fonctionnement, préparée par le
+  professeur, comme en S1-F2 et S2-F2. Vous <b>touchez uniquement sur autorisation du professeur</b>, avec les
+  gants de protection thermique fournis, pour repérer les 4 organes, puis vous transposez ce que vous observez
+  sur la croix du frigoriste.</p>
+
+  <div class="secu"><b class="t">⚠ Rappel sécurité</b> — gants de protection thermique obligatoires pour tout
+  contact ; ne jamais toucher une surface sans l'autorisation du professeur ; ne jamais approcher les doigts d'un
+  ventilateur en mouvement ; rester à la distance indiquée pendant l'écoute du compresseur. <b class="t">🚨 En cas
+  d'incident :</b> en cas de brûlure légère, refroidir sous le point d'eau localisé puis prévenir le professeur ;
+  ne jamais déplacer un camarade blessé sans certitude sur son état.</div>
+
+  <h4 style="font-size:11pt">Tableau d'observation — chaud ou froid ?</h4>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:40%">Ce que je touche ou observe</th><th>Chaud, tiède ou froid ?</th><th>Organe (mon hypothèse)</th></tr>
+    <tr><td>Le gros tuyau qui sort de l'organe le plus bruyant</td><td></td><td></td></tr>
+    <tr><td>L'organe où l'air soufflé sort (avec le ventilateur)</td><td></td><td></td></tr>
+    <tr><td>Le petit tuyau fin entre les deux organes</td><td></td><td></td></tr>
+    <tr><td>Le tuyau qui revient vers l'organe le plus bruyant</td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <h4 style="font-size:11pt">Je complète la croix du frigoriste — d'après mon repérage sur la machine</h4>
+  <p style="font-size:10.3pt">Respectez la convention absolue vue depuis la semaine 1 : <b>détendeur à GAUCHE ·
+  compresseur à DROITE · condenseur en HAUT · évaporateur en BAS.</b> Nommez chaque organe, indiquez le côté
+  <b>HP</b> (haute pression) et le côté <b>BP</b> (basse pression), et tracez la flèche de circulation du fluide.</p>
+  <figure style="margin:6px 0 2px; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.svg" alt="Croix du frigoriste à compléter : détendeur gauche, compresseur droite, condenseur haut, évaporateur bas" style="max-width:60%">
+  </figure>
+  <p class="legende" style="text-align:center">Utilisez ce schéma comme repère de convention ; complétez votre propre croix dans le cadre ci-dessous d'après VOTRE observation du jour.</p>
+  <div class="cadre-dessin" style="min-height:230px"><span class="consigne-cadre">Ma croix du jour — 4 organes nommés, HP/BP indiqués, flèche de circulation</span></div>
+
+  <div class="encadre-question"><b>Question</b> — Un camarade vous dit : « Sur la vraie machine, le condenseur
+  n'est pas forcément en haut. » A-t-il raison ? Expliquez avec vos mots.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <h4 style="font-size:11pt">Auto-contrôle du repérage</h4>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:50%">Critère observable</th><th>Constat</th></tr>
+    <tr><td style="text-align:left">Les 4 organes sont nommés, sans confusion entre chaud et froid</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">La convention (gauche/droite/haut/bas) est respectée sur ma croix</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">HP et BP sont indiqués, la flèche de circulation est cohérente</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — POSTE ÉLEC · INTRO + TIRAGE AU SORT + SÉCURITÉ + LECTURE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE ÉLEC — câblage domestique et mesures</h3>
+  <span class="poste-titre">C3.6 sur T10 · S5.6 (câblage) — Évaluation</span><span class="poste-titre" style="background:#7b5cf5">C4.5 sur T11 · S5.6 (mesures) — Évaluation</span><span class="chrono">≈ 4 h</span>
+
+  <div class="tirage"><b class="t">🎲 Tirage au sort — quel montage allez-vous câbler ?</b>
+  En arrivant au poste, vous tirez un ticket : il indique <b>Variante A — simple allumage</b> ou
+  <b>Variante B — va-et-vient</b>. Peu importe le tirage : la <b>méthode</b>, le <b>temps accordé</b> et
+  <b>l'exigence de résultat</b> sont identiques pour les deux variantes. Ne complétez que la variante que vous
+  avez tirée ; l'autre ne vous concerne pas aujourd'hui.</div>
+
+  <h4 style="font-size:11pt">Méthode commune aux deux variantes — rappel</h4>
+  <p style="font-size:10.3pt">Vous suivez exactement la méthode utilisée depuis S1-E1 : <b>lire le schéma →
+  préparer la platine → câbler → CONTRÔLE HORS TENSION → mise sous tension UNIQUEMENT par le professeur →
+  mesurer la tension en service.</b> Vous ne mettez <b>jamais</b> votre platine sous tension vous-même.</p>
+
+  <h3 class="section">La consignation — rituel en 4 étapes (rappel NFC 18-510)</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Couper</b> — le disjoncteur du poste reste ouvert pendant tout le câblage.<br>
+  2. <b>Vérifier l'absence de tension (VAT)</b> — au multimètre, position voltmètre.<br>
+  3. <b>Condamner / signaler</b> — personne d'autre ne remet l'alimentation ; seul le professeur ferme le disjoncteur.<br>
+  4. <b>Travailler hors tension</b> — tout le câblage et le contrôle se font disjoncteur ouvert.</p>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Gestes interdits</b> — jamais toucher un fil ou une platine sans avoir vérifié
+  l'absence de tension ; jamais câbler ou modifier une platine sous tension ; jamais mettre une platine sous
+  tension vous-même. <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence de l'atelier), alerter le
+  professeur, ne jamais déplacer un camarade électrisé.</div>
+
+  <h4 style="font-size:11pt">Matériel autorisé (commun aux deux variantes)</h4>
+  <ul class="liste-num">
+    <li>Platine en bois équipée d'un rail oméga</li>
+    <li>Disjoncteur magnétothermique ou porte-fusible unipolaire Ph + N</li>
+    <li>1 interrupteur simple (variante A) ou 2 interrupteurs va-et-vient (variante B), selon votre tirage</li>
+    <li>Support de lampe + ampoule adaptée</li>
+    <li>Bornier de phase, de neutre, de terre</li>
+    <li>Fils électriques souples, couleurs normalisées (phase rouge/marron, neutre bleu, terre vert/jaune) <span class="conso">(consommable)</span></li>
+    <li>Tournevis plat et cruciforme, pince à dénuder, pince coupante</li>
+    <li>Multimètre (positions ohmmètre et voltmètre)</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — VARIANTE A : SIMPLE ALLUMAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="variante a">VARIANTE A — SIMPLE ALLUMAGE (si tirée)</span>
+  <p style="font-size:10.3pt">Q1 le disjoncteur, S1 l'interrupteur, H1 la lampe. Le schéma complet figure en
+  <b>annexe pleine page</b> en fin de document : gardez-le sous les yeux pendant tout le câblage.</p>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-simple-allumage.svg" alt="Schéma développé réduit du simple allumage : disjoncteur Q1, interrupteur S1, lampe H1" style="max-width:65%">
+  </figure>
+
+  <h4 style="font-size:11pt">Étapes — variante A</h4>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est hors tension (disjoncteur du poste ouvert)</p>
+    <p>☐ 2. Positionner Q1, S1 et le support de lampe H1 selon le schéma d'implantation, fixer sans forcer</p>
+    <p>☐ 3. Raccorder la phase du bornier à Q1, puis à S1, puis à H1 ; raccorder le neutre directement à H1</p>
+    <p>☐ 4. Vérifier que chaque connexion est bien serrée et conforme au schéma et aux couleurs</p>
+  </div>
+
+  <h4 style="font-size:11pt">Contrôle hors tension — variante A</h4>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:40%">Mesure</th><th>Interrupteur</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>S1 fermé</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>S1 ouvert</td><td>résistance infinie</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — VARIANTE B : VA-ET-VIENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="variante b">VARIANTE B — VA-ET-VIENT (si tirée)</span>
+  <p style="font-size:10.3pt">Q1 le disjoncteur, S1 et S2 les deux interrupteurs va-et-vient reliés par 2 navettes,
+  H1 la lampe. Le schéma complet figure en <b>annexe pleine page</b> en fin de document.</p>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-va-et-vient.svg" alt="Schéma développé réduit du va-et-vient : disjoncteur Q1, interrupteurs S1 et S2, navettes, lampe H1" style="max-width:65%">
+  </figure>
+
+  <h4 style="font-size:11pt">Étapes — variante B</h4>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est hors tension (disjoncteur du poste ouvert)</p>
+    <p>☐ 2. Positionner Q1, S1, S2 et le support de lampe H1 selon le schéma d'implantation, fixer sans forcer</p>
+    <p>☐ 3. Raccorder la phase du bornier à Q1, puis à la borne commune de S1</p>
+    <p>☐ 4. Raccorder les <b>deux navettes</b> entre S1 et S2 (bornes de contact, pas la commune)</p>
+    <p>☐ 5. Raccorder la borne commune de S2 à H1 ; raccorder le neutre directement à H1</p>
+    <p>☐ 6. Vérifier que chaque connexion est bien serrée et conforme au schéma</p>
+  </div>
+
+  <h4 style="font-size:11pt">Contrôle hors tension — variante B</h4>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:50%">Position de S1 / S2</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">S1 et S2 en positions « alignées » (circuit fermé)</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">S1 et S2 en positions « opposées » (circuit ouvert)</td><td>résistance infinie</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si le résultat ne correspond pas à celui
+  attendu, ne forcez pas un branchement : signalez l'écart au professeur, c'est souvent une navette inversée.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — MISE SOUS TENSION + MESURE TENSION EN SERVICE (COMMUN) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Mise sous tension — uniquement par le professeur — puis mesure de tension en service</h3>
+  <span class="poste-titre">C4.5 sur T11 · S5.6 — Évaluation</span><span class="chrono">≈ 15 min</span>
+  <p style="font-size:10.3pt"><b>Une fois votre contrôle hors tension terminé et conforme, appelez le
+  professeur.</b> C'est lui, et lui seul, qui ferme le disjoncteur. Vous mesurez alors la tension au multimètre,
+  position voltmètre, cordons branchés en parallèle, <b>sans toucher les parties métalliques nues</b>.</p>
+
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:44%">Point de mesure (votre variante)</th><th>Tension lue (V)</th></tr>
+    <tr><td style="text-align:left">Entre phase et neutre, en amont de votre/vos interrupteur(s)</td><td></td></tr>
+    <tr><td style="text-align:left">Aux bornes de la lampe H1, lampe allumée</td><td></td></tr>
+    <tr><td style="text-align:left">Aux bornes de la lampe H1, lampe éteinte</td><td></td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Repère : la tension nominale du secteur
+  français entre phase et neutre est de 230 V (valeur normative) ; la valeur exacte lue sur votre poste est à
+  faire confirmer par le professeur.</p>
+
+  <div class="encadre-question"><b>Question</b> — La tension aux bornes de la lampe est nulle quand elle est
+  éteinte, alors qu'elle ne l'est pas juste avant votre/vos interrupteur(s). Expliquez pourquoi, avec vos mots.</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h4 style="font-size:11pt">Rangement</h4>
+  <div class="liste-num">
+    <p>☐ 1. Remettre la platine hors tension (disjoncteur ouvert, débranché)</p>
+    <p>☐ 2. Ranger les fils sans les plier de façon serrée, ranger l'outillage à son emplacement</p>
+    <p>☐ 3. Vérifier que le poste est propre et dégagé pour l'élève suivant</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — POSTE THÉORIE : CROIX + ORGANES/RÔLES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE THÉORIE — écrit individuel (2 h)</h3>
+  <span class="poste-titre" style="background:#5d6b7c">Appui S2.1 · S5.1 · S5.6 — croise C3.4 et C4.5</span>
+  <p style="font-size:10.3pt">Cet écrit reprend, sous une autre forme, les exercices déjà travaillés en S1-T1,
+  S1-T2 et S2-T1. Vous répondez seul(e), sans note ni téléphone, calculatrice simple autorisée.</p>
+
+  <h4 style="font-size:11pt">Exercice 1 — compléter la croix (les 4 branches sont déjà tracées)</h4>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.svg" alt="Croix du frigoriste vierge à compléter" style="max-width:55%">
+  </figure>
+  <p style="font-size:10.3pt">Sur le schéma ci-dessus, écrivez dans chaque case : le <b>nom de l'organe</b>, puis
+  indiquez avec une accolade le côté <b>HP</b> et le côté <b>BP</b>, et tracez la <b>flèche de circulation</b> du
+  fluide en boucle fermée.</p>
+
+  <h4 style="font-size:11pt">Exercice 2 — texte à trous : le trajet du fluide</h4>
+  <p style="font-size:10.3pt">Complétez ce texte avec les mots qui manquent (organes, états, mots de liaison) :</p>
+  <div class="zone-reponse" style="min-height:6em; font-size:10.3pt; padding:10px 14px">
+  « Le fluide sort du _______________ à l'état de gaz chaud et sous haute pression. Il traverse le
+  _______________, qui le refroidit jusqu'à ce qu'il devienne _______________. Le fluide liquide traverse ensuite
+  le _______________, qui fait chuter sa _______________. Il arrive enfin dans l'_______________, où il
+  _______________ la chaleur du milieu et redevient _______________. Le cycle recommence alors sans arrêt. »</div>
+
+  <div class="encadre-question"><b>Question</b> — Parmi les 4 organes, lequel est le <b>seul</b> à ne recevoir
+  aucun apport d'énergie mécanique (il ne fait que ralentir le fluide) ?</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 9 — POSTE THÉORIE : PLAQUE SIGNALÉTIQUE + LOI D'OHM ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 3 — lire une plaque signalétique réelle</h4>
+  <p style="font-size:10.3pt">Voici la plaque signalétique d'une unité intérieure de climatiseur (<i>D'après :
+  plaque signalétique Mitsubishi Electric MSC-GA35VB, photo, dossier S2</i>). Relevez les valeurs demandées.</p>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/plaque-signaletique-mitsubishi-msc-ga35vb.jpg" alt="Plaque signalétique Mitsubishi MSC-GA35VB : 230 V, 50 Hz, 0,19 A, 0,040 kW, R410A" style="max-width:70%">
+  </figure>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:46%">Grandeur à relever</th><th>Valeur lue</th></tr>
+    <tr><td style="text-align:left">Tension (Voltage)</td><td></td></tr>
+    <tr><td style="text-align:left">Fréquence</td><td></td></tr>
+    <tr><td style="text-align:left">Intensité (Current)</td><td></td></tr>
+    <tr><td style="text-align:left">Puissance absorbée (Input)</td><td></td></tr>
+    <tr><td style="text-align:left">Fluide frigorigène</td><td></td></tr>
+  </table>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 4 — calcul guidé : la loi d'Ohm</h4>
+  <p style="font-size:10.3pt">La loi d'Ohm relie les 3 grandeurs vues en S1-T2 : <b>U = R × I</b>.</p>
+  <div class="encadre-question"><b>Question a</b> — À partir des deux valeurs relevées sur la plaque ci-dessus
+  (tension U et intensité I), calculez la <b>résistance équivalente</b> R = U ÷ I que présenterait l'appareil
+  <b>s'il se comportait comme une résistance pure</b>. Détaillez votre calcul.
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.3em 0 0">Attention : un compresseur
+  n'est jamais vraiment une résistance pure (c'est un moteur) — cet exercice entraîne seulement l'usage de la
+  formule avec des valeurs réelles, comme en S1-T2.</p></div>
+  <div class="zone-reponse" style="min-height:3.2em"></div>
+
+  <div class="encadre-question"><b>Question b</b> — Rappel de S1-T2 : un enroulement de moteur mesuré au
+  multimètre affichait R = 7,3 Ω (<i>D'après : TP 04 – multimètre, correction</i>). Quelle formule utiliseriez-vous
+  pour calculer l'intensité I si vous connaissiez la tension U appliquée à ses bornes ? (Donnez la formule, sans
+  chercher un résultat chiffré.)</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 10 — GRILLE D'ÉVALUATION + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É1 · semaine 7 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 GRILLE D'ÉVALUATION — POSITIONNEMENT OFFICIEL</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.4pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:9%">Ancrage</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)</td><td>sur T10 · S2.1</td><td>Compétence non observée ce jour.</td><td>Pièce enchaînée non conforme (cote, pincement ou dudgeon fendu), ou organes/croix confondus malgré aide.</td><td>Pièce conforme avec une remarque, ou croix correcte avec l'aide du professeur.</td><td>Pièce enchaînée conforme aux 5 critères d'auto-contrôle ET croix correcte (organes, convention, HP/BP), réalisées seul(e).</td><td>Comme « Acquis », et explique le choix de sa méthode d'enchaînement ou la raison d'un repère sur la machine.</td></tr>
+    <tr><td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques</td><td>sur T10 · S5.6</td><td>Compétence non observée ce jour.</td><td>Câblage non conforme au schéma ou non fonctionnel, ou consignation non respectée.</td><td>Câblage fonctionnel avec l'aide du professeur pour lire le schéma ou positionner le matériel.</td><td>Câble seul(e) la variante tirée, conforme au schéma et aux couleurs, contrôle hors tension réalisé avant tout appel.</td><td>Comme « Acquis », et explique la différence entre les deux variantes à partir du schéma.</td></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>sur T11 · S5.6</td><td>Compétence non observée ce jour.</td><td>Mesure de continuité ou de tension non réalisée ou incohérente malgré aide.</td><td>Mesures réalisées avec l'aide du professeur pour choisir la fonction ou le calibre.</td><td>Continuité hors tension ET tension en service mesurées seul(e), valeurs cohérentes, unités correctes.</td><td>Comme « Acquis », et explique pourquoi la tension change entre les deux points mesurés.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté de la mesure</td><td>observation continue</td><td>Non observé ce jour.</td><td>EPI incomplets, geste dangereux (touche sans VAT, tente une mise sous tension seul), ou valeur inventée/recopiée.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>Sécurité et rigueur respectées sans rappel, mesures honnêtes, défauts signalés spontanément sur les 2 postes pratiques.</td><td>Comme « Acquis », et reste rigoureux(se) jusqu'au rangement complet des 2 postes.</td></tr>
+  </table>
+  </div>
+
+  <div class="jalon"><h4>Mon auto-positionnement (avant correction professeur)</h4>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">C3.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">C4.5 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">Savoir-être : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Positionnez-vous honnêtement AVANT que le
+  professeur ne corrige : l'écart entre votre auto-positionnement et la correction fait partie de l'observation
+  du savoir-être.</p>
+  <p style="margin-top:8px">Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure de fin : ________________</p></div>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce sujet complété (3 postes : tableaux, croix, câblage contrôlé, écrit théorie, auto-positionnement)</li>
+    <li>La pièce cuivre enchaînée (poste froid) et la platine câblée (poste élec), contrôlées par le professeur</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Activité n°1 TUBES
+  CUIVRE + correction, Activité n°5 CINTRAGES, TP n°1 Emboiture, TP n°2 Dudgeon, Tube cuivre.pdf / Tube cuivre2.pdf
+  (F. Cabeza) — documents S1-F1 ; Dossier 1 Progression annuelle CAP IFCA sécurité, eval croix du frigo — documents
+  S1-F2 et S1-T1 ; TP 4 électricité domestique CAP, TP 01 circuit électrique domestique, TP simple allumage —
+  documents S1-E1 ; TP 04 multimètre + correction, Exercice 01/02 S4-Électricité — documents S1-E2 et S1-T2 ; plaque
+  signalétique Mitsubishi Electric MSC-GA35VB (photo, dossier S2) ; Evaluation_CCF_EP1_Cintrage et Sujet CCF2021 EP2
+  FACONNAGE/electrique (F. Henninot, forme simplifiée pour une 1<sup>re</sup> évaluation de 1<sup>re</sup> année).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE 1 : SIMPLE ALLUMAGE COMPLET (impression A3 paysage) — si variante A tirée ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail (variante A uniquement)</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Simple allumage — schéma de travail complet</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b>, uniquement pour
+  les élèves ayant tiré la variante A : c'est le document à garder sous les yeux pendant tout le câblage.</p>
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-simple-allumage.svg" alt="Schéma technique pleine page : simple allumage — disjoncteur Q1, interrupteur S1, lampe H1" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:10pt; color:#5a6472; margin-top:6px;">Simple allumage complet : phase → <b>Q1</b>
+    (disjoncteur) → <b>S1</b> (interrupteur) → <b>H1</b> (lampe) → neutre.</figcaption>
+  </figure>
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- ============ ANNEXE 2 : VA-ET-VIENT COMPLET (impression A3 paysage) — si variante B tirée ============ -->
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail (variante B uniquement)</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Va-et-vient — schéma de travail complet</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b>, uniquement pour
+  les élèves ayant tiré la variante B : c'est le document à garder sous les yeux pendant tout le câblage.</p>
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-va-et-vient.svg" alt="Schéma technique pleine page : va-et-vient — disjoncteur Q1, interrupteurs S1 et S2, navettes, lampe H1" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:10pt; color:#5a6472; margin-top:6px;">Va-et-vient complet : phase → <b>Q1</b>
+    (disjoncteur) → commun de <b>S1</b> → 2 <b>navettes</b> → commun de <b>S2</b> → <b>H1</b> (lampe) → neutre.</figcaption>
+  </figure>
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .tirage, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .bandeau-eval, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

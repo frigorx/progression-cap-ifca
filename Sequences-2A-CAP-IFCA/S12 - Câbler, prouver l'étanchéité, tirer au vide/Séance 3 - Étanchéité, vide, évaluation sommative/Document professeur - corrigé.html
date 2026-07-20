@@ -1,0 +1,339 @@
+<meta charset="utf-8">
+<title>Document professeur — S12 · Séance 3 · Étanchéité, vide, évaluation sommative</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#fff6cc; color:#8a6d00; border:1px solid #e3cf6b}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .cadre{border:1.5px solid var(--bleu); border-radius:6px; padding:10px 14px; margin:.5em 0 .9em; background:var(--fond-doux)}
+  .cadre h4{margin:0 0 5px; font-size:9.5pt; text-transform:uppercase; letter-spacing:.08em; color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .rep{font-size:10.3pt; margin:.3em 0 .8em}
+  .rep th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8.3pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .rep td{border:1px solid var(--filet); padding:6px 6px; vertical-align:top}
+  .rep tr:nth-child(even) td{background:var(--fond-doux)}
+  .vigi{border-left:4px solid var(--orange); background:#fff7f3; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .vigi b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .eval-row td{background:#fff6cc!important}
+  .poste{border:1.5px solid var(--bleu); border-radius:6px; padding:10px 14px; margin:.5em 0 1em}
+  .poste h4{margin:0 0 6px; font-size:10.5pt; color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .poste .num{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:50%;
+    display:inline-block; width:22px; height:22px; text-align:center; line-height:22px; font-size:10pt; margin-right:6px}
+  .grillePoste{font-size:9pt; margin:.4em 0}
+  .grillePoste th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grillePoste td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grillePoste tr:nth-child(even) td{background:var(--fond-doux)}
+  .grillePoste .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .tbl-wrap{overflow-x:auto}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:190px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 : IDENTIFICATION + ORGANISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Étanchéité, tirage au vide — chantier de remise en état (A4)</td>
+      <td style="width:38%"><span class="lib">Séance n° 3/3</span><b>Étanchéité à l'azote, tirage au vide — et preuve finale</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S12</span> — sem. 10, 17-21/11/2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — 3 postes tournants</td>
+      <td><span class="lib">Durée</span>Journée 8 h — binômes puis évaluation individuelle</td>
+      <td><span class="lib">Chantier</span>A4 — dernière séance avant PFMP 3</td>
+      <td><span class="lib">Encadrement</span>1 professeur, 3 postes en rotation</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes à détente directe <span class="nuance">à confirmer</span><br><b>S6.1</b> Santé et sécurité <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la démarche de preuve · sécurité azote sans rappel · autonomie du binôme · calme en évaluation</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">ÉVALUATION — École Directe</span><br><b>C3.6</b> Câbler, connecter<br><b>C3.9</b> Contrôler l'étanchéité<br><b>C4.1</b> Mettre en service</div>
+  </div>
+
+  <h4 class="section">Ce que ce document ajoute au TP élève</h4>
+  <p style="font-size:10.3pt">Réponses attendues à chaque question du TP, points de vigilance, erreurs
+  typiques, organisation matérielle des 3 postes, minutage conseillé, différenciation, et les <b>sujets des
+  3 postes de l'évaluation sommative S12</b> avec grille critériée et rotation chronométrée.</p>
+
+  <h4 class="section">Organisation matérielle du plateau</h4>
+  <p style="font-size:10.3pt">Prévoir <b>3 postes fixes</b> dès la pause méridienne pour l'après-midi (montage
+  pendant le rangement du matin, 20 min prévues en trame) :</p>
+  <table class="rep">
+    <tr><th style="width:18%">Poste</th><th style="width:42%">Configuration matérielle</th><th style="width:40%">Compétence évaluée</th></tr>
+    <tr><td>Poste 1 — Câblage</td><td>Armoire vide + schéma de câblage à suivre, outillage isolé, VAT, cadenas individuel</td><td>C3.6</td></tr>
+    <tr><td>Poste 2 — Épreuve d'étanchéité</td><td>Point de contrôle préparé (raccord percé ou desserré volontairement sur une section), manifold, bouteille d'azote, détendeur, lunettes</td><td>C3.9</td></tr>
+    <tr><td>Poste 3 — Vacuomètre / diagnostic</td><td>Pompe à vide déjà en fonctionnement sur un circuit ; un des 3 circuits est volontairement humide ou fuyard pour forcer le diagnostic</td><td>C4.1</td></tr>
+  </table>
+  <p style="font-size:10pt" class="vigi"><b class="t">Point de vigilance —</b> le poste 2 doit comporter un
+  vrai défaut détectable (raccord légèrement desserré) pour au moins un binôme sur trois, afin d'éviter que
+  tous les élèves concluent « c'est étanche » par habitude sans avoir vraiment cherché.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : TRAME HORAIRE ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Document professeur — S12 · séance 3/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Trame horaire conseillée — journée 8 h</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:8%">Durée</th><th style="width:22%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Matinée — 4 h 00</td></tr>
+    <tr><td>10 min</td><td class="ph">Accueil</td><td>Appel, annonce de l'enjeu : évaluation sommative en fin de journée, audit individuel.</td></tr>
+    <tr><td>10 min</td><td class="ph">Tenue + exercice fil de l'eau</td><td>Passage en tenue échelonné ; en attente, exercice croix du frigoriste sur photo + repérage de l'intrus (bouteilles).</td></tr>
+    <tr><td>15 min</td><td class="ph">Sécurité</td><td>Rituel sécurité azote (étiquette, détendeur, lunettes, purge) + consignation électrique.</td></tr>
+    <tr><td>20 min</td><td class="ph">Notion + situation-problème</td><td>Accroche manomètre témoin (2 min silence) puis notion étanche/déshydraté ; lancement de la situation-problème.</td></tr>
+    <tr><td>40 min</td><td class="ph">Étape A — conception</td><td>Chaque binôme rédige son protocole (raccordement, pression demandée, durée de stabilisation, méthode de recherche de fuite).</td></tr>
+    <tr><td>20 min</td><td class="ph">Étape B — validation</td><td>Visa individuel par binôme : professeur fixe la pression d'épreuve selon plaque signalétique + NF EN 378.</td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="2">Pause</td></tr>
+    <tr><td>1 h 55</td><td class="ph">Étape C — épreuve azote</td><td>Vérification lunettes avant raccordement ; montée en pression, stabilisation, relevés, recherche de fuite, purge.</td></tr>
+    <tr class="demi"><td colspan="3">Après-midi — 4 h 00</td></tr>
+    <tr><td>1 h 45</td><td class="ph">Étape D — conclusion + vide</td><td>Conclusion sur preuve azote, puis tirage au vide, relevés vacuomètre, question de la remontée de pression.</td></tr>
+    <tr><td>10 min</td><td class="ph">Bon de commande</td><td>Carnet de chantier hebdomadaire.</td></tr>
+    <tr><td>20 min</td><td class="ph">Rangement + montage des 3 postes</td><td>Rangement du matériel de l'épreuve/vide ; installation simultanée des 3 postes d'évaluation.</td></tr>
+    <tr class="eval-row"><td>1 h 20</td><td class="ph">ÉVALUATION SOMMATIVE S12</td><td>3 postes tournants individuels, rotation chronométrée (détail feuille suivante).</td></tr>
+    <tr><td>15 min</td><td class="ph">Bilan</td><td>Auto-positionnement, retour individuel bref.</td></tr>
+    <tr><td>10 min</td><td class="ph">Sortie</td><td>Rappel PFMP 3, restitution EPI.</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 : REPONSES ATTENDUES TP ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Document professeur — S12 · séance 3/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h4 class="section">Corrigé — réponses attendues à chaque question du TP</h4>
+
+  <table class="rep">
+    <tr><th style="width:32%">Question du TP élève</th><th>Réponse attendue / élément de correction</th></tr>
+    <tr><td>Accroche — observation muette du manomètre témoin</td><td>Si l'aiguille ne bouge pas, l'installation témoin est étanche et stable ; c'est ce que l'élève devra prouver sur sa propre machine. Ne pas donner la réponse avant le débat — faire verbaliser d'abord.</td></tr>
+    <tr><td>Exercice fil de l'eau — 4 organes de la croix du frigoriste</td><td>Compresseur, condenseur, détendeur, évaporateur, dans cet ordre de circulation du fluide. Vérifier que chaque élève les situe bien sur SA machine (pas sur un schéma générique).</td></tr>
+    <tr><td>Exercice fil de l'eau — intrus parmi les 3 bouteilles</td><td>L'intrus est <b>l'oxygène</b>. Raison : l'oxygène est comburant et, au contact des huiles frigorifiques présentes dans le circuit, provoque un risque d'explosion. Seul l'azote R (azote sec) est autorisé pour l'épreuve. L'air comprimé n'est pas non plus approprié : il contient de l'humidité et de l'oxygène.</td></tr>
+    <tr><td>Mon hypothèse (avant épreuve)</td><td>Pas de bonne réponse unique : évaluer la qualité du raisonnement (état visuel des raccords observés, historique du chantier des séances 1-2) plutôt que la conclusion elle-même.</td></tr>
+    <tr><td>Protocole — raccordement (tracé sur le schéma fluidique)</td><td>La bouteille d'azote (avec détendeur) se raccorde sur la voie centrale du manifold, manifold lui-même posé sur les deux prises de pression BP et HP visibles sur le schéma (les deux vannes du manifold, de part et d'autre du corps central). La pression se lit directement sur les manomètres déjà présents sur le schéma (P / PZL côté BP, P / PZH côté HP). La vanne à entourer pour isoler le circuit est l'une des deux vannes du manifold (celle côté BP ou côté HP selon la zone testée) : c'est elle qui, une fois fermée, sépare la bouteille d'azote du reste du circuit pendant la stabilisation. Accepter toute variante cohérente avec le schéma fourni ; refuser un tracé qui raccorderait l'azote après un compresseur ou un détendeur (mauvais sens, incohérent avec un circuit à l'arrêt).
+    <div class="cadre" style="margin-top:6px"><h4>Support — schéma fluidique du poste</h4>
+    <img class="fig" src="../images/schema-fluidique-manifold-pompe-a-vide.png" alt="Schéma fluidique du circuit avec manifold et pompe à vide">
+    <p class="legende">Même schéma que celui remis à l'élève — sert de référence visuelle pour valider son tracé pendant l'étape B (visa).</p></div>
+    </td></tr>
+    <tr><td>Protocole — pression d'épreuve</td><td>L'élève doit proposer une méthode (ex. : se baser sur la pression de service maximale indiquée sur la plaque signalétique du compresseur ou du pressostat HP). <b>La valeur chiffrée n'est jamais donnée par l'élève ni pré-remplie</b> : elle est fixée et validée par le professeur selon la plaque signalétique et la NF EN 378.</td></tr>
+    <tr><td>Protocole — durée de stabilisation</td><td>Une durée raisonnable justifiée (par exemple 15 à 20 minutes) permettant de détecter une fuite lente ; l'important est la justification, pas un chiffre normatif imposé.</td></tr>
+    <tr><td>Protocole — méthode de recherche de fuite</td><td>Eau savonneuse sur les raccords, brasures, presse-étoupes ; observation de la formation de bulles. Accepter aussi « détecteur électronique » si le lycée en dispose.</td></tr>
+    <tr><td>Réflexion — montée progressive en pression</td><td>Une montée brutale peut provoquer un choc de pression, endommager un composant fragile ou masquer une fuite qui ne se manifeste qu'en montée lente.</td></tr>
+    <tr><td>Réflexion — comparaison pression initiale / après stabilisation</td><td>Si les deux valeurs sont égales : pas de fuite détectée à ce stade. Si la seconde est inférieure : fuite quelque part sur le circuit, recherche à engager.</td></tr>
+    <tr><td>Conclusion sur preuve — étanchéité</td><td>Exiger que l'élève cite ses propres chiffres relevés (pas d'impression). Une conclusion sans chiffre à l'appui n'est pas recevable, même si elle est juste.</td></tr>
+    <tr><td>Pompe à vide — vérification avant mise en route</td><td>Toujours vérifier le niveau d'huile de la pompe à vide (hublot de regard) avant de la démarrer.</td></tr>
+    <tr><td>Pompe à vide — nommer les organes (1 à 12)</td><td>Noms disponibles, sourcés de la correction d'origine (« Pompe à vide, bouteille d'azote et Manifold ») : raccord d'aspiration, soupape de lest de gaz, orifice de remplissage d'huile, hublot de regard, boîtier en aluminium moulé, orifice de vidange d'huile, socle en polycarbonate, soupape ISO-VALVE (isolement de la pompe), moteur, interrupteur d'alimentation, échappement par la poignée, poignée.
+    <div class="vigi" style="margin-top:6px"><b class="t">Point de vigilance —</b> la source ne précise pas quel nom correspond à quel numéro (1 à 12) sur la photo légendée du poste. <b>À compléter par le professeur</b> avant la séance, en pointant chaque repère sur la pompe réelle du poste (le modèle et la disposition des organes varient d'une pompe à l'autre).
+    <img class="fig" src="../images/pompe-a-vide-legendee.jpeg" alt="Pompe à vide avec repères numérotés de 1 à 12" style="margin-top:6px">
+    <p class="legende">Photo remise à l'élève — reporter ici la correspondance n°→nom une fois vérifiée sur le modèle du poste.</p></div>
+    </td></tr>
+    <tr><td>Réflexion — pourquoi vérifier le niveau d'huile</td><td>Une pompe sans huile suffisante s'use prématurément et n'atteint pas le niveau de vide requis ; l'huile assure aussi l'étanchéité interne des pistons/palettes.</td></tr>
+    <tr><td>Pourquoi tirer au vide (rappel de notion)</td><td>Pour évacuer l'air et surtout l'humidité résiduelle introduite pendant le montage — élément directement issu de la source « Pompe à vide et bouteille d'azote, correction ».</td></tr>
+    <tr><td>Réflexion — remontée de pression après isolement</td><td>Deux causes possibles à faire citer : (1) une <b>fuite</b> sur le circuit (rentrée d'air), (2) de l'<b>humidité résiduelle</b> qui continue à s'évaporer et fait remonter la pression. Faire raisonner l'élève sur comment différencier les deux (une fuite continue à faire monter la pression indéfiniment ; l'humidité se stabilise après évaporation complète).</td></tr>
+    <tr><td>Conclusion sur preuve — tirage au vide</td><td>Si la dépression reste stable après isolement : installation déshydratée, la charge peut être envisagée après validation du professeur. Si remontée : recommencer le tirage ou rechercher une fuite avant toute charge.
+    <div class="cadre" style="margin-top:6px"><h4>Corrigé — allure attendue des courbes tracées par l'élève</h4>
+    <table class="rep" style="margin:0">
+      <tr><th style="width:30%">Cas</th><th>Allure de la courbe (pression/dépression en fonction du temps, après isolement)</th></tr>
+      <tr><td><b>Circuit étanche et sec</b></td><td>Courbe <b>plate</b> dès l'isolement : la valeur relevée au vacuomètre reste stable dans le temps, sans remontée notable.</td></tr>
+      <tr><td><b>Circuit fuyard</b></td><td>Courbe qui <b>remonte de façon continue et régulière</b>, sans jamais se stabiliser : de l'air rentre en permanence par le point de fuite.</td></tr>
+      <tr><td><b>Humidité résiduelle (sans fuite)</b></td><td>Courbe qui <b>remonte puis se stabilise</b> après un certain temps : l'humidité s'évapore progressivement puis la pression cesse de monter une fois toute l'eau évaporée.</td></tr>
+    </table>
+    <p style="font-size:9pt; margin:6px 0 0; color:var(--gris)">Aucune valeur chiffrée de dépression cible n'est à donner ici : elle dépend du modèle de vacuomètre et de la température ambiante (cf. NF EN 378 et plaque signalétique de la pompe).</p>
+    </div>
+    </td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 : ERREURS TYPIQUES + DIFFERENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Document professeur — S12 · séance 3/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h4 class="section">Erreurs typiques d'élèves</h4>
+  <div class="vigi"><b class="t">Erreur 1 —</b> confondre l'épreuve à l'azote et le tirage au vide comme
+  s'ils prouvaient la même chose. Faire reformuler la différence avant de valider l'étape D.</div>
+  <div class="vigi"><b class="t">Erreur 2 —</b> conclure « c'est étanche » sans avoir relevé de chiffre précis,
+  seulement à l'impression visuelle de l'aiguille. Exiger systématiquement le chiffre écrit dans le tableau
+  de relevés avant d'accepter une conclusion.</div>
+  <div class="vigi"><b class="t">Erreur 3 —</b> vouloir raccorder la bouteille sans vérifier l'étiquette
+  (confusion azote/oxygène en atelier partagé). Rappel impératif avant chaque poste, sanctionné en savoir-être
+  si non respecté.</div>
+  <div class="vigi"><b class="t">Erreur 4 —</b> démarrer la pompe à vide sans vérifier le niveau d'huile.
+  Faire systématiquement pointer le hublot de regard avant la mise en route.</div>
+  <div class="vigi"><b class="t">Erreur 5 —</b> attribuer toute remontée de pression après isolement à une
+  fuite, en oubliant l'hypothèse humidité. Toujours demander les deux causes possibles.</div>
+
+  <h4 class="section">Différenciation</h4>
+  <table class="rep">
+    <tr><th style="width:20%">Niveau</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Protocole partiellement guidé : le professeur propose 2-3 questions supplémentaires orientant vers le raccordement et la pression cible ; tolérance de temps allongée sur l'étape A ; reformulation orale systématique avant écriture.</td></tr>
+    <tr><td>Standard</td><td>Déroulement du TP tel quel, en autonomie de binôme, visa professeur à l'étape B.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus un calcul de durée de stabilisation justifié par le volume du circuit, et une comparaison chiffrée entre deux méthodes de recherche de fuite (eau savonneuse / détecteur électronique).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Fractionner l'étape A en sous-questions posées une par une (déjà fait dans le document élève) ; autoriser la dictée à l'oral au binôme puis recopie ; badge visuel de temps restant affiché pendant l'épreuve azote (1 h 55) pour ancrer la notion de durée sans surcharge cognitive ; pauses courtes autorisées pendant la phase de stabilisation (temps mort volontairement calme).</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 : SUJETS DES 3 POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Document professeur — S12 · séance 3/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Évaluation sommative S12 — 3 postes tournants individuels</h3>
+  <p style="font-size:10pt; color:var(--gris)">Rotation chronométrée : 1 h 20 au total, soit environ 25 min par
+  poste + 5 min de bascule. Chaque élève passe seul, dans l'ordre 1→2→3 ou en décalé selon l'effectif.
+  Statut ÉVALUATION, remontée École Directe. Grilles ci-dessous sur l'échelle <b>0-4</b> : le niveau
+  <b>0 = compétence non observée ce jour</b> (élève présent mais poste non atteint faute de temps, incident
+  technique, etc.) — <b>à ne jamais confondre avec une absence</b>, qui se code séparément sur École Directe.</p>
+
+  <div class="poste">
+    <h4><span class="num">1</span>Poste câblage au schéma — C3.6</h4>
+    <p style="font-size:10pt; margin:0 0 6px"><b>Consigne examinateur :</b> « Voici le schéma de câblage de la
+    puissance et de la commande de cette armoire. Consignez le poste, câblez-le en autonomie, puis contrôlez
+    visuellement avant de me solliciter pour la mise sous tension. » Ne pas intervenir pendant le câblage sauf
+    incident de sécurité.</p>
+    <p style="font-size:10pt; margin:0 0 6px"><b>Matériel du poste :</b> armoire préparée à vide, schéma
+    plastifié, outillage isolé, VAT, cadenas individuel, multimètre.</p>
+    <div class="tbl-wrap"><table class="grillePoste">
+      <tr><th style="width:22%">Indicateur</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+      <tr><td>Consignation réalisée avant intervention</td><td>Non observé ce jour</td><td>Non réalisée, même après rappel</td><td>Réalisée après rappel du professeur</td><td>Systématique, sans rappel</td><td>Systématique et vérifiée une seconde fois avant de solliciter le professeur</td></tr>
+      <tr><td>Conformité au schéma</td><td>Non observé ce jour</td><td>Erreurs non corrigées ou dangereuses</td><td>1 à 2 erreurs mineures, corrigées seul après relecture</td><td>Câblage conforme, aucune erreur, en autonomie</td><td>Câblage conforme et peut justifier chaque choix de repérage à l'examinateur</td></tr>
+      <tr><td>Contrôle avant mise sous tension</td><td>Non observé ce jour</td><td>Absence de contrôle</td><td>Contrôle partiel, incomplet</td><td>Contrôle visuel systématique et méthodique</td><td>Contrôle méthodique et anticipe seul le point de vigilance avant sollicitation du professeur</td></tr>
+    </table></div>
+  </div>
+
+  <div class="poste">
+    <h4><span class="num">2</span>Poste épreuve d'étanchéité sur point de contrôle — C3.9</h4>
+    <p style="font-size:10pt; margin:0 0 6px"><b>Consigne examinateur :</b> « Cette installation doit être
+    contrôlée avant livraison. Concevez et réalisez votre épreuve d'étanchéité à l'azote sur ce point de
+    contrôle, en autonomie, et concluez sur preuve. » Fixer la pression d'épreuve selon la plaque signalétique
+    du poste et la NF EN 378 au moment où l'élève la demande.</p>
+    <p style="font-size:10pt; margin:0 0 6px"><b>Matériel du poste :</b> circuit avec point de contrôle
+    préparé (un binôme sur trois avec défaut volontaire), manifold, bouteille d'azote R, détendeur, lunettes,
+    produit détecteur de fuite.</p>
+    <div class="tbl-wrap"><table class="grillePoste">
+      <tr><th style="width:22%">Indicateur</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+      <tr><td>Sécurité azote (étiquette, détendeur, lunettes)</td><td>Non observé ce jour</td><td>Raccordement sans vérification, malgré rappel</td><td>Une vérification oubliée puis corrigée après rappel</td><td>Vérifications systématiques avant raccordement, en autonomie</td><td>Vérifications systématiques ET explique pourquoi azote et jamais oxygène sans qu'on le lui demande</td></tr>
+      <tr><td>Rigueur du protocole exécuté</td><td>Non observé ce jour</td><td>Protocole absent ou incohérent</td><td>Protocole incomplet mais cohérent, exécuté avec aide</td><td>Montée progressive, stabilisation respectée, relevés écrits, en autonomie</td><td>Protocole rigoureux et adapté seul si un imprévu survient (ex. fuite détectée en cours d'épreuve)</td></tr>
+      <tr><td>Conclusion sur preuve</td><td>Non observé ce jour</td><td>Conclusion sans lien avec les relevés</td><td>Conclusion partiellement justifiée par les relevés</td><td>Conclusion appuyée sur les chiffres relevés, correcte au regard du défaut réel</td><td>Conclusion correcte et argumentée, sait l'expliquer à un pair</td></tr>
+    </table></div>
+  </div>
+
+  <div class="poste">
+    <h4><span class="num">3</span>Poste lecture du vacuomètre et diagnostic déshydratation — C4.1</h4>
+    <p style="font-size:10pt; margin:0 0 6px"><b>Consigne examinateur :</b> « La pompe à vide a déjà tiré ce
+    circuit. Isolez, relevez le vacuomètre, patientez, relevez à nouveau, et donnez votre diagnostic : la
+    machine peut-elle être chargée ? » Un des trois circuits est volontairement humide/fuyard (pression qui
+    remonte) pour forcer le diagnostic.</p>
+    <p style="font-size:10pt; margin:0 0 6px"><b>Matériel du poste :</b> circuit avec pompe à vide déjà
+    raccordée et en fonctionnement, vacuomètre, thermomètre d'ambiance.</p>
+    <div class="tbl-wrap"><table class="grillePoste">
+      <tr><th style="width:22%">Indicateur</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+      <tr><td>Lecture du vacuomètre</td><td>Non observé ce jour</td><td>Lecture erronée ou absente</td><td>Lecture approximative, aidée par l'examinateur</td><td>Lecture précise, relevés écrits aux deux temps, en autonomie</td><td>Lecture précise ET sait expliquer à un pair ce que signifie chaque valeur relevée</td></tr>
+      <tr><td>Diagnostic déshydratation</td><td>Non observé ce jour</td><td>Pas de diagnostic ou diagnostic erroné</td><td>Diagnostic partiel, obtenu avec aide</td><td>Distingue correctement fuite / humidité selon l'évolution observée, seul</td><td>Diagnostic correct ET justifie la méthode pour différencier fuite et humidité résiduelle</td></tr>
+      <tr><td>Décision finale argumentée</td><td>Non observé ce jour</td><td>Décision non cohérente avec les relevés</td><td>Décision correcte mais peu justifiée</td><td>Décision de charger ou non correctement justifiée par les relevés</td><td>Décision correcte, argumentée, transférable à un autre cas (ex. autre type de défaut)</td></tr>
+    </table></div>
+  </div>
+
+  <h4 class="section">Savoir-être — indicateurs observables (transversal aux 3 postes)</h4>
+  <div class="tbl-wrap">
+  <table class="grillePoste">
+    <tr><th style="width:22%">Indicateur</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr><td>Rigueur de la démarche de preuve</td><td>Non observé ce jour</td><td>Conclut « à l'impression », sans relevé, malgré rappel</td><td>Relève des chiffres seulement après rappel de l'examinateur</td><td>Relève des chiffres avant de conclure, spontanément</td><td>Relève des chiffres, conclut sur preuve ET signale une incohérence dans ses propres mesures</td></tr>
+    <tr><td>Sécurité azote sans rappel</td><td>Non observé ce jour</td><td>Ne vérifie pas l'étiquette ni les lunettes, même après rappel</td><td>Vérifie après rappel de l'examinateur</td><td>Vérifie l'étiquette et porte les lunettes sans que l'examinateur ait à le demander</td><td>Vérifie spontanément ET rappelle la règle azote/oxygène si interrogé</td></tr>
+    <tr><td>Autonomie</td><td>Non observé ce jour</td><td>Sollicite l'examinateur en continu, incapable d'avancer seul</td><td>Sollicite l'examinateur au-delà des points prévus</td><td>Sollicite l'examinateur seulement aux points prévus (validation, mise sous tension)</td><td>Autonome sur l'ensemble du poste, anticipe les points de validation à venir</td></tr>
+    <tr><td>Calme en situation d'évaluation</td><td>Non observé ce jour</td><td>Précipite les manipulations de sécurité malgré le chronométrage</td><td>Se précipite ponctuellement, se reprend après remarque</td><td>Reste concentré malgré le chronométrage, ne précipite pas les manipulations de sécurité</td><td>Reste concentré et gère un imprévu (ex. léger retard) sans dégrader la sécurité</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--leger); font-style:italic; margin-top:18px">D'après : Activité n°24 —
+  Test d'étanchéité et tirage au vide (Bac Pro TFCA), Activité 4 — Pompe à vide, bouteille d'azote et Manifold
+  (Bac Pro TFCA) et sa correction.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

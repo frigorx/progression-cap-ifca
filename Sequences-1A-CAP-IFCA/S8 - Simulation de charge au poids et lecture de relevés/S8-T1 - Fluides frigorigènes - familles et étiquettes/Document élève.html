@@ -1,0 +1,519 @@
+<meta charset="utf-8">
+<title>Cours élève — S8 · Module théorie T1 · Fluides frigorigènes</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.poste{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:#fff; background:var(--bleu); border-radius:5px 5px 0 0; padding:5px 12px; margin:1.1em 0 0; display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .poste-bloc{border:1px solid var(--bleu); border-radius:0 6px 6px 6px; padding:10px 14px; margin:0 0 1em; background:#fff}
+  .banque{border:1px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.3em 0 .8em; font-size:9.5pt}
+  .banque b{font-family:'Trebuchet MS',sans-serif; color:var(--violet)}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .cas{border:1.5px solid var(--bleu); border-radius:8px; padding:8px 14px; margin:.5em 0 1em; background:#fff}
+  .cas h4{margin:0 0 4px; font-size:11pt; color:var(--bleu); display:flex; align-items:center; gap:8px}
+  .cas .num{display:inline-block; background:var(--bleu); color:#fff; border-radius:50%; width:1.6em; height:1.6em; text-align:center; line-height:1.6em; font-size:10pt}
+  .donnees{background:var(--fond-doux); border-radius:6px; padding:6px 10px; font-family:'Consolas',monospace; font-size:9.5pt; margin:.3em 0}
+  .verdict-case{border:1px dashed var(--leger); border-radius:6px; background:#fffef8; padding:6px 10px; margin:.3em 0; min-height:1.6em; font-size:10pt}
+  .icone-symb{display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--filet); border-radius:6px; padding:4px 8px}
+  table.annexe{font-size:9pt}
+  table.annexe th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.6pt; text-transform:uppercase; padding:5px 4px; text-align:center}
+  table.annexe td{border:1px solid var(--filet); padding:2px 4px; text-align:center; height:24px}
+  .vf{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; margin:.3em 0; display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:10pt}
+  .vf .case-vf{border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; font-family:'Trebuchet MS',sans-serif; font-size:9pt; white-space:nowrap}
+  .piege{border:2px solid #c14a17; border-radius:6px; background:#fff2ea; padding:8px 14px; margin:.4em 0 .9em}
+  .piege b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif; font-size:10.5pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Fluides frigorigènes — familles, bouteilles, étiquettes</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S8-T1 · 2 h</span><b>Fluides frigorigènes</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S8</span> · sem. 26</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — cours d'appui en classe entière : comprendre CE QUE contiennent les bouteilles que vous manipulerez à l'azote en S8-F1/S8-F2</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Reconnaître une <b>famille</b> de fluide, lire une <b>étiquette</b> de bouteille, connaître les <b>classes de sécurité</b> (A1, A2L, A3…) et le <b>PRP</b>, comprendre pourquoi les fluides changent</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur d'observation en équipe · honnêteté (dire « je ne sais pas » plutôt qu'inventer) · écoute des autres équipes lors de la mise en commun</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui — aucune compétence remontée</span> <span class="nuance">S5.2 augmenté · S0.1 nouveau</span></div>
+  </div>
+
+  <div class="situation"><h4>Accroche — quel fluide dans la chambre froide de l'arrière-boutique, et pourquoi celui-là ?</h4>
+  Depuis S7, le chantier de l'arrière-boutique avance : la chambre froide a été raccordée (manomètres), déshydratée
+  (tirage au vide), réglée (consignes), câblée. Il reste à la <b>charger</b> — mais avec <b>quel fluide</b> ? Un
+  commerçant ne choisit jamais un fluide au hasard : le choix dépend de la machine, de la réglementation, du prix,
+  et de la sécurité. <b>Avant de charger quoi que ce soit, un professionnel sait TOUJOURS quel fluide il manipule.</b>
+
+  <div class="encadre-question"><b>Question de départ</b> — D'après vous, à quoi reconnaît-on, sur une bouteille de
+  fluide frigorigène, le fluide qu'elle contient ? Notez une première idée, même incomplète.</div>
+  <div class="zone-reponse" style="min-height:2.4em">D'après moi, on reconnaît le fluide grâce à _____________________________________.</div>
+  </div>
+
+  <div class="notion"><h4>Ce que vous savez déjà (rappel S4, S5 et S7-T1)</h4>
+  <p style="margin:0 0 6px; font-size:10.3pt">Depuis <b>S4</b>, vous savez qu'une pression correspond à une
+  température de changement d'état (réglette P/T). En <b>S7-T1</b>, vous avez lu de vraies pressions et températures
+  sur un groupe de l'atelier. Mais la réglette utilisée jusqu'ici était <b>simulée</b>, volontairement <b>indépendante
+  de tout fluide réel</b> : elle servait d'outil de lecture, comme un barème. En réalité, <b>chaque fluide a SA
+  PROPRE relation pression/température</b> : à la même température, un R404A et un R134a n'ont pas la même pression
+  de saturation. Aujourd'hui, on s'intéresse enfin au fluide lui-même : sa famille, son nom, ses risques.</p>
+  </div>
+
+  <div class="seuil"><b class="t">Ce qui change depuis S7</b> — En S7-T1, vous lisiez des pressions sans vous
+  demander quel fluide circulait dans le circuit. Aujourd'hui, on regarde <b>CE qui est écrit sur la bouteille
+  elle-même</b> : son étiquette, son numéro, sa couleur, sa famille. C'est la première brique du métier de
+  frigoriste — on ne charge jamais « un gaz », on charge UN fluide précis, identifié, tracé.</p>
+  </div>
+
+  <div class="vigilance"><b class="t">Un mot avant de commencer</b> — En 1re année, vous n'avez <b>pas encore
+  l'attestation d'aptitude</b> qui autorise à manipuler un fluide frigorigène réel : elle se prépare en 2e année.
+  Ce cours ne vous fait <b>manipuler aucun fluide réel</b> : vous observez des bouteilles et des étiquettes, vous
+  ne les raccordez jamais. La charge que vous pratiquerez en S8-F1/S8-F2 se fait <b>à l'azote</b>, un gaz neutre,
+  jamais un fluide frigorigène.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE : ENQUÊTE CARTE D'IDENTITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — l'enquête « carte d'identité des fluides »</h3>
+  <p style="font-size:10.3pt"><b>Consigne</b> — Par équipe, vous recevez une <b>bouteille réelle</b> (ou une photo
+  d'étiquette) de fluide frigorigène, présentée par le professeur. Sans jamais la raccorder ni l'ouvrir, observez-la
+  et remplissez sa <b>carte d'identité</b> ci-dessous, en vous aidant du tableau fourni en annexe (feuille suivante).
+  À la fin, chaque équipe présente sa carte à voix haute : la classe construit ensemble la <b>frise des familles</b>
+  (feuille 4).</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/bouteilles-fluide-etiquettes-reelles.png" alt="Bouteilles réelles de fluides frigorigènes, avec leurs étiquettes de traçabilité" style="max-width:85%;">
+    <figcaption class="legende">Bouteilles réelles de fluides frigorigènes, avec leurs étiquettes de traçabilité
+    (document de suivi agrafé au col). Observez : couleur de la bouteille, étiquette, numéro gravé. D'après :
+    RAPPORT PRESSION TEMPÉRATURE GWP.docx (02_CAP-IFCA/C4-MettreEnService, F. Henninot).</figcaption>
+  </figure>
+
+  <div class="banque"><b>Fluides couramment rencontrés en froid commercial (banque de noms possibles)</b> — R134a ·
+  R404A · R410A · R32 · R290 · R717 · R744 · R1234yf. Votre équipe ne travaille que sur LE fluide de sa bouteille ou
+  de sa photo — pas besoin de connaître tous les autres pour l'instant.</div>
+
+  <h4 class="poste">Carte d'identité du fluide — mon équipe</h4>
+  <div class="poste-bloc">
+  <table class="releve" style="font-size:9.7pt">
+    <tr><td style="text-align:left; width:38%"><b>Nom du fluide (numéro R-)</b></td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>Famille</b> (CFC / HCFC / HFC / HFO / naturel)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>Couleur observée sur MA bouteille</b></td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>Classe de sécurité</b> (A1 / A2L / A2 / A3 / B1 / B2L, d'après l'annexe)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>Inflammable ?</b> oui / non</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>PRP</b> (d'après l'annexe)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>Une phrase à retenir sur ce fluide</b></td><td style="text-align:left; height:2.4em"></td></tr>
+  </table>
+  </div>
+
+  <div class="vigilance"><b class="t">Attention à la couleur</b> — La couleur d'une bouteille est choisie par SON
+  <b>fabricant</b> : ce n'est pas une règle universelle, deux fabricants peuvent peindre le même fluide dans deux
+  couleurs différentes. Ce qui fait foi, c'est <b>l'étiquette</b> (nom du fluide, pictogrammes de danger, numéro de
+  lot). Notez la couleur que vous observez, mais ne la considérez jamais comme une preuve à elle seule.</div>
+
+  <div class="encadre-question"><b>Question 1</b> — D'après vous, pourquoi un frigoriste ne doit-il JAMAIS se fier
+  uniquement à la couleur d'une bouteille pour savoir ce qu'elle contient ? Notez votre idée.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — ANNEXE PLEINE PAGE : TABLEAU CLASSIFICATION + GWP ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module théorie T1 · CAP IFCA 1A — document élève — ANNEXE PLEINE PAGE</div>
+  </div>
+
+  <h3 class="section">ANNEXE 1 — tableau des classes de sécurité (NF EN 378 / ASHRAE 34)</h3>
+  <p style="font-size:9.7pt">Deux critères : la <b>toxicité</b> (A faible, B plus élevée) et l'<b>inflammabilité</b>
+  (1 non inflammable, 2L faiblement inflammable, 2 inflammable, 3 très inflammable). Utilisez ce tableau pour
+  compléter votre carte d'identité.</p>
+  <div class="tbl-wrap">
+  <table class="annexe" style="font-size:9.3pt">
+    <tr><th style="width:10%">Classe</th><th style="width:16%">Toxicité</th><th style="width:22%">Inflammabilité</th><th>Exemples typiques</th></tr>
+    <tr><td><b>A1</b></td><td>Faible</td><td>Non inflammable</td><td style="text-align:left">R134a, R404A, R407C, R410A, R744 (CO₂)</td></tr>
+    <tr><td><b>A2L</b></td><td>Faible</td><td>Faiblement inflammable</td><td style="text-align:left">R32, R454B, R1234yf, R1234ze</td></tr>
+    <tr><td><b>A2</b></td><td>Faible</td><td>Inflammable</td><td style="text-align:left">R152a</td></tr>
+    <tr><td><b>A3</b></td><td>Faible</td><td><b>Très inflammable</b></td><td style="text-align:left">R290 (propane), R600a (isobutane), R1270 (propylène)</td></tr>
+    <tr><td><b>B1</b></td><td>Plus élevée</td><td>Non inflammable</td><td style="text-align:left">R123</td></tr>
+    <tr><td><b>B2L</b></td><td>Plus élevée</td><td>Faiblement inflammable</td><td style="text-align:left">R717 (ammoniac)</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">ANNEXE 2 — extrait du tableau fluide / famille / PRP</h3>
+  <p style="font-size:9.7pt">Le <b>PRP</b> (Potentiel de Réchauffement Planétaire) mesure l'impact d'un fluide sur
+  l'effet de serre, comparé au CO₂ (PRP = 1). Plus le PRP est élevé, plus le fluide réchauffe le climat s'il fuit
+  dans l'atmosphère.</p>
+  <div class="tbl-wrap">
+  <table class="annexe" style="font-size:9.3pt">
+    <tr><th style="width:12%">Fluide</th><th style="width:20%">Famille</th><th style="width:12%">Classe</th><th style="width:12%">PRP</th><th>Usage courant</th></tr>
+    <tr><td>R744 (CO₂)</td><td>Naturel</td><td>A1</td><td>1</td><td style="text-align:left">Froid commercial, transcritique (hautes pressions)</td></tr>
+    <tr><td>R717 (NH₃)</td><td>Naturel</td><td>B2L</td><td>0</td><td style="text-align:left">Froid industriel de grande puissance</td></tr>
+    <tr><td>R290 (propane)</td><td>Naturel</td><td><b>A3</b></td><td>3</td><td style="text-align:left">Froid commercial moderne, petites charges</td></tr>
+    <tr><td>R1234yf</td><td>HFO</td><td>A2L</td><td>4</td><td style="text-align:left">Climatisation automobile récente</td></tr>
+    <tr><td>R32</td><td>HFC</td><td>A2L</td><td>675</td><td style="text-align:left">Climatisation résidentielle, PAC</td></tr>
+    <tr><td>R134a</td><td>HFC</td><td>A1</td><td>1 430</td><td style="text-align:left">Froid positif, climatisation automobile (ancienne)</td></tr>
+    <tr><td>R410A</td><td>HFC</td><td>A1</td><td>2 088</td><td style="text-align:left">Climatisation, PAC (en sortie progressive)</td></tr>
+    <tr><td>R404A</td><td>HFC</td><td>A1</td><td>3 922</td><td style="text-align:left">Froid commercial (en sortie progressive)</td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.3pt; color:var(--gris)">D'après le tableau « Fluides-GWP-Glide-Class » et la fiche
+  classification NF EN 378 / ASHRAE 34 de la bibliothèque de l'établissement (valeurs PRP AR4, 100 ans).</p>
+
+  <div class="piege"><b class="t">⚠ Le piège à ne jamais commettre</b> — Le <b>R290 (propane)</b> est un
+  <b>hydrocarbure</b> : il est classé <b>A3</b> (très inflammable), <b>PAS A2L</b>. Ne le confondez jamais avec le
+  R32 ou le R1234yf, qui sont des HFC/HFO à faible PRP classés A2L (faiblement inflammables seulement). Règle
+  simple : un nom de fluide qui « sonne comme » un hydrocarbure (propane, butane, isobutane, propylène, éthane) est
+  toujours <b>A3</b>.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — ANNEXE PLEINE PAGE : TABLEAU COLLECTIF + FRISE DES FAMILLES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module théorie T1 · CAP IFCA 1A — document élève — ANNEXE PLEINE PAGE</div>
+  </div>
+
+  <h3 class="section">ANNEXE 3 — tableau collectif de la mise en commun</h3>
+  <p style="font-size:9.5pt">Une ligne par équipe appelée : recopiez ici les cartes d'identité de TOUTES les
+  équipes, au fur et à mesure de la présentation orale.</p>
+  <div class="tbl-wrap">
+  <table class="annexe" style="font-size:8.6pt">
+    <tr><th style="width:8%">Équipe</th><th style="width:16%">Fluide</th><th style="width:16%">Famille</th><th style="width:14%">Couleur observée</th><th style="width:14%">Classe</th><th style="width:10%">PRP</th><th>Inflammable ?</th></tr>
+    <tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">ANNEXE 4 — la frise des familles (à compléter avec le professeur)</h3>
+  <p style="font-size:9.5pt">Les familles de fluides se sont succédé dans le temps : chaque famille a été
+  <b>interdite progressivement</b> à cause d'un risque découvert plus tard. Complétez les pointillés pendant que le
+  professeur formalise.</p>
+
+  <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:700px; background:#f7f9fc; border:1px solid #d8dee6; border-radius:8px">
+    <line x1="40" y1="130" x2="660" y2="130" stroke="#9aa5b1" stroke-width="2"/>
+    <polygon points="660,130 648,124 648,136" fill="#9aa5b1"/>
+
+    <rect x="30" y="60" width="110" height="46" rx="6" fill="#fde2e2" stroke="#c14a17" stroke-width="2"/>
+    <text x="85" y="88" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="15" fill="#c14a17">CFC</text>
+    <line x1="85" y1="106" x2="85" y2="130" stroke="#c14a17" stroke-width="2"/>
+    <text x="85" y="150" text-anchor="middle" font-size="10.5" fill="#22303f">interdits</text>
+    <text x="85" y="163" text-anchor="middle" font-size="9" fill="#5d6b7c">couche d'ozone</text>
+
+    <rect x="165" y="60" width="110" height="46" rx="6" fill="#fdecec" stroke="#c14a17" stroke-width="2"/>
+    <text x="220" y="88" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="15" fill="#c14a17">HCFC</text>
+    <line x1="220" y1="106" x2="220" y2="130" stroke="#c14a17" stroke-width="2"/>
+    <text x="220" y="150" text-anchor="middle" font-size="10.5" fill="#22303f">interdits</text>
+    <text x="220" y="163" text-anchor="middle" font-size="9" fill="#5d6b7c">couche d'ozone</text>
+
+    <rect x="300" y="60" width="110" height="46" rx="6" fill="#fff3e6" stroke="#ff6b35" stroke-width="2"/>
+    <text x="355" y="88" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="15" fill="#c14a17">HFC</text>
+    <line x1="355" y1="106" x2="355" y2="130" stroke="#ff6b35" stroke-width="2"/>
+    <text x="355" y="150" text-anchor="middle" font-size="10.5" fill="#22303f">réduction en cours</text>
+    <text x="355" y="163" text-anchor="middle" font-size="9" fill="#5d6b7c">effet de serre (PRP)</text>
+
+    <rect x="435" y="60" width="110" height="46" rx="6" fill="#eef6ec" stroke="#3a8c4a" stroke-width="2"/>
+    <text x="490" y="88" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="15" fill="#2f6e3b">HFO</text>
+    <line x1="490" y1="106" x2="490" y2="130" stroke="#3a8c4a" stroke-width="2"/>
+    <text x="490" y="150" text-anchor="middle" font-size="10.5" fill="#22303f">transition</text>
+    <text x="490" y="163" text-anchor="middle" font-size="9" fill="#5d6b7c">PRP très bas, A2L</text>
+
+    <rect x="570" y="60" width="110" height="46" rx="6" fill="#e9f6ff" stroke="#1e40af" stroke-width="2"/>
+    <text x="625" y="82" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="13" fill="#1e40af">NATURELS</text>
+    <text x="625" y="98" text-anchor="middle" font-size="9" fill="#1e40af">CO₂ · NH₃ · HC</text>
+    <line x1="625" y1="106" x2="625" y2="130" stroke="#1e40af" stroke-width="2"/>
+    <text x="625" y="150" text-anchor="middle" font-size="10.5" fill="#22303f">l'avenir</text>
+    <text x="625" y="163" text-anchor="middle" font-size="9" fill="#5d6b7c">PRP quasi nul</text>
+
+    <text x="350" y="200" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="12" fill="#1b3a63">........................................................................................................</text>
+    <text x="350" y="222" text-anchor="middle" font-size="10" fill="#5d6b7c">(notez ici, avec le professeur, POURQUOI chaque famille a été remplacée par la suivante)</text>
+  </svg>
+  <p style="font-size:8.5pt; color:var(--gris); margin-top:4px">D'après : le principe des fluides de transition
+  (Cours_Fluides_Transition_Inerweb.pdf, F. Henninot) et les risques environnementaux CFC/HCFC/HFC (INRS ED 969,
+  « Les fluides frigorigènes »).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — APPLICATION 1 : ASSOCIER FLUIDE / CLASSE / USAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION 1 — associer fluide, classe et usage</h3>
+  <p style="font-size:10.3pt">À l'aide des annexes 1 et 2 (feuille 3), complétez les deux colonnes vides pour
+  chaque fluide.</p>
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:20%">Fluide</th><th style="width:24%">Classe de sécurité</th><th>Usage courant</th></tr>
+    <tr><td>R744 (CO₂)</td><td></td><td></td></tr>
+    <tr><td>R717 (NH₃)</td><td></td><td></td></tr>
+    <tr><td>R290</td><td></td><td></td></tr>
+    <tr><td>R32</td><td></td><td></td></tr>
+    <tr><td>R134a</td><td></td><td></td></tr>
+    <tr><td>R404A</td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-question"><b>Question 2</b> — Parmi les fluides du tableau, lequel a le PRP le plus élevé ?
+  Lequel a le PRP le plus faible ? Que remarquez-vous entre l'ancienneté d'un fluide et son PRP ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h3 class="section">APPLICATION 2 — pourquoi ce fluide, et pas un autre ?</h3>
+  <p style="font-size:10.3pt">Revenons à l'accroche : la chambre froide de l'arrière-boutique doit être chargée.
+  Le commerçant veut un fluide <b>peu cher, disponible, avec un faible impact climatique</b>. Le professeur vous
+  donne le contexte réel (petite charge, local ventilé ou non). À partir de vos annexes, proposez UNE famille de
+  fluide adaptée et justifiez en une phrase.</p>
+  <div class="zone-reponse" style="min-height:2.6em">Je proposerais un fluide de la famille _____________ car _____________________________________.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — APPLICATION 3 : VRAI-FAUX + IDENTIFICATION P/T ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION 3 — vrai ou faux ?</h3>
+  <p style="font-size:10.3pt">Cochez VRAI ou FAUX pour chaque affirmation. Pour chaque FAUX, corrigez en une
+  phrase.</p>
+
+  <div class="vf"><span>1. Le R290 (propane) est classé A2L, comme le R32.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>2. Les CFC sont interdits en France aujourd'hui.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>3. Le CO₂ (R744) a un PRP très élevé.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>4. Un fluide classé A1 est non inflammable.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>5. On peut recharger n'importe quelle installation avec n'importe quel fluide, si la pression convient.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>6. L'ammoniac (R717) est un fluide à la fois inflammable ET toxique.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>7. En 1re année CAP, on peut manipuler un fluide réel si le professeur supervise.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+
+  <h3 class="section">APPLICATION 4 — identifier un fluide par pression et température (papier, sans manipulation)</h3>
+  <p style="font-size:10.3pt">Ces bouteilles ont été stockées toute une nuit dans une pièce à <b>température
+  constante (25 °C)</b>, puis un manomètre a été posé sur chacune.</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/exercice-identification-fluide-pression-temperature.png" alt="Quatre bouteilles B1 et B2, deux paires, avec pression relevée et masse de fluide indiquée" style="max-width:80%;">
+    <figcaption class="legende">D'après : RAPPORT PRESSION TEMPÉRATURE GWP.docx (02_CAP-IFCA/C4-MettreEnService,
+    F. Henninot).</figcaption>
+  </figure>
+  <div class="encadre-question"><b>Question 3</b> — Sur la première paire, les bouteilles B1 (22 kg) et B2 (8 kg)
+  affichent exactement la <b>même pression</b>. Pourquoi, alors qu'elles ne contiennent pas la même quantité de
+  fluide ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+  <div class="encadre-question"><b>Question 4</b> — Si une bouteille est presque vide (il ne reste presque plus de
+  liquide), le rapport pression/température fonctionne-t-il encore de la même façon ? OUI / NON — justifiez.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+  <div class="encadre-question"><b>Question 5</b> — La pression indiquée sur un manomètre de frigoriste est-elle
+  lue en pression relative ou en pression absolue ? Entourez : <b>Relative</b> &nbsp;/&nbsp; Absolue</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — SYNTHÈSE : FICHE MÉMO + ENCADRÉ HONNÊTE + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — la fiche mémo des familles de fluides</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec la correction donnée en classe : c'est votre <b>trace
+  écrite</b>, à garder pour S8-F1, S8-F2 et pour toute la suite de votre formation.</p>
+
+  <div class="trace">
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:20%">Famille</th><th style="width:26%">Statut aujourd'hui</th><th>Ce que je retiens</th></tr>
+    <tr><td>CFC</td><td>Interdits</td><td></td></tr>
+    <tr><td>HCFC</td><td>Interdits</td><td></td></tr>
+    <tr><td>HFC</td><td>En réduction progressive</td><td></td></tr>
+    <tr><td>HFO / transition</td><td>En développement</td><td></td></tr>
+    <tr><td>Naturels (CO₂, NH₃, hydrocarbures)</td><td>L'avenir</td><td></td></tr>
+  </table>
+  </div>
+  </div>
+
+  <div class="notion"><h4>La phrase à retenir</h4>
+  <p style="margin:0; font-size:11pt; font-weight:bold; color:var(--bleu); text-align:center">« On ne charge jamais
+  “un gaz” : on charge UN fluide précis, identifié par son étiquette, jamais par sa seule couleur. »</p>
+  </div>
+
+  <div class="piege" style="text-align:center"><b class="t">Le piège à ne jamais oublier</b> — R290 (propane) =
+  <b>A3</b>, très inflammable. Pas A2L.</div>
+
+  <div class="vigilance"><b class="t">Pourquoi on ne manipule pas ces fluides en 1re année</b> — Manipuler un fluide
+  frigorigène réel (raccorder une bouteille, charger, récupérer) exige une <b>attestation d'aptitude</b> valide,
+  qui atteste que le technicien connaît les risques et les gestes sûrs. Cette attestation se prépare en <b>2e
+  année</b>. En attendant, vous apprenez le geste de charge <b>à l'azote</b> (S8-F1, S8-F2) : un gaz neutre, sans
+  danger de fuite toxique ni inflammable, qui permet de répéter la procédure en toute sécurité. La vraie charge,
+  avec le vrai fluide et l'attestation, c'est pour l'an prochain.</div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut <b>Appui</b> : ce cours ne remonte AUCUNE compétence sur
+  École Directe — c'est une auto-évaluation courte, pour vous situer.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:24%">Ce que je sais faire</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td>Reconnaître une famille de fluide, lire une étiquette, situer un fluide sur les classes A1/A2L/A3…
+    <span class="nuance">Appui — S5.2 / S0.1</span></td>
+    <td>Compétence non observée ce jour.</td><td>Je confonds les familles, même avec de l'aide.</td>
+    <td>Je reconnais une famille avec de l'aide, je confonds encore parfois les classes de sécurité.</td>
+    <td>Je reconnais seul(e) une famille, je situe un fluide sur sa classe et je n'oublie pas le piège R290.</td>
+    <td>Comme « Acquis », et j'explique à un camarade pourquoi le R290 n'est pas A2L.</td></tr>
+    <tr><td>Savoir-être — rigueur d'observation, honnêteté (ne pas inventer), écoute des autres équipes</td>
+    <td>Non observé.</td><td>Je réponds au hasard, je n'écoute pas les autres équipes.</td>
+    <td>Je participe mais j'ai besoin d'un rappel pour être rigoureux(se).</td>
+    <td>J'observe avant de conclure et j'écoute la mise en commun.</td>
+    <td>Comme « Acquis », et j'aide un camarade à corriger une confusion de classe.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Reconnaître une famille, une classe de sécurité, éviter le piège R290 :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe : il
+  prépare le geste de charge simulée (S8-F1, S8-F2) et pose le premier repère de sécurité fluides que vous
+  retrouverez toute votre carrière.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage pédagogique
+  S8-T1 (méthode « enquête carte d'identité des fluides », F. Henninot, 19/07/2026) ; Cours_Fluides_Transition_
+  Inerweb.pdf et Feuille_Eleve_Fluides_Transition_Inerweb.pdf (05_Ressources-Partagees/Froid-Climatisation,
+  familles/classes A1→B2L/F-Gaz/PRP) ; Fluides-GWP-Glide-Class-V5.pdf (tableau fluide/GWP/glide/classe,
+  05_Ressources-Partagees/Froid-Climatisation) ; RAPPORT PRESSION TEMPÉRATURE GWP.docx (02_CAP-IFCA/
+  C4-MettreEnService — exercice d'identification par pression/température, photo de bouteilles réelles) ; Les
+  fluides frigorigènes, INRS ED 969, 2005 (familles, risques, réglementation historique CFC/HCFC/HFC) ; fiche
+  Whart Identification_fluides_TeqCO2 (classification NF EN 378/ASHRAE 34, piège R290 — 25-26-bureau/vrac fiep 3/
+  Fiches_Whart) ; classification de sécurité et piège R290=A3 vérifiés au skill de référence `fluides-nfen378`
+  (NF EN 378 / ASHRAE 34). Aucune valeur de classe ou de PRP n'est affirmée hors de ces tableaux sourcés. La
+  couleur de bouteille observée en feuille 2 est celle du fabricant de la bouteille présentée en classe, pas une
+  règle universelle.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .poste-bloc, .banque, .vigilance, .cas, .piege, .vf{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,220 @@
+<meta charset="utf-8">
+<title>Plan de séance — S1-E1 · Électricité domestique simple</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Sécurité, outillage et cuivre simple — <b>module atelier S1-E1</b> (4 h)</td>
+      <td style="width:38%"><span class="lib">Module S1-E1 · 3<sup>e</sup> des 4 modules atelier de S1</span><b>Électricité domestique simple — simple allumage et va-et-vient</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span> P1 · positionnement : 1<sup>re</sup> année, semaines 1-4</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Passage 1 et passage 2 — dates à caler sur le calendrier réel de rentrée (sept. 2026, cf. <i>_CADRAGE-S1.md</i>)</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des platines simple allumage / va-et-vient + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier froid S1-F1/F2)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> aucun prérequis métier (module d'atelier de la 1<sup>re</sup> séquence) — seuls prérequis généraux : tenir un tournevis, lire une consigne écrite simple<br><span class="nuance">Travaillés :</span> <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique qui s'impose sans discuter (jamais de fil touché sans certitude hors tension) · rigueur du câblage (couleurs, cotes) · honnêteté du contrôle hors tension</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · T12 · S5.6</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-2026-S1-E1-01</b> : le professeur, responsable de l'atelier, vous confie la
+  <b>remise en état électrique du parc de platines pédagogiques</b>. Deux platines à câbler aujourd'hui : une
+  platine <b>simple allumage</b> (un point lumineux commandé d'un seul endroit) puis une platine <b>va-et-vient</b>
+  (un point lumineux commandé de deux endroits différents). Méthode imposée, sans exception : <b>lire le schéma →
+  préparer la platine → câbler → CONTRÔLE HORS TENSION → mise sous tension UNIQUEMENT par le professeur.</b></div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>nommer</b> les éléments d'une installation domestique simple (disjoncteur, interrupteur, va-et-vient, lampe) et <b>lire</b> un schéma développé simple ;</li>
+        <li><b>préparer</b> une platine (positionner et fixer le matériel selon le schéma d'implantation, en respectant les cotes) ;</li>
+        <li><b>câbler</b> un simple allumage en respectant les couleurs normalisées des conducteurs (phase, neutre, terre) ;</li>
+        <li><b>câbler</b> un va-et-vient à partir de la même méthode, avec moins d'aide ;</li>
+        <li><b>réaliser un contrôle hors tension</b> (continuité au multimètre) avant toute mise sous tension, réalisée uniquement par le professeur.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(aucun prérequis métier : réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>tenir un tournevis et une pince à dénuder (gestes généraux, non spécifiques au métier) ;</li>
+        <li>lire une consigne écrite simple et travailler une seule consigne à la fois ;</li>
+        <li>porter les EPI de l'atelier (chaussures de sécurité) sans qu'on me le rappelle ;</li>
+        <li>la sécurité générale de l'atelier vue en S1-F2, <b>si déjà réalisée</b> (sinon, rappel court par le professeur).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode du module : plan de travail à jalons</b> —
+  <b>lire le schéma → préparer la platine → câbler → CONTRÔLE HORS TENSION → mise sous tension UNIQUEMENT par le
+  professeur.</b> L'électricité est un risque qui ne se découvre pas au tâtonnement : la consignation et la
+  vérification d'absence de tension (VAT) sont <b>démontrées</b> avant toute pratique, puis appliquées à chaque
+  jalon. Module resserré sur 4 h, en <b>2 jalons</b> : <b>jalon 1</b> câblage du simple allumage ; <b>jalon 2</b>
+  câblage du va-et-vient, avec la même méthode, moins commentée (1<sup>re</sup> marche vers l'autonomie). La mise
+  sous tension finale, groupée, reste <b>systématiquement</b> réalisée par le professeur, après contrôle.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (chaque module d'atelier est vécu deux fois par élève, en demi-groupe)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — découverte très guidée</h4>Le professeur démontre intégralement le
+      rituel de consignation/VAT avant tout jalon, câble lui-même un exemple de simple allumage entièrement commenté
+      avant que les élèves ne câblent le leur, et valide chaque étape (lecture du schéma, implantation, câblage,
+      contrôle hors tension) avant d'autoriser la suivante.</div>
+      <div><h4 style="margin-top:0">Passage 2 — consolidation, moins d'aide</h4>L'élève applique <b>seul</b> le
+      rituel de consignation/VAT (le professeur contrôle plutôt qu'il ne montre), câble les deux jalons à partir du
+      même document sans démonstration préalable câblée, et présente son contrôle hors tension déjà réalisé avant
+      d'appeler le professeur. La mise sous tension reste, dans tous les cas, réservée au professeur.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : choc électrique par contact direct avec
+  une pièce sous tension, court-circuit par un câblage non conforme, blessure aux mains (fil dénudé, pince).
+  <b>EPI</b> : chaussures de sécurité, pas de bijoux ni de montre, manches ajustées, cheveux longs attachés.
+  <b>Gestes interdits</b> : jamais toucher un fil ou une platine sans avoir vérifié l'absence de tension (VAT),
+  jamais câbler ou modifier une platine sous tension, jamais mettre une platine sous tension soi-même — <b>seul le
+  professeur le fait</b>, après contrôle. <b>Consignation NFC 18-510</b> posée comme rituel dès la semaine 1 :
+  couper l'alimentation → vérifier l'absence de tension (VAT) au multimètre → condamner/signaler → travailler hors
+  tension. <b class="t">🚨 En cas d'incident :</b> couper (interrupteur général / arrêt d'urgence de l'atelier,
+  localisé en phase 5), alerter le professeur, ne jamais déplacer un camarade électrisé.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S1-E1 · module atelier · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.
+  Préparation de chantier (phases 1 à 5) : <b>1 h 00</b>, à la limite du plafond d'1 h maximum. Public 1A débutant : une seule
+  consigne à la fois, l'objet se manipule avant de se nommer, sauf la sécurité électrique qui est démontrée et imposée.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (plan de travail à jalons, 2 platines à câbler dans la séance).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S1-E1-01 : remise en état électrique du parc de platines — simple allumage puis va-et-vient.</td><td>Présente l'ordre d'intervention et les 2 platines à venir.</td><td>Reformulent la mission du module.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C3.6) et le statut Découverte du jour (non remonté).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : mini-quiz associant chaque symbole (disjoncteur, interrupteur, va-et-vient, lampe) à son nom ; réactivation courte de la sécurité générale de l'atelier (EPI, arrêt d'urgence) vue en S1-F2 si déjà réalisée par ce demi-groupe, sinon rappel bref par le professeur.</td><td>Distribue le mini-quiz, contrôle les tenues et les EPI au vestiaire.</td><td>Se changent par vagues ; en attente, font le mini-quiz de symboles.</td><td>Mini-quiz symboles · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (arrêt d'urgence et trousse localisés, gestes interdits énoncés) puis <b>planter la notion</b> : OBSERVER en silence une platine du professeur déjà câblée et hors tension (disjoncteur, interrupteur, lampe) → NOMMER les 3 éléments → EXPLICITER le rôle de chacun et la règle d'or « toujours hors tension avant d'intervenir ».</td><td>Localise ARU/trousse, présente la platine de démonstration hors tension, anime le rituel planter-la-notion.</td><td>Observent la platine, répondent aux questions, notent le rôle de chaque élément.</td><td>Platine de démonstration (câblée, hors tension) · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">6. Guider l'étude (a) — démonstration resserrée : consignation et VAT</td><td>Démonstration commentée du professeur : procédure complète de consignation (couper → vérifier l'absence de tension au multimètre → condamner/signaler → travailler hors tension), insistance sur le geste interdit central « jamais de mise sous tension par l'élève lui-même ».</td><td>Réalise et commente la consignation/VAT, insiste sur le geste interdit.</td><td>Observent à distance, ne manipulent pas encore, notent les 4 étapes de la consignation.</td><td>Platine de démonstration · multimètre professeur</td><td class="obs"></td></tr>
+    <tr><td>55 min</td><td class="ph">6. Guider l'étude (b) — pratique guidée, <span class="jalon">jalon 1</span> : simple allumage</td><td>Chaque élève (ou binôme selon postes disponibles) : lit le schéma développé du simple allumage, prépare sa platine (implantation, fixation selon les cotes), câble en respectant les couleurs normalisées, puis réalise son contrôle hors tension au multimètre avant d'appeler le professeur.</td><td>Valide la lecture du schéma, circule poste par poste, contrôle l'implantation et le câblage, vérifie chaque contrôle hors tension.</td><td>Lisent le schéma, préparent, câblent, réalisent leur contrôle hors tension, appellent le professeur.</td><td>Platines + matériel simple allumage · schéma réduit + annexe A3 · multimètres</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td>55 min</td><td class="ph">6. Guider l'étude (c) — pratique guidée, <span class="jalon">jalon 2</span> : va-et-vient + mise sous tension</td><td>Même méthode qu'au jalon 1, moins commentée : lire le schéma du va-et-vient, préparer, câbler (2 interrupteurs + navettes), contrôle hors tension. En fin de jalon, <b>mise sous tension groupée par le professeur uniquement</b>, poste par poste, après validation du contrôle hors tension de chaque élève.</td><td>Circule avec moins de commentaire, valide les contrôles hors tension, réalise seul chaque mise sous tension après vérification.</td><td>Lisent, préparent, câblent le va-et-vient plus en autonomie, réalisent leur contrôle hors tension, observent la mise sous tension par le professeur.</td><td>Platines + matériel va-et-vient · schéma réduit + annexe A3 · multimètres</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque élève présente ses deux platines câblées et son contrôle hors tension ; auto-positionnement par compétence (C3.6 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leurs platines, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (interrupteurs va-et-vient, ampoules, fils, vis à bois).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Platines remises hors tension et débranchées, fils et outillage rangés, postes vérifiés propres et dégagés pour le poste suivant.</td><td>Supervise la remise hors tension et le rangement.</td><td>Rangent, vérifient que chaque poste est hors tension.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S1-E2 — montages et multimètre, ou S1-T2 selon la rotation du demi-groupe).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; démonstration consignation/VAT 15 min + jalon 1 (55 min) + pause 15 min + jalon 2 (55 min) = 2 h 20 ;
+  synthèse 15 min + bon de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  électriques (consignation, NFC 18-510) · technologie (réseaux électriques, appui S1-T2) · co-intervention français
+  (carnet de bord, module F3) · module S1-E2 (montages et multimètre) en aval.</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

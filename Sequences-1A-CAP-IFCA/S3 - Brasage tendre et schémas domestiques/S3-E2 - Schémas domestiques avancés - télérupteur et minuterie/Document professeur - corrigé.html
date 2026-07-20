@@ -1,0 +1,451 @@
+<meta charset="utf-8">
+<title>Document professeur — S3-E2 · Schémas domestiques avancés — télérupteur et minuterie</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .banque{border:1.5px solid var(--bleu); border-radius:6px; background:#fff; padding:6px 12px; margin:.4em 0 .8em; font-size:10pt}
+  .banque b{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Schémas domestiques avancés — télérupteur et minuterie</td>
+      <td style="width:38%"><span class="lib">Module atelier S3-E2 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Fiche-guide à compléter + transfert</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · semaines 10-11</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des platines télérupteur/minuterie + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — deux demi-journées distinctes (semaine 10 et semaine 11)</td>
+      <td><span class="lib">Modalité</span>Fiche-guide à compléter (texte à trous + schémas), puis câblage sur platine</td>
+      <td><span class="lib">Encadrement</span>1 professeur, consignation appliquée sans rappel</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.2</b> Lecture de plan <span class="nuance">NOUVEAU — 1ʳᵉ rencontre</span><br><span class="nuance">Prérequis réactivés :</span> S2.1, S5.6</div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel · rigueur du câblage · lecture méthodique et autonome d'un schéma</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · T12 · S2.2 · S5.6</span><br><span class="statut">Découverte</span> <b>C3.2</b> Identifier sur site les réseaux d'alimentation <span class="nuance">sur T10 · S2.2</span></div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S2 — à annoncer explicitement aux élèves</b> — En S2, les
+  montages câblés étaient <b>simples</b> (un interrupteur, une lampe). <b>S3-E2 introduit un appareillage de
+  commande automatisée</b> : un relais (télérupteur puis minuterie) piloté par plusieurs boutons poussoirs en
+  parallèle, avec deux circuits distincts (commande / puissance) à lire séparément — c'est le sens du savoir NOUVEAU
+  <b>S2.2 lecture de plan</b>. Les élèves rencontrent aussi pour la première fois <b>C3.2</b> (Découverte) :
+  identifier sur site, dans le vrai tableau de l'atelier, l'arrivée Ph/N/PE et le circuit d'éclairage concerné —
+  à ne pas sauter, même si cela prend quelques minutes de plus en jalon A. La mise sous tension et les essais
+  restent, comme en S1-S2, des gestes <b>exclusivement professeur</b>.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change (conduite professeur)</h4>
+  <b>Passage 1 (semaine 10) — télérupteur, très guidé.</b> Jalon A (≈ 60 min) : fiche-guide <b>avec banque de mots</b>
+  pour le texte à trous, schémas unifilaire et développé <b>à trous avec repères partiels</b>, identification sur
+  site accompagnée. Jalon B (≈ 65 min) : câblage à partir du schéma complété, contrôle hors tension, mise sous
+  tension et essais par le professeur (chaque bouton poussoir testé).<br>
+  <b>Passage 2 (semaine 11) — minuterie, autonomie guidée.</b> Jalon A' (≈ 40 min) : <b>même fiche-guide</b>
+  transposée à la minuterie, <b>sans banque de mots</b>, schémas <b>sans aucun repère</b> — laisser l'élève chercher
+  quelques instants avant d'intervenir, même en cas d'hésitation visible ; ne pas redonner l'identification sur
+  site déjà acquise. Jalon B' (≈ 85 min) : câblage, contrôle hors tension, essais et <b>réglage du temps
+  d'extinction</b> par le professeur, en autonomie guidée — le professeur valide sans démontrer, sauf à la mise sous
+  tension et aux essais, qui restent, dans les deux passages, un geste exclusivement professeur.</div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève : mêmes questions, même
+  numérotation, même séquençage en 2 passages × 2 jalons. Il y ajoute : les réponses attendues aux textes à trous et
+  aux questions, les critères de contrôle du câblage, la conduite détaillée de chaque jalon, les erreurs typiques
+  d'élèves avec leur remédiation, l'organisation du plateau, le minutage recompté pour les deux passages, et la
+  différenciation (consolidation / standard / approfondissement + FLE + TDAH-DYS). <b>Aucune valeur non autorisée
+  n'est donnée</b> : les valeurs NF C 15-100 (1,5 mm², 8 points d'éclairage maximum, disjoncteur 16 A) sont sourcées
+  dans les fiches télérupteur et minuterie de la bibliothèque ; toute autre valeur (tension de la bobine, temps
+  exact de la minuterie) reste <b>« selon le matériel de l'atelier, à faire valider »</b>.</p>
+
+  <h3 class="section">Trame horaire — passage 1 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (fiche-guide, puis câblage).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S3-4 : moderniser l'éclairage du couloir — télérupteur aujourd'hui.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés, lien avec C3.6/C3.2, statuts du jour.</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, mini-quiz <b>sans schéma</b> : couleurs normalisées, 4 étapes de la consignation, reconnaître un schéma simple allumage.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (ARU, trousse, gestes interdits) puis « planter la notion » sur les deux circuits commande/puissance (voir encadré ci-dessus).</td></tr>
+    <tr><td>60 min</td><td class="ph">6. Guider l'étude (a) — jalon A : fiche-guide télérupteur</td><td>Texte à trous avec banque de mots, schémas à trous avec repères partiels, identification sur site accompagnée.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>65 min</td><td class="ph">6. Guider l'étude (b) — jalon B : câblage et essais</td><td>Préparation platine, câblage commande puis puissance, contrôle hors tension, appel professeur, mise sous tension et essais (3 boutons poussoirs testés).</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Présentation du câblage et du schéma complété, auto-positionnement, validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Carnet de bord + bon de commande hebdomadaire.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Platines hors tension, multimètres sur OFF, rangement.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour tenue de ville, annonce du passage 2 (semaine 11).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 1 :</b> préparation 1 h 00 + jalon A (60) +
+  pause (15) + jalon B (65) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b></p>
+
+  <h3 class="section">Trame horaire — passage 2 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00, identique)</td></tr>
+    <tr><td>60 min</td><td class="ph">Phases 1-5 (identiques au passage 1)</td><td>Accueil, situation (rappeler le passage 1 et l'objectif du jour : la minuterie), objectifs, prérequis, mise en sécurité.</td></tr>
+    <tr><td>40 min</td><td class="ph">6. Guider l'étude (a) — jalon A' : fiche-guide minuterie</td><td>Texte à trous <b>sans</b> banque de mots, schémas <b>sans</b> repère, identification sur site sans aide.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>85 min</td><td class="ph">6. Guider l'étude (b) — jalon B' : câblage, essais, réglage du temps</td><td>Câblage commande puis puissance, contrôle hors tension, essais professeur, réglage du potentiomètre de temps, mesure du délai d'extinction — autonomie guidée.</td></tr>
+    <tr><td>40 min</td><td class="ph">7-8-8bis-9-10</td><td>Synthèse, auto-positionnement, bon de commande, rangement, clôture — annonce de la suite (S3-T1 selon rotation).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 2 :</b> préparation 1 h 00 + jalon A' (40) +
+  pause (15) + jalon B' (85) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b>
+  Les deux passages totalisent bien 240 min chacun ; seule la répartition entre jalons change, conforme au plan de
+  séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ + CORRIGÉ PASSAGE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Sécurité — rituel déjà acquis, un seul geste qui ne s'allège jamais</h3>
+  <p style="font-size:10.3pt">La consignation (NF C 18-510) et la VAT ne sont <b>plus démontrées</b> en S3 : elles
+  sont exigées <b>sans rappel</b>. Un seul point de vigilance ne change jamais entre S1/S2 et S3, ni entre passage 1
+  et passage 2 : <b>la mise sous tension et les essais après câblage restent des gestes exclusivement professeur.</b></p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Ne fermer le disjoncteur d'un poste
+  qu'après avoir personnellement vérifié le contrôle hors tension de <b>cet</b> élève, jamais par lot ni sur simple
+  déclaration — règle identique à S1-S2.</div>
+
+  <h3 class="section">Corrigé — texte à trous du télérupteur (jalon A)</h3>
+  <div class="banque"><b>Réponses, dans l'ordre du texte</b> : commander — plusieurs endroits — 1,5 — 8 — 16 —
+  unipolaire — bipolaire — unipolaire — bipolaire</div>
+  <p style="font-size:10pt">Rappel des deux dernières phrases du texte élève : « Un télérupteur <b>unipolaire</b>
+  (à un seul pôle) coupe uniquement la phase… Un télérupteur <b>bipolaire</b> coupe à la fois la phase et le
+  neutre. » Le mot « unipolaire » et le mot « bipolaire » apparaissent donc <b>chacun deux fois</b> dans le texte
+  complet (une fois dans l'énumération des deux types, une fois dans la phrase qui les définit) : le signaler aux
+  élèves qui bloquent sur la banque de mots « épuisée trop tôt ».</p>
+
+  <div class="reponse"><b class="t">Question — pourquoi pas plus d'interrupteurs va-et-vient ?</b><br><br>
+  <b>Réponse attendue :</b> un montage va-et-vient n'accepte que <b>deux</b> points de commande (deux interrupteurs
+  S1/S2 reliés par deux navettes). Un télérupteur, lui, accepte <b>autant de boutons poussoirs que nécessaire</b>,
+  tous simplement raccordés en parallèle sur le même circuit de commande — c'est la bonne solution dès que le
+  client veut plus de deux points de commande, ce qui est le cas ici (3, puis 4 avec la minuterie).</div>
+
+  <h3 class="section">Corrigé — schéma unifilaire et schéma développé (télérupteur)</h3>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-telerupteur-developpe.svg" alt="Schéma développé légendé complet du télérupteur" style="max-width:96%">
+    <figcaption class="legende">Schéma développé — version légendée (corrigé). Version élève sans repères en annexe 1.</figcaption>
+  </figure>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Schéma unifilaire</td><td>Repères Q2 (tableau), T1 (tableau), S1/S2/S3 (boutons poussoirs, mur), L1/L2/L3 (points lumineux, plafond) correctement placés. Une hésitation sur la position exacte des BP le long du couloir est sans importance : ce qui compte est le raccordement fonctionnel, pas la géométrie réelle.</td></tr>
+    <tr><td>Schéma développé — circuit de commande</td><td>Phase → 3 boutons poussoirs <b>en parallèle</b> → borne A1 de la bobine T1 → borne A2 → neutre. Erreur fréquente : un élève raccorde les boutons poussoirs <b>en série</b> (copie le réflexe du va-et-vient) — à corriger explicitement, c'est l'erreur typique du module.</td></tr>
+    <tr><td>Schéma développé — circuit de puissance</td><td>Phase → contact de sortie de T1 → 3 lampes <b>en parallèle</b> → neutre. Le contact de sortie n'est <b>jamais</b> câblé directement en série avec la bobine : ce sont deux circuits séparés, reliés seulement par l'action mécanique/électronique interne du relais.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance — la question centrale du module</b> — Un télérupteur
+  <b>bascule d'état</b> à chaque appui (allumé → éteint → allumé…), quel que soit le bouton poussoir actionné,
+  puisque tous sont en parallèle sur la même bobine. C'est ce qui permet à un très grand nombre de points de
+  commande de piloter une seule lampe — à faire dire aux élèves en fin de jalon A, avant même le câblage.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ CÂBLAGE PASSAGE 1 + CORRIGÉ PASSAGE 2 (MINUTERIE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — câblage et essais du télérupteur (jalon B)</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Identification sur site (C3.2)</td><td>L'élève montre, sur le tableau réel, le disjoncteur général, le disjoncteur du circuit d'éclairage concerné, et nomme Ph/N/PE. Une confusion entre l'arrivée générale et un départ de circuit est fréquente en première rencontre : reformuler la différence sans la démontrer une deuxième fois si l'élève a déjà eu l'explication en phase 5.</td></tr>
+    <tr><td>Contrôle hors tension</td><td>Continuité proche de 0 Ω un bouton poussoir appuyé, résistance infinie sinon — logique identique aux contrôles de S1-S2, transposée au circuit de commande.</td></tr>
+    <tr><td>Essais (professeur)</td><td>Les 3 boutons poussoirs doivent chacun faire basculer l'état des 3 lampes. Si un bouton ne fonctionne pas : vérifier en priorité son raccordement en parallèle (souvent câblé en série par erreur, ou une de ses deux bornes non raccordée).</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question — bouton va-et-vient vs bouton télérupteur</b><br><br>
+  <b>Réponse attendue :</b> un interrupteur de va-et-vient <b>reste</b> dans la position où on le laisse (bistable
+  mécanique). Un bouton poussoir de télérupteur <b>revient tout seul</b> à sa position de repos dès qu'on le
+  relâche (à ressort) : cela n'a aucune importance pour le fonctionnement, car c'est la <b>bobine</b> du télérupteur
+  qui mémorise l'état, pas la position du bouton.</div>
+
+  <h3 class="section">Corrigé — texte à trous de la minuterie (jalon A')</h3>
+  <div class="banque"><b>Réponses, dans l'ordre du texte</b> : commander — plusieurs points lumineux — une durée —
+  1,5 — 8 — 16</div>
+  <div class="reponse"><b class="t">Question de transfert — mêmes valeurs NF C 15-100 ?</b><br><br>
+  <b>Réponse attendue :</b> oui, les valeurs sont identiques (1,5 mm², 8 points d'éclairage maximum, disjoncteur
+  16 A), car la norme NF C 15-100 fixe ces règles pour <b>tout circuit d'éclairage</b>, quel que soit l'appareillage
+  de commande utilisé (interrupteur, va-et-vient, télérupteur ou minuterie) : c'est le circuit d'éclairage qui est
+  réglementé, pas le type de commande.</div>
+
+  <h3 class="section">Corrigé — schéma unifilaire et schéma développé (minuterie)</h3>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-minuterie-developpe.svg" alt="Schéma développé légendé complet de la minuterie" style="max-width:96%">
+    <figcaption class="legende">Schéma développé — version légendée (corrigé), arc de temporisation visible sur le
+    contact de sortie. Version élève sans repères en annexe 2.</figcaption>
+  </figure>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Schéma unifilaire</td><td>Q2, M1 (minuterie, tableau), S1 à <b>S4</b> (4 boutons poussoirs — un de plus qu'au télérupteur), L1/L2/L3 (3 points lumineux). Signaler explicitement le 4ᵉ bouton : il se raccorde en parallèle exactement comme les trois autres.</td></tr>
+    <tr><td>Schéma développé — circuit de commande</td><td>Identique en structure au télérupteur : phase → 4 boutons poussoirs en parallèle → borne B (ou A1) de M1 → borne A2 → neutre.</td></tr>
+    <tr><td>Schéma développé — circuit de puissance</td><td>Identique en structure, mais le contact de sortie de M1 porte un <b>arc de temporisation</b> (symbole du contact temporisé) : c'est ce détail, et lui seul, qui distingue le schéma de la minuterie de celui du télérupteur.</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question — identique / différent entre les deux schémas</b><br><br>
+  <b>Réponse attendue :</b> <b>identique</b> : la disposition générale (Ph/N/PE, disjoncteur, boutons poussoirs en
+  parallèle, bobine, lampes en parallèle) et le principe de câblage en deux circuits (commande / puissance).
+  <b>Différent</b> : le contact de sortie porte un petit arc sous le trait de contact chez la minuterie — c'est le
+  symbole de la <b>temporisation</b> : ce contact se <b>réouvre tout seul</b> après un temps réglé, alors que le
+  contact du télérupteur reste dans son état jusqu'au prochain appui.</div>
+
+  <div class="vigilance"><b class="t">Point de vigilance — transfert attendu</b> — Le passage 2 vérifie que l'élève
+  sait <b>transposer</b> une méthode déjà apprise, pas qu'il mémorise un nouveau vocabulaire par cœur. Un élève qui
+  redemande la définition de « circuit de commande » alors qu'il l'a manipulée au passage 1 doit être renvoyé à ses
+  propres notes du passage 1 avant toute nouvelle explication.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ CÂBLAGE PASSAGE 2 + ORGANISATION DU PLATEAU + ERREURS + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — câblage, essais et réglage du temps (minuterie, jalon B')</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Contrôle hors tension</td><td>Identique en logique au passage 1, transposé à 4 boutons poussoirs.</td></tr>
+    <tr><td>Essais (professeur)</td><td>Les 4 boutons poussoirs doivent chacun allumer les 3 lampes.</td></tr>
+    <tr><td>Réglage du temps</td><td>Potentiomètre de réglage identifié sur la minuterie (plage typique 0,5 à 10 min <b>selon le matériel de l'atelier, à faire valider</b>). Le régler pour se rapprocher au mieux de la demande du client (6 min) ; <b>aucune valeur cible exacte n'est imposée</b> par ce document au-delà de cette demande client.</td></tr>
+    <tr><td>Chronométrage de l'extinction</td><td>Relevé au chronomètre par l'élève après le dernier appui. Un écart de quelques dizaines de secondes avec le réglage affiché est normal (composant électromécanique ou électronique simple) : ne pas exiger une précision de laboratoire.</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question de synthèse — quel élément du circuit de puissance porte la
+  différence ?</b><br><br>
+  <b>Réponse attendue :</b> <b>le contact de sortie du relais</b> (celui qui alimente les lampes). Chez le
+  télérupteur, ce contact <b>bascule et reste</b> dans son état jusqu'au prochain appui (bistable). Chez la
+  minuterie, ce même contact se <b>referme à l'appui</b> puis se <b>réouvre automatiquement</b> après le temps
+  réglé, sans intervention humaine : c'est le composant temporisateur intégré à la minuterie qui commande cette
+  réouverture.</div>
+
+  <div class="reponse"><b class="t">Question — 6 min demandées, temps réglé différent ?</b><br><br>
+  <b>Réponse attendue :</b> proposer de <b>régler à nouveau</b> le potentiomètre en se rapprochant de la valeur
+  mesurée manquante, puis de <b>chronométrer à nouveau</b> pour vérifier — c'est une démarche de réglage progressif
+  par approximations successives, transférable à d'autres appareillages réglables du métier (pressostats,
+  thermostats).</div>
+
+  <h3 class="section">Organisation du plateau</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Postes élèves — passage 1</b></td><td>1 platine « télérupteur » par élève ou binôme, 3 boutons poussoirs, disjoncteur individuel maintenu ouvert, multimètre par poste.</td><td>Prévoir un jeu de fiches techniques télérupteur (grand format, ou vidéoprojetées) pour la phase 5 et le jalon A.</td></tr>
+    <tr><td><b>Postes élèves — passage 2</b></td><td>1 platine « minuterie » par élève ou binôme, 4 boutons poussoirs, chronomètre disponible (téléphone interdit : prévoir chronomètres de l'atelier ou horloge murale).</td><td>Vérifier à l'avance que chaque minuterie a un potentiomètre accessible et réglable sans outil spécial.</td></tr>
+    <tr><td><b>Tableau de l'atelier (identification sur site)</b></td><td>Organiser un passage échelonné par petits groupes devant le tableau réel pendant le jalon A, pour ne pas créer d'attroupement ni de temps mort pour les autres élèves.</td><td>Le tableau reste sous tension pendant cette observation : rappeler qu'on <b>regarde</b>, on ne touche rien.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Boutons poussoirs câblés en série (réflexe du va-et-vient)</td><td>Faire vérifier au multimètre : en série, un seul bouton relâché coupe tout le circuit de commande. Comparer avec le schéma complété qui montre bien un raccordement en parallèle.</td></tr>
+    <tr><td>Circuit de commande et circuit de puissance confondus (fils mélangés)</td><td>Faire recolorier au feutre, sur le schéma papier, les deux circuits avant de recâbler physiquement.</td></tr>
+    <tr><td>Identification sur site bâclée ou sautée</td><td>Ne pas laisser passer : c'est la première rencontre avec C3.2, la compétence doit être réellement observée, pas seulement cochée.</td></tr>
+    <tr><td>Passage 2 : élève qui redemande le vocabulaire déjà vu au passage 1</td><td>Renvoyer systématiquement à ses notes du passage 1 avant de réexpliquer — c'est le principe même de l'autonomie guidée.</td></tr>
+    <tr><td>Réglage du temps non vérifié après câblage</td><td>Rappeler que le contrat avec le client n'est rempli que si le temps mesuré est cohérent avec la demande (6 min) — pas seulement si la lampe s'éteint « au bout d'un moment ».</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Élèves positionnés 1-2 à C3.6 lors d'É1 (voir S3-T2) : autoriser une relecture guidée du schéma développé simple allumage de S1 avant d'aborder les deux circuits ; le professeur reste au poste pour le premier raccordement du circuit de commande.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, 2 jalons par passage, aides retirées au passage 2.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de son propre câblage, l'élève explique à un pair la différence entre circuit de commande et circuit de puissance, sans jamais câbler à sa place.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire nouveau (commande, puissance, bobine, contact, temporisé) introduit avec pictogramme + geste (montrer le fil, pas seulement le nommer) ; couleurs des fils toujours prioritaires sur le vocabulaire comme repère.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Étapes de câblage toujours découpées en cases à cocher séparées, circuit de commande et circuit de puissance traités dans deux blocs visuellement distincts (déjà fait dans le document élève) ; visa professeur matérialisé par une case bien visible à ne pas sauter.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statuts du jour : C3.6 <b>Confortement</b>, C3.2
+  <b>Découverte</b> — <b>aucune compétence en statut Évaluation</b> dans ce module (rappel : pas d'éval propre dans
+  S3, cf. cadrage). Les positionnements du jour alimentent le repérage pour la remédiation continue et pour
+  l'évaluation É2 (semaine 13, rangée en S4).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · T12 · S2.2 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Câblage non conforme au schéma complété, malgré aide, ou circuit de commande et circuit de puissance confondus.</td>
+      <td>Câble avec l'aide du professeur pour au moins l'un des deux circuits (commande ou puissance).</td>
+      <td>Câble seul(e) le télérupteur ET la minuterie à partir des schémas complétés, conformes, contrôle hors tension réalisé avant tout appel.</td>
+      <td>Comme « Acquis », et explique à un pair la différence entre circuit de commande et circuit de puissance.</td>
+    </tr>
+    <tr>
+      <td><b>C3.2</b> Identifier sur site les réseaux d'alimentation <span class="nuance">sur T10 · S2.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne repère pas l'arrivée ni le circuit d'éclairage sur le tableau réel, même avec aide.</td>
+      <td>Repère l'arrivée et le circuit d'éclairage avec l'aide du professeur.</td>
+      <td>Repère seul(e), sur le tableau réel, l'arrivée, le circuit d'éclairage concerné et les conducteurs Ph/N/PE.</td>
+      <td>Comme « Acquis », et explique pourquoi ce repérage est indispensable avant toute intervention.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, lecture méthodique</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste interdit commis (fil touché sans VAT, mise sous tension sans contrôle) : <b>niveau 1 automatique</b>, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Consignation et VAT appliquées sans rappel, lecture de schéma méthodique (commande puis puissance) sans confusion.</td>
+      <td>Comme « Acquis », et veille spontanément à la sécurité d'un pair.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité entraîne
+  automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du câblage réalisé
+  ce jour-là : principe non négociable, cohérent avec les grilles S1-S2. Les positionnements de ce module <b>ne sont
+  pas remontés</b> (aucun statut Évaluation dans S3) mais nourrissent le repérage des élèves à revoir en priorité
+  avant É2.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques électriques</b> — consignation, NF C 18-510 ;</li>
+    <li><b>Technologie</b> — lecture de plan (S2.2), appui direct du module théorique S3-T1 ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (F3) ;</li>
+    <li><b>Remédiation post-É1</b> — les élèves positionnés 1-2 à C3.6 lors d'É1 bénéficient d'un accompagnement
+    renforcé au jalon B (voir S3-T2 et variante consolidation ci-dessus) ;</li>
+    <li><b>Vers l'évaluation É2</b> (semaine 13, rangée en S4) — ce module prépare la lecture et le câblage de
+    schémas d'appareillages de commande, savoir réinvesti dans les modules ultérieurs.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : le-telerupteur.pdf +
+  le-telerupteur-a-completer.pdf (Fiche Communication technique, Électricité bâtiment, Version 001-2015,
+  02_CAP-IFCA/S4-Electricite) ; cours-minuterie.pdf + la-minuterie-eleve.pdf (Fiche Communication technique,
+  Électricité bâtiment, Version 001-2015, 02_CAP-IFCA/Froid-Frigorifique) — situation « couloir, 3 points lumineux,
+  4 boutons poussoirs, extinction 6 min » reprise et anonymisée (source originale : nom de client anonymisé en
+  « le client »). Valeurs NF C 15-100 (câblage 1,5 mm², 8 points d'éclairage maximum, disjoncteur 16 A) et
+  unipolaire/bipolaire (coupure phase seule / phase + neutre) sourcées dans ces deux fiches. Symboles graphiques :
+  bibliothèque de symboles inerWeb (`C:\git\usine-contenu\bibliotheque-symboles\catalogue.json`) — télérupteur,
+  minuterie, bp_archi, interrupteur_archi, lampe_fluorescente, disjoncteur_1p_n, copiés dans `images\` de ce dossier ;
+  schémas unifilaires et développés composés à partir de ces symboles par le rédacteur, fidèles à la topologie des
+  fiches sources. Continuité directe des documents S1-E1, S2-E1 et S3-E1 produits pour cette même classe.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .passage{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

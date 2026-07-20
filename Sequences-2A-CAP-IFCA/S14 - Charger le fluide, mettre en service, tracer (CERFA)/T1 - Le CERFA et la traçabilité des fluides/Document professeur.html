@@ -1,0 +1,331 @@
+<meta charset="utf-8">
+<title>Document professeur — S14 · Module théorie T1 · Le CERFA et la traçabilité des fluides</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Le CERFA · la traçabilité des fluides</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE T1 · 1 h — DOCUMENT PROFESSEUR</span><b>Le CERFA et la traçabilité des fluides</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S14</span> · sem. 15</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (pas d'atelier ce jour)</td>
+      <td><span class="lib">Durée</span>1 h — classe inversée, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Lecture ressource en amont → quiz flash → mini-CERFA guidé → jeu de rôle « contrôle réglementaire » → trace écrite</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière, travail en binôme sur le jeu de rôle</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T2</b> Compléter les documents de traçabilité des fluides<br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><b>S0.1</b> Réglementation et impacts environnementaux<br><b>S1.2</b> Pièces et autorisations administratives</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la trace écrite · honnêteté du contrôle entre pairs</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte → Confortement — non remontée</span> module théorique préparatoire aux modules A5-a, A5-b et F4 (C1.1 et C4.5 y seront évaluées sur documents réels)</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même numérotation que le document élève
+  (questions 1 à 5, quiz flash, mini-CERFA, jeu de rôle) et y ajoute les réponses attendues, les points de
+  vigilance, la conduite minutée et la différenciation. <b>Aucune valeur non sourcée</b> n'est utilisée : le
+  tableau de GWP vient du document ressource F-Gaz 3 (Document_Ressources_Fgaz3_Exercice6.docx), et le GWP du
+  R410A (2 088) vient d'un exemple de CERFA réel (CERFA FI-BSD CAP.docx) — présenté aux élèves comme un exemple,
+  pas comme une valeur générale à généraliser sans vérification.</p>
+
+  <h3 class="section">Méthode pédagogique du module — classe inversée + jeu de rôle</h3>
+  <p style="font-size:10.3pt"><b>Classe inversée</b> : la fiche ressource (feuilles 2-3 du document élève) est
+  lue par l'élève <b>avant</b> la séance — en travail à la maison ou en fin de module F3/carnet de bord
+  précédent. L'élève y répond déjà aux questions 1 à 5 <b>seul</b>, avant toute explication du professeur :
+  c'est le principe de la découverte qui précède la formalisation. En classe, le temps est donc entièrement
+  consacré à la <b>vérification</b>, à l'<b>application</b> (mini-CERFA) et au <b>jeu de rôle « contrôle
+  réglementaire »</b> imposé par le cadrage de la séquence — jamais à de la lecture passive en classe entière.
+  Bloom CAP 1→3 (citer, expliquer, appliquer une formule simple, contrôler un document rempli par un pair).</p>
+  <div class="vigilance"><b class="t">Si des élèves n'ont pas lu la ressource</b> — prévoir 5 minutes de
+  lecture flash individuelle en tout début de séance pour ce sous-groupe, pendant que les autres commencent le
+  quiz en autonomie ; ne pas faire attendre toute la classe.</div>
+
+  <h3 class="section">Trame horaire — module 1 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:22%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 1 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>5 min</td><td class="ph">1. Accroche</td><td>Lecture collective de la situation (technicien qui repart sans remplir de papier). Hypothèses notées à l'oral, gardées en tension jusqu'à la question finale du jeu de rôle (feuille 5).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Vérification de lecture</td><td>Quiz flash (5 questions à choix), correction immédiate à main levée. Objectif : s'assurer que la fiche ressource lue en amont est comprise avant de passer à l'application. Ne pas réexpliquer tout le contenu : ne clarifier que les points ratés par la majorité.</td></tr>
+    <tr><td>20 min</td><td class="ph">3. Application — mini-CERFA</td><td>Lecture individuelle de la mise en situation (climatiseur R410A, 1,05 kg + 150 g de complément). Remplissage individuel du mini-CERFA, calcul du tCO₂e. Circulation du professeur pour repérer les erreurs de calcul (masse en kg au lieu de tonnes) avant le jeu de rôle.</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Jeu de rôle « contrôle réglementaire »</td><td>Échange des mini-CERFA en binôme. Chacun contrôle le document de l'autre avec la grille de 7 points. Anomalies notées, document rendu à son auteur pour correction. Rotation possible : un 2<sup>e</sup> tour avec un autre binôme si le temps le permet.</td></tr>
+    <tr><td>5 min</td><td class="ph">5. Synthèse / trace écrite</td><td>Retour sur l'accroche (le « papier » = le FI-BSD, utile précisément parce qu'un tiers peut le relire et le contrôler). Fiche de trace écrite complétée, auto-positionnement 0-4.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 5 + 10 + 20 + 20 + 5 = <b>60 min exactes</b>, conforme à la
+  trame « Module THÉORIE T1 — 1 h » du cadrage S14.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ FICHE RESSOURCE (QUESTIONS 1-2) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module théorie T1 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — fiche ressource 1/2 (le FI-BSD)</h3>
+  <div class="reponse"><b class="t">Question 1</b> — Qui remplit le FI-BSD ? À quel moment ?<br><br>
+  <b>Réponse attendue :</b> <b>l'opérateur</b> (le technicien qui intervient physiquement sur le fluide), <b>à la
+  fin de chaque intervention</b> touchant au fluide frigorigène (dépannage, entretien, mise en service,
+  récupération). Il y indique son numéro d'attestation d'aptitude et fait signer le détenteur.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser confondre « opérateur » (le
+  technicien qui manipule le fluide) et « détenteur » (le propriétaire de l'installation, souvent le client) :
+  ce sont deux personnes différentes, toutes deux identifiées sur le document.</div>
+
+  <div class="reponse"><b class="t">Question 2</b> — Citez les 4 obligations F-Gaz. Sans quel document ne
+  peut-on pas manipuler personnellement un fluide ?<br><br>
+  <b>Réponse attendue :</b> (1) récupération obligatoire, (2) interdiction de rejet à l'atmosphère, (3)
+  attestation d'aptitude individuelle obligatoire pour manipuler, (4) registre par machine qui cumule
+  l'historique des interventions. Sans <b>attestation d'aptitude</b>, pas de manipulation personnelle de
+  fluide frigorigène fluoré.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Distinguer attestation d'<b>aptitude</b>
+  (individuelle, pour la personne) et attestation de <b>capacité</b> (pour l'entreprise) : les élèves confondent
+  souvent les deux. Ne pas développer davantage ici, le distinguo suffit au niveau CAP.</div>
+
+  <h4 class="section">Depuis le 1<sup>er</sup> janvier 2023</h4>
+  <p style="font-size:10pt">La partie bordereau de suivi de déchets (BSD, quand le fluide part au recyclage ou
+  à la destruction) est dématérialisée sur <b>Trackdéchets</b>. À faire dire aux élèves : le papier CERFA
+  n'a pas disparu (il reste le support de l'intervention), mais la déclaration de fin de vie du déchet, elle,
+  passe par une plateforme numérique.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ FICHE RESSOURCE (QUESTIONS 3-5) + QUIZ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module théorie T1 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — fiche ressource 2/2 (GWP et tCO₂e)</h3>
+  <div class="reponse"><b class="t">Question 3</b> — Qu'est-ce que le GWP mesure ? À quel gaz un fluide
+  frigorigène est-il comparé ?<br><br>
+  <b>Réponse attendue :</b> le GWP mesure l'impact d'1 kg de gaz sur le réchauffement climatique, comparé à
+  1 kg de <b>CO₂</b> (référence, GWP = 1), sur 100 ans.</div>
+
+  <div class="reponse"><b class="t">Question 4</b> — Classez R404A, R290, R22 du moins au plus polluant.<br><br>
+  <b>Réponse attendue :</b> <b>R290 (3) &lt; R22 (1 810) &lt; R404A (3 922)</b>. Le R290 (propane, hydrocarbure
+  naturel) est très largement le moins impactant des trois.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Rappeler que « moins polluant pour le climat » ne
+  veut pas dire « sans risque » : le R290 est un hydrocarbure inflammable (classe A3), sa manipulation impose
+  d'autres précautions de sécurité. Ce point n'est pas développé ici (hors périmètre GWP), mais peut être
+  mentionné en une phrase pour éviter une fausse conclusion « naturel = sans danger ».</div>
+
+  <div class="reponse"><b class="t">Question 5</b> — Pourquoi convertir la masse en tonnes avant de multiplier
+  par le GWP ?<br><br>
+  <b>Réponse attendue :</b> parce que le résultat cherché est en <b>tonnes équivalent CO₂</b> (tCO₂e) : pour que
+  l'unité du résultat soit bien des tonnes, la masse d'entrée doit elle-même être en tonnes (1 kg = 0,001 t).
+  Multiplier directement une masse en kg par le GWP donnerait un nombre qui n'est <b>pas</b> en tonnes.</div>
+
+  <h4 class="section">Corrigé du quiz flash</h4>
+  <table class="mini">
+    <tr><th style="width:70%">Question</th><th>Réponse</th></tr>
+    <tr><td>Le FI-BSD est rempli par…</td><td><b>l'opérateur</b></td></tr>
+    <tr><td>Rejeter du fluide dans l'atmosphère est…</td><td><b>interdit et sanctionné</b></td></tr>
+    <tr><td>Pour manipuler un fluide, il faut…</td><td><b>une attestation d'aptitude</b></td></tr>
+    <tr><td>Un GWP de 3 (R290) est…</td><td><b>à peine plus impactant que le CO₂</b></td></tr>
+    <tr><td>tCO₂e se calcule avec…</td><td><b>masse (tonnes) × GWP</b></td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ APPLICATION (MINI-CERFA) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module théorie T1 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Application, le mini-CERFA</h3>
+  <table class="mini">
+    <tr><th style="width:46%">Champ</th><th>Réponse attendue</th></tr>
+    <tr><td>Nom / repère de l'installation</td><td>Climatiseur split, unité intérieure — bureau du client</td></tr>
+    <tr><td>Nature du fluide</td><td><b>R410A</b> — Type : <b>HFC</b></td></tr>
+    <tr><td>Charge initiale</td><td><b>1,05 kg</b></td></tr>
+    <tr><td>Complément</td><td><b>0,15 kg</b> (150 g)</td></tr>
+    <tr><td>Charge totale</td><td><b>1,20 kg</b></td></tr>
+    <tr><td>GWP (PRG)</td><td><b>2 088</b> <span class="nuance">(exemple de CERFA réel, à vérifier sur le tableau réglementaire officiel pour toute autre situation)</span></td></tr>
+    <tr><td>tCO₂e</td><td><b>≈ 2,51 t CO₂e</b> (voir calcul détaillé ci-dessous)</td></tr>
+    <tr><td>Type de fluide manipulé</td><td><b>recyclé</b> (le fluide récupéré est réintroduit dans la même machine)</td></tr>
+    <tr><td>Nature de l'intervention</td><td><b>mise en service</b> (remise en service après déplacement de l'unité)</td></tr>
+    <tr><td>Opérateur</td><td>numéro d'attestation d'aptitude fictif accepté pour l'exercice (ex. : « n° d'exercice »)</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Calcul détaillé du tCO₂e</b><br><br>
+  Charge totale = 1,05 kg + 0,15 kg = <b>1,20 kg</b> = <b>0,0012 t</b><br>
+  tCO₂e = masse (t) × GWP = 0,0012 × 2 088 = <b>2,5056</b>, soit <b>≈ 2,51 t CO₂e</b>.</div>
+
+  <div class="vigilance"><b class="t">Erreur fréquente</b> — Multiplier 1,20 (en kg, sans convertir) par 2 088,
+  ce qui donne 2 505,6 : un résultat 1 000 fois trop grand, sans le sens physique d'une tonne équivalent CO₂.
+  Reprendre systématiquement la conversion kg → tonnes au tableau si cette erreur apparaît chez plusieurs élèves.</div>
+
+  <div class="vigilance"><b class="t">Sur le type de fluide manipulé</b> — Le mot-clé de l'énoncé est « vous
+  récupérez l'intégralité du fluide… ce fluide est recyclé (il sera réintroduit dans la même machine) » : bien
+  faire relier ce type de phrase à la case à cocher, en s'appuyant sur les 4 catégories vues en fiche ressource
+  (vierge / recyclé / régénéré / destiné au traitement) — déjà rencontrées dans tp CEFA FI BSD .docx.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CONDUITE DU JEU DE RÔLE + GRILLE 0-4 + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module théorie T1 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Conduite du jeu de rôle « contrôle réglementaire »</h3>
+  <p style="font-size:10.3pt">Le professeur circule pendant les 20 minutes du jeu de rôle et joue lui-même,
+  ponctuellement, le rôle d'un « contrôleur de second niveau » sur un ou deux binômes au hasard, pour montrer
+  l'exigence attendue (comparer chaque case au tableau de GWP, refaire le calcul de tCO₂e à la main).</p>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Le jeu de rôle ne doit pas devenir une simple
+  relecture complaisante : rappeler avant de commencer qu'un contrôleur réglementaire qui valide un dossier
+  faux engage sa responsabilité — insister sur le fait de <b>vérifier</b>, pas seulement de <b>lire</b>.</div>
+
+  <h4 class="section">Retour attendu sur la question finale (accroche)</h4>
+  <div class="reponse">Le « papier » réclamé par le collègue est le <b>FI-BSD</b>. Il est important qu'un
+  contrôleur puisse le relire car c'est ce document qui <b>prouve</b>, en cas de contrôle réglementaire réel
+  (DREAL, organisme de contrôle), que l'intervention a respecté les obligations F-Gaz : sans trace écrite
+  vérifiable, il n'y a pas de preuve de conformité, même si le geste technique a été bien fait.</div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Grille <b>légère</b>, statut <b>Découverte →
+  Confortement — non remontée</b> sur École Directe.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Savoir</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:20%">3-4</th></tr>
+    <tr>
+      <td><b>S0.1 · S1.2</b> Le FI-BSD, les obligations F-Gaz, GWP et tCO₂e <span class="nuance">Découverte → Confortement — non remontée</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne sait pas dire à quoi sert le FI-BSD ni écrire la formule du tCO₂e, malgré la fiche ressource lue.</td>
+      <td>Remplit un CERFA simplifié et calcule un tCO₂e avec l'aide du professeur ou d'un pair.</td>
+      <td>Remplit seul un CERFA simplifié, calcule seul un tCO₂e juste et contrôle correctement celui d'un camarade (niveau 4 : repère et explique une anomalie volontaire à un pair).</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fournir la formule tCO₂e déjà écrite avec les unités indiquées (masse en <u>tonnes</u> souligné) ; réduire le mini-CERFA aux 5 champs essentiels (fluide, charge totale, GWP, tCO₂e, type de fluide manipulé) plutôt que les 10 champs complets.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, mini-CERFA complet et jeu de rôle en autonomie.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus : « si le complément avait été un fluide vierge acheté neuf (et non recyclé), quelle case aurait changé sur le CERFA, et quelle autre traçabilité (bouteille de fluide vierge) aurait-il fallu renseigner ? » (amorce du module F4).</td></tr>
+    <tr><td>FLE</td><td>Tableau de GWP simplifié à 3 fluides seulement (R744, R32, R404A) avec pictogramme thermomètre (petit/moyen/grand) à côté de chaque valeur ; formule tCO₂e présentée aussi sous forme de schéma fléché (masse → convertir en tonnes → multiplier par GWP → tCO₂e) ; consignes du jeu de rôle démontrées une fois par le professeur avec un élève avant de lancer les binômes.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Mini-CERFA proposé en 2 blocs successifs (identification puis calcul) plutôt qu'en un seul tableau dense ; grille de contrôle du jeu de rôle limitée à 4 points prioritaires au lieu de 7 pour ce profil ; pause courte annoncée entre l'application et le jeu de rôle si besoin, sans rallonger le total de 60 min.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence</h3>
+  <ul class="liste-num">
+    <li>Le module <b>A5-a</b> réalise la charge réelle sur banc et démarre les premiers relevés HP/BP/T ;</li>
+    <li>Le module <b>A5-b</b> contrôle la charge par SC/SR et ajuste les réglages ;</li>
+    <li>Le module <b>F4</b> reprend le <b>CERFA complet</b> (pas la version miniature) et une <b>feuille de
+    mise en service réelle</b>, remplis à partir des mesures effectivement relevées en A5-a/A5-b : C1.1 et C4.5
+    y sont évaluées.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : CERFA FI-BSD
+  CAP.docx, tp CEFA FI BSD .docx, Document_Ressources_Fgaz3_Exercice6.docx (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

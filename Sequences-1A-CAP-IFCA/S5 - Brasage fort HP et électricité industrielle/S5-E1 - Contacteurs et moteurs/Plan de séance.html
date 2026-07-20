@@ -1,0 +1,243 @@
+<meta charset="utf-8">
+<title>Plan de séance — S5-E1 · Contacteurs et moteurs</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage fort HP et électricité industrielle — <b>module atelier S5-E1</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S5-E1</span><b>Contacteurs et moteurs</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> P3 · semaines 14-15</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 14</b> et <b>passage 2 — semaine 15</b> (dates à caler sur le calendrier réel, cf. <i>_CADRAGE-S5.md</i>) — <b>même jeu de documents, vécu deux fois</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des platines contacteurs/moteurs + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier froid S5-F1)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">(protections/DDR S3-E1, télérupteur S3-E2/S4-E1, consignation acquise depuis S1)</span><br><span class="nuance">Travaillé :</span> <b>S5.6</b> <span class="nuance">augmenté (contacteur, relais thermique, moteur — on change d'échelle : armoire industrielle)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel (NF C 18-510) · vigilance pièces tournantes (moteur) · rigueur du câblage · honnêteté du contrôle hors tension</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → vers Maîtrise</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6</span><br><span class="statut">Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T11 · S5.6</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S5-3</b> : un commerce alimentaire de proximité prépare l'installation d'une
+  <b>chambre froide dans son arrière-boutique</b>. Le professeur, responsable du chantier, vous confie le
+  <b>câblage du départ moteur du groupe</b> : le moteur qui entraînera le compresseur doit pouvoir démarrer et
+  s'arrêter, protégé contre les surintensités. On change d'échelle par rapport au pavillon de S3 : une armoire
+  électrique industrielle, pas un tableau domestique.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>nommer</b>, sur un contacteur tenu ouvert en main, la bobine (A1-A2), les contacts de puissance,
+        les contacts auxiliaires et le ressort de rappel ;</li>
+        <li><b>nommer</b> le rôle du relais thermique et repérer ses réglages en façade (intensité, test, stop/reset) ;</li>
+        <li><b>câbler la partie puissance</b> d'un départ moteur (sectionneur → contacteur → relais thermique →
+        moteur), avec contrôle hors tension avant tout appel au professeur ;</li>
+        <li><b>câbler la partie commande complète</b> (interrupteur marche/arrêt + contact du relais thermique +
+        bobine du contacteur) et réaliser <b>seul(e) le contrôle hors tension</b> (continuité + serrage) ;</li>
+        <li><b>réaliser un essai</b> au bouton test du relais thermique, en respectant strictement le seul geste
+        autorisé — <b>jamais provoquer un vrai défaut.</b></li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>réaliser seul(e) une consignation/VAT avant toute intervention (S1→S4) ;</li>
+        <li>câbler un télérupteur et une minuterie sur platine domestique (S3-E2, S4-E1) ;</li>
+        <li>identifier disjoncteur et DDR sur une façade réelle (S3-E1) ;</li>
+        <li>mon positionnement à É2 sur le poste ÉLEC (C3.6) — si 1 ou 2, reprise ciblée aujourd'hui (crochet
+        remédiation post-É2, cf. S5-T0).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S4</b> — En S4-Électricité (cours C06-C07-C08), le
+  contacteur, le relais thermique et le moteur étaient des <b>images de cours</b> : on en lisait la constitution
+  sur un schéma. <b>Ici, l'appareil est tenu ouvert en main</b>, avant tout schéma — on observe, on nomme, on
+  explicite. Le module change aussi d'échelle : après le pavillon domestique de S3, <b>l'armoire électrique
+  industrielle</b> apparaît, avec son premier moteur à démarrer. <b>É2 est passée : tes 2 objectifs de progrès
+  s'appliquent ici</b> — si tu étais positionné(e) 1 ou 2 sur C3.6 au poste ÉLEC d'É2, la phase 4 d'aujourd'hui
+  te reprend en priorité.</div>
+
+  <div class="plan"><b class="t">Méthode du module : investigation matérielle</b> — <b>un contacteur OUVERT
+  tenu en main</b>, avant tout schéma : <b>vous observez</b> (bobine, contacts, ressort) → « à votre avis, à quoi
+  sert chaque pièce ? » → on nomme → on explicite. Même démarche, plus courte, sur le relais thermique tenu en
+  main. Puis câblage guidé du départ moteur. Module vécu <b>deux fois</b> (passage 1 semaine 14, passage 2
+  semaine 15), toujours en <b>2 jalons</b> par passage, contenu qui s'élève : découverte + puissance seule, puis
+  commande complète en autonomie.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 14 et 15)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 14 — investigation matérielle + câbler la puissance</h4>
+      <b>Jalon A</b> (≈ 55 min) : contacteur ouvert en main (observer → nommer → expliciter : bobine, contacts de
+      puissance, contacts auxiliaires, ressort), même démarche courte sur le relais thermique en main (réglage
+      intensité, bouton test, stop/reset). <b>Jalon B</b> (≈ 70 min) : câblage de la <b>partie puissance seule</b>
+      (sectionneur Q1 → contacteur KM1 → relais thermique F1 → moteur M1), contrôle hors tension, <b>essai bref
+      au poussoir de test du professeur</b> (la partie commande n'est pas câblée par l'élève ce jour-là).</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 15 — câbler la commande complète, en autonomie guidée</h4>
+      <b>Jalon A'</b> (≈ 50 min) : câblage <b>complet</b> — partie commande ajoutée (interrupteur S1 + contact
+      95-96 du relais thermique + bobine KM1), <b>moins d'aide, plus vite</b> qu'au passage 1. <b>Jalon B'</b>
+      (≈ 75 min) : contrôle hors tension <b>complet</b> — continuité <b>et</b> serrage des connexions (C3.7, en
+      autonomie) — appel professeur, mise sous tension, essai marche/arrêt au S1, puis <b>essai au bouton test
+      du relais thermique</b> — <b>jamais de vrai défaut provoqué</b>, aux deux passages.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : choc électrique par contact direct
+  avec une pièce sous tension, <b>pièces tournantes du moteur</b> (mains, cheveux, vêtements happés), borne mal
+  serrée qui s'échauffe, déclenchement non maîtrisé si un défaut réel est provoqué. <b>EPI</b> : chaussures de
+  sécurité, pas de bijoux ni de montre, manches ajustées, cheveux longs attachés. <b>Gestes interdits</b> :
+  <b>jamais provoquer un vrai défaut thermique</b> — <b>seul le bouton test</b> du relais thermique est autorisé ;
+  jamais toucher un conducteur nu ; <b>jamais shunter</b> le relais thermique ou une protection ; jamais
+  s'approcher du moteur en rotation ; jamais mettre une platine sous tension soi-même (<b>seul le professeur le
+  fait</b>, après contrôle). <b>Consignation NF C 18-510</b>, rituel acquis depuis S1 : couper → vérifier
+  l'absence de tension (VAT) au multimètre → condamner/signaler → travailler hors tension. <b class="t">🚨 En
+  cas d'incident :</b> couper (arrêt d'urgence de l'atelier, localisé en phase 5), alerter le professeur,
+  <b>ne jamais déplacer un camarade électrisé</b>.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S5-E1 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 14 et 15</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Durées doubles indiquées <b>passage 1 / passage 2</b> quand le contenu diffère.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (contacteurs et moteurs).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S5-3 : câbler le départ moteur du groupe de l'arrière-boutique.</td><td>Présente l'ordre d'intervention et le chantier (changement d'échelle).</td><td>Reformulent la mission : qu'est-ce qu'un départ moteur ?</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C3.6, C3.7) et le statut du jour.</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : reprise du poste ÉLEC d'É2 (télérupteur, protections, consignation). <span class="jalon">crochet remédiation</span> Variante consolidation fléchée « élèves positionnés 1-2 à É2 sur C3.6 » (reprise accompagnée, cf. S5-T0) ; approfondissement = tutorat par un élève positionné 3-4.</td><td>Distribue le mini-quiz, contrôle les tenues et les EPI, encadre les groupes de besoin.</td><td>Se changent par vagues ; en attente, font le mini-quiz ou tutorent un pair.</td><td>Mini-quiz de reprise É2 · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (arrêt d'urgence et trousse relocalisés, gestes interdits rappelés dont « jamais de vrai défaut thermique » et « jamais s'approcher du moteur en rotation ») puis <b>investigation matérielle</b> : le professeur tend un contacteur OUVERT à chaque groupe → les élèves OBSERVENT avant toute explication → « à quoi sert chaque pièce, à votre avis ? » → NOMMER (bobine, contacts de puissance, contacts auxiliaires, ressort) → EXPLICITER les rôles.</td><td>Localise ARU/trousse, distribue les contacteurs ouverts, anime l'investigation matérielle.</td><td>Manipulent le contacteur ouvert, répondent, découvrent les pièces avant toute théorie donnée.</td><td>Contacteurs ouverts (démontés, un par groupe) · relais thermiques en main · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>55 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon A / A'</span></td><td><b>Passage 1 (55 min)</b> : investigation matérielle complétée par le relais thermique en main (exercice à compléter + dessiner les symboles), découverte de la plaque signalétique du moteur. <b>Passage 2 (50 min)</b> : câblage <b>complet</b> — partie commande ajoutée (S1 + F1 95-96 + bobine KM1), moins d'aide, plus vite.</td><td>Anime l'investigation et les rotations (P1) ; valide la lecture du schéma sans le redonner, circule poste par poste (P2).</td><td>Complètent les fiches, observent la plaque moteur (P1) ; câblent la commande complète (P2).</td><td>Symboles bibliothèque · contacteurs et relais ouverts · schéma réduit + annexe A3</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>70 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon B / B'</span></td><td><b>Passage 1 (70 min)</b> : câblage de la <b>partie puissance seule</b> (Q1 → KM1 → F1 → M1), contrôle hors tension (continuité), appel du professeur, <b>essai bref au poussoir de test du professeur</b> pour vérifier la rotation du moteur. <b>Passage 2 (75 min)</b> : contrôle hors tension <b>complet</b> (continuité <b>et serrage</b> des connexions, C3.7 en autonomie), appel professeur, mise sous tension, essai marche/arrêt au S1, puis <b>essai au bouton test du relais thermique</b>.</td><td>Valide chaque contrôle hors tension, réalise seul chaque mise sous tension et l'essai bref (P1), supervise les essais de déclenchement (P2).</td><td>Câblent, contrôlent hors tension, appellent le professeur, observent la mise sous tension et réalisent les essais.</td><td>Platines + Q1/KM1/F1/M1 · multimètres · fiche de contrôle</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque élève présente son câblage et son contrôle hors tension ; auto-positionnement par compétence (C3.6, C3.7 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leur câblage, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (fils, cosses, fusibles de rechange).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Platines remises hors tension et débranchées, multimètres remis sur OFF, fils et outillage rangés, postes vérifiés propres et dégagés.</td><td>Supervise la remise hors tension et le rangement.</td><td>Rangent, vérifient que chaque poste est hors tension.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la suite (passage 2 la semaine suivante, ou S5-E2 selon la rotation).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  <b>Passage 1</b> : jalon A (55 min) + pause (15 min) + jalon B (70 min) = 2 h 20 ; synthèse 15 + bon de commande
+  10 + rangement 10 + clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.
+  <b>Passage 2</b> : jalon A' (50 min) + pause (15 min) + jalon B' (75 min) = 2 h 20 ; synthèse + bon de commande +
+  rangement + clôture = 40 min (inchangé). Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>. Les deux
+  passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre jalon A/A' et jalon B/B' change.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  électriques (consignation, NF C 18-510, pièces tournantes) · technologie (contacteur, relais thermique, moteur,
+  S5.6) · co-intervention français (carnet de bord, module F3) · remédiation post-É2 (crochet phase 4, cf. S5-T0).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Élèves à revoir en priorité (remédiation)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

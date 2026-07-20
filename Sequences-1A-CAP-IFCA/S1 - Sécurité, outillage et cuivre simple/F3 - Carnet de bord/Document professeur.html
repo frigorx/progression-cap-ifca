@@ -1,0 +1,351 @@
+<meta charset="utf-8">
+<title>Carnet de bord professeur — S1 · Module F3 · Fil de l'eau</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:left; vertical-align:top}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .fiche-num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt;
+    border-radius:8px; padding:3px 12px; background:var(--marine); color:#fff; margin-bottom:8px}
+  .rubrique{border:1px solid var(--filet); border-radius:6px; margin:.5em 0 .9em; overflow:hidden}
+  .rubrique .titre-rubrique{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:5px 12px;
+    font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt; color:var(--bleu)}
+  .rubrique .corps-rubrique{padding:10px 14px}
+  .rubrique.commande .titre-rubrique{background:#fff2ea}
+  .rubrique.auto .titre-rubrique{background:#f8f6ff}
+  .attendu{background:#eef6ec; border-left:3px solid #4a8f3c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .attendu b{color:#2f6b24; font-family:'Trebuchet MS',sans-serif}
+  .exemple{background:#f5f8fc; border-left:3px solid var(--bleu); padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .exemple b{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .erreur{background:#fdeceb; border-left:3px solid #c0392b; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .erreur b{color:#a5281b; font-family:'Trebuchet MS',sans-serif}
+  .remede{background:#fff8e6; border-left:3px solid #c9971c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .remede b{color:#96700f; font-family:'Trebuchet MS',sans-serif}
+  .indicatif{background:#f3f0fb; border-left:3px solid var(--violet); padding:4px 10px; margin:4px 0; font-size:9.5pt; font-style:italic}
+  .indicatif b{color:var(--violet); font-family:'Trebuchet MS',sans-serif; font-style:normal}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — CADRE GÉNÉRAL DU MODULE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Sécurité, outillage et cuivre simple</td>
+      <td style="width:38%"><span class="lib">Module F3 · fil de l'eau · 2 h (continu)</span><b>Carnet de bord de chantier — corrigé professeur</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention</div>
+    <div class="case"><h4>Savoir</h4><b>S3.1</b> Communication technique</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la trace écrite · régularité (une fiche par module) · honnêteté de l'auto-évaluation</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte</span> <b>C1.3</b> Rendre compte<br><span class="statut">Découverte</span> <b>C2.1</b> Organiser des informations</div>
+  </div>
+
+  <h3 class="section">Positionnement du module dans la séquence</h3>
+  <p style="font-size:10.5pt">Le carnet de bord F3 est un module « au fil de l'eau » : il ne se pilote pas
+  comme une séance isolée. Il totalise <b>2 h cumulées</b> sur l'ensemble de la séquence S1 (semaines 1 à 4),
+  réparties en petites tranches de 10 à 15 minutes à la fin (ou en tout début) de chaque autre module —
+  S1-F1, S1-F2 (atelier froid), S1-E1, S1-E2 (atelier élec), S1-T1, S1-T2 (théorie). La classe est coupée en
+  deux demi-groupes qui permutent chaque semaine entre atelier froid et atelier élec ; chaque module d'atelier
+  est vécu <b>deux fois</b> par élève (passage 1 = découverte très guidée, passage 2 = consolidation, moins
+  d'aide) — d'où la case « Passage » sur les fiches d'atelier du document élève.</p>
+
+  <div class="situation"><h4>Pourquoi Découverte, et pas Confortement</h4>
+  Dans une séquence de 2<sup>e</sup> année, ce même carnet de bord peut porter le statut Confortement, si les
+  élèves ont déjà rencontré C1.3 et C2.1 dans une séquence antérieure. Ici, S1 est la <b>toute première
+  séquence de la 1<sup>re</sup> année</b> : les élèves n'ont <b>aucun prérequis</b> et tiennent leur
+  <b>premier carnet de bord</b>. Le statut est donc <b>Découverte</b> pour C1.3 et C2.1 : première rencontre,
+  <b>aucun poids</b> dans le positionnement officiel. Conséquence directe pour ce module : <b>pas de grille
+  0-4 remontée</b> côté élève, seulement une <b>auto-évaluation simple</b> (voir feuille 3, « Comment
+  exploiter le carnet »).</div>
+
+  <div class="situation"><h4>Consigne d'animation</h4>
+  Réserver <b>10 à 15 minutes</b> en fin de chaque module (ou en tout début du module suivant, selon
+  l'organisation retenue) pour que chaque élève remplisse sa fiche du jour. Ce temps n'est <b>pas</b> à
+  retrancher du temps de pratique atelier : il est déjà compté dans les phases « Synthèse » et « Bon de
+  commande » de la trame atelier (phases 7-8 et 8 bis) ou dans la phase « Synthèse / trace écrite » de la
+  trame théorie (phase 4). Pour un module découverte à la fois technique et dense (ex. S1-F2, sécurité), ne
+  pas hésiter à démarrer le remplissage 5 minutes plus tôt : mieux vaut une fiche courte et honnête qu'une
+  fiche bâclée en fin de créneau.</div>
+
+  <h3 class="section">Ce qu'on attend, rubrique par rubrique</h3>
+
+  <div class="attendu"><b>Date · Module du jour · Passage</b> — remplis systématiquement, cohérents avec le
+  cahier de textes. La case Passage (1 découverte / 2 consolidation) permet de savoir, d'un coup d'œil, si
+  l'élève découvre le module ou le refait en autonomie — un carnet où les dates ou les passages se
+  contredisent est un signal d'alerte sur la régularité.</div>
+  <div class="exemple"><b>Exemple attendu</b> — « 14/09/2026 · ☑ S1-F1 Cuivre simple : coupe, cintrage,
+  dudgeon · Passage ☑ 1 découverte ».</div>
+
+  <div class="attendu"><b>Ce que j'ai fait</b> — une description factuelle, dans l'ordre chronologique, des
+  opérations réellement réalisées (pas une paraphrase du sujet du TP, pas une liste d'intentions). Pour un
+  élève qui découvre l'écrit professionnel, 2 à 3 phrases courtes suffisent : ne pas exiger un texte long.</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-F1, cuivre)</b> — « J'ai coupé un tube de
+  14 mm à la longueur donnée. J'ai ébavuré les deux extrémités. J'ai cintré le tube à 90° avec la pince à
+  cintrer. J'ai fait un dudgeon à l'emboîture. »</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-F2, sécurité)</b> — « J'ai visité
+  l'atelier avec le professeur. J'ai repéré l'arrêt d'urgence et la trousse de secours. J'ai posé la main sur
+  le tube côté condenseur (chaud) et côté évaporateur (froid). J'ai construit la croix du frigoriste avec ce
+  que j'ai observé. »</div>
+  <div class="erreur"><b>Erreur typique</b> — carnet bâclé : une ligne du type « on a fait du cuivre » sans
+  détail, ou rubrique laissée vide en fin de module faute de temps.</div>
+  <div class="remede"><b>Remédiation</b> — imposer 2 à 3 phrases minimum ; si le temps manque
+  systématiquement, avancer le rappel du carnet en tout début de la phase « Synthèse » plutôt qu'en toute fin
+  de module. Pour un élève très en difficulté à l'écrit, autoriser un remplissage oral dicté au professeur ou
+  à un pair-aidant, puis recopié par l'élève.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SUITE DES ATTENDUS PAR RUBRIQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <div class="attendu"><b>Relevés / mesures</b> — chaque ligne du tableau doit porter une grandeur nommée,
+  une valeur ET une unité. Aucune valeur chiffrée ne doit être inventée par l'élève : s'il ne connaît pas la
+  valeur de référence, il note la valeur mesurée ou observée et écrit « à faire valider » en marge si besoin.
+  Pour les modules non métrologiques (S1-F2, sécurité), un simple comptage (nombre d'EPI, durée) est
+  accepté : l'important est de prendre l'habitude « une donnée = une unité », pas la précision métier.</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-F1, cuivre)</b> — « Diamètre du tube ·
+  14 · mm » ; « Longueur coupée · 250 · mm » ; « Angle de cintrage · 90 · ° ». Ces valeurs numériques sont
+  <b>illustratives</b> : en situation réelle, l'élève note ce qu'il a réellement mesuré et découpé.</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-F2, sécurité)</b> — « Nombre d'EPI
+  identifiés · 4 · unités » ; « Durée de la visite guidée · 20 · min ».</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-E1, élec domestique)</b> — « Continuité
+  du circuit avant mise sous tension · Oui · — » ; « Tension mesurée après contrôle professeur · 230 · V
+  (valeur secteur standard) ».</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-E2, multimètre)</b> — « Tension U · 230 ·
+  V » ; « Intensité I · 0,5 · A » ; « Résistance R · 220 · Ω ». Valeurs illustratives : l'élève note ce qu'il
+  a réellement lu à son poste de mesure.</div>
+  <div class="erreur"><b>Erreur typique</b> — relevé sans unité (« 7 » tout seul), ou grandeur non nommée, ou
+  valeur recopiée d'un camarade sans avoir mesuré soi-même.</div>
+  <div class="remede"><b>Remédiation</b> — refuser de viser une ligne sans unité ; demander à l'élève de
+  refaire la mesure devant le professeur en cas de doute sur l'authenticité du relevé.</div>
+
+  <div class="attendu"><b>Mes difficultés</b> — une difficulté réelle et personnelle, pas une plainte
+  générale. Doit permettre au professeur de cibler la remédiation individuelle. En semaine 1 d'un CAP 1A, il
+  est normal et attendu que cette rubrique soit très fournie : l'élève découvre tout.</div>
+  <div class="exemple"><b>Exemple de remplissage attendu</b> — « J'ai eu du mal à tenir la pince à cintrer
+  bien droite, le tube s'est un peu écrasé, j'ai dû recommencer. »</div>
+  <div class="erreur"><b>Erreur typique</b> — rubrique vide (« RAS ») alors que l'élève a été aidé plusieurs
+  fois pendant le module.</div>
+  <div class="remede"><b>Remédiation</b> — croiser avec ses propres observations du module ; si contradiction,
+  le signaler à l'élève et lui demander de corriger honnêtement.</div>
+
+  <div class="attendu"><b>Matériel manquant → bon de commande</b> — référence (si connue), désignation
+  précise (pas « des trucs ») et quantité chiffrée. Colonnes calquées sur le vrai gabarit fournisseur (champs
+  Article/Désignation/Quantité d'un bon de commande réel du métier, cf. <i>bond de commande le froid.docx</i>) :
+  ce tableau alimente directement le rituel de bon de commande hebdomadaire de l'atelier (phase 8 bis de la
+  trame atelier).</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-F1, cuivre)</b> — « — · Toile abrasive ·
+  1 rouleau » ; « — · Baguette de brasure argent · 2 » ; « — · Raccord cuivre à souder 14 mm · 2 » (la
+  référence reste vide si l'élève ne la connaît pas — mieux vaut vide que fausse référence).</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-F2, sécurité)</b> — « — · Paire de gants
+  anti-coupure · 1 » ; « — · Lunettes de protection · 1 ».</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-E1, élec domestique)</b> — « — ·
+  Interrupteur va-et-vient · 1 » ; « — · Domino de connexion · 3 ».</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S1-E2, multimètre)</b> — « — · Pile 9 V
+  pour multimètre · 1 » ; « — · Pointes de touche multimètre · 1 paire ».</div>
+  <div class="erreur"><b>Erreur typique</b> — rubrique jamais remplie parce que l'élève ne pense au manque de
+  matériel qu'après coup, une fois rentré chez lui ; ou référence inventée pour remplir la case.</div>
+  <div class="remede"><b>Remédiation</b> — rappeler la rubrique explicitement à la fin de la phase « Ranger —
+  nettoyer », quand le manque de matériel est encore visible ; rappeler qu'une référence non connue reste
+  vide, jamais inventée.</div>
+
+  <div class="attendu"><b>Auto-évaluation courte</b> — un positionnement 0-4 honnête et une phrase précise de
+  ce qui reste à revoir (pas « rien » systématiquement, pas une auto-note flatteuse non justifiée). Rappeler
+  aux élèves, dès la première fiche, que ce n'est <b>pas une note</b> (statut Découverte).</div>
+  <div class="exemple"><b>Exemple de remplissage attendu</b> — « Positionnement : 2 · Ce que je dois revoir :
+  bien tenir la pince à cintrer pour ne pas écraser le tube. »</div>
+  <div class="erreur"><b>Erreur typique</b> — auto-évaluation à 4 systématique sans justification, ou copie
+  du positionnement du voisin.</div>
+  <div class="remede"><b>Remédiation</b> — confronter l'auto-positionnement de l'élève à l'observation du
+  professeur lors du visa ; en cas d'écart important et répété, en discuter individuellement (savoir-être
+  « honnêteté »).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — EXPLOITATION C1.3/C2.1 + SYNTHÈSE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Comment exploiter le carnet pour C1.3 / C2.1 en statut Découverte</h3>
+  <p style="font-size:10.5pt">Le carnet ne se corrige pas comme un TP noté. En statut <b>Découverte</b>,
+  l'objectif est de <b>familiariser</b> l'élève avec la trace écrite professionnelle, pas de le positionner
+  officiellement. Concrètement :</p>
+  <ul class="liste-num">
+    <li>Le professeur <b>vise</b> chaque fiche (case « Visée prof ? » du sommaire), sans note ni positionnement
+    officiel remonté dans École Directe.</li>
+    <li>La grille ci-dessous est <b>indicative</b> : elle sert au professeur à calibrer son regard et à repérer
+    les élèves à accompagner davantage (écrit très pauvre, relevés jamais complets, auto-évaluation non
+    honnête) — elle n'apparaît <b>pas</b> sous cette forme dans le document élève et ne donne lieu à
+    <b>aucune remontée</b>.</li>
+    <li>Le bilan de fin de séquence, côté élève, ne comporte qu'un <b>auto-positionnement simple</b> (0-4, sans
+    grille à colonnes) : c'est voulu, pour ne pas transformer la première expérience du carnet en évaluation
+    déguisée.</li>
+    <li>C1.3 et C2.1 seront reprises en <b>Confortement</b> dans une séquence ultérieure de l'année (le carnet
+    F3 revient à chaque séquence) : c'est là que l'exigence montera d'un cran, en cohérence avec la
+    progressivité spiralaire de la charte.</li>
+  </ul>
+
+  <div class="indicatif"><b>Grille indicative 0-4 — repère professeur uniquement, NON remontée (statut
+  Découverte)</b></div>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:14%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:15%">0<br>Non évalué</th><th style="width:15%">1<br>Non acquis</th><th style="width:15%">2<br>En cours d'acquisition</th><th style="width:15%">3<br>Acquis</th><th style="width:15%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr>
+      <td><b>C1.3</b> Rendre compte</td>
+      <td>sur T1 · S3.1</td>
+      <td>Carnet non tenu ce jour.</td>
+      <td>Rubriques vides ou illisibles ; aucun relevé exploitable.</td>
+      <td>Rubriques remplies mais incomplètes (relevé sans unité, description trop vague) ; nécessite une
+      relance du professeur.</td>
+      <td>Toutes les rubriques sont remplies, lisibles, et le relevé porte une unité à chaque fois.</td>
+      <td>Comme « Acquis », et le compte rendu est assez précis pour qu'un autre élève comprenne ce qui a été
+      fait sans autre explication.</td>
+    </tr>
+    <tr>
+      <td><b>C2.1</b> Organiser des informations</td>
+      <td>sur T1 · S3.1</td>
+      <td>Carnet non tenu ce jour.</td>
+      <td>Informations en vrac, aucune rubrique respectée, bon de commande absent malgré un manque visible.</td>
+      <td>Rubriques globalement respectées mais mal classées (relevé mélangé avec les difficultés, par
+      exemple).</td>
+      <td>Chaque information est rangée dans la bonne rubrique ; le bon de commande est rempli dès qu'un
+      manque est identifié.</td>
+      <td>Comme « Acquis », et l'élève anticipe une information utile pour le module suivant.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, régularité, honnêteté</td>
+      <td>observation continue</td>
+      <td>Non observé ce jour.</td>
+      <td>Fiche non remplie sans motif, ou auto-évaluation manifestement non honnête (4 systématique sans
+      justification, contradiction flagrante avec l'observation professeur).</td>
+      <td>Carnet tenu la plupart du temps, quelques oublis ou auto-évaluations à nuancer — normal en première
+      séquence.</td>
+      <td>Carnet tenu à chaque module sans rappel, auto-évaluation cohérente avec l'observation du professeur.</td>
+      <td>Comme « Acquis », et l'élève signale spontanément un écart entre son ressenti et son résultat réel.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Synthèse des erreurs typiques et remédiations</h3>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:26%">Erreur typique</th><th style="width:37%">Signe observable</th><th style="width:37%">Remédiation</th></tr>
+    <tr><td>Carnet bâclé</td><td>Phrases très courtes ou vagues, rubriques laissées vides « faute de temps »</td><td>Imposer 2-3 phrases minimum ; avancer le rappel du carnet plus tôt dans la phase de synthèse</td></tr>
+    <tr><td>Relevé sans unité</td><td>Valeur chiffrée seule, ou grandeur non nommée</td><td>Refuser de viser la ligne ; faire remesurer devant le professeur en cas de doute</td></tr>
+    <tr><td>Auto-évaluation non honnête</td><td>Positionnement 4 systématique sans justification, écart important avec l'observation professeur</td><td>Confronter à l'observation professeur au moment du visa ; rappeler que ce n'est pas noté</td></tr>
+    <tr><td>Bon de commande jamais rempli</td><td>Rubrique constamment vide malgré du matériel manquant visible en séance</td><td>Rappel explicite en fin de phase « Ranger — nettoyer », pendant que le manque est encore visible</td></tr>
+    <tr><td>Confusion passage 1 / passage 2</td><td>Case Passage non cochée ou incohérente avec le planning de rotation</td><td>Rappeler la case en tout début de remplissage ; vérifier avec le planning des demi-groupes</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Ce qui n'est PAS évalué dans ce module</h3>
+  <p style="font-size:10.5pt">Le carnet de bord ne réévalue pas les compétences techniques déjà travaillées
+  dans les modules atelier (C3.1, C3.4, C2.4, C3.6, C3.7, C3.8, C4.5…) : il accompagne uniquement la <b>prise
+  d'habitude</b> de la trace écrite et de l'organisation de l'information, transversale à tous les modules de
+  la séquence. Un élève peut tenir un carnet déjà très soigné tout en étant encore en tout début
+  d'apprentissage sur les gestes techniques d'un module atelier, et inversement — les deux ne se comparent
+  pas.</p>
+
+  <div class="jalon"><h4>Points de vigilance pour le professeur</h4>
+  <p>☐ Réserver le temps de remplissage dans chaque module (ne pas le laisser « déborder » sur la pause)<br>
+  ☐ Vérifier la cohérence Passage 1 / Passage 2 avec le planning de rotation des demi-groupes<br>
+  ☐ Viser le carnet à échéances régulières, pas seulement à la toute fin de la séquence<br>
+  ☐ Rappeler à chaque fiche que le statut Découverte = pas de note, pour ne pas transformer le carnet en
+  source d'anxiété dès la 1<sup>re</sup> semaine de CAP<br>
+  ☐ Récupérer les bons de commande au fil de l'eau pour alimenter le rituel hebdomadaire de l'atelier<br>
+  ☐ Pour S1-E1 : vérifier que la rubrique « Ce que j'ai fait » mentionne bien le contrôle du câblage par le
+  professeur avant toute mise sous tension (rituel de consignation NFC 18-510 posé dès la semaine 1)</p></div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage
+  modulaire S1 (<i>_CADRAGE-S1.md</i>) · Charte pédagogique FrigorX et Manuel de conception (§2 bis C — trame
+  « au fil de l'eau ») · référentiel CAP IFCA (codes T1, C1.3, C2.1, S3.1) · forme clonée du module F3 de la
+  séquence S11 2A CAP IFCA (Document élève.html / Document professeur.html) · structure de la rubrique bon
+  de commande (référence/désignation/quantité) d'après <i>bond de commande le froid.docx</i> (gabarit
+  fournisseur réel, F. Henninot), déjà restituée en 2A.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .attendu, .exemple, .erreur, .remede, .indicatif, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,498 @@
+<meta charset="utf-8">
+<title>Document professeur — S7 · Module théorie T1 · Lecture de relevés</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .icone-symb{display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--filet); border-radius:6px; padding:4px 8px}
+  .regle-or{border-left:4px solid var(--orange); background:#fff7f3; padding:6px 12px; margin:.3em 0; font-size:10pt}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .cas{border:1.5px solid var(--bleu); border-radius:8px; padding:8px 14px; margin:.5em 0 1em; background:#fff}
+  .cas h4{margin:0 0 4px; font-size:11pt; color:var(--bleu); display:flex; align-items:center; gap:8px}
+  .cas .num{display:inline-block; background:var(--bleu); color:#fff; border-radius:50%; width:1.6em; height:1.6em; text-align:center; line-height:1.6em; font-size:10pt}
+  .donnees{background:var(--fond-doux); border-radius:6px; padding:6px 10px; font-family:'Consolas',monospace; font-size:9.5pt; margin:.3em 0}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Lecture de relevés — HP/BP/températures</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S7-T1 · 2 h — DOCUMENT PROFESSEUR</span><b>Lecture de relevés</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> · sem. 24</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (classe entière) — vidéoprojecteur ou tableau pour le
+      tableau collectif</td>
+      <td><span class="lib">Durée</span>2 h — cours actif, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → mise en commun des relevés réels (F1/F3) → chasse aux
+      valeurs aberrantes → exercices de cadrans + cas de secours → synthèse</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>— (aucune tâche ce jour, module théorie de classe entière) ; les feuilles
+    de relevés exploitées ici ont été produites en S7-F1 (T15)</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté — la réglette P/T de S4 et les seuils SC/SR de S5-T2 sont appliqués ici sur des données réelles</span></div>
+    <div class="case"><h4>Savoir-être</h4>Honnêteté du relevé rapporté · rigueur du calcul · esprit critique sur sa propre mesure</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Confortement — vers Maîtrise</span> <b>C4.5</b> Mesurer, comparer des grandeurs — <span class="nuance">positionnement constaté ce jour, poids réduit ; aucune remontée École Directe (S7 ne comporte aucun statut Évaluation, réservé à É4 en S9)</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend la structure du cours élève (accroche → réglette rappelée →
+  annexe tableau collectif → chasse aux valeurs aberrantes → exercices de cadrans → cas de secours → synthèse)
+  et y ajoute l'organisation matérielle, la conduite minutée en 4 phases, la gestion des relevés inexploitables,
+  les corrigés des mini-cas et des exercices de cadrans, les erreurs typiques et la différenciation. <b>Aucune
+  valeur de pression de machine réelle n'est fixée à l'avance</b> : le contenu central du module (le tableau
+  collectif) dépend des relevés que les binômes rapportent de S7-F1 — ce document professeur porte donc sur la
+  MÉTHODE de traitement de ces données, pas sur des valeurs à corriger d'avance.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Exploitation des relevés réels de la classe</b> (méthode imposée par le
+  cadrage S7, aucune reprise d'une méthode déjà utilisée en S1→S6) : chaque binôme apporte, via son carnet F3,
+  les 4 mesures prises en S7-F1 sur un groupe de l'atelier (HP lue, BP lue, T° mesurée sortie évaporateur, T°
+  mesurée sortie condenseur). La classe construit ensemble un <b>tableau collectif</b>, le confronte à la
+  réglette P/T et aux seuils charte (SC 5-10 K, SR 4-8 K) déjà connus depuis S5-T2, puis apprend à repérer une
+  valeur qui ne « colle » pas — sans se précipiter sur un diagnostic de panne (réservé à S9).</p>
+  <div class="vigilance"><b class="t">Matériel à préparer</b> — un moyen de recopier en direct le tableau
+  collectif (tableau blanc quadrillé ou vidéoprojection du tableau annexe) ; s'assurer que chaque binôme a bien
+  son carnet F3 rempli en S7-F1 (sinon : cas de secours, feuille 6 du document élève) ; réglette P/T affichée en
+  grand si possible (déjà utilisée en S4/S5-T2, pas de nouvel outil à fabriquer).</p>
+  </div>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche</td><td>2 min : rappel du fil rouge (l'arrière-boutique, le
+    groupe équipé de manomètres en F1). 3 min : question de départ notée individuellement (comment savoir que
+    « tout va bien » avec 2 pressions et 2 températures). 3 min : rappel express de S4 (réglette P/T) et de
+    S5-T2 (SC/SR, seuils charte, dernière phrase « en S7-S8 vous mesurerez pour de bon »). 2 min : présentation
+    de la méthode du jour (chaque binôme apporte ses relevés F1/F3, mise en commun collective, cas de secours
+    prévus pour les binômes sans données).</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Découverte</td><td>15 min : collecte orale des relevés — chaque binôme
+    appelé dicte ses 4 valeurs (HP lue, BP lue, T mesurée évapo., T mesurée cond.), recopiées au tableau
+    collectif pendant que la classe recopie sur sa propre annexe. 15 min : calcul collectif guidé de t₀/tk via
+    la réglette et de SC ou SR pour 2-3 postes au tableau (agir → noter → réfléchir), le reste en autonomie
+    guidée pendant que le professeur circule et valide poste par poste. 10 min : le professeur pointe une ligne
+    du tableau réel qui interroge (ou, à défaut, présente directement les 3 mini-cas) et lance la question
+    « erreur de lecture, erreur d'unité, ou vrai problème ? ».</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application</td><td>20 min : finir de compléter individuellement le
+    tableau collectif annexe + traiter les 3 mini-cas de chasse aux valeurs aberrantes, correction en fin de
+    temps. 15 min : exercices de lecture de cadrans (3 exercices), correction rapide en collectif. 15 min : cas
+    fournis en secours (postes fictifs E et F) réservés aux binômes sans relevé exploitable, pendant que les
+    autres binômes approfondissent (comparaison entre postes, hypothèses de cause).</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse / trace écrite</td><td>12 min : fiche « check-list du bon
+    relevé » complétée et corrigée collectivement — trace écrite de référence, à ressortir en S7-F2 et pour
+    toute mesure future. 8 min : auto-positionnement 0-4 (Confortement, poids réduit) et clôture — annonce de
+    S7-F2 (tirage au vide réel) la semaine suivante et teaser de S9 (le diagnostic).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à la
+  trame « Module THÉORIE — 2 h » du cadrage S7 (accroche 10 → découverte 40 → application 50 → synthèse 20).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — GESTION DES RELEVÉS + CORRIGÉ ANNEXE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Gestion pratique de la mise en commun réelle</h3>
+  <p style="font-size:10.3pt">Le cœur du module dépend de données que le professeur ne connaît pas à l'avance
+  (les vraies mesures des binômes). Cette section donne la conduite à tenir, pas des valeurs à corriger.</p>
+
+  <h4 class="section">Comment remplir le tableau collectif en direct</h4>
+  <ol class="liste-num">
+    <li>Appeler les binômes un par un ; faire dicter HP lue et BP lue en premier (les 2 pressions), puis les 2
+    températures mesurées.</li>
+    <li>Convertir immédiatement HP et BP lues en tk et t₀ via la réglette affichée (même réglette qu'en S4 et
+    S5-T2) : si la valeur lue ne tombe pas exactement sur la réglette, prendre la valeur la plus proche à voix
+    haute, et le dire explicitement à la classe (« j'arrondis, c'est toléré à ce niveau »).</li>
+    <li>Ne calculer SC <b>ou</b> SR pour chaque poste que si les 2 données nécessaires sont présentes ; sinon,
+    laisser la case vide plutôt que d'inventer.</li>
+    <li>Faire annoncer le verdict par le binôme lui-même avant de le valider ou de le corriger (l'élève reste
+    acteur de sa propre mesure).</li>
+  </ol>
+
+  <h4 class="section">Que faire d'un relevé inexploitable ?</h4>
+  <p style="font-size:10.3pt">Un relevé peut être inexploitable pour plusieurs raisons : poste non passé en
+  F1 (rotation incomplète), feuille F3 manquante ou illisible, mesure incomplète (une seule pression relevée),
+  valeur clairement impossible sans explication retrouvable. Dans tous ces cas :</p>
+  <div class="reponse"><b class="t">Conduite à tenir</b> — Le binôme concerné note « inexploitable » dans sa
+  propre colonne du tableau collectif (jamais une valeur inventée) et bascule directement sur les <b>cas de
+  secours</b> (postes fictifs E et F, feuille 6 du document élève) pour la suite du module. Ne jamais faire
+  perdre le fil du cours à un binôme faute de données : le cas de secours garantit que TOUS les élèves calculent
+  et concluent, même sans relevé personnel exploitable.</div>
+  <div class="vigilance"><b class="t">Vigilance</b> — Si plusieurs binômes se retrouvent sans relevé exploitable
+  (rotation F1 incomplète, séance manquée), envisager de traiter les cas de secours en collectif d'abord, puis
+  les relevés réels ensuite en approfondissement — l'ordre proposé dans le document élève (réel d'abord) reste
+  la référence si la majorité de la classe a des données.</div>
+
+  <h4 class="section">Corrigé — grandeurs attendues dans chaque colonne de l'annexe</h4>
+  <table class="mini">
+    <tr><th style="width:26%">Colonne</th><th>Origine de la valeur</th></tr>
+    <tr><td>HP lue / BP lue (bar)</td><td>Dictées par le binôme depuis son carnet F3 (relevé S7-F1) — donnée
+    réelle, non calculée.</td></tr>
+    <tr><td>t<sub>k</sub> réglette / t<sub>0</sub> réglette (°C)</td><td>Lecture croisée sur la réglette P/T
+    affichée (identique à S4/S5-T2) — jamais une valeur mémorisée ou inventée.</td></tr>
+    <tr><td>T mesurée sortie évapo. / sortie cond. (°C)</td><td>Dictées par le binôme depuis son carnet F3 —
+    donnée réelle, thermomètre de contact utilisé en F1.</td></tr>
+    <tr><td>SC ou SR (K)</td><td>Calculée : SC = T mesurée évapo. − t₀ réglette ; SR = tk réglette − T mesurée
+    cond. Unité toujours K, jamais °C.</td></tr>
+    <tr><td>Verdict</td><td>Comparaison aux seuils charte (SC 5-10 K, SR 4-8 K) : « dans la plage » ou « hors
+    plage » + remarque libre du binôme.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — ERREURS TYPIQUES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Erreurs typiques observées lors de la lecture de relevés</h3>
+  <table class="mini">
+    <tr><th style="width:26%">Erreur</th><th>Comment la repérer / la corriger</th></tr>
+    <tr><td>Confusion bar / psi</td><td>Le cadran de manomètre porte souvent <b>deux échelles de pression côte
+    à côte</b> (bar à l'extérieur, psi juste à côté — visible sur l'image de la feuille 5 du document élève).
+    Demander systématiquement : « sur quelle échelle avez-vous lu ? » avant de reporter une valeur au tableau
+    collectif.</td></tr>
+    <tr><td>Confusion du manomètre (BP lu comme HP ou l'inverse)</td><td>Rappeler la convention professionnelle :
+    manomètre <b>BP</b> = côté bleu, côté aspiration ; manomètre <b>HP</b> = côté rouge, côté refoulement. En
+    cas de doute, HP est toujours la pression la plus élevée des deux (voir mini-cas 1, feuille 4 du document
+    élève).</td></tr>
+    <tr><td>Signe ou sens de la soustraction inversé (SC ou SR négatif ou aberrant)</td><td>Rappeler l'ordre des
+    termes : SC = T mesurée évapo. <b>moins</b> t₀ réglette (le froid moins le froid) ; SR = tk réglette
+    <b>moins</b> T mesurée cond. Un résultat très négatif ou à deux chiffres signale presque toujours une
+    inversion (voir mini-cas 2 et 3).</td></tr>
+    <tr><td>Lecture approximative de la réglette (interpolation)</td><td>Tolérée à ce niveau (Bloom 1A) : accepter
+    la valeur la plus proche de la réglette, mais demander à l'élève de le signaler plutôt que d'arrondir en
+    silence.</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">Point en attente — pression relative / absolue</b> — Les sources
+  disponibles pour ce module (série « EvaL lecture mano », exercices rapides de lecture de manomètres) ne
+  documentent pas la distinction pression relative / pression absolue, ni la confusion bar / mbar. Ce point
+  n'est donc <b>pas traité comme objectif du module</b> : rester à la lecture simple du cadran (bar, échelle
+  externe). Si un élève pose spontanément la question (« pourquoi le manomètre n'indique pas 0 à l'air libre »
+  par exemple), une réponse orale brève suffit : « le manomètre mesure un écart par rapport à la pression de
+  l'air ambiant, pas une pression absolue » — sans en faire un point évalué ni approfondi à ce niveau.</div>
+
+  <div class="reponse"><b class="t">Corrigé des mini-cas de chasse aux valeurs aberrantes (feuille 4, document
+  élève)</b>
+  <ul class="liste-num" style="margin-top:6px">
+    <li><b>Mini-cas 1</b> (poste fictif X, HP lue 9,2 bar &lt; BP lue 13,0 bar) — <b>Aberrant, à coup sûr</b> : la HP
+    est toujours supérieure à la BP (le compresseur comprime). C'est presque certainement une <b>inversion de
+    lecture</b> des deux manomètres (BP lue à la place de HP, ou l'inverse) — à revérifier sur la machine ou
+    avec l'autre membre du binôme, jamais à corriger « à l'oreille ».</li>
+    <li><b>Mini-cas 2</b> (poste fictif Y, SC = −11 K) — <b>Aberrant</b> : une surchauffe négative signifierait que le
+    fluide est plus froid en sortie d'évaporateur qu'à l'évaporation elle-même, ce qui est physiquement
+    impossible en fonctionnement normal. Cause la plus probable : erreur de signe dans la soustraction, ou
+    inversion t₀/T mesurée. À revérifier avant toute autre hypothèse.</li>
+    <li><b>Mini-cas 3</b> (poste fictif Z, SR = 29 K) — <b>Aberrant</b> : un sous-refroidissement de cet ordre est très
+    au-delà de tout ce qui a été rencontré (plage charte 4-8 K). Cause la plus probable : erreur de lecture de
+    la réglette (mauvaise colonne) ou température mesurée mal relevée (unité, virgule). Une vraie anomalie de
+    condenseur donnerait un écart hors plage mais de quelques Kelvin, pas 20 K d'écart.</li>
+  </ul>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ EXERCICES DE CADRANS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — exercices de lecture de cadrans (feuille 5, document élève)</h3>
+
+  <h4 class="section">Exercice 1 — cadran générique BP/HP</h4>
+  <table class="mini">
+    <tr><th style="width:60%">Question</th><th>Réponse attendue</th></tr>
+    <tr><td>Unité principale gravée sur le grand cercle extérieur</td><td>Le <b>bar</b> (visible sur le cercle
+    externe du cadran, image sourcée).</td></tr>
+    <tr><td>Autre unité de pression présente</td><td>Le <b>psi</b> (échelle imprimée juste à côté de l'échelle
+    bar sur le même cadran) — d'où le risque de confusion signalé en feuille 3.</td></tr>
+    <tr><td>Couleur conventionnelle BP / HP</td><td><b>BP = bleu</b> (côté aspiration, basse pression) ;
+    <b>HP = rouge</b> (côté refoulement, haute pression) — convention professionnelle universelle des
+    manifolds, déjà rencontrée sur le manifold manipulé en S7-F1.</td></tr>
+  </table>
+
+  <h4 class="section">Exercice 2 — cadrans d'entraînement à aiguille fixe</h4>
+  <p style="font-size:10.3pt">Les deux cadrans (schémas F. Henninot, aiguille fixe, aucune valeur de machine
+  réelle affirmée) sont construits pour donner des lectures exactes sur la réglette de la feuille 2 :</p>
+  <table class="mini">
+    <tr><th style="width:34%">Lecture</th><th style="width:22%">Valeur lue (bar)</th><th>T° réglette</th></tr>
+    <tr><td>Cadran BP → P₀ lue</td><td><b>3,1 bar</b></td><td>t₀ = <b>−18 °C</b></td></tr>
+    <tr><td>Cadran HP → P<sub>k</sub> lue</td><td><b>13,0 bar</b></td><td>t<sub>k</sub> = <b>+35 °C</b></td></tr>
+  </table>
+  <p style="font-size:9.5pt; color:var(--gris)">Ces deux valeurs correspondent exactement à deux colonnes de la
+  réglette P/T (feuille 2) : l'exercice est réussi si l'élève retrouve directement −18 °C et +35 °C sans
+  hésitation. En cas d'erreur, vérifier d'abord que l'élève a bien identifié le cadran BP (petite échelle,
+  0-6 bar) du cadran HP (grande échelle, 0-18 bar).</p>
+
+  <h4 class="section">Exercice 3 — cadran avec zone verte</h4>
+  <table class="mini">
+    <tr><th style="width:60%">Question</th><th>Réponse attendue</th></tr>
+    <tr><td>À quoi sert la zone verte ?</td><td>Elle indique, sur certains cadrans du commerce, une <b>plage de
+    fonctionnement jugée normale par le fabricant</b> pour une utilisation courante.</td></tr>
+    <tr><td>Aiguille dans la zone verte = SC et SR forcément corrects ?</td><td><b>Non</b> : la zone verte porte
+    sur la pression seule, pas sur l'écart SC/SR qui nécessite une seconde mesure (température mesurée au
+    thermomètre de contact). Une aiguille dans la zone verte est un indice favorable, jamais une preuve à elle
+    seule — c'est exactement la nuance que ce module cherche à installer : ne jamais conclure sur un seul
+    indicateur.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CORRIGÉ CAS DE SECOURS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — cas fournis en secours (feuille 6, document élève)</h3>
+
+  <div class="cas">
+    <h4><span class="num">E</span> Poste fictif E</h4>
+    <div class="donnees">P₀ lue = 2,5 bar → t₀ réglette = −22 °C &nbsp;·&nbsp; P<sub>k</sub> lue = 15,0 bar →
+    t<sub>k</sub> réglette = +40 °C</div>
+    <table class="mini">
+      <tr><th style="width:40%">Calcul</th><th>Résultat</th><th>Verdict</th></tr>
+      <tr><td>SC = −15 − (−22)</td><td><b>+7 K</b></td><td>Dans la plage (5-10 K).</td></tr>
+      <tr><td>SR = 40 − 33</td><td><b>+7 K</b></td><td>Dans la plage (4-8 K).</td></tr>
+    </table>
+    <p style="font-size:9.8pt"><b>Diagnostic à faire dire par l'élève :</b> les deux écarts sont dans leur
+    plage respective — rien n'alerte sur ce poste fictif.</p>
+  </div>
+
+  <div class="cas">
+    <h4><span class="num">F</span> Poste fictif F</h4>
+    <div class="donnees">P₀ lue = 1,9 bar → t₀ réglette = −30 °C &nbsp;·&nbsp; P<sub>k</sub> lue = 9,2 bar →
+    t<sub>k</sub> réglette = +20 °C</div>
+    <table class="mini">
+      <tr><th style="width:40%">Calcul</th><th>Résultat</th><th>Verdict</th></tr>
+      <tr><td>SC = −25 − (−30)</td><td><b>+5 K</b></td><td>Dans la plage, valeur basse (5-10 K).</td></tr>
+      <tr><td>SR = 20 − 19</td><td><b>+1 K</b></td><td>Hors plage BASSE (&lt; 4 K).</td></tr>
+    </table>
+    <p style="font-size:9.8pt"><b>Diagnostic à faire dire par l'élève :</b> le SR est nettement trop faible —
+    hypothèse à nommer (sans l'affirmer comme un fait) : sous-charge en fluide probable. Ce n'est qu'une
+    hypothèse à ce stade ; le diagnostic complet est réservé à S9.</p>
+  </div>
+
+  <div class="reponse"><b class="t">Usage pédagogique</b> — Ces deux cas ne remplacent pas les relevés réels :
+  ils garantissent seulement qu'aucun binôme ne reste sans activité de calcul faute de données. Les faire
+  traiter en priorité aux binômes concernés pendant que les autres approfondissent sur leurs propres relevés
+  (comparaison entre postes, hypothèses de cause).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — GRILLE 0-4, DIFFÉRENCIATION, LIEN AVEC LA SUITE, SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la check-list du bon relevé (trace écrite, feuille 7 élève)</h3>
+  <div class="regle-or">Ai-je lu la bonne unité (bar, pas psi ni mbar) ? → <b>Je vérifie toujours l'échelle
+  avant de reporter un chiffre.</b></div>
+  <div class="regle-or">Ai-je lu le bon manomètre (BP pour t₀, HP pour tk) ? → <b>BP = bleu = basse pression ;
+  HP = rouge = haute pression, toujours supérieure à la BP.</b></div>
+  <div class="regle-or">Ma pression lue tombe-t-elle sur (ou près de) la réglette ? → <b>Je prends la valeur la
+  plus proche et je le signale.</b></div>
+  <div class="regle-or">Ma soustraction est-elle faite dans le bon sens ? → <b>SC = T mesurée − t₀ réglette ;
+  SR = t<sub>k</sub> réglette − T mesurée.</b></div>
+  <div class="regle-or">Le résultat est-il dans une plage raisonnable ? → <b>Un écart énorme est presque
+  toujours une erreur, pas une panne.</b></div>
+  <div class="regle-or">Une autre personne peut-elle vérifier ma lecture ? → <b>Je fais confirmer par mon
+  binôme avant de conclure.</b></div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut <b>Confortement — vers Maîtrise</b> (compétence
+  <b>C4.5</b>, savoir <b>S5.1</b> augmenté) : le positionnement compte pour la progression annuelle, aucune
+  remontée École Directe ce jour (S7 ne comporte aucun statut Évaluation).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Ce que l'élève sait faire</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:10%">3</th><th class="niv" style="width:10%">4</th></tr>
+    <tr>
+      <td><b>C4.5</b> Lire un tableau de relevés réels, calculer SC ou SR via la réglette, comparer aux seuils
+      charte et repérer une valeur aberrante <span class="nuance">Confortement — vers Maîtrise</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Confond HP/BP ou SC/SR, même avec de l'aide.</td>
+      <td>Calcule avec l'aide du professeur, ne repère pas seul(e) une valeur aberrante.</td>
+      <td>Calcule seul(e) SC ou SR à partir de relevés réels et repère une valeur qui « sonne faux ».</td>
+      <td>Comme « Acquis », et explique en plus à un pair pourquoi une valeur est aberrante.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — honnêteté du relevé rapporté, rigueur du calcul, esprit critique sur sa propre mesure</td>
+      <td>Non observé.</td>
+      <td>Rapporte un relevé sans l'avoir vérifié, ne participe pas à la mise en commun.</td>
+      <td>Participe mais a besoin d'un rappel pour être rigoureux(se).</td>
+      <td>Rapporte honnêtement ses relevés et vérifie ses calculs avant de conclure.</td>
+      <td>Comme « Acquis », et aide un camarade à repérer une erreur dans son tableau.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fournir le tableau collectif déjà partiellement rempli (t<sub>k</sub>/t₀
+    réglette pré-remplis) pour ne laisser que le calcul de SC/SR ; réduire les mini-cas de chasse aux valeurs
+    aberrantes à 1 sur 3 ; traiter en priorité et seul le cas de secours E (le plus simple, dans la plage).</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : mise en commun réelle, tableau
+    collectif complet, 3 mini-cas, 3 exercices de cadrans, un cas de secours si besoin.</td></tr>
+    <tr><td>Approfondissement</td><td>Faire comparer les relevés de 2-3 postes entre eux (pourquoi un poste
+    donne-t-il un SR différent d'un autre poste identique ?) ; demander une hypothèse de cause pour le cas de
+    secours F (sans l'affirmer comme certaine, en gardant le vocabulaire d'hypothèse, réservé à S9 pour la
+    certitude).</td></tr>
+    <tr><td>FLE</td><td>Verdicts « dans la plage » / « hors plage » systématiquement associés à un code couleur
+    (vert / orange) affiché au tableau ; phrases courtes sujet-verbe-complément pour les consignes des
+    mini-cas ; rôle de « lecteur de réglette » assigné à un élève par binôme, désigné à l'avance.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Rôle de « rapporteur » désigné dans chaque binôme pour dicter les valeurs dans
+    l'ordre (HP, BP, T évapo., T cond.) ; grille annexe pré-remplie avec les en-têtes de colonnes surlignés ;
+    limiter la chasse aux valeurs aberrantes à un seul mini-cas traité collectivement avant le travail
+    individuel.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la formation</h3>
+  <ul class="liste-num">
+    <li>La semaine prochaine (<b>S7-F2</b>), l'élève tire au vide un circuit réel et trace pour la première fois
+    une courbe temps/pression — la rigueur de lecture installée ici (bonne unité, bon cadran, vérification
+    croisée) est directement réinvestie sur le vacuomètre.</li>
+    <li>Ce module est le <b>premier étage</b> du regard du diagnostiqueur, qui se construira pleinement en
+    <b>S9</b> : transformer une valeur aberrante repérée en hypothèse de panne argumentée, puis en action
+    corrective.</li>
+    <li>La check-list du bon relevé (trace écrite) est réinvestie dans toute mesure future de la formation, dès
+    que l'élève pose un instrument sur une machine réelle.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage
+  pédagogique S7-T1 (méthode « exploitation des relevés réels de la classe », F. Henninot, 19/07/2026,
+  `_CADRAGE-S7.md`) ; réglette P/T et seuils de surchauffe/sous-refroidissement (charte FrigorX SC 5-10 K ·
+  SR 4-8 K), repris à l'identique de S4 et S5-T2 (F. Henninot, 2026) ; principe des exercices de lecture de
+  cadrans, d'après la série « EvaL lecture mano » de l'enseignant (`02_CAP-IFCA/Bases-Techniques/EvaL lecure
+  mano un.odt, 2.odt, 3.odt`, F. Henninot) — images de cadrans de cette série écartées lorsqu'elles portaient
+  la mention commerciale tierce « e-genieclimatique.com » (déjà signalée et écartée en S5-T1/S7-F2) ; banque de
+  cadrans manomètres génériques utilisée en exercice (`25 26/vrac fiep 3/Exercices_rapides/manometres`,
+  format EN 837-1, aucune mention commerciale) ; cadrans d'entraînement à aiguille fixe (exercice 2), schémas
+  F. Henninot, 2026 ; carnet de bord F3 (S7) — relevés réels pris par les binômes en S7-F1. Aucune valeur de
+  pression de machine réelle n'est affirmée dans ce document : le tableau collectif dépend des relevés réels
+  de la classe le jour même ; les mini-cas et cas de secours sont fictifs, construits pour l'exercice à partir
+  de la réglette simulée déjà utilisée en S4/S5-T2.</p>
+
+  <div class="vigilance"><b class="t">Point en attente</b> — les machines support de S7-F1 (lesquelles,
+  combien de postes manifold) ne sont pas encore arrêtées par le professeur (cadrage S7, points en attente) :
+  ce document reste donc volontairement générique sur le nombre de postes du tableau collectif (12 lignes
+  prévues, à adapter à l'effectif réel et au nombre de postes manifold disponibles).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .cas{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

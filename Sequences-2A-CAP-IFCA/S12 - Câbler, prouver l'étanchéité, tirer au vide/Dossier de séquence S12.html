@@ -1,0 +1,726 @@
+<meta charset="utf-8">
+<title>Maquette — Séquence S12 · CAP IFCA 2A</title>
+<style>
+  :root{
+    --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+    --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+    --ufa:#0e7a5f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre);
+    font-family:Calibri,'Segoe UI',sans-serif; font-size:14pt; line-height:1.5;
+    margin:0; padding:28px 12px; text-align:left;}
+  h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; text-wrap:balance; margin:0 0 .4em}
+  p{margin:.3em 0 .8em}
+  .note-maquette{max-width:794px; margin:0 auto 26px; background:#fff8f2; border:1px solid #f3c9b3;
+    border-radius:6px; padding:16px 22px; font-size:11.5pt; color:#7a4a2e;}
+  .note-maquette h2{color:#b4501e; font-size:13pt; margin-bottom:.3em}
+  .note-maquette ul{margin:.2em 0 .2em 1.2em; padding:0}
+  .feuille{background:#fff; max-width:794px; min-height:1050px; margin:0 auto 30px;
+    padding:34px 46px 20px; box-shadow:0 2px 14px rgba(27,58,99,.13); position:relative;
+    display:flex; flex-direction:column;}
+  /* ---------- INVARIANT : bandeau d'en-tête ---------- */
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:10px; margin-bottom:6px;}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#1e2c5e; letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#7b5cf5; letter-spacing:.03em}
+  .logo-eq{display:block}
+  .sous-entete{display:flex; justify-content:space-between; font-size:10pt; color:var(--gris); margin-bottom:22px;}
+  /* ---------- INVARIANT : pied de page ---------- */
+  .pied{margin-top:auto; padding-top:14px; border-top:1px solid var(--filet);
+    font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;}
+  /* ---------- Page de garde ---------- */
+  .garde-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:6px}
+  .garde-seq{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--orange); font-size:15pt; letter-spacing:.25em; text-transform:uppercase}
+  .garde-titre{font-size:27pt; margin:.15em 0}
+  .garde-soustitre{font-size:14pt; color:var(--gris); font-style:italic; margin-bottom:14px}
+  .garde-meta{display:inline-block; margin:18px auto 6px; border:1px solid var(--filet); border-radius:6px; padding:14px 30px; font-size:12.5pt; text-align:left; background:var(--fond-doux)}
+  .garde-meta b{color:var(--bleu)}
+  .croix{margin:26px auto 8px}
+  .croix-legende{font-size:9.5pt; color:var(--leger); font-style:italic}
+  .comp-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px}
+  .chip{border:1.5px solid var(--bleu); color:var(--bleu); border-radius:20px; padding:3px 14px; font-size:11pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; background:#fff}
+  .chip small{font-weight:normal; color:var(--gris)}
+  /* ---------- Corps commun ---------- */
+  .titre-page{font-size:19pt; border-left:6px solid var(--orange); padding-left:14px; margin-bottom:4px}
+  .surtitre{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:2px}
+  h3{font-size:13.5pt; margin-top:1.1em; display:flex; align-items:baseline; gap:8px}
+  table{border-collapse:collapse; width:100%; font-size:11pt; margin:.4em 0 1em}
+  th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:9.5pt; letter-spacing:.04em; text-transform:uppercase; padding:6px 9px; text-align:left}
+  td{border:1px solid var(--filet); padding:6px 9px; vertical-align:top}
+  tr:nth-child(even) td{background:var(--fond-doux)}
+  ul,ol{margin:.2em 0 .9em 1.35em; padding:0}
+  li{margin-bottom:.25em}
+  .encadre-secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:12px 18px; margin:.6em 0 1em}
+  .encadre-secu h3{color:#c14a17; margin-top:0}
+  .encadre-secu td{background:transparent!important; border-color:#f3c9b3}
+  .badge-niveau{display:inline-block; font-size:9pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; color:#fff}
+  .nM{background:#5d6b7c}.nV{background:var(--bleu)}
+  .fleche{color:var(--orange); font-weight:bold}
+  .cartouche-methode{background:var(--fond-doux); border:1px solid var(--filet); border-left:6px solid var(--bleu);
+    border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .cartouche-methode b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu)}
+  .etiquette{font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; letter-spacing:.08em;
+    text-transform:uppercase; border-radius:3px; padding:1px 7px; vertical-align:2px}
+  .et-inv{background:#e3e9f2; color:var(--bleu)}
+  .et-var{background:#ffe4d6; color:#b4501e}
+  .obj{background:var(--fond-doux); border-radius:6px; padding:10px 18px 10px 14px; margin:.3em 0 1em}
+  .obj li{margin-bottom:.35em}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:700px){.duo{grid-template-columns:1fr}}
+  .tbl-wrap{overflow-x:auto}
+  @media print{
+    body{background:#fff; padding:0}
+    .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always}
+    .note-maquette{display:none}
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo-equatio" viewBox="0 0 330 96">
+      <g transform="rotate(-10 48 52)" fill="none" stroke-linecap="round">
+        <ellipse cx="54" cy="48" rx="26" ry="36" stroke="#4fc3a1" stroke-width="10" stroke-dasharray="165 45" stroke-dashoffset="-30"/>
+        <ellipse cx="35" cy="52" rx="17" ry="26" stroke="#7f6bf2" stroke-width="9" stroke-dasharray="112 30" stroke-dashoffset="-22"/>
+        <ellipse cx="19" cy="56" rx="10" ry="16" stroke="#45cfe0" stroke-width="8" stroke-dasharray="62 22" stroke-dashoffset="-15"/>
+      </g>
+      <circle cx="88" cy="56" r="8" fill="#f5952f"/>
+      <text x="104" y="62" font-family="'Trebuchet MS',sans-serif" font-weight="bold" font-size="41" fill="#164e8e" letter-spacing="2">EQUATIO</text>
+      <text x="107" y="86" font-family="'Trebuchet MS',sans-serif" font-size="12.5" fill="#8a8f96" letter-spacing="6.5">Créateur d'avenir</text>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="note-maquette">
+  <h2>Note de maquette — à lire avant de juger la forme</h2>
+  <ul>
+    <li><span class="etiquette et-inv">Invariant</span> = charte fixe (bandeau, typo Calibri/Trebuchet, bleu/orange, pied de page, structure des rubriques). <span class="etiquette et-var">Variable</span> = ce qui change d'une séance à l'autre (méthode pédagogique, contenus).</li>
+    <li>Le logo <b>EQUATIO · Créateur d'avenir</b> est une <b>reconstitution vectorielle fidèle</b> d'après le visuel fourni ; les PNG officiels seront embarqués dans la version finale (à me fournir en fichiers).</li>
+    <li>La dissociation des entités reprend le sigle officiel : <b>LPP</b> ou <b>UFA</b> en marine + <b>JACQUES RAYNAUD</b> en violet (démonstration des variantes sur la dernière feuille).</li>
+    <li><b>La formule</b> structure tout : <b>tâche + savoir + savoir-être → compétence</b>. Chaque plan (séquence et séance) l'affiche ; chaque grille ancre la compétence sur sa tâche et son savoir ; <b>jamais plus de 4 compétences évaluées</b> par TP/exercice/séance.</li>
+    <li><b>Note référentiel</b> : le savoir de la semaine 9 est <b>S5.6</b> (Réseaux, matériels électriques et de régulation) — le code noté dans la progression était inexistant au référentiel CAP IFCA.</li>
+    <li>Ce document s'imprime en A4 tel quel (Ctrl+P) : une feuille blanche = une page.</li>
+  </ul>
+</div>
+
+<!-- ============================ FEUILLE 1 : PAGE DE GARDE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>CAP Installateur en Froid et Conditionnement d'Air — 2<sup>e</sup> année</span>
+    <span>Année scolaire 2026-2027 · Période P6</span>
+  </div>
+
+  <div class="garde-centre">
+    <div class="garde-seq">Séquence S12</div>
+    <h1 class="garde-titre">Câbler, prouver l'étanchéité,<br>tirer au vide</h1>
+    <div class="garde-soustitre">Le chantier de remise en état — phases A3 · A4</div>
+
+    <svg class="croix" width="240" height="150" viewBox="0 0 240 150" role="img" aria-label="Croix du Frigoriste">
+      <line x1="120" y1="18" x2="120" y2="132" stroke="#1b3a63" stroke-width="2"/>
+      <line x1="30" y1="75" x2="210" y2="75" stroke="#1b3a63" stroke-width="2"/>
+      <g font-family="Trebuchet MS, sans-serif" font-size="11" font-weight="bold" fill="#1b3a63" text-anchor="middle">
+        <text x="120" y="12">CONDENSEUR</text>
+        <text x="120" y="146">ÉVAPORATEUR</text>
+      </g>
+      <g font-family="Trebuchet MS, sans-serif" font-size="11" font-weight="bold" fill="#1b3a63">
+        <text x="214" y="79">COMPRESSEUR</text>
+        <text x="26" y="79" text-anchor="end">DÉTENDEUR</text>
+      </g>
+      <circle cx="120" cy="75" r="5" fill="#ff6b35"/>
+    </svg>
+    <div class="croix-legende">Chaque machine remise en état est une Croix rendue tangible.</div>
+
+    <div class="comp-chips">
+      <span class="chip">C3.6 <small>Câbler, connecter</small></span>
+      <span class="chip">C3.7 <small>Contrôler la mise en œuvre</small></span>
+      <span class="chip">C3.9 <small>Vérifier l'étanchéité</small></span>
+      <span class="chip">C4.1 <small>Tirer au vide</small></span>
+    </div>
+
+    <div class="garde-meta">
+      <b>Semaines 8 à 10</b> · du 03 au 21 novembre 2026<br>
+      <b>3 séances d'atelier</b> (blocs de 8 h) + évaluation sommative ≥ 1 h<br>
+      <b>Dernière séquence avant la PFMP 3</b> (départ le 24/11)<br>
+      <span style="font-size:10.5pt; color:var(--gris)">Cadre : référentiel <b>CAP IFCA</b> (activités, tâches, savoirs, compétences) ·
+      contribution certificative : <b>EP1</b> (situations écrites) et <b>EP2</b> (réalisation, support chantier)</span>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 2 : PLAN DE SÉQUENCE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S12 — plan de séquence</span>
+    <span>CAP IFCA 2A · P6 · semaines 8-10</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Vue d'ensemble des trois semaines</h2>
+  <p>La machine de chaque binôme sort de la phase cuivre (S10-S11). En trois semaines, elle devient
+  <b>électriquement vivante</b> puis <b>prouvée étanche et déshydratée</b> : prête à recevoir son fluide au retour de PFMP.</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Sem.</th><th>Séance d'atelier (fil principal)</th><th>Méthode pédagogique <span class="etiquette et-var" style="background:#fff">Variable</span></th><th>Se croise avec…</th></tr>
+    <tr><td><b>8</b><br>03-07/11</td><td><b>Séance 1 — Câblage de l'armoire électrique</b><br>Chantier A3 · journée 8 h · bi-prof</td><td>Démonstration commentée puis ateliers tournants (2 pôles)</td><td>Électro EL13 (dégivrage) · chef-d'œuvre 🎬 vidéo câblage · co-français (vocabulaire technique)</td></tr>
+    <tr><td><b>9</b><br>10-14/11</td><td><b>Séance 2 — Pressostats et régulation</b><br>Chantier A3 · journée 8 h</td><td>Autonomie guidée par plan de travail (jalons de contrôle)</td><td>Électro EL13 (pump down relais KA) · F4 feuilles de mise en service · co-français (compte-rendu)</td></tr>
+    <tr><td><b>10</b><br>17-21/11</td><td><b>Séance 3 — Étanchéité azote, tirage au vide</b><br>Chantier A4 · journée 8 h <b>+ évaluation sommative ≥ 1 h</b></td><td>Situation-problème (« ta machine tient-elle la pression ? »)</td><td>Électro EL14 (mesures, SC/SR) · technologie (diagramme enthalpique, intro) · départ PFMP 3</td></tr>
+  </table>
+  </div>
+
+  <h3>La formule de la séquence — tâche + savoir + savoir-être → compétence <span class="etiquette et-inv">Invariant</span></h3>
+  <p style="font-size:11pt; margin-bottom:.3em">Une compétence n'est jamais évaluée « en l'air » : elle l'est
+  <b>au travers d'une tâche</b> professionnelle, <b>en mobilisant un savoir</b>, <b>dans une posture</b> (le savoir-être).
+  <span class="regle4">Règle de charte : jamais plus de 4 compétences évaluées dans un TP, un exercice ou une séance.</span></p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Sem.</th><th>Tâches (référentiel CAP IFCA)</th><th>Savoirs</th><th>Savoir-être</th><th>Compétences (≤ 4)</th></tr>
+    <tr><td><b>8</b></td><td rowspan="3"><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension</td><td><b>S5.2</b> Fluides frigorigènes, huiles<br><b>S6.1</b> Santé et sécurité au travail</td><td rowspan="3">Sécurité d'abord (consignation, azote, EPI sans rappel) · ponctualité · rigueur du poste · travail en binôme · communication</td><td>C3.6 · C3.7 <span class="statut stC">Confortement</span></td></tr>
+    <tr><td><b>9</b></td><td><b>S5.6</b> Réseaux, matériels électriques et de régulation<br><b>S5.5</b> Réseaux fluidiques et mécanique des fluides</td><td>C3.6 · C4.1 <span class="statut stC">Confortement</span></td></tr>
+    <tr><td><b>10</b></td><td><b>S5.1</b> Systèmes thermodynamiques à détente directe<br><b>S6.1</b> Santé et sécurité au travail</td><td>C3.6 · C3.9 · C4.1 <span class="statut stE">Évaluation</span></td></tr>
+  </table>
+  </div>
+  <p style="font-size:10pt; color:var(--gris); margin:-.4em 0 1em"><b>Statut d'une compétence dans une séance</b> — son poids pour le diplôme n'est pas le même :
+  <span class="statut stD">Découverte</span> première rencontre, aucun poids ·
+  <span class="statut stC">Confortement</span> renforcement, poids réduit (formatif) ·
+  <span class="statut stE">Évaluation</span> positionnement officiel remonté (École Directe), plein poids.
+  Même nuance pour les savoirs : <i>nouveau · à confirmer · à renforcer</i>.</p>
+
+  <h3>Montée spiralaire des compétences sur la séquence</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Code</th><th>Compétence</th><th>Niveau en entrée (P5)</th><th></th><th>Niveau visé en sortie (P6)</th></tr>
+    <tr><td><b>C3.6</b></td><td>Câbler, connecter</td><td><span class="badge-niveau nM">Maîtrise</span></td><td class="fleche">→</td><td><span class="badge-niveau nV">Validé</span></td></tr>
+    <tr><td><b>C3.7</b></td><td>Contrôler la mise en œuvre</td><td><span class="badge-niveau nM">Maîtrise</span></td><td class="fleche">→</td><td><span class="badge-niveau nV">Validé</span></td></tr>
+    <tr><td><b>C3.9</b></td><td>Vérifier l'étanchéité</td><td><span class="badge-niveau nM">Maîtrise</span></td><td class="fleche">→</td><td><span class="badge-niveau nV">Validé</span></td></tr>
+    <tr><td><b>C4.1</b></td><td>Tirer au vide</td><td><span class="badge-niveau nM">Maîtrise</span></td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span> <small>(Validé visé en P7)</small></td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Fil rouge sécurité de la période P6</h3>
+    <ul style="margin-bottom:.2em">
+      <li><b>Consignation électrique</b> avant toute intervention sur l'armoire (préparation B1V, NFC 18-510).</li>
+      <li><b>Bouteilles sous pression</b> : azote sec uniquement, toujours détendu — jamais d'oxygène ni d'air comprimé.</li>
+      <li><b>Analyse de risque du chantier</b> renouvelée à chaque séance (rituel de mise en sécurité).</li>
+    </ul>
+  </div>
+
+  <h3>Évaluation sommative de fin de séquence (semaine 10, ≥ 1 h)</h3>
+  <p style="margin-bottom:.2em">Positionnement individuel par compétence, remonté sur École Directe :
+  <b>câblage</b> (C3.6), <b>étanchéité</b> (C3.9), <b>tirage au vide</b> (C4.1).
+  Support : la machine du binôme, en conditions réelles de chantier.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<style>
+  .incident{font-size:10pt; background:#fdeaea; border:1px solid #e8b4b4; border-radius:4px; padding:6px 12px; margin:.4em 0 1em; color:#8c2f2f}
+  .tab-der{font-size:10pt}
+  .tab-der td{padding:5px 8px}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:10pt; letter-spacing:.04em}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .eval-row td{background:#fff6cc!important}
+  .cols2{columns:2; column-gap:26px; font-size:10.5pt}
+  .meta-seance{display:flex; flex-wrap:wrap; gap:8px 22px; font-size:11pt; color:var(--gris); margin:.2em 0 1em}
+  .meta-seance b{color:var(--encre)}
+  .notion{background:var(--fond-doux); border-left:6px solid var(--orange); border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.4em 0 1.1em; font-size:10pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:7px 11px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris)}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .formule b{color:var(--bleu)}
+  @media (max-width:700px){.formule{grid-template-columns:1fr 1fr}}
+  .regle4{font-size:9.5pt; color:var(--gris); font-style:italic}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; vertical-align:1px; white-space:nowrap}
+  .stD{background:#e6f4ee; color:#0e7a5f; border:1px solid #9fd6c2}
+  .stC{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .stE{background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; background:#fff; padding:9px 16px; margin:.4em 0 1em; font-size:11pt}
+  .situation h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .grille-0-4{font-size:8.5pt}
+  .grille-0-4 td, .grille-0-4 th{padding:4px 6px}
+</style>
+
+<!-- ============================ FEUILLES 3-4 : SÉANCE 1 ============================ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S12 · Plan de séance 1/3</span>
+    <span>CAP IFCA 2A · P6 · semaine 8 (03-07/11)</span>
+  </div>
+
+  <div class="surtitre">Plan de séance — chantier A3 <span class="etiquette et-inv">Structure invariante</span></div>
+  <h2 class="titre-page">Câblage de l'armoire électrique — puissance et commande</h2>
+  <div class="meta-seance">
+    <span><b>Journée de 8 h</b> (4 h + 4 h)</span><span><b>Bi-prof</b> · 2 pôles</span><span>Binômes</span>
+  </div>
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.2</b> Fluides frigorigènes, huiles <span class="nuance">à renforcer</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Consignation spontanée · EPI sans rappel · poste tenu · binôme</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut stC">Confortement</span><br><b>C3.6</b> Câbler, connecter<br><b>C3.7</b> Contrôler la mise en œuvre</div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Votre entreprise a remporté le <b>chantier de remise en état</b> du parc de machines de l'atelier.
+  <b>Ordre d'intervention n° S12-A3-01</b> : réaliser le câblage complet de l'armoire électrique de la
+  machine confiée à votre binôme, conformément au schéma validé, consignation à l'appui.
+  Le chef de chantier (le professeur) réceptionne les travaux en fin de journée.</div>
+
+  <div class="cartouche-methode"><b>Méthode de la séance</b> <span class="etiquette et-var">Variable</span><br>
+  <b>Démonstration commentée puis ateliers tournants.</b> Le professeur démontre la logique de câblage sur
+  l'armoire de référence, puis les binômes tournent entre deux pôles encadrés chacun par un enseignant
+  (pôle Puissance / pôle Commande). Chaque élève pratique les deux circuits dans la journée.</div>
+
+  <div class="notion"><b>Notion du jour :</b> la différence entre le circuit de <b>PUISSANCE</b> (courant fort
+  vers le moteur, forte section) et le circuit de <b>COMMANDE</b> (pilotage à faible courant, section réduite).<br>
+  <b>On la plante ainsi :</b> deux armoires côte à côte — la référence câblée et l'armoire vide du chantier.
+  Observation silencieuse de 2 minutes, puis : « Qu'est-ce qui est pareil ? Qu'est-ce qui manque ?
+  Pourquoi tous les fils ne se ressemblent-ils pas ? » Aucun mot technique avant que les élèves aient vu.</div>
+
+  <div class="duo">
+    <div class="obj"><h3 style="margin-top:0">Objectifs — je serai capable de…</h3>
+      <ul>
+        <li><b>distinguer</b> un circuit de puissance d'un circuit de commande sur une armoire ;</li>
+        <li><b>consigner</b> électriquement une armoire avant intervention (NFC 18-510) ;</li>
+        <li><b>câbler</b> le circuit de puissance (sectionneur, contacteur, protection moteur) selon le schéma ;</li>
+        <li><b>câbler</b> le circuit de commande (auxiliaires, boutons, voyants) avec repérage des fils ;</li>
+        <li><b>contrôler</b> visuellement la conformité de mon câblage avant mise sous tension.</li>
+      </ul>
+    </div>
+    <div class="obj"><h3 style="margin-top:0">Prérequis — je sais déjà…</h3>
+      <ul>
+        <li>lire un schéma électrique unifilaire et multifilaire simple ;</li>
+        <li>identifier les symboles d'un sectionneur, d'un contacteur, d'un relais thermique ;</li>
+        <li>utiliser tournevis d'électricien et pince à dénuder en sécurité ;</li>
+        <li>dire ce qu'est une habilitation électrique et pourquoi elle encadre mon intervention.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Points sécurité de la séance</h3>
+    <table class="tab-der">
+      <tr><th style="width:42%">Risque</th><th>Parade</th></tr>
+      <tr><td>Électrisation (câblage, tension résiduelle)</td><td><b>Consignation NFC 18-510</b> : couper, condamner par cadenas individuel, vérifier l'absence de tension au VAT avant de toucher un fil.</td></tr>
+      <tr><td>Confusion puissance / commande (câblage dangereux)</td><td>Double vérification au schéma avant chaque connexion, contrôle croisé du binôme, validation professeur avant toute mise sous tension.</td></tr>
+      <tr><td>Blessure aux mains (dénudage, sertissage)</td><td>Gants adaptés, outils isolés en bon état, geste démontré et validé avant autonomie.</td></tr>
+      <tr><td>Réenclenchement par un tiers</td><td>Cadenas individuel sur le sectionneur + étiquette « Ne pas réenclencher » ; retrait par le poseur uniquement.</td></tr>
+    </table>
+    <div class="incident">🚨 <b>En cas d'incident</b> (invariant, rappelé à chaque séance) : couper — arrêt d'urgence —, alerter immédiatement le professeur, ne jamais déplacer un élève électrisé avant coupure confirmée. Arrêt d'urgence et trousse de secours localisés lors du rituel d'entrée.</div>
+  </div>
+
+  <h3>Déroulement — l'intégralité du temps élève <span class="etiquette et-inv">Invariant</span></h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Durée</th><th style="width:37%">Phase et déroulé</th><th style="width:27%">Le professeur</th><th style="width:27%">Les élèves</th></tr>
+    <tr class="demi"><td colspan="4">Matinée — 4 h 00</td></tr>
+    <tr><td>10 min</td><td><b>1. Accueil et appel</b> — en salle ; annonce de l'organisation bi-prof en deux pôles.</td><td>Fait l'appel, répartit les binômes sur les deux demi-groupes.</td><td>Répondent, s'installent, notent l'organisation au carnet de bord.</td></tr>
+    <tr><td>15 min</td><td><b>2. Passage en tenue + exercice au fil de l'eau</b> — passage échelonné au vestiaire ; pendant l'attente, <b>exercice de préparation de chantier</b> : sur le schéma plastifié, entourer et nommer sectionneur, contacteur et relais thermique (réactive les prérequis, amorce le TP).</td><td>Distribue l'exercice, supervise le vestiaire, contrôle les tenues.</td><td>Se changent par vagues ; en attente, font l'exercice qui prépare le câblage du jour.</td></tr>
+    <tr><td>10 min</td><td><b>3. Rituel de mise en sécurité</b> — état de la zone, EPI, analyse de risque express, rappel de la conduite en cas d'incident.</td><td>Anime le rituel, interroge sur les risques du jour.</td><td>Vérifient leur poste, répondent, valident le démarrage.</td></tr>
+    <tr><td>25 min</td><td><b>4. Planter la notion</b> — <b>observer</b> (2 armoires en silence) → <b>nommer</b> (puissance / commande) → <b>expliciter</b> (démonstration commentée : le chemin du courant fort, puis du courant faible).</td><td>Anime l'observation, nomme à partir des mots des élèves, démontre sur l'armoire de référence.</td><td>Observent en silence, notent, verbalisent, ne manipulent pas encore.</td></tr>
+    <tr><td>1 h 30</td><td><b>5. Ateliers tournants — rotation 1 (1<sup>re</sup> partie)</b> — pôle Puissance : consignation, sectionneur / contacteur / relais thermique, continuité au multimètre. Pôle Commande : auxiliaires, boutons, voyants, repérage. Alternance <b>agir → noter → réfléchir</b>.</td><td>Chaque professeur encadre son pôle, questionne après chaque sous-étape, valide avant la suite.</td><td>Consignent leur armoire, câblent par étapes, notent chaque connexion, répondent avant de continuer.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="3">Pause du matin — armoires laissées consignées.</td></tr>
+    <tr><td>1 h 15</td><td><b>5 (suite). Rotation 1 — fin</b> — achèvement du câblage du pôle en cours, contrôle du binôme voisin.</td><td>Poursuit le questionnement, contrôle les repérages.</td><td>Terminent le câblage du pôle, font contrôler.</td></tr>
+    <tr class="pause"><td>—</td><td colspan="3">Pause méridienne (hors décompte) — toutes les armoires restent consignées, cadenas en place.</td></tr>
+    <tr class="demi"><td colspan="4">Après-midi — 4 h 00</td></tr>
+    <tr><td>2 h 30</td><td><b>6. Ateliers tournants — rotation 2</b> — échange des pôles : chaque binôme câble le circuit complémentaire. Reconsignation obligatoire à l'arrivée.</td><td>Gère la rotation, réexplique brièvement la consigne du pôle, continue le questionnement.</td><td>Reconsignent, câblent la partie complémentaire, notent et réfléchissent à chaque étape.</td></tr>
+    <tr><td>25 min</td><td><b>7. Mise en commun croisée</b> — chaque binôme explique à un autre le circuit qu'il vient de câbler, schéma à l'appui.</td><td>Organise les paires, corrige le vocabulaire.</td><td>Expliquent, écoutent, reformulent.</td></tr>
+    <tr><td>20 min</td><td><b>8. Bon de commande / carnet de bord</b> — rituel hebdomadaire : matériel manquant constaté pendant le chantier.</td><td>Collecte les bons, vérifie la cohérence des carnets.</td><td>Rédigent carnet de bord et bon de commande.</td></tr>
+    <tr><td>15 min</td><td><b>9. Rangement et nettoyage</b> — outillage, tri des chutes, vérification des consignations pour la semaine 9.</td><td>Supervise la remise en ordre.</td><td>Rangent, nettoient, vérifient la consignation.</td></tr>
+    <tr><td>20 min</td><td><b>10. Bilan collectif et auto-positionnement</b> — retour sur puissance / commande ; grille 0-4 (C3.6, C3.7).</td><td>Anime le bilan, récupère les grilles.</td><td>Participent, s'auto-positionnent par compétence.</td></tr>
+    <tr><td>10 min</td><td><b>11. Retour en tenue de ville et sortie</b> — vestiaire, restitution des EPI.</td><td>Supervise et clôt la séance.</td><td>Se changent, restituent, sortent.</td></tr>
+  </table>
+  </div>
+
+  <h3>Matériel</h3>
+  <div class="cols2"><ol>
+    <li>Armoire de référence câblée conforme (× 1)</li>
+    <li>Armoires vides du chantier (× 1 par binôme)</li>
+    <li>Schémas unifilaire + multifilaire plastifiés (× 1 par binôme)</li>
+    <li>Sectionneur porte-fusibles (× 1 par armoire)</li>
+    <li>Contacteur de puissance (× 1 par armoire)</li>
+    <li>Relais thermique (× 1 par armoire)</li>
+    <li>Auxiliaires de commande : relais, boutons, voyants (× 1 jeu par armoire)</li>
+    <li>Fil de puissance, section adaptée <i>(consommable)</i></li>
+    <li>Fil de commande, section adaptée <i>(consommable)</i></li>
+    <li>Gaine et manchons de repérage <i>(consommable)</i></li>
+    <li>Pinces à dénuder / sertir, tournevis isolés (× 1 jeu par binôme)</li>
+    <li>Multimètre + cordons de sécurité (× 1 par binôme)</li>
+    <li>Cadenas de consignation + étiquette (× 1 par élève)</li>
+    <li>Vérificateur d'absence de tension — VAT (× 1 par pôle)</li>
+    <li>EPI : gants isolants, lunettes (× 1 par élève)</li>
+    <li>Carnet de bord (× 1 par binôme)</li>
+    <li>Bon de commande vierge (× 1 par binôme)</li>
+  </ol></div>
+
+  <h3>Différenciation</h3>
+  <ul style="font-size:11pt">
+    <li><b>Consolidation :</b> accompagnement continu, connexions essentielles pré-repérées (code couleur renforcé), validation à chaque connexion.</li>
+    <li><b>Standard :</b> câblage complet des deux circuits en autonomie de binôme, contrôle multimètre en autonomie guidée.</li>
+    <li><b>Approfondissement :</b> tutorat d'un pair + question ouverte : pourquoi séparer physiquement les deux circuits (sécurité, maintenance) ?</li>
+    <li><b>TDAH / DYS :</b> étapes courtes numérotées sur fiche plastifiée, code couleur schéma ↔ fils réels, pictogrammes sécurité, reformulation orale à chaque sous-étape, poste dégagé.</li>
+  </ul>
+
+  <h3>Évaluation formative de la séance</h3>
+  <p style="font-size:10pt; color:var(--gris); margin:.1em 0 .4em">Compétences évaluées <b>au travers des tâches T11 · T13</b>, en mobilisant les savoirs <b>S5.2 · S6.1</b> — 2 compétences + savoir-être (règle : ≤ 4). Statut : <span class="statut stC">Confortement</span> (formatif, poids réduit).</p>
+  <div class="tbl-wrap">
+  <table class="tab-der grille-0-4">
+    <tr><th>Ce qu'on évalue</th><th>0<br>Non évalué</th><th>1<br>Non acquis</th><th>2<br>En cours d'acquisition</th><th>3<br>Acquis</th><th>4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, connecter<br><small>sur T11 · S5.2 · S6.1</small></td><td>Compétence non observée ce jour.</td><td>Erreurs significatives (confusion puissance/commande) ou consignation non respectée.</td><td>Conforme avec 1-2 erreurs mineures corrigées après remarque.</td><td>Câblage intégral conforme au schéma, repérage correct, consignation respectée à chaque intervention.</td><td>Conforme sans aucune remarque, geste sûr et rapide ; sait expliquer son câblage à un pair.</td></tr>
+    <tr><td><b>C3.7</b> Contrôler la mise en œuvre<br><small>sur T11 (contrôle hors fonctionnement)</small></td><td>Compétence non observée ce jour.</td><td>Pas de contrôle avant mise sous tension.</td><td>Contrôle effectué mais interprétation guidée.</td><td>Contrôle au multimètre avant mise sous tension ; anomalie identifiée et corrigée seul.</td><td>Contrôle systématique et méthodique, anomalie anticipée avant mesure ; peut guider un pair dans le contrôle.</td></tr>
+    <tr><td><b>Savoir-être</b><br><small>sécurité · posture</small></td><td>Compétence non observée ce jour.</td><td>Rappels répétés ou comportement mettant en danger.</td><td>Un rappel nécessaire (EPI, rangement ou ponctualité).</td><td>EPI et consignation sans aucun rappel, ponctuel, poste rangé, coopère en binôme.</td><td>Exemplaire au point d'alerter spontanément un pair en écart de sécurité.</td></tr>
+    <tr><td colspan="6" style="font-size:9.5pt; color:var(--gris)">+ auto-positionnement élève avant validation professeur (case dédiée sur la grille).</td></tr>
+  </table>
+  </div>
+
+  <h3>Cette séance se croise avec…</h3>
+  <p style="font-size:11pt">🎬 <b>Chef-d'œuvre</b> : le câblage peut être filmé pour la vidéo tutoriel. ✍ <b>Co-français</b> : puissance, commande, consignation réinvestis dans le compte-rendu d'activité. ⚡ <b>Électro EL13</b> : dégivrage électrique la même semaine. <b>Semaine 9</b> : le câblage se poursuit avec les pressostats et la régulation.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ SÉANCE 2 ============================ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S12 · Plan de séance 2/3</span>
+    <span>CAP IFCA 2A · P6 · semaine 9 (10-14/11)</span>
+  </div>
+
+  <div class="surtitre">Plan de séance — chantier A3 <span class="etiquette et-inv">Structure invariante</span></div>
+  <h2 class="titre-page">Pressostats et régulation — la machine s'arrête toute seule</h2>
+  <div class="meta-seance">
+    <span><b>Journée de 8 h</b> (4 h + 4 h)</span><span>Binômes</span><span>Module <b>F4</b> lancé</span>
+  </div>
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">à confirmer</span><br><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie entre les jalons · sécurité sans rappel · honnêteté de la mesure</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut stC">Confortement</span><br><b>C3.6</b> Câbler, connecter<br><b>C4.1</b> Tirer au vide <i>(prépa.)</i><br><small>C3.7 observée en continu</small></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° S12-A3-02</b> : équiper la machine de sa <b>chaîne de sécurité</b>
+  (pressostats HP/BP), régler les seuils, et remettre les premières feuilles de mise en service (F4)
+  au bureau d'études. Intervention <b>en autonomie</b>, points d'arrêt contractuels (jalons) —
+  comme chez un client, on ne remet pas sous tension sans le visa du chargé de travaux.</div>
+
+  <div class="cartouche-methode"><b>Méthode de la séance</b> <span class="etiquette et-var">Variable</span><br>
+  <b>Autonomie guidée par plan de travail.</b> Chaque binôme reçoit un plan de travail écrit avec des
+  <b>jalons de contrôle</b> obligatoires (mise sous tension au jalon 1, essai prolongé au jalon 2).
+  Le professeur circule et valide — <b>il ne démontre plus aucun geste</b> : l'élève mobilise la semaine 8.
+  C'est la posture d'autonomie attendue en PFMP 3.</div>
+
+  <div class="notion"><b>Notion du jour :</b> la <b>chaîne de sécurité</b> — pourquoi la machine doit s'arrêter
+  <b>toute seule</b> (pressostats HP/BP dans le circuit de commande).<br>
+  <b>On la plante ainsi :</b> le professeur règle volontairement le pressostat HP bas, démarre la machine…
+  qui se coupe seule après quelques secondes. Silence. Puis : « Qui a arrêté la machine ? »</div>
+
+  <div class="duo">
+    <div class="obj"><h3 style="margin-top:0">Objectifs — je serai capable de…</h3>
+      <ul>
+        <li><b>câbler</b> un pressostat HP et un pressostat BP dans le circuit de commande ;</li>
+        <li><b>régler</b> le Cut-in d'un pressostat KP Danfoss (méthode pré-réglage haut → baisse progressive) ;</li>
+        <li><b>justifier</b> par écrit pourquoi la chaîne de sécurité doit couper le compresseur seule ;</li>
+        <li><b>renseigner</b> les deux premières rubriques de la feuille de mise en service (F4) avec mes mesures réelles ;</li>
+        <li><b>lister</b> sur le bon de commande le matériel manquant ou défectueux rencontré.</li>
+      </ul>
+    </div>
+    <div class="obj"><h3 style="margin-top:0">Prérequis — je sais déjà…</h3>
+      <ul>
+        <li>câbler une armoire de base (bornier, sectionneur, contacteur) — semaine 8 ;</li>
+        <li>lire un manomètre BP/HP sur un manifold 4 voies ;</li>
+        <li>identifier un pressostat sur un schéma de principe ;</li>
+        <li>appliquer les règles NFC 18-510 de mon niveau (consignation, zones autorisées).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Points sécurité de la séance</h3>
+    <table class="tab-der">
+      <tr><th style="width:42%">Risque</th><th>Parade</th></tr>
+      <tr><td>Intervention sous tension ou mal consignée</td><td>Consignation systématique, respect NFC 18-510, contrôle du professeur avant remise sous tension à chaque jalon.</td></tr>
+      <tr><td>Pressostat shunté = chaîne de sécurité inactive</td><td><b>Interdiction formelle de shunter</b>, même temporairement, sans validation ; vérification obligatoire au jalon 2 avant tout essai.</td></tr>
+      <tr><td>Blessure aux mains (dénudage, cosses)</td><td>Gants adaptés, outillage isolé vérifié en début de séance.</td></tr>
+      <tr><td>Pression résiduelle au raccordement du manifold</td><td>Lunettes, vérification de la pression résiduelle, ouverture lente des vannes.</td></tr>
+    </table>
+    <div class="incident">🚨 <b>En cas d'incident</b> : couper — arrêt d'urgence —, alerter immédiatement le professeur. Rappel fait au rituel d'entrée (procédure complète : plan de séance 1).</div>
+  </div>
+
+  <h3>Déroulement — l'intégralité du temps élève <span class="etiquette et-inv">Invariant</span></h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Durée</th><th style="width:37%">Phase et déroulé</th><th style="width:27%">Le professeur</th><th style="width:27%">Les élèves</th></tr>
+    <tr class="demi"><td colspan="4">Matinée — 4 h 00</td></tr>
+    <tr><td>10 min</td><td><b>1. Accueil et appel</b> — annonce du fonctionnement en plan de travail et de l'échéance : évaluation sommative en semaine 10.</td><td>Fait l'appel, annonce le déroulé.</td><td>Répondent, s'installent, écoutent.</td></tr>
+    <tr><td>15 min</td><td><b>2. Passage en tenue + exercice au fil de l'eau</b> — passage échelonné ; pendant l'attente, <b>exercice de préparation de chantier</b> : lire et noter trois pressions sur photos de manomètres, repérer les bornes du pressostat sur le schéma (prérequis du réglage du jour).</td><td>Distribue l'exercice, contrôle les tenues.</td><td>Se changent par vagues ; en attente, font l'exercice.</td></tr>
+    <tr><td>10 min</td><td><b>3. Rituel de mise en sécurité</b> — chaque binôme retrouve SA machine, vérifie sa zone, énonce les risques du jour et la parade ; rappel incident.</td><td>Circule machine par machine, valide chaque analyse de risque.</td><td>Vérifient leur zone, énoncent 2-3 risques et leur parade.</td></tr>
+    <tr><td>20 min</td><td><b>4. Planter la notion</b> — <b>observer</b> (la machine se coupe seule) → <b>nommer</b> (chaîne de sécurité, pressostats HP/BP) → <b>expliciter</b> (pourquoi la sécurité ne dépend jamais d'un humain seul). Distribution du plan de travail et repérage des jalons.</td><td>Fait la démonstration, questionne, distribue le plan de travail.</td><td>Observent, répondent, repèrent les jalons à ne pas franchir sans validation.</td></tr>
+    <tr><td>1 h 40</td><td><b>5. Étape 1 — câblage des pressostats HP et BP</b> dans le circuit de commande, au schéma et au plan de travail. Alternance <b>agir → noter → réfléchir</b>. <b>JALON 1</b> : validation professeur avant remise sous tension.</td><td>Circule, <b>ne démontre plus</b>, répond aux questions, valide le jalon 1.</td><td>Câblent en autonomie guidée, notent chaque étape, sollicitent le professeur au jalon.</td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="3">Pause du matin — machines hors tension.</td></tr>
+    <tr><td>1 h 15</td><td><b>6. Étape 2 — réglage du pressostat, méthode signature</b> : ① pré-régler le Cut-in volontairement HAUT ② stabiliser la pression ③ baisser progressivement jusqu'au déclenchement ④ noter la valeur RÉELLE observée. Question imposée après ③ : « et si on avait réglé directement la valeur cible ? »</td><td>Rappelle la méthode sans la refaire, vérifie que la valeur notée est observée, pas recopiée.</td><td>Appliquent pas à pas, observent le déclenchement réel, notent, répondent.</td></tr>
+    <tr class="pause"><td>—</td><td colspan="3">Pause méridienne (hors décompte) — machines hors tension, zones rangées.</td></tr>
+    <tr class="demi"><td colspan="4">Après-midi — 4 h 00</td></tr>
+    <tr><td>1 h</td><td><b>6 (fin). Étape 2 — second cycle de validation</b> : ⑤ affiner le réglage et le confirmer sur un second cycle complet.</td><td>Contrôle la cohérence entre les deux cycles.</td><td>Réalisent le second cycle, comparent les deux valeurs.</td></tr>
+    <tr><td>2 h</td><td><b>7. Étape 3 — jalon 2 et feuilles de mise en service (F4)</b> — le professeur vérifie la chaîne de sécurité complète (aucun shunt, déclenchement réel) avant essai prolongé ; puis chaque élève renseigne les rubriques 1-2 de la feuille F4 avec ses mesures.</td><td>Valide le <b>JALON 2</b>, autorise l'essai, contrôle les feuilles F4.</td><td>Font valider la chaîne, réalisent l'essai, renseignent F4 avec leurs propres mesures.</td></tr>
+    <tr><td>15 min</td><td><b>8. Bon de commande / carnet de bord</b> — matériel manquant, défectueux, insuffisant (fils, cosses, pressostat de rechange…).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Listent précisément, avec quantités.</td></tr>
+    <tr><td>15 min</td><td><b>9. Rangement et nettoyage</b> — outillage, zone, machine laissée hors tension.</td><td>Contrôle rangement et mise hors tension.</td><td>Rangent, nettoient, vérifient.</td></tr>
+    <tr><td>20 min</td><td><b>10. Bilan collectif et auto-positionnement</b> — retour sur la chaîne de sécurité et la méthode de réglage ; grille C3.6 / C3.7.</td><td>Anime, recueille, valide oralement.</td><td>Participent, s'auto-positionnent honnêtement.</td></tr>
+    <tr><td>15 min</td><td><b>11. Retour en tenue de ville et sortie.</b></td><td>Surveille le vestiaire, vérifie la restitution des EPI.</td><td>Se changent, restituent, sortent dans le calme.</td></tr>
+  </table>
+  </div>
+
+  <h3>Matériel</h3>
+  <div class="cols2"><ol>
+    <li>Plan de travail écrit avec jalons (× 1 par binôme)</li>
+    <li>Machine du chantier, armoire câblée en semaine 8 (× 1 par binôme)</li>
+    <li>Pressostat KP1 Danfoss (× 1 par machine)</li>
+    <li>Pressostat KP5 Danfoss combiné HP/BP (× 1 par machine, selon modèle)</li>
+    <li>Relais KA — préparation pump down (× 1 par machine)</li>
+    <li>Manifold 4 voies, manomètres BP/HP (× 1 par binôme)</li>
+    <li>Multimètre (× 1 par binôme)</li>
+    <li>Tournevis isolés + pince à dénuder (× 1 jeu par binôme)</li>
+    <li>Fils souples, couleurs normalisées <i>(consommable)</i></li>
+    <li>Cosses et serre-câbles <i>(consommable)</i></li>
+    <li>Schéma électrique de la machine (× 1 par binôme)</li>
+    <li>Feuille F4, rubriques 1-2 (× 1 par élève)</li>
+    <li>Bon de commande vierge (× 1 par binôme)</li>
+    <li>Fiche d'auto-positionnement (× 1 par élève)</li>
+    <li>EPI : gants isolants, lunettes, chaussures de sécurité (× 1 jeu par élève)</li>
+  </ol></div>
+
+  <h3>Différenciation</h3>
+  <ul style="font-size:11pt">
+    <li><b>Consolidation :</b> plan de travail allégé, schéma pré-annoté (couleurs des fils), jalon 1 fractionné en deux sous-contrôles, tuteur binôme désigné.</li>
+    <li><b>Standard :</b> plan de travail complet, autonomie totale entre les jalons.</li>
+    <li><b>Approfondissement :</b> après le jalon 2, question écrite sur le rôle du relais KA dans le pump down amélioré (pont direct avec l'électro EL13/EL14).</li>
+    <li><b>TDAH / DYS :</b> plan de travail en Calibri 14 pt, une consigne par ligne, mots-clés en gras (« Cut-in », « JALON »), pictogrammes aux jalons, minuteur visuel pour les transitions.</li>
+  </ul>
+
+  <h3>Évaluation formative de la séance</h3>
+  <p style="font-size:10pt; color:var(--gris); margin:.1em 0 .4em">Compétences évaluées <b>au travers des tâches T11 · T13</b>, en mobilisant les savoirs <b>S5.6 · S5.5</b> — 3 compétences + savoir-être (règle : ≤ 4). Statut : <span class="statut stC">Confortement</span> (formatif, poids réduit).</p>
+  <div class="tbl-wrap">
+  <table class="tab-der grille-0-4">
+    <tr><th>Ce qu'on évalue</th><th>0<br>Non évalué</th><th>1<br>Non acquis</th><th>2<br>En cours d'acquisition</th><th>3<br>Acquis</th><th>4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, connecter<br><small>sur T11 · S5.5</small></td><td>Compétence non observée ce jour.</td><td>Erreur empêchant la chaîne de sécurité, non repérée par l'élève.</td><td>Correction mineure repérée par le professeur au jalon 1.</td><td>Pressostats HP et BP câblés sans erreur dès le jalon 1.</td><td>Câblage et auto-contrôle sans aucune remarque au jalon 1 ; peut expliquer le rôle de chaque pressostat à un pair.</td></tr>
+    <tr><td><b>C3.7</b> Contrôler la mise en œuvre<br><small>sur T13 (contrôle sous tension)</small></td><td>Compétence non observée ce jour.</td><td>Valeur cible réglée directement, sans observation du déclenchement.</td><td>Méthode appliquée avec aide ponctuelle, valeur à reprendre.</td><td>Méthode en 5 étapes appliquée seul ; valeur réellement observée, cohérente sur le second cycle.</td><td>Méthode maîtrisée et justifiée à l'oral ; anticipe l'écart entre les deux cycles avant de mesurer.</td></tr>
+    <tr><td><b>C4.1</b> Tirer au vide <i>(préparation)</i><br><small>vers T13, semaine 10</small></td><td>Compétence non observée ce jour.</td><td>Circuit non prêt pour l'épreuve de la semaine suivante.</td><td>Un point de détail à finaliser (fixation, repérage).</td><td>Circuit laissé propre et complet : épreuve d'étanchéité possible en semaine 10 sans reprise.</td><td>Circuit anticipé au-delà du strict nécessaire (repérage exemplaire, accès facilité pour l'épreuve à venir).</td></tr>
+    <tr><td><b>Savoir-être</b><br><small>autonomie · sécurité</small></td><td>Compétence non observée ce jour.</td><td>Jalon franchi sans validation, ou valeur recopiée au lieu d'observée.</td><td>Un rappel (jalon anticipé, EPI ou rangement).</td><td>Jalons respectés sans contournement, sécurité sans rappel, mesure notée honnêtement.</td><td>Autonomie exemplaire : anticipe les jalons, alerte le professeur en cas de doute plutôt que de forcer le passage.</td></tr>
+    <tr><td colspan="6" style="font-size:9.5pt; color:var(--gris)">+ auto-positionnement élève avant validation professeur.</td></tr>
+  </table>
+  </div>
+
+  <h3>Cette séance se croise avec…</h3>
+  <p style="font-size:11pt">⚡ <b>Électro EL13/EL14</b> : le relais KA câblé aujourd'hui prépare le pump down amélioré et les mesures SC/SR. 🔧 <b>Technologie</b> : organes de la ligne liquide. ✍ <b>Co-français</b> : compte-rendu d'activité. 🎬 <b>Chef-d'œuvre</b> : gestes filmables pour la vidéo tutoriel. 📋 <b>F4</b> : les feuilles de mise en service démarrent aujourd'hui.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ SÉANCE 3 ============================ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S12 · Plan de séance 3/3</span>
+    <span>CAP IFCA 2A · P6 · semaine 10 (17-21/11)</span>
+  </div>
+
+  <div class="surtitre">Plan de séance — chantier A4 + évaluation sommative <span class="etiquette et-inv">Structure invariante</span></div>
+  <h2 class="titre-page">Étanchéité à l'azote, tirage au vide — et preuve finale</h2>
+  <div class="meta-seance">
+    <span><b>Journée de 8 h</b> (4 h + 4 h)</span><span>Binômes puis <b>évaluation individuelle</b></span><span>Dernière séance avant la <b>PFMP 3</b></span>
+  </div>
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Tirer au vide, contrôler sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">à confirmer</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité pression sans rappel · conclusion honnête sur preuve · rigueur en évaluation</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut stE">Évaluation</span> <small>plein poids, École Directe</small><br><b>C3.6</b> Câbler · <b>C3.9</b> Vérifier l'étanchéité · <b>C4.1</b> Tirer au vide</div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° S12-A4-03</b> : avant votre départ (PFMP 3), le client exige la
+  <b>preuve</b> que le circuit est étanche et déshydraté. Rapport de preuve à remettre
+  (pressions relevées, conclusion argumentée). En fin de journée, <b>audit individuel de
+  qualification</b> : l'évaluation sommative S12.</div>
+
+  <div class="cartouche-methode"><b>Méthode de la séance</b> <span class="etiquette et-var">Variable</span><br>
+  <b>Situation-problème.</b> « Ta machine tient-elle la pression ? » Aucun protocole n'est fourni :
+  l'élève formule une hypothèse, <b>conçoit sa démarche de preuve</b> (protocole d'épreuve), la fait valider,
+  l'exécute et conclut sur preuve. Le professeur ne formalise la procédure attendue qu'après coup.</div>
+
+  <div class="notion"><b>Notion du jour :</b> une machine doit être <b>étanche et déshydratée AVANT charge</b> —
+  l'épreuve d'azote prouve l'étanchéité (pression stable dans le temps), le tirage au vide prouve l'absence
+  d'incondensables et d'humidité (dépression stable après isolement).<br>
+  <b>On la plante ainsi :</b> manomètre témoin raccordé sur un circuit fermé, 2 minutes d'observation muette
+  de l'aiguille. « Cette machine, elle est étanche ou elle fuit ? Comment le savoir <i>sans se tromper</i> ? »</div>
+
+  <div class="duo">
+    <div class="obj"><h3 style="margin-top:0">Objectifs — je serai capable de…</h3>
+      <ul>
+        <li><b>concevoir et justifier</b> un protocole d'épreuve d'étanchéité à l'azote à partir des consignes de sécurité ;</li>
+        <li><b>réaliser</b> l'épreuve sur ma machine et <b>conclure sur preuve</b> (stabilité manométrique, recherche de fuite) ;</li>
+        <li><b>réaliser</b> un tirage au vide et <b>lire</b> un vacuomètre pour statuer sur la déshydratation ;</li>
+        <li><b>réaliser seul</b>, en évaluation, un câblage conforme et son contrôle (C3.6) ;</li>
+        <li><b>me positionner</b> sur mes compétences avant la correction du professeur.</li>
+      </ul>
+    </div>
+    <div class="obj"><h3 style="margin-top:0">Prérequis — je sais déjà…</h3>
+      <ul>
+        <li>lire une pression sur un manomètre BP/HP ;</li>
+        <li>situer les organes de la Croix du Frigoriste sur ma machine ;</li>
+        <li>câbler pressostats, régulation et relais KA — semaines 8 et 9 ;</li>
+        <li>citer les risques des bouteilles sous pression et de la consignation.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Points sécurité de la séance — pression : vigilance maximale</h3>
+    <table class="tab-der">
+      <tr><th style="width:42%">Risque</th><th>Parade</th></tr>
+      <tr><td><b>Oxygène ou air comprimé à la place d'azote</b> (explosion : l'oxygène est comburant au contact des huiles)</td><td>Vérification de l'étiquette avant tout raccordement : <b>AZOTE R uniquement</b>. Aucune autre bouteille sur le chantier. Contrôle professeur avant ouverture.</td></tr>
+      <tr><td>Bouteille sans détendeur / détendeur mal réglé (surpression brutale)</td><td><b>Détendeur obligatoire</b> et vérifié. Pression d'épreuve selon <b>plaque signalétique et NF EN 378, validée par le professeur</b>. Montée progressive, jamais brutale.</td></tr>
+      <tr><td>Intervention électrique pendant le contrôle du câblage</td><td>Consignation systématique ; remise sous tension après validation professeur.</td></tr>
+      <tr><td>Projection à la recherche de fuite ou à la purge</td><td><b>Lunettes obligatoires pendant toute la phase d'épreuve</b> ; purge dirigée à l'écart des personnes.</td></tr>
+    </table>
+    <div class="incident">🚨 <b>En cas d'incident</b> : couper — arrêt d'urgence —, fermer la bouteille, alerter immédiatement le professeur. Rappel fait au rituel d'entrée (procédure complète : plan de séance 1).</div>
+  </div>
+
+  <h3>Déroulement — l'intégralité du temps élève <span class="etiquette et-inv">Invariant</span></h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Durée</th><th style="width:37%">Phase et déroulé</th><th style="width:27%">Le professeur</th><th style="width:27%">Les élèves</th></tr>
+    <tr class="demi"><td colspan="4">Matinée — 4 h 00</td></tr>
+    <tr><td>10 min</td><td><b>1. Accueil et appel</b> — cadre du jour : dernière séance avant la PFMP 3, évaluation sommative en fin de journée.</td><td>Fait l'appel, annonce l'enjeu.</td><td>Répondent, prennent connaissance du planning affiché.</td></tr>
+    <tr><td>10 min</td><td><b>2. Passage en tenue + exercice au fil de l'eau</b> — passage échelonné ; pendant l'attente, <b>exercice de préparation de chantier</b> : situer les 4 organes de la Croix sur la photo de SA machine et repérer l'intrus parmi trois bouteilles (azote / oxygène / air comprimé).</td><td>Distribue l'exercice, vérifie chaque tenue.</td><td>Se changent par vagues ; en attente, font l'exercice.</td></tr>
+    <tr><td>15 min</td><td><b>3. Rituel de mise en sécurité</b> — tour de zone, EPI, analyse de risque express : « quel est LE risque principal aujourd'hui sur mon poste ? » ; rappel incident.</td><td>Anime le tour, interroge chaque binôme (azote, pression), corrige.</td><td>Vérifient leur poste, citent le risque principal de leur machine.</td></tr>
+    <tr><td>20 min</td><td><b>4. Planter la notion</b> — <b>observer</b> (manomètre témoin, 2 min sans consigne) → <b>nommer</b> (fuite, étanche, stable) → <b>expliciter</b> (l'épreuve d'étanchéité). Lancement de la situation-problème : chaque binôme conçoit SON protocole.</td><td>Démontre, questionne, formalise le vocabulaire, pose le problème.</td><td>Observent, formulent une hypothèse (étanche / fuyarde), notent la question du jour.</td></tr>
+    <tr><td>40 min</td><td><b>5A. Conception du protocole</b> — hypothèse écrite + protocole d'épreuve (pression visée, points de contrôle, méthode de recherche de fuite). Question de compréhension : pourquoi de l'azote et pas de l'air comprimé ?</td><td>Circule, questionne les choix, <b>ne valide pas un protocole non justifié</b>.</td><td>Rédigent hypothèse et protocole au carnet de bord, répondent à la question de sécurité.</td></tr>
+    <tr><td>20 min</td><td><b>5B. Validation des protocoles</b> — chaque binôme présente sa démarche ; le professeur fixe la pression d'épreuve définitive (plaque signalétique + NF EN 378).</td><td>Valide ou fait corriger, fixe la pression définitive.</td><td>Présentent oralement, ajustent, notent la pression validée.</td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="3">Pause du matin — bouteilles fermées.</td></tr>
+    <tr><td>1 h 55</td><td><b>5C. Épreuve d'étanchéité</b> — <b>port des lunettes vérifié avant raccordement</b> ; bouteille + détendeur, montée en pression progressive jusqu'à la valeur validée, recherche de fuite (eau savonneuse ou détecteur), stabilité du manomètre dans le temps. Question après 3 actions : que signifie une chute de pression sans fuite détectée à l'eau savonneuse ?</td><td>Supervise chaque raccordement, contrôle protocole et pression, pose la question à chaque binôme.</td><td>Réalisent l'épreuve, notent pression initiale / stabilisée, fuites trouvées ou non, répondent.</td></tr>
+    <tr class="pause"><td>—</td><td colspan="3">Pause méridienne (hors décompte) — bouteilles fermées, machines hors tension.</td></tr>
+    <tr class="demi"><td colspan="4">Après-midi — 4 h 00</td></tr>
+    <tr><td>1 h 45</td><td><b>5D. Conclusion sur preuve, puis tirage au vide</b> — verdict écrit (étanche confirmé / fuite localisée) ; raccordement pompe à vide, lecture du vacuomètre, notion d'incondensables. Question : que veut dire une remontée de pression après isolement (humidité ou fuite) ?</td><td>Fait conclure sur preuve, encadre le tirage au vide, questionne sur la remontée de pression.</td><td>Concluent par écrit, réalisent le tirage au vide, notent la lecture, répondent.</td></tr>
+    <tr><td>10 min</td><td><b>6. Bon de commande / carnet de bord</b> — matériel à renouveler (raccords, azote…) ; finalisation de la feuille F4.</td><td>Collecte les bons, vérifie la complétude.</td><td>Remplissent bon de commande et carnet.</td></tr>
+    <tr><td>20 min</td><td><b>7. Rangement et préparation des postes d'évaluation</b> — bouteilles fermées, matériel rangé, 3 postes d'évaluation installés.</td><td>Supervise la fermeture des bouteilles, installe les postes.</td><td>Ferment, rangent, nettoient.</td></tr>
+    <tr class="eval-row"><td>1 h 20</td><td><b>8. ÉVALUATION SOMMATIVE S12 — individuelle, 3 postes tournants</b> (l'élève quitte son binôme) : <b>poste 1</b> câblage au schéma (C3.6) · <b>poste 2</b> épreuve d'étanchéité sur point de contrôle, conclure (C3.9) · <b>poste 3</b> lecture du vacuomètre, statuer sur la déshydratation (C4.1). Rotation chronométrée, observation directe, positionnement remonté sur École Directe.</td><td>Chronomètre la rotation, observe individuellement, renseigne la grille critériée.</td><td>Passent seuls sur les 3 postes, sans aide du binôme, remplissent leur fiche individuelle.</td></tr>
+    <tr><td>15 min</td><td><b>9. Bilan collectif et auto-positionnement</b> — points de vigilance observés ; auto-positionnement par compétence avant remise des fiches.</td><td>Anime, collecte fiches et auto-positionnements.</td><td>Complètent leur auto-positionnement, remettent leur fiche.</td></tr>
+    <tr><td>10 min</td><td><b>10. Retour en tenue de ville et sortie</b> — rappel des modalités de la PFMP 3.</td><td>Supervise, rappelle la PFMP 3.</td><td>Se changent, restituent les EPI, sortent.</td></tr>
+  </table>
+  </div>
+
+  <h3>Matériel</h3>
+  <div class="cols2"><ol>
+    <li>Machine du binôme en remise en état (× 1 par binôme)</li>
+    <li>Bouteille d'azote R <b>avec détendeur</b> (× 1 par poste, <i>consommable : azote sec</i>)</li>
+    <li>Manifold 4 voies, manomètres BP/HP (× 1 par binôme)</li>
+    <li>Pompe à vide + vacuomètre électronique (× 1 pour 2 binômes)</li>
+    <li>Eau savonneuse ou détecteur de fuite (× 1 par poste)</li>
+    <li>Flexibles haute pression adaptés azote (× 1 jeu par binôme)</li>
+    <li>EPI : lunettes, gants (× 1 par élève)</li>
+    <li>Carnet de bord / feuille F4 (× 1 par binôme)</li>
+    <li>Bon de commande hebdomadaire (× 1 par binôme)</li>
+    <li>Fiche d'évaluation sommative individuelle S12 (× 1 par élève)</li>
+    <li>Schéma électrique validé — support du poste câblage (× 1 par binôme)</li>
+  </ol></div>
+
+  <h3>Différenciation <i style="font-weight:normal;font-size:10pt">(sur la partie chantier — l'évaluation sommative reste commune)</i></h3>
+  <ul style="font-size:11pt">
+    <li><b>Consolidation :</b> trame de protocole à compléter (pression indiquée sur fiche guidée), questions reformulées en QCM oral, tuteur pour le rangement.</li>
+    <li><b>Standard :</b> conception complète du protocole à partir des seules consignes de sécurité.</li>
+    <li><b>Approfondissement :</b> justification écrite du diagnostic « remontée de pression = humidité ou fuite ? » + amélioration proposée du protocole d'un autre binôme.</li>
+    <li><b>TDAH / DYS :</b> une action à la fois sur fiche, pictogrammes sécurité (azote, pression, tension), pause courte entre 5C et 5D, reformulation orale avant chaque étape, cases à cocher plutôt que rédaction longue.</li>
+  </ul>
+
+  <h3>Grille de l'évaluation sommative S12 <span class="etiquette et-var" style="background:#fff6cc;color:#8a6d00">Positionnement École Directe</span></h3>
+  <p style="font-size:10pt; color:var(--gris); margin:.1em 0 .4em">Compétences évaluées <b>au travers des tâches T11 · T13</b>, en mobilisant les savoirs <b>S5.1 · S6.1</b> — 3 compétences + savoir-être (règle : ≤ 4). Statut : <span class="statut stE">Évaluation</span> (positionnement officiel, plein poids).</p>
+  <div class="tbl-wrap">
+  <table class="tab-der grille-0-4">
+    <tr><th>Ce qu'on évalue</th><th>0<br>Non évalué</th><th>1<br>Non acquis</th><th>2<br>En cours d'acquisition</th><th>3<br>Acquis</th><th>4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, connecter<br><small>poste 1 · sur T11</small></td><td>Compétence non observée ce jour <i>(≠ absent : voir feuille d'émargement)</i>.</td><td>Non conforme, ou consignation non respectée malgré rappel.</td><td>Conforme avec aide ponctuelle, oubli mineur corrigé après remarque.</td><td>Câblage conforme au schéma sans aide, connexions serrées et repérées, consignation respectée sans rappel.</td><td>Conforme, sûr et rapide sans aucune aide ; capable d'expliquer son câblage à l'examinateur.</td></tr>
+    <tr><td><b>C3.9</b> Vérifier l'étanchéité<br><small>poste 2 · sur T11 · S5.1 · S6.1</small></td><td>Compétence non observée ce jour <i>(≠ absent : voir feuille d'émargement)</i>.</td><td>Épreuve non conforme au protocole de sécurité, ou conclusion absente.</td><td>Épreuve avec guidage partiel, conclusion peu justifiée par la mesure.</td><td>Épreuve d'azote correctement menée, conclusion sur preuve (stabilité ou fuite localisée), sécurité respectée sans rappel.</td><td>Épreuve rigoureuse et conclusion argumentée sans aide, capable de justifier chaque étape du protocole.</td></tr>
+    <tr><td><b>C4.1</b> Tirer au vide<br><small>poste 3 · sur T13 · S5.1</small></td><td>Compétence non observée ce jour <i>(≠ absent : voir feuille d'émargement)</i>.</td><td>Lecture erronée ou aucune interprétation.</td><td>Lecture correcte mais interprétation incomplète ou guidée.</td><td>Tirage mené correctement, lecture du vacuomètre exacte, remontée après isolement correctement interprétée.</td><td>Lecture et interprétation sûres, capable de distinguer sans hésitation une remontée due à l'humidité d'une fuite.</td></tr>
+    <tr><td><b>Savoir-être</b><br><small>sécurité · rigueur d'examen</small></td><td>Compétence non observée ce jour <i>(≠ absent : voir feuille d'émargement)</i>.</td><td>Rappels répétés, ou conclusion affirmée sans preuve.</td><td>Un rappel de sécurité ou conclusion à consolider.</td><td>Sécurité pression sans rappel (azote, détendeur, lunettes), conclusion honnête sur preuve, autonomie complète aux postes.</td><td>Rigueur exemplaire sur les 3 postes, réflexe sécurité et honnêteté de la preuve constants sans la moindre relance.</td></tr>
+    <tr><td colspan="6" style="font-size:9.5pt; color:var(--gris)"><b>C3.7</b> (contrôler la mise en œuvre) est observée en continu sur les 3 séances de la séquence. Auto-positionnement élève recueilli avant la correction.</td></tr>
+  </table>
+  </div>
+
+  <h3>Cette séance se croise avec…</h3>
+  <p style="font-size:11pt">⚡ <b>Électro EL14</b> : mesures tous points et calcul SC/SR. 🔧 <b>Technologie</b> : intro au diagramme enthalpique, en écho au raisonnement incondensables / déshydratation. ✍ <b>Co-français</b> : vocabulaire de l'épreuve réinvesti au compte-rendu. 🎬 <b>Chef-d'œuvre</b> : images pour le tutoriel. 🧳 <b>PFMP 3</b> dès la semaine suivante — la machine attend son fluide au retour.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE FINALE : VARIANTE UFA ============================ -->
+<div class="feuille" style="min-height:auto">
+  <div class="surtitre">Démonstration charte — dissociation des deux entités</div>
+  <h2 class="titre-page">Le même gabarit, deux voies</h2>
+  <p>Un seul modèle de document, le sigle officiel change : <b>LPP</b> pour la voie scolaire,
+  <b>UFA</b> pour l'apprentissage, <b>LPP / UFA</b> pour les rares documents communs.
+  Tout le reste (typo, logo EQUATIO, pied de page) est identique.</p>
+
+  <h3>En-tête version LPP (voie scolaire)</h3>
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <h3 style="margin-top:1.6em">En-tête version UFA (apprentissage)</h3>
+  <div class="entete">
+    <div class="lockup"><span class="sigle">UFA</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <h3 style="margin-top:1.6em">En-tête version commune (document valable pour les deux voies)</h3>
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP / UFA</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

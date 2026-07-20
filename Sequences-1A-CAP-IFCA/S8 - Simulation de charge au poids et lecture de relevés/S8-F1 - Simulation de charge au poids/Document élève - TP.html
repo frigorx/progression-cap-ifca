@@ -1,0 +1,618 @@
+<meta charset="utf-8">
+<title>TP élève — S8-F1 · Simulation de charge au poids</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .role{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt;
+    border-radius:8px; padding:1px 9px; margin-right:5px}
+  .role.op{background:#e3e9f2; color:var(--bleu); border:1px solid #b9c8e0}
+  .role.ctrl{background:#fff0e6; color:#c14a17; border:1px solid #f0b989}
+  .role.seul{background:#e6f5ec; color:#1f7a4d; border:1px solid #9dd7b6}
+  .annexe{border:3px solid var(--bleu); border-radius:8px; padding:10px 16px; background:var(--fond-doux)}
+  .verdict{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt;
+    border-radius:8px; padding:2px 16px; margin-right:8px; border:2px solid var(--filet)}
+  .fondateur{border:3px double var(--bleu); border-radius:8px; background:#fff; padding:9px 15px; margin:.5em 0 1em; font-size:10.3pt}
+  .fondateur b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif; font-size:10.8pt}
+  .checkbox-step{border:1.5px solid var(--filet); border-radius:6px; background:#fff; padding:6px 10px; margin:.35em 0; font-size:9.7pt}
+  .checkbox-step .num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:#fff; background:var(--bleu); border-radius:50%; width:20px; height:20px; text-align:center; line-height:20px; margin-right:6px; font-size:9pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Simulation de charge au poids (azote)</td>
+      <td style="width:38%"><span class="lib">Module atelier S8-F1 · 4 h × 2 passages</span><b>Simulation de charge au poids</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S8</span> · semaines 26-27</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom, prénom (binôme)</span>________________</td>
+      <td><span class="lib">Nom, prénom (binôme)</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S8-1</b> : la chambre froide de <b>l'arrière-boutique</b> est raccordée (S7-F1),
+  tirée au vide (S7-F2), réglée (S7-E1) et câblée (S7-E2). Il ne reste plus qu'à la <b>charger</b> en fluide
+  frigorigène pour la mettre en service. Mais la charge réelle exige l'<b>attestation d'aptitude</b> à la manipulation des fluides frigorigènes,
+  que vous préparerez en 2<sup>e</sup> année. Aujourd'hui, vous <b>répétez le geste de charge à blanc, à l'azote</b> :
+  bouteille sur balance, pesée, complément — jusqu'à le rendre sûr et fluide, comme un pilote répète sa check-list
+  avant chaque décollage. <b>Passage 1 en semaine 26 (découverte guidée), passage 2 en semaine 27 (consolidation,
+  plus d'autonomie).</b>
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/balance-electronique-charge-photo.jpeg" alt="Balance électronique de charge PRATIKA 100-05, posée sur une table, câble et boîtier d'affichage">
+    <figcaption class="legende">Une balance électronique de charge : un plateau posé au sol ou sur l'établi, relié
+    à un boîtier d'affichage (ON/OFF, UNIT, ZERO/TARE). D'après : Doc. Ressource Balance — modèle PRATIKA 100-05
+    (02_CAP-IFCA/S2-Systèmes).</figcaption>
+  </figure></div>
+
+  <div class="fondateur"><b class="t">⚠ Pourquoi on simule</b> — En France, manipuler un fluide frigorigène réel
+  exige une <b>attestation d'aptitude</b> à la manipulation des fluides frigorigènes, délivrée après un examen que vous passerez
+  en <b>2<sup>e</sup> année</b>. En 1<sup>re</sup> année, vous ne l'avez pas encore : vous ne pouvez donc pas
+  légalement charger une installation en fluide réel. On apprend alors le <b>geste</b> avec de l'<b>azote</b>, un
+  gaz neutre, sur du matériel pédagogique — pour être prêt le jour où l'attestation sera en poche.</div>
+
+  <div class="change"><b class="t">Ce qui change depuis S7</b> — En S7, vous avez posé des manomètres et tiré au
+  vide un circuit <b>sans jamais y introduire de matière</b> : vous observiez et vous lisiez. <b>Aujourd'hui, pour
+  la première fois, vous introduisez réellement une quantité de gaz pesée</b> dans un montage. C'est le même azote
+  inoffensif utilisé depuis S5/S6, <b>jamais un fluide frigorigène réel</b> : aucune masse de fluide n'est chargée,
+  aucune récupération n'est demandée. Votre rôle aujourd'hui est de <b>répéter le geste jusqu'à le rendre sûr et
+  fluide</b>.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change</h4>
+  <b>Passage 1 (semaine 26) — découverte guidée</b> : le professeur fait d'abord la <b>démonstration complète</b>
+  du geste, commentée pas à pas. Vous réalisez ensuite votre <b>1<sup>re</sup> répétition</b>, encadrée et
+  chronométrée, puis une <b>2<sup>e</sup> répétition</b> en fin de séance.<br>
+  <b>Passage 2 (semaine 27) — consolidation, plus d'autonomie</b> : après un rappel bref, vous enchaînez
+  <b>3 répétitions supplémentaires</b> (n° 3, 4 et 5), avec moins d'aide, en cherchant à réduire votre temps sans
+  jamais bâcler la sécurité. Vous concluez par un <b>verdict de fluidité</b> motivé.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension <span class="nuance">simulé — seul le geste à blanc</span><br><b>T14</b> Régler l'installation en fonctionnement <span class="nuance">découverte</span></div>
+    <div class="case"><h4>Savoirs</h4><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">augmenté</span><br><span class="nuance">Prérequis :</span> réglette P/T (S4), réseaux fluidiques (S5.5), bouteille d'azote + monodétendeur (S5/S6), manifold (S7-F1)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste (jamais dépasser la pression fixée) · sécurité azote et balance · honnêteté du chronométrage et des masses · autonomie croissante (passage 2)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte — simulée</span> <b>C4.2</b> Manipuler le fluide frigorigène et les huiles — geste simulé à l'azote<br><span class="statut">Confortement</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>tarer la balance électronique</b> avant toute pesée ;</li>
+    <li><b>raccorder la bouteille d'azote</b> au monodétendeur puis au poste de charge, sans fuite ;</li>
+    <li><b>ouvrir progressivement</b> le circuit et régler le monodétendeur <b>sans jamais dépasser</b> la pression fixée par le professeur ;</li>
+    <li><b>peser en continu</b> le transfert simulé d'azote jusqu'à la <b>masse cible fixée par le professeur</b> ;</li>
+    <li><b>compléter</b> si besoin la charge simulée, fermer le circuit et purger les flexibles ;</li>
+    <li><b>chronométrer</b> chaque répétition du geste complet et l'<b>améliorer jusqu'à la fluidité</b>, en respectant toujours la sécurité ;</li>
+    <li><b>lire, sur la machine école en fonctionnement</b>, la surchauffe et le sous-refroidissement, pour relier le geste d'aujourd'hui à son objectif professionnel.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est <b>pas votre première fois</b> avec une bouteille d'azote et un
+  monodétendeur : vous les avez déjà manipulés en S5 et S6. Vous avez posé et lu un manifold en S7-F1. Aujourd'hui,
+  on ajoute un instrument nouveau — la <b>balance électronique</b> — et un geste nouveau — la <b>pesée d'un
+  transfert</b> :</p>
+  <ul class="liste-num">
+    <li>monter et utiliser <b>la bouteille d'azote et son monodétendeur</b>, en sécurité (S5, S6) ;</li>
+    <li><b>lire la relation pression/température</b> sur la réglette (S4) ;</li>
+    <li><b>poser et lire un manifold</b> (S7-F1, repère HP rouge / BP bleu) ;</li>
+    <li>l'<b>épreuve d'étanchéité à l'azote</b> a été prouvée au PV (S6) ;</li>
+    <li><b>É3 est passée</b> : votre plan de progrès personnel s'applique aussi ici, en particulier sur la rigueur
+    du geste et l'honnêteté des relevés.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si le montage du monodétendeur sur la bouteille
+  d'azote vous échappe encore, dites-le au professeur avant de commencer : la phase 4 de ce module le réactive.</p>
+
+  <h3 class="section">Matériel <span style="font-size:9pt; color:var(--gris); font-weight:normal">(par binôme, aux deux passages)</span></h3>
+  <ol class="liste-num">
+    <li>Une <b>bouteille d'azote</b> et son <b>monodétendeur</b> (réglages de référence 8 bar / 200 bar, déjà
+    maîtrisés S5/S6/S7)</li>
+    <li>Une <b>balance électronique de charge</b> (touches ON/OFF, UNIT, ZERO/TARE)</li>
+    <li>Un <b>réceptacle pédagogique vide</b> posé sur la balance, qui reçoit le transfert simulé d'azote —
+    <b>jamais une bouteille de fluide frigorigène</b></li>
+    <li>Un <b>manifold</b> (S7-F1) pour raccorder le monodétendeur au réceptacle</li>
+    <li>La <b>machine école</b>, en fonctionnement normal sur sa charge d'usine réelle et scellée — <b>jamais
+    ouverte ni touchée</b> par les élèves</li>
+    <li>La <b>réglette P/T</b> (S4) du fluide de la machine école</li>
+    <li><b>Document ressource fourni</b> : table pression/température (P/T) du fluide de votre banc — voir le kit ressources élève.</li>
+    <li>Un <b>chronomètre</b> (ou téléphone en mode chrono, usage strictement encadré) + la <b>check-list
+    avant-vol</b> (en annexe de ce document)</li>
+    <li>Lunettes de protection (obligatoires pendant toute manipulation de la bouteille et du monodétendeur)</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ DÉVELOPPÉE : AZOTE + BALANCE + LOGIQUE DE LA CHECK-LIST ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">L'azote : un gaz sans danger chimique, mais pas sans risque</h3>
+  <p style="font-size:10.5pt">L'azote est un gaz <b>inerte</b> (il ne brûle pas, ne réagit pas), déjà utilisé sans
+  incident en S5 et S6. Deux risques restent réels : l'<b>asphyxie</b> en local confiné — l'azote remplace
+  silencieusement l'air respirable, <b>sans aucune odeur d'alerte</b> — et la <b>haute pression</b> de la
+  bouteille (≈ 200 bar). C'est pourquoi le professeur reste <b>présent en permanence</b> pendant toute
+  manipulation de la bouteille et du monodétendeur, même au passage 2 où vous gagnez en autonomie sur le geste et
+  le chronométrage, jamais sur la supervision.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Asphyxie en local confiné (l'azote n'a pas d'odeur)</td><td>Local <b>ventilé</b>, quantités d'azote limitées au geste, jamais de manipulation seul(e) sans professeur présent.</td></tr>
+    <tr><td>Bouteille sous haute pression (≈ 200 bar) qui chute ou se couche</td><td>Bouteille <b>toujours debout et arrimée</b> (chaîne ou support), jamais transportée sans son chapeau de protection.</td></tr>
+    <tr><td>Dépassement de la pression fixée au monodétendeur</td><td><b>Jamais dépasser</b> la valeur donnée par le professeur en séance : ouverture progressive, surveillance continue du manomètre de sortie.</td></tr>
+    <tr><td>Charge lourde à la manutention (bouteille, balance)</td><td>Lever <b>à deux si besoin</b>, dos droit, jambes fléchies ; ne jamais faire glisser la bouteille au sol.</td></tr>
+    <tr><td>Masse ou temps relevé inventé ou recopié d'un autre poste</td><td>Le tableau des temps et des masses se remplit <b>au moment réel</b> de la répétition, jamais après coup ni copié.</td></tr>
+    <tr><td>Confusion avec un fluide frigorigène réel</td><td><b>Aucune bouteille de fluide frigorigène</b> sur ce poste : seule une bouteille d'azote et un réceptacle pédagogique vide.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">La logique de la check-list « avant-vol » — comprendre avant de répéter</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  Un pilote de ligne suit la <b>même check-list</b> avant chaque décollage, même après des milliers d'heures de
+  vol — non pas parce qu'il a oublié la procédure, mais parce que <b>répéter dans l'ordre, à voix haute, en
+  cochant</b>, élimine les oublis dangereux. Le geste de charge suit le même principe : 6 étapes, toujours dans le
+  même ordre, cochées et minutées, <b>répétées jusqu'à la fluidité</b> — jamais la vitesse au détriment d'une case
+  non cochée.</p>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">La check-list complète, à cocher à chaque
+  répétition, est fournie en <b>annexe pleine page</b> de ce document : gardez-la à portée de main tout au long
+  du module.</p>
+
+  <h3 class="section">Les 6 étapes de la check-list — vue d'ensemble</h3>
+  <div class="checkbox-step"><span class="num">1</span><b>TARE</b> — poser le réceptacle vide sur la balance, appuyer sur TARE/ZERO, vérifier l'affichage à 0.000.</div>
+  <div class="checkbox-step"><span class="num">2</span><b>RACCORDEMENT</b> — bouteille d'azote → monodétendeur → manifold → réceptacle, sans fuite, purge brève des flexibles.</div>
+  <div class="checkbox-step"><span class="num">3</span><b>OUVERTURE</b> — ouverture progressive du robinet bouteille, réglage du monodétendeur <b>sans dépasser</b> la pression fixée.</div>
+  <div class="checkbox-step"><span class="num">4</span><b>PESÉE DU TRANSFERT SIMULÉ</b> — lecture continue de la balance jusqu'à la masse cible fixée par le professeur.</div>
+  <div class="checkbox-step"><span class="num">5</span><b>COMPLÉMENT</b> — ajustement fin si besoin, fermeture définitive, purge des flexibles.</div>
+  <div class="checkbox-step"><span class="num">6</span><b>CONTRÔLE SC/SR</b> — lecture, sur la machine école en fonctionnement, de la surchauffe et du sous-refroidissement.</div>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — arrêtez immédiatement toute manipulation, fermez le
+  robinet de la bouteille, alertez le professeur. En cas de doute sur une odeur d'air « appauvri » ou un
+  étourdissement : sortez du local et alertez, l'azote ne donne aucun signal d'alerte olfactif. Trousse de secours
+  et arrêt d'urgence localisés en phase 5 de la séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON 1 : DÉMONSTRATION + 1re RÉPÉTITION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 26 · JALON 1 — démonstration + 1<sup>re</sup> répétition — ≈ 75 min</span>
+
+  <h3 class="section">Étape A — observer la démonstration du professeur</h3>
+  <p style="font-size:10.5pt">Le professeur exécute le geste complet, poste par poste, en <b>commentant chaque
+  étape</b> de la check-list. Notez ce qui vous surprend ou ce que vous n'aviez pas anticipé.</p>
+  <div class="zone-reponse" style="min-height:2.2em"><span style="font-size:9pt; color:var(--gris)">Ce que je retiens de la démonstration :</span></div>
+
+  <figure style="margin:10px 0; text-align:center">
+    <img class="fig" src="../images/manodetendeur-azote-schema-principe.jpg" alt="Schéma de principe : bouteille d'azote, monodétendeur, manomètres 8 bar et 200 bar" style="max-width:75%">
+    <figcaption class="legende">Rappel S5/S6/S7 : le monodétendeur régule la haute pression de la bouteille
+    d'azote (≈ 200 bar) vers la pression de service fixée par le professeur — ici 8 bar à titre d'exemple de
+    réglage. D'après : schéma de principe monodétendeur, documents professeur S5/S6.</figcaption>
+  </figure>
+
+  <h3 class="section">Étape B — 1<sup>re</sup> répétition, encadrée et chronométrée</h3>
+  <div class="liste-num">
+    <p>☐ 1. TARE — poser le réceptacle vide sur la balance, appuyer TARE/ZERO, vérifier 0.000</p>
+    <p>☐ 2. RACCORDEMENT — bouteille → monodétendeur → manifold → réceptacle, purge brève</p>
+    <p>☐ 3. OUVERTURE — ouverture progressive, réglage du monodétendeur sans dépasser la pression fixée</p>
+    <p>☐ 4. PESÉE DU TRANSFERT SIMULÉ — lecture continue jusqu'à la masse cible</p>
+    <p>☐ 5. COMPLÉMENT — ajustement fin, fermeture, purge des flexibles</p>
+    <p>☐ 6. Faire viser chaque étape par le professeur avant de passer à la suivante</p>
+  </div>
+
+  <div class="encadre-question"><b>Question — agir → noter → réfléchir</b> — Pourquoi tare-t-on la balance
+  <b>avant</b> de raccorder le réceptacle, et non après ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Indice : si la balance affiche déjà un poids
+  avant le raccordement, que va-t-elle indiquer une fois le transfert commencé ?</p>
+
+  <h3 class="section">Tableau des temps — répétition n° 1</h3>
+  <table class="releve">
+    <tr><th>Répétition</th><th>Temps total</th><th>Étape la plus longue</th><th>Anomalie observée</th></tr>
+    <tr><td>N° 1 (passage 1, encadrée)</td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1</h4>
+  <p>☐ Les 6 étapes cochées dans l'ordre &nbsp;&nbsp; ☐ Pression jamais dépassée &nbsp;&nbsp; ☐ Masse cible atteinte à la tolérance près &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · JALON 2 : 2e RÉPÉTITION + TABLEAU MASSE + CONTRÔLE SC/SR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 26 · JALON 2 — 2<sup>e</sup> répétition + contrôle SC/SR — ≈ 50 min</span>
+  <p style="font-size:10.5pt">Vous refaites le geste complet une deuxième fois, en cherchant à <b>gagner en
+  fluidité</b> sans sauter aucune case. Vous complétez le tableau des masses, puis vous allez lire la surchauffe
+  et le sous-refroidissement sur la <b>machine école</b>, en fonctionnement normal.</p>
+
+  <h3 class="section">2<sup>e</sup> répétition</h3>
+  <div class="liste-num">
+    <p>☐ 1 à 5. Reprendre les 5 premières étapes de la check-list, cochées et chronométrées</p>
+    <p>☐ 6. Faire viser la répétition complète par le professeur</p>
+  </div>
+
+  <h3 class="section">Tableau masse avant / après (charge simulée à l'azote)</h3>
+  <table class="releve">
+    <tr><th>Répétition</th><th>Masse avant (g)</th><th>Masse après (g)</th><th>Masse transférée (g)</th><th>Masse cible (g)</th><th>Écart (g)</th></tr>
+    <tr><td>N° 1 (jalon 1)</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>N° 2 (jalon 2)</td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">La masse cible est <b>fixée par le professeur</b>
+  avant la séance : aucune masse de fluide n'est affirmée dans ce document, seule votre pesée réelle d'azote
+  compte.</p>
+
+  <h3 class="section">Contrôle SC/SR — lecture sur la machine école</h3>
+  <p style="font-size:10.3pt">La machine école fonctionne en continu sur sa charge d'usine réelle, <b>scellée</b> :
+  vous ne la chargez pas, vous la <b>lisez seulement</b> — exactement le geste déjà maîtrisé en S7-F1. Cette
+  lecture relie votre geste d'aujourd'hui (peser un transfert) à son <b>objectif professionnel</b> : une charge
+  correcte se vérifie par la surchauffe et le sous-refroidissement.</p>
+  <div style="border:1.5px solid var(--bleu); border-radius:6px; background:#eef4ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt">
+  <b>📄 Ressource fournie — table pression/température.</b> Pour trouver la température de saturation qui correspond à une pression (indispensable pour estimer la surchauffe SC et le sous-refroidissement SR), utilisez la <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Reglette%20P-T%20multi-fluides%20(imprimable).pdf">réglette P/T multi-fluides</a> ou la table du fluide de votre banc : <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R134a%20(saturation,%20-100%20a%20+100%20C).pdf">R134a</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R404A%20(saturation).pdf">R404A</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R410A%20(saturation).pdf">R410A</a>. N'inventez jamais une valeur : lisez-la sur la table.
+  </div>
+  <table class="releve">
+    <tr><th>Mesure</th><th>Valeur lue</th><th>Plage de référence (charte)</th><th>Cohérent ?</th></tr>
+    <tr><td>Surchauffe (SC)</td><td></td><td>5 à 10 K</td><td>☐ Oui ☐ À faire valider</td></tr>
+    <tr><td>Sous-refroidissement (SR)</td><td></td><td>4 à 8 K</td><td>☐ Oui ☐ À faire valider</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — Si la surchauffe ou le sous-refroidissement lus sont
+  hors de la plage de référence, qu'est-ce que cela signifierait sur une <b>vraie</b> charge (trop ou pas assez de
+  fluide) ? Vous ne le corrigez pas aujourd'hui, mais expliquez ce que vous comprenez.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2</h4>
+  <p>☐ 2<sup>e</sup> répétition validée &nbsp;&nbsp; ☐ Tableau des masses cohérent &nbsp;&nbsp; ☐ Lecture SC/SR réalisée et reportée &nbsp;&nbsp; ☐ Poste rangé</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="secu"><b class="t">⚠ Rappel — fin du passage 1</b> — Le robinet de la bouteille d'azote reste fermé
+  entre deux répétitions et en fin de séance. Rendez-vous en <b>semaine 27</b> pour le passage 2.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 2 · JALON 1' : 3e RÉPÉTITION EN AUTONOMIE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 27 · JALON 1' — 3<sup>e</sup> répétition, plus d'autonomie — ≈ 45 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Vous connaissez déjà les 6 étapes :
+  après un <b>rappel bref</b>, vous exécutez la répétition <b>avec moins d'aide</b> du professeur. Il reste présent
+  en permanence pour la sécurité, mais il redémontre moins et vous laisse davantage l'initiative sur le rythme.</div>
+
+  <h3 class="section">3<sup>e</sup> répétition</h3>
+  <div class="liste-num">
+    <p>☐ 1 à 5. Enchaîner les 5 premières étapes de la check-list, cochées et chronométrées, avec moins d'aide</p>
+    <p>☐ 6. Faire viser la répétition complète par le professeur</p>
+  </div>
+
+  <table class="releve">
+    <tr><th>Répétition</th><th>Temps total</th><th>Étape la plus longue</th><th>Progrès depuis la répétition 2 ?</th></tr>
+    <tr><td>N° 3 (passage 2, autonomie)</td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Qu'est-ce qui, dans vos deux répétitions du passage 1, vous
+  permet aujourd'hui d'aller plus vite sans sauter aucune étape ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1'</h4>
+  <p>☐ Répétition correcte et rapide &nbsp;&nbsp; ☐ Pression jamais dépassée &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2'</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON 2' : RÉPÉTITIONS 4 ET 5 + VERDICT DE FLUIDITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 27 · JALON 2' — répétitions 4 et 5, verdict de fluidité — ≈ 80 min</span>
+  <p style="font-size:10.5pt">Vous enchaînez <b>deux dernières répétitions</b>, en visant la fluidité : un geste
+  <b>sûr</b> ET <b>rapide</b>, sans case oubliée. Vous complétez le tableau des temps sur l'ensemble des 5
+  répétitions, puis vous concluez par un contrôle SC/SR final.</p>
+
+  <h3 class="section">Répétitions n° 4 et n° 5</h3>
+  <div class="liste-num">
+    <p>☐ Répétition 4 : les 5 étapes de charge simulée, chronométrées, visées</p>
+    <p>☐ Répétition 5 : les 5 étapes de charge simulée, chronométrées, visées</p>
+  </div>
+
+  <h3 class="section">Tableau des temps — les 5 répétitions</h3>
+  <table class="releve">
+    <tr><th>Répétition</th><th>Temps total</th><th>Anomalie observée</th><th>Visa prof</th></tr>
+    <tr><td>N° 1 (passage 1)</td><td></td><td></td><td></td></tr>
+    <tr><td>N° 2 (passage 1)</td><td></td><td></td><td></td></tr>
+    <tr><td>N° 3 (passage 2)</td><td></td><td></td><td></td></tr>
+    <tr><td>N° 4 (passage 2)</td><td></td><td></td><td></td></tr>
+    <tr><td>N° 5 (passage 2)</td><td></td><td></td><td></td></tr>
+  </table>
+
+  <p style="font-size:10.5pt"><b>Mon verdict de fluidité :</b>
+  <span class="verdict" style="border-color:#1f7a4d; color:#1f7a4d">☐ FLUIDE (temps stable ou en baisse, aucune case oubliée)</span>
+  <span class="verdict" style="border-color:#c14a17; color:#c14a17">☐ À RETRAVAILLER</span></p>
+  <div class="zone-reponse" style="min-height:2.2em"><span style="font-size:9pt; color:var(--gris)">Justification :</span></div>
+
+  <h3 class="section">Contrôle SC/SR final — lecture sur la machine école</h3>
+  <table class="releve">
+    <tr><th>Mesure</th><th>Valeur lue</th><th>Plage de référence (charte)</th><th>Cohérent ?</th></tr>
+    <tr><td>Surchauffe (SC)</td><td></td><td>5 à 10 K</td><td>☐ Oui ☐ À faire valider</td></tr>
+    <tr><td>Sous-refroidissement (SR)</td><td></td><td>4 à 8 K</td><td>☐ Oui ☐ À faire valider</td></tr>
+  </table>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2'</h4>
+  <p>☐ Répétitions 4 et 5 validées &nbsp;&nbsp; ☐ Verdict de fluidité motivé &nbsp;&nbsp; ☐ Contrôle SC/SR final réalisé &nbsp;&nbsp; ☐ Poste rangé, robinet fermé</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état (à chaque passage)</h3>
+  <div class="liste-num">
+    <p>☐ 1. Fermer le robinet de la bouteille d'azote et détendre le monodétendeur</p>
+    <p>☐ 2. Purger et débrancher les flexibles, remettre les bouchons de protection</p>
+    <p>☐ 3. Vider et sécher le réceptacle pédagogique</p>
+    <p>☐ 4. Remettre la balance à zéro, ranger son boîtier d'affichage</p>
+    <p>☐ 5. Nettoyer l'établi de mon poste</p>
+    <p>☐ 6. Vérifier que la bouteille d'azote est arrimée et debout pour le poste suivant</p>
+    <p>☐ 7. Retirer les EPI en dernier, une fois le poste totalement rangé</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis</h4>
+  <p>☐ Passage 1 : démonstration observée, répétitions 1 et 2 réalisées et validées, tableau des masses complété, lecture SC/SR réalisée<br>
+  ☐ Passage 2 : répétitions 3, 4 et 5 réalisées en autonomie croissante, tableau des temps complet, verdict de fluidité motivé, contrôle SC/SR final</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C4.2 Découverte — simulée</b> ·
+  <b>C4.7 Confortement</b> — aucune de ces deux compétences n'est remontée sur École Directe dans ce module (pas
+  de statut Évaluation dans S8, il arrivera à É4, S9).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C4.2</b> Manipuler le fluide frigorigène et les huiles — geste simulé à l'azote</td><td>sur T13 · S5.2</td><td>Compétence non observée ce jour.</td><td>Ne parvient pas à enchaîner les 6 étapes du geste de charge simulée, même avec l'aide du professeur (tare oubliée, pression dépassée, bouteille couchée).</td><td>Enchaîne les 6 étapes avec l'aide du professeur (rappel d'une étape, correction d'un geste), sans dépasser la pression fixée.</td><td>Enchaîne seul(e) les 6 étapes du geste de charge simulée, dans l'ordre, sans dépasser la pression fixée, masse cible atteinte à la tolérance près.</td><td>Comme « Acquis », et gagne en fluidité au fil des répétitions (temps réduit sans geste bâclé), explique le sens d'une étape à un pair.</td></tr>
+    <tr><td><b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle</td><td>sur T13 · S5.2 — manifold S7-F1</td><td>Compétence non observée ce jour.</td><td>Raccordement bouteille/monodétendeur/manifold non conforme malgré aide (fuite, mauvais sens, purge oubliée).</td><td>Raccorde avec l'aide du professeur (rappel d'une étape).</td><td>Raccorde seul(e), sans fuite, purge réalisée, matériel conforme.</td><td>Comme « Acquis », et vérifie et corrige seul(e) le raccordement d'un pair.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux malgré rappel (dépasse la pression, bouteille non arrimée, manipule sans professeur présent) : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>EPI et gestes respectés sans rappel, temps et masses relevés honnêtement.</td><td>Comme « Acquis », et signale spontanément un doute (écart de masse, bruit anormal) plutôt que de deviner.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C4.2 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.7 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous étiez concerné(e) par un objectif de
+  progrès à É3 sur la rigueur du poste ou l'honnêteté du contrôle : avez-vous progressé aujourd'hui ?</p>
+
+  <h3 class="section">Variantes</h3>
+  <ul class="liste-num">
+    <li><b>Consolidation</b> : la démonstration du passage 1 est redécoupée en deux temps (raccordement puis pesée),
+    et le professeur reste au poste pour la répétition 1 entière.</li>
+    <li><b>Standard</b> : déroulement tel que décrit dans ce document.</li>
+    <li><b>Approfondissement</b> : après la répétition 5 validée, expliquer à un pair une étape de la check-list et
+    justifier pourquoi elle vient à cette place précise.</li>
+  </ul>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : répétitions, visas, tableaux, questions répondues)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Mise en service et
+  charge en fluide frigorigène — projet (02_CAP-IFCA/C4-MettreEnService), procédure de pesée et tableau masse
+  avant/après repris en principe, <b>réécrits ici à l'azote</b> (aucune masse de fluide réel, masse cible
+  « fixée par le professeur ») ; reglage bp sous azote.docx (séance CAP IFCA déjà conçue tout azote, sécurité,
+  vocabulaire de la check-list) ; DOSSIER RESSOURCES charge.docx (principe du montage balance/bouteille/manifold —
+  schéma repris en document professeur ; seuils de contrôle : la source indique sous-refroidissement 4-7 °C et
+  surchauffe 5-8 °C, « d'après », mais ce document retient les <b>seuils de la charte FrigorX</b> : surchauffe
+  5-10 K, sous-refroidissement 4-8 K) ; Doc. Ressource Balance (photo balance électronique PRATIKA 100-05,
+  02_CAP-IFCA/S2-Systèmes) ; schéma monodétendeur/bouteille d'azote (documents professeur S5/S6, réutilisé S7-F1).
+  Charte pédagogique FrigorX (§7 sécurité) ; référentiel CAP IFCA (codes C4.2, C4.7, T13, S5.2). Aucune masse de
+  fluide réel n'est affirmée dans ce document ; aucune procédure de récupération n'est demandée.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — ANNEXE PLEINE PAGE : CHECK-LIST « AVANT-VOL » CHRONOMÉTRÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8-F1 · ANNEXE pleine page · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section" style="margin-top:0">ANNEXE — CHECK-LIST « AVANT-VOL » DE LA CHARGE SIMULÉE À L'AZOTE</h3>
+  <p style="font-size:9.5pt; color:var(--gris)">À conserver sous les yeux à chaque répétition (1 à 5). Cochez
+  chaque case au moment réel du geste — jamais après coup. Faites viser chaque étape par le professeur avant de
+  passer à la suivante, en particulier lors des deux premières répétitions.</p>
+
+  <div class="annexe">
+  <h4 style="margin-top:0">Étape 1 — TARE</h4>
+  <p style="font-size:10pt">☐ Poser le réceptacle pédagogique vide sur la balance électronique<br>
+  ☐ Allumer la balance (touche ON), vérifier l'unité affichée (touche UNIT → kilogrammes ou grammes)<br>
+  ☐ Appuyer sur TARE/ZERO<br>
+  ☐ Vérifier que l'affichage indique bien <b>0.000</b> avant de continuer</p>
+
+  <h4>Étape 2 — RACCORDEMENT</h4>
+  <p style="font-size:10pt">☐ Vérifier l'état des flexibles et des raccords (aucune fissure, aucun joint abîmé)<br>
+  ☐ Raccorder la bouteille d'azote au monodétendeur<br>
+  ☐ Raccorder le monodétendeur au manifold, puis le manifold au réceptacle posé sur la balance<br>
+  ☐ Purger <b>brièvement</b> chaque flexible avant le serrage définitif<br>
+  ☐ Contrôler l'absence de fuite (bulles de savon si besoin)</p>
+
+  <h4>Étape 3 — OUVERTURE</h4>
+  <p style="font-size:10pt">☐ Ouvrir <b>progressivement</b> le robinet de la bouteille d'azote<br>
+  ☐ Régler le monodétendeur à la pression <b>fixée par le professeur</b> pour cette séance<br>
+  ☐ Vérifier en continu le manomètre de sortie : <b>ne jamais dépasser</b> la valeur donnée<br>
+  ☐ Ouvrir la vanne du manifold côté réceptacle</p>
+
+  <h4>Étape 4 — PESÉE DU TRANSFERT SIMULÉ</h4>
+  <p style="font-size:10pt">☐ Lire la balance <b>en continu</b> pendant le transfert d'azote<br>
+  ☐ Surveiller l'approche de la <b>masse cible fixée par le professeur</b><br>
+  ☐ Fermer la vanne du manifold dès la masse cible atteinte</p>
+
+  <h4>Étape 5 — COMPLÉMENT</h4>
+  <p style="font-size:10pt">☐ Vérifier l'écart entre la masse relevée et la masse cible<br>
+  ☐ Si besoin, rouvrir légèrement pour un complément fin, puis refermer<br>
+  ☐ Fermer le robinet de la bouteille, purger et débrancher les flexibles<br>
+  ☐ Remettre les bouchons de protection</p>
+
+  <h4>Étape 6 — CONTRÔLE SC/SR (lecture, pas de charge)</h4>
+  <p style="font-size:10pt">☐ Se déplacer vers la machine école, en fonctionnement normal sur sa charge scellée<br>
+  ☐ Lire la surchauffe (SC) et le sous-refroidissement (SR) à l'aide des manomètres et de la réglette P/T<br>
+  ☐ Comparer aux seuils de la charte : SC 5 à 10 K, SR 4 à 8 K<br>
+  ☐ Conclure : cohérent, ou à faire valider</p>
+  </div>
+
+  <p style="font-size:8pt; color:var(--gris); font-style:italic; margin-top:10px">D'après : Mise en service et
+  charge en fluide frigorigène — projet, reglage bp sous azote.docx (structure de la check-list, vocabulaire de
+  balance et de manodétendeur), Doc. Ressource Balance (fonctions ON/OFF/UNIT/TARE de la balance électronique).
+  La check-list ci-dessus est <b>entièrement transposée à l'azote</b> : aucune étape ne mentionne un fluide
+  frigorigène réel, aucune récupération n'est demandée.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .jalon, .annexe, .fondateur, .checkbox-step{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

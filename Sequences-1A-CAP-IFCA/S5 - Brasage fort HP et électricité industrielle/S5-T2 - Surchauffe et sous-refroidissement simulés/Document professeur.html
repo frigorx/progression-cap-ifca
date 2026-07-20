@@ -1,0 +1,428 @@
+<meta charset="utf-8">
+<title>Document professeur — S5 · Module théorie T2 · Surchauffe et sous-refroidissement simulés</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .cas-corr{border:1.5px solid var(--bleu); border-radius:8px; padding:8px 14px; margin:.5em 0 1em; background:#fff}
+  .cas-corr h4{margin:0 0 4px; font-size:11pt; color:var(--bleu); display:flex; align-items:center; gap:8px}
+  .cas-corr .num{display:inline-block; background:var(--bleu); color:#fff; border-radius:50%; width:1.6em; height:1.6em; text-align:center; line-height:1.6em; font-size:10pt}
+  .cas-corr.conforme{border-color:#10b981}
+  .cas-corr.conforme h4{color:#0d7c5e}
+  .verdict-bandeau{border-radius:6px; padding:5px 10px; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9.5pt; margin-top:4px; display:inline-block}
+  .verdict-bandeau.ok{background:#e8f8f0; color:#0d7c5e}
+  .verdict-bandeau.attn{background:#fff7f3; color:#c14a17}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Surchauffe et sous-refroidissement — lecture sur relevés simulés</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S5-T2 · 2 h — DOCUMENT PROFESSEUR</span><b>Surchauffe / sous-refroidissement simulés</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> · sem. 16</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie, classe entière, pas de matériel frigorifique nécessaire</td>
+      <td><span class="lib">Durée</span>2 h — pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → découverte guidée (localisation + définitions + réglette) → TD sur cas simulés en binômes → correction croisée → synthèse</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière, TD en binômes</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — module théorie de classe entière</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté — la surchauffe et le sous-refroidissement complètent la relation P/T de S4-T1</span></div>
+    <div class="case"><h4>Savoir-être</h4>Honnêteté de la mesure · rigueur du calcul · correction loyale d'un camarade</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">C4.5 — Confortement</span> mesurer, comparer des grandeurs, à partir de relevés SIMULÉS uniquement ; formatif, non remonté École Directe</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même numérotation que le document élève
+  (questions 1 et 2, cas 1 à 4) et y ajoute le déroulé minuté, les corrigés détaillés (cheminement complet, pas
+  seulement le résultat), les erreurs typiques, l'organisation de la correction croisée et la différenciation. Le
+  module reste au Bloom CAP 1A 1-3 (lire, calculer une soustraction, comparer à une plage) : <b>aucune manipulation
+  de fluide frigorigène, aucune mesure sur machine en charge</b>. Toutes les données sont fournies dans l'énoncé —
+  les élèves lisent des relevés simulés, ils ne mesurent rien eux-mêmes.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>TD sur cas simulés + correction croisée</b> (méthode imposée par le cadrage S5,
+  aucune reprise d'une méthode déjà utilisée dans la séquence). Quatre installations fictives sont données avec
+  leurs relevés complets (pressions, réglette fournie, températures mesurées) ; les élèves calculent en binômes,
+  puis chaque binôme corrige la copie d'un autre binôme à l'aide d'un corrigé-guide — l'honnêteté de la mesure et
+  la rigueur de la correction sont le savoir-être central du module.</p>
+
+  <h3 class="section">Matériel — aucune manipulation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Élément</th><th>Détail</th></tr>
+    <tr><td>Matériel</td><td>Aucun matériel frigorifique. Vidéoprojecteur ou tableau pour projeter la réglette
+    fournie et le corrigé-guide ; le document élève suffit pour le TD.</td></tr>
+    <tr><td>Sécurité</td><td>Sans objet — aucune manipulation de fluide, aucune intervention sur machine. C'est
+    précisément la nature de ce module (cf. cadrage : « aucune manipulation de fluide ni mesure sur machine en
+    charge »).</td></tr>
+    <tr><td>Corrigé-guide</td><td>Une fiche par cas (ou une diapositive), distribuée ou projetée UNIQUEMENT au
+    moment de la correction croisée — jamais avant, pour que le calcul reste un vrai exercice.</td></tr>
+  </table>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche</td><td>2 min : rappel du fil rouge (l'installation de
+    l'arrière-boutique a été brasée et essayée sous azote ; un jour elle sera en service, et un professionnel devra
+    savoir « si elle va bien » sans l'ouvrir). 3 min : question de départ notée individuellement (comment le
+    savoir sans manipuler ?), réponse laissée ouverte. 3 min : rappel collectif express de S4-T1 (la pression
+    choisit la température de changement d'état, lecture de réglette, croix du frigoriste). 2 min : consigne
+    pour la suite (aujourd'hui, toutes les données seront fournies — aucune mesure réelle).</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Découverte</td><td>15 min : localisation de SC et SR sur la croix du
+    frigoriste (schéma annoté), question 1 en autonomie puis correction collective ; expliciter pourquoi ces deux
+    mesures existent (100 % vapeur au compresseur, 100 % liquide au détendeur). 25 min : définitions et formules
+    de SC et SR (avec le vocabulaire t₀/t<sub>b</sub>/t<sub>k</sub>/t<sub>L</sub>), seuils charte (SC 5-10 K,
+    SR 4-8 K) donnés et justifiés, rappel unité Kelvin, présentation de la réglette fournie pour le TD (lecture
+    collective d'un exemple avant de lancer le travail en binômes).</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application</td><td>30 min : TD sur les 4 cas en binômes (lecture
+    réglette, calcul SC/SR, verdict) — le professeur circule, relance sans donner la réponse, s'assure que
+    chaque binôme a bien fini les 4 cas avant la correction croisée. 20 min : correction croisée — échange des
+    copies entre binômes voisins, distribution/projection du corrigé-guide, vérification case par case (lecture
+    réglette, calcul, unité K, verdict), retour collectif sur les points qui ont posé difficulté.</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse / trace écrite</td><td>12 min : fiche mémo complétée et
+    corrigée collectivement, phrase à retenir affichée et recopiée — trace écrite de référence pour S7-S8.
+    8 min : auto-positionnement 0-4 (Confortement, non remonté) et clôture (annonce explicite : « en S7-S8, vous
+    mesurerez en vrai ce que vous venez de calculer aujourd'hui »).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à la
+  trame « Module THÉORIE — 2 h » du cadrage S5.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ ACCROCHE + LOCALISATION + DÉFINITIONS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — question de départ (accroche)</h3>
+  <div class="reponse"><b class="t">Comment sait-on que « la machine va bien » sans l'ouvrir ?</b><br><br>
+  <b>Réponse attendue :</b> aucune n'est exigée à ce stade — accepter toute idée qui évoque une mesure extérieure
+  (pression, température) plutôt qu'une ouverture du circuit. L'idée à faire émerger progressivement pendant la
+  découverte : on <b>compare</b> des températures mesurées à des températures lues sur une réglette, sans jamais
+  toucher au fluide.</div>
+
+  <h3 class="section">Corrigé — Question 1 (localisation de SC et SR)</h3>
+  <div class="reponse"><b class="t">Réponse attendue</b> — La surchauffe se mesure côté <b>BP</b>, à la sortie de
+  l'<b>évaporateur</b>. Le sous-refroidissement se mesure côté <b>HP</b>, à la sortie du <b>condenseur</b>.</div>
+  <div class="vigilance"><b class="t">Erreur typique n° 1 — confondre SC et SR</b> — Certains élèves associent
+  spontanément « chaud » à surchauffe et se trompent d'organe. Rappeler : SC est <b>après l'évaporateur</b> (le
+  fluide était froid, il se réchauffe un peu de trop) ; SR est <b>après le condenseur</b> (le fluide était chaud,
+  il se refroidit un peu de trop). Le point commun : les deux sont des « marges de sécurité » qui se mesurent APRÈS
+  le changement d'état, jamais pendant.</div>
+
+  <h3 class="section">Corrigé — pourquoi ces deux mesures existent</h3>
+  <p style="font-size:10.3pt">Citation à mobiliser, issue du cours de mise en service : « les vapeurs saturées, en
+  fin d'évaporation, sont surchauffées pour garantir 100 % de vapeurs à l'entrée du compresseur et éviter des coups
+  de liquide » ; le sous-refroidissement, lui, « permet d'alimenter le détendeur en 100 % liquide ». Insister sur
+  le parallèle : SC protège le <b>compresseur</b> (côté BP), SR protège le <b>détendeur</b> et renseigne sur la
+  <b>charge en fluide</b> (côté HP).</p>
+
+  <h3 class="section">Corrigé — formules et seuils</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Grandeur</th><th style="width:30%">Formule</th><th>Seuil charte retenu</th></tr>
+    <tr><td><b>SC</b> (surchauffe)</td><td>SC = t<sub>b</sub> (sortie évapo., mesurée) − t₀ (évaporation, lue réglette)</td><td><b>5 à 10 K</b></td></tr>
+    <tr><td><b>SR</b> (sous-refroid.)</td><td>SR = t<sub>k</sub> (condensation, lue réglette) − t<sub>L</sub> (sortie condens., mesurée)</td><td><b>4 à 8 K</b></td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Zéro invention — seuils sourcés vs seuils retenus</b> — Le document source
+  « LA SURCHAUFFE et le SR » indique une plage « généralement comprise entre 5 et 8 °C » pour la surchauffe et
+  « entre 4 et 7 °C » pour le sous-refroidissement. Ces valeurs sont citées « D'après » dans le document élève,
+  mais les seuils <b>OFFICIELLEMENT RETENUS</b> dans tous les documents FrigorX restent ceux de la charte :
+  <b>SC 5-10 K · SR 4-8 K</b>. Ne jamais faire trancher un cas-limite à l'élève sur la base des seuils source : les
+  4 cas du TD ont été calibrés pour ne poser aucune ambiguïté avec les seuils charte (cf. corrigés détaillés,
+  feuilles suivantes).</div>
+  <div class="vigilance"><b class="t">Erreur typique n° 2 — écrire °C au lieu de K</b> — Les élèves recopient
+  souvent l'unité des températures d'entrée (°C) au lieu de celle du résultat (K). Rappeler que SC et SR sont des
+  <b>écarts</b>, donc en Kelvin, même si numériquement la valeur est identique à un écart en °C. Sanctionner
+  légèrement (pas éliminatoire) l'oubli d'unité en correction croisée, pour ancrer le réflexe.</div>
+  <div class="vigilance"><b class="t">Erreur typique n° 3 — oublier de passer par la réglette</b> — Certains
+  élèves tentent de calculer SC ou SR directement avec les pressions (en bar) au lieu des températures (en °C).
+  Rappeler la chaîne obligatoire : pression lue → réglette → température → soustraction. C'est exactement la
+  chaîne apprise en S4-T1.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ DÉTAILLÉ CAS 1 ET 2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigés détaillés — cas 1 à 4 (cheminement complet)</h3>
+  <p style="font-size:9.5pt; color:var(--gris)">Réglette fournie (rappel) : 1,3 bar→−40 °C · 1,9 bar→−30 °C ·
+  2,5 bar→−22 °C · 3,1 bar→−18 °C · 5,0 bar→0 °C · 9,2 bar→+20 °C · 11,0 bar→+30 °C · 13,0 bar→+35 °C ·
+  15,0 bar→+40 °C · 17,0 bar→+47 °C.</p>
+
+  <div class="cas-corr conforme">
+    <h4><span class="num">1</span> Installation A — relevé du matin</h4>
+    <p style="font-size:10pt; margin:.2em 0">t₀ (2,5 bar → réglette) = <b>−22 °C</b> &nbsp;·&nbsp;
+    t<sub>k</sub> (13,0 bar → réglette) = <b>+35 °C</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SC = t<sub>b</sub> − t₀ = −14 − (−22) = <b>8 K</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SR = t<sub>k</sub> − t<sub>L</sub> = 35 − 29 = <b>6 K</b></p>
+    <span class="verdict-bandeau ok">SC = 8 K (dans 5-10 K) ✓ · SR = 6 K (dans 4-8 K) ✓ → Installation conforme</span>
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:4px">Cas de référence, à commenter en premier lors de
+    la mise en commun : c'est le fonctionnement normal auquel comparer les 3 autres cas.</p>
+  </div>
+
+  <div class="cas-corr">
+    <h4><span class="num">2</span> Installation B — relevé après une intervention</h4>
+    <p style="font-size:10pt; margin:.2em 0">t₀ (1,9 bar → réglette) = <b>−30 °C</b> &nbsp;·&nbsp;
+    t<sub>k</sub> (11,0 bar → réglette) = <b>+30 °C</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SC = t<sub>b</sub> − t₀ = −18 − (−30) = <b>12 K</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SR = t<sub>k</sub> − t<sub>L</sub> = 30 − 27 = <b>3 K</b></p>
+    <span class="verdict-bandeau attn">SC = 12 K (&gt; 10 K, trop élevée) · SR = 3 K (&lt; 4 K, trop faible) →
+    hors plage sur les deux mesures</span>
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:4px"><b>Hypothèse simple à faire formuler</b> (Bloom
+    1A, sans certitude affirmée) : une surchauffe trop forte ET un sous-refroidissement trop faible évoquent
+    ensemble un <b>manque de fluide</b> dans l'installation. Présenter cela comme une PISTE de réflexion, pas un
+    diagnostic certain — le diagnostic professionnel réel sera vu plus tard dans la formation.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ DÉTAILLÉ CAS 3 ET 4 + ORGANISATION CORRECTION CROISÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <div class="cas-corr">
+    <h4><span class="num">3</span> Installation C — relevé d'un dépannage</h4>
+    <p style="font-size:10pt; margin:.2em 0">t₀ (3,1 bar → réglette) = <b>−18 °C</b> &nbsp;·&nbsp;
+    t<sub>k</sub> (17,0 bar → réglette) = <b>+47 °C</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SC = t<sub>b</sub> − t₀ = −15 − (−18) = <b>3 K</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SR = t<sub>k</sub> − t<sub>L</sub> = 47 − 37 = <b>10 K</b></p>
+    <span class="verdict-bandeau attn">SC = 3 K (&lt; 5 K, trop faible) · SR = 10 K (&gt; 8 K, trop élevé) →
+    hors plage sur les deux mesures</span>
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:4px"><b>Hypothèse simple à faire formuler</b> — à
+    l'inverse du cas 2 : surchauffe trop faible ET sous-refroidissement trop fort évoquent une <b>surcharge</b> en
+    fluide (risque de coup de liquide côté compresseur). Même consigne : piste de réflexion, pas certitude.</p>
+  </div>
+
+  <div class="cas-corr conforme" style="border-color:var(--orange)">
+    <h4 style="color:#c14a17"><span class="num" style="background:var(--orange)">4</span> Installation D — relevé de contrôle annuel</h4>
+    <p style="font-size:10pt; margin:.2em 0">t₀ (1,3 bar → réglette) = <b>−40 °C</b> &nbsp;·&nbsp;
+    t<sub>k</sub> (13,0 bar → réglette) = <b>+35 °C</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SC = t<sub>b</sub> − t₀ = −27 − (−40) = <b>13 K</b></p>
+    <p style="font-size:10.5pt; margin:.2em 0">SR = t<sub>k</sub> − t<sub>L</sub> = 35 − 30 = <b>5 K</b></p>
+    <span class="verdict-bandeau attn">SC = 13 K (&gt; 10 K, trop élevée) · SR = 5 K (dans 4-8 K) ✓ → SC seule
+    hors plage</span>
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:4px">Cas volontairement différent des cas 2 et 3 : ici
+    <b>un seul</b> des deux écarts est hors plage. À faire remarquer en mise en commun : la charge semble correcte
+    (SR bon), donc l'anomalie porte sur l'évaporateur lui-même plutôt que sur le remplissage — bon exemple pour
+    montrer que SC et SR ne se lisent pas toujours ensemble dans le même sens.</p>
+  </div>
+
+  <h3 class="section">Organisation de la correction croisée (20 min)</h3>
+  <ol class="liste-num">
+    <li>À la fin du TD (30 min écoulées), chaque binôme échange sa feuille avec un binôme <b>voisin</b> (pas son
+    propre binôme) — circuler pour vérifier que l'échange a bien lieu partout.</li>
+    <li>Distribuer ou projeter le <b>corrigé-guide</b> (cette feuille) — SEULEMENT à ce moment, jamais avant.</li>
+    <li>Consigne de correction, à donner à voix haute : vérifier dans l'ordre (1) la lecture de la réglette,
+    (2) le calcul (la soustraction, dans le bon sens), (3) l'unité (K, pas °C), (4) le verdict (dans/hors plage) —
+    entourer en rouge toute erreur, sans effacer ni raturer la copie du camarade.</li>
+    <li>Circuler pendant la correction : relancer les binômes qui vont trop vite (« as-tu vérifié l'unité ? »)
+    et ceux qui bloquent (rappeler la chaîne pression → réglette → température).</li>
+    <li>Retour collectif (5 des 20 min) : demander à un binôme de présenter la correction d'un cas, relever les
+    erreurs les plus fréquentes trouvées dans la classe (probablement l'unité K/°C ou le sens de la
+    soustraction), les commenter sans viser un élève en particulier.</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — FICHE MÉMO CORRIGÉE + GRILLE 0-4 + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Fiche mémo corrigée (trace écrite de référence)</h3>
+  <div class="tbl-wrap">
+  <table class="mini" style="font-size:8.5pt">
+    <tr><th style="width:30%">Ce que j'ai découvert</th><th>Ce que je retiens</th></tr>
+    <tr><td>Où se mesure la surchauffe</td><td>Côté BP, à la sortie de l'évaporateur (au bulbe du détendeur).</td></tr>
+    <tr><td>Où se mesure le sous-refroidissement</td><td>Côté HP, à la sortie du condenseur.</td></tr>
+    <tr><td>La formule de SC</td><td>SC = t<sub>b</sub> (mesurée) − t₀ (lue réglette).</td></tr>
+    <tr><td>La formule de SR</td><td>SR = t<sub>k</sub> (lue réglette) − t<sub>L</sub> (mesurée).</td></tr>
+    <tr><td>Les plages charte (SC / SR)</td><td>SC : 5 à 10 K. SR : 4 à 8 K.</td></tr>
+    <tr><td>L'unité K, pas °C</td><td>SC et SR sont des écarts de température : ils s'expriment en Kelvin.</td></tr>
+    <tr><td>Ce que veut dire un écart hors plage</td><td>Un écart trop faible ou trop fort est un signal d'alerte
+    (protection du compresseur, du détendeur, ou charge en fluide) — approfondi plus tard dans la formation.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut <b>Confortement</b> (C4.5) : formatif, non remonté
+  École Directe — sert de repère avant la mesure réelle de S7-S8.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Ce que l'élève sait faire</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:10%">3</th><th class="niv" style="width:10%">4</th></tr>
+    <tr>
+      <td><b>C4.5</b> Lire un relevé fourni, calculer une surchauffe ou un sous-refroidissement, comparer au
+      seuil charte <span class="nuance">Confortement</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Confond SC et SR, ou ne sait pas lire la réglette, même avec de l'aide.</td>
+      <td>Calcule SC ou SR avec de l'aide, mais se trompe parfois d'unité ou de sens de soustraction.</td>
+      <td>Calcule seul(e) SC et SR à partir de données fournies, compare correctement au seuil charte.</td>
+      <td>Comme « Acquis », et aide un camarade lors de la correction croisée.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — honnêteté de la mesure, rigueur du calcul, correction loyale d'un camarade</td>
+      <td>Non observé.</td>
+      <td>Corrige au hasard, sans utiliser le corrigé-guide.</td>
+      <td>Utilise le corrigé-guide mais a besoin d'un rappel pour être rigoureux(se).</td>
+      <td>Corrige rigoureusement et loyalement le travail d'un camarade avec le corrigé-guide.</td>
+      <td>Comme « Acquis », et explique ses corrections avec bienveillance.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Réduire à 2 cas (1 et 2) au lieu de 4 ; fournir un calcul déjà à moitié rempli
+    (la lecture réglette faite, seule la soustraction à faire) ; correction croisée en groupe de 3 avec un
+    tuteur.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit : 4 cas en binômes, correction croisée entre binômes
+    voisins.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus, à l'oral, pour le cas 4 : « pourquoi peut-on dire que la
+    charge en fluide semble correcte alors que la surchauffe est hors plage ? » (fait le lien entre SR et charge,
+    sans introduire de calcul supplémentaire).</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire affiché en 2 colonnes : « SC → sortie évaporateur → compresseur » /
+    « SR → sortie condenseur → détendeur », avec le schéma de la croix annoté en support visuel constant pendant
+    le TD ; un cas (le cas 1, conforme) traité collectivement avant le travail en binômes.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Limiter à 3 cas (retirer le cas 3 ou 4) pour ne pas fatiguer l'attention ; fournir
+    un tableau de calcul pré-structuré avec les étapes numérotées (1. lire réglette, 2. soustraire, 3. comparer) ;
+    pause courte entre le TD (30 min) et la correction croisée (20 min).</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence et de la formation</h3>
+  <ul class="liste-num">
+    <li>Ce module <b>formalise</b> la méthode de calcul et les seuils charte ; il ne comporte <b>aucune</b> mesure
+    réelle, conformément au cadrage S5 (« aucune manipulation de fluide ni mesure sur machine en charge »).</li>
+    <li>La mesure <b>réelle</b> de SC et SR (pose de manomètres, thermomètre de contact sur une vraie installation)
+    est réservée à S7-S8, à annoncer explicitement en clôture du module.</li>
+    <li>Le vocabulaire (t₀, t<sub>b</sub>, t<sub>k</sub>, t<sub>L</sub>) et la chaîne pression → réglette →
+    température, déjà posés en S4-T1, sont réinvestis à l'identique : aucune nouvelle convention de lecture n'est
+    introduite ce jour.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : kit surchauffe/sous-
+  refroidissement de l'enseignant, 2025-2026 (« cours_surchauffe_sous_refroidissement.html »,
+  « dossier_eleve_surchauffe.html », « corrige_prof_surchauffe.html », LP Jacques Raynaud) — principe de lecture
+  P/T, vocabulaire t₀/t<sub>b</sub>/t<sub>k</sub>/t<sub>L</sub>, structure des cas de diagnostic (installation
+  conforme / manque de fluide / surcharge / anomalie isolée). Définitions de la surchauffe et du sous-
+  refroidissement d'après « LA SURCHAUFFE et le SR » (02_CAP-IFCA/C4-MettreEnService, extrait le 04/07/2026) :
+  plage source « généralement comprise entre 5 et 8 °C » (surchauffe) et « entre 4 et 7 °C » (sous-refroidissement)
+  — les seuils RETENUS dans ce document restent ceux de la charte FrigorX : <b>SC 5-10 K · SR 4-8 K</b>. La
+  réglette P/T et les 4 relevés du TD sont des données <b>simulées</b>, construites pour cet exercice et calibrées
+  pour être sans ambiguïté au regard des seuils charte ; elles sont indépendantes de tout fluide frigorigène réel.
+  Schéma « La Croix du Frigoriste » (F. Henninot, 2026), convention identique à S1-T1, S3-T1 et S4-T1. Aucune
+  manipulation de fluide frigorigène, aucune mesure sur machine en charge : la mesure réelle est réservée à S7-S8.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .cas-corr{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

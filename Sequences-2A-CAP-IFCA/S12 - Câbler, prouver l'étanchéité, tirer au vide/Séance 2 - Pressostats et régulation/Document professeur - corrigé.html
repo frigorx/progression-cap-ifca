@@ -1,0 +1,360 @@
+<meta charset="utf-8">
+<title>Document professeur — S12 · Séance 2 · Pressostats et régulation</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Mise en service — chaîne de sécurité (chantier A3)</td>
+      <td style="width:38%"><span class="lib">Séance n° 2/3 — DOCUMENT PROFESSEUR</span><b>Pressostats et régulation — la machine s'arrête toute seule</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S12</span> · sem. 9, 10-14/11/2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — chantier A3</td>
+      <td><span class="lib">Durée prévue</span>8 h (journée complète)</td>
+      <td><span class="lib">Modalité</span>Binômes, autonomie guidée par plan de travail à jalons</td>
+      <td><span class="lib">Encadrement</span>1 professeur, aucune démonstration de geste</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation<br><b>S5.5</b> Réseaux fluidiques <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie entre les jalons · sécurité sans rappel · honnêteté de la mesure</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span><br><b>C3.6</b> (en préparation)<br><b>C4.1</b> (en préparation)<br><b>C3.7</b> observée en continu</div>
+  </div>
+
+  <h3 class="section">Méthode pédagogique de la séance</h3>
+  <p style="font-size:10.5pt"><b>Autonomie guidée par plan de travail à jalons.</b> Le professeur ne démontre
+  aucun geste. Le plan de travail conduit l'élève à travers des étapes cochées librement, avec deux points
+  d'arrêt contractuels où le professeur valide (vise) avant que le binôme ne poursuive :</p>
+  <ul class="liste-num">
+    <li><b>Jalon 1</b> — validation du câblage avant toute mise sous tension ;</li>
+    <li><b>Jalon 2</b> — vérification que la chaîne de sécurité est complète (aucun pressostat shunté) avant l'essai prolongé.</li>
+  </ul>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Le professeur doit circuler en
+  continu entre les binômes pour être disponible aux deux jalons sans créer de file d'attente. Prévoir un
+  ordre de passage annoncé en début de séance (ex. lettre de binôme = ordre d'appel) pour fluidifier.</div>
+
+  <h3 class="section">Trame horaire conseillée</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:8%">Durée</th><th style="width:20%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Matinée</td></tr>
+    <tr><td>10 min</td><td class="ph">Accueil</td><td>Appel, rappel de l'organisation en autonomie guidée, distribution du plan de travail à jalons.</td></tr>
+    <tr><td>15 min</td><td class="ph">Tenue + exercice au fil de l'eau</td><td>Passage en tenue échelonné ; en attente, lecture des 3 photos de manomètres + repérage des bornes du pressostat sur schéma.</td></tr>
+    <tr><td>—</td><td class="ph">Objectifs + situation</td><td>À caser dans le temps d'accueil ou juste avant la notion — présentation rapide de l'ordre d'intervention S12-A3-02.</td></tr>
+    <tr><td>10 min</td><td class="ph">Sécurité</td><td>Rappel consignation NFC 18-510, interdiction formelle de shunter un pressostat, conduite à tenir en cas d'incident.</td></tr>
+    <tr><td>20 min</td><td class="ph">Notion</td><td>Accroche : pressostat HP réglé bas par le professeur, la machine démarre et se coupe seule. Question « Qui a arrêté la machine ? ». Explicitation de la chaîne de sécurité.</td></tr>
+    <tr><td>1 h 40</td><td class="ph">Étape 1 — câblage HP/BP</td><td>Câblage des pressostats dans le circuit de commande, jusqu'au jalon 1.</td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="2">Pause</td></tr>
+    <tr><td>1 h 15</td><td class="ph">Étape 2 (début)</td><td>Réglage méthode signature — étapes 1 à 3 (pré-réglage haut, stabilisation, descente progressive).</td></tr>
+    <tr class="demi"><td colspan="3">Après-midi</td></tr>
+    <tr><td>1 h</td><td class="ph">Étape 2 (fin)</td><td>Étapes 4-5 : relevé de la valeur réelle, affinage, second cycle de validation.</td></tr>
+    <tr><td>1 h 55</td><td class="ph">Étape 3 — jalon 2 + F4</td><td>Vérification chaîne complète, essai prolongé, feuilles de mise en service F4 rubriques 1-2.</td></tr>
+    <tr><td>15 min</td><td class="ph">Bon de commande</td><td>Rituel chantier hebdomadaire.</td></tr>
+    <tr><td>15 min</td><td class="ph">Rangement</td><td>Outillage, postes, vérification des consignations.</td></tr>
+    <tr><td>20 min</td><td class="ph">Bilan + auto-positionnement</td><td>Grille d'évaluation, auto-positionnement élève puis validation professeur.</td></tr>
+    <tr><td>15 min</td><td class="ph">Sortie</td><td>Restitution EPI, annonce séance 3 (étanchéité, vide, évaluation sommative).</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ NOTION + PLAN DE TRAVAIL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S12 · séance 2/3 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — la notion du jour</h3>
+  <div class="reponse"><b class="t">Observation attendue</b> — la machine démarre normalement puis s'arrête
+  d'elle-même après quelques instants ou quelques minutes, sans qu'aucun bouton n'ait été actionné.</div>
+  <div class="reponse"><b class="t">Réponse attendue à « Qui a arrêté la machine ? »</b> — Le pressostat HP,
+  câblé dans le circuit de commande, a détecté une pression haute anormale (réglage volontairement bas du
+  professeur) et a ouvert son contact électrique. Ce contact ouvert coupe l'alimentation de la bobine du
+  contacteur de puissance, qui arrête le compresseur. Personne n'a agi : c'est la chaîne de sécurité qui a
+  fonctionné automatiquement.</div>
+  <div class="vigilance"><b class="t">Erreur typique d'élève</b> — confondre pressostat et thermostat, ou
+  penser que « la machine a un problème » plutôt que « la sécurité a bien fonctionné ». Profiter de l'accroche
+  pour insister : un arrêt sur pressostat n'est pas une panne, c'est la preuve que la protection marche.</div>
+
+  <h3 class="section">Guide d'animation — plan de travail à jalons</h3>
+  <div class="jalon"><h4>Jalon 1 — ce que le professeur contrôle avant de viser</h4>
+  <ul class="liste-num">
+    <li>Consignation réalisée et maintenue (cadenas en place) ;</li>
+    <li>Pressostats HP et BP câblés strictement au schéma remis, dans le circuit de commande (pas dans la puissance) ;</li>
+    <li>Continuité contrôlée au multimètre par l'élève avant l'appel, hors tension ;</li>
+    <li>Aucun fil dénudé apparent, connexions serrées.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si un point manque, ne pas viser : renvoyer le binôme corriger et recontrôler avant remise sous tension.</p></div>
+
+  <div class="jalon"><h4>Jalon 2 — ce que le professeur contrôle avant de viser</h4>
+  <ul class="liste-num">
+    <li>Les deux pressostats sont physiquement dans le circuit, aucun pontage ou fil de shunt ajouté ;</li>
+    <li>Le réglage du pressostat BP a été obtenu par observation (méthode signature), pas par une valeur imposée d'emblée ;</li>
+    <li>Le tableau de relevés est renseigné avec des valeurs réelles, cohérentes entre elles (Cut-out = Cut-in − différentiel).</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic"><b>Ce jalon est un point d'arrêt de sécurité, pas seulement pédagogique</b> : un pressostat shunté ne doit jamais fonctionner, même en essai bref. Interrompre l'essai si un shunt est détecté et faire reprendre le câblage.</p></div>
+
+  <h3 class="section">Corrigé — exercice au fil de l'eau</h3>
+  <p style="font-size:10.5pt"><b>1. Lecture de manomètres.</b> L'exercice utilise deux cadrans réels
+  (document « exercices-lecture-manomètres »). <b>Aucune valeur chiffrée précise n'est donnée ici</b> : les
+  valeurs exactes sont à confirmer sur les cadrans en salle, aiguille par aiguille, au moment de la
+  correction.</p>
+  <table class="mini">
+    <tr><th style="width:30%">Lecture demandée</th><th>Méthode de lecture</th></tr>
+    <tr><td>R 449a — TK (température de condensation)</td><td>Repérer sur le cadran l'échelle de température propre au <b>R449A</b> (une échelle par fluide sur un manomètre multi-fluides REFCO) ; lire la valeur en face de la position de l'aiguille sur cette échelle précise, pas sur une autre courbe de fluide voisine.</td></tr>
+    <tr><td>R 410a — Tk et T0 (températures de condensation / évaporation)</td><td>Sur le manomètre HP (rouge), lire la température en face de l'aiguille sur l'échelle R410A → Tk. Sur le manomètre BP (bleu), même lecture sur l'échelle R410A → T0. La correspondance pression↔température est propre à chaque fluide : c'est le principe même de la relation saturante (une pression = une seule température de changement d'état, pour un fluide pur donné).</td></tr>
+    <tr><td>R 410a — PK et P0 (pressions données par l'énoncé)</td><td>Valeurs données par l'énoncé : PK = HP = 35 bar, P0 = BP = 5 bar. Vérifier que l'élève reporte bien l'unité (bar) et ne confond pas PK/P0 avec Tk/T0.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — L'erreur typique est de lire l'échelle d'un
+  autre fluide (R22, R407C, R32…) présent sur le même cadran multi-échelles. Rappeler avant l'exercice :
+  toujours vérifier le nom du fluide gravé sur l'échelle avant de lire une valeur. <b>Valeurs exactes à
+  confirmer sur les cadrans en salle</b> avec les vraies photos projetées ou imprimées.</div>
+
+  <p style="font-size:10.5pt"><b>2. Repérage sur le schéma de câblage.</b> Sur le schéma remis (circuit de
+  commande 24 V), le repère <b>b1</b> est le pressostat HP. Il est câblé <b>en série entre les bornes x11 et
+  x12</b>, dans la branche descendante du circuit de commande, juste après le contact du relais de sécurité
+  (bloc « 0 / 13-4 ») et avant le pressostat BP (<b>b2</b>, câblé entre x12 et x14, qui alimente ensuite la
+  bobine du contacteur km1 en a2).</p>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Bien faire constater que b1 et b2 sont câblés
+  <b>en série</b> : si l'un des deux pressostats ouvre son contact, toute la branche est coupée, quel que soit
+  l'état de l'autre. C'est ce qui matérialise la chaîne de sécurité vue en ouverture de séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ MÉTHODE SIGNATURE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S12 · séance 2/3 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Étape E, raccordement du manifold</h3>
+  <p style="font-size:10.5pt">Sur le schéma fluidique remis, le tracé attendu est le suivant :</p>
+  <table class="mini">
+    <tr><th style="width:28%">Flexible</th><th>Tracé attendu</th></tr>
+    <tr><td>BLEU (BP)</td><td>Raccordé côté <b>aspiration</b> du compresseur, sur la <b>vanne de service BP</b> (à gauche du schéma, juste avant l'entrée du compresseur, là où sont déjà représentés le manomètre BP et le pressostat PZL). C'est la ligne basse pression du circuit.</td></tr>
+    <tr><td>ROUGE (HP)</td><td>Raccordé côté <b>refoulement</b> du compresseur, sur la <b>vanne de service HP</b> (à droite du schéma, entre la sortie du compresseur et le condenseur, là où sont déjà représentés le manomètre HP et le pressostat PZH). C'est la ligne haute pression du circuit.</td></tr>
+    <tr><td>JAUNE (service)</td><td>Déjà représenté sur le schéma fourni : relie le corps du manifold à la pompe à vide. Pas de tracé à demander sur ce flexible, il sert de repère à l'élève.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Faire entourer précisément les <b>deux vannes
+  de service</b> (BP et HP), pas seulement les flexibles : c'est l'organe qui permet d'isoler le manifold du
+  circuit sans perte de fluide, notion déjà vue en prérequis (« poser et déposer un manifold sans perte de
+  fluide »). Un élève qui trace le bleu côté refoulement ou le rouge côté aspiration inverse aspiration et
+  refoulement : le faire réexpliquer avec ses mots avant de corriger le tracé.</div>
+
+  <p style="font-size:10.5pt"><b>Montage de pré-gonflage à l'azote (cadre à dessiner).</b> Le schéma attendu,
+  du plus simple au plus complexe, est une chaîne linéaire : <b>bouteille d'azote R → détendeur (réglé selon
+  la pression prescrite, validée par le professeur) → flexible → vanne de service (BP ou HP, selon la
+  procédure du poste) → circuit</b>. Le détendeur doit toujours apparaître entre la bouteille et le circuit :
+  un tracé qui relie directement la bouteille au circuit, sans détendeur, est une erreur de sécurité à
+  corriger immédiatement (risque de surpression).</p>
+  <div class="vigilance"><b class="t">Rappel non négociable</b> — La valeur de pression de pré-gonflage ou
+  d'épreuve à l'azote se règle uniquement selon la plaque signalétique de l'installation et la NF EN 378,
+  validée par le professeur avant ouverture du détendeur. Aucune valeur chiffrée n'est à donner ici a priori.</div>
+
+  <h3 class="section">Corrigé — méthode signature de réglage du pressostat</h3>
+  <p style="font-size:10.5pt">Les valeurs numériques de Cut-in, différentiel et Cut-out dépendent entièrement
+  du fluide frigorigène, de la température d'évaporation et du modèle de pressostat équipant le poste. Elles
+  ne peuvent pas être données à l'avance : elles se déterminent <b>uniquement</b> à partir de la plaque
+  signalétique de l'installation utilisée, validées par le professeur en séance.</p>
+  <div class="vigilance"><b class="t">Rappel non négociable</b> — Toute valeur de pression, y compris de
+  réglage ou d'épreuve, se détermine « selon la plaque signalétique et la NF EN 378, validée par le
+  professeur ». L'épreuve éventuelle se fait à l'azote sec (azote R).</div>
+
+  <table class="mini">
+    <tr><th style="width:22%">Étape</th><th style="width:38%">Ce que fait l'élève</th><th>Ce que vérifie le professeur</th></tr>
+    <tr><td>① Pré-réglage haut</td><td>Place le Cut-in nettement au-dessus de la valeur attendue, différentiel au minimum.</td><td>Aucun forçage sur les curseurs ; le compresseur ne doit pas démarrer à ce stade.</td></tr>
+    <tr><td>② Stabilisation</td><td>Laisse le système atteindre un régime stable (pump down ou fermeture progressive du circuit).</td><td>La pression BP se stabilise avant de continuer ; pas de précipitation.</td></tr>
+    <tr><td>③ Descente progressive</td><td>Baisse la consigne petit à petit jusqu'au déclenchement.</td><td>La descente est bien progressive, pas un saut direct à la valeur cible.</td></tr>
+    <tr><td>④ Relevé réel</td><td>Note la valeur de déclenchement observée, pas une valeur théorique recopiée.</td><td>La valeur notée correspond à ce qui a été réellement observé sur le manomètre.</td></tr>
+    <tr><td>⑤ Second cycle</td><td>Refait un cycle complet pour confirmer la stabilité du réglage.</td><td>Cohérence entre les deux cycles ; sinon, refaire un affinage.</td></tr>
+  </table>
+
+  <h3 class="section">Réponse attendue — question imposée après l'étape ③</h3>
+  <div class="reponse"><b class="t">« Et si on avait réglé directement la valeur cible ? »</b> — L'élève doit
+  comprendre qu'en réglant directement une valeur théorique, on ne vérifie jamais que le pressostat déclenche
+  réellement à cette valeur sur l'installation réelle : les tolérances de fabrication, l'état du pressostat, la
+  précision du manomètre ou une erreur de calcul peuvent faire dévier la valeur réelle de la valeur théorique.
+  La méthode signature oblige à <b>observer</b> le comportement réel du circuit plutôt qu'à faire confiance
+  aveuglément à un chiffre. C'est aussi plus sûr : on découvre le seuil réel progressivement, sans risquer de
+  dépasser une limite dangereuse d'un coup.</div>
+
+  <h3 class="section">Points de vigilance — réglage</h3>
+  <ul class="liste-num">
+    <li>Ne jamais forcer sur les curseurs ou vis de réglage du pressostat (risque de casse du mécanisme) ;</li>
+    <li>Surveiller la pression pendant tout ravalement (pump down) : ne jamais descendre sous 0 bar, arrêter immédiatement si cela se produit, pour éviter tout risque de casse compresseur ;</li>
+    <li>Le Cut-out se déduit du Cut-in et du différentiel (Cut-out = Cut-in − différentiel) : un élève qui donne un Cut-out incohérent avec ses deux autres valeurs doit recontrôler son calcul, pas seulement remesurer.</li>
+  </ul>
+
+  <h3 class="section">Erreurs typiques d'élèves</h3>
+  <table class="mini">
+    <tr><th style="width:40%">Erreur observée</th><th>Comment la corriger sur le moment</th></tr>
+    <tr><td>Règle directement la valeur cible sans passer par les 5 étapes</td><td>Interrompre, faire remonter le Cut-in, reprendre à l'étape ①.</td></tr>
+    <tr><td>Recopie une valeur théorique au lieu de la valeur observée</td><td>Faire réobserver le manomètre au moment précis du déclenchement.</td></tr>
+    <tr><td>Force sur le curseur de réglage</td><td>Arrêter le geste immédiatement, rappeler le risque de casse, montrer le geste correct (démonstration ponctuelle autorisée sur ce point précis de sécurité matérielle, hors posture générale de la séance).</td></tr>
+    <tr><td>Confond différentiel et Cut-out</td><td>Revenir à la formule Cut-out = Cut-in − différentiel avec les valeurs de son propre relevé.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — F4, GRILLE, DIFFÉRENCIATION, CROISEMENTS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S12 · séance 2/3 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — feuilles de mise en service F4 (rubriques 1-2) et question finale</h3>
+  <p style="font-size:10.5pt">Les rubriques 1-2 du module F4 se complètent à partir des mesures réelles du
+  binôme (fluide, valeurs de plaque signalétique, valeurs de réglage obtenues). Aucune valeur type n'est
+  imposée ici : le professeur valide la cohérence entre plaque signalétique et relevés, pas un chiffre unique
+  attendu pour toute la classe.</p>
+  <div class="reponse"><b class="t">Réponse attendue — pourquoi valider avant tout réglage définitif ?</b> —
+  Parce que la plaque signalétique et la NF EN 378 sont les seules références opposables pour une
+  installation réelle : un réglage fait « à l'estime » ou recopié d'un autre poste peut être inadapté au
+  fluide ou à la machine réellement présente, avec un risque de sécurité (surpression, gel, casse
+  compresseur). Le professeur valide pour garantir que le réglage correspond bien à la machine du binôme.</div>
+
+  <h3 class="section">Organisation matérielle du plateau</h3>
+  <ul class="liste-num">
+    <li>Un poste (groupe de condensation + pressostats + manifold) par binôme, pré-vérifié en état de fonctionnement avant la séance ;</li>
+    <li>Bouteille(s) d'azote R et détendeurs répartis pour éviter les files d'attente lors de la mise en pression ;</li>
+    <li>Photos de manomètres et schéma de repérage de l'exercice au fil de l'eau imprimés à l'avance, un jeu par élève ;</li>
+    <li>Cadenas et étiquettes de consignation en nombre suffisant pour un cadenas par élève ;</li>
+    <li>Feuilles de mise en service F4 et fiche de relevés en nombre suffisant, un jeu par binôme.</li>
+  </ul>
+
+  <h3 class="section">Grille d'évaluation — éléments attendus pour la correction</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="mini" style="font-size:8.3pt">
+    <tr><th style="width:13%">Compétence / savoir-être</th><th style="width:17.4%">0 — Non évalué</th><th style="width:17.4%">1 — Non acquis</th><th style="width:17.4%">2 — En cours</th><th style="width:17.4%">3 — Acquis</th><th style="width:17.4%">4 — Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, connecter</td><td>Compétence non observée ce jour.</td><td>Câblage non conforme au schéma remis, ou continuité non vérifiée avant mise sous tension.</td><td>Câblage conforme mais reprise(s) nécessaire(s) lors du contrôle du jalon 1.</td><td>Pressostats câblés dans le circuit de commande exactement selon le schéma remis, continuité vérifiée avant mise sous tension, aucune reprise nécessaire lors du contrôle du jalon 1.</td><td>Comme « Acquis », et l'élève explique à un pair la logique du câblage sans relire le schéma.</td></tr>
+    <tr><td><b>C4.1</b> Tirer au vide, réguler</td><td>Compétence non observée ce jour.</td><td>Étapes de la méthode signature non suivies, ou valeur cible réglée directement sans observation du déclenchement.</td><td>Méthode suivie mais dans un ordre approximatif, ou valeur relevée avec imprécision, aide du professeur nécessaire.</td><td>Les 5 étapes de la méthode signature sont suivies dans l'ordre, la valeur relevée est une valeur réellement observée (pas théorique), le second cycle confirme la stabilité.</td><td>Comme « Acquis », et l'élève anticipe et explique l'écart possible entre valeur théorique et valeur réelle avant de commencer.</td></tr>
+    <tr><td><b>C3.7</b> Contrôler la mise en œuvre</td><td>Compétence non observée ce jour.</td><td>Contrôle absent, ou sécurité shuntée à un moment quelconque de la séance (non acquis automatique, cf. point de vigilance ci-dessous).</td><td>Contrôle réalisé mais irrégulier, rappel du professeur nécessaire à une ou plusieurs étapes.</td><td>Contrôle systématique avant chaque sous-étape (visuel, continuité, pression) ; aucun shunt de pressostat constaté à aucun moment, y compris hors des jalons.</td><td>Comme « Acquis », et l'élève repère et signale de lui-même une anomalie de contrôle chez un autre binôme.</td></tr>
+    <tr><td>Savoir-être</td><td>Non observé ce jour.</td><td>Dépendance au professeur en dehors des jalons prévus, ou sécurité non respectée.</td><td>Autonomie ou sécurité à consolider, rappels ponctuels nécessaires.</td><td>Le binôme sollicite le professeur aux bons moments (jalons) sans dépendance excessive entre ces points ; sécurité appliquée sans rappel ; valeurs de relevé non arrangées pour « coller » à une valeur attendue.</td><td>Comme « Acquis », et le binôme aide spontanément un autre binôme sans compromettre son propre poste.</td></tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — Un shunt de pressostat constaté à
+  n'importe quel moment de la séance entraîne automatiquement un niveau <b>1 — Non acquis</b> sur C3.7, quelle
+  que soit la qualité du reste du travail : c'est un principe de sécurité non négociable, pas un simple critère
+  parmi d'autres.</div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:24%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Binôme accompagné d'un schéma de câblage surligné (couleurs par circuit) ; le professeur passe en premier au jalon 1 pour sécuriser rapidement la suite ; reformulation orale de la méthode signature avant de commencer.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, autonomie guidée normale entre les deux jalons.</td></tr>
+    <tr><td>Approfondissement</td><td>Après le second cycle validé, demander une comparaison entre le comportement du pressostat HP et celui du pressostat BP (quelle grandeur chacun surveille, quel risque chacun prévient) à l'oral, avant le bilan.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Plan de travail à jalons découpé visuellement (cases à cocher déjà bien séparées) ; autoriser une reformulation orale plutôt qu'écrite pour les questions ouvertes si besoin ; limiter les sollicitations simultanées en accordant la priorité de passage aux jalons à ces élèves pour éviter l'attente prolongée, facteur de décrochage.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Électrotechnique EL13/EL14</b> — pump down par relais KA, mesures SC/SR sur le circuit de commande ;</li>
+    <li><b>Technologie</b> — organes de la ligne liquide (en lien avec le pressostat BP et son raccordement) ;</li>
+    <li><b>Co-intervention français</b> — rédaction du compte-rendu d'intervention à partir des feuilles F4 ;</li>
+    <li><b>Chef-d'œuvre</b> — captation vidéo possible de la méthode signature pour le dossier de chef-d'œuvre ;</li>
+    <li><b>Module F4</b> — cette séance constitue le point de départ du module F4 (rubriques 1-2 renseignées ici).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : TRAVAUX PRATIQUES POSE des manifold et réglage Pressostat BP ; reglage bp sous azote ; Activité 9 - Pump Down Questionnaire ; 03-Manifold NEW.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

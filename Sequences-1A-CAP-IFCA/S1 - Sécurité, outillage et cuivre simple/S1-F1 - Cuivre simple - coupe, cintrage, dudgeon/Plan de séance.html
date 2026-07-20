@@ -1,0 +1,203 @@
+<meta charset="utf-8">
+<title>Plan de séance — S1-F1 · Cuivre simple : coupe, cintrage, dudgeon</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage table{font-size:9.5pt}
+  .passage td{border:1px solid #e3ddfb; padding:5px 8px; vertical-align:top}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Sécurité, outillage et cuivre simple — <b>module atelier S1-F1</b> (4 h)</td>
+      <td style="width:38%"><span class="lib">Module S1-F1 · 1<sup>er</sup> module atelier froid de S1</span><b>Cuivre simple : coupe, cintrage, dudgeon</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span> P1 · positionnement : 1<sup>re</sup> année, sem. 1-4</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Passage 1 et passage 2 — dates à caler sur le calendrier réel de rentrée (sept. 2026, cf. <i>_CADRAGE-S1.md</i>)</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — établis + poste coupe + poste cintrage + poste dudgeon + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée, vécue 2 fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur, demi-groupe</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T6</b> Préparer, vérifier les matériels et outillages<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> aucun prérequis métier — première séquence de la 1<sup>re</sup> année<br><span class="nuance">Travaillés :</span> <b>S2.1</b> Outils, normes et représentation <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité de base sans rappel (gants, lunettes) · rigueur du geste (un seul à la fois) · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte</span> <b>C3.1</b> Organiser le poste de travail <span class="nuance">sur T6 · S2.1</span><br><span class="statut">Découverte</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">sur T6 · T12 · S2.1</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-2026-S1-F1-01</b> : le <b>plateau technique</b> doit être réapprovisionné en
+  tronçons de cuivre façonnés pour équiper les futurs postes des <b>bancs école</b>. Aujourd'hui : <b>couper à
+  longueur et ébavurer</b>, <b>cintrer au ressort</b>, réaliser un <b>dudgeon</b> avec son écrou. Aucune brasure
+  aujourd'hui — c'est votre toute première séance d'atelier froid, un seul geste à la fois.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>nommer</b> les 2 types de tube cuivre (recuit, écroui) et les outils du poste ;</li>
+        <li><b>couper</b> un tube cuivre à la longueur demandée et l'<b>ébavurer</b> ;</li>
+        <li><b>cintrer</b> un tube au ressort en respectant le rayon minimum ;</li>
+        <li><b>réaliser un dudgeon</b> conforme et vérifier son emboîtement avec l'écrou.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(aucun prérequis métier)</i></h4>
+      <ul>
+        <li>suivre une consigne orale simple, une à la fois ;</li>
+        <li>respecter les règles de vie de l'atelier données à l'accueil de rentrée ;</li>
+        <li>porter une tenue de travail (pas encore un réflexe : à vérifier aujourd'hui).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode du module : démonstration commentée des 3 gestes, puis ateliers tournants (poste coupe · poste cintrage · poste dudgeon)</b> —
+  chaque élève passe par les 3 postes. Public débutant, semaine 1-4 : <b>un seul geste à la fois</b>, l'objet se
+  manipule avant de se nommer. Le module est <b>vécu 2 fois</b> par élève (passage 1 très guidé, passage 2 moins
+  d'aide) — voir l'encadré ci-dessous.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b>
+  <table>
+    <tr><td style="width:12%"><b>Passage 1</b><br><span class="nuance">découverte très guidée</span></td><td>Démonstration <b>intégrale</b> des 3 gestes avant toute manipulation. Le professeur <b>valide chaque pièce</b> avant le passage au poste suivant. Fiches de relevé très guidées (cases à cocher détaillées). Auto-positionnement accompagné, geste par geste.</td></tr>
+    <tr><td><b>Passage 2</b><br><span class="nuance">consolidation, moins d'aide</span></td><td>La démonstration devient un <b>rappel court</b> (points de contrôle seulement). Le professeur valide <b>par sondage</b>, pas systématiquement. L'élève est invité à <b>repérer lui-même</b> une pièce non conforme avant de la présenter. Ouverture, en fin de poste cintrage, sur le repère « 1,57 × rayon de cintrage » (vu en détail en 2<sup>de</sup> année) — un <b>plus</b>, pas une exigence du jour.</td></tr>
+  </table></div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques</b> : coupures sur arêtes de cuivre non ébavurées,
+  projection de limaille aux yeux, doigts pincés à la cintreuse/dudgeonnière · <b>EPI</b> : gants anti-coupure,
+  lunettes de protection. <b>Gestes interdits</b> : <b>jamais de scie à métaux</b> pour couper le cuivre (la
+  limaille entrerait dans le tube et abîmerait le circuit) ; jamais de dudgeon forcé au-delà de la butée ; jamais
+  d'outil tranchant laissé hors de son poste. <b class="t">🚨 En cas d'incident :</b> arrêter le poste, alerter le
+  professeur, ne pas déplacer une personne électrisée ou blessée, désinfecter immédiatement toute coupure (le cuivre s'infecte vite) — trousse de secours et arrêt
+  d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S1-F1 · module atelier · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.
+  Préparation de chantier (phases 1 à 5) : <b>1 h 00</b>, à la limite du plafond d'1 h maximum. Trame identique aux
+  2 passages ; seul le niveau d'aide change (phases 5 et 6a, cf. encadré Passage 1/Passage 2 de la feuille 1).</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel du fonctionnement du module (démonstration puis ateliers tournants). Passage 1 : très bref rappel des règles de vie de l'atelier.</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, découvrent (ou retrouvent) l'atelier froid.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S1-F1-01 : préparer des tronçons de cuivre façonnés (coupés, cintrés, dudgeonnés) pour réapprovisionner le plateau technique.</td><td>Présente l'ordre d'intervention, montre des exemples de pièces déjà façonnées.</td><td>Reformulent la mission du module.</td><td>Ordre d'intervention imprimé · exemples de pièces façonnées</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » lus et affichés ; lien avec la formule (C3.1, C3.4, statut Découverte).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : observer et manipuler 2 échantillons de tube cuivre (couronne, barres) pour distinguer recuit / écroui avant même de les nommer.</td><td>Distribue l'exercice, contrôle les tenues et les EPI au vestiaire (passage 1 : explique chaque EPI).</td><td>Se changent par vagues ; en attente, observent et manipulent les échantillons.</td><td>Échantillons de tube cuivre (couronne + barres) · photos · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (risques du jour : coupures, projections, doigts pincés ; gestes interdits ; conduite en cas de coupure ; trousse et arrêt d'urgence localisés) puis <b>planter la notion</b> : OBSERVER un tube ébavuré / non ébavuré (au doigt, prudemment) → NOMMER « ébavurage » → EXPLICITER son rôle (protéger le circuit et les doigts).</td><td>Anime le rituel sécurité, présente les 2 échantillons ébavuré/non ébavuré.</td><td>Observent, répondent aux questions, notent le rôle de l'ébavurage.</td><td>Fiche de sécurité à cocher · échantillon ébavuré/non ébavuré</td><td class="obs"></td></tr>
+    <tr><td>35 min</td><td class="ph">6. Guider l'étude (a) — démonstration commentée des 3 gestes</td><td>Démonstration intégrale et commentée : couper au coupe-tube + ébavurer ; cintrer au ressort ; réaliser un dudgeon et vérifier l'emboîtement avec l'écrou. Un seul poste de démonstration, élèves regroupés à distance de sécurité, aucune manipulation élève. Passage 2 : rappel court, points de contrôle uniquement.</td><td>Réalise et commente chaque geste, insiste sur les points de contrôle (tours du coupe-tube, sens du ressort, contrôle du dudgeon).</td><td>Observent en silence, notent les points de contrôle.</td><td>Coupe-tube, ébavureur, ressort à cintrer, dudgeonnière, chutes de tube de démonstration</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td>30 min</td><td class="ph">6. Guider l'étude (b) — atelier tournant, <span class="jalon">poste coupe</span></td><td>Chaque élève (ou binôme) coupe et ébavure une longueur de tube donnée, sous surveillance du professeur.</td><td>Circule, valide chaque coupe et ébavurage avant rotation.</td><td>Coupent, ébavurent, remplissent le tableau de relevé du poste.</td><td>Coupe-tube, ébavureur, tubes, mètre, fiche de relevé</td><td class="obs"></td></tr>
+    <tr><td>30 min</td><td class="ph">6. Guider l'étude (c) — atelier tournant, <span class="jalon">poste cintrage</span></td><td>Chaque élève cintre un tube au ressort, à l'angle demandé, en respectant le rayon minimum de cintrage.</td><td>Circule, valide chaque cintrage (absence de pincement, rayon respecté).</td><td>Cintrent, remplissent le tableau de relevé du poste.</td><td>Ressorts à cintrer (jeu de diamètres), tubes, fiche de relevé</td><td class="obs"></td></tr>
+    <tr><td>30 min</td><td class="ph">6. Guider l'étude (d) — atelier tournant, <span class="jalon">poste dudgeon</span></td><td>Chaque élève réalise un dudgeon et vérifie l'emboîtement avec l'écrou et le raccord mâle.</td><td>Circule, valide chaque dudgeon (ni trop grand, ni trop petit).</td><td>Dudgeonnent, vérifient l'emboîtement, remplissent le tableau de relevé.</td><td>Dudgeonnière, écrous/raccords mâles, tubes, fiche de relevé</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des 3 fiches de relevé (coupe, cintrage, dudgeon) ; auto-positionnement par compétence (C3.1, C3.4 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leurs 3 pièces, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (chutes récupérées, quantités de tube consommées).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Rangement des outils par poste, tri des chutes de cuivre (bac dédié), nettoyage des établis.</td><td>Supervise le rangement et le tri.</td><td>Rangent, trient, nettoient.</td><td>Bac de récupération des chutes</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S1-F2 — sécurité froid et découverte du cycle sur machine).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Recompte : préparation de chantier (phases 1→5) =
+  10+10+5+15+20 = <b>60 min</b> ; guider l'étude (phase 6, démonstration + pause + 3 postes) = 35+15+30+30+30 =
+  <b>140 min</b> ; synthèse + bon de commande + rangement + clôture = 15+10+10+5 = <b>40 min</b>. Total : 60+140+40 =
+  <b>240 min = 4 h 00 exactes</b>. Croisements disciplinaires : mathématiques (mesures, conversions pouce/mm) ·
+  co-intervention français (carnet de bord) · module F3 (rituel bon de commande).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

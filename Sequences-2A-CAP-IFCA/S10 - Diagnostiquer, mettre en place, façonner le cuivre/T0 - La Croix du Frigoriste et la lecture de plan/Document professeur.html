@@ -1,0 +1,347 @@
+<meta charset="utf-8">
+<title>Document professeur — S10 · Module théorie T0 · La Croix du Frigoriste et la lecture de plan</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + TRAME HORAIRE 1 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>La Croix du Frigoriste · les 4 organes · lecture de plan</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE T0 · 1 h — DOCUMENT PROFESSEUR</span><b>La Croix du Frigoriste et la lecture de plan</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> · sem. 1</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (pas d'atelier ce jour)</td>
+      <td><span class="lib">Durée</span>1 h — cours actif, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → découverte guidée sur schéma → exercices d'application (dont 2 croquis) → trace écrite</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Module d'ouverture — pas de tâche d'atelier ancrée ce jour</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe<br><b>S2.2</b> Lecture de plan<br><b>S2.3</b> Croquis à main levée <span class="nuance">en application</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur d'observation · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte — non remontée</span> module d'ouverture de S10, prépare le module atelier A0 (diagnostic de la machine et état des lieux)</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même numérotation que le document élève
+  (observations 1 à 3, questions, exercices 1 à 4) et y ajoute les réponses attendues, les points de vigilance,
+  la conduite minutée en 4 phases et la différenciation. Module <b>qualitatif</b> : <b>aucune valeur chiffrée</b>
+  n'est utilisée dans ce module (ni pression, ni température, ni seuil de surchauffe/sous-refroidissement — ces
+  seuils appartiennent aux modules T1/T2 de S11). L'objectif est uniquement de <b>nommer, positionner et
+  dessiner</b> les 4 organes, et de distinguer HP/BP.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Cours actif en 4 phases</b>, module d'ouverture de la séquence S10 : accroche
+  par une situation de chantier (machine inconnue), découverte guidée où l'élève observe et cherche à nommer
+  les organes <b>avant</b> que le professeur ne les nomme, application par lecture de plan et <b>deux exercices
+  de croquis à main levée</b> (S2.3), puis trace écrite personnelle avec un 3<sup>e</sup> croquis « de mémoire »
+  qui sert d'auto-vérification. Bloom CAP 1→3 (connaître, comprendre, représenter). C'est le module d'ouverture
+  de toute la séquence : il ne suppose aucun prérequis autre que la scolarité de 1<sup>re</sup> année.</p>
+
+  <h3 class="section">Trame horaire — module 1 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:22%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 1 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>5 min</td><td class="ph">1. Accroche / situation</td><td>Lecture collective de la situation : un technicien face à une machine inconnue à l'arrêt. Question de départ posée à l'oral puis notée par chacun (« combien d'organes principaux, au minimum ? »). Ne pas corriger tout de suite : la reprendre en phase 4.</td></tr>
+    <tr><td>20 min</td><td class="ph">2. Découverte</td><td>Observation individuelle silencieuse du schéma « croix du frigoriste » (observation 1) : chaque élève tente de nommer les 4 organes <b>avant</b> que le professeur ne les nomme. Mise en commun orale courte (qui a trouvé quoi), puis le professeur formule et affiche l'encadré « Les 4 organes, dans l'ordre de circulation ». Lecture guidée de la légende du schéma (observation 2) : état du fluide aux repères 1 et 3. Puis présentation de la notion HP/BP (encadré dédié) et observation 3 (colorier/décrire les deux moitiés de la croix).</td></tr>
+    <tr><td>25 min</td><td class="ph">3. Application</td><td>Exercice 1 (8 min) : croix vierge à main levée, les 4 organes + sens de circulation, individuel, correction flash à l'oral avec un élève au tableau. Exercice 2 (7 min) : lecture de plan, tableau des 4 repères (nom + HP/BP), correction collective. Exercice 3 (5 min) : vrai/faux, correction flash main levée. Exercice 4 (5 min, amorcé, terminé si besoin en phase 4) : croquis à main levée complet avec légende HP/BP, à conserver comme point de départ du module A0.</td></tr>
+    <tr><td>10 min</td><td class="ph">4. Synthèse / trace écrite</td><td>Retour sur la question de départ de l'accroche (réponse : 4 organes minimum). Chacun complète sa fiche de trace écrite avec ses propres mots, puis réalise le <b>croquis minute de mémoire</b> (sans regarder les feuilles précédentes) : c'est le test réel de l'acquisition du jour. Auto-positionnement 0-4 sur S5.1/S2.2.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 5 + 20 + 25 + 10 = <b>60 min exactes</b>, conforme à la
+  trame « Module THÉORIE — 1 h » du cadrage S10.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ ACCROCHE + DÉCOUVERTE (LES 4 ORGANES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — question de départ (accroche)</h3>
+  <div class="reponse"><b class="t">Question de départ</b> — Combien d'organes principaux faut-il, au minimum,
+  pour qu'un circuit frigorifique fonctionne ?<br><br>
+  <b>Réponse attendue :</b> <b>4 organes</b> : compresseur, condenseur, détendeur, évaporateur. <b>Ne pas
+  corriger immédiatement</b> : accepter toutes les réponses notées (même incomplètes ou fausses), les reprendre
+  en phase 4 une fois la notion construite.</div>
+
+  <h3 class="section">Corrigé — découverte, les 4 organes (observation 1)</h3>
+  <div class="reponse"><b class="t">Observation 1</b> — Nommer les 4 organes vus sur le schéma, un par branche
+  de la croix.<br><br>
+  <b>Réponse attendue :</b> en partant du repère 1 et en tournant dans le sens de circulation : <b>compresseur</b>
+  (organe qui aspire et refoule) → <b>condenseur</b> (branche haute, gaz chaud qui devient liquide) →
+  <b>détendeur</b> (organe entre ligne liquide et évaporateur) → <b>évaporateur</b> (branche basse, fluide qui
+  se vaporise) → retour au compresseur.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas attendre une réponse parfaite à ce stade :
+  l'objectif de la phase 2 est justement de faire émerger ce que les élèves savent déjà avant de nommer
+  formellement. Valoriser toute tentative correcte, même partielle, avant la mise en commun.</div>
+
+  <div class="reponse"><b class="t">Observation 2</b> — État du fluide au repère 1 (après compresseur) et au
+  repère 3 (après détendeur), d'après la légende.<br><br>
+  <b>Réponse attendue :</b> repère 1 : <b>gaz</b> (gaz chaud haute pression, tout juste refoulé par le
+  compresseur). Repère 3 : <b>diphasique/liquide</b> selon le schéma utilisé (mélange liquide/vapeur basse
+  pression, tout juste détendu) — se référer strictement à la légende du schéma projeté, sans inventer d'état
+  intermédiaire non indiqué.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser dire que le fluide est
+  « liquide » au repère 1 : c'est l'erreur la plus fréquente (confusion avec la sortie du condenseur, plus
+  loin sur la même branche HP). Bien faire distinguer « juste après le compresseur » (gaz) de « juste après le
+  condenseur » (liquide).</div>
+
+  <h4 class="section">Question à faire ressortir en phase 2</h4>
+  <div class="reponse"><b class="t">Question</b> — À quel organe le fluide retourne-t-il une fois sorti de
+  l'évaporateur ?<br><br>
+  <b>Réponse attendue :</b> au <b>compresseur</b> : c'est lui qui aspire le fluide gazeux basse pression sortant
+  de l'évaporateur, ce qui referme le cycle.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ DÉCOUVERTE (HP/BP) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — découverte, haute pression / basse pression (observation 3)</h3>
+  <div class="reponse"><b class="t">Observation 3</b> — Colorier/décrire la partie haute pression d'un côté, la
+  partie basse pression de l'autre, sur le schéma de la feuille 1.<br><br>
+  <b>Réponse attendue :</b> <b>côté HP</b> : refoulement du compresseur → condenseur → ligne liquide, jusqu'à
+  l'entrée du détendeur. <b>Côté BP</b> : sortie du détendeur → évaporateur → ligne d'aspiration, jusqu'à
+  l'entrée du compresseur. Le <b>compresseur</b> et le <b>détendeur</b> sont les deux organes-frontières qui
+  séparent les deux pressions.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Erreur fréquente : situer la frontière HP/BP au
+  niveau du condenseur ou de l'évaporateur plutôt qu'au niveau des deux organes qui font varier la pression
+  (compresseur, détendeur). Insister : condenseur et évaporateur sont chacun <b>entièrement</b> d'un seul côté
+  (HP pour le condenseur, BP pour l'évaporateur), ce sont bien le compresseur et le détendeur qui marquent le
+  changement de pression.</div>
+
+  <h4 class="section">Tableau à faire ressortir (aucune valeur chiffrée dans ce module)</h4>
+  <table class="mini">
+    <tr><th style="width:20%">Organe</th><th style="width:20%">Côté</th><th>Fonction en une phrase</th></tr>
+    <tr><td>Compresseur</td><td>Frontière BP → HP</td><td>Aspire le gaz basse pression, le refoule à haute pression.</td></tr>
+    <tr><td>Condenseur</td><td>Haute pression</td><td>Refroidit le gaz chaud jusqu'à le rendre liquide.</td></tr>
+    <tr><td>Détendeur</td><td>Frontière HP → BP</td><td>Fait chuter la pression du liquide haute pression.</td></tr>
+    <tr><td>Évaporateur</td><td>Basse pression</td><td>Vaporise le fluide en captant de la chaleur.</td></tr>
+  </table>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Aucune valeur numérique de pression ou de
+  température n'est donnée ni attendue dans ce module : il est volontairement <b>qualitatif</b>. Les seuils
+  chiffrés (surchauffe, sous-refroidissement) sont traités plus tard, aux modules T1/T2 de la séquence S11.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ APPLICATION (EXERCICES 1-4) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 1 (croix vierge à compléter)</h3>
+  <div class="reponse">Croix à 4 branches : <b>compresseur</b> et <b>détendeur</b> aux deux organes-frontières,
+  <b>condenseur</b> sur la branche haute pression, <b>évaporateur</b> sur la branche basse pression. La flèche
+  de sens de circulation part du compresseur, traverse le condenseur, le détendeur, l'évaporateur, et revient au
+  compresseur.<br><br>
+  <b>HP / BP :</b> branche compresseur → condenseur = <b>HP</b> ; branche détendeur → évaporateur = <b>BP</b>
+  (le compresseur et le détendeur restent les deux organes-frontières, cf. feuille 3).<br>
+  <b>État du fluide :</b> sortie compresseur = <b>vapeur</b> (gaz chaud) ; sortie condenseur = <b>liquide</b> ;
+  sortie détendeur = <b>liquide/vapeur (diphasique)</b> ; sortie évaporateur = <b>vapeur</b>.<br>
+  <b>Symboles :</b> accepter le symbole normalisé de chaque organe (voir légende du schéma feuille 1) ou, à
+  défaut, une forme simple légendée en toutes lettres — à ce stade, l'essentiel est la lisibilité, pas la
+  conformité graphique stricte à la norme.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Correction flash à l'oral (un élève au tableau) :
+  ne pas s'attarder si la classe a majoritairement réussi, l'essentiel du temps de la phase 3 est sur les
+  exercices 2 et 4. Erreur typique sur cet exercice enrichi : confondre l'état « vapeur » en sortie de
+  détendeur avec un liquide pur — rappeler qu'il s'agit d'un mélange diphasique, cohérent avec l'observation 2
+  de la feuille 1.</div>
+
+  <h3 class="section">Corrigé — Exercice 2 (lecture de plan)</h3>
+  <table class="mini">
+    <tr><th style="width:16%">Repère</th><th>Nom de l'organe ou de la canalisation</th><th style="width:14%">HP ou BP</th></tr>
+    <tr><td>Repère 1</td><td>Refoulement du compresseur (gaz chaud)</td><td><b>HP</b></td></tr>
+    <tr><td>Repère 2</td><td>Ligne liquide, sortie condenseur</td><td><b>HP</b></td></tr>
+    <tr><td>Repère 3</td><td>Sortie détendeur, entrée évaporateur</td><td><b>BP</b></td></tr>
+    <tr><td>Repère 4</td><td>Ligne d'aspiration, sortie évaporateur</td><td><b>BP</b></td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Les repères exacts (numérotation, libellés)
+  doivent être ajustés à la légende réelle du schéma <code>croix-frigoriste-schema-technique.svg</code>
+  projeté en classe : ce tableau donne la logique attendue (2 repères HP, 2 repères BP), à faire correspondre
+  précisément aux repères visibles sur le fichier.</p>
+
+  <h3 class="section">Corrigé — Exercice 3 (vrai/faux)</h3>
+  <table class="mini">
+    <tr><th style="width:70%">Affirmation</th><th>Réponse</th></tr>
+    <tr><td>Le compresseur aspire le fluide côté basse pression.</td><td><b>Vrai</b>.</td></tr>
+    <tr><td>Le condenseur transforme le gaz haute pression en liquide.</td><td><b>Vrai</b>.</td></tr>
+    <tr><td>Le détendeur fait monter la pression du fluide.</td><td><b>Faux</b> — il la fait chuter.</td></tr>
+    <tr><td>L'évaporateur est situé côté basse pression.</td><td><b>Vrai</b>.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — Exercice 4 (croquis à main levée complet)</h3>
+  <div class="reponse">Attendu : une croix à 4 branches dessinée librement (pas besoin d'échelle ni de symboles
+  normalisés à ce stade), les 4 organes nommés en toutes lettres à côté de chaque branche, une flèche de sens de
+  circulation continue, et une légende séparée indiquant clairement quelle moitié est HP et laquelle est BP.
+  C'est ce croquis qui sert de point de départ concret au module atelier <b>A0</b> (diagnostic de la machine et
+  état des lieux) : garder le document complété par l'élève, il y sera réutilisé.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas exiger de perfection graphique : le
+  critère de réussite est la <b>lisibilité et l'exhaustivité</b> (4 organes + sens + légende HP/BP présents),
+  pas la qualité du trait. C'est un outil de communication technique, pas une évaluation de dessin.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module théorie T0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Grille <b>légère</b>, statut <b>Découverte — non
+  remontée</b> sur École Directe : elle sert de repère personnel à l'élève avant le module atelier A0, pas
+  d'évaluation sommative.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Savoir</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:20%">3-4</th></tr>
+    <tr>
+      <td><b>S5.1 · S2.2</b> Les 4 organes de la croix et lecture de plan <span class="nuance">Découverte — non remontée</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne nomme pas les 4 organes et/ou ne repère pas HP/BP sur un schéma.</td>
+      <td>Nomme les 4 organes et repère HP/BP avec l'aide du professeur ou d'un pair.</td>
+      <td>Nomme seul les 4 organes, les place sur un plan, distingue HP/BP sans aide (niveau 4 : explique en plus pourquoi le compresseur et le détendeur sont les deux organes-frontières).</td>
+    </tr>
+    <tr>
+      <td><b>S2.3</b> Croquis à main levée de la croix <span class="nuance">en application, non remontée</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Croquis incomplet (organes manquants, pas de sens de circulation, pas de légende HP/BP).</td>
+      <td>Croquis complet mais avec l'aide du professeur pour la disposition ou la légende.</td>
+      <td>Croquis complet et lisible réalisé seul (4 organes, sens de circulation, légende HP/BP), y compris le croquis « de mémoire » de la synthèse.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fournir une croix déjà tracée (4 branches vides) pour l'exercice 1 au lieu de la faire dessiner ; se limiter à 2 organes à placer soi-même sur 4 (compresseur + détendeur), les 2 autres donnés ; pour l'exercice 4, autoriser à recopier la croix du schéma projeté plutôt que de la produire entièrement de mémoire.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, les 4 exercices en autonomie guidée, correction collective après chacun.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus, à l'oral : « sur quelle branche de la croix installerez-vous, plus tard dans la séquence, le filtre déshydrateur et le voyant liquide ? » (amorce du module A2 de S11, sans donner de détail supplémentaire ce jour).</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire des 4 organes affiché au tableau avec pictogramme simple à côté de chaque mot (compresseur = flèche qui pousse ; condenseur = flocon qui devient goutte ; détendeur = entonnoir qui rétrécit ; évaporateur = goutte qui devient nuage) ; légende HP/BP en deux couleurs distinctes systématiques (rouge = HP, bleu = BP) reprises sur tous les documents de la séquence ; phrases courtes à l'oral, une consigne à la fois.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Cadre de dessin bien délimité (comme dans le document élève) pour éviter la dispersion du trait ; exercice 2 (lecture de plan) présenté ligne par ligne, une seule ligne du tableau visible à la fois si besoin (cacher le reste avec une feuille) ; limiter la durée d'observation silencieuse individuelle de la phase 2 à quelques minutes avant la première relance orale, pour éviter la fixation prolongée sur un schéma complexe.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence</h3>
+  <ul class="liste-num">
+    <li>Le module atelier <b>A0</b> (diagnostic de la machine et état des lieux) réutilise directement le
+    croquis à main levée produit ici comme point de départ de l'inventaire et du constat ;</li>
+    <li>Les modules <b>T1</b> et <b>T2</b> de la séquence S11 reprendront la croix pour y ajouter les seuils
+    chiffrés (surchauffe 5-10 K, sous-refroidissement 4-8 K), volontairement absents de ce module d'ouverture ;</li>
+    <li>Le carnet de bord <b>F3</b> peut accueillir une trace courte du jour si l'enseignant le souhaite (non
+    obligatoire pour ce module).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : schéma « La croix
+  du frigoriste » (F. Henninot) ; exercice 1 adapté d'« eval croix du frigo » (F. Henninot, 2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

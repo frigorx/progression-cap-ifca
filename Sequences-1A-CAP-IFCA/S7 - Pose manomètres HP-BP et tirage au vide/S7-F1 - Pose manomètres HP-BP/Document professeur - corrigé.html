@@ -1,0 +1,397 @@
+<meta charset="utf-8">
+<title>Document professeur — S7-F1 · Pose manomètres HP/BP</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .role{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt;
+    border-radius:8px; padding:1px 9px; margin-right:5px}
+  .role.op{background:#e3e9f2; color:var(--bleu); border:1px solid #b9c8e0}
+  .role.ctrl{background:#fff0e6; color:#c14a17; border:1px solid #f0b989}
+  .role.seul{background:#e6f5ec; color:#1f7a4d; border:1px solid #9dd7b6}
+  .avenir{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:9.8pt}
+  .avenir b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .ordre{font-size:9.3pt; margin:.3em 0 .9em}
+  .ordre th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .ordre td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .ordre .rang{width:6%; text-align:center; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:#fff; background:var(--bleu)}
+  .ordre .tag{width:8%; text-align:center; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--violet)}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pose manomètres HP/BP et tirage au vide</td>
+      <td style="width:38%"><span class="lib">Module S7-F1 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Pose manomètres HP/BP</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> · semaines 22-23</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — postes manifold sur machines en charge + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage, deux demi-journées (semaines 22 et 23)</td>
+      <td><span class="lib">Modalité</span>Procédure à remettre en ordre (cartes-étapes mélangées) — méthode imposée du module</td>
+      <td><span class="lib">Encadrement</span>1 professeur, détenteur de l'attestation d'aptitude, demi-groupe — présence permanente pendant toute manipulation du manifold, y compris passage 2</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail<br><b>T15</b> Renseigner les documents de mise en service <span class="nuance">découverte</span></div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span><br><span class="nuance">Prérequis :</span> réglette P/T (S4), réseaux fluidiques (S5.5)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste · acceptation de la supervision sur machine en charge · honnêteté de la lecture · autonomie croissante (passage 2)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte → Confortement</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle <span class="nuance">sur T11 · T15 · S5.1</span><br><span class="statut">Confortement → vers Maîtrise</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T15 · S5.1</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module S7-F1 :
+  mêmes 2 passages, mêmes 2 jalons par passage, même numérotation. Il y ajoute : <b>l'ordre correct</b> des
+  cartes-étapes de pose et de dépose (corrigé de l'annexe planche à découper), l'organisation des postes de
+  pose, les critères observables, les erreurs typiques et leur remédiation, le minutage 4 h recompté, la
+  différenciation, et le lien avec S7-F2 et S7-T1. <b>Aucune valeur non autorisée n'est donnée</b> : toute
+  pression de service reste une lecture propre à chaque machine du jour, jamais une valeur affirmée dans ce
+  document.</p>
+
+  <h3 class="section">Méthode pédagogique du module — la procédure à remettre en ordre</h3>
+  <p style="font-size:10.5pt">Les étapes de pose (puis de dépose) du manifold sont fournies <b>mélangées</b>, en
+  cartes-étapes. Chaque binôme doit d'abord <b>reconstituer l'ordre</b> qu'il juge logique, le faire
+  <b>valider par le professeur</b>, puis <b>exécuter</b> sa propre procédure sur la machine. Le principe : une
+  procédure se comprend avant de s'exécuter — sur une machine en charge, un geste dans le mauvais ordre peut
+  être dangereux (contact avec du fluide) ou simplement inefficace (rien à lire, flexible mal purgé). La dépose
+  suit exactement le même principe, avec un second jeu de cartes.</p>
+  <div class="vigilance"><b class="t">Point de vigilance central du module</b> — Ne jamais autoriser
+  l'exécution avant d'avoir explicitement validé l'ordre reconstitué : c'est le cœur de la méthode. Un binôme
+  qui « commence à brancher pendant qu'il réfléchit encore à l'ordre » perd le bénéfice pédagogique de
+  l'exercice — le recadrer immédiatement, sans dramatiser.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (procédure à remettre en ordre, passage 1 découverte / passage 2 consolidation).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S7-1 : poser les manomètres sur le groupe de l'atelier et relever les pressions pour la feuille de mise en service.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés et commentés, lien avec la formule (C4.7 Découverte→Confortement, C4.5 Confortement vers M).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; quiz éclair sur la réglette P/T (S4) et les réseaux fluidiques (S5.5) ; annonce du changement du jour (machine en charge, supervision renforcée, purge brève).</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité (machine en charge, gestes interdits : jamais desserrer sous pression, jamais ouvrir le circuit, purge toujours brève) puis « planter la notion » : présentation d'une carte-étape isolée, question « avant ou après quoi ? » → NOMMER « procédure » et « ordre logique » → EXPLICITER pourquoi on comprend avant d'agir sur une machine en charge. Distribution des jeux de cartes mélangées.</td></tr>
+    <tr><td><b>85 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — jalon 1 / 1' : reconstitution + pose</td><td>Passage 1 (85 min) : reconstitution en binôme des cartes de POSE, validation, installation, raccordement HP/BP, purge brève. Passage 2 (50 min) : reconstitution plus rapide, moins d'aide, installation et raccordement.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td><b>40 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — jalon 2 / 2' : lecture + relevés + dépose</td><td>Passage 1 (40 min) : lecture HP/BP, report avec réglette, reconstitution et exécution de la dépose. Passage 2 (75 min) : lecture à deux moments (mise en régime puis stabilisé), relevés complets, dépose en autonomie, verdict de cohérence.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des feuilles de relevés, auto-positionnement (C4.7, C4.5 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord (F3) + bon de commande (joints, consommables).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Vérification des postes (manifold rangé, bouchons remis), nettoyage des établis.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S7-F2, tirage au vide réel).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; jalon 1/1' + pause 15 min + jalon 2/2' = 2 h 20 (passage 1 : 85+15+40 ; passage 2 :
+  50+15+75) ; synthèse 15 + bon de commande 10 + rangement 10 + clôture 5 = 40 min. Total module : 1 h 00 + 2 h 20
+  + 40 min = <b>4 h 00 exactes</b>, aux deux passages, conforme au plan de séance.</p>
+
+  <div class="avenir"><b class="t">Ce que ce module prépare</b> — Ce module reste un module de
+  <b>Découverte → Confortement</b> pour C4.7 (première pose réelle de manomètres) et de <b>Confortement</b>
+  pour C4.5 (déjà rencontrée en théorie à S4 et S5-T2). La rigueur de lecture acquise ici nourrit directement
+  <b>S7-T1</b> (semaine 24), où les relevés réels de toute la classe seront mis en commun et confrontés à la
+  réglette P/T et aux plages de surchauffe/sous-refroidissement (seuils charte). Elle prépare aussi <b>S7-F2</b>
+  (tirage au vide réel, sem. 24-25), où le même manifold sera utilisé, cette fois flexible jaune raccordé à une
+  pompe à vide sur un circuit sans fluide.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ JALON 1 : ORDRE DE LA POSE + ORGANISATION DES POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — ordre correct des cartes-étapes de POSE (annexe planche à découper)</h3>
+  <p style="font-size:9.5pt; color:var(--gris)">Les lettres correspondent au repérage de l'annexe élève
+  (présentée mélangée). L'ordre ci-dessous est l'ordre CORRECT à valider au jalon 1/1'.</p>
+  <table class="ordre">
+    <tr><th class="rang">Rang</th><th class="tag">Carte</th><th>Étape de la POSE</th><th style="width:22%">Source</th></tr>
+    <tr><td class="rang">1</td><td class="tag">A</td><td>Vérifier et remettre à zéro les deux manomètres (HP et BP) avant tout raccordement.</td><td>Document de travail — pose du bipasse de service (Correction), étape 1</td></tr>
+    <tr><td class="rang">2</td><td class="tag">B</td><td>Vérifier l'état des flexibles et des raccords : rouge (HP), bleu (BP), jaune (service) ; aucun joint abîmé.</td><td>idem, étape 2</td></tr>
+    <tr><td class="rang">3</td><td class="tag">C</td><td>Retirer les capuchons de protection des vannes de service HP et BP.</td><td>idem, étape 3</td></tr>
+    <tr><td class="rang">4</td><td class="tag">D</td><td>Desserrer le presse-étoupe de la vanne de service d'un quart de tour.</td><td>idem, étape 4 ; Fiche branchement débranchement des manifolds élève</td></tr>
+    <tr><td class="rang">5</td><td class="tag">E</td><td>Vérifier que la vanne de service est en position fermée (« siège arrière ») avant de continuer.</td><td>idem, étape 5</td></tr>
+    <tr><td class="rang">6</td><td class="tag">F</td><td>Resserrer le presse-étoupe puis dévisser le bouchon de la prise de pression.</td><td>Fiche branchement débranchement des manifolds élève ; Correction, étape 6</td></tr>
+    <tr><td class="rang">7</td><td class="tag">G</td><td>Raccorder le flexible rouge sur la prise HP et le flexible bleu sur la prise BP — serrage à la MAIN uniquement.</td><td>Correction, étape 7 ; 03-Manifold NEW.docx (« à la force des doigts »)</td></tr>
+    <tr><td class="rang">8</td><td class="tag">H</td><td>Purger brièvement chaque flexible avant le serrage définitif.</td><td>TP_Complet_Manometres_Pressostat_BP_CAP_IFCA.docx, activité 4 (purge du flexible central), adapté pour rester bref en 1A</td></tr>
+    <tr><td class="rang">9</td><td class="tag">I</td><td>Desserrer le presse-étoupe, placer le carré de manœuvre en position intermédiaire, resserrer : le manifold passe en position de lecture.</td><td>Fiche branchement débranchement des manifolds élève, action 004</td></tr>
+    <tr><td class="rang">10</td><td class="tag">J</td><td>Lire la pression HP et la pression BP affichées sur les cadrans.</td><td>idem</td></tr>
+    <tr><td class="rang">11</td><td class="tag">K</td><td>Reporter les deux pressions lues, avec la température de réglette correspondante, sur la feuille de relevés.</td><td>Fiche_CAP_IFCA_Pose_Manometres.docx ; Support_Pose_Manometres_CAP_IFCA.docx (tableaux PK/TK/P0/T0)</td></tr>
+  </table>
+
+  <h3 class="section">Organisation des postes de pose</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Poste manifold</b></td><td>Machine en charge, en fonctionnement, manifold, cartes-étapes, feuille de relevés — un poste par binôme aux deux passages.</td><td>Vérifier avant la séance que chaque machine du poste fonctionne normalement (pas de défaut préexistant à diagnostiquer aujourd'hui).</td></tr>
+    <tr><td><b>Poste témoin (phase 5)</b></td><td>Préparé à l'avance par le professeur pour présenter une carte-étape isolée.</td><td>Choisir une carte non triviale (ex. carte E ou H) pour que la question « avant ou après quoi ? » ouvre une vraie discussion.</td></tr>
+    <tr><td><b>Combien de postes manifold simultanés ?</b></td><td>Autant que de binômes si le nombre de manifolds et de machines disponibles le permet ; sinon, rotation organisée avec un carnet de bord d'attente (quiz éclair de réglette).</td><td>Point ouvert (cf. <i>_ETAT.md</i>) : nombre réel de machines support et de manifolds disponibles à l'atelier.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — critères observables du jalon 1 / 1'</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Reconstitution avant exécution</td><td>Le binôme pose son ordre de cartes AVANT de toucher au manifold ou à la machine ; aucun geste ne commence avant validation professeur.</td></tr>
+    <tr><td>Ordre correct ou proche</td><td>L'essentiel de la logique est respecté (vérifications avant raccordement, raccordement avant purge, purge avant lecture) ; un échange isolé de deux cartes voisines n'est pas disqualifiant si le binôme peut justifier son choix.</td></tr>
+    <tr><td>Repère HP rouge / BP bleu</td><td>Aucune confusion tolérée : le flexible rouge va toujours sur la prise HP, le bleu toujours sur la prise BP.</td></tr>
+    <tr><td>Serrage et purge</td><td>Serrage à la main uniquement ; purge brève et réellement réalisée (pas seulement cochée).</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1 / 1'</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Inversion HP/BP</b> (flexible rouge branché sur la prise BP, ou l'inverse)</td><td>Arrêt immédiat, faire redire au binôme la convention (rouge = HP, bleu = BP) avant de corriger le geste.</td></tr>
+    <tr><td><b>Serrage forcé à la clé</b></td><td>Recadrage ferme : rappeler que forcer un raccord peut écraser le joint et provoquer une fuite — serrage à la main uniquement, jamais à la clé.</td></tr>
+    <tr><td><b>Purge oubliée ou prolongée</b></td><td>Si oubliée : faire reprendre avant le serrage définitif. Si prolongée : rappeler que la purge reste brève (émissions à limiter, esprit F-Gas).</td></tr>
+    <tr><td><b>Exécution commencée avant validation de l'ordre</b></td><td>Interrompre, faire revenir à l'étape de reconstitution : le sens de la méthode est de comprendre avant d'agir.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 2 : ORDRE DE LA DÉPOSE + LECTURE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — ordre correct des cartes-étapes de DÉPOSE</h3>
+  <table class="ordre">
+    <tr><th class="rang">Rang</th><th class="tag">Carte</th><th>Étape de la DÉPOSE</th><th style="width:22%">Source</th></tr>
+    <tr><td class="rang">1</td><td class="tag">L</td><td>Faire valider par le professeur la fin de la lecture, avant toute manœuvre de dépose.</td><td>Principe transversal charte (jamais de geste sans validation de fin d'étape précédente)</td></tr>
+    <tr><td class="rang">2</td><td class="tag">M</td><td>Remettre la vanne de service en position fermée (« siège arrière »), sous supervision.</td><td>Support_Pose_Manometres_CAP_IFCA.docx (vanne HP en cale arrière, principe adapté et simplifié pour 1A — sans manœuvre de pump down)</td></tr>
+    <tr><td class="rang">3</td><td class="tag">N</td><td>Purger brièvement chaque flexible avant de le débrancher — jamais desserrer un raccord sous pression.</td><td>Pose-et-depose-des-manometres_atelier-24-25.docx, partie 5, adapté (purge brève, pas de pump-down réel en 1A)</td></tr>
+    <tr><td class="rang">4</td><td class="tag">O</td><td>Débrancher les flexibles (rouge puis bleu), resserrer les presse-étoupes, remettre les bouchons de protection.</td><td>idem, étapes 6-9 (démontage, bouchons, presse-étoupes)</td></tr>
+    <tr><td class="rang">5</td><td class="tag">P</td><td>Ranger le manifold : manomètres remis à zéro, flexibles enroulés sans coude serré.</td><td>03-Manifold NEW.docx (« le manifold ne doit être monté que pour la durée du travail »)</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Écart assumé avec la procédure professionnelle complète</b> — Les sources
+  professionnelles (dépose réelle, 2<sup>e</sup> année et au-delà) décrivent un véritable <b>pump down</b>
+  (interruption de la circulation de fluide liquide, descente de la BP par le pressostat) avant démontage. En
+  <b>1A</b>, ce module ne demande <b>aucune manœuvre de pump down</b> ni manipulation de la régulation du
+  circuit : la dépose se limite à fermer la vanne de service déjà en position fermée depuis la fin de la
+  lecture, purger et débrancher. Ce choix est délibéré (cadrage S7, cadre fluide 1A) : le pump down complet, en
+  tant que manœuvre de mise en service, sera travaillé plus tard. Ne pas confondre avec la « régulation par
+  tirage au vide » (pump down électrotechnique, 2<sup>e</sup> année, S12) : sujet totalement différent, hors
+  périmètre de ce module.</div>
+
+  <h3 class="section">Corrigé — lecture des pressions et feuille de relevés</h3>
+  <div style="border:1.5px solid var(--bleu); border-radius:6px; background:#eef4ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt">
+  <b>📄 Ressource fournie — table pression/température.</b> Pour lire une température de saturation à partir d'une pression HP ou BP (ou l'inverse), utilisez la <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Reglette%20P-T%20multi-fluides%20(imprimable).pdf">réglette P/T multi-fluides</a> ou la table du fluide de votre banc : <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R134a%20(saturation,%20-100%20a%20+100%20C).pdf">R134a</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R404A%20(saturation).pdf">R404A</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R410A%20(saturation).pdf">R410A</a>. N'inventez jamais une valeur : lisez-la sur la table.
+  </div>
+  <p style="font-size:10.3pt">Aucune valeur n'est imposée par ce document. Chaque binôme lit ses propres
+  pressions sur sa propre machine. Le professeur valide que :</p>
+  <ul class="liste-num">
+    <li>la lecture se fait manifold <b>purgé</b>, en position de lecture (carte I) ;</li>
+    <li>la <b>température de réglette</b> correspond bien à la pression lue, sur le <b>bon fluide</b> (celui de
+    la machine du poste) ;</li>
+    <li>au passage 2, les <b>deux lectures</b> (mise en régime / stabilisé) sont bien prises à des moments
+    réellement différents, et non pas recopiées l'une sur l'autre.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ces relevés réels, conservés par chaque
+  binôme (carnet F3), seront exploités collectivement en S7-T1 (semaine 24) : prévoir de les collecter ou de les
+  faire recopier avant cette séance.</p>
+
+  <h3 class="section">Erreurs typiques — jalon 2 / 2'</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Lecture faite manifold non purgé</b></td><td>Faire reprendre la purge avant de valider la lecture : une pression lue sur un flexible mal purgé peut être faussée.</td></tr>
+    <tr><td><b>Confusion de réglette</b> (mauvais fluide utilisé pour trouver la température)</td><td>Rappeler que la réglette P/T dépend du fluide de la machine : vérifier l'étiquette ou la plaque signalétique avant toute lecture.</td></tr>
+    <tr><td><b>Débranchement d'un flexible encore sous pression</b> (purge de dépose sautée)</td><td>Interruption immédiate, rappel ferme : ce geste est un geste interdit, jamais toléré même « pour aller plus vite ».</td></tr>
+    <tr><td>Passage 2 — deuxième lecture recopiée sur la première par manque de patience</td><td>Rappeler que l'intérêt pédagogique est justement d'observer une éventuelle évolution ; recommencer une lecture réelle.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td><b>Consolidation</b><br><span class="nuance">élèves en remédiation post-É3 (poste étanchéité/brasage/câblage, S7-T0)</span></td><td>Repérés dès la phase 4 (quiz éclair réglette). Au passage 1, ces élèves reçoivent un jeu de cartes en plus petit nombre à la fois (pose puis dépose présentées en deux temps distincts plutôt qu'ensemble) ; au passage 2, un pointage de sécurité plus rapproché accompagne la reconstitution rapide, sans reprendre le geste à leur place.</td></tr>
+    <tr><td><b>Standard</b></td><td>Déroulement tel que décrit dans le document élève : reconstitution puis exécution aux deux passages, 2 jalons.</td></tr>
+    <tr><td><b>Approfondissement</b><br><span class="nuance">tutorat</span></td><td>Une fois leur manifold posé et validé, ces élèves peuvent, à la demande du professeur, expliquer à un pair pourquoi l'ordre des cartes compte sur une machine en charge — sans jamais manipuler le manifold d'un autre poste.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire répété à l'identique (« purger », « serrer à la main », « lire »), cartes-étapes très visuelles (un geste = une carte, peu de texte), couleurs HP/BP associées systématiquement au mot (rouge = HP toujours dit ensemble).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Les cartes-étapes numérotées une fois reconstituées cadrent la nouveauté de la méthode ; annoncer explicitement en phase 4 le principe « on comprend avant d'agir » pour limiter l'anxiété devant un jeu de cartes qui semble d'abord désordonné.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>S7-T0</b> « Retour d'É3 — remédiation ciblée » — même semaine 22, poste étanchéité en particulier
+    réactive la rigueur de manipulation sous pression exigée ici ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord et de la feuille de relevés (module F3) ;</li>
+    <li><b>Modules S4 / S5 / S6</b> — la réglette P/T (S4), les réseaux fluidiques (S5.5), le montage brasé et
+    son étanchéité prouvée au PV (S5/S6) ;</li>
+    <li><b>S7-F2</b> (tirage au vide réel, sem. 24-25) — même manifold, flexible jaune cette fois raccordé à une
+    pompe à vide, sur un circuit sans fluide ;</li>
+    <li><b>S7-T1</b> (lecture de relevés, sem. 24) — exploite directement les relevés réels produits ici,
+    confrontés à la réglette P/T et aux plages de surchauffe/sous-refroidissement (seuils charte 5-10 K / 4-8 K).</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C4.7 Découverte → Confortement</b>
+  (première pose réelle) ; <b>C4.5 Confortement</b> (vers Maîtrise — déjà rencontrée en théorie S4/S5-T2).
+  Aucune remontée École Directe dans ce module : pas de statut Évaluation dans S7 (il arrivera à É4, semaine 32).
+  <b>0 = compétence non observée ce jour</b> (à ne jamais confondre avec une absence, codée séparément).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle <span class="nuance">sur T11 · T15 · S5.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne parvient pas à poser le manifold conformément à la procédure validée, même avec l'aide (inversion HP/BP, serrage forcé, purge oubliée).</td>
+      <td>Pose le manifold conformément à la procédure validée, avec l'aide du professeur.</td>
+      <td>Reconstitue la procédure, la fait valider, pose puis dépose le manifold seul(e) dans son rôle, purge brièvement, sans geste dangereux.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi l'ordre des gestes compte sur une machine en charge.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T15 · S5.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne parvient pas à lire une pression correctement, ou ne relie pas la pression à une température de réglette, malgré l'aide.</td>
+      <td>Lit les pressions HP/BP et trouve la température de réglette correspondante, avec l'aide du professeur.</td>
+      <td>Lit seul(e) les pressions, les reporte honnêtement, relie chaque pression à sa température de réglette sans erreur.</td>
+      <td>Comme « Acquis », et (passage 2) compare deux lectures dans le temps et formule un verdict de cohérence motivé.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste dangereux malgré rappel (manipule sans professeur présent, desserre sous pression, force un raccord) : niveau 1 automatique.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>EPI et gestes respectés sans rappel, procédure reconstituée avant d'agir, relevés honnêtes.</td>
+      <td>Comme « Acquis », et signale spontanément un doute plutôt que de deviner un geste ou une valeur.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité
+  (desserrer sous pression, ouvrir le circuit, manipuler sans professeur présent) entraîne automatiquement un
+  niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité de la pose. Un relevé inventé ou
+  recopié est traité comme un manquement grave à l'honnêteté de la mesure.</div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : S5S1 Pose manifold
+  et tirage au vide — Élèves / Professeur / variante cours F. Henninot (EPI, convention couleurs — seul le
+  volet pose/dépose est repris, le tirage au vide relevant du module S7-F2) ; Document de travail — La pose du
+  bipasse de service (manifold) et sa correction (procédure officielle en 11 étapes, C4-MettreEnService) ;
+  03-Manifold NEW.docx (principe de montage temporaire, échelles P/T par fluide) ; Fiche branchement
+  débranchement des manifolds élève ; Pose-et-depose-des-manometres_atelier-24-25.docx (procédure de dépose en
+  11 étapes, tableaux PK/TK/P0/T0 et points de mesure) ; Support_Pose_Manometres_CAP_IFCA.docx et
+  Fiche_CAP_IFCA_Pose_Manometres.docx (procédure courte adaptée 1A) ; TP_Complet_Manometres_Pressostat_BP_
+  CAP_IFCA.docx (purge du flexible, sécurité azote et F-Gas, formule tCO₂e) ; Charte pédagogique FrigorX
+  (§7 sécurité) ; référentiel CAP IFCA (codes C4.7, C4.5, T11, T15, S5.1). La dépose professionnelle complète
+  (pump down réel) est volontairement ÉCARTÉE de ce module 1A (cf. feuille 3) ; le pump down en tant que
+  stratégie de régulation (2A, S12) est un sujet distinct, non traité ici (cf. <i>_CADRAGE-S7.md</i>, piège
+  d'homonymie). Images extraites de S5S1 POSE MANIFOLD ET TIRAGE AU VIDE PROF.docx (word/media), sourcées en
+  légende de chaque figure du document élève.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .avenir{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

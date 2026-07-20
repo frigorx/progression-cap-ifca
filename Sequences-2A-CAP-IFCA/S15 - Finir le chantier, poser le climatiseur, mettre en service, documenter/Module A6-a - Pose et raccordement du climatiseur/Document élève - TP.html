@@ -1,0 +1,759 @@
+<meta charset="utf-8">
+<title>TP — S15 · Module A6-a · Pose et raccordement d'un climatiseur split</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  section{margin:0 0 1.1em}
+  .num{list-style:none; counter-reset:num; margin:0; padding:0}
+  .num>li{counter-increment:num; margin:0 0 .55em; padding-left:1.9em; position:relative}
+  .num>li::before{content:counter(num); position:absolute; left:0; top:.05em; width:1.35em; height:1.35em; line-height:1.35em;
+    text-align:center; background:var(--bleu); color:#fff; border-radius:50%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt}
+  .mat{margin:0; padding:0; list-style:none; counter-reset:mat; font-size:11pt}
+  .mat>li{counter-increment:mat; margin:0 0 .3em; padding-left:1.7em; position:relative}
+  .mat>li::before{content:counter(mat)"."; position:absolute; left:0; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .conso{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:#c14a17;
+    border:1px solid var(--orange); border-radius:8px; padding:0 6px; margin-left:6px}
+  .tsec{font-size:9.5pt}
+  .tsec th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8.5pt; text-transform:uppercase; padding:5px 7px; text-align:left}
+  .tsec td{border:1px solid var(--filet); padding:5px 7px; vertical-align:top}
+  .tsec tr:nth-child(even) td{background:var(--fond-doux)}
+  .etape{border:1px solid var(--filet); border-radius:6px; margin:0 0 .8em; overflow:hidden}
+  .etape .tit{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:6px 12px; display:flex; justify-content:space-between; align-items:center; gap:8px}
+  .etape .tit b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu); font-size:11.5pt}
+  .etape .duree{font-size:8.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--gris); background:#fff; border:1px solid var(--filet); border-radius:10px; padding:1px 9px; white-space:nowrap}
+  .etape .corps{padding:8px 14px}
+  .pastille{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:7.5pt; letter-spacing:.05em;
+    text-transform:uppercase; border-radius:8px; padding:1px 7px; margin:0 4px 4px 0}
+  .p-observer{background:#eef1f5; color:var(--gris); border:1px solid var(--leger)}
+  .p-agir{background:#e9f3ec; color:#2e7d4f; border:1px solid #bfe0cb}
+  .p-noter{background:#fdf3e3; color:#a3690a; border:1px solid #f0d9a8}
+  .p-reflechir{background:#eee8fd; color:#5b3fc4; border:1px solid #cfc2f7}
+  .zone{border:1px dashed var(--leger); border-radius:5px; padding:6px 10px; margin:.35em 0; min-height:1.5em; background:#fbfcfe}
+  .zone.lignes{background-image:repeating-linear-gradient(#fbfcfe, #fbfcfe 21px, #e4e9f0 22px); min-height:66px}
+  .relev{font-size:10pt}
+  .relev th{background:var(--fond-doux); font-family:'Trebuchet MS',sans-serif; color:var(--bleu); font-size:8.5pt; text-transform:uppercase; padding:5px 7px; border:1px solid var(--filet)}
+  .relev td{border:1px solid var(--filet); padding:9px 7px; min-height:22px}
+  .question{background:var(--fond-doux); border-left:3px solid var(--violet); padding:6px 10px; margin:.4em 0; font-size:10.5pt}
+  .question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .grille{font-size:9.3pt}
+  .grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .case-auto{width:1.1em; height:1.1em; border:1.5px solid var(--bleu); border-radius:3px; display:inline-block; margin-right:4px; vertical-align:middle}
+  .tbl-wrap{overflow-x:auto}
+  .source{font-size:7.8pt; color:var(--leger); font-style:italic; text-align:right; margin-top:6px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:190px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .schema-box{border:1px solid #d8dee6; border-radius:4px; background:#fbfcfe; padding:6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ BLOC CACHÉ : SYMBOLES DE LA BIBLIOTHÈQUE INERWEB (frigo_schema), réutilisés via <use> ============ -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
+<symbol id="sym-compresseur" viewBox="-24 -20 50 40">
+<circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#000" stroke-width="1"/>
+<line x1="-15" y1="0" x2="-16" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="15" y1="0" x2="16" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="13" x2="13" y2="7" stroke="#000" stroke-width="1"/>
+<circle cx="-16" cy="0" r="1.5" fill="#000"/>
+<circle cx="16" cy="0" r="1.5" fill="#000"/>
+<circle cx="-10" cy="10" r="1.5" fill="#000"/>
+<circle cx="2" cy="11" r="1.5" fill="#000"/>
+<circle cx="-10" cy="-10" r="1.5" fill="#000"/>
+</symbol>
+<symbol id="sym-echangeur" viewBox="-25 -25 60 60">
+<rect x="-18" y="-20" width="36" height="48" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="-14" y1="16" x2="-14" y2="24" stroke="#000" stroke-width="1"/>
+<line x1="7" y1="16" x2="7" y2="24" stroke="#000" stroke-width="1"/>
+<line x1="14" y1="16" x2="14" y2="24" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="16" x2="-7" y2="24" stroke="#000" stroke-width="1"/>
+<line x1="0" y1="16" x2="0" y2="24" stroke="#000" stroke-width="1"/>
+<line x1="-19" y1="20" x2="19" y2="20" stroke="#000" stroke-width="1"/>
+<circle cx="0.0" cy="-2.0" r="15.0" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="7" y1="-15" x2="13" y2="5" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="-15" x2="-13" y2="5" stroke="#000" stroke-width="1"/>
+<ellipse cx="0.0" cy="-7.0" rx="2.5" ry="4.5" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="-19" cy="20" r="1.5" fill="#000"/>
+<circle cx="19" cy="20" r="1.5" fill="#000"/>
+</symbol>
+<symbol id="sym-vent-axial" viewBox="-24 -20 50 40">
+<circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#000" stroke-width="1"/>
+<line x1="-12" y1="0" x2="-8" y2="0" stroke="#000" stroke-width="1"/>
+<ellipse cx="4.5" cy="0.0" rx="4.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="-15" y1="0" x2="-16" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="15" y1="0" x2="16" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="13" x2="13" y2="7" stroke="#000" stroke-width="1"/>
+<circle cx="-16" cy="0" r="1.5" fill="#000"/>
+<circle cx="16" cy="0" r="1.5" fill="#000"/>
+</symbol>
+<symbol id="sym-vent-centrif" viewBox="-24 -20 50 40">
+<circle cx="0.0" cy="0.0" r="15.0" fill="white" stroke="#000" stroke-width="1"/>
+<line x1="-10" y1="3" x2="-10" y2="-3" stroke="#000" stroke-width="1"/>
+<ellipse cx="4.5" cy="0.0" rx="4.5" ry="2.5" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="-15" y1="0" x2="-16" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="15" y1="0" x2="16" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="-13" x2="13" y2="-7" stroke="#000" stroke-width="1"/>
+<line x1="-7" y1="13" x2="13" y2="7" stroke="#000" stroke-width="1"/>
+<circle cx="-16" cy="0" r="1.5" fill="#000"/>
+<circle cx="16" cy="0" r="1.5" fill="#000"/>
+</symbol>
+<symbol id="sym-vanne" viewBox="-19 -10 40 20">
+<line x1="10" y1="0" x2="11" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-10" y1="0" x2="-11" y2="0" stroke="#000" stroke-width="1"/>
+<polygon points="-10,-5 10,5 10,-5 -10,5 -10,-4" fill="white" stroke="#000" stroke-width="1"/>
+<circle cx="0.0" cy="0.0" r="2.0" fill="black" stroke="#000" stroke-width="1"/>
+<circle cx="11" cy="0" r="1.5" fill="#000"/>
+<circle cx="-11" cy="0" r="1.5" fill="#000"/>
+</symbol>
+<symbol id="sym-manometres" viewBox="-24 -25 50 40">
+<line x1="16" y1="-9" x2="16" y2="8" stroke="#000" stroke-width="1"/>
+<ellipse cx="16.0" cy="-14.5" rx="6.0" ry="5.5" fill="none" stroke="#000" stroke-width="1"/>
+<ellipse cx="-15.0" cy="-14.5" rx="6.0" ry="5.5" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="-15" y1="-9" x2="-15" y2="8" stroke="#000" stroke-width="1"/>
+<line x1="13" y1="0" x2="15" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-15" y1="0" x2="-13" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-5" y1="0" x2="4" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="0" y1="0" x2="0" y2="8" stroke="#000" stroke-width="1"/>
+<circle cx="-15" cy="8" r="1.5" fill="#000"/>
+<circle cx="0" cy="8" r="1.5" fill="#000"/>
+<circle cx="16" cy="8" r="1.5" fill="#000"/>
+<text x="14" y="-12" font-family="sans-serif" font-size="5.0" fill="#333">A</text>
+<text x="-17" y="-12" font-family="sans-serif" font-size="5.0" fill="#333">B</text>
+</symbol>
+<symbol id="sym-detendeur" viewBox="-19 -22 40 30">
+<circle cx="0.0" cy="-12.00005" r="5.83095" fill="none" stroke="#000" stroke-width="1"/>
+<polygon points="2,1 0,3 -2,1 -10,5 -10,-5 10,5 10,-5 -2,1 0,0 0,0" fill="white" stroke="#000" stroke-width="1"/>
+<line x1="0" y1="0" x2="0" y2="-6" stroke="#000" stroke-width="1"/>
+<line x1="10" y1="0" x2="11" y2="0" stroke="#000" stroke-width="1"/>
+<line x1="-10" y1="0" x2="-11" y2="0" stroke="#000" stroke-width="1"/>
+<circle cx="-11" cy="0" r="1.5" fill="#000"/>
+<circle cx="11" cy="0" r="1.5" fill="#000"/>
+<text x="-5" y="-9.66667" font-family="sans-serif" font-size="6" fill="#333">TC</text>
+</symbol>
+<symbol id="sym-filtre" viewBox="-25 -10 40 20">
+<line x1="-5" y1="-4.22727" x2="-5" y2="1.22727" stroke="#000" stroke-width="1"/>
+<line x1="6" y1="0.494709" x2="9.75" y2="0.494709" stroke="#000" stroke-width="1"/>
+<line x1="2" y1="-0.454545" x2="2" y2="4.45455" stroke="#000" stroke-width="1"/>
+<rect x="-15.75" y="-5.01058" width="21.75" height="10.0106" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="-19.5" y1="0.494709" x2="-15.75" y2="0.494709" stroke="#000" stroke-width="1"/>
+<line x1="-12" y1="-0.414828" x2="-12" y2="4.41483" stroke="#000" stroke-width="1"/>
+<circle cx="9.75" cy="0.494709" r="1.5" fill="#000"/>
+<circle cx="-19.5" cy="0.494709" r="1.5" fill="#000"/>
+</symbol>
+</defs></svg>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <!-- LA BARRE DU HAUT — version ÉLÈVE -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Chantier — finition et pose climatiseur (A6, EL18)</td>
+      <td style="width:38%"><span class="lib">Module A6-a — Atelier 4 h</span><b>Pose et raccordement d'un climatiseur split</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S15</span></td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Nom</span>______________________</td>
+      <td><span class="lib">Prénom</span>______________________</td>
+      <td><span class="lib">Date</span>______________________</td>
+      <td class="accent"><span class="lib">Positionnement</span>
+        <span style="font-size:7.5pt">C2.3:0❑1❑2❑3❑4❑ · C4.4:0❑1❑2❑3❑4❑ · C4.7:0❑1❑2❑3❑4❑</span></td>
+    </tr>
+  </table></div>
+
+  <section class="situation"><h4>Mise en situation professionnelle</h4>
+  Votre entreprise intervient chez un <b>client</b> pour la <b>pose d'un climatiseur mono-split neuf</b> :
+  une <b>unité extérieure (UE)</b> et une <b>unité intérieure (UI)</b>, reliées par une liaison frigorifique
+  et électrique. <b>Ordre d'intervention n° S15-A6-01</b> : votre binôme doit implanter et fixer les deux
+  unités aux emplacements validés, réaliser la liaison frigorifique et électrique entre elles, mettre en
+  place l'évacuation des condensats, puis mettre la liaison sous azote et la tirer au vide. Vous ne devez
+  <b>jamais ouvrir les vannes</b> tant que le vide n'est pas validé par le professeur. Le chef de chantier
+  (votre professeur) réceptionnera l'implantation en fin de séance : le split restera alors en attente, sous
+  azote et étiqueté. Le module suivant (A6-b) portera sur la mise en service autonome d'un <b>autre poste du
+  chantier</b> (le groupe frigorifique) — vos gestes d'implantation, de raccordement et de tirage au vide
+  serviront de base pour cette suite.</section>
+
+  <section class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>choisir</b> et <b>justifier</b> l'implantation de l'UE et de l'UI (accessibilité, distance, contraintes du site) ;</li>
+        <li><b>fixer</b> les deux unités en respectant les règles de manutention et de travail en hauteur ;</li>
+        <li><b>réaliser</b> la liaison frigorifique (cintrage, dudgeon/flare sur tubes 1/4″ et 3/8″) et l'évacuation des condensats en pente (≥ 3 cm/m) ;</li>
+        <li><b>raccorder</b> la liaison électrique UE-UI, armoire consignée ;</li>
+        <li><b>mettre sous azote</b> puis <b>tirer au vide</b> la liaison, sans ouvrir les vannes avant validation du vide.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà…</h4>
+      <ul>
+        <li>lire un schéma fluidique simple (manifold, bouteille, pompe à vide) ;</li>
+        <li>réaliser un dudgeon/flare correct sur un tube cuivre ;</li>
+        <li>consigner une installation électrique avant intervention (NFC 18-510) ;</li>
+        <li>nommer les seuils autorisés de surchauffe (5-10 K) et de sous-refroidissement (4-8 K).</li>
+      </ul>
+      <p style="font-size:9pt; font-style:italic; color:var(--gris); margin:.4em 0 0">Si une de ces quatre choses ne vous dit rien, prévenez votre professeur avant de commencer : ce TP n'est pas encore pour vous.</p>
+    </div>
+  </section>
+
+  <section>
+    <h3 style="font-size:12.5pt">Matériel mis à disposition (par binôme)</h3>
+    <ol class="mat">
+      <li>Climatiseur split neuf — unité extérieure (UE) + unité intérieure (UI) + notice constructeur (× 1 kit)</li>
+      <li>Équerres ou dalle antivibratile de fixation UE (× 1 jeu)</li>
+      <li>Platine de fixation murale pour l'UI (× 1)</li>
+      <li>Niveau à bulle (× 1)</li>
+      <li>Perceuse-visseuse + mèches adaptées au support (× 1)</li>
+      <li>Chevilles et vis de fixation adaptées au support <span class="conso">consommable</span> (lot)</li>
+      <li>Tube cuivre frigorifique pré-isolé, diamètres 1/4″ et 3/8″ courants pour ce type de mono-split (à vérifier sur la documentation technique du modèle posé), en kit ou en couronne <span class="conso">consommable</span> (longueur selon notice)</li>
+      <li>Coupe-tube + ébavureur (× 1 jeu)</li>
+      <li>Outil à dudgeonner / à évaser (flare) (× 1)</li>
+      <li>Cintreuse à main ou ressort à cintrer (× 1)</li>
+      <li>Clé dynamométrique — couple de serrage selon notice (× 1)</li>
+      <li>Câble électrique de liaison UE-UI, section selon notice <span class="conso">consommable</span></li>
+      <li>Gaine ou goulotte de protection de la liaison <span class="conso">consommable</span> (lot)</li>
+      <li>Manifold (manomètres BP/HP) + pompe à vide (× 1 pour le binôme)</li>
+      <li>Bouteille d'azote détendue avec détendeur basse pression (× 1 pour la classe)</li>
+      <li>Multimètre + vérificateur d'absence de tension — VAT (× 1 jeu)</li>
+      <li>Cadenas individuel de consignation + étiquette de condamnation (× 1 par élève)</li>
+      <li>Tube d'évacuation des condensats + raccords <span class="conso">consommable</span> (lot)</li>
+      <li>Gants, lunettes de protection, chaussures de sécurité, EPI anti-chute si fixation en hauteur (× 1 par élève)</li>
+    </ol>
+  </section>
+
+  <section>
+    <h3 style="font-size:12.5pt">Consignes de sécurité</h3>
+    <div class="tbl-wrap"><table class="tsec">
+      <tr><th style="width:24%">Risque</th><th style="width:36%">Cause possible</th><th style="width:40%">Parade</th></tr>
+      <tr><td>Électrisation / électrocution</td><td>Raccordement de la liaison électrique UE-UI sous tension</td><td>Consignation NFC 18-510 complète avant tout raccordement électrique (couper, cadenasser, étiqueter, vérifier l'absence de tension au VAT)</td></tr>
+      <tr><td>Chute de hauteur</td><td>Fixation de l'UI en hauteur sur un mur, poste instable</td><td>Marchepied ou échafaudage stable et vérifié, jamais de fixation en hauteur seul, EPI anti-chute si la hauteur l'exige</td></tr>
+      <tr><td>Troubles musculo-squelettiques, écrasement</td><td>Manutention de l'UE, charge lourde et volumineuse</td><td>Manutention <b>toujours à deux</b>, gestes et postures corrects (dos droit, jambes fléchies, prise ferme)</td></tr>
+      <tr><td>Projection, brûlure par le froid, éclatement</td><td>Ouverture d'une vanne avant que le vide ne soit validé, ou azote injecté sans détendeur réglé</td><td><b>Jamais d'ouverture des vannes sans tirage au vide validé</b> par le professeur ; azote uniquement via un détendeur basse pression réglé</td></tr>
+      <tr><td>Pollution atmosphérique</td><td>Purge ou fuite de fluide frigorigène non maîtrisée</td><td><b>Jamais de rejet de fluide à l'atmosphère</b> ; toute intervention sur la liaison se fait vannes fermées, sous azote ou sous vide contrôlé</td></tr>
+    </table></div>
+    <div class="secu"><b class="t">⚠ Rappel</b> — Consignation NFC 18-510 obligatoire avant tout raccordement électrique. Manutention de l'UE à deux uniquement. Travail en hauteur encadré, jamais seul. Jamais d'ouverture de vanne sans vide validé. Jamais de rejet de fluide à l'atmosphère.
+    <br><b class="t">🚨 En cas d'incident</b> : coupez immédiatement (arrêt d'urgence), alertez le professeur sans déplacer un camarade électrisé avant confirmation de la coupure, et rendez-vous au point trousse de secours indiqué en début de séance.</div>
+  </section>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : OBSERVER + NOMMER + SCHÉMA D'IMPLANTATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">TP — S15 · module A6-a · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement</h3>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 1 — Observer l'UE et l'UI neuves</b><span class="duree">5 min</span></div>
+    <div class="corps">
+      <span class="pastille p-observer">Observer</span>
+      <p>Placez-vous devant les deux unités neuves posées côte à côte : l'<b>unité extérieure (UE)</b>,
+      plus volumineuse et bruyante en fonctionnement, et l'<b>unité intérieure (UI)</b>, plus compacte,
+      destinée à être fixée en hauteur dans la pièce à climatiser. Observez en silence pendant 2 minutes,
+      sans toucher à rien.</p>
+      <div class="question"><b>Question 1 —</b> À votre avis, pourquoi le climatiseur est-il coupé en deux unités séparées plutôt que d'être un seul bloc ?</div>
+      <div class="zone lignes"></div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 2 — Nommer les liaisons entre UE et UI</b><span class="duree">10 min</span></div>
+    <div class="corps">
+      <span class="pastille p-noter">Noter</span>
+      <p>Votre professeur nomme les trois liaisons qui relient les deux unités : la <b>liaison frigorifique</b>
+      (deux tubes cuivre, un gros diamètre pour le gaz et un petit diamètre pour le liquide), la
+      <b>liaison électrique</b> (câble d'alimentation et de commande) et l'<b>évacuation des condensats</b>
+      (tube d'évacuation de l'eau produite par l'UI, posé en pente).</p>
+      <div class="relev"><table>
+        <tr><th style="width:34%">Liaison</th><th style="width:33%">Ce qu'elle transporte</th><th style="width:33%">Où elle passe</th></tr>
+        <tr><td class="zone">Frigorifique</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Électrique</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Évacuation condensats</td><td class="zone"></td><td class="zone"></td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape 3 — Lire le schéma d'implantation avant de commencer</b><span class="duree">10 min</span></div>
+    <div class="corps">
+      <span class="pastille p-agir">Agir</span>
+      <div class="schema-box">
+        <svg viewBox="0 0 1000 700" style="width:100%;height:auto;display:block" role="img"
+          aria-label="Schéma d'implantation split : unité extérieure UE avec compresseur, condenseur, ventilateur, vannes et filtre ; unité intérieure UI avec batterie évaporateur, turbine et détendeur ; liaison frigorifique et électrique traversant le mur ; évacuation des condensats en pente">
+          <rect x="470" y="20" width="70" height="660" fill="#eef1f5" stroke="#1b3a63" stroke-width="2"/>
+          <text x="505" y="38" font-family="Trebuchet MS, sans-serif" font-size="12" font-weight="bold" fill="#1b3a63" text-anchor="middle">MUR</text>
+          <text x="230" y="45" font-family="Trebuchet MS, sans-serif" font-size="15" font-weight="bold" fill="#5d6b7c" text-anchor="middle">EXTÉRIEUR</text>
+          <text x="750" y="45" font-family="Trebuchet MS, sans-serif" font-size="15" font-weight="bold" fill="#5d6b7c" text-anchor="middle">INTÉRIEUR</text>
+
+          <rect x="40" y="90" width="390" height="480" rx="8" fill="none" stroke="#1b3a63" stroke-width="2"/>
+          <text x="235" y="75" font-family="Trebuchet MS, sans-serif" font-size="14" font-weight="bold" fill="#1b3a63" text-anchor="middle">UNITÉ EXTÉRIEURE (UE)</text>
+
+          <use href="#sym-compresseur" x="70" y="150" width="110" height="88"/>
+          <text x="125" y="255" font-size="11" text-anchor="middle" fill="#22303f">compresseur</text>
+
+          <use href="#sym-echangeur" x="220" y="110" width="140" height="140"/>
+          <text x="290" y="268" font-size="11" text-anchor="middle" fill="#22303f">condenseur à air</text>
+
+          <use href="#sym-vent-axial" x="240" y="280" width="100" height="80"/>
+          <text x="290" y="378" font-size="11" text-anchor="middle" fill="#22303f">ventilateur hélicoïde</text>
+
+          <use href="#sym-filtre" x="70" y="285" width="100" height="50"/>
+          <text x="120" y="350" font-size="10.5" text-anchor="middle" fill="#22303f">filtre déshydrateur</text>
+          <text x="120" y="363" font-size="9" text-anchor="middle" fill="#5d6b7c">(ligne liquide)</text>
+
+          <use href="#sym-vanne" x="250" y="400" width="80" height="40"/>
+          <text x="290" y="458" font-size="10.5" text-anchor="middle" fill="#22303f">vanne d'arrêt GAZ (grand Ø)</text>
+
+          <use href="#sym-vanne" x="250" y="470" width="80" height="40"/>
+          <text x="290" y="528" font-size="10.5" text-anchor="middle" fill="#22303f">vanne d'arrêt LIQUIDE (petit Ø)</text>
+
+          <use href="#sym-manometres" x="90" y="460" width="70" height="56"/>
+          <text x="125" y="534" font-size="9.5" text-anchor="middle" fill="#22303f">prises de pression</text>
+          <text x="125" y="546" font-size="9" text-anchor="middle" fill="#5d6b7c">(accès manomètres)</text>
+
+          <text x="235" y="580" font-size="10" text-anchor="middle" fill="#5d6b7c" font-style="italic">fixation antivibratile (silentblocs) sur équerres ou dalle béton, à niveau</text>
+
+          <rect x="560" y="90" width="380" height="260" rx="8" fill="none" stroke="#1b3a63" stroke-width="2"/>
+          <text x="750" y="70" font-size="14" font-weight="bold" fill="#1b3a63" text-anchor="middle" font-family="Trebuchet MS, sans-serif">UNITÉ INTÉRIEURE (UI)</text>
+          <text x="750" y="84" font-size="10" fill="#5d6b7c" text-anchor="middle" font-style="italic">murale, hauteur ≥ 2,20 m, à niveau</text>
+
+          <use href="#sym-echangeur" x="600" y="110" width="120" height="120"/>
+          <text x="660" y="248" font-size="11" text-anchor="middle" fill="#22303f">batterie évaporateur</text>
+
+          <use href="#sym-vent-centrif" x="750" y="120" width="100" height="80"/>
+          <text x="800" y="218" font-size="11" text-anchor="middle" fill="#22303f">turbine de soufflage</text>
+
+          <use href="#sym-detendeur" x="750" y="232" width="90" height="68"/>
+          <text x="795" y="316" font-size="10.5" text-anchor="middle" fill="#22303f">détendeur</text>
+
+          <polyline points="330,420 460,420 505,270 560,190" fill="none" stroke="#1b3a63" stroke-width="3"/>
+          <text x="400" y="412" font-size="9.5" fill="#1b3a63" text-anchor="middle">gaz (grand Ø)</text>
+
+          <polyline points="330,490 460,490 505,290 560,215" fill="none" stroke="#1b3a63" stroke-width="1.5"/>
+          <text x="400" y="510" font-size="9.5" fill="#1b3a63" text-anchor="middle">liquide (petit Ø)</text>
+
+          <polyline points="350,545 460,545 505,310 560,300" fill="none" stroke="#ff6b35" stroke-width="2" stroke-dasharray="6 4"/>
+          <text x="400" y="565" font-size="9.5" fill="#c14a17" text-anchor="middle">câble électrique UE-UI</text>
+
+          <circle cx="505" cy="270" r="14" fill="#fff" stroke="#ff6b35" stroke-width="2"/>
+          <text x="505" y="245" font-size="9.5" fill="#5d6b7c" text-anchor="middle">passage carotté</text>
+          <text x="505" y="257" font-size="9.5" fill="#5d6b7c" text-anchor="middle">Ø50 + manchon</text>
+
+          <text x="400" y="604" font-size="9.5" fill="#5d6b7c" font-style="italic" text-anchor="middle">liaison frigorifique + électrique gainée ensemble — cintrage soigné, longueur selon notice, à faire valider</text>
+
+          <line x1="660" y1="230" x2="660" y2="615" stroke="#1b3a63" stroke-width="1.5"/>
+          <line x1="660" y1="615" x2="505" y2="620" stroke="#1b3a63" stroke-width="1.5"/>
+          <circle cx="505" cy="620" r="10" fill="#fff" stroke="#ff6b35" stroke-width="2"/>
+          <line x1="495" y1="622" x2="260" y2="650" stroke="#1b3a63" stroke-width="1.5"/>
+          <polygon points="260,650 275,644 271,656" fill="#1b3a63"/>
+          <text x="660" y="422" font-size="9.5" fill="#22303f" text-anchor="middle" transform="rotate(90 660 422)">évacuation condensats</text>
+          <text x="400" y="668" font-size="9.5" fill="#5d6b7c" font-style="italic" text-anchor="middle">pente mini 3 cm/m vers l'extérieur — siphon anti-remontée d'odeur</text>
+        </svg>
+      </div>
+      <p class="legende">Schéma d'implantation split (UE/UI, liaison, évacuation des condensats) — symboles techniques de la bibliothèque inerWeb (famille <i>frigo_schema</i>), schéma hors échelle. La version pleine page est en annexe : gardez-la sous les yeux pendant toute la manipulation.</p>
+      <span class="pastille p-noter">Noter</span>
+      <div class="tbl-wrap"><table class="relev">
+        <tr><th style="width:26%">Composant</th><th style="width:18%">Dans quelle unité ?</th><th style="width:56%">Rôle (une phrase)</th></tr>
+        <tr><td class="zone">Compresseur</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Condenseur à air</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Vanne d'arrêt (gaz / liquide)</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Batterie évaporateur</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Détendeur</td><td class="zone"></td><td class="zone"></td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 : JALON 1 (IMPLANTATION) + JALON 2 (LIAISON FRIGORIFIQUE + CONDENSATS) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">TP — S15 · module A6-a · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Plan de travail à jalons — gardez le schéma de la page précédente sous les yeux</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .7em">Chaque jalon doit être <b>validé par le professeur</b> avant de passer au suivant.</p>
+
+  <div class="etape">
+    <div class="tit"><b>Jalon 1 — Implanter et fixer l'UE et l'UI</b><span class="duree">30 min</span></div>
+    <div class="corps">
+      <span class="pastille p-agir">Agir</span>
+      <ol class="num">
+        <li>Choisissez l'emplacement de l'UE (accessibilité pour l'entretien, socle stable, évacuation de l'air possible, distance raisonnable de l'UI) et l'emplacement de l'UI (hauteur ≥ 2,20 m, mur porteur, éloignée d'une source de chaleur).</li>
+        <li>Faites valider les deux emplacements par le professeur avant de percer.</li>
+        <li>Fixez le gabarit de l'UI sur le support pédagogique en respectant ses cotes (<b>58,5 × 58,5 cm</b>), puis posez l'UI dessus et vérifiez le niveau.</li>
+        <li>Fixez l'UE sur son support mural antivibratile (silentblocs), <b>à deux</b> pour la manutention, en respectant les cotes du support (<b>116 × 39 cm</b>) et le dégagement minimum à l'avant (<b>150 mm</b>), en vérifiant le niveau à bulle.</li>
+        <li>Fixez la platine de l'UI au mur, à niveau, en respectant les préconisations de la notice (distances aux angles et au plafond).</li>
+      </ol>
+      <div class="schema-box" style="text-align:center; margin:.5em 0">
+        <img class="fig" src="../images/support-mural-antivibratile-unite-exterieure.png" alt="Support mural antivibratile pour unité extérieure" style="max-height:110px">
+      </div>
+      <p class="legende">Support mural antivibratile de l'UE — atelier F. Henninot.</p>
+      <div class="schema-box" style="text-align:center; margin:.5em 0">
+        <img class="fig" src="../images/degagements-minima-unite-exterieure-mm.png" alt="Schéma des dégagements minima autour de l'unité extérieure, cotes A à E en millimètres">
+      </div>
+      <p class="legende">Dégagements minima autour de l'UE (mm) — cote A (dégagement avant) = 150 mm sur ce poste. D'après : TP 1 implantation et fixation d'un climatiseur mono split, F. Henninot.</p>
+      <span class="pastille p-noter">Noter</span>
+      <div class="question"><b>Question 2 —</b> Pourquoi la fixation de l'UE doit-elle être antivibratile (silentblocs) et de niveau ?</div>
+      <div class="zone lignes"></div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Jalon 2 — Liaison frigorifique et évacuation des condensats</b><span class="duree">45 min</span></div>
+    <div class="corps">
+      <span class="pastille p-agir">Agir</span>
+      <ol class="num">
+        <li>Mesurez le tracé de la liaison entre UE et UI et coupez les tubes cuivre <b>1/4″ (ligne liquide) et 3/8″ (ligne gaz)</b> à la longueur nécessaire (<i>longueur selon notice du climatiseur, à faire valider</i>) avec le coupe-tube.</li>
+        <li>Ébavurez chaque extrémité, <b>glissez l'écrou sur le tube avant de continuer</b> (impossible à rattraper après), puis réalisez le <b>dudgeon (ou flare)</b> à l'outil prévu, sans fissure ni faux-rond visible.</li>
+        <li>Cintrez les tubes proprement (rayons de cintrage réguliers, sans écrasement) pour suivre le tracé validé.</li>
+        <li>Raccordez les deux tubes (gaz grand diamètre 3/8″, liquide petit diamètre 1/4″) aux vannes de l'UE et à l'UI, et serrez au couple indiqué par la notice (<i>couple de serrage selon notice, à faire valider</i>) à la clé dynamométrique.</li>
+        <li>Posez le tube d'évacuation des condensats en sortie de l'UI, avec une <b>pente régulière vers l'extérieur (au moins 3 cm par mètre)</b>, sans point bas ni contre-pente.</li>
+        <li>Gainez ensemble la liaison frigorifique, le câble électrique et le tube d'évacuation si la notice le prévoit.</li>
+      </ol>
+      <div class="schema-box" style="text-align:center; margin:.5em 0">
+        <img class="fig" src="../images/plaque-montage-unite-interieure-cotes.png" alt="Plaque de montage de l'unité intérieure : points de fixation, orifice de passage en mur, sorties des tuyaux liquide et gaz, position du tuyau d'évacuation des condensats">
+      </div>
+      <p class="legende">Plaque de montage de l'UI — repérage des sorties tuyauteries (liquide/gaz), orifice de passage en mur et position du tuyau d'évacuation des condensats. D'après : MONTAGE CLIMATISEUR SPLIT, fiche procédure, F. Henninot.</p>
+      <span class="pastille p-noter">Noter</span>
+      <div class="relev"><table>
+        <tr><th style="width:34%">Contrôle</th><th style="width:33%">Résultat observé</th><th style="width:33%">Conforme ?</th></tr>
+        <tr><td class="zone">Dudgeon/flare gaz : aspect visuel</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Dudgeon/flare liquide : aspect visuel</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Pente de l'évacuation des condensats</td><td class="zone"></td><td class="zone"></td></tr>
+      </table></div>
+      <span class="pastille p-reflechir">Réfléchir</span>
+      <div class="question"><b>Question 3 —</b> Que risque-t-il de se produire si l'évacuation des condensats n'a pas de pente, ou une contre-pente ?</div>
+      <div class="zone lignes"></div>
+      <span class="pastille p-agir">Dessiner</span>
+      <div class="cadre-dessin"><span class="consigne-cadre">Dessine ici le tracé de la liaison que tu as réellement posée (UE → mur → UI), avec la pente de l'évacuation des condensats</span></div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 : JALON 3 (LIAISON ÉLECTRIQUE) + JALON 4 (AZOTE / VIDE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">TP — S15 · module A6-a · CAP IFCA 2A</div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Jalon 3 — Consigner puis raccorder la liaison électrique UE-UI</b><span class="duree">30 min</span></div>
+    <div class="corps">
+      <span class="pastille p-agir">Agir</span>
+      <ol class="num">
+        <li>Coupez l'alimentation générale du poste et posez votre cadenas individuel + étiquette de condamnation.</li>
+        <li>Vérifiez l'absence de tension au VAT sur les bornes concernées.</li>
+        <li>Raccordez le câble d'alimentation (<b>3 × 1,5 mm²</b>) : phase en <b>rouge</b>, neutre en <b>bleu</b>. Raccordez le câble de liaison UE-UI (<b>5 × 1,5 mm²</b>) aux quatre borniers en respectant les codes couleur du tableau ci-dessous et le repérage de la notice.</li>
+        <li>Vérifiez le serrage de chaque borne et contrôlez la continuité au multimètre avant toute remise sous tension.</li>
+      </ol>
+      <div class="tbl-wrap"><table class="relev">
+        <tr><th style="width:34%">Repère</th><th style="width:33%">Couleur du fil</th><th style="width:33%">Fonction</th></tr>
+        <tr><td>Bornier 1</td><td>Noir</td><td class="zone"></td></tr>
+        <tr><td>Bornier 2</td><td>Bleu</td><td class="zone"></td></tr>
+        <tr><td>Bornier 3</td><td>Marron</td><td class="zone"></td></tr>
+        <tr><td>Bornier 4</td><td>Gris</td><td class="zone"></td></tr>
+        <tr><td>Bornier de terre</td><td>Jaune / vert</td><td class="zone"></td></tr>
+      </table></div>
+      <p class="legende">Codes couleur de la liaison électrique UE-UI. D'après : TP 3 Raccordement électrique d'un climatiseur mono split RAHMOUNI, F. Henninot. Complétez la colonne « Fonction » en vous aidant de la notice de votre poste.</p>
+      <span class="pastille p-noter">Noter</span>
+      <div class="relev"><table>
+        <tr><th style="width:40%">Point vérifié au VAT</th><th style="width:30%">Tension avant coupure</th><th style="width:30%">Tension après consignation</th></tr>
+        <tr><td class="zone"></td><td class="zone"></td><td class="zone"></td></tr>
+      </table></div>
+      <div class="question"><b>Question 4 —</b> Qui a le droit de retirer votre cadenas en fin de séance ?</div>
+      <div class="zone"></div>
+    </div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Jalon 4 — Mettre sous azote puis tirer au vide la liaison</b><span class="duree">20 min</span></div>
+    <div class="corps">
+      <span class="pastille p-agir">Agir</span>
+      <p>Vannes de l'UE toujours <b>fermées</b>. Raccordez le manifold et la bouteille d'azote (avec détendeur
+      basse pression réglé) aux prises de pression de la liaison, comme sur le schéma fluidique déjà utilisé
+      en atelier (manifold + pompe à vide). Mettez la liaison sous azote à <b>10 bars</b> pour l'épreuve
+      d'étanchéité (contrôle de tenue, pas de chute de pression), purgez, puis raccordez la pompe à vide et
+      tirez au vide la liaison jusqu'à la valeur cible indiquée par la procédure de l'atelier (<i>seuil à faire
+      valider par le professeur</i>).</p>
+      <div class="schema-box" style="text-align:center">
+        <img class="fig" src="../images/schema-fluidique-manifold-pompe-a-vide.png" alt="Schéma fluidique manifold et pompe à vide" style="max-height:220px">
+      </div>
+      <p class="legende">Schéma fluidique manifold + pompe à vide — déjà utilisé en atelier, F. Henninot.</p>
+      <span class="pastille p-noter">Noter</span>
+      <div class="relev"><table>
+        <tr><th style="width:34%">Étape</th><th style="width:33%">Relevé manomètre</th><th style="width:33%">Validé par le professeur ?</th></tr>
+        <tr><td class="zone">Mise sous azote (contrôle de tenue)</td><td class="zone"></td><td class="zone"></td></tr>
+        <tr><td class="zone">Tirage au vide de la liaison</td><td class="zone"></td><td class="zone"></td></tr>
+      </table></div>
+      <span class="pastille p-reflechir">Réfléchir</span>
+      <div class="question"><b>Question 5 —</b> Pourquoi ne doit-on jamais ouvrir les vannes de l'UE avant que le vide ne soit validé ?</div>
+      <div class="zone lignes"></div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 : SYNTHÈSE + ÉVALUATION + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">TP — S15 · module A6-a · CAP IFCA 2A</div>
+  </div>
+
+  <div class="etape">
+    <div class="tit"><b>Étape finale — Contrôle croisé et mise en commun</b><span class="duree">15 min</span></div>
+    <div class="corps">
+      <span class="pastille p-reflechir">Réfléchir</span>
+      <p>Échangez votre poste avec le binôme voisin. Contrôlez son implantation, sa liaison et son évacuation
+      des condensats au schéma, sans rien démonter. Signalez tout écart à voix haute avant de rendre le poste.</p>
+      <div class="question"><b>Question 6 —</b> En une phrase, pourquoi ne peut-on jamais charger un climatiseur sans avoir d'abord validé le tirage au vide de la liaison ?</div>
+      <div class="zone lignes"></div>
+    </div>
+  </div>
+
+  <section>
+    <h3 style="font-size:12.5pt">Grille d'évaluation critériée — échelle 0-4</h3>
+    <div class="tbl-wrap"><table class="grille" style="font-size:8.1pt">
+      <tr><th style="width:9%">Compétence</th><th style="width:18.2%">0 — Non évalué</th><th style="width:18.2%">1 — Non acquis</th><th style="width:18.2%">2 — En cours d'acquisition</th><th style="width:18.2%">3 — Acquis</th><th style="width:18.2%">4 — Parfaitement maîtrisé</th></tr>
+      <tr><td><b>C2.3</b><br>Préparer les conditions d'intervention sur site<br><span class="nuance">sur T7 · S6.1</span></td>
+        <td>Compétence non observée ce jour</td>
+        <td>Implantation choisie sans tenir compte des contraintes du site, fixation non sécurisée</td>
+        <td>Implantation correcte mais validée avec l'aide du professeur, fixation conforme après rappel</td>
+        <td>Implantation choisie et justifiée seul (accessibilité, distance, structure), fixation conforme (niveau, antivibratile, dégagement mini 150 mm respecté) validée sans aide</td>
+        <td>Idem 3, et l'élève explique à un pair les critères qui ont guidé son choix d'implantation</td></tr>
+      <tr><td><b>C4.4</b><br>Intervenir sur un circuit hydraulique ou aéraulique<br><span class="nuance">sur T13 · S5.4</span></td>
+        <td>Compétence non observée ce jour</td>
+        <td>Liaison frigorifique ou évacuation des condensats non conformes (dudgeon défectueux, écrou oublié, pente absente)</td>
+        <td>Liaison réalisée mais avec aide ou reprise, pente d'évacuation approximative</td>
+        <td>Liaison frigorifique (tubes 1/4″ et 3/8″) et évacuation des condensats réalisées seul, conformes (cintrage, dudgeon sans faux-rond, pente ≥ 3 cm/m mesurée), sans défaut visible</td>
+        <td>Idem 3, et l'élève explique à un pair pourquoi le cintrage et le dudgeon doivent être soignés</td></tr>
+      <tr><td><b>C4.7</b><br>Raccorder les équipements de charge, de mesure et de contrôle<br><span class="nuance">sur T13 · S5.4</span></td>
+        <td>Compétence non observée ce jour</td>
+        <td>Manifold mal raccordé, mise sous azote/vide non maîtrisée</td>
+        <td>Raccordement du manifold et mise sous azote/vide réalisés avec aide, lecture des relevés imprécise</td>
+        <td>Manifold raccordé seul, mise sous azote (10 bars, pas de chute de pression) puis tirage au vide réalisés et relevés correctement, vannes restées fermées jusqu'à validation</td>
+        <td>Idem 3, et l'élève explique à un pair pourquoi on ne charge jamais sans vide validé</td></tr>
+      <tr><td>Savoir-être</td>
+        <td>Non observé ce jour</td>
+        <td>Consignation, EPI ou manutention à deux oubliés de façon répétée malgré rappel</td>
+        <td>Consignation, EPI et manutention corrects mais nécessitent un rappel ponctuel</td>
+        <td>Consignation spontanée, EPI portés sans rappel, manutention de l'UE toujours à deux, poste tenu propre</td>
+        <td>Savoir-être ci-dessus tenu seul toute la séance, et l'élève rappelle spontanément la règle à un camarade qui l'oublie</td></tr>
+    </table></div>
+
+    <div style="border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin-top:.5em; font-size:10pt">
+      <h4 style="font-size:9pt">Mon auto-positionnement (à remplir avant la correction du professeur)</h4>
+      <p style="margin:.3em 0"><span class="case-auto"></span>C2.3 — je me positionne : 0 ❑ &nbsp; 1 ❑ &nbsp; 2 ❑ &nbsp; 3 ❑ &nbsp; 4 ❑</p>
+      <p style="margin:.3em 0"><span class="case-auto"></span>C4.4 — je me positionne : 0 ❑ &nbsp; 1 ❑ &nbsp; 2 ❑ &nbsp; 3 ❑ &nbsp; 4 ❑</p>
+      <p style="margin:.3em 0"><span class="case-auto"></span>C4.7 — je me positionne : 0 ❑ &nbsp; 1 ❑ &nbsp; 2 ❑ &nbsp; 3 ❑ &nbsp; 4 ❑</p>
+      <p style="margin:.3em 0"><span class="case-auto"></span>Savoir-être — je me positionne : 0 ❑ &nbsp; 1 ❑ &nbsp; 2 ❑ &nbsp; 3 ❑ &nbsp; 4 ❑</p>
+    </div>
+  </section>
+
+  <section>
+    <h3 style="font-size:12.5pt">Documents à remettre en fin de séance</h3>
+    <ol class="num">
+      <li>Ce document élève entièrement complété (relevés, réponses aux 6 questions, tableaux et croquis).</li>
+      <li>Le tableau des liaisons (étape 2) et le tableau composant/unité/rôle (étape 3).</li>
+      <li>La fiche de compte rendu d'activité complétée, page suivante (4 parties : préparation, procédure, analyse, bilan).</li>
+    </ol>
+  </section>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 : FICHE DE COMPTE RENDU D'ACTIVITÉ (4 PARTIES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">TP — S15 · module A6-a · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Fiche de compte rendu d'activité</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .8em">À compléter seul, à la fin de la séance, avec vos propres mots.</p>
+
+  <section>
+    <h4 style="font-size:11pt">1. Préparation de l'activité</h4>
+    <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .3em">Décrivez les étapes importantes dans la préparation de votre poste de travail, du matériel, de la démarche adoptée.</p>
+    <div class="zone lignes" style="min-height:88px"></div>
+  </section>
+
+  <section>
+    <h4 style="font-size:11pt">2. Procédure</h4>
+    <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .3em">Décrivez les différentes étapes de votre activité (le travail réellement réalisé, dans l'ordre).</p>
+    <div class="zone lignes" style="min-height:88px"></div>
+  </section>
+
+  <section>
+    <h4 style="font-size:11pt">3. Analyse de votre travail</h4>
+    <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .3em">Les résultats de votre travail sont-ils conformes ? <span class="case-auto"></span> OUI &nbsp; <span class="case-auto"></span> NON. Justifiez avec des critères de réussite (ou d'échec).</p>
+    <div class="zone lignes" style="min-height:88px"></div>
+  </section>
+
+  <section>
+    <h4 style="font-size:11pt">4. Bilan</h4>
+    <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .3em">Qu'avez-vous appris de nouveau ? Quelle difficulté avez-vous rencontrée ? Comment auriez-vous pu l'éviter ?</p>
+    <div class="zone lignes" style="min-height:88px"></div>
+  </section>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+  <p class="source">D'après : référentiel CAP IFCA · TP 1 implantation et fixation d'un climatiseur mono split, F. Henninot (structure de la fiche compte rendu et cotes d'implantation) · TP 2 Raccordement fluidique et TP 3 Raccordement électrique d'un climatiseur mono split RAHMOUNI, F. Henninot (diamètres de tubes, épreuve azote 10 bars, codes couleur, sections de câble) · MONTAGE CLIMATISEUR SPLIT, fiche procédure, F. Henninot (pente d'évacuation des condensats 3 cm/m, plaque de montage) · base pédagogique « Série 2 Activité 10 — Mise en service d'un climatiseur » · notice constructeur générique de climatiseur split — passe de restitution du 13/07/2026 (valeurs non couvertes par ces sources : « selon notice/plaque signalétique, à faire valider »)</p>
+</div>
+
+<!-- ============ ANNEXE : SCHÉMA D'IMPLANTATION COMPLET (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 10mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma d'implantation complet — climatiseur split UE/UI</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer de préférence en <b>A3 PAYSAGE</b> (une feuille par binôme) : c'est le document à garder sous les yeux pendant toute la manipulation. La version réduite dans les exercices sert au repérage, celle-ci sert au travail.</p>
+  <div class="schema-box">
+    <svg viewBox="0 0 1000 700" style="width:100%;height:auto;display:block" role="img"
+      aria-label="Schéma d'implantation split : unité extérieure UE avec compresseur, condenseur, ventilateur, vannes et filtre ; unité intérieure UI avec batterie évaporateur, turbine et détendeur ; liaison frigorifique et électrique traversant le mur ; évacuation des condensats en pente">
+      <rect x="470" y="20" width="70" height="660" fill="#eef1f5" stroke="#1b3a63" stroke-width="2"/>
+      <text x="505" y="38" font-family="Trebuchet MS, sans-serif" font-size="12" font-weight="bold" fill="#1b3a63" text-anchor="middle">MUR</text>
+      <text x="230" y="45" font-family="Trebuchet MS, sans-serif" font-size="15" font-weight="bold" fill="#5d6b7c" text-anchor="middle">EXTÉRIEUR</text>
+      <text x="750" y="45" font-family="Trebuchet MS, sans-serif" font-size="15" font-weight="bold" fill="#5d6b7c" text-anchor="middle">INTÉRIEUR</text>
+
+      <rect x="40" y="90" width="390" height="480" rx="8" fill="none" stroke="#1b3a63" stroke-width="2"/>
+      <text x="235" y="75" font-family="Trebuchet MS, sans-serif" font-size="14" font-weight="bold" fill="#1b3a63" text-anchor="middle">UNITÉ EXTÉRIEURE (UE)</text>
+
+      <use href="#sym-compresseur" x="70" y="150" width="110" height="88"/>
+      <text x="125" y="255" font-size="11" text-anchor="middle" fill="#22303f">compresseur</text>
+
+      <use href="#sym-echangeur" x="220" y="110" width="140" height="140"/>
+      <text x="290" y="268" font-size="11" text-anchor="middle" fill="#22303f">condenseur à air</text>
+
+      <use href="#sym-vent-axial" x="240" y="280" width="100" height="80"/>
+      <text x="290" y="378" font-size="11" text-anchor="middle" fill="#22303f">ventilateur hélicoïde</text>
+
+      <use href="#sym-filtre" x="70" y="285" width="100" height="50"/>
+      <text x="120" y="350" font-size="10.5" text-anchor="middle" fill="#22303f">filtre déshydrateur</text>
+      <text x="120" y="363" font-size="9" text-anchor="middle" fill="#5d6b7c">(ligne liquide)</text>
+
+      <use href="#sym-vanne" x="250" y="400" width="80" height="40"/>
+      <text x="290" y="458" font-size="10.5" text-anchor="middle" fill="#22303f">vanne d'arrêt GAZ (grand Ø)</text>
+
+      <use href="#sym-vanne" x="250" y="470" width="80" height="40"/>
+      <text x="290" y="528" font-size="10.5" text-anchor="middle" fill="#22303f">vanne d'arrêt LIQUIDE (petit Ø)</text>
+
+      <use href="#sym-manometres" x="90" y="460" width="70" height="56"/>
+      <text x="125" y="534" font-size="9.5" text-anchor="middle" fill="#22303f">prises de pression</text>
+      <text x="125" y="546" font-size="9" text-anchor="middle" fill="#5d6b7c">(accès manomètres)</text>
+
+      <text x="235" y="590" font-size="10" text-anchor="middle" fill="#5d6b7c" font-style="italic">fixation antivibratile (silentblocs) sur équerres ou dalle béton, à niveau</text>
+
+      <rect x="560" y="90" width="380" height="260" rx="8" fill="none" stroke="#1b3a63" stroke-width="2"/>
+      <text x="750" y="70" font-size="14" font-weight="bold" fill="#1b3a63" text-anchor="middle" font-family="Trebuchet MS, sans-serif">UNITÉ INTÉRIEURE (UI)</text>
+      <text x="750" y="84" font-size="10" fill="#5d6b7c" text-anchor="middle" font-style="italic">murale, hauteur ≥ 2,20 m, à niveau</text>
+
+      <use href="#sym-echangeur" x="600" y="110" width="120" height="120"/>
+      <text x="660" y="248" font-size="11" text-anchor="middle" fill="#22303f">batterie évaporateur</text>
+
+      <use href="#sym-vent-centrif" x="750" y="120" width="100" height="80"/>
+      <text x="800" y="218" font-size="11" text-anchor="middle" fill="#22303f">turbine de soufflage</text>
+
+      <use href="#sym-detendeur" x="750" y="232" width="90" height="68"/>
+      <text x="795" y="316" font-size="10.5" text-anchor="middle" fill="#22303f">détendeur</text>
+
+      <polyline points="330,420 460,420 505,270 560,190" fill="none" stroke="#1b3a63" stroke-width="3"/>
+      <text x="400" y="412" font-size="9.5" fill="#1b3a63" text-anchor="middle">gaz (grand Ø)</text>
+
+      <polyline points="330,490 460,490 505,290 560,215" fill="none" stroke="#1b3a63" stroke-width="1.5"/>
+      <text x="400" y="510" font-size="9.5" fill="#1b3a63" text-anchor="middle">liquide (petit Ø)</text>
+
+      <polyline points="350,545 460,545 505,310 560,300" fill="none" stroke="#ff6b35" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="400" y="565" font-size="9.5" fill="#c14a17" text-anchor="middle">câble électrique UE-UI</text>
+
+      <circle cx="505" cy="270" r="14" fill="#fff" stroke="#ff6b35" stroke-width="2"/>
+      <text x="505" y="245" font-size="9.5" fill="#5d6b7c" text-anchor="middle">passage carotté</text>
+      <text x="505" y="257" font-size="9.5" fill="#5d6b7c" text-anchor="middle">Ø50 + manchon</text>
+
+      <text x="400" y="590" font-size="9.5" fill="#5d6b7c" font-style="italic" text-anchor="middle">liaison frigorifique + électrique gainée ensemble — cintrage soigné, longueur selon notice, à faire valider</text>
+
+      <line x1="660" y1="230" x2="660" y2="615" stroke="#1b3a63" stroke-width="1.5"/>
+      <line x1="660" y1="615" x2="505" y2="620" stroke="#1b3a63" stroke-width="1.5"/>
+      <circle cx="505" cy="620" r="10" fill="#fff" stroke="#ff6b35" stroke-width="2"/>
+      <line x1="495" y1="622" x2="260" y2="650" stroke="#1b3a63" stroke-width="1.5"/>
+      <polygon points="260,650 275,644 271,656" fill="#1b3a63"/>
+      <text x="660" y="422" font-size="9.5" fill="#22303f" text-anchor="middle" transform="rotate(90 660 422)">évacuation condensats</text>
+      <text x="400" y="668" font-size="9.5" fill="#5d6b7c" font-style="italic" text-anchor="middle">pente mini 3 cm/m vers l'extérieur — siphon anti-remontée d'odeur</text>
+    </svg>
+  </div>
+  <p class="legende">Symboles techniques issus de la bibliothèque inerWeb (catalogue.json, famille <i>frigo_schema</i>) : compresseur, condenseur à air, ventilateur hélicoïde, ventilateur centrifuge, vanne d'isolement (× 2), manomètres, détendeur, filtre déshydrateur. Enveloppes UE/UI, mur, passage et évacuation des condensats = éléments schématiques génériques (pas de symbole normalisé disponible pour ces éléments).</p>
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

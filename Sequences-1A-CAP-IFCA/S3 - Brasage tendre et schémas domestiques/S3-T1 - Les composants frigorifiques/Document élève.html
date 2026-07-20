@@ -1,0 +1,402 @@
+<meta charset="utf-8">
+<title>Cours élève — S3 · Module théorie T1 · Les composants frigorifiques</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.poste{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:#fff; background:var(--bleu); border-radius:5px 5px 0 0; padding:5px 12px; margin:1.1em 0 0}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .poste-bloc{border:1px solid var(--bleu); border-radius:0 6px 6px 6px; padding:10px 14px; margin:0 0 1em; background:#fff}
+  .banque{border:1px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.3em 0 .8em; font-size:9.5pt}
+  .banque b{font-family:'Trebuchet MS',sans-serif; color:var(--violet)}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Les composants d'une installation frigorifique réelle</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S3-T1 · 2 h</span><b>Les composants frigorifiques</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · sem. 8-11</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — cours en classe entière</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Reconnaître et nommer les composants d'une vraie installation frigorifique, au-delà des 4 organes déjà connus, et dire à quoi sert chacun</div>
+    <div class="case"><h4>Savoir-être</h4>Observer avant de nommer · être honnête dans mon auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui — aucune compétence positionnée</span> ce cours enrichit le vocabulaire technique utilisé dans les modules ateliers de S3 (cuivre, brasage, électricité)</div>
+  </div>
+
+  <div class="situation"><h4>Accroche — le pavillon du chantier</h4>
+  Le pavillon du chantier va bientôt recevoir un climatiseur. Avant l'installation, il faut savoir <b>reconnaître</b>
+  les éléments d'une vraie installation frigorifique — pas seulement les 4 organes vus en S1, mais tous les autres
+  composants qui les accompagnent sur une machine réelle.
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/composants-installation-photo1-compresseur-condenseur.jpg" alt="Photo d'un groupe de condensation réel (compresseur, condenseur à air, tuyauteries cuivre) avec trois repères vides à observer">
+    <figcaption class="legende">Un groupe de condensation réel, photographié en atelier. D'après : TP « Les composants frigorifiques », F. Henninot.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Question de départ</b> — Regardez cette photo. Vous reconnaissez sûrement le
+  <b>condenseur</b> (le bloc à ailettes avec le ventilateur, à gauche) et le <b>compresseur</b> (le gros cylindre
+  noir, à droite) : ce sont 2 des 4 organes de la croix du frigoriste, vus en S1. Mais il y a beaucoup d'autres
+  pièces sur cette photo : tuyaux, raccords, petits boîtiers... D'après vous, combien d'éléments <b>différents</b>
+  pouvez-vous compter en tout sur cette photo, en plus du compresseur et du condenseur ? Notez votre nombre, même
+  approximatif.</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  </div>
+
+  <div class="notion"><h4>Ce que vous savez déjà (rappel S1)</h4>
+  <p style="margin:0; font-size:10.3pt">Une machine qui produit du froid fonctionne toujours avec <b>4 organes
+  principaux</b>, représentés en croix : le <b>détendeur</b> à GAUCHE, le <b>compresseur</b> à DROITE, le
+  <b>condenseur</b> en HAUT, l'<b>évaporateur</b> en BAS. Cette convention ne change jamais. Aujourd'hui, vous
+  allez découvrir <b>tous les autres composants</b> d'une vraie installation : ceux qui protègent le circuit,
+  qui le contrôlent, ou qui aident le professionnel à intervenir dessus.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE : POSTES 1 ET 2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — 4 postes tournants d'observation</h3>
+  <p style="font-size:10.3pt">Vous allez circuler par petits groupes sur <b>4 postes</b>. Chaque poste montre une
+  <b>photo réelle</b> d'une installation frigorifique (et, si disponibles à l'atelier, de vrais composants à
+  manipuler). Des <b>cercles blancs</b> repèrent les composants à étudier sur chaque photo. <b>Consigne unique à
+  chaque poste :</b> observez avant de nommer — décrivez ce que vous voyez (forme, couleur, taille, position),
+  même si vous ne connaissez pas encore le nom du composant. Les noms officiels seront donnés ensuite, en mise en
+  commun.</p>
+
+  <h4 class="poste">Poste 1 — le groupe compresseur/condenseur (vue 1)</h4>
+  <div class="poste-bloc">
+  <figure style="margin:4px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/composants-installation-photo1-compresseur-condenseur.jpg" alt="Groupe compresseur-condenseur avec trois repères vides : en haut à droite, au centre sur le ventilateur, en bas à droite sur le compresseur">
+    <figcaption class="legende">3 repères sur cette photo.</figcaption>
+  </figure>
+  <table class="releve">
+    <tr><th style="width:34%">Repère</th><th>Ce que j'observe (avant de nommer)</th></tr>
+    <tr><td>Cercle en haut à droite, relié par un trait à un petit raccord</td><td></td></tr>
+    <tr><td>Cercle au centre, sur la roue à ailettes noire (le ventilateur)</td><td></td></tr>
+    <tr><td>Cercle en bas à droite, sur le gros cylindre noir</td><td></td></tr>
+  </table>
+  </div>
+
+  <h4 class="poste">Poste 2 — le groupe compresseur/condenseur, avec les manomètres (vue 2)</h4>
+  <div class="poste-bloc">
+  <figure style="margin:4px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/composants-installation-photo2-manometres-pressostat.jpg" alt="Groupe compresseur-condenseur avec réservoir, filtre, voyant et deux manomètres, six repères vides">
+    <figcaption class="legende">6 repères sur cette photo.</figcaption>
+  </figure>
+  <table class="releve">
+    <tr><th style="width:34%">Repère</th><th>Ce que j'observe (avant de nommer)</th></tr>
+    <tr><td>Cercle sur le cylindre rouge (à gauche)</td><td></td></tr>
+    <tr><td>Cercle sur le cylindre noir (au centre)</td><td></td></tr>
+    <tr><td>Cercle en bas à gauche, relié par un trait à un petit raccord</td><td></td></tr>
+    <tr><td>Cercle sur le cadran bleu</td><td></td></tr>
+    <tr><td>Cercle sur le cadran rouge</td><td></td></tr>
+    <tr><td>Cercle sur le petit boîtier, tout à droite</td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — DÉCOUVERTE : POSTES 3 ET 4 + LISTE OFFICIELLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 class="poste">Poste 3 — détendeur et électrovanne (vue 3)</h4>
+  <div class="poste-bloc">
+  <figure style="margin:4px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/composants-installation-photo3-electrovanne-filtre.jpg" alt="Groupe compresseur-condenseur avec détendeur, électrovanne et vanne d'aspiration, trois repères vides">
+    <figcaption class="legende">3 repères sur cette photo.</figcaption>
+  </figure>
+  <table class="releve">
+    <tr><th style="width:34%">Repère</th><th>Ce que j'observe (avant de nommer)</th></tr>
+    <tr><td>Cercle en haut à gauche, relié par un trait à un raccord en laiton</td><td></td></tr>
+    <tr><td>Cercle en bas à droite, sur un petit boîtier jaune et noir</td><td></td></tr>
+    <tr><td>Cercle en haut à droite, relié par un trait à un tube isolé noir</td><td></td></tr>
+  </table>
+  </div>
+
+  <h4 class="poste">Poste 4 — l'évaporateur (vue 4)</h4>
+  <div class="poste-bloc">
+  <figure style="margin:4px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/composants-installation-photo4-evaporateur.jpg" alt="Évaporateur ventilé de chambre froide, un repère vide en haut à gauche" style="max-width:70%">
+    <figcaption class="legende">1 repère sur cette photo — un évaporateur ventilé de chambre froide.</figcaption>
+  </figure>
+  <table class="releve">
+    <tr><th style="width:34%">Repère</th><th>Ce que j'observe (avant de nommer)</th></tr>
+    <tr><td>Cercle en haut à gauche du bloc blanc</td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="seuil"><b class="t">Mise en commun</b> — Après les 4 postes, le professeur donne les <b>13 noms
+  officiels</b>. Recopiez-les dans le tableau ci-dessous, dans l'ordre où votre groupe les a rencontrés (ce n'est
+  pas grave si l'ordre n'est pas 1, 2, 3...).</p></div>
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9pt">
+    <tr><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+    <tr><td style="height:1.6em"></td><td></td><td></td><td></td></tr>
+    <tr><td style="height:1.6em"></td><td></td><td></td><td></td></tr>
+    <tr><td style="height:1.6em"></td><td></td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — APPLICATION : ASSOCIER NOM / FONCTION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION</h3>
+
+  <h4 style="font-size:11pt">Exercice 1 — associer chaque composant à sa fonction</h4>
+  <p style="font-size:10.3pt">Reliez (ou notez la lettre dans la case) chaque composant à la phrase qui décrit sa
+  fonction.</p>
+  <table class="releve">
+    <tr><th style="width:60%">Composant</th><th style="width:20%">Fonction (lettre)</th></tr>
+    <tr><td>Compresseur</td><td></td></tr>
+    <tr><td>Condenseur</td><td></td></tr>
+    <tr><td>Détendeur thermostatique</td><td></td></tr>
+    <tr><td>Évaporateur</td><td></td></tr>
+    <tr><td>Réservoir de liquide</td><td></td></tr>
+    <tr><td>Filtre déshydrateur</td><td></td></tr>
+    <tr><td>Voyant liquide</td><td></td></tr>
+    <tr><td>Électrovanne</td><td></td></tr>
+    <tr><td>Pressostat combiné</td><td></td></tr>
+  </table>
+  <table class="releve" style="font-size:8.8pt">
+    <tr><th>Fonctions à associer</th></tr>
+    <tr><td style="text-align:left">A. Aspire le fluide et le comprime : mise en circulation du fluide dans tout le circuit.</td></tr>
+    <tr><td style="text-align:left">B. Échangeur qui refroidit le gaz chaud jusqu'à le rendre liquide.</td></tr>
+    <tr><td style="text-align:left">C. Abaisse brusquement la pression du liquide et le vaporise.</td></tr>
+    <tr><td style="text-align:left">D. Échangeur qui transforme le liquide en gaz (c'est ici que naît le froid).</td></tr>
+    <tr><td style="text-align:left">E. Stocke le fluide frigorigène et compense les variations de volume, y compris lors d'une intervention.</td></tr>
+    <tr><td style="text-align:left">F. Supprime l'humidité, neutralise les acides, filtre les fines particules du circuit.</td></tr>
+    <tr><td style="text-align:left">G. Permet d'observer le fluide : détecte l'humidité, montre les bulles (manque de fluide).</td></tr>
+    <tr><td style="text-align:left">H. Agit sur le débit de fluide dans le circuit grâce à un signal électrique.</td></tr>
+    <tr><td style="text-align:left">I. Contrôle les pressions haute et basse : élément de sécurité et de régulation.</td></tr>
+  </table>
+
+  <h4 style="font-size:11pt">Exercice 2 — je propose une hypothèse</h4>
+  <p style="font-size:10.3pt">Pour les 4 composants suivants, ce cours ne donne pas encore de fonction officielle
+  détaillée. À partir de ce que vous avez observé aux postes (forme, position sur le circuit, nom du composant),
+  <b>proposez</b> une fonction probable. Ce sera validé et complété en classe avec le professeur.</p>
+  <table class="releve">
+    <tr><th style="width:38%">Composant</th><th>Ma proposition</th></tr>
+    <tr><td>Vanne de sortie du réservoir de liquide</td><td style="height:1.8em"></td></tr>
+    <tr><td>Manomètre haute pression (HP)</td><td style="height:1.8em"></td></tr>
+    <tr><td>Manomètre basse pression (BP)</td><td style="height:1.8em"></td></tr>
+    <tr><td>Vanne d'aspiration du compresseur</td><td style="height:1.8em"></td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — APPLICATION : PLACER SUR LA CROIX DU FRIGORISTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 3 — placer les nouveaux composants autour de la croix</h4>
+  <p style="font-size:10.3pt">Vous connaissez la croix du frigoriste (détendeur GAUCHE · compresseur DROITE ·
+  condenseur HAUT · évaporateur BAS). Les 9 composants découverts aujourd'hui ne sont pas de nouveaux organes :
+  ils s'ajoutent <b>sur les branches</b> de la croix, entre deux organes déjà connus. On ne redessine pas tout le
+  circuit en détail (ce sera pour plus tard) : on situe seulement <b>sur quelle branche</b> se trouve chaque
+  composant.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.png" alt="Schéma de la croix du frigoriste : condenseur en haut, compresseur à droite, détendeur à gauche, évaporateur en bas" style="max-width:70%;">
+    <figcaption class="legende">La croix du frigoriste, vue en S1 — support pour situer les nouveaux composants.</figcaption>
+  </figure>
+
+  <div class="banque"><b>Banque de composants</b> — réservoir de liquide · vanne de sortie du réservoir de liquide
+  · filtre déshydrateur · voyant liquide · électrovanne · vanne d'aspiration du compresseur · manomètre HP ·
+  manomètre BP · pressostat combiné</div>
+
+  <p style="font-size:10.3pt">Pour chaque composant de la banque, écrivez-le dans la bonne case du tableau :</p>
+  <table class="releve">
+    <tr><th style="width:34%">Où se trouve le composant ?</th><th>Composants (à écrire)</th></tr>
+    <tr><td><b>Branche condenseur → détendeur</b><br><span class="nuance">(la ligne liquide, entre le condenseur et le détendeur)</span></td><td style="height:3.4em"></td></tr>
+    <tr><td><b>Branche évaporateur → compresseur</b><br><span class="nuance">(la ligne d'aspiration, entre l'évaporateur et le compresseur)</span></td><td style="height:2em"></td></tr>
+    <tr><td><b>Au niveau du compresseur</b><br><span class="nuance">(surveillance des pressions)</span></td><td style="height:2.6em"></td></tr>
+  </table>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Aide : le réservoir stocke le liquide juste
+  après le condenseur ; le filtre et le voyant surveillent ce même liquide avant qu'il n'arrive au détendeur ;
+  les manomètres et le pressostat sont toujours placés là où on veut connaître la pression, donc près du
+  compresseur (aspiration et refoulement).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — SYNTHÈSE : FICHE MÉMO + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — ma fiche mémo</h3>
+  <p style="font-size:10.3pt">Complétez ce tableau avec la correction donnée en classe : c'est votre trace écrite,
+  à garder pour vous aider en atelier.</p>
+  <div class="trace">
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:8.8pt">
+    <tr><th style="width:30%">Composant</th><th>Fonction (en une phrase)</th></tr>
+    <tr><td>Compresseur</td><td></td></tr>
+    <tr><td>Condenseur</td><td></td></tr>
+    <tr><td>Détendeur thermostatique</td><td></td></tr>
+    <tr><td>Évaporateur</td><td></td></tr>
+    <tr><td>Réservoir de liquide</td><td></td></tr>
+    <tr><td>Vanne de sortie du réservoir de liquide</td><td></td></tr>
+    <tr><td>Filtre déshydrateur</td><td></td></tr>
+    <tr><td>Voyant liquide</td><td></td></tr>
+    <tr><td>Électrovanne</td><td></td></tr>
+    <tr><td>Manomètre haute pression (HP)</td><td></td></tr>
+    <tr><td>Manomètre basse pression (BP)</td><td></td></tr>
+    <tr><td>Pressostat combiné</td><td></td></tr>
+    <tr><td>Vanne d'aspiration du compresseur</td><td></td></tr>
+  </table>
+  </div>
+  </div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Ce module est un <b>appui</b> : aucune compétence n'est
+  positionnée, la grille sert uniquement de repère personnel.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:24%">Ce que je sais faire</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td>Nommer les 13 composants d'une installation frigorifique réelle et donner la fonction de chacun <span class="nuance">Appui — non noté</span></td><td>Compétence non observée ce jour.</td><td>Je ne reconnais pas les composants, même avec les 4 organes déjà connus.</td><td>Je reconnais et je nomme une partie des composants, avec de l'aide.</td><td>Je nomme seul(e) les 13 composants et je donne leur fonction avec ma fiche mémo.</td><td>Comme « Acquis », et je peux expliquer où chaque composant se situe sur la croix du frigoriste.</td></tr>
+    <tr><td>Savoir-être — j'observe avant de nommer, je suis honnête dans mon auto-positionnement</td><td>Non observé.</td><td>Je nomme avant d'observer, je recopie sans réfléchir.</td><td>J'observe mais j'ai besoin d'un rappel pour ne pas répondre trop vite.</td><td>J'observe avant de nommer, je remplis mon auto-positionnement seul(e) et honnêtement.</td><td>Comme « Acquis », et j'aide un camarade de mon poste à observer avant de nommer.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Nommer les composants et donner leur fonction :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe : il
+  enrichit le vocabulaire technique que vous retrouverez dans les ateliers de cuivre, de brasage et d'électricité
+  de la séquence S3, puis sur le chantier du pavillon.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « TP 02 — Les
+  composants frigorifiques » et son corrigé (F. Henninot, C1-Communiquer, 02_CAP-IFCA) ; photos de l'installation
+  extraites du TP source ; schéma « La Croix du Frigoriste » (F. Henninot, 2026), convention identique à S1-T1.
+  Les fonctions des composants sont reprises telles que données dans le corrigé source ; les composants pour
+  lesquels le corrigé source ne donne pas de fonction détaillée (vanne de sortie du réservoir, manomètres HP/BP,
+  vanne d'aspiration du compresseur) sont travaillés en hypothèse (exercice 2), à valider par le professeur.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .poste-bloc, .banque{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

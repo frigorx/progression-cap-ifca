@@ -1,0 +1,379 @@
+<meta charset="utf-8">
+<title>Document professeur — S1 · Module théorie T2 · Les grandeurs électriques U, I, R</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .ouvert{border:1.5px dashed #c14a17; border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .ouvert b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Les grandeurs électriques · tension, intensité, résistance</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S1-T2 · 2 h — DOCUMENT PROFESSEUR</span><b>Les grandeurs électriques U, I, R</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span> · sem. 1-4</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (classe entière, pas d'atelier ce jour)</td>
+      <td><span class="lib">Durée</span>2 h — cours actif, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → découverte guidée (multimètre, loi d'Ohm) → application (3 exercices) → synthèse/trace écrite</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — module théorie de classe entière</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">augmenté — nouveau en S1-E1 (électricité domestique simple), augmenté ici puis de nouveau en atelier S1-E2</span></div>
+    <div class="case"><h4>Savoir-être</h4>Observer avant de répondre · rigueur de lecture des grandeurs · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte — non remontée</span> module en appui de S1-E2 (C4.5 « Mesurer, comparer des grandeurs » · C3.7 « Contrôler la mise en œuvre des équipements électriques et fluidiques », statut Découverte) : prépare directement les mesures réelles au multimètre</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même numérotation que le document élève
+  (observations 1-2, questions a/b/c, exercices 1 à 3) et y ajoute les réponses attendues, les points de
+  vigilance, la conduite minutée en 4 phases, la différenciation, et un <b>point ouvert</b> signalé clairement
+  (aucune invention de valeur chiffrée). Module <b>de première rencontre</b> avec les grandeurs électriques
+  mesurables : Bloom CAP 1→2 (nommer, associer, appliquer une formule <b>donnée</b>). Aucun seuil de sécurité
+  électrique n'est traité ici (consignation, habilitation) : ce point relève de S1-F2/S6.1-S6.2 et sera repris
+  avant toute mise sous tension réelle en atelier S1-E2.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Cours actif en 4 phases</b>, premier contact de l'année avec les grandeurs
+  électriques mesurables (tension, intensité, résistance) : chaque terme est expliqué à sa première apparition,
+  appuyé sur une image (bouilloire, plaque signalétique, cadran de multimètre) plutôt que sur une abstraction.
+  <b>Aucune analogie hydraulique tension/débit n'est utilisée</b> : elle n'apparaît dans aucune des sources
+  disponibles pour cette classe, et la charte interdit d'inventer une analogie non sourcée — le cours reste donc
+  <b>concret</b> (« le multimètre affiche, on compare des valeurs réelles ») plutôt que métaphorique.</p>
+  <p style="font-size:10.3pt">Ce module est en appui direct du module atelier <b>S1-E2</b> (montages et
+  multimètre) : le lien y est rendu explicite à plusieurs reprises (« en atelier, tu mesureras ces grandeurs »).
+  Selon la rotation par demi-groupes, une partie des élèves aura déjà réalisé <b>S1-E1</b> (électricité
+  domestique simple, savoir S5.6 nouveau) au moment de ce cours, l'autre pas encore : les deux formulations sont
+  acceptées à l'oral, ce module fonctionnant comme un appui plutôt que comme une suite stricte.</p>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche / situation</td><td>2 min : présentation des deux objets (bouilloire électrique, plaque signalétique de moteur). 5 min : question de départ notée individuellement par chacun (que veulent dire V, A, W, Hz, Ω ?). 3 min : recueil rapide de 2-3 réponses à l'oral, <b>sans corriger</b> — la question sera reprise en phase 4.</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Découverte</td><td>10 min : présentation des 3 grandeurs électriques (tension/intensité/résistance — symboles, unités, appareils de mesure), encadré dédié. 8 min : observation 1 sur le cadran du multimètre (observation individuelle puis mise en commun orale courte, sans entrer dans le détail continu/alternatif, réservé à S1-E2). 6 min : effet du courant dans un conducteur (chaleur produite, lien avec la bouilloire), question guidée. 12 min : présentation de la loi d'Ohm (image projetée), les 3 écritures évoquées à l'oral, observation 2 (résistance qui freine/facilite le courant), puis le « clin d'œil » vers l'analogie thermique (sans seuil chiffré). 4 min : transition vers l'application.</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application</td><td>Exercice 1 (12 min, dont 3 de correction) : lecture de la plaque signalétique (ligne 440 V / 60 Hz). Exercice 2 (15 min, dont 3 de correction) : unités du multimètre, exemple réel à 7,3 Ω, tableau des 5 situations réelles (tension/intensité). Exercice 3 (18 min, dont 4 de correction) : loi d'Ohm — compléter la formule (I, R) et raisonnement guidé (questions a/b/c). 5 min : retour collectif, rappel explicite du lien avec S1-E2.</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse / trace écrite</td><td>5 min : retour explicite sur la question de départ de l'accroche. 10 min : fiche de trace écrite complétée individuellement (tableau des 3 grandeurs, loi d'Ohm, lien S1-E2). 5 min : auto-positionnement 0-4.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à la
+  trame « Module THÉORIE — 2 h » (trame B doublée) du cadrage S1.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ ACCROCHE + DÉCOUVERTE 1 (3 GRANDEURS) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — question de départ (accroche)</h3>
+  <div class="reponse"><b class="t">Question de départ</b> — Que veulent dire les lettres V, A, W, Hz, Ω ?<br><br>
+  <b>Réponse attendue (donnée en phase 4, pas en phase 1) :</b> V = Volt, unité de la <b>tension</b> ; A = Ampère,
+  unité de l'<b>intensité</b> ; Ω = Ohm, unité de la <b>résistance</b> — ce sont les 3 grandeurs travaillées
+  aujourd'hui. W = Watt (unité de <b>puissance</b>) et Hz = Hertz (unité de <b>fréquence</b>) apparaissent aussi
+  sur les deux objets, mais ne sont <b>pas</b> approfondis dans ce module : à mentionner brièvement, sans
+  développer (P et f seront vus plus loin dans la formation). <b>Ne pas corriger en phase 1</b> : accepter toutes
+  les idées notées, même incomplètes, et les reprendre une fois la notion construite.</div>
+
+  <h3 class="section">Corrigé — découverte, les 3 grandeurs électriques</h3>
+  <div class="reponse">Tension (U, Volt, V, voltmètre) · Intensité (I, Ampère, A, ampèremètre) · Résistance (R,
+  Ohm, Ω, ohmmètre) — cf. encadré « Les 3 grandeurs électriques » du document élève, à faire lire puis reformuler
+  à l'oral avant de passer à l'observation du multimètre.</div>
+
+  <h3 class="section">Corrigé — Observation 1 (cadran du multimètre)</h3>
+  <div class="reponse"><b class="t">Observation 1</b> — Combien de zones de réglage différentes, et que
+  représentent V, A, Ω sur le cadran ?<br><br>
+  <b>Réponse attendue :</b> le cadran comporte plusieurs zones : deux zones « V » (tension continue V= et
+  tension alternative V~), deux zones « A » (intensité continue A= et intensité alternative A~), et une zone
+  « Ω » (résistance) ; chaque zone comporte elle-même plusieurs graduations (calibres).</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas entrer dans le détail de la distinction
+  continu (=) / alternatif (~) ni dans le choix du calibre à ce stade : ces manipulations concrètes sont
+  réservées au module atelier <b>S1-E2</b>, où les élèves auront le multimètre en main. Ici, l'objectif est
+  seulement de faire remarquer qu'un même appareil regroupe plusieurs fonctions de mesure distinctes.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ DÉCOUVERTE 2 (CHALEUR + LOI D'OHM) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — d'où vient la chaleur ?</h3>
+  <div class="reponse"><b class="t">Question</b> — Si on augmente l'intensité I qui traverse une résistance
+  chauffante, la chaleur produite augmente-t-elle ou diminue-t-elle ?<br><br>
+  <b>Réponse attendue :</b> la chaleur produite <b>augmente</b>. Plus l'intensité qui traverse le conducteur est
+  grande, plus la chaleur produite est importante.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas introduire la formule de la puissance
+  (P = U × I ou P = R × I²) à ce stade : elle n'appartient pas au calibrage de ce module (Bloom 1→2, 3 grandeurs
+  U/I/R uniquement). Se limiter au lien qualitatif « plus de courant → plus de chaleur », qui suffit à relier
+  l'accroche (bouilloire) à la suite du cours.</div>
+
+  <h3 class="section">Corrigé — la loi d'Ohm</h3>
+  <div class="reponse">Formule présentée : <b>U = R × I</b> (source : schéma « Loi d'Ohm », F. Henninot). Faire
+  lire les 3 lettres et leurs unités sur l'image avant de commenter.</div>
+
+  <h4 class="section">Observation 2 — résistance qui freine ou facilite</h4>
+  <div class="reponse"><b class="t">Observation 2</b> — Une résistance élevée facilite-t-elle ou freine-t-elle le
+  passage du courant ?<br><br>
+  <b>Réponse attendue :</b> une résistance élevée <b>freine</b> le passage du courant : à tension égale, plus R
+  est grand, plus I (calculé par I = U ÷ R) est petit.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Erreur fréquente : confondre « résistance » et
+  « puissance ». Faire dire clairement : une résistance élevée n'est pas forcément un appareil puissant, c'est un
+  matériau ou un composant qui s'oppose davantage au passage du courant.</div>
+
+  <h4 class="section">Le clin d'œil thermique (aucune valeur chiffrée)</h4>
+  <div class="reponse">L'image source présente aussi la forme thermique de la même loi :
+  ΔT<sub>ab</sub> = R<sub>ther</sub> × Φ. Ce paragraphe est un <b>pont culturel</b> vers le domaine du froid
+  (cohérent avec le module compagnon S1-T1, cycle frigorifique) : il ne doit donner lieu à <b>aucun calcul</b> et
+  <b>aucun seuil chiffré</b> ce jour (les seuils de surchauffe/sous-refroidissement appartiennent aux modules
+  T1/T2 de la séquence S11, en 2<sup>e</sup> année). Objectif unique : faire remarquer que la même « forme » de
+  loi (une différence, divisée/multipliée par une résistance, donne un flux) se retrouve dans deux domaines de la
+  physique du technicien froid/électricité.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ APPLICATION EX 1 + EX 2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 1 (lecture de plaque signalétique)</h3>
+  <table class="mini">
+    <tr><th style="width:50%">Grandeur (ligne 440 V)</th><th>Valeur</th></tr>
+    <tr><td>1. Fréquence</td><td><b>60 Hz</b></td></tr>
+    <tr><td>2. Intensité absorbée</td><td><b>3,60 A</b></td></tr>
+    <tr><td>3. Puissance mécanique nominale</td><td><b>1,80 kW</b></td></tr>
+    <tr><td>4. Poids du moteur</td><td><b>18 kg</b></td></tr>
+    <tr><td>5. Vitesse nominale</td><td><b>1 710 tr/min</b></td></tr>
+  </table>
+  <div class="reponse"><b class="t">Question 6</b> — Grandeurs électriques parmi les 5 relevées : <b>la tension
+  (440 V, donnée dans l'énoncé) et l'intensité (3,60 A)</b>. Le poids, la vitesse nominale et la puissance
+  mécanique nominale ne sont <b>pas</b> des grandeurs électriques (ce sont des caractéristiques mécaniques du
+  moteur).</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser dire que la « puissance mécanique »
+  est une des 3 grandeurs du jour : c'est une information utile mais mécanique (en sortie d'arbre), pas
+  l'une des grandeurs U/I/R travaillées ici. Ne pas tenter de calculer une puissance électrique (P = U × I × cos
+  φ, triphasé) : hors calibrage de ce module.</div>
+
+  <h3 class="section">Corrigé — Exercice 2 (unités du multimètre)</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Fonction</th><th>Grandeur (symbole)</th><th>Unité</th><th>Symbole d'unité</th></tr>
+    <tr><td>Voltmètre (position V)</td><td>Tension (U)</td><td>Volt</td><td>V</td></tr>
+    <tr><td>Ampèremètre (position A)</td><td>Intensité (I)</td><td>Ampère</td><td>A</td></tr>
+    <tr><td>Ohmmètre (position Ω)</td><td>Résistance (R)</td><td>Ohm</td><td>Ω</td></tr>
+  </table>
+  <div class="reponse"><b class="t">Question</b> — Fonction utilisée pour obtenir 7,3 Ω : <b>l'ohmmètre
+  (position Ω)</b>.</div>
+  <table class="mini">
+    <tr><th style="width:56%">Situation</th><th>U ou I ?</th><th>Unité</th></tr>
+    <tr><td>Tension sur une prise de courant domestique (230 V)</td><td><b>U</b></td><td>Volt (V)</td></tr>
+    <tr><td>Tension délivrée par un chargeur de téléphone mobile (5,2 V)</td><td><b>U</b></td><td>Volt (V)</td></tr>
+    <tr><td>Tension aux bornes d'une pile de lampe de poche (1,5 V)</td><td><b>U</b></td><td>Volt (V)</td></tr>
+    <tr><td>Tension aux bornes d'une batterie d'automobile (12 V)</td><td><b>U</b></td><td>Volt (V)</td></tr>
+    <tr><td>Courant dans un radiateur électrique (≈ 2,2 A)</td><td><b>I</b></td><td>Ampère (A)</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — La ligne « chargeur de téléphone mobile » a été
+  <b>reformulée</b> par rapport au document source (qui l'intitulait de façon ambiguë « Courant fourni par un
+  chargeur… (5,2 V) », alors que 5,2 V est une tension) : la valeur numérique (5,2 V) est inchangée, seule la
+  formulation a été clarifiée pour éviter de faire apprendre une confusion U/I aux élèves.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CORRIGÉ EX 3 + POINT OUVERT + GRILLE 0-4 + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 3 (loi d'Ohm)</h3>
+  <div class="reponse">Formule de départ : U = R × I. Les deux autres écritures : <b>I = U ÷ R</b> et
+  <b>R = U ÷ I</b>.<br><br>
+  <b>Question a</b> — Si R augmente et I reste identique, U augmente-t-il ou diminue-t-il ? <b>Réponse :</b> U
+  <b>augmente</b> (U = R × I : si R monte et I ne change pas, le produit R × I monte).<br><br>
+  <b>Question b</b> — Formule pour calculer I à partir de R = 7,3 Ω et d'une tension U connue : <b>I = U ÷
+  R</b> (formule seule attendue, aucun calcul numérique : aucune tension n'est fournie pour cet enroulement dans
+  les sources disponibles).<br><br>
+  <b>Question c</b> — Pourquoi ne pas mesurer une résistance sous tension ? <b>Réponse attendue :</b> en position
+  ohmmètre, le multimètre envoie lui-même un petit courant dans le composant pour en déduire la résistance ; une
+  tension extérieure présente en même temps fausse la mesure et peut endommager l'appareil ou mettre l'utilisateur
+  en danger — c'est pourquoi le TP 04 précise de <b>travailler hors tension</b> pour les fonctions résistance et
+  continuité.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Rappeler que cette règle (jamais d'ohmmètre sous
+  tension) sera appliquée concrètement, avec un vrai multimètre, dès le module atelier S1-E2 : c'est une règle de
+  sécurité de l'appareil autant que de la personne.</div>
+
+  <div class="ouvert"><b class="t">Point ouvert — aucune invention de valeur</b> Aucune source disponible ne
+  fournit un triplet numérique complet (U, I, R cohérents entre eux, mesurés sur un même composant purement
+  résistif) permettant un calcul guidé « classique » de la loi d'Ohm avec un résultat chiffré. Le triplet le plus
+  complet trouvé (plaque moteur 440 V / 3,60 A) concerne un <b>moteur asynchrone triphasé</b> : ce n'est pas une
+  charge purement résistive (impédance, cos φ selon la plaque du moteur — à faire valider), et lui appliquer U = R × I serait un contresens technique
+  (U ÷ I y donnerait une impédance, pas une résistance ohmique). Choix retenu pour ce module : traiter la loi
+  d'Ohm en <b>formule et raisonnement qualitatif</b> uniquement, et réserver le calcul numérique complet aux
+  mesures réelles de l'atelier S1-E2, où les élèves produiront eux-mêmes un triplet U/I/R cohérent sur un
+  composant résistif réel. <b>À signaler à F. Henninot</b> : si un triplet réel validé existe déjà (mesure
+  d'atelier antérieure, valeur de manuel scolaire), l'ajouter ici en complément lors d'une prochaine relecture.</div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Grille <b>légère</b>, statut <b>Découverte — non
+  remontée</b> sur École Directe (savoir <b>S5.6</b>, en appui de S1-E2) : elle sert de repère personnel à
+  l'élève, pas d'évaluation sommative.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Ce que l'élève sait faire</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:10%">3</th><th class="niv" style="width:10%">4</th></tr>
+    <tr>
+      <td><b>S5.6</b> Nommer les 3 grandeurs (U, I, R), leurs unités, l'appareil qui les mesure <span class="nuance">Découverte — non remontée</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne nomme pas les 3 grandeurs et/ou ne relie pas symbole/unité/appareil.</td>
+      <td>Nomme les 3 grandeurs et leurs unités avec l'aide du professeur ou d'un pair.</td>
+      <td>Nomme seul(e) les 3 grandeurs, leurs symboles, leurs unités, l'appareil de mesure, et lit une valeur simple sur une plaque ou un multimètre.</td>
+      <td>Comme « Acquis », et explique en plus la loi d'Ohm avec ses propres mots.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — observer avant de répondre, rigueur de lecture, honnêteté de l'auto-positionnement</td>
+      <td>Non observé.</td>
+      <td>Répond avant d'observer, recopie une réponse d'un camarade sans réfléchir.</td>
+      <td>Observe mais a besoin d'un rappel pour ne pas répondre trop vite.</td>
+      <td>Observe avant de répondre, lit les valeurs avec soin, complète son auto-positionnement seul(e) et honnêtement.</td>
+      <td>Comme « Acquis », et aide un pair à rester honnête dans son auto-positionnement.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Pour l'exercice 1, surligner à l'avance sur la plaque projetée la ligne 440 V et les 5 valeurs à relever ; pour l'exercice 2, réduire le tableau des 5 situations à 3 lignes (2 tensions, 1 intensité) ; pour l'exercice 3, fournir la formule I = U ÷ R déjà écrite et ne demander que R = U ÷ I.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, les 3 exercices en autonomie guidée, correction collective après chacun.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus, à l'oral : « d'après la plaque, pourquoi l'intensité est-elle différente selon la tension choisie (230 V / 400 V / 440 V) pour une même puissance mécanique ? » (amorce de la relation puissance/tension/intensité, sans donner la formule P = U×I×cosφ ce jour).</td></tr>
+    <tr><td>FLE</td><td>Affichage au tableau des 3 grandeurs avec pictogramme simple (tension = pile ⚡ ; intensité = flèche qui coule dans un fil ; résistance = mur qui freine) ; couleur systématique par grandeur (U en bleu, I en orange, R en vert) reprise sur tous les documents ; phrases courtes à l'oral, une consigne à la fois, lecture des valeurs de la plaque faite d'abord en groupe avant le travail individuel.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Cacher les colonnes non utilisées de la plaque signalétique (ne montrer que la ligne 440 V) pour limiter la surcharge visuelle ; tableau de l'exercice 2 présenté ligne par ligne ; limiter la durée d'observation silencieuse du cadran de multimètre à 2-3 minutes avant la première relance orale.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence</h3>
+  <ul class="liste-num">
+    <li>Le module atelier <b>S1-E2</b> (montages et multimètre) réutilise directement le vocabulaire, les
+    unités et le cadran de multimètre vus ici, mais en <b>manipulation réelle</b> (postes tournants de mesure :
+    continuité, tension, intensité, résistance) — c'est là que la loi d'Ohm sera vérifiée avec de vraies valeurs
+    mesurées par les élèves ;</li>
+    <li>Le savoir <b>S5.6</b>, augmenté ici, sera de nouveau augmenté en S1-E2 puis réinvesti dans les
+    séquences électriques ultérieures de la formation ;</li>
+    <li>Le carnet de bord <b>F3</b> peut accueillir une trace courte du jour si l'enseignant le souhaite (non
+    obligatoire pour ce module).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : fiche d'activité
+  « Centre d'intérêt n°1 — Découverte d'un circuit électrique » (F. Henninot, S4-Électricité, CAP IFCA) ;
+  « Exercice n°1 » et sa correction — plaque signalétique moteur Leroy Somer LS 90L-T (F. Henninot) ;
+  « Exercice n°2 » et sa correction — effet du courant dans un conducteur (F. Henninot) ; « TP 04 – multimètre »
+  et sa correction — fonctions, unités, mesure de résistance 7,3 Ω (F. Henninot, 2nde TNE) ; image « bouilloire
+  électrique » (F. Henninot, S4-Électricité) ; schéma « Loi d'Ohm » électrique et thermique (F. Henninot) ;
+  cadran de multimètre et tableau de grandeurs réelles, préparés pour le module S1-E2 (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .ouvert{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

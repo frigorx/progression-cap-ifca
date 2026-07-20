@@ -1,0 +1,556 @@
+<meta charset="utf-8">
+<title>TP élève — S10 · Module A0 · Diagnostic de la machine et état des lieux</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Diagnostiquer, mettre en place, façonner le cuivre</td>
+      <td style="width:38%"><span class="lib">Module atelier A0 · 4 h</span><b>Diagnostic de la machine et état des lieux</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> · sem. 1 · 01-05/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Bienvenue dans le <b>chantier de remise en état</b> de l'atelier ! Cette année, chaque binôme reçoit sa
+  propre machine frigorifique d'occasion à remettre en état, de son diagnostic jusqu'à sa mise en service.
+  <b>Ordre d'intervention n° OI-2026-S10-01</b> : votre entreprise a racheté un lot de machines frigorifiques
+  d'occasion. Avant tout devis de remise en état, le client demande un <b>état des lieux complet</b> de la
+  machine qui vous est confiée. Le chef de chantier (votre professeur) attribue une machine à votre binôme
+  aujourd'hui et réceptionnera votre fiche de diagnostic en fin de module. <b>Aucune mise sous tension ni
+  ouverture de circuit</b> cette semaine — observation et relevé uniquement.
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/croix-frigoriste-schema-technique.svg" alt="Schéma technique du circuit frigorifique : compresseur, condenseur, détendeur, évaporateur"
+         style="max-width:92%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Rappel : la Croix du Frigoriste, avec ses symboles normalisés — c'est ce circuit que vous allez retrouver sur votre machine. <b>Approfondi au module T0.</b></figcaption>
+  </figure></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques <span class="nuance">contexte</span><br><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">prérequis (1<sup>re</sup> année)</span><br><b>S1</b> Contexte contractuel du chantier <span class="nuance">nouveau</span><br><b>S2.2</b> Lecture de plan <span class="nuance">augmenté</span><br><b>S2.3</b> Croquis à main levée <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>EPI portés sans rappel · rigueur de l'inventaire · honnêteté du constat · respect de la machine confiée au binôme</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C2.1</b> Organiser des informations<br><span class="statut">Confortement</span> <b>C1.3</b> Rendre compte</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>repérer</b> les 4 organes de la Croix du Frigoriste (compresseur, condenseur, détendeur, évaporateur) sur la machine qui m'est confiée ;</li>
+    <li><b>dresser</b> l'inventaire des organes et le constat de leur état, ainsi que du câblage et de la robinetterie (jalon 1) ;</li>
+    <li><b>dessiner</b> un croquis à main levée du circuit frigorifique de ma machine et <b>rédiger</b> le constat écrit transmis au chef de chantier (jalon 2) ;</li>
+    <li><b>rendre compte</b> à l'oral, en fin de module, de l'état des lieux de ma machine.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li>nommer les 4 organes de la Croix du Frigoriste : compresseur, condenseur, détendeur, évaporateur (vu en 1<sup>re</sup> année, S5.1) ;</li>
+    <li>situer chaque organe sur un circuit frigorifique simple ;</li>
+    <li>tenir un carnet de bord ;</li>
+    <li>porter les EPI de l'atelier sans qu'on me le rappelle.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si les 4 organes de la Croix du Frigoriste ne vous disent rien, prévenez le professeur avant de commencer : un rappel court est possible pendant l'exercice au fil de l'eau, mais l'approfondissement complet se fait au <b>module T0</b>.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Machine frigorifique d'occasion attribuée au binôme (× 1), consignée hors tension et sans fluide</li>
+    <li>Fiche de diagnostic — ce document (× 1 par élève)</li>
+    <li>Carnet de bord individuel (× 1 par élève)</li>
+    <li>Bon de commande vierge (× 1 par binôme)</li>
+    <li>Crayon de papier, gomme, règle (× 1 par élève)</li>
+    <li>Chiffon et brosse souple pour dégager la plaque signalétique si besoin <span class="conso">(consommable)</span></li>
+    <li>Lampe torche pour lire une plaque signalétique effacée ou mal placée (× 1 par binôme)</li>
+    <li>Gants de manutention et chaussures de sécurité (× 1 par élève)</li>
+    <li>Tenue d'atelier complète (× 1 par élève)</li>
+  </ol>
+
+  <h3 class="section">Sécurité — machine d'occasion (centrale ce jour)</h3>
+  <div class="secu"><b class="t">⚠ Rappel</b> — Votre machine est <b>consignée hors tension et sans fluide</b>,
+  vérifiée par le professeur avant le début du module. <b>Sans consignation vérifiée par le professeur, pas
+  d'inspection.</b></div>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Électrique résiduel (câblage dénudé, condensateur pouvant rester chargé même hors tension)</td><td>Ne jamais toucher un fil ou un condensateur sans validation du professeur. <b>Observer sans manipuler l'électrique.</b></td></tr>
+    <tr><td>Manutention (déplacement ou inclinaison d'une machine lourde pour l'observer sous tous les angles)</td><td>Ne jamais déplacer seul une machine ; demander de l'aide au professeur ou à un camarade.</td></tr>
+    <tr><td>Coupures (arêtes vives de tôlerie, ailettes de condenseur ou d'évaporateur abîmées)</td><td>Gants portés en permanence pendant l'inspection, ne jamais passer la main à l'aveugle derrière la tôlerie.</td></tr>
+    <tr><td>Chute d'objets (panneaux, capots ou pièces détachées mal fixés sur une machine d'occasion)</td><td>Vérifier la stabilité d'un panneau avant de le retirer, le reposer aussitôt après lecture.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10pt">Avant de commencer l'inspection, complétez la <b>fiche de sécurité à cocher</b>
+  ci-dessous (EPI portés, consignation vérifiée) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, consignation, zone de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — coupez ou signalez immédiatement (arrêt d'urgence),
+  alertez le professeur, ne déplacez jamais un camarade blessé, rendez-vous au point trousse de secours indiqué
+  en début de séance. <b>Gestes interdits</b> : ne jamais mettre une machine sous tension ; ne jamais ouvrir un
+  circuit sous pression sans l'accord et le contrôle du professeur.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — JALON 1 : REPÉRAGE DES 4 ORGANES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">OBSERVER — ma machine, en silence</h3>
+  <span class="poste-titre">JALON 1 · inventaire / état des lieux — ≈ 1 h</span>
+  <p style="font-size:10.5pt">Placez-vous devant la machine attribuée à votre binôme. Observez-la en silence
+  pendant 3 minutes, sans rien toucher : sa forme, son état général, ce qui saute aux yeux (rouille, pièces
+  manquantes, tuyaux coupés, câbles pendants…).</p>
+
+  <div class="encadre-question"><b>Observation 1</b> — En une phrase, quelle est votre toute première
+  impression sur l'état général de cette machine ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Repérer les 4 organes de la Croix du Frigoriste</h3>
+  <p style="font-size:10.5pt">Sans l'aide du professeur, cherchez sur votre machine les 4 organes que vous
+  connaissez déjà depuis la 1<sup>re</sup> année : le <b>compresseur</b>, le <b>condenseur</b>, le
+  <b>détendeur</b> et l'<b>évaporateur</b>. Touchez uniquement ce qui est nécessaire pour regarder de plus près
+  (jamais le câblage ni un condensateur).</p>
+
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:22%">Organe</th><th style="width:39%">Où je l'ai trouvé (emplacement)</th><th style="width:39%">Ce que je remarque (état, marque, modèle)</th></tr>
+    <tr><td>Compresseur</td><td></td><td></td></tr>
+    <tr><td>Condenseur</td><td></td><td></td></tr>
+    <tr><td>Détendeur</td><td></td><td></td></tr>
+    <tr><td>Évaporateur</td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-question"><b>Observation 2</b> — Dans quel ordre le fluide frigorigène traverse-t-il les
+  4 organes lorsque la machine fonctionne normalement ? (numérotez de 1 à 4)</div>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:25%">Compresseur</th><th style="width:25%">Condenseur</th><th style="width:25%">Détendeur</th><th style="width:25%">Évaporateur</th></tr>
+    <tr><td>n° ___</td><td>n° ___</td><td>n° ___</td><td>n° ___</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Relever la plaque signalétique</h3>
+  <ol class="liste-num">
+    <li>Localisez la plaque signalétique de votre machine (souvent sur le compresseur ou le bâti). Utilisez la lampe torche si elle est peu lisible.</li>
+    <li>Nettoyez-la délicatement au chiffon si besoin, sans forcer.</li>
+    <li>Recopiez chaque valeur lisible dans le tableau ci-dessous. Si une valeur est absente ou illisible, écrivez « illisible » — <b>n'inventez jamais une valeur</b>.</li>
+  </ol>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:40%">Information demandée</th><th style="width:60%">Valeur selon plaque signalétique</th></tr>
+    <tr><td>Marque / constructeur</td><td></td></tr>
+    <tr><td>Modèle / référence</td><td></td></tr>
+    <tr><td>Fluide frigorigène (type)</td><td></td></tr>
+    <tr><td>Charge de fluide (kg)</td><td></td></tr>
+    <tr><td>Tension d'alimentation (V)</td><td></td></tr>
+    <tr><td>Année de fabrication</td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-question"><b>Observation 3</b> — Une valeur de la plaque est-elle illisible ou manquante
+  sur votre machine ? Si oui, laquelle, et que faudra-t-il faire pour la retrouver ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 BIS — ENTRAÎNEMENT PLAQUES SIGNALÉTIQUES (1/3) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Entraînement — lire d'autres plaques signalétiques</h3>
+  <p style="font-size:10.3pt">Vous avez relevé la plaque de <b>votre</b> machine. Entraînez-vous maintenant sur
+  <b>5 vraies photos de plaques</b> prises en atelier, pour savoir lire n'importe quelle plaque le jour où vous
+  en croiserez une autre en intervention. <span class="nuance" style="font-size:9.5pt">Non noté — entraînement
+  personnel, à faire en complément si le temps du jalon 1 le permet, sinon en révision.</span></p>
+
+  <h3 class="section">Entraînement 1 — climatisation Fujitsu</h3>
+  <figure style="margin:6px 0; text-align:center">
+    <img class="fig" src="../images/plaque-signaletique-fujitsu-climatisation.jpg" alt="Plaque signalétique climatisation Fujitsu General, modèle AOYA18LACL" style="max-width:62%">
+  </figure>
+  <p class="legende" style="text-align:center">D'après : IFCA PLAQUE_ (F. Henninot).</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:55%">Renseignement demandé</th><th style="width:45%">Votre réponse</th></tr>
+    <tr><td>Marque / constructeur</td><td></td></tr>
+    <tr><td>Puissance frigorifique (froid) en kW</td><td></td></tr>
+    <tr><td>Poids en kilos</td><td></td></tr>
+    <tr><td>Puissance calorifique (chaud)</td><td></td></tr>
+    <tr><td>Numéro de série</td><td></td></tr>
+    <tr><td>Tension d'alimentation</td><td></td></tr>
+    <tr><td>Type de fluide frigorigène</td><td></td></tr>
+    <tr><td>Quantité de fluide en kg</td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 TER — ENTRAÎNEMENT PLAQUES SIGNALÉTIQUES (2/3) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Entraînement 2 — climatiseur Mitsubishi Electric</h3>
+  <figure style="margin:6px 0; text-align:center">
+    <img class="fig" src="../images/plaque-signaletique-mitsubishi-msc-ga35vb.jpg" alt="Plaque signalétique Mitsubishi Electric, modèle MSC-GA35VB" style="max-width:58%">
+  </figure>
+  <p class="legende" style="text-align:center">D'après : IFCA PLAQUE_ (F. Henninot).</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:55%">Renseignement demandé</th><th style="width:45%">Votre réponse</th></tr>
+    <tr><td>Marque</td><td></td></tr>
+    <tr><td>Poids en kilos</td><td></td></tr>
+    <tr><td>Pression de sécurité HPps</td><td></td></tr>
+    <tr><td>Puissance électrique absorbée max</td><td></td></tr>
+    <tr><td>Intensité</td><td></td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Entraînement 3 — pompe à chaleur Daikin (unité extérieure)</h3>
+  <figure style="margin:6px 0; text-align:center">
+    <img class="fig" src="../images/plaque-signaletique-daikin-unite-exterieure.jpg" alt="Plaque signalétique Daikin, unité extérieure pompe à chaleur, modèle RXS20CVMB" style="max-width:58%">
+  </figure>
+  <p class="legende" style="text-align:center">D'après : IFCA PLAQUE_ (F. Henninot).</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:55%">Renseignement demandé</th><th style="width:45%">Votre réponse</th></tr>
+    <tr><td>Poids en kilos</td><td></td></tr>
+    <tr><td>Unité intérieure ou extérieure ?</td><td></td></tr>
+    <tr><td>Type de gaz et poids en kg</td><td></td></tr>
+    <tr><td>Numéro de série</td><td></td></tr>
+    <tr><td>Intensité maximum absorbée</td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 QUATER — ENTRAÎNEMENT PLAQUES SIGNALÉTIQUES (3/3) + GWP ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Entraînement 4 — groupe Scotsman Frimont</h3>
+  <figure style="margin:6px 0; text-align:center">
+    <img class="fig" src="../images/plaque-signaletique-scotsman-frimont-mf68s.jpg" alt="Plaque signalétique Scotsman Frimont, modèle MF68 S SPLIT" style="max-width:50%">
+  </figure>
+  <p class="legende" style="text-align:center">D'après : IFCA PLAQUE_ (F. Henninot).</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:55%">Renseignement demandé</th><th style="width:45%">Votre réponse</th></tr>
+    <tr><td>Marque de la machine</td><td></td></tr>
+    <tr><td>Référence</td><td></td></tr>
+    <tr><td>Numéro de série</td><td></td></tr>
+    <tr><td>Fréquence en Hertz</td><td></td></tr>
+    <tr><td>Type de gaz et quantité en kg</td><td></td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Entraînement 5 — centrale Lennox : jusqu'au GWP</h3>
+  <figure style="margin:6px 0; text-align:center">
+    <img class="fig" src="../images/plaque-signaletique-lennox-gwp-r449a.jpg" alt="Plaque signalétique Lennox / LGL France, circuit fluide R449A, GWP 1282" style="max-width:62%">
+  </figure>
+  <p class="legende" style="text-align:center">D'après : IFCA PLAQUE_ (F. Henninot).</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:55%">Renseignement demandé</th><th style="width:45%">Votre réponse</th></tr>
+    <tr><td>Type de gaz</td><td></td></tr>
+    <tr><td>Intensité maxi et puissance absorbée</td><td></td></tr>
+    <tr><td>Que veut dire le sigle CE ?</td><td></td></tr>
+    <tr><td>À quoi correspond « GWP 1282 » ?</td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-question"><b>Calcul GWP</b> — Le GWP (<i>Global Warming Potential</i>, ou PRG, pouvoir de
+  réchauffement global) compare l'effet de serre d'un fluide à celui du CO<sub>2</sub> (GWP = 1) sur 100 ans.
+  Pour calculer le GWP total d'une charge : convertir la masse en tonnes, puis multiplier par le GWP du fluide.
+  <br><br><b>Donnez le GWP total de l'installation si elle contient 100 kg de ce fluide.</b></div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — JALON 1 (SUITE) : CÂBLAGE/ROBINETTERIE + INVENTAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Inventaire du câblage et de la robinetterie</h3>
+  <span class="poste-titre">JALON 1 (suite)</span>
+  <p style="font-size:10.5pt">Observez maintenant le câblage électrique visible et les vannes / robinets
+  présents sur votre machine, <b>sans jamais toucher à un fil ou ouvrir une vanne</b>.</p>
+
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:34%">Élément observé</th><th style="width:22%">Présent ?</th><th style="width:44%">État constaté</th></tr>
+    <tr><td>Armoire ou boîtier électrique</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Câblage visible entre organes</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Vanne(s) / robinet(s) sur le circuit</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Supportage / fixations de la machine</td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Fiche d'inventaire complète, organe par organe</h3>
+  <p style="font-size:10.5pt">Pour chaque organe, notez s'il est présent et en état, s'il manque, ou s'il est
+  présent mais à refaire (abîmé, corrodé, incomplet). Appuyez-vous sur vos observations précédentes.</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:18%">Organe / élément</th><th style="width:20%">Présent et en état</th><th style="width:18%">Manquant</th><th style="width:44%">À refaire — précisez pourquoi</th></tr>
+    <tr><td>Compresseur</td><td>☐</td><td>☐</td><td></td></tr>
+    <tr><td>Condenseur</td><td>☐</td><td>☐</td><td></td></tr>
+    <tr><td>Détendeur</td><td>☐</td><td>☐</td><td></td></tr>
+    <tr><td>Évaporateur</td><td>☐</td><td>☐</td><td></td></tr>
+    <tr><td>Tuyauterie / circuit</td><td>☐</td><td>☐</td><td></td></tr>
+    <tr><td>Câblage électrique</td><td>☐</td><td>☐</td><td></td></tr>
+    <tr><td>Robinetterie / vannes</td><td>☐</td><td>☐</td><td></td></tr>
+    <tr><td>Supportage / fixations</td><td>☐</td><td>☐</td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="jalon"><h4>Jalon 1 franchi</h4>
+  <p>☐ Les 4 organes de la Croix du Frigoriste sont repérés et localisés<br>
+  ☐ La plaque signalétique est relevée (ou signalée illisible/manquante, jamais inventée)<br>
+  ☐ Le câblage et la robinetterie sont constatés<br>
+  ☐ La fiche d'inventaire complète est remplie, organe par organe</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — JALON 2 : CROQUIS + CONSTAT ÉCRIT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Dessiner le croquis à main levée du circuit</h3>
+  <span class="poste-titre">JALON 2 · croquis + constat écrit — ≈ 1 h</span>
+  <ol class="liste-num">
+    <li>Repérez sur votre machine tous les tubes qui relient les 4 organes entre eux.</li>
+    <li>Dans le cadre ci-dessous, dessinez à main levée le circuit frigorifique complet de votre machine :
+    représentez chaque organe par une forme simple (rectangle ou cercle) reliée par un trait pour chaque tube.</li>
+    <li>Nommez chaque organe sur votre croquis et indiquez le sens de circulation du fluide par une flèche.</li>
+  </ol>
+  <div class="cadre-dessin"><span class="consigne-cadre">Croquis à main levée du circuit frigorifique de ma machine — nommer les 4 organes et indiquer le sens du fluide par une flèche (S2.3)</span></div>
+
+  <div class="encadre-question"><b>Question</b> — Un tube ou un organe de votre machine est-il absent ou
+  visiblement démonté ? Si oui, lequel ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Rédiger le constat écrit — liste « manque / à refaire »</h3>
+  <p style="font-size:10.5pt">À partir de votre fiche d'inventaire (jalon 1), listez dans l'ordre de priorité
+  ce qu'il faudra commander ou refaire en premier pour que le chantier de remise en état puisse avancer. C'est
+  ce constat écrit qui est <b>transmis au chef de chantier</b>.</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:8%">Priorité</th><th style="width:50%">Élément manquant ou à refaire</th><th style="width:42%">Pourquoi c'est prioritaire</th></tr>
+    <tr><td>1</td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — RESTITUTION + BON DE COMMANDE + GRILLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Préparer ma restitution orale</h3>
+  <p style="font-size:10.5pt">En fin de module, votre binôme présentera à l'oral, en 2 minutes, l'état des
+  lieux de sa machine au chef de chantier (votre professeur). Préparez ici les 3 points que vous direz.</p>
+  <div class="encadre-question"><b>Question</b> — Notez vos 3 points clés pour la restitution orale (C1.3).</div>
+  <div class="zone-reponse" style="min-height:3.2em"></div>
+
+  <h3 class="section">Premier bon de commande de l'année (rituel hebdomadaire)</h3>
+  <p style="font-size:10.5pt">À partir de votre liste « manque / à refaire », rédigez votre premier bon de
+  commande. Ce rituel se répète chaque semaine tout au long du chantier.</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:8%">N°</th><th style="width:42%">Désignation de l'article</th><th style="width:14%">Quantité</th><th style="width:36%">Pour quel organe / usage</th></tr>
+    <tr><td>1</td><td></td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td><td></td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic; margin-top:.3em">Binôme : ______________________ &nbsp;&nbsp; Machine n° : ______________________ &nbsp;&nbsp; Semaine 1 · 01-05/09/2026</p>
+
+  <div class="jalon"><h4>Jalons franchis aujourd'hui</h4>
+  <p>☐ Inventaire / état des lieux réalisé (jalon 1) : 4 organes repérés, plaque relevée, câblage et robinetterie constatés<br>
+  ☐ Croquis à main levée et constat écrit rédigés (jalon 2)<br>
+  ☐ Restitution orale préparée<br>
+  ☐ Premier bon de commande rédigé</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:14.4%">0<br>Non évalué</th><th style="width:14.4%">1<br>Non acquis</th><th style="width:14.4%">2<br>En cours d'acquisition</th><th style="width:14.4%">3<br>Acquis</th><th style="width:14.4%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C2.1</b> Organiser des informations</td><td>sur T10 · S2</td><td>Compétence non observée ce jour.</td><td>Fiche d'inventaire incomplète ou organes non repérés, malgré aide et rappel.</td><td>Fiche d'inventaire et croquis complétés avec l'aide du professeur, 1 à 2 organes mal repérés.</td><td>Fiche d'inventaire complète, croquis lisible et juste, 4 organes correctement repérés, réalisé seul.</td><td>Comme « Acquis », et l'élève explique à un pair comment il a organisé son inventaire.</td></tr>
+    <tr><td><b>C1.3</b> Rendre compte</td><td>sur T1 · S1</td><td>Compétence non observée ce jour.</td><td>Restitution orale absente ou incompréhensible, aucun point clé identifié.</td><td>Restitution orale réalisée avec l'aide du professeur (relances nécessaires).</td><td>Restitution orale claire et structurée, 3 points clés identifiés, réalisée seul.</td><td>Comme « Acquis », et l'élève répond avec assurance aux questions du chef de chantier.</td></tr>
+    <tr><td>Savoir-être — EPI, rigueur, honnêteté du constat</td><td>observation continue</td><td>Non observé ce jour.</td><td>EPI ou sécurité oubliés de façon répétée malgré rappel.</td><td>EPI et sécurité corrects mais nécessitent un rappel ponctuel.</td><td>EPI portés sans rappel, honnêteté du constat, machine respectée, travail en binôme correct.</td><td>Comme « Acquis », et l'élève rappelle spontanément une règle à un camarade.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C2.1 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C1.3 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (inventaire, croquis, plaque signalétique, constat écrit, questions répondues)</li>
+    <li>La fiche de sécurité à cocher, signée</li>
+    <li>Le premier bon de commande de l'année</li>
+    <li>Le carnet de bord, avec au moins une ligne rédigée sur la journée</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Dossier de présentation pédagogique — Chantier de remise en état (F. Henninot, 2026) ; entraînement plaques signalétiques et calcul GWP d'après IFCA PLAQUE_ (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,319 @@
+<meta charset="utf-8">
+<title>Document professeur — S14 · Module A5-b · Contrôle de la charge et réglages</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Mise en service — contrôle de charge et réglages (suite de A5-a)</td>
+      <td style="width:38%"><span class="lib">Module A5-b — DOCUMENT PROFESSEUR</span><b>Contrôle de la charge et réglages en fonctionnement</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S14</span> · sem. 16, 23-27/02/2027</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — poste de mise en service</td>
+      <td><span class="lib">Durée prévue</span>4 h (atelier)</td>
+      <td><span class="lib">Modalité</span>Binômes, étude de cas puis diagnostic réel guidé, un JALON de validation</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension<br><b>T14</b> Régler l'installation en fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">prérequis</span><br><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">prérequis</span><br><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">travaillé</span><br><b>S0.1</b> Réglementation et impacts environnementaux <span class="nuance">travaillé</span></div>
+    <div class="case"><h4>Savoir-être</h4>Honnêteté de la mesure · sécurité sans rappel · autonomie dans le diagnostic</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><b>C4.5</b> Mesurer, comparer <span class="statut">Évaluation</span><br><b>C4.6</b> Régler les consignes <span class="statut">Confortement</span><br><b>C4.2</b> Manipuler le fluide <span class="statut">Confortement</span></div>
+  </div>
+
+  <h3 class="section">Méthode pédagogique de la séance</h3>
+  <p style="font-size:10.5pt"><b>Étude de cas / diagnostic guidé.</b> Le professeur ne donne jamais la conclusion :
+  il présente des relevés contrastés (phase 5, notion du jour), puis fait travailler cinq cas d'école (mesures
+  réelles, deux fluides) avant les relevés réels. La charge en fluide reste un <b>geste à risque</b> : elle se
+  valide, elle ne se découvre pas — d'où un <b>JALON obligatoire</b> avant tout ajustement (ajout ou retrait de
+  fluide).</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Les cas d'école (phase 6a) sont des
+  <b>mesures réelles</b> relevées par le professeur sur d'anciens chantiers (R134a et R404A), mais restent
+  <b>indépendants du fluide réel installé au poste</b> de l'élève ce jour : ils entraînent la méthode (lecture de
+  la pression, calcul du SR, comparaison au seuil, décision), pas un pronostic sur le poste réel. Le préciser
+  explicitement aux élèves pour éviter toute confusion avec les relevés réels de l'étape suivante, qui porteront
+  sur LEUR fluide et mobiliseront en plus le calcul du SC.</div>
+
+  <h3 class="section">Trame horaire conseillée</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:8%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Préparation de chantier — 1 h 00 (maximum autorisé)</td></tr>
+    <tr><td>10 min</td><td class="ph">Accueil</td><td>Appel, rappel du fil de la séquence (suite directe de A5-a).</td></tr>
+    <tr><td>10 min</td><td class="ph">Mise en situation</td><td>Ordre d'intervention S14-A5-02, annonce du jalon de validation.</td></tr>
+    <tr><td>5 min</td><td class="ph">Objectifs</td><td>Les 6 « je serai capable de… » affichés et commentés.</td></tr>
+    <tr><td>15 min</td><td class="ph">Prérequis + tenue échelonnée</td><td>Exercice au fil de l'eau : repérage des points de mesure sur schéma réduit + rappel des deux formules.</td></tr>
+    <tr><td>20 min</td><td class="ph">Sécurité + notion</td><td>Rappel rejet interdit / chaîne de sécurité, puis accroche : deux relevés contrastés présentés sans conclusion.</td></tr>
+    <tr class="demi"><td colspan="3">Atelier — 2 h 10</td></tr>
+    <tr><td>25 min</td><td class="ph">Étude de cas (a)</td><td>Cas A à E en binôme (mesures réelles R134a/R404A) : calcul du SR, comparaison, décision argumentée.</td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="2">Pause</td></tr>
+    <tr><td>40 min</td><td class="ph">Relevés réels (b)</td><td>Lecture HP/BP, T aspiration/liquide, table P-T fournie, calcul SC/SR réels.</td></tr>
+    <tr><td>40 min</td><td class="ph">Décision + ajustement (c) — JALON</td><td>Validation du diagnostic, puis ajustement de charge et/ou réglage pressostat/détendeur.</td></tr>
+    <tr><td>15 min</td><td class="ph">Contrôle final (d)</td><td>Second relevé, feuilles F4 rubriques 3-4.</td></tr>
+    <tr class="demi"><td colspan="3">Clôture — 50 min</td></tr>
+    <tr><td>10 min</td><td class="ph">Synthèse</td><td>Comparaison des cas réels aux cas d'école du matin.</td></tr>
+    <tr><td>15 min</td><td class="ph">Évaluer et réajuster</td><td>Grille, auto-positionnement puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">Carnet + bon de commande</td><td>Rituel chantier hebdomadaire.</td></tr>
+    <tr><td>10 min</td><td class="ph">Rangement</td><td>Outillage, bouteilles, postes.</td></tr>
+    <tr><td>5 min</td><td class="ph">Sortie</td><td>Restitution EPI, annonce du module suivant (T1 CERFA / F4).</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ NOTION + CAS D'ÉCOLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module A5-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — exercice au fil de l'eau</h3>
+  <p style="font-size:10.5pt">Sur le schéma « surchauffe et sous-refroidissement » : le point de <b>surchauffe</b>
+  se situe sur la ligne d'aspiration BP, en sortie d'évaporateur (repère bleu). Le point de <b>sous-refroidissement</b>
+  se situe sur la ligne liquide HP, en sortie de condenseur, avant le filtre déshydrateur (repère orange).</p>
+  <div class="reponse"><b class="t">Formules attendues</b> — Surchauffe = T° d'aspiration mesurée − T° de
+  saturation lue côté BP. Sous-refroidissement = T° de saturation lue côté HP − T° liquide mesurée.</div>
+
+  <h3 class="section">Corrigé — la notion du jour</h3>
+  <div class="reponse"><b class="t">Réponse attendue à « comment un frigoriste sait-il, sans ouvrir la machine »</b>
+  — On ne mesure jamais directement la masse de fluide dans un circuit fermé. On observe deux écarts de
+  température en fonctionnement (surchauffe côté aspiration, sous-refroidissement côté liquide) et on les compare
+  à des seuils connus : c'est un diagnostic indirect, comme un médecin qui lit des symptômes plutôt que d'ouvrir
+  le corps.</div>
+  <div class="vigilance"><b class="t">Erreur typique d'élève</b> — Penser qu'il suffit de regarder le niveau dans un
+  voyant liquide. Le voyant renseigne sur la présence de bulles (signe possible de manque de charge ou de perte de
+  charge), mais ne donne pas une valeur exploitable seule : c'est la combinaison SC + SR qui permet de trancher.</div>
+
+  <h3 class="section">Corrigé — cas d'école</h3>
+  <p style="font-size:10.5pt">Rappel : ces 5 cas sont des <b>mesures réelles</b> de sous-refroidissement, relevées
+  par le professeur sur d'anciens chantiers, sur deux fluides différents — objectif : appliquer la méthode
+  (lecture pression → table → température de saturation, calcul du SR, comparaison au seuil, décision). Le calcul
+  du SC est repris pour de vrai à l'étape des relevés réels (feuille 3).</p>
+
+  <table class="mini">
+    <tr><th style="width:8%">Cas</th><th style="width:10%">Fluide</th><th style="width:30%">SR calculée</th><th>Diagnostic attendu</th></tr>
+    <tr><td><b>A</b></td><td>R134a</td><td>49,5 − 42 = <b>7,5 K</b> (dans 4-8 K)</td><td><b>Charge correcte.</b> Le sous-refroidissement est dans la fourchette autorisée.</td></tr>
+    <tr><td><b>B</b></td><td>R134a</td><td>43 − 28 = <b>15 K</b> (hors seuil, trop élevé)</td><td><b>Excès de charge probable, ou incondensables.</b> Un sous-refroidissement très supérieur à 8 K signe en général un trop-plein de liquide sous-refroidi en sortie de condenseur (excès de fluide) ou une pression HP anormalement haute due à de l'air résiduel (incondensables). Décision : vérifier la HP, retirer une petite quantité vers la bouteille de récupération sous validation, en re-mesurant après chaque retrait ; si la HP reste anormale, suspecter des incondensables et signaler au professeur.</td></tr>
+    <tr><td><b>C</b></td><td>R134a</td><td>70 − 64 = <b>6 K</b> (dans 4-8 K)</td><td><b>Charge correcte.</b> Le sous-refroidissement est dans la fourchette autorisée.</td></tr>
+    <tr><td><b>D</b></td><td>R404A</td><td>45 − 38 = <b>7 K</b> (dans 4-8 K)</td><td><b>Charge correcte.</b> Le sous-refroidissement est dans la fourchette autorisée, y compris sur un fluide zéotropique (cf. encart « Quel fluide, quelle charge ? » du module A5-a).</td></tr>
+    <tr><td><b>E</b></td><td>R404A</td><td>20,2 − 28 = <b>−7,8 K</b> (valeur négative, hors seuil)</td><td><b>Anomalie grave — absence de sous-refroidissement.</b> La température de sortie condenseur est SUPÉRIEURE à la température de saturation HP : il n'y a plus aucun liquide sous-refroidi en sortie de condenseur. Ce n'est pas un simple manque de charge « léger » : c'est un signal d'alerte (manque sévère de charge, détendeur bloqué ouvert, ou HP mal réglée). Décision : ne jamais tenter de corriger seul une valeur négative — signaler immédiatement au professeur avant tout ajustement.</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un SR hors seuil ne dit jamais, à lui seul, s'il
+  s'agit d'un problème de charge ou d'un mauvais réglage de détendeur : c'est la cohérence entre le SR, le SC et
+  la pression HP (mesurés ensemble lors des relevés réels) qui oriente le diagnostic final. Une valeur de SR
+  <b>négative</b> (cas E) doit toujours alerter l'élève avant même de comparer au seuil : elle signale une
+  erreur de lecture... ou une vraie anomalie de l'installation, à ne jamais corriger seul.</div>
+
+  <h3 class="section">Guide d'animation — le jalon</h3>
+  <div class="jalon"><h4>Jalon — ce que le professeur contrôle avant de viser</h4>
+  <ul class="liste-num">
+    <li>Le diagnostic écrit est cohérent : SC et SR correctement calculés, comparés aux bons seuils (5-10 K / 4-8 K) ;</li>
+    <li>La décision proposée (compléter / retirer / ne rien faire / signaler des incondensables) correspond bien au diagnostic ;</li>
+    <li>Le binôme sait quelle bouteille utiliser (charge ou récupération) et par quel geste, sans risque de perte de fluide.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si le diagnostic est incohérent, ne pas viser : renvoyer le binôme revérifier son calcul ou sa lecture de la table pression-température avant tout geste sur la charge.</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ RELEVÉS RÉELS + AJUSTEMENT + RÉGLAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module A5-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — relevés réels</h3>
+  <p style="font-size:10.5pt">Les valeurs de pression, température et donc de SC/SR dépendent entièrement du fluide
+  réellement présent sur le poste, de la charge nominale de l'installation et des conditions du jour (température
+  ambiante, charge thermique de la chambre froide). <b>Aucune valeur chiffrée n'est donnée ici</b> : le professeur
+  valide la cohérence interne du relevé de chaque binôme (unités, sens des soustractions, cohérence entre pression
+  lue et température de saturation reportée depuis la table fournie), pas un chiffre unique attendu pour toute la
+  classe.</p>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Vérifier que l'élève ne confond pas le sens des deux
+  soustractions : <b>SC = T aspiration − T saturation BP</b> (et non l'inverse), <b>SR = T saturation HP − T
+  liquide</b> (et non l'inverse). Une inversion donne un résultat négatif qui doit alerter l'élève avant d'alerter
+  le professeur — c'est un point d'auto-contrôle à exiger avant l'appel au jalon.</div>
+
+  <h3 class="section">Corrigé — ajustement de la charge</h3>
+  <table class="mini">
+    <tr><th style="width:26%">Diagnostic validé</th><th>Geste attendu</th></tr>
+    <tr><td>Manque de charge</td><td>Compléter <b>par petites quantités</b> depuis la bouteille de charge, à la balance ; re-mesurer SC et SR après chaque ajout ; s'arrêter dès que les deux écarts rentrent dans les seuils autorisés — ne jamais viser une valeur « ronde » au hasard.</td></tr>
+    <tr><td>Excès de charge</td><td>Retirer <b>par petites quantités</b> vers la bouteille de récupération dédiée et étiquetée ; re-mesurer après chaque retrait ; jamais de rejet à l'atmosphère, même pour une quantité minime.</td></tr>
+    <tr><td>Incondensables suspectés</td><td>HP anormalement haute qui persiste malgré un retrait raisonnable et un SR redevenu correct : signaler au professeur, ne pas laisser l'élève engager seul une procédure de purge — geste hors du périmètre autonome de ce module.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Rappel non négociable</b> — Toute quantité retirée passe par la bouteille de
+  récupération dédiée (réglementation F-Gaz) ; aucune bouteille n'est jamais chauffée à la flamme pour accélérer un
+  transfert, dans un sens comme dans l'autre.</div>
+
+  <h3 class="section">Corrigé — réglage du pressostat et du détendeur</h3>
+  <p style="font-size:10.5pt">Les valeurs de consigne du pressostat (seuils haute/basse pression) et du détendeur
+  (surchauffe de réglage si détendeur thermostatique réglable) dépendent intégralement du modèle d'organe équipant
+  le poste et de la notice constructeur. <b>Aucune valeur n'est donnée dans ce document</b> : elles se déterminent
+  uniquement à partir de la notice, validées par le professeur en séance — même principe que pour le réglage du
+  pressostat vu en S12.</p>
+  <div class="vigilance"><b class="t">Rappel non négociable</b> — « Selon notice constructeur, à faire valider par
+  le professeur » pour toute valeur de consigne. Ne jamais laisser un binôme régler « à l'estime » ou recopier la
+  valeur d'un autre poste : les organes ne sont pas nécessairement du même modèle.</div>
+
+  <h3 class="section">Question de compréhension — corrigé</h3>
+  <div class="reponse"><b class="t">« Pourquoi ne jamais charger ou retirer d'un coup ? »</b> — Parce que la
+  relation entre la quantité de fluide ajoutée ou retirée et la variation de SC/SR n'est pas linéaire et dépend de
+  l'état du circuit à l'instant T (charge thermique, régime transitoire). Une quantité ajoutée « d'un coup » peut
+  faire basculer d'un manque de charge à un excès de charge sans qu'on ait pu observer le point correct entre les
+  deux. Procéder par petites quantités, en re-mesurant à chaque étape, permet de s'arrêter précisément dans la
+  fourchette autorisée — c'est la même logique de prudence que la méthode de réglage progressif du pressostat vue
+  en S12 : observer le comportement réel plutôt que viser une valeur théorique en une seule fois.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — GRILLE, DIFFÉRENCIATION, CROISEMENTS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module A5-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation matérielle du plateau</h3>
+  <ul class="liste-num">
+    <li>Un poste (installation chargée et mise en service à A5-a) par binôme, contrôlé avant la séance ;</li>
+    <li>Table de correspondance pression-température imprimée pour chaque poste, correspondant EXACTEMENT au fluide présent (erreur de table = diagnostic faux) ;</li>
+    <li>Bouteilles de charge et de récupération réparties pour éviter les files d'attente au moment de l'ajustement ;</li>
+    <li>Notices constructeur des pressostats/détendeurs disponibles par poste ;</li>
+    <li>Fiches des 5 cas d'école (mesures réelles) imprimées à l'avance, un jeu par élève ;</li>
+    <li>Feuilles de mise en service F4 (rubriques 3-4) et fiche de relevés en nombre suffisant, un jeu par binôme.</li>
+  </ul>
+
+  <h3 class="section">Grille d'évaluation — éléments attendus pour la correction</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="mini" style="font-size:8.3pt">
+    <tr><th style="width:13%">Compétence / savoir-être</th><th style="width:17.4%">0 — Non évalué</th><th style="width:17.4%">1 — Non acquis</th><th style="width:17.4%">2 — En cours</th><th style="width:17.4%">3 — Acquis</th><th style="width:17.4%">4 — Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>Compétence non observée ce jour.</td><td>Lecture HP/BP, T° ou report de table erronés, ou calcul SC/SR faux non repéré par l'élève.</td><td>Calcul correct obtenu avec l'aide du professeur, ou une seule des deux grandeurs correctement traitée.</td><td>SC et SR calculés seul à partir de relevés réels et d'une lecture correcte de la table pression-température, comparaison exacte aux seuils autorisés.</td><td>Comme « Acquis », et l'élève détecte et corrige de lui-même une valeur aberrante (inversion de soustraction, mauvaise lecture de table).</td></tr>
+    <tr><td><b>C4.6</b> Régler les valeurs de consigne</td><td>Compétence non observée ce jour.</td><td>Réglage réalisé sans lien avec le diagnostic écrit, ou sans validation professeur préalable.</td><td>Réglage cohérent avec le diagnostic mais nécessitant une aide pour lire la notice ou manipuler l'organe.</td><td>Pressostat et/ou détendeur réglés seul selon la notice constructeur et le diagnostic validé, sans reprise nécessaire.</td><td>Comme « Acquis », et l'élève explique à un pair pourquoi ce réglage précis découle de son diagnostic.</td></tr>
+    <tr><td><b>C4.2</b> Manipuler le fluide et les huiles</td><td>Compétence non observée ce jour.</td><td>Perte de fluide constatée, bouteille non identifiée utilisée, ou tentative de rejet à l'atmosphère (non acquis automatique, cf. vigilance ci-dessous).</td><td>Geste globalement correct, aide nécessaire sur le choix de bouteille ou le sens du transfert.</td><td>Ajustement réalisé sans perte de fluide, bouteille de récupération dédiée utilisée à bon escient, jalon respecté avant tout geste.</td><td>Comme « Acquis », et l'élève justifie spontanément le cadre réglementaire (F-Gaz) avant de commencer son geste.</td></tr>
+    <tr><td>Savoir-être</td><td>Non observé ce jour.</td><td>Valeurs de relevé arrangées pour « coller » aux seuils attendus, ou ajustement engagé sans validation du jalon.</td><td>Rigueur ou autonomie du diagnostic à consolider, rappels ponctuels nécessaires.</td><td>Relevés honnêtes y compris en cas d'écart hors seuil, jalon respecté sans exception, autonomie dans le raisonnement entre les cas d'école et le cas réel.</td><td>Comme « Acquis », et le binôme aide spontanément un autre binôme sans compromettre son propre poste.</td></tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — Un ajustement de charge (ajout ou retrait)
+  engagé <b>sans</b> le visa du jalon entraîne automatiquement un niveau <b>1 — Non acquis</b> sur C4.2, quelle que
+  soit la qualité du diagnostic écrit : c'est un principe de sécurité non négociable, la manipulation du fluide
+  reste un geste à risque qui se valide toujours avant exécution.</div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:24%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Table pression-température accompagnée d'un exemple de lecture surligné ; le professeur traite le cas d'école A en collectif avant de laisser B et C en autonomie ; reformulation orale des deux formules avant de commencer les relevés réels.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : 5 cas d'école en autonomie, puis relevés réels jusqu'au jalon.</td></tr>
+    <tr><td>Approfondissement</td><td>Après le contrôle final validé, demander de construire un cas d'école inédit (SR de son choix, dans ou hors seuil) et de le faire résoudre par un autre binôme, à l'oral, avant le bilan.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Fiche de relevés découpée visuellement (une grandeur par ligne, cases bien séparées) ; autoriser une explicitation orale du diagnostic avant de l'écrire ; prioriser le passage au jalon pour limiter l'attente, facteur de décrochage.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Électrotechnique</b> — réglage du pressostat, mesures sous tension en sécurité (VAT, NFC 18-510) ;</li>
+    <li><b>Co-intervention français</b> — rédaction de la justification du diagnostic dans les feuilles F4 ;</li>
+    <li><b>Module F4</b> — cette séance renseigne les rubriques 3-4 (ajustement et réglages) du support écrit vedette de S14 ;</li>
+    <li><b>Préparation de l'évaluation sommative S13-S14</b> (semaine 17) — le diagnostic SC/SR par étude de cas y sera repris en poste individuel.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : LA SURCHAUFFE et le SR ; Calcul sous refroidissement Prof (cas CF3, CF7, CF10, CF11, CF16) ; reglage bp sous azote (cadrage S14).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

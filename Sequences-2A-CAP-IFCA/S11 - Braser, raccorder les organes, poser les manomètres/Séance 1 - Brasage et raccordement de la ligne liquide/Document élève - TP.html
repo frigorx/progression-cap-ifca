@@ -1,0 +1,467 @@
+<meta charset="utf-8">
+<title>TP élève — S11 · Séance 1 · Brasage et raccordement de la ligne liquide</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Braser, raccorder les organes, poser les manomètres</td>
+      <td style="width:38%"><span class="lib">Module atelier A2-a · 4 h</span><b>Brasage et raccordement de la ligne liquide</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> · sem. 4 · 22/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Votre entreprise poursuit le <b>chantier de remise en état</b> de l'atelier. <b>Ordre d'intervention
+  n° OI-2026-S11-01</b> : la <b>ligne liquide</b> a été <b>façonnée</b> la semaine dernière (S10). Le client
+  demande aujourd'hui de la <b>braser, de monter le filtre déshydrateur et le voyant liquide, et de poser
+  les prises de pression</b>. Vous travaillez seul ou en binôme selon le poste, sous la <b>démonstration
+  imposée</b> du professeur avant toute pratique : le brasage est un geste à risque, il se démontre, il ne
+  se découvre pas seul.
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-ligne-liquide-equipee.svg" alt="Schéma technique réduit : ligne liquide équipée — filtre déshydrateur, voyant liquide, détendeur, prises de pression BP/HP"
+         style="max-width:92%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Ligne liquide équipée — schéma réduit pour le repérage. Le schéma complet, coté, figure en <b>annexe pleine page A3 paysage</b> en fin de document : c'est celui-ci qu'il faut garder sous les yeux pendant le brasage.</figcaption>
+  </figure></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.1</b> Outils, normes et représentation <span class="nuance">prérequis</span><br><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">prérequis</span><br><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">augmenté</span><br><b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité sans rappel (permis de feu respecté) · rigueur du geste · honnêteté de l'auto-contrôle qualité</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement→Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits<br><span class="statut">Découverte</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>nommer</b> les organes de la ligne liquide à monter aujourd'hui (filtre déshydrateur, voyant liquide) et <b>montrer</b> leur sens de montage ;</li>
+    <li><b>préparer</b> un poste de brasage sous permis de feu, avec les EPI complets et le matériel d'urgence localisé ;</li>
+    <li><b>réaliser</b> une brasure cuivre-cuivre sous balayage d'azote, en respectant la procédure démontrée par le professeur ;</li>
+    <li><b>monter</b> le filtre déshydrateur et le voyant liquide dans le bon sens, et <b>poser</b> les prises de pression BP et HP ;</li>
+    <li><b>appliquer</b> la fiche d'auto-contrôle qualité de la brasure réalisée, sans complaisance.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li><b>lire un schéma</b> de circuit frigorifique et repérer ses organes (S2.1, vu en séance de schéma) ;</li>
+    <li><b>nommer les organes</b> d'un réseau fluidique (canalisations, raccords) (S5.5) ;</li>
+    <li>ma <b>ligne liquide façonnée</b> en S10 (cintrages, chapeau de gendarme réalisés) ;</li>
+    <li>porter les <b>EPI de l'atelier</b> sans qu'on me le rappelle.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous ne cochez pas tous ces prérequis, prévenez le professeur avant de commencer : un rappel court est possible pendant l'exercice au fil de l'eau, mais <b>jamais pendant la démonstration de sécurité du brasage</b>.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Ligne liquide façonnée en séance S10 (× 1 par poste)</li>
+    <li>Chalumeau oxyacétylénique complet (bouteilles oxygène + acétylène, détendeurs, chalumeau, flexibles) (× 1 par poste, sous surveillance professeur)</li>
+    <li>Bouteille d'azote + détendeur basse pression + tuyau de balayage (× 1 par poste)</li>
+    <li>Baguettes de brasure argent ou cuivre-phosphore selon consigne du professeur <span class="conso">(consommable)</span></li>
+    <li>Flux décapant (si baguette sans phosphore) <span class="conso">(consommable)</span></li>
+    <li>Toile abrasive ou tampon à récurer pour la préparation des surfaces <span class="conso">(consommable)</span></li>
+    <li>Filtre déshydrateur neuf, bouchons d'origine en place jusqu'au montage (× 1 par poste)</li>
+    <li>Voyant liquide neuf (× 1 par poste)</li>
+    <li>2 prises de pression (Schrader BP + HP) (× 1 jeu par poste)</li>
+    <li>Coupe-tube et ébavureur (rappel du façonnage S10, si retouche nécessaire)</li>
+    <li>Lunettes de protection teintées brasage (× 1 par élève, obligatoires)</li>
+    <li>Gants cuir anti-chaleur (× 1 paire par élève)</li>
+    <li>Tablier ignifugé (× 1 par élève)</li>
+    <li>Briquet/allume-gaz à long manche (jamais d'allumettes)</li>
+    <li>Fiche de sécurité à cocher + fiche d'auto-contrôle qualité (ce document) + crayon</li>
+  </ol>
+
+  <h3 class="section">Sécurité — permis de feu et brasage (centrale ce jour)</h3>
+  <div class="secu"><b class="t">🔥 Permis de feu obligatoire</b> — aucun poste de brasage ne s'allume sans
+  <b>permis de feu signé par le professeur</b>. Le permis vérifie : zone dégagée de matières inflammables sur
+  10 m, extincteur et point d'eau localisés et accessibles, personne à proximité informée. <b>Sans permis de
+  feu visé, pas de flamme.</b></div>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Brûlure par flamme du chalumeau ou par le cuivre chauffé</td><td><b>Gants cuir</b> obligatoires, <b>tablier ignifugé</b>, ne jamais toucher un tube ou une baguette venant d'être brasés. Laisser refroidir avant manipulation.</td></tr>
+    <tr><td>Éblouissement / projection lors du brasage</td><td><b>Lunettes teintées brasage obligatoires</b>, en permanence pendant la flamme allumée. <b>Jamais de brasage sans lunettes.</b></td></tr>
+    <tr><td>Incendie (flamme près d'une matière inflammable)</td><td>Zone de travail dégagée, vérifiée par le permis de feu. <b>Jamais de flamme près d'un chiffon, d'un carton ou d'un produit inflammable.</b></td></tr>
+    <tr><td>Explosion ou fuite de gaz (oxygène, acétylène)</td><td>Bouteilles arrimées verticalement, détendeurs contrôlés avant chaque poste. <b>Jamais d'oxygène seul ni d'air comprimé pour tester une épreuve.</b> Fermer les bouteilles en fin de poste.</td></tr>
+    <tr><td>Oxydation interne du circuit pendant le brasage</td><td><b>Balayage d'azote obligatoire</b> pendant toute la durée du brasage : un léger débit d'azote traverse le circuit pour chasser l'air et empêcher la calamine (oxyde noir) de se former à l'intérieur des tubes.</td></tr>
+    <tr><td>Poste abandonné flamme allumée</td><td><b>Ne jamais quitter un poste de brasage flamme allumée</b>, même quelques secondes. Éteindre le chalumeau avant de s'éloigner.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10pt">Avant d'allumer un chalumeau, complétez la <b>fiche de sécurité à cocher</b>
+  ci-dessous (permis de feu, EPI portés, zone vérifiée) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — permis de feu, EPI, zone de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — couper l'arrivée de gaz aux bouteilles (fermeture
+  immédiate), utiliser l'<b>extincteur localisé</b> en début de séance si un début d'incendie apparaît, alerter
+  immédiatement le professeur. En cas de brûlure, refroidir sous le <b>point d'eau localisé</b> pendant plusieurs
+  minutes puis prévenir le professeur. Ne jamais déplacer un élève blessé sans certitude sur son état.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — OBSERVER + DÉMONSTRATION SÉCURITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">OBSERVER — la démonstration du professeur</h3>
+  <p style="font-size:10.5pt">Le brasage est un geste à risque : il ne se découvre pas seul, il se
+  <b>démontre</b>. Le professeur réalise devant vous une brasure complète, du montage de l'azote à
+  l'extinction du chalumeau. <b>Observez sans toucher</b>, avant de répondre.</p>
+
+  <div class="encadre-question"><b>Observation 1</b> — Avant d'allumer le chalumeau, quels documents ou
+  vérifications le professeur a-t-il montrés (permis, zone, extincteur) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Observation 2</b> — À quel moment le professeur ouvre-t-il le robinet
+  d'azote : avant, pendant, ou après avoir allumé le chalumeau ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Observation 3</b> — Observez la couleur de la flamme et celle du cuivre
+  chauffé au moment où le professeur approche la baguette de brasure. Que remarquez-vous ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <p style="font-size:10.5pt">Le <b>brasage</b> assemble deux tubes de cuivre par fusion d'un métal
+  d'apport (la <b>baguette de brasure</b>), sans faire fondre le cuivre lui-même. Le <b>balayage d'azote</b>
+  consiste à faire circuler un léger débit d'azote <b>à l'intérieur du tube</b> pendant tout le brasage : il
+  chasse l'oxygène de l'air et empêche la formation de <b>calamine</b> (un oxyde noir qui se détache plus tard
+  et bouche filtres et détendeurs). L'azote doit couler <b>avant</b> d'allumer le chalumeau et <b>pendant
+  toute la durée</b> du chauffage, jamais après coup.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi brase-t-on sous azote alors que la brasure
+  fonctionnerait quand même sans lui ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Montage du balayage d'azote</h3>
+  <p style="font-size:10.5pt">Voici le schéma de principe du montage : bouteille d'azote, détendeur basse
+  pression réglé à quelques centaines de millibars, tuyau souple raccordé à une extrémité ouverte du
+  circuit. L'azote traverse le circuit et ressort par l'autre extrémité, encore ouverte, pendant tout le
+  brasage.</p>
+
+  <figure style="margin:6px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-brasage-sous-azote.svg" alt="Schéma technique : montage de balayage d'azote — bouteille, détendeur basse pression, circuit balayé, sens de circulation"
+         style="max-width:80%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Montage de balayage d'azote — bouteille + détendeur BP + circuit balayé. Le débit reste faible : juste de quoi sentir un léger souffle en sortie, jamais un jet.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Question</b> — Que se passerait-il si le détendeur d'azote était réglé
+  trop haut, avec un débit très fort ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PRÉPARATION + RÉALISATION ÉTAPE 1 : BRASAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Préparation du poste (avant toute flamme)</h3>
+  <span class="poste-titre">JALON 1 · préparation du poste — ≈ 10 min</span>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que le <b>permis de feu</b> est signé par le professeur pour votre poste</p>
+    <p>☐ 2. Dégager la zone de travail de toute matière inflammable sur au moins 1 m</p>
+    <p>☐ 3. Vérifier la localisation de <b>l'extincteur</b> et du <b>point d'eau</b> les plus proches</p>
+    <p>☐ 4. Revêtir tablier, gants cuir, lunettes teintées <b>avant</b> de toucher au chalumeau</p>
+    <p>☐ 5. Vérifier l'arrimage vertical des bouteilles (oxygène, acétylène, azote)</p>
+    <p>☐ 6. Contrôler l'état des flexibles et des détendeurs (pas de fissure, pas de fuite)</p>
+    <p>☐ 7. Préparer les surfaces à braser : nettoyer les tubes à la toile abrasive jusqu'au cuivre brillant</p>
+    <p>☐ 8. Emboîter les tubes selon la cote d'emboîture indiquée par le professeur</p>
+  </div>
+
+  <h3 class="section">Réalisation — jalon 1 : brasage de la ligne liquide</h3>
+  <span class="poste-titre">JALON 1 — ≈ 1 h</span>
+  <p style="font-size:10.5pt">Réalisez le brasage de votre ligne liquide façonnée, <b>sous surveillance directe
+  du professeur</b>, en suivant exactement la procédure démontrée.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Raccorder le tuyau d'azote à une extrémité ouverte du circuit</p>
+    <p>☐ 2. Ouvrir le détendeur d'azote à faible débit (léger souffle en sortie, pas de jet)</p>
+    <p>☐ 3. Mettre les EPI complets (lunettes teintées, gants cuir, tablier)</p>
+    <p>☐ 4. Allumer le chalumeau selon la procédure démontrée (acétylène puis oxygène, réglage de flamme)</p>
+    <p>☐ 5. Chauffer le tube en le tournant autour du raccord, jusqu'à obtenir la couleur du cuivre proche du rouge cerise sombre (jamais de surchauffe)</p>
+    <p>☐ 6. Approcher la baguette de brasure au point le plus chaud : elle doit fondre au contact du cuivre, sans flamme directe dessus</p>
+    <p>☐ 7. Faire pénétrer la brasure sur tout le pourtour du raccord, par capillarité</p>
+    <p>☐ 8. Éteindre le chalumeau dès la brasure terminée — <b>jamais de poste abandonné flamme allumée</b></p>
+    <p>☐ 9. Laisser l'azote circuler encore quelques instants après extinction, puis fermer le détendeur</p>
+    <p>☐ 10. Laisser refroidir sans toucher le raccord à main nue</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — brasage</h4>
+  <table class="releve">
+    <tr><th>Raccord brasé</th><th>Type de baguette utilisée</th><th>Balayage azote réalisé ?</th><th>Aspect visuel après refroidissement</th></tr>
+    <tr><td>Raccord n° 1</td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Raccord n° 2</td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Raccord n° 3</td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Le type et le nombre de baguettes dépendent du diamètre des tubes et de la consigne du professeur (selon la brasure fournie, à faire valider).</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi laisse-t-on l'azote circuler encore quelques instants après avoir éteint le chalumeau ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — RÉALISATION ÉTAPE 2 : ORGANES + AUTO-CONTRÔLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Réalisation — jalon 2 : montage des organes et des prises de pression</h3>
+  <span class="poste-titre">JALON 2 — ≈ 45 min</span>
+  <p style="font-size:10.5pt">Montez le <b>filtre déshydrateur</b>, le <b>voyant liquide</b> et les <b>prises
+  de pression</b> sur votre ligne liquide brasée. <b>Vérifiez le sens de montage avant chaque brasure</b> :
+  un organe monté à l'envers ne protège plus le circuit.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Repérer le <b>sens de circulation du fluide</b> indiqué par la flèche gravée sur le corps du filtre déshydrateur</p>
+    <p>☐ 2. Positionner le filtre déshydrateur, flèche orientée dans le sens de l'écoulement (du condenseur vers le détendeur)</p>
+    <p>☐ 3. Retirer les bouchons d'origine du filtre juste avant le brasage, pas avant (éviter l'humidité de l'air)</p>
+    <p>☐ 4. Braser le filtre déshydrateur en respectant la même procédure sous azote qu'au jalon 1</p>
+    <p>☐ 5. Positionner le voyant liquide juste après le filtre, dans le sens indiqué par le fabricant</p>
+    <p>☐ 6. Braser le voyant liquide sous azote (attention à la chaleur : certains voyants ont un hublot fragile, protéger si besoin)</p>
+    <p>☐ 7. Poser la prise de pression BP (bleu) à l'emplacement indiqué sur le schéma</p>
+    <p>☐ 8. Poser la prise de pression HP (rouge) à l'emplacement indiqué sur le schéma</p>
+    <p>☐ 9. Vérifier que chaque prise de pression est bien orientée et accessible pour le futur raccordement d'un manomètre</p>
+  </div>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-ligne-liquide-equipee.svg" alt="Schéma technique : sens de montage du filtre déshydrateur et du voyant liquide sur la ligne liquide"
+         style="max-width:70%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Repère du sens de montage — la flèche du filtre déshydrateur doit toujours pointer vers le détendeur. Schéma complet en annexe.</figcaption>
+  </figure>
+
+  <h4 style="font-size:11pt">Tableau de contrôle — montage des organes</h4>
+  <table class="releve">
+    <tr><th>Organe</th><th>Sens de montage vérifié ?</th><th>Brasure réalisée ?</th><th>Conforme ?</th></tr>
+    <tr><td>Filtre déshydrateur</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Voyant liquide</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Prise de pression BP</td><td>☐ Oui ☐ Non</td><td>—</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Prise de pression HP</td><td>☐ Oui ☐ Non</td><td>—</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Que risque-t-on si le filtre déshydrateur est monté à l'envers, flèche vers le condenseur ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Fiche d'auto-contrôle qualité de la brasure</h3>
+  <p style="font-size:10.5pt">Avant de faire valider votre travail par le professeur, contrôlez <b>vous-même
+  et honnêtement</b> chacune de vos brasures selon les 3 critères ci-dessous.</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:22%">Critère observable</th><th>Raccord n° 1</th><th>Raccord n° 2</th><th>Raccord n° 3</th><th>Filtre / voyant</th></tr>
+    <tr><td style="text-align:left"><b>Pas de coulure</b> de brasure qui dégouline sur le tube</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left"><b>Pénétration</b> complète : le métal d'apport fait le tour du raccord, pas de trou visible</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left"><b>Propreté</b> : pas de résidu de flux ou de suie noire autour du raccord</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si une case est cochée « Non », signalez-le vous-même au professeur avant le contrôle final : l'honnêteté de l'auto-contrôle fait partie de l'évaluation du savoir-être.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CONTRÔLES + RANGEMENT + BILAN ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Contrôles</h3>
+  <p style="font-size:10.5pt">Avant le rangement, contrôlez l'ensemble de la ligne liquide équipée.</p>
+  <div class="liste-num">
+    <p>☐ 1. Contrôle visuel de <b>toutes les brasures</b> réalisées aujourd'hui (aucune coulure, aucun trou)</p>
+    <p>☐ 2. Contrôle du <b>sens des organes</b> : filtre déshydrateur et voyant liquide dans le bon sens</p>
+    <p>☐ 3. Contrôle de la <b>position des prises de pression</b> BP et HP conforme au schéma</p>
+    <p>☐ 4. Vérifier qu'aucun bouchon d'origine n'a été oublié en place sur le filtre</p>
+    <p>☐ 5. Vérifier qu'aucune fuite de gaz n'est perceptible aux bouteilles (contrôle visuel et olfactif)</p>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Le contrôle d'étanchéité par test sous pression (azote + détection de fuite) est réalisé plus tard dans la séquence (module d'étanchéité) : aujourd'hui, seul le contrôle visuel du montage est demandé.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi le contrôle d'étanchéité complet n'est-il pas fait aujourd'hui, juste après le brasage ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Rangement et remise en état</h3>
+  <div class="liste-num">
+    <p>☐ 1. Fermer les bouteilles d'oxygène, d'acétylène et d'azote (robinet fermé, pas seulement le détendeur)</p>
+    <p>☐ 2. Purger les flexibles selon la procédure démontrée par le professeur</p>
+    <p>☐ 3. Ranger le chalumeau et les flexibles enroulés sans coude serré</p>
+    <p>☐ 4. Jeter les chutes de baguette et les déchets de toile abrasive dans le bac approprié</p>
+    <p>☐ 5. Ranger la ligne liquide équipée à l'emplacement indiqué, étiquetée avec votre nom de poste</p>
+    <p>☐ 6. Vérifier que la zone de travail est dégagée et propre pour le poste suivant</p>
+    <p>☐ 7. Retirer les EPI en dernier, une fois le poste totalement sécurisé</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis aujourd'hui</h4>
+  <p>☐ Permis de feu respecté toute la séance, aucun poste abandonné flamme allumée<br>
+  ☐ Ligne liquide brasée sous azote, toutes brasures auto-contrôlées<br>
+  ☐ Filtre déshydrateur et voyant liquide montés dans le bon sens<br>
+  ☐ Prises de pression BP et HP posées et conformes au schéma<br>
+  ☐ Poste rangé, bouteilles fermées, zone propre</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:14.4%">0<br>Non évalué</th><th style="width:14.4%">1<br>Non acquis</th><th style="width:14.4%">2<br>En cours d'acquisition</th><th style="width:14.4%">3<br>Acquis</th><th style="width:14.4%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits</td><td>sur T10 · S6.2</td><td>Compétence non observée ce jour.</td><td>Brasure non étanche visuellement (trou, coulure importante), ou permis de feu non respecté.</td><td>Brasure correcte avec une remarque du professeur (propreté ou pénétration à revoir), corrigée après reprise.</td><td>Brasures conformes aux 3 critères d'auto-contrôle, réalisées seul sous azote, permis de feu respecté sans rappel.</td><td>Comme « Acquis », et l'élève explique à un pair pourquoi le balayage d'azote est indispensable.</td></tr>
+    <tr><td><b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle</td><td>sur T13 · S5.5</td><td>Compétence non observée ce jour.</td><td>Prise de pression absente, mal positionnée, ou sens de l'organe non vérifié avant brasage.</td><td>Prises de pression posées avec aide du professeur pour le repérage de l'emplacement.</td><td>Filtre déshydrateur, voyant liquide et prises de pression posés seul, sens vérifié avant brasage, conformes au schéma.</td><td>Comme « Acquis », et l'élève anticipe l'accessibilité des prises de pression pour le futur raccordement des manomètres.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté de l'auto-contrôle</td><td>observation continue</td><td>Non observé ce jour.</td><td>EPI incomplets à un moment, poste abandonné flamme allumée, ou auto-contrôle non honnête (défaut caché).</td><td>Sécurité globalement respectée, quelques rappels nécessaires sur le port des EPI.</td><td>Permis de feu et EPI respectés sans rappel, gestes rigoureux, défauts signalés spontanément au professeur.</td><td>Comme « Acquis », et l'élève veille spontanément à la sécurité d'un autre poste de brasage.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.7 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (préparation, brasage, montage des organes, auto-contrôle, questions répondues)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur</li>
+    <li>Bon de commande hebdomadaire (matériel manquant, quantités)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Activité n°7 Cintrages + brasures (F. Henninot) ; Activité n°34 Cintrage 90°, emboiture et brasure prof ; Activité n°10 Ligne liquide avec prise de pression ; Activité n°4 Collecteur d'aspiration ; F gaz et recherche de fuite (support sécurité).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE : LIGNE LIQUIDE COMPLÈTE (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Ligne liquide équipée complète — schéma de travail coté</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par poste) : c'est le document à garder sous les yeux pendant tout le brasage et le montage des organes. La version réduite des feuilles 1 et 4 sert au repérage, celle-ci sert au travail.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-ligne-liquide-equipee.svg" alt="Schéma technique pleine page A3 : ligne liquide complète — compresseur, condenseur, filtre déshydrateur, voyant liquide, détendeur, évaporateur, prises de pression BP/HP"
+         style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:10pt; color:#5a6472; margin-top:6px;">Ligne liquide complète : compresseur → condenseur → <b>filtre déshydrateur</b> → <b>voyant liquide</b> → détendeur → évaporateur, avec les <b>prises de pression BP (bleu) et HP (rouge)</b> repérées. Sens de circulation indiqué par les flèches.</figcaption>
+  </figure>
+
+  <p style="font-size:10pt; color:var(--gris)">Repères à vérifier sur votre montage réel : sens de la flèche du filtre déshydrateur, position du voyant liquide juste après le filtre, accessibilité des deux prises de pression pour le raccordement des manomètres au module A2-b.</p>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

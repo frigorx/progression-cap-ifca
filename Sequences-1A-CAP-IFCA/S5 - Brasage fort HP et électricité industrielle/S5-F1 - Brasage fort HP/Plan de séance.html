@@ -1,0 +1,254 @@
+<meta charset="utf-8">
+<title>Plan de séance — S5-F1 · Brasage fort HP</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage fort HP et électricité industrielle — <b>module atelier S5-F1</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S5-F1 · on change d'échelle : la flamme HP</span><b>Brasage fort HP</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> P3 · semaines 14-15 sur 14-17</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 14</b> et <b>passage 2 — semaine 15</b> (dates à caler sur le calendrier réel, cf. <i>_CADRAGE-S5.md</i>) — <b>même jeu de documents, vécu deux fois</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone dédiée aux postes de brasage HP (ventilée, dégagée de tout inflammable, bouteilles arrimées) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier élec S5-E1)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> gestes cuivre (coupe, cintrage, dudgeon, emboîture) S1-S2 · brasage <b>tendre</b> vécu S3-F2 (le marchepied du brasage fort) · étanchéité à l'eau savonneuse (S3-F1) · É2 passée (C3.4 positionnée)<br><span class="nuance">Travaillé :</span> <b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">augmenté (risques renforcés de la flamme HP : pression, retour de flamme)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste face à un risque plus intense (flamme HP) · respect absolu des gestes interdits renforcés · honnêteté du contrôle avant brasage (on montre, on ne cache pas un doute)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → vers Maîtrise</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">sur T10 · S6.2</span><br><span class="statut">Confortement</span> <b>C2.4</b> Sécuriser l'intervention <span class="nuance">sur T12 · S6.2</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S5-1</b> : un commerce alimentaire de proximité prépare l'installation d'une
+  <b>chambre froide</b> dans son arrière-boutique. On <b>change d'échelle</b> par rapport au pavillon de S3-S4 :
+  les liaisons sont plus grosses, la tenue mécanique et la température doivent monter d'un cran. Le
+  <b>brasage tendre</b> appris en S3-F2 ne suffit plus : il faut <b>braser FORT</b> les liaisons cuivre de la
+  future chambre. Le professeur commence par une <b>démonstration commentée</b> de la flamme HP et du geste de
+  brasage fort : la flamme HP ne se découvre pas seule, elle se démontre. Ensuite, chaque élève progresse par
+  <b>brevets validés dans l'ordre</b> (brevet 1 → brevet 2 → brevet 3 → brevet 4, carte de brevets en annexe).
+  Ce module se vit <b>deux fois</b> : <b>passage 1 en semaine 14</b> (brevets 1 et 2 : allumage/réglage puis
+  chauffe au rouge sans percer), <b>passage 2 en semaine 15</b> (brevets 3 et 4 pour tous : dépôt du métal
+  d'apport par capillarité puis assemblage complet qui tient).</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>allumer et régler</b> une flamme HP en sécurité (brevet 1) ;</li>
+        <li><b>distinguer brasage tendre (&lt; 450 °C) et brasage fort (&gt; 450 °C)</b>, sans en connaître la
+        valeur exacte de flamme (selon notice) ;</li>
+        <li><b>chauffer un tube au rouge sans le percer</b> (brevet 2) ;</li>
+        <li><b>déposer le métal d'apport par capillarité</b> sur une emboîture décapée (brevet 3) ;</li>
+        <li><b>réaliser un assemblage brasé fort qui tient</b>, cordon contrôlé (brevet 4) ;</li>
+        <li><b>respecter la procédure de sécurité renforcée HP</b> (EPI, gestes interdits, procédure retour de
+        flamme).</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>couper, ébavurer, cintrer, dudgeonner et emboîturer un tube cuivre (S1-S2, S3-F2) ;</li>
+        <li>définir le brasage tendre (métal d'apport fondant sous 450 °C) et réaliser un brasage tendre
+        complet (S3-F2) ;</li>
+        <li>contrôler l'étanchéité d'un circuit à l'eau savonneuse (S3-F1) ;</li>
+        <li>mes 2 objectifs de progrès personnels posés après É2 (S5-T0), et où j'en suis.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S3-F2 et depuis É2</b> — En S3-F2, le brasage était
+  <b>TENDRE</b> (métal d'apport fondant sous 450 °C, chalumeau simple) : la marge d'erreur était plus confortable.
+  <b>Aujourd'hui, on change d'échelle</b> : le brasage devient <b>FORT</b> (métal d'apport fondant au-dessus de
+  450 °C, chauffe du raccord ≈ 750 °C selon la fiche CCCA-BTP), la flamme est HP (haute pression), les risques de
+  brûlure et de retour de flamme sont plus importants, les gestes interdits se renforcent. <b>É2 est passée</b> :
+  les élèves positionnés 1-2 sur C3.4 reprennent d'abord un geste de brasage tendre (S3-F2) avant d'attaquer le
+  fort — c'est le sens du crochet de remédiation en phase 4. Statut des deux compétences :
+  <b>C3.4 Confortement → vers Maîtrise</b>, <b>C2.4 Confortement</b> — aucune Évaluation dans S5 (l'évaluation
+  É3 est rangée en S6).</div>
+
+  <div class="plan"><b class="t">Méthode du module : démonstration commentée PUIS parcours à brevets</b> —
+  la flamme HP ne se découvre pas, elle se <b>démontre</b> (charte §1 : les gestes à risque s'imposent). Le
+  professeur montre et commente chaque étape (allumage, réglage de la flamme HP, chauffe, avancée du métal
+  d'apport, refroidissement) <b>avant</b> toute prise en main par les élèves. Ensuite, chaque élève progresse
+  par des <b>brevets validés dans l'ordre</b> : brevet 1 « j'allume et je règle » → brevet 2 « je chauffe au
+  rouge sans percer » → brevet 3 « je dépose le métal d'apport (capillarité) » → brevet 4 « j'assemble et
+  l'assemblage tient ». Carte de brevets individuelle, collée au carnet F3 (annexe pleine page). Module vécu
+  <b>deux fois</b> : passage 1 = brevets 1-2 (semaine 14), passage 2 = brevets 3-4 <b>pour tous</b> (semaine 15).</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 14 et 15)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 14 — brevets 1 et 2, maîtrise de la flamme HP</h4>
+      <b>Jalon 1</b> (≈ 55 min) : après la démonstration commentée, chaque élève <b>allume et règle</b> sa
+      flamme HP sur un poste de brasage en rotation, sous supervision rapprochée (brevet 1). <b>Jalon 2</b>
+      (≈ 70 min) : sur une chute de tube, chaque élève <b>chauffe au rouge sans percer</b> (brevet 2) — pas
+      encore de métal d'apport, seule la maîtrise de la chauffe est visée.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 15 — brevets 3 et 4, l'assemblage du client</h4>
+      <b>Jalon A'</b> (≈ 60 min) : sur une emboîture décapée, <b>dépôt du métal d'apport par capillarité</b>
+      (brevet 3), <b>montré au professeur AVANT</b> l'assemblage final. <b>Jalon B'</b> (≈ 65 min) :
+      <b>réalisation de l'assemblage OI-S5-1</b> (liaisons cuivre de la future chambre froide), en postes
+      tournants, avec <b>contrôle visuel du cordon</b> (continu, brillant, sans manque, sans surchauffe) —
+      brevet 4. Réinvestissement possible (non évalué ici) : re-contrôle à l'eau savonneuse, comme en S3-F1.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité renforcée — la flamme HP</b> — <b>Risques du jour</b> : brûlure
+  (le tube reste chaud LONGTEMPS après l'extinction), incendie, <b>retour de flamme</b> (nouveau, propre à la
+  HP), inhalation des fumées de flux. <b>EPI</b> : lunettes teintées, gants de soudeur, tablier cuir, chaussures
+  de sécurité. <b>Bouteilles DEBOUT et arrimées</b>, <b>anti-retours de flamme en place</b>. <b>Ventilation</b>
+  vérifiée avant tout allumage. <b>Extincteur + trousse</b> localisés et vérifiés au rituel d'entrée (phase 5).
+  <b>Gestes interdits</b> : jamais de flamme dirigée vers un pair, jamais de flamme près d'une bouteille de gaz,
+  <b>jamais de graisse sur un détendeur d'oxygène</b>, jamais toucher un tube qui vient d'être brasé à main nue,
+  jamais poser le chalumeau allumé. <b class="t">🚨 Procédure d'urgence retour de flamme :</b> fermer
+  immédiatement le robinet du <b>gaz combustible</b> en premier, puis celui de l'oxygène ; alerter le
+  professeur — procédure sourcée INRS ED 742 (« en cas d'incident, commencez par fermer l'alimentation en gaz
+  combustible »).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S5-F1 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 14 et 15</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Au passage 2, la démonstration intégrale de phase 5 <b>n'est plus redonnée</b> (déjà vue au passage 1) :
+  seul un rappel bref est fait, le temps gagné reste investi dans le rappel de sécurité, qui ne s'allège jamais.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (démonstration commentée puis parcours à brevets).</td><td>Fait l'appel, présente l'organisation du module et des 4 brevets.</td><td>S'installent, prennent connaissance de la carte de brevets.</td><td>Liste d'appel · carte de brevets affichée</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S5-1 : chambre froide en arrière-boutique, brasage FORT des liaisons cuivre. Rappel explicite : le tendre de S3 ne suffit plus, on change d'échelle.</td><td>Présente l'ordre d'intervention et l'enjeu du jour (changement d'échelle).</td><td>Reformulent la mission, font le lien avec S3-F2.</td><td>Ordre d'intervention imprimé · pièce brasée fort déjà réalisée (exemple)</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les objectifs et les 4 brevets lus et affichés ; lien avec la formule (C3.4, C2.4, statut Confortement → vers Maîtrise).</td><td>Affiche et commente rapidement les 4 brevets.</td><td>Repèrent le brevet qui les concerne aujourd'hui.</td><td>Affiche objectifs · carte de brevets</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau — crochet remédiation post-É2</b> : mini-rappel oral du brasage TENDRE (S3-F2, le marchepied du fort) ; pour les élèves positionnés 1-2 à É2 sur C3.4, reprise ciblée d'un geste de brasage tendre avant d'attaquer le fort.</td><td>Distribue le mini-rappel, contrôle les tenues et les EPI au vestiaire, repère les élèves à accompagner.</td><td>Se changent par vagues ; en attente, répondent au rappel entre pairs.</td><td>Mini-rappel oral · EPI complets (lunettes teintées, gants de soudeur, tablier)</td><td class="obs"></td></tr>
+    <tr><td>25 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> renforcée HP (bouteilles arrimées, anti-retours de flamme vérifiés, extincteur et trousse localisés, ventilation contrôlée, gestes interdits rappelés) puis, <b>au passage 1 seulement</b>, <b>démonstration commentée</b> intégrale du geste de brasage fort par le professeur (allumage HP, réglage de la flamme, chauffe du raccord au rouge, avancée du métal d'apport, refroidissement ; azote interne MONTRÉE — pourquoi l'intérieur du tube reste propre) — <b>au passage 2</b>, rappel bref des mêmes points, sans redémonstration complète.</td><td>Localise extincteur et trousse, vérifie anti-retours de flamme, réalise la démonstration commentée (passage 1) ou le rappel bref (passage 2).</td><td>Observent en silence pendant la démonstration, posent leurs questions ensuite, jamais pendant que la flamme est allumée.</td><td>Poste de démonstration HP · extincteur · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>55 / 60 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon 1 / A'</span></td><td><b>Passage 1 (55 min)</b> : chaque élève <b>allume et règle</b> sa flamme HP à un poste en rotation (<b>brevet 1</b>), sous supervision rapprochée. <b>Passage 2 (60 min)</b> : sur une emboîture décapée, <b>dépôt du métal d'apport par capillarité</b> (<b>brevet 3</b>), puis <b>appel du professeur pour contrôle AVANT</b> l'assemblage final.</td><td>Circule, valide chaque allumage/réglage ; au passage 2, réalise le <b>contrôle obligatoire</b> du dépôt de métal d'apport avant d'autoriser l'assemblage complet.</td><td>Allument, règlent, ou décapent/déposent le métal d'apport, présentent au professeur.</td><td>Poste de brasage HP · métal d'apport cuivre-phosphore, flux · fiche de relevé</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>70 / 65 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon 2 / B'</span></td><td><b>Passage 1 (70 min)</b> : sur une chute de tube, <b>chauffe au rouge sans percer</b> (<b>brevet 2</b>), observation de la coloration et du refroidissement (rappel brûlure). <b>Passage 2 (65 min)</b> : <b>réalisation de l'assemblage OI-S5-1</b> (liaisons de la chambre froide), en postes tournants, <b>contrôle visuel du cordon</b> après brasage (continu, brillant, sans manque, sans surchauffe) — <b>brevet 4</b>.</td><td>Supervise chaque allumage sans exception, valide la chauffe (passage 1) ou le cordon final (passage 2).</td><td>Chauffent sans percer, ou brasent l'assemblage complet, laissent refroidir sans toucher, contrôlent visuellement.</td><td>Postes de brasage HP · métal d'apport, flux · gants de soudeur</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des pièces ; rappel du lien avec S3-F2 et S5-F2 (épreuve azote à venir en S6) ; auto-positionnement par compétence (C3.4, C2.4 + savoir-être) puis validation professeur ; visa de la carte de brevets.</td><td>Organise la mise en commun, recueille les grilles, valide les brevets franchis.</td><td>Présentent leur pièce, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation · carte de brevets</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (tube, métal d'apport, flux, gaz).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Chalumeaux éteints et <b>vérifiés froids</b>, bouteilles de gaz fermées et arrimées, tri des chutes de cuivre, nettoyage des postes, vérification qu'aucun tube brasé n'est encore chaud avant de quitter la zone.</td><td>Supervise la remise en sécurité complète du poste (gaz, flamme, tubes).</td><td>Rangent, vérifient l'extinction et le refroidissement.</td><td>Bac de récupération des chutes</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (passage 2 la semaine suivante, ou S5-T1 selon la rotation).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+10+25 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  <b>Passage 1</b> : jalon 1 (55) + pause (15) + jalon 2 (70) = 2 h 20 ; synthèse 15 + bon de commande 10 +
+  rangement 10 + clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.
+  <b>Passage 2</b> : jalon A' (60) + pause (15) + jalon B' (65) = 2 h 20 ; synthèse + bon de commande +
+  rangement + clôture = 40 min (inchangé). Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>. Les deux
+  passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre les 2 jalons change.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des
+  risques (INRS ED 742, S6.2) · mathématiques (température de chauffe, tolérances) · co-intervention français
+  (carnet de bord, module F3) · réinvestissement direct de S3-F1/S3-F2 (brasage tendre, étanchéité à l'eau
+  savonneuse) · prépare S5-F2 (épreuve azote, découverte).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Élèves à revoir en priorité (sécurité / geste)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,364 @@
+<meta charset="utf-8">
+<title>Cours élève — S1 · Module théorie T2 · Les grandeurs électriques U, I, R</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .duo-img{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin:8px 0 4px}
+  .duo-img figure{flex:1 1 220px; max-width:260px; margin:0; text-align:center}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE + DÉBUT DÉCOUVERTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Les grandeurs électriques · tension, intensité, résistance</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S1-T2 · 2 h</span><b>Les grandeurs électriques U, I, R</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span> · sem. 1-4</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — module théorie de classe entière</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Les 3 grandeurs électriques (tension U, intensité I, résistance R) : leur nom, leur unité, l'appareil qui les mesure, et la formule qui les relie (loi d'Ohm)</div>
+    <div class="case"><h4>Savoir-être</h4>Observer avant de répondre · lire une valeur avec rigueur · honnêteté de mon auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte — non noté</span> ce cours prépare directement le module atelier S1-E2 (montages et multimètre) : vous y mesurerez vous-même ces grandeurs</div>
+  </div>
+
+  <div class="situation"><h4>Accroche</h4>
+  Regardez ces deux objets : une bouilloire électrique, et la plaque signalétique d'un moteur électrique. Sur
+  chacun, il y a des chiffres accompagnés de lettres : <b>V</b>, <b>A</b>, <b>W</b>, <b>Hz</b>, <b>Ω</b>...
+
+  <div class="duo-img">
+    <figure>
+      <img class="fig" src="../images/bouilloire-electrique.png" alt="Bouilloire électrique avec sa résistance chauffante de 2000 W et son alimentation électrique">
+      <figcaption class="legende">Une bouilloire électrique — sa résistance chauffante indique « 2000 W ».</figcaption>
+    </figure>
+    <figure>
+      <img class="fig" src="../images/plaque-signaletique-moteur-leroysomer.png" alt="Plaque signalétique d'un moteur électrique Leroy Somer, avec colonnes V, Hz, tr/min, kW, cos phi, A">
+      <figcaption class="legende">La plaque signalétique d'un moteur électrique — plusieurs colonnes de chiffres.</figcaption>
+    </figure>
+  </div>
+
+  <div class="encadre-question"><b>Question de départ</b> — D'après vous, que veulent dire ces lettres (V, A, W,
+  Hz, Ω) ? Notez vos idées, même si vous n'êtes pas sûr(e) — on y reviendra à la fin du cours.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — le multimètre affiche trois grandeurs différentes</h3>
+  <p style="font-size:10.5pt">Sur un chantier, l'outil qui sert à lire les grandeurs électriques s'appelle le
+  <b>multimètre</b> (« multi » = plusieurs, « mètre » = qui mesure). Le même appareil peut afficher <b>trois
+  grandeurs différentes</b>, sans jamais les confondre :</p>
+
+  <div class="notion"><h4>Les 3 grandeurs électriques</h4>
+  <p style="margin:0; font-size:10.5pt">
+  1. La <b>tension</b>, symbole <b>U</b>, unité le <b>Volt</b> (symbole <b>V</b>) — mesurée avec un
+  <b>voltmètre</b> (ou le multimètre réglé en position V).<br><br>
+  2. L'<b>intensité</b>, symbole <b>I</b>, unité l'<b>Ampère</b> (symbole <b>A</b>) — mesurée avec un
+  <b>ampèremètre</b> (ou le multimètre réglé en position A).<br><br>
+  3. La <b>résistance</b>, symbole <b>R</b>, unité l'<b>Ohm</b> (symbole <b>Ω</b>) — mesurée avec un
+  <b>ohmmètre</b> (ou le multimètre réglé en position Ω).</p>
+  </div>
+
+  <div class="encadre-question"><b>Observation 1</b> — Regardez le cadran du multimètre ci-dessous
+  (<i>D'après : préparation du module S1-E2</i>). Combien de zones de réglage différentes voyez-vous ? D'après
+  vous, à quoi correspondent les lettres V, A et Ω sur ce cadran ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/multimetre-cadran-fonctions.png" alt="Cadran d'un multimètre avec les zones V=, V~, A=, A~ et un tableau de grandeurs réelles à mesurer" style="max-width:78%;">
+    <figcaption class="legende">Le cadran d'un multimètre — c'est CET appareil que vous utiliserez en atelier S1-E2.</figcaption>
+  </figure>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE : EFFET DU COURANT + LOI D'OHM ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">D'où vient la chaleur de la bouilloire ?</h3>
+  <p style="font-size:10.5pt">La bouilloire de l'accroche chauffe l'eau grâce à sa <b>résistance chauffante</b>.
+  Quand un courant électrique (une intensité I) traverse un conducteur, il produit de la chaleur
+  (<i>D'après : Exercice n°2, S4-Électricité</i>).</p>
+
+  <div class="encadre-question"><b>Question</b> — D'après vous, si on augmente l'intensité I qui traverse une
+  résistance chauffante, la chaleur produite augmente-t-elle ou diminue-t-elle ?</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <h3 class="section">La loi d'Ohm — la formule qui relie U, I et R</h3>
+  <p style="font-size:10.5pt">Les trois grandeurs de la feuille 1 ne sont pas indépendantes : une formule les
+  relie. C'est la <b>loi d'Ohm</b> :</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/loi-d-ohm-thermique.png" alt="Schéma de la loi d'Ohm électrique U=R×I et de son équivalent thermique ΔT=Rther×Φ" style="max-width:78%;">
+    <figcaption class="legende">La loi d'Ohm : U = R × I (D'après : « Loi d'Ohm », F. Henninot).</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Observation 2</b> — D'après le nom « résistance », pensez-vous qu'une
+  résistance élevée facilite ou freine le passage du courant ?</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <div class="seuil"><b class="t">Un clin d'œil pour le froid</b> — Sur ce même schéma, on voit qu'il existe une
+  formule presque identique en thermique : ΔT<sub>ab</sub> = R<sub>ther</sub> × Φ (la différence de température,
+  au lieu de la tension ; le flux de chaleur, au lieu de l'intensité ; la résistance thermique, au lieu de la
+  résistance électrique). Vous retrouverez cette idée de « résistance qui s'oppose au passage de quelque chose »
+  plus tard dans votre formation, appliquée à la chaleur (isolation, parois froides).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — APPLICATION : EX 1 (PLAQUE) + EX 2 (UNITÉS MULTIMÈTRE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION</h3>
+
+  <h4 style="font-size:11pt">Exercice 1 — lire une plaque signalétique</h4>
+  <p style="font-size:10.3pt">Voici une vraie plaque signalétique de moteur électrique
+  (<i>D'après : Exercice n°1, S4-Électricité</i>). Elle indique plusieurs grandeurs, pour différentes tensions
+  d'alimentation possibles. Répondez en lisant la ligne où la tension est <b>440 V</b> (fréquence 60 Hz).</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/plaque-signaletique-moteur-leroysomer.png" alt="Plaque signalétique moteur Leroy Somer LS 90L-T" style="max-width:60%;">
+    <figcaption class="legende">Plaque signalétique d'un moteur Leroy Somer LS 90L-T.</figcaption>
+  </figure>
+
+  <table class="releve">
+    <tr><th style="width:46%">Grandeur à relever (ligne 440 V)</th><th>Valeur lue</th></tr>
+    <tr><td style="text-align:left">1. Fréquence</td><td></td></tr>
+    <tr><td style="text-align:left">2. Intensité absorbée</td><td></td></tr>
+    <tr><td style="text-align:left">3. Puissance mécanique nominale</td><td></td></tr>
+    <tr><td style="text-align:left">4. Poids du moteur</td><td></td></tr>
+    <tr><td style="text-align:left">5. Vitesse nominale</td><td></td></tr>
+  </table>
+  <div class="encadre-question"><b>Question 6</b> — Parmi les 5 valeurs ci-dessus, entourez ou soulignez celles
+  qui sont des <b>grandeurs électriques</b> (tension, intensité).</div>
+
+  <h4 style="font-size:11pt">Exercice 2 — les unités du multimètre</h4>
+  <p style="font-size:10.3pt">Complétez ce tableau avec ce que vous avez appris en feuille 1
+  (<i>D'après : TP 04 – multimètre</i>) :</p>
+  <table class="releve">
+    <tr><th style="width:30%">Fonction du multimètre</th><th style="width:24%">Grandeur (symbole)</th><th style="width:24%">Unité</th><th>Symbole de l'unité</th></tr>
+    <tr><td>Voltmètre (position V)</td><td></td><td></td><td></td></tr>
+    <tr><td>Ampèremètre (position A)</td><td></td><td></td><td></td></tr>
+    <tr><td>Ohmmètre (position Ω)</td><td></td><td></td><td></td></tr>
+  </table>
+
+  <p style="font-size:10.3pt">Un exemple réel : sur un moteur triphasé, un professionnel a mesuré au multimètre
+  la résistance de chacun des 3 enroulements. Les trois affichaient <b>7,3 Ω</b>
+  (<i>D'après : TP 04 – multimètre, correction</i>). Comme les 3 valeurs sont identiques, le moteur a été jugé en
+  bon état.</p>
+  <div class="encadre-question"><b>Question</b> — Avec quelle fonction du multimètre (parmi V, A, Ω) a-t-on
+  obtenu cette valeur de 7,3 Ω ?</div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+
+  <p style="font-size:10.3pt">Pour chaque situation ci-dessous, dites si c'est une <b>tension (U)</b> ou une
+  <b>intensité (I)</b>, et rappelez son unité (<i>D'après : préparation du module S1-E2</i>) :</p>
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:56%">Situation</th><th style="width:22%">U ou I ?</th><th>Unité</th></tr>
+    <tr><td style="text-align:left">Tension sur une prise de courant domestique (230 V)</td><td></td><td></td></tr>
+    <tr><td style="text-align:left">Tension délivrée par un chargeur de téléphone mobile (5,2 V)</td><td></td><td></td></tr>
+    <tr><td style="text-align:left">Tension aux bornes d'une pile de lampe de poche (1,5 V)</td><td></td><td></td></tr>
+    <tr><td style="text-align:left">Tension aux bornes d'une batterie d'automobile (12 V)</td><td></td><td></td></tr>
+    <tr><td style="text-align:left">Courant dans un radiateur électrique (≈ 2,2 A)</td><td></td><td></td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — APPLICATION : EX 3 (LOI D'OHM) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 3 — la loi d'Ohm : compléter la formule</h4>
+  <p style="font-size:10.3pt">Vous avez vu en feuille 2 la formule <b>U = R × I</b>. On peut l'écrire de deux
+  autres façons pour calculer I ou pour calculer R. Complétez :</p>
+  <p style="font-size:11pt; margin:.6em 0"><b>I = ____________ ÷ ____________</b></p>
+  <p style="font-size:11pt; margin:.6em 0 1em"><b>R = ____________ ÷ ____________</b></p>
+
+  <div class="encadre-question"><b>Question a</b> — Si la résistance R d'un appareil augmente, et que
+  l'intensité I qui le traverse reste la même, la tension U nécessaire augmente-t-elle ou diminue-t-elle ?
+  (Utilisez la formule U = R × I pour répondre.)</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <div class="encadre-question"><b>Question b</b> — Sur l'enroulement du moteur mesuré en feuille 3
+  (R = 7,3 Ω), quelle formule utiliseriez-vous pour calculer l'intensité I si vous connaissiez la tension U à
+  ses bornes ? (Donnez la formule, sans chercher à calculer un résultat.)</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <div class="encadre-question"><b>Question c</b> — Pourquoi, à votre avis, ne peut-on pas mesurer une
+  résistance avec un ohmmètre pendant que le circuit est sous tension ? (Aide : relisez le TP 04 – multimètre.)</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <div class="seuil"><b class="t">Pas de calcul numérique complet aujourd'hui</b> — En atelier (module
+  <b>S1-E2</b>), vous allez mesurer vous-même une vraie tension U, une vraie intensité I et une vraie résistance
+  R, sur un montage réel, avec le multimètre. Vous pourrez alors vérifier la loi d'Ohm avec VOS propres valeurs
+  mesurées.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — SYNTHÈSE / TRACE ÉCRITE + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T2 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — je réponds à la question du début</h3>
+  <div class="encadre-question"><b>Retour sur la question de départ</b> — Avec vos propres mots : que veulent
+  dire les lettres V, A, W (bouilloire) et V, Hz, kW, A (plaque du moteur) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Ma fiche de trace écrite</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec vos propres mots : c'est elle que vous garderez.</p>
+  <div class="trace">
+    <p style="font-size:10.5pt; margin:0 0 8px"><b>1. Les 3 grandeurs électriques :</b></p>
+    <div class="tbl-wrap">
+    <table class="releve" style="font-size:9pt">
+      <tr><th>Grandeur</th><th>Symbole</th><th>Unité</th><th>Symbole d'unité</th><th>Appareil de mesure</th></tr>
+      <tr><td>Tension</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Intensité</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Résistance</td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    </div>
+
+    <p style="font-size:10.5pt; margin:14px 0 4px"><b>2. La loi d'Ohm, dans mes mots :</b></p>
+    <p style="font-size:10.3pt; margin:0 0 10px">U = _______ × _______</p>
+
+    <p style="font-size:10.5pt; margin:10px 0 8px"><b>3. Ce que je ferai en atelier S1-E2 :</b></p>
+    <div class="zone-reponse" style="min-height:2em"></div>
+  </div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:24%">Ce que je sais faire</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td>Nommer les 3 grandeurs (U, I, R), leurs unités, l'appareil qui les mesure <span class="nuance">Découverte — non noté</span></td><td>Compétence non observée ce jour.</td><td>Je ne sais pas nommer les 3 grandeurs ni leurs unités.</td><td>Je nomme les 3 grandeurs et leurs unités avec de l'aide.</td><td>Je nomme seul(e) les 3 grandeurs, leurs symboles, leurs unités, l'appareil de mesure, et je lis une valeur simple sur une plaque ou un multimètre.</td><td>Comme « Acquis », et je peux l'expliquer à un camarade avec assurance.</td></tr>
+    <tr><td>Savoir-être — j'observe avant de répondre, je suis honnête dans mon auto-positionnement</td><td>Non observé.</td><td>Je réponds avant d'observer, je recopie sans réfléchir.</td><td>J'observe mais j'ai besoin d'un rappel pour ne pas répondre trop vite.</td><td>J'observe avant de répondre, je remplis mon auto-positionnement seul(e) et honnêtement.</td><td>Comme « Acquis », et j'aide un camarade à rester honnête dans son auto-positionnement.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Les grandeurs U, I, R et la loi d'Ohm :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe : il
+  prépare le module atelier S1-E2, où vous mesurerez vous-même ces grandeurs avec un multimètre réel.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : fiche d'activité
+  « Centre d'intérêt n°1 — Découverte d'un circuit électrique » (F. Henninot, S4-Électricité, CAP IFCA) ;
+  « Exercice n°1 » et sa correction — plaque signalétique moteur Leroy Somer LS 90L-T (F. Henninot) ;
+  « Exercice n°2 » et sa correction — effet du courant dans un conducteur (F. Henninot) ; « TP 04 – multimètre »
+  et sa correction — fonctions, unités, mesure de résistance 7,3 Ω (F. Henninot, 2nde TNE) ; image « bouilloire
+  électrique » (F. Henninot, S4-Électricité) ; schéma « Loi d'Ohm » électrique et thermique (F. Henninot) ;
+  cadran de multimètre et tableau de grandeurs réelles, préparés pour le module S1-E2 (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .cadre-dessin{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

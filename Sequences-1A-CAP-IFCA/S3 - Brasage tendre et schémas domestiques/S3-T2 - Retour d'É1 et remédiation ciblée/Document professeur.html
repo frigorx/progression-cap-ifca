@@ -1,0 +1,346 @@
+<meta charset="utf-8">
+<title>Document professeur — S3-T2 · Retour d'É1 et remédiation ciblée</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .ouvert{border:1.5px dashed #c14a17; border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .ouvert b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .aremplir{border:2px dashed #c14a17; border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:9.8pt}
+  .aremplir b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .rgpd{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#fff2c4; color:#7a5b00; border:1px solid #e0c34a; margin-bottom:6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + CE QUE CE DOCUMENT AJOUTE + STATUT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre et schémas domestiques — retour d'É1</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S3-T2 · 2 h — DOCUMENT PROFESSEUR</span><b>Retour d'É1 — remédiation ciblée</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · sem. 8</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de théorie + postes de reprise (cuivre, câblage, mesures)</td>
+      <td><span class="lib">Durée</span>2 h — classe entière, groupes de besoin tournants</td>
+      <td><span class="lib">Modalité</span>Lecture des grilles individuelle → 2 rotations de groupes de besoin → retour collectif → plan de progrès</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière, appui des tuteurs pairs</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail <span class="nuance">seule tâche mobilisée — aucune tâche nouvelle</span></div>
+    <div class="case"><h4>Savoirs réactivés</h4><b>S2.1</b> Outils, normes et représentation · <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">déjà vus S1-S2, aucun contenu nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Honnêteté de l'auto-positionnement · entraide sans se moquer (tutorat par les pairs) · accepter un point faible sans se décourager</div>
+    <div class="case comp"><h4>Compétences (≤ 4) — statut</h4><span class="statut">Confortement — FORMATIF, non remonté</span> <b>C3.4 · C3.6 · C4.5</b> — grille indicative de sortie de séance, aucun résultat remonté sur École Directe</div>
+  </div>
+
+  <div class="vigilance"><b class="t">Statut — à ne jamais confondre</b> Les 3 compétences restent en
+  <b>Confortement</b> aujourd'hui, jamais en <b>Évaluation</b>. Rien de ce module n'est remonté sur École Directe.
+  La seule évaluation officielle sur ces compétences reste É1 (semaine 7, déjà passée) — S3-T2 la <b>prolonge</b>,
+  ne la <b>refait</b> pas. La grille 0-4 utilisée ici (feuille « ma grille É1 » et fiches de reprise) est un repère
+  d'auto-positionnement de sortie de séance, pas un nouveau relevé officiel.</div>
+
+  <h3 class="section">Ce que ce document ajoute au document élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend la même structure que le document élève (fiche « ma grille É1 »,
+  3 postes de reprise, fiche tuteur, trace écrite) et y ajoute : le <b>tableau à remplir</b> par le professeur
+  avec les vrais résultats d'É1 (aucun résultat fictif, aucun prénom), le <b>déroulé minuté 120 min exact</b>,
+  les <b>critères de sortie de remédiation</b> par poste, l'<b>articulation</b> avec les variantes consolidation
+  de S3-F1/S3-E1 (semaines 8-9), les <b>conseils de posture</b> pour cadrer les tuteurs, et les <b>points de
+  vigilance</b> propres à un module qui touche directement à l'estime de soi des élèves. <b>Aucune notion
+  nouvelle</b> : toutes les fiches de reprise dérivent des documents S1-F1, S1-E1 et S2-E1, déjà produits et
+  vécus par les élèves — c'est une reprise, pas une nouvelle création d'exercice.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — GROUPES DE BESOIN (TABLEAU À REMPLIR) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation des groupes de besoin</h3>
+  <div class="aremplir"><b class="t">🔴 TABLEAU À REMPLIR PAR LE PROFESSEUR</b> — avec les <b>vrais résultats
+  d'É1</b> de la classe. <b>Aucun résultat fictif, aucun prénom</b> dans ce document : utilisez vos propres codes
+  élèves (numéro de liste, initiales anonymisées selon votre pratique habituelle). Ce tableau ne doit jamais être
+  affiché ni partagé avec la classe — il reste un outil de préparation, à usage professeur seul.</div>
+
+  <p style="font-size:10.3pt">Logique de répartition : chaque élève positionné <b>1 ou 2</b> sur une compétence
+  passe par le poste correspondant lors d'une des 2 rotations. Un élève faible sur <b>2 compétences</b> passe par
+  2 postes (un par rotation). Un élève positionné <b>3-4 partout</b> devient tuteur sur un poste, ou reçoit un
+  défi transfert (approfondissement) — voir feuille 4.</p>
+
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:12%">Code élève</th><th style="width:9%">C3.4</th><th style="width:9%">C3.6</th><th style="width:9%">C4.5</th><th style="width:20%">Rotation 1 (poste / rôle)</th><th style="width:20%">Rotation 2 (poste / rôle)</th><th>Remarque</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Colonnes « Rotation » : notez le poste
+  (CUIVRE / CÂBLAGE / MESURES) et le rôle (REPRISE si positionné 1-2, TUTEUR si positionné 3-4 sur ce poste,
+  ou APPROFONDISSEMENT si le défi transfert est retenu à la place du tutorat).</p>
+
+  <h4 class="section">Effectifs par poste — repère de calcul</h4>
+  <p style="font-size:10.3pt">Avant la séance, comptez rapidement combien d'élèves sont positionnés 1-2 sur
+  chaque compétence : c'est ce nombre (plus les tuteurs affectés) qui détermine le nombre de postes physiques
+  à préparer pour CUIVRE, CÂBLAGE et MESURES. Si une compétence concentre beaucoup plus d'élèves en difficulté que
+  les deux autres, dédoublez ce poste (deux tables CUIVRE, par exemple) plutôt que de créer un groupe trop grand
+  pour un seul professeur à superviser sur un geste de sécurité (dudgeonnière, tension).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — DÉROULÉ MINUTÉ 120 MIN ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Déroulé minuté — module 2 h (recompté ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie remédiation — 2 h 00 (pas de préparation de chantier atelier classique)</td></tr>
+    <tr><td>20 min</td><td class="ph">1. Lecture des grilles</td><td>3 min : accueil, rappel du cadre (« pas une nouvelle évaluation », feuille 1 du document élève). 12 min : distribution individuelle des grilles É1 corrigées ; chaque élève recopie ses positionnements réels sur la fiche « ma grille É1 » (feuille 2) et entoure ses cases 1-2. 5 min : le professeur passe entre les rangs pour vérifier les recopies et répondre aux questions individuelles, en silence, sans commentaire audible par le reste de la classe.</td></tr>
+    <tr><td>35 min</td><td class="ph">2. Rotation 1 — groupes de besoin</td><td>Installation aux 3 postes (CUIVRE / CÂBLAGE / MESURES) selon le tableau de répartition (feuille 2) — 3 min. 30 min : travail en petit groupe sur le poste assigné (fiches de reprise du document élève, feuilles 3-5) ; les tuteurs affectés à ce poste encadrent, le professeur supervise en priorité les gestes à risque (dudgeonnière, mise sous tension). 2 min : rotation vers le poste suivant pour les élèves concernés par 2 compétences.</td></tr>
+    <tr><td>35 min</td><td class="ph">3. Rotation 2 — groupes de besoin</td><td>32 min : même principe que la rotation 1, sur le second poste assigné (reprise d'une 2<sup>e</sup> compétence, tutorat sur un autre poste, ou défi transfert pour les élèves 3-4 partout — feuille 4). 3 min : rangement des 3 postes, retour aux places.</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Retour collectif</td><td>10 min : mise en commun à l'oral, sans jamais citer de résultat individuel (« qu'avez-vous appris en reprenant votre geste ? », « qu'est-ce qui a été utile dans le tutorat ? »). 5 min : rappel du lien avec la suite de S3 (crochets dans S3-F1/S3-E1, semaines 8-9 — voir feuille 5).</td></tr>
+    <tr><td>15 min</td><td class="ph">5. Plan de progrès</td><td>12 min : rédaction individuelle des 2 objectifs de progrès (trace écrite, feuille 7 du document élève). 3 min : consigne de recopie dans le carnet F3, rubrique « Après É1 », et clôture de séance.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 20 + 35 + 35 + 15 + 15 = <b>120 min exactes</b>, conforme au
+  découpage proposé par le cadrage S3 pour le module S3-T2.</p>
+
+  <div class="vigilance"><b class="t">Point de vigilance — supervision des 3 postes en simultané</b> Le poste
+  CUIVRE (dudgeonnière) et le poste CÂBLAGE/MESURES (électricité) sont deux postes à risque qui fonctionnent en
+  même temps : le professeur ne peut pas être aux deux à la fois. Les tuteurs pairs assurent l'encadrement de
+  premier niveau (méthode, relecture de consigne), mais <b>tout contrôle de sécurité</b> — mise sous tension,
+  validation finale d'un dudgeon, montage en série de l'ampèremètre — reste <b>exclusivement professeur</b>,
+  comme dans tous les modules S1-S2-S3. Si l'effectif ou la configuration de la salle ne permet pas cette
+  supervision simultanée, réduire à 2 postes actifs par rotation plutôt que 3, quitte à allonger légèrement le
+  nombre de rotations sur les semaines suivantes.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CRITÈRES DE SORTIE + ARTICULATION S3-F1/S3-E1 + POSTURE TUTEURS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Critères de sortie de remédiation (observables, par poste)</h3>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:16%">Poste</th><th>Critère de sortie — l'élève quitte la reprise quand…</th></tr>
+    <tr><td><b>CUIVRE</b> (C3.4)</td><td>… le dudgeon réalisé est <b>régulier, sans fente</b>, et l'écrou s'<b>emboîte sans jeu ni blocage</b>, sur une pièce réalisée <b>seul(e)</b>, sans que le professeur reprenne le geste à sa place — critère identique à celui d'É1 (partie A, façonnage).</td></tr>
+    <tr><td><b>CÂBLAGE</b> (C3.6)</td><td>… le câblage du simple allumage est <b>conforme au schéma et aux couleurs</b>, le contrôle hors tension est réalisé <b>avant</b> l'appel du professeur, câblé <b>seul(e)</b> à partir du schéma sans repères, sans démonstration préalable câblée.</td></tr>
+    <tr><td><b>MESURES</b> (C4.5)</td><td>… les <b>4 mesures</b> (continuité, tension, résistance, intensité) sont réalisées <b>seul(e)</b>, les valeurs sont <b>cohérentes</b> avec ce qui est attendu et les unités correctes, montage en série de l'ampèremètre validé par le professeur avant remise sous tension.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Un élève qui ne franchit pas ce critère en
+  35 min n'est <b>pas laissé de côté</b> : le professeur note « à reprendre » dans le tableau de la feuille 2 et
+  s'appuie sur les crochets prévus dans S3-F1/S3-E1 (ci-dessous) pour poursuivre la reprise sans créer un nouveau
+  module dédié.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-simple-allumage.svg" alt="Schéma technique complet du simple allumage : disjoncteur Q1, interrupteur S1, lampe H1, avec repères" style="max-width:58%; border:1px solid #d5dbe4; border-radius:6px">
+    <figcaption class="legende">Poste CÂBLAGE — schéma complet légendé (référence professeur). Les élèves ne
+    travaillent, eux, que sur la version sans repères (document élève) : ce schéma sert uniquement au contrôle du
+    câblage réalisé, jamais affiché pendant l'exercice.</figcaption>
+  </figure>
+
+  <h3 class="section">Articulation avec les variantes consolidation de S3-F1 et S3-E1 (semaines 8-9)</h3>
+  <p style="font-size:10.3pt">S3-T2 n'est que le <b>premier étage</b> du dispositif de remédiation post-É1 (cadrage
+  S3, §Remédiation). Les deux étages suivants prennent le relais dans les semaines qui suivent :</p>
+  <ul class="liste-num">
+    <li>dans <b>S3-F1</b> (cuivre avancé, semaines 8-9), la phase de vérification des prérequis reprend les items
+    du poste FROID d'É1 ; sa <b>variante consolidation</b> est explicitement fléchée « élèves positionnés 1-2 à É1
+    sur C3.4 » — les élèves repérés aujourd'hui y retrouvent un accompagnement renforcé sur le même geste ;</li>
+    <li>dans <b>S3-E1</b> (protections électriques et DDR, semaines 8-9), même logique pour C3.6, avec une
+    variante consolidation fléchée de la même façon ;</li>
+    <li>la <b>variante approfondissement</b> de ces deux modules mentionne le tutorat : les élèves devenus tuteurs
+    en S3-T2 peuvent poursuivre ce rôle sur les ateliers suivants, en cohérence avec la progressivité spiralaire
+    de la charte ;</li>
+    <li>le carnet <b>F3</b> porte la rubrique « Après É1 » aux semaines 8 (aujourd'hui) et bilan semaine 11 : c'est
+    là que se referme la boucle, pas dans un nouveau module théorique.</li>
+  </ul>
+
+  <h3 class="section">Conseils de posture pour cadrer les tuteurs</h3>
+  <p style="font-size:10.3pt">La fiche tuteur du document élève (feuille 6) donne aux élèves les règles du rôle.
+  Côté professeur, quelques repères pour que le tutorat reste sûr et utile :</p>
+  <ul class="liste-num">
+    <li><b>Désignez le tuteur explicitement</b>, poste par poste, à partir du tableau de la feuille 2 — ne laissez
+    pas les élèves s'auto-désigner, cela évite les dynamiques de groupe non voulues ;</li>
+    <li><b>briefez chaque tuteur en 1 minute</b> avant la rotation : rappelez oralement les 3 interdits de sa
+    fiche (faire à la place, donner la réponse, se moquer) — un rappel court suffit, ils l'ont déjà lu ;</li>
+    <li>restez <b>disponible pour retirer un tuteur</b> de son rôle sans le sanctionner si le tutorat ne se passe
+    pas bien (impatience, moquerie) : proposez-lui alors le défi transfert plutôt qu'une sanction ;</li>
+    <li>le tutorat reste un <b>rôle d'un jour</b>, pas une étiquette : varier les tuteurs d'un module à l'autre de
+    la séquence, un même élève n'est pas systématiquement désigné.</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — VIGILANCES + DIFFÉRENCIATION + POINTS OUVERTS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Vigilances propres à ce module</h3>
+  <div class="vigilance"><b class="t">⚠ Élève démotivé par un 1</b> Un élève qui découvre un niveau 1 sur une
+  compétence peut réagir par le découragement, le déni (« c'est faux ») ou le repli. Ne jamais laisser ce moment
+  sans accompagnement : reformuler immédiatement que <b>1 ne mesure pas la valeur de l'élève</b>, mais l'état d'un
+  geste précis un jour donné (cf. feuille 2 du document élève, encadré « ce que je retiens »). Proposer un temps
+  individuel bref si le retrait dure au-delà de la phase 1.</div>
+
+  <div class="vigilance"><b class="t">⚠ Jamais de résultats affichés publiquement</b> Le tableau de la feuille 2
+  (résultats réels par élève) reste un document professeur, jamais projeté, jamais affiché, jamais commenté à voix
+  haute devant la classe. La répartition en postes se communique <b>individuellement</b> ou par un signal neutre
+  (étiquette de poste distribuée en main propre), jamais par une liste publique de niveaux.</div>
+
+  <div class="vigilance"><b class="t">⚠ Ne pas transformer le tutorat en compétition</b> Le professeur veille à ce
+  que le tutorat ne devienne pas un classement implicite (« les bons aident les mauvais »). Le vocabulaire employé
+  en phase 4 (retour collectif) reste centré sur le geste et la méthode, jamais sur un classement d'élèves.</div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation (déjà 1-2 sur plusieurs compétences)</td><td>Limiter à une seule reprise approfondie plutôt que 2 rotations superficielles si le professeur juge qu'un geste nécessite tout le temps disponible ; l'autre compétence est alors reportée en priorité sur les crochets S3-F1/S3-E1.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit : lecture individuelle, 2 rotations, retour collectif, plan de progrès.</td></tr>
+    <tr><td>Approfondissement (3-4 partout)</td><td>Défi transfert au lieu du tutorat pur : par exemple expliquer par écrit, sur la fiche de reprise d'un camarade, ce qui différencie un dudgeon conforme d'un dudgeon non conforme, sans toucher l'outil du camarade — exercice de formalisation, Bloom 2-3.</td></tr>
+    <tr><td>FLE</td><td>Fiches de reprise du document élève déjà pictogrammées côté sécurité (réutilisation des pictogrammes S1) ; consignes de chaque poste relues à voix haute par le professeur ou le tuteur avant le démarrage du chronomètre.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Un seul poste à la fois affiché sur l'emploi du temps de l'élève (jamais les 3 en même temps) ; tableaux de relevé à unités pré-imprimées (poste MESURES) déjà conçus pour réduire la charge ; visa professeur systématique à chaque étape pour sécuriser le sentiment de progression.</td></tr>
+  </table>
+
+  <h3 class="section">Points ouverts (à faire valider par F. Henninot)</h3>
+  <ol class="liste-num">
+    <li>Dates réelles de la semaine 8 (calendrier 2026-27) — « à confirmer », comme dans tout le cadrage S3.</li>
+    <li>S3-T2 est un <b>ajout</b> au tableau du maître, qui ne liste que S3-T1 en théorie : nomenclature `Sn-T2`
+    autorisée par le maître (§1), <b>à valider au bon à tirer</b> (cf. `_ETAT.md`).</li>
+    <li>Cote demandée au poste CUIVRE (dudgeon) et valeurs attendues au poste MESURES : « selon le poste et le
+    professeur, à faire valider » — aucune valeur chiffrée fixée par ce document.</li>
+    <li>Nombre exact de postes physiques CUIVRE/CÂBLAGE/MESURES à préparer : dépend des vrais effectifs d'É1,
+    connus seulement du professeur au moment de remplir la feuille 2 — non calculable à l'avance dans ce document
+    générique.</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : évaluation É1 S1-S2
+  de la même progression, document professeur — corrigé et grille (F. Henninot, semaine 7), notamment sa section
+  « Remédiation prévue (positionnements 1 et 2) » qui esquisse ce dispositif ; Activité n°1 TUBES CUIVRE +
+  correction et TP n°2 - Dudgeon, Tube cuivre.pdf (notice AFPA, F. Cabeza) pour le poste cuivre ; TP 4 électricité
+  domestique CAP et TP simple allumage (F. Henninot) pour le poste câblage ; TP 04 – multimètre + correction,
+  Exercice 01/02 – S4 Électricité (F. Henninot) pour le poste mesures ; documents S1-F1, S1-E1 et S2-E1 déjà
+  produits pour cette même classe ; cadrage `_CADRAGE-S3.md` (chef d'orchestre usine FrigorX, 16/07/2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .ouvert, .aremplir, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

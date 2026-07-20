@@ -1,0 +1,412 @@
+<meta charset="utf-8">
+<title>Document professeur — S10 · Module A0 · Diagnostic de la machine et état des lieux</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Chantier de remise en état (module A0)</td>
+      <td style="width:38%"><span class="lib">Module atelier A0 · 4 h — DOCUMENT PROFESSEUR</span><b>Diagnostic de la machine et état des lieux</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> · sem. 1 · 01-05/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée (pas 4 h + 4 h)</td>
+      <td><span class="lib">Modalité</span>Enquête-diagnostic guidée en 2 jalons (inventaire/constat, puis croquis/rédaction) + fiche de constat écrit</td>
+      <td><span class="lib">Encadrement</span>1 professeur, première séance de l'année</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques <span class="nuance">contexte</span><br><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes à détente directe <span class="nuance">prérequis, 1<sup>re</sup> année</span><br><b>S1</b> Contexte contractuel du chantier <span class="nuance">nouveau</span><br><b>S2.2</b> Lecture de plan <span class="nuance">augmenté</span> · <b>S2.3</b> Croquis à main levée <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>EPI portés sans rappel · rigueur de l'inventaire · honnêteté du constat · respect de la machine confiée au binôme</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C2.1</b> Organiser des informations <span class="nuance">sur T10 · S2</span><br><span class="statut">Confortement</span> <b>C1.3</b> Rendre compte <span class="nuance">sur T1 · S1</span><br><span class="nuance">citée, non évaluée : C2.4 Sécuriser l'intervention (fil rouge de l'année)</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module A0 : mêmes
+  observations/questions, même numérotation, même séquençage en 2 jalons (jalon 1 inventaire / état des lieux,
+  jalon 2 croquis + rédaction du constat écrit). Il y ajoute : les réponses attendues à chaque observation/question
+  avec point de vigilance, l'organisation du plateau et l'attribution des machines, le minutage 4 h recompté et
+  la différenciation (consolidation / standard / approfondissement + FLE + TDAH-DYS). <b>La Croix du Frigoriste
+  et les 4 organes sont ici rappelés et amorcés</b> ; le cours qui les approfondit est le <b>module T0</b>, à
+  suivre juste après ce module. <b>Aucune valeur non autorisée n'est donnée</b> : toute valeur de plaque
+  signalétique, de section de tube ou de pression non lisible sur la machine réelle reste <b>« selon la
+  plaque signalétique / machine confiée, à faire valider »</b>, jamais inventée ni donnée de mémoire.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Enquête-diagnostic guidée en 2 jalons.</b> L'élève observe la machine confiée,
+  tâtonne et repère AVANT que le professeur ne formalise (pédagogie de la découverte) : le professeur circule
+  sans donner la réponse, relance par des questions, et ne formalise le vocabulaire du diagnostic qu'APRÈS
+  l'observation des binômes. Les binômes progressent par <b>2 jalons successifs</b> (jalon 1 : inventaire /
+  état des lieux des organes, de la plaque signalétique, du câblage et de la robinetterie ; jalon 2 : croquis
+  à main levée du circuit + rédaction du constat écrit transmis au chef de chantier), chaque jalon nourrissant
+  directement le suivant. Module resserré sur 4 h : priorité à l'inventaire et au constat honnête, pas à
+  l'exhaustivité — l'approfondissement théorique de la Croix du Frigoriste est renvoyé au module T0.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — L'attribution des machines par
+  binôme est <b>définitive pour l'année</b> : chaque binôme conduit sa machine du diagnostic jusqu'à la mise en
+  service (modules A1 et suivants). Il n'y a donc pas de rotation de machine en cours d'année. Prévoir une
+  répartition équilibrée selon l'état connu de chaque machine, et conserver une trace écrite de l'attribution
+  (numéro de machine ↔ binôme) à reporter sur le tableau de suivi du chantier.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil de rentrée : appel, présentation de l'organisation du module (enquête-diagnostic guidée en 2 jalons), distribution des carnets de bord.</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Présentation du chantier de remise en état de l'année (2 voies : atelier et fil de l'eau F3, chef-d'œuvre vidéo, bon de commande hebdomadaire) et de l'ordre d'intervention OI-2026-S10-01.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » affichés et commentés, lien avec la formule (C2.1, C1.3) et la fiche de constat à transmettre en fin de module.</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, exercice au fil de l'eau : sur schéma vierge de circuit frigorifique, entourer et nommer les 4 organes de la Croix du Frigoriste (révision 1<sup>re</sup> année).</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (risques du jour : électrique résiduel, charges, arêtes ; gestes interdits ; conduite en cas d'incident ; trousse de secours et arrêt d'urgence localisés) puis « planter la notion » : OBSERVER en silence une machine d'exemple → NOMMER les 4 organes → EXPLICITER la méthode d'inventaire attendue.</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (a) — jalon 1 : inventaire / état des lieux</td><td>Attribution d'une machine par binôme. Observation, repérage des 4 organes, relevé de la plaque signalétique, constat du câblage et de la robinetterie, sans intervention du professeur. C'est le support des observations 1 à 3 du TP (voir feuille 2).</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>1 h 05</td><td class="ph">6. Guider l'étude (b) — jalon 2 : croquis + constat écrit</td><td>Croquis à main levée du circuit (S2.3), fiche d'inventaire complète organe par organe, rédaction du constat écrit (liste « manque / à refaire ») transmis au chef de chantier.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : restitution orale de chaque binôme (C1.3), auto-positionnement par compétence (C2.1, C1.3 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : premier bon de commande hebdomadaire de l'année, à partir de la liste « manque / à refaire ».</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Remise en ordre du poste, vérification de la consignation de chaque machine pour la semaine suivante.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, remise des documents, annonce du module suivant (T0 — la Croix du Frigoriste approfondie, puis A1 — mise en place mécanique).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; jalon 1 (1 h 00) + pause 15 min + jalon 2 (1 h 05) = 2 h 20 ; synthèse 15 min + bon
+  de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, conforme au plan de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — ORGANISATION DU PLATEAU + CORRIGÉ JALON 1 (OBSERVATIONS 1-2) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation matérielle du plateau — avant l'arrivée des élèves</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Zone</th><th style="width:44%">Contenu à préparer</th><th>Point de vigilance</th></tr>
+    <tr><td>Zone d'attribution des machines</td><td>Autant de machines d'occasion que de binômes prévus, réparties dans l'atelier, chacune identifiée par un numéro.</td><td><b>Vérifier personnellement que chaque machine est hors tension et sans fluide</b> avant l'arrivée des élèves — ne jamais laisser cette vérification à un élève. Un condensateur peut rester chargé même hors tension : contrôler aussi ce point.</td></tr>
+    <tr><td>Machine d'exemple (démonstration)</td><td>Une machine visible de tous, servant à la phase « planter la notion » (observer/nommer/expliciter).</td><td>La choisir en état correct pour que les 4 organes soient facilement identifiables au premier passage.</td></tr>
+    <tr><td>Zone de rangement individuel</td><td>Carnets de bord vierges, fiches de diagnostic, bons de commande vierges, fiches de sécurité à cocher, en nombre suffisant.</td><td>Prévoir des exemplaires de secours (élèves en retard d'inscription, document abîmé).</td></tr>
+    <tr><td>Vestiaire</td><td>EPI disponibles en nombre (chaussures de sécurité si prêt, gants, tenues).</td><td>Prévoir le passage échelonné pour ne pas bloquer tout le groupe en même temps.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — observations du jalon 1 (feuille 2 du TP élève)</h3>
+
+  <div class="reponse"><b class="t">Observation 1</b> — En une phrase, quelle est votre toute première
+  impression sur l'état général de cette machine ?<br><br>
+  <b>Réponse attendue :</b> réponse libre selon l'état réel de la machine confiée (bon état apparent, très
+  dégradée, incomplète…). Accepter toute impression honnête et cohérente avec ce que l'élève observe
+  réellement ; ne pas suggérer de réponse avant l'observation.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Cette étape est une phase d'observation libre,
+  sans vocabulaire technique imposé. Ne pas corriger une première impression maladroite : la reformulation
+  précise viendra aux étapes suivantes.</div>
+
+  <div class="reponse"><b class="t">Tableau attendu</b> — repérage des 4 organes<br><br>
+  <b>Réponse attendue :</b> emplacement et état de chaque organe <b>selon la machine confiée — à relever par
+  le professeur lors de l'attribution</b>. Aucune valeur générique ne peut être donnée ici, chaque machine du
+  parc étant différente. Le professeur circule pour valider que les 4 organes ont bien été repérés
+  physiquement par le binôme, sans donner la réponse à l'avance.</div>
+  <div class="vigilance"><b class="t">Erreur typique</b> — Confondre le détendeur (petit composant, souvent
+  proche de l'évaporateur) avec une vanne d'arrêt ou un filtre déshydrateur. Faire vérifier au binôme que le
+  composant repéré comme détendeur réduit bien la section de passage du fluide, contrairement à une simple
+  vanne. Sur une machine très dégradée, un organe peut être absent ou méconnaissable : l'élève doit l'indiquer
+  comme « manquant » ou « non identifiable » dans la fiche d'inventaire, pas inventer sa présence.</div>
+
+  <div class="reponse"><b class="t">Observation 2</b> — Dans quel ordre le fluide frigorigène traverse-t-il les
+  4 organes lorsque la machine fonctionne normalement ?<br><br>
+  <b>Réponse attendue :</b> <b>1. Compresseur → 2. Condenseur → 3. Détendeur → 4. Évaporateur</b>, puis retour
+  au compresseur (cycle fermé). Ce cycle a été vu en 1<sup>re</sup> année (S5.1) ; il s'agit ici d'une
+  réactivation, pas d'un apprentissage nouveau — l'approfondissement complet se fait au module T0.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Erreur typique : inverser détendeur et
+  évaporateur dans l'ordre, ou oublier que le circuit est fermé (retour du fluide de l'évaporateur au
+  compresseur). Reprendre le schéma de la machine d'exemple pour lever l'ambiguïté avant de valider.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 1 (PLAQUE + CÂBLAGE/ROBINETTERIE + INVENTAIRE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — relevé de la plaque signalétique</h3>
+  <div class="reponse"><b class="t">Valeurs attendues —</b> Toutes les valeurs (marque, modèle, fluide, charge,
+  tension, année) sont <b>selon la machine confiée — à relever par le professeur lors de l'attribution</b>.
+  Aucune valeur type ne doit être donnée aux élèves avant le relevé réel : c'est l'objet même de l'exercice.</div>
+  <div class="vigilance"><b class="t">Erreur typique —</b> Un élève recopie une valeur qu'il connaît d'une
+  autre machine ou invente une valeur pour ne pas laisser une case vide. Rappeler fermement la règle : une
+  valeur non lisible s'écrit « illisible », elle ne s'invente jamais.</div>
+
+  <div class="reponse"><b class="t">Observation 3</b> — Une valeur de la plaque est-elle illisible ou
+  manquante sur votre machine ? Si oui, laquelle, et que faudra-t-il faire pour la retrouver ?<br><br>
+  <b>Réponse attendue :</b> réponse libre selon l'état réel de la plaque. Si une valeur manque, l'élève doit
+  proposer une piste réaliste pour la retrouver (notice constructeur, recherche par numéro de série, mesure
+  directe par un professionnel habilité). Ne jamais accepter une valeur inventée comme solution.</div>
+  <div class="vigilance"><b class="t">Point de vigilance —</b> Si la plaque est totalement absente ou illisible
+  sur une machine du lot, le professeur le signale en amont à l'oral et fait noter « plaque absente / à
+  identifier autrement » : ce cas doit remonter dans la liste « à refaire », il ne bloque pas la séance.</div>
+
+  <h3 class="section">Corrigé — entraînement plaques signalétiques (photos réelles, non noté)</h3>
+  <p style="font-size:10pt">Cinq vraies photos de plaques (IFCA PLAQUE_, F. Henninot) servent d'entraînement
+  après le relevé de la machine confiée. Toutes les valeurs ci-dessous sont directement lisibles sur les photos
+  fournies à l'élève — <b>aucune valeur n'est inventée ni complétée de mémoire.</b></p>
+  <table class="mini">
+    <tr><th style="width:20%">Plaque</th><th>Corrigé</th></tr>
+    <tr><td><b>1 — Fujitsu</b></td><td>Marque : Fujitsu General Limited. Puissance frigorifique : 5,20 kW (COOLING CAPACITY). Poids en kilos : <b>non indiqué sur cette plaque</b> — seule la charge de fluide y figure (point de vigilance ci-dessous). Puissance calorifique : 6,00 kW (HEATING CAPACITY). N° de série : E001699. Tension : 230 V - 50 Hz. Fluide : R410A. Quantité de fluide : 1 250 g ≈ 1,25 kg.</td></tr>
+    <tr><td><b>2 — Mitsubishi</b></td><td>Marque : Mitsubishi Electric Corporation. Poids : 10 kg (NET WEIGHT). Pression de sécurité HPps : 4,15 MPa. Puissance électrique absorbée max : 0,05 kW (MAX INPUT). Intensité : 0,19 A (CURRENT).</td></tr>
+    <tr><td><b>3 — Daikin</b></td><td>Poids : 30 kg (NET WEIGHT). Unité : <b>extérieure</b> (« ROOM AIR CONDITIONER HEAT PUMP OUTDOOR UNIT »). Type de gaz et poids : R410A, 0,80 kg. N° de série : 3902945 (année 2003). Intensité maximum absorbée : 12 A (MAXIMUM CURRENT).</td></tr>
+    <tr><td><b>4 — Scotsman</b></td><td>Marque : Scotsman Frimont. Référence : MF68 S SPLIT 230/50-60/1 (Mod. M61S). N° de série : EP 1703 10 I. Fréquence : 50 Hz. Type de gaz et quantité : R404A, 0,300 kg.</td></tr>
+    <tr><td><b>5 — Lennox</b></td><td>Type de gaz : R449A (GRP.2). Intensité maxi et puissance absorbée : I max 147 A, Pabs 82,5 kW. Sigle CE : marquage de conformité aux directives européennes applicables (le matériel peut être mis sur le marché européen). GWP 1282 : c'est le GWP (pouvoir de réchauffement global) du R449A — sur 100 ans, 1 kg de ce fluide capte l'équivalent de <b>1 282 kg de CO<sub>2</sub></b>. <b>Calcul pour 100 kg :</b> 100 kg = 0,1 t ; 0,1 × 1282 = <b>128,2 tonnes équivalent CO<sub>2</sub></b> (même méthode que l'exemple R404A du dossier source : convertir en tonnes, multiplier par le GWP).</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance —</b> La plaque Fujitsu (entraînement 1) n'indique
+  <b>aucun poids total de l'appareil</b>, seulement la charge de fluide (1 250 g). C'est volontaire : cela
+  entraîne à distinguer « poids de l'appareil » et « charge de fluide », et à écrire « non indiqué sur cette
+  plaque » plutôt que d'inventer une valeur — exactement la règle appliquée pour la plaque de la machine
+  confiée.</div>
+
+  <h3 class="section">Corrigé — inventaire du câblage et de la robinetterie</h3>
+  <div class="reponse"><b class="t">Constat attendu —</b> Selon la machine confiée — à relever par le
+  professeur. Sur un lot d'occasion, il est fréquent qu'une armoire électrique soit absente, qu'un câblage
+  soit partiellement arraché, ou qu'une vanne soit bloquée ou manquante : ces observations nourrissent
+  directement la fiche d'inventaire complète.</div>
+  <div class="vigilance"><b class="t">Point de vigilance —</b> Rappeler que l'élève <b>observe sans toucher</b>
+  à un fil ou une vanne à ce stade : l'objectif est le constat, pas la manipulation, qui commencera au module
+  A1.</div>
+
+  <h3 class="section">Corrigé — fiche d'inventaire complète, organe par organe</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Cohérence des cases cochées</td><td>Chaque ligne du tableau doit être cohérente avec les observations précédentes : un organe coché « manquant » doit correspondre à ce qui a été noté absent lors du repérage ou du constat câblage/robinetterie. Vérifier cette cohérence lors de la validation, plutôt que de recorriger chaque case indépendamment.</td></tr>
+    <tr><td>« Présent et en état » n'est pas « visible »</td><td>Erreur typique : cocher « présent et en état » un organe simplement parce qu'il est visible, sans avoir vérifié son état réel (corrosion, fixation, intégrité). Rappeler que « présent et en état » suppose un examen visuel attentif, pas une simple présence physique.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ JALON 2 (CROQUIS + CONSTAT) + RESTITUTION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — croquis à main levée du circuit</h3>
+  <div class="reponse"><b class="t">Critère de correction du croquis —</b> Les 4 organes doivent apparaître,
+  nommés, reliés par des traits représentant les tubes réellement observés sur la machine, avec au moins une
+  flèche indiquant le sens de circulation du fluide (compresseur → condenseur → détendeur → évaporateur →
+  retour compresseur). Accepter tout tracé à main levée fidèle à la disposition réelle de la machine ; refuser
+  un schéma copié d'un manuel qui ne correspond pas à ce que l'élève a observé.</div>
+  <div class="vigilance"><b class="t">Point de vigilance —</b> Le croquis à main levée (S2.3) n'exige pas de
+  symboles normalisés à ce stade : l'objectif est la fidélité au réel observé, pas la conformité graphique
+  stricte de la lecture de plan (S2.2), qui se travaille aussi dans ce module par la relecture du schéma vierge
+  puis se consolide au fil de la séquence.</div>
+
+  <div class="reponse"><b class="t">Question</b> — Un tube ou un organe de votre machine est-il absent ou
+  visiblement démonté ? Si oui, lequel ?<br><br>
+  <b>Réponse attendue :</b> <b>selon la machine confiée — à relever par le professeur lors de l'attribution.</b>
+  Certaines machines du lot d'occasion peuvent avoir un organe démonté ou un tronçon de tube coupé : c'est
+  précisément ce que l'inventaire doit faire apparaître comme « manquant » ou « à refaire ».</div>
+
+  <h3 class="section">Corrigé — constat écrit (liste « manque / à refaire »)</h3>
+  <div class="reponse"><b class="t">Corrigé —</b> La priorité 1 doit correspondre à l'élément dont l'absence ou
+  l'état bloque le plus l'avancement du chantier (le plus souvent un organe manquant plutôt qu'un défaut
+  esthétique). Accepter tout ordre de priorité argumenté et cohérent avec l'état réel constaté.</div>
+  <div class="vigilance"><b class="t">Point de vigilance —</b> Ne pas imposer un ordre de priorité unique à
+  toute la classe : chaque machine du lot ayant un état différent, les priorités varient légitimement d'un
+  binôme à l'autre.</div>
+
+  <h3 class="section">Corrigé — préparer la restitution orale</h3>
+  <div class="reponse"><b class="t">Réponse attendue —</b> Les 3 points doivent couvrir : (1) l'état général
+  des 4 organes de la Croix du Frigoriste, (2) au moins un élément manquant ou à refaire identifié comme
+  prioritaire, (3) une valeur clé de la plaque signalétique (fluide ou charge). Toute restitution orale
+  reprenant ces trois axes, même formulée simplement, est acceptable pour un CAP 2<sup>e</sup> année en toute
+  première séance.</div>
+  <div class="vigilance"><b class="t">Point de vigilance —</b> Valoriser la clarté et l'honnêteté du constat
+  plutôt que la performance orale : c'est la toute première restitution C1.3 de l'année, le niveau d'exigence
+  monte progressivement (pédagogie spiralaire).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + DIFFÉRENCIATION + VIGILANCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A0 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>0 = compétence non observée ce jour</b> (à ne jamais
+  confondre avec une absence, codée séparément sur École Directe).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C2.1</b> Organiser des informations <span class="nuance">sur T10 · S2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Fiche d'inventaire incomplète ou organes non repérés, malgré aide et rappel.</td>
+      <td>Fiche d'inventaire et croquis complétés avec l'aide du professeur, 1 à 2 organes mal repérés.</td>
+      <td>Fiche d'inventaire complète, croquis lisible et juste, 4 organes correctement repérés, réalisé seul.</td>
+      <td>Comme « Acquis », et l'élève explique à un pair comment il a organisé son inventaire.</td>
+    </tr>
+    <tr>
+      <td><b>C1.3</b> Rendre compte <span class="nuance">sur T1 · S1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Restitution orale absente ou incompréhensible, aucun point clé identifié.</td>
+      <td>Restitution orale réalisée avec l'aide du professeur (relances nécessaires).</td>
+      <td>Restitution orale claire et structurée, 3 points clés identifiés, réalisée seul.</td>
+      <td>Comme « Acquis », et l'élève répond avec assurance aux questions du chef de chantier.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — EPI, rigueur, honnêteté du constat</td>
+      <td>Non observé ce jour.</td>
+      <td>EPI ou sécurité oubliés de façon répétée malgré rappel.</td>
+      <td>EPI et sécurité corrects mais nécessitent un rappel ponctuel.</td>
+      <td>EPI portés sans rappel, honnêteté du constat, machine respectée, travail en binôme correct.</td>
+      <td>Comme « Acquis », et l'élève rappelle spontanément une règle à un camarade.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> une valeur inventée à la place
+  d'« illisible » sur la plaque signalétique, ou une case « présent et en état » cochée sans examen réel,
+  compromet l'honnêteté du constat : c'est un défaut de savoir-être à signaler, pas seulement une imprécision
+  de contenu — cohérent avec le principe « zéro invention » de la charte FrigorX.</div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fournir un schéma-type des 4 organes déjà légendé, à comparer avec la machine réelle plutôt qu'à retrouver seul. Réduire la fiche d'inventaire aux 4 organes principaux (sans câblage ni robinetterie). Le professeur reste au poste pendant tout le repérage du jalon 1.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, enquête-diagnostic complète en autonomie de binôme sur les 2 jalons.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Demander en plus un croquis coté (dimensions approximatives des tubes et distances entre organes) et une hypothèse argumentée sur la cause probable de chaque élément « à refaire ». Confier le rôle de porte-parole du binôme pour la restitution orale.</td></tr>
+    <tr><td>FLE</td><td>Phrasé très simple sur la fiche d'inventaire (un pictogramme par état : présent = coche verte, manquant = croix rouge, à refaire = point orange) ; démonstration « planter la notion » doublée de gestes montrés (pointer chaque organe du doigt) plutôt que de longues phrases ; vocabulaire répété à l'identique à chaque poste (« compresseur », « manque », « à refaire »).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Fiche d'inventaire découpée en cases à cocher séparées, une par organe ; limiter les sollicitations simultanées en n'autorisant qu'une seule tâche à la fois (observer, puis noter, puis réfléchir) ; prévoir une pause courte entre le jalon 1 et le jalon 2 pour éviter la précipitation liée au changement de tâche (observation → dessin).</td></tr>
+  </table>
+
+  <h3 class="section">Points de vigilance généraux de la séance</h3>
+  <ul class="liste-num">
+    <li>Vérifier personnellement, avant l'arrivée des élèves, que chaque machine est bien hors tension et sans fluide, condensateur inclus : c'est une condition de sécurité non délégable à un élève.</li>
+    <li>Ne jamais laisser un binôme ouvrir un circuit sous pression, mettre sa machine sous tension ou toucher un câblage/condensateur, même « juste pour voir » : le geste interdit du jour est absolu.</li>
+    <li>Toute valeur de plaque signalétique, de section de tube ou de pression non lisible sur la machine réelle ne doit jamais être inventée ni donnée de mémoire par le professeur : « selon la machine confiée, à faire valider » est la seule formulation correcte.</li>
+    <li>L'attribution des machines par binôme engage toute l'année : consigner par écrit la répartition dès cette séance, elle sera reprise à chaque module suivant du chantier.</li>
+    <li>Garder une trace de l'état initial de chaque machine (photos si possible) : elle servira de point de comparaison à la fin du chantier, pour valoriser le chemin parcouru par chaque binôme.</li>
+    <li>Annoncer clairement en clôture que le module T0 (Croix du Frigoriste, 4 organes, lecture de plan) approfondit ce qui n'a été qu'amorcé ici.</li>
+  </ul>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques professionnels</b> — électrique résiduel, manutention, EPI ;</li>
+    <li><b>Technologie</b> — rôle des 4 organes de la Croix du Frigoriste ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord et du constat écrit (voir module F3) ;</li>
+    <li><b>Chef-d'œuvre</b> — captation possible pour le dossier ;</li>
+    <li><b>Module T0</b> — théorie associée, à suivre juste après ce module.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Dossier de
+  présentation pédagogique — Chantier de remise en état (F. Henninot, 2026) ; entraînement plaques signalétiques
+  et calcul GWP d'après IFCA PLAQUE_ (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

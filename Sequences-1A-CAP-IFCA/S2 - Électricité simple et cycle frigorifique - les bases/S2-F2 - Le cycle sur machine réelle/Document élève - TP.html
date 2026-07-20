@@ -1,0 +1,421 @@
+<meta charset="utf-8">
+<title>TP élève — S2-F2 · Le cycle sur machine réelle</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .depuis-s1{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .depuis-s1 h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .technique{border:2px solid var(--bleu); border-radius:8px; background:var(--fond-doux); padding:10px 16px; margin:.5em 0 .9em}
+  .technique h4{color:var(--bleu); font-size:11pt; margin:0 0 6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Électricité simple et cycle frigorifique</td>
+      <td style="width:38%"><span class="lib">Module atelier S2-F2 · 4 h</span><b>Le cycle sur machine réelle</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S2</span> · sem. 6 (rentrée 2026)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-2026-S2F2-01</b> : le chef de chantier (votre professeur) vous confie une
+  <b>machine frigorifique en fonctionnement</b> du parc TP, pour un relevé de contrôle. Avant toute intervention,
+  l'entreprise demande toujours de <b>vérifier le cycle</b> sur la machine réelle : repérer les organes, relever
+  chaud/froid, lire la plaque signalétique. C'est <b>exactement</b> le geste que vous referez seul(e) la
+  <b>semaine 7</b>, au poste FROID de votre première évaluation É1 : ce module en est l'entraînement direct.
+  <b>Aucune ouverture de circuit, aucune intervention sur le câblage</b> aujourd'hui : on observe, on touche en
+  sécurité, on mesure, on lit, on transpose sur la croix.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T8</b> Sécuriser son intervention sur site<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">prérequis : croix construite en S1-F2 · travaillé : augmenté (repérage machine, mesure, plaque)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité d'une machine en fonctionnement sans rappel · rigueur du relevé · honnêteté de la mesure · autonomie croissante</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C2.4</b> Sécuriser l'intervention<br><span class="statut">Découverte→Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs</div>
+  </div>
+
+  <div class="depuis-s1"><h4>Ce qui change depuis S1</h4>
+  En <b>S1-F2</b>, vous avez <b>découvert</b> le cycle : le professeur désignait les organes chauds et froids, vous
+  touchiez à pleine main gantée, et vous avez <b>construit</b> votre croix du frigoriste de zéro, sans la connaître
+  au départ. Aujourd'hui, vous connaissez déjà la croix : vous partez de la <b>machine réelle</b> pour la
+  <b>retrouver</b> (sens inverse). Vous cherchez seul(e) les 4 organes, sans qu'on vous les montre. Vous touchez
+  avec le <b>dos de la main</b>, uniquement dans les zones que le professeur autorise. Une <b>vraie mesure</b> au
+  thermomètre de sonde remplace l'impression au toucher. Et vous lisez, pour la première fois, une
+  <b>plaque signalétique</b> réelle.</div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>repérer</b> seul(e) les 4 organes de la croix du frigoriste sur une machine réelle en fonctionnement ;</li>
+    <li><b>mesurer</b>, au thermomètre de sonde et en sécurité, des points chauds et froids du circuit ;</li>
+    <li><b>lire</b> une plaque signalétique réelle et en extraire les informations utiles, sans jamais inventer une valeur ;</li>
+    <li><b>transposer</b> mes repérages et mes mesures sur la croix du frigoriste, dans le respect de la convention absolue.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li>nommer les 4 organes de la croix du frigoriste : compresseur, condenseur, détendeur, évaporateur (S1-F2) ;</li>
+    <li>la convention de dessin : <b>détendeur à gauche</b>, <b>compresseur à droite</b>, <b>condenseur en haut</b>, <b>évaporateur en bas</b> ;</li>
+    <li>porter les EPI de l'atelier sans qu'on me le rappelle ;</li>
+    <li>avoir déjà observé et touché avec précaution une machine en marche, avec des gants (S1-F2).</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si la croix du frigoriste ne vous dit plus rien,
+  prévenez le professeur avant de commencer : un rappel court est possible pendant l'exercice au fil de l'eau.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Ce document (TP élève) + crayon de papier, gomme</li>
+    <li>Tenue de travail complète (chaussures de sécurité, vêtements adaptés)</li>
+    <li>Une machine frigorifique du parc TP en fonctionnement <span class="nuance">(climatiseur split ou meuble/armoire frigorifique pédagogique, selon la machine du poste, à confirmer par le professeur)</span></li>
+    <li>Gants de protection thermique <span class="conso">(fournis, à restituer en fin de séance)</span></li>
+    <li>Thermomètre à sonde(s) <span class="nuance">(type thermomètre numérique à sonde thermocouple, découvert d'après la fiche « thermomètre de sonde », 2nde TNE)</span></li>
+    <li>Fiche de relevés chaud/froid, à unités pré-imprimées (ce document, feuille 3)</li>
+    <li>Plaque signalétique de la machine du poste + 2 photos réelles de plaques (ce document, feuille 4)</li>
+    <li>Cadre de transposition sur la croix du frigoriste (ce document, feuille 5)</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ : MACHINE EN FONCTIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Sécurité — machine en fonctionnement (centrale ce jour)</h3>
+  <p style="font-size:10.5pt">Aujourd'hui, la machine que vous observez <b>fonctionne réellement</b> : elle a des
+  parties chaudes, des parties tournantes, et un circuit sous pression. Ces règles s'appliquent <b>sans
+  exception</b>, du début à la fin de la séance.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Brûlure légère au contact d'un organe chaud (ligne de refoulement, condenseur)</td><td>Ne jamais toucher une surface signalée chaude à main nue ni avec la paume. <b>Toucher uniquement avec le dos de la main gantée</b>, et seulement là où le professeur l'autorise.</td></tr>
+    <tr><td>Ventilateur ou pièce en mouvement (condenseur, évaporateur)</td><td><b>Ne jamais introduire les doigts</b> ni un objet dans un ventilateur en mouvement, même à l'arrêt apparent.</td></tr>
+    <tr><td>Ouverture d'un circuit sous pression « pour voir »</td><td><b>Jamais</b> ouvrir un raccord, une vanne ou un capot électrique : c'est un geste interdit, sans exception, quel que soit le motif.</td></tr>
+    <tr><td>Bruit du compresseur pendant l'observation</td><td>Rester à la distance indiquée par le professeur, ne pas s'approcher sans autorisation.</td></tr>
+    <tr><td>Manipulation du thermomètre de sonde près d'un organe chaud</td><td>Tenir la sonde par son câble ou sa poignée isolée, jamais par la pointe métallique en contact avec une surface chaude.</td></tr>
+  </table>
+  </div>
+
+  <div class="technique"><h4>La bonne technique : toucher avec le dos de la main</h4>
+  <p style="font-size:10.3pt; margin:0">Pour vérifier si une surface est chaude <b>sans risque</b>, on ne pose
+  jamais la paume ni les doigts en premier : on approche le <b>dos de la main gantée</b>, lentement, et on retire
+  aussitôt si la surface est trop chaude. Ce geste professionnel permet un <b>retrait réflexe plus rapide</b> qu'un
+  contact à pleine main. On ne l'utilise que dans les <b>zones autorisées par le professeur</b> : certaines parties
+  de la machine restent interdites au toucher, même avec cette technique.</p></div>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous (EPI
+  portés, zones autorisées rappelées) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, zones autorisées, consignes" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — coupez ou signalez immédiatement (arrêt d'urgence),
+  alertez le professeur, ne déplacez jamais un camarade blessé. En cas de brûlure légère, refroidissez sous le
+  <b>point d'eau</b> pendant plusieurs minutes puis prévenez le professeur. <b>Gestes interdits</b> : ne jamais
+  ouvrir un circuit ou un capot électrique ; ne jamais toucher hors des zones autorisées ; ne jamais actionner la
+  machine soi-même.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — JALON 1 : REPÉRAGE DES 4 ORGANES + RELEVÉ CHAUD/FROID ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">OBSERVER — repérer les 4 organes SUR la machine</h3>
+  <span class="poste-titre">JALON 1 · repérage + relevé chaud/froid — ≈ 55 min</span>
+  <p style="font-size:10.5pt">Placez-vous devant la machine en fonctionnement qui vous est confiée. <b>Sans l'aide
+  du professeur</b>, cherchez les 4 organes que vous connaissez déjà depuis la 1<sup>re</sup> année : le
+  <b>compresseur</b>, le <b>condenseur</b>, le <b>détendeur</b> et l'<b>évaporateur</b>. Repérez-les d'abord à
+  l'œil et à l'oreille (bruit, ventilateur, gros tuyau, petit tuyau), avant de toucher quoi que ce soit.</p>
+
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:22%">Organe</th><th style="width:39%">Où je l'ai trouvé (emplacement, repère)</th><th style="width:39%">Comment je l'ai reconnu (bruit, tuyau, ventilateur…)</th></tr>
+    <tr><td>Compresseur</td><td></td><td></td></tr>
+    <tr><td>Condenseur</td><td></td><td></td></tr>
+    <tr><td>Détendeur</td><td></td><td></td></tr>
+    <tr><td>Évaporateur</td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-question"><b>Observation 1</b> — Dans quel ordre le fluide frigorigène traverse-t-il les
+  4 organes lorsque la machine fonctionne normalement ? (numérotez de 1 à 4)</div>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:25%">Compresseur</th><th style="width:25%">Condenseur</th><th style="width:25%">Détendeur</th><th style="width:25%">Évaporateur</th></tr>
+    <tr><td>n° ___</td><td>n° ___</td><td>n° ___</td><td>n° ___</td></tr>
+  </table>
+  </div>
+
+  <h4 style="font-size:11pt">Relevé guidé au thermomètre de sonde — chaud/froid</h4>
+  <p style="font-size:10.3pt">Le professeur vous indique, un point à la fois, où poser la sonde du thermomètre.
+  Mesurez et notez la valeur dans la case prévue. <b>Ne touchez jamais</b> les points marqués « interdit » : ils
+  sont réservés à la démonstration du professeur.</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:38%">Point de mesure</th><th style="width:18%">Autorisé au dos de la main ?</th><th style="width:22%">Température relevée</th><th style="width:22%">Ressenti (chaud / tiède / froid)</th></tr>
+    <tr><td>Ligne de refoulement (sortie du compresseur)</td><td>☐ Oui ☐ Non</td><td>_____ °C</td><td></td></tr>
+    <tr><td>Air soufflé en sortie du condenseur</td><td>☐ Oui ☐ Non</td><td>_____ °C</td><td></td></tr>
+    <tr><td>Tube fin, juste avant le détendeur</td><td>☐ Oui ☐ Non</td><td>_____ °C</td><td></td></tr>
+    <tr><td>Air soufflé en sortie de l'évaporateur</td><td>☐ Oui ☐ Non</td><td>_____ °C</td><td></td></tr>
+    <tr><td>Ligne d'aspiration (retour vers le compresseur)</td><td>☐ Oui ☐ Non</td><td>_____ °C</td><td></td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Valeurs propres à la machine du poste, à
+  relever réellement — n'inventez jamais une valeur que vous n'avez pas mesurée.</p>
+
+  <div class="encadre-question"><b>Observation 2</b> — Entre quels deux points avez-vous mesuré le plus grand
+  écart de température ? Que pensez-vous que cela signifie sur ce qui se passe à cet endroit du circuit ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — JALON 2 : LECTURE DE PLAQUE SIGNALÉTIQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">LIRE — la plaque signalétique</h3>
+  <span class="poste-titre">JALON 2 · lecture de plaque signalétique — ≈ 30 min</span>
+  <p style="font-size:10.5pt">Toute machine frigorifique porte une <b>plaque signalétique</b> (souvent sur le
+  compresseur ou le bâti) qui donne ses caractéristiques officielles. Localisez d'abord celle de <b>votre
+  machine</b>, recopiez ce qui est lisible, puis entraînez-vous sur <b>2 photos réelles</b> pour savoir lire
+  n'importe quelle plaque le jour où vous en croiserez une autre en intervention.</p>
+
+  <h4 style="font-size:11pt">Ma machine du poste</h4>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:45%">Information demandée</th><th style="width:55%">Valeur selon plaque signalétique</th></tr>
+    <tr><td>Marque / constructeur</td><td></td></tr>
+    <tr><td>Modèle / référence</td><td></td></tr>
+    <tr><td>Fluide frigorigène (type)</td><td></td></tr>
+    <tr><td>Charge de fluide (kg)</td><td></td></tr>
+    <tr><td>Tension d'alimentation (V)</td><td></td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Si une valeur est absente ou illisible, écrivez
+  « illisible » — <b>n'inventez jamais une valeur</b>.</p>
+
+  <h4 style="font-size:11pt">Entraînement 1 — pompe à chaleur Daikin (unité extérieure)</h4>
+  <figure style="margin:6px 0; text-align:center">
+    <img class="fig" src="../images/plaque-signaletique-daikin-unite-exterieure.jpg" alt="Plaque signalétique Daikin, unité extérieure pompe à chaleur, modèle RXS20CVMB" style="max-width:70%">
+  </figure>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:55%">Renseignement demandé</th><th style="width:45%">Votre réponse</th></tr>
+    <tr><td>Marque / constructeur</td><td></td></tr>
+    <tr><td>Modèle de l'unité extérieure</td><td></td></tr>
+    <tr><td>Année de fabrication</td><td></td></tr>
+    <tr><td>Tension d'alimentation</td><td></td></tr>
+    <tr><td>Type de fluide frigorigène et charge (kg)</td><td></td></tr>
+    <tr><td>Poids net (kg)</td><td></td></tr>
+  </table>
+  </div>
+
+  <h4 style="font-size:11pt">Entraînement 2 — climatiseur Mitsubishi Electric</h4>
+  <figure style="margin:6px 0; text-align:center">
+    <img class="fig" src="../images/plaque-signaletique-mitsubishi-msc-ga35vb.jpg" alt="Plaque signalétique Mitsubishi Electric, modèle MSC-GA35VB" style="max-width:64%">
+  </figure>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:55%">Renseignement demandé</th><th style="width:45%">Votre réponse</th></tr>
+    <tr><td>Marque</td><td></td></tr>
+    <tr><td>Modèle</td><td></td></tr>
+    <tr><td>Tension et fréquence d'alimentation</td><td></td></tr>
+    <tr><td>Type de fluide frigorigène</td><td></td></tr>
+    <tr><td>Poids net (kg)</td><td></td></tr>
+  </table>
+  </div>
+  <p class="legende" style="text-align:center">Photos réelles de plaques signalétiques, atelier CAP IFCA (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — JALON 3 : TRANSPOSITION SUR LA CROIX + SYNTHÈSE + GRILLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">TRANSPOSER — mes observations sur la croix du frigoriste</h3>
+  <span class="poste-titre">JALON 3 · transposition sur la croix — ≈ 40 min</span>
+  <p style="font-size:10.5pt">Rappel de la <b>convention absolue</b> : quelle que soit la position réelle des
+  organes sur la machine, on dessine toujours la croix du frigoriste de la même façon.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.svg" alt="Schéma technique de la croix du frigoriste : détendeur à gauche, compresseur à droite, condenseur en haut, évaporateur en bas"
+         style="max-width:82%;">
+    <figcaption class="legende">La croix du frigoriste — convention à retenir : <b>détendeur à GAUCHE</b> ·
+    <b>compresseur à DROITE</b> · <b>condenseur en HAUT</b> · <b>évaporateur en BAS</b>.</figcaption>
+  </figure>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/cycle-frigo-Franck.png" alt="Le même cycle vu comme le circuit réel de la machine : condenseur en haut, évaporateur en bas, détendeur à gauche, compresseur à droite" style="width:100%; max-width:480px; border:1px solid var(--filet); border-radius:6px">
+    <figcaption class="legende">Le <b>même</b> cycle, vu comme le <b>circuit réel</b> de la machine : les 4 organes reliés par leurs tuyauteries. Tu retrouves la disposition de la croix — condenseur en haut, évaporateur en bas, détendeur à gauche, compresseur à droite. Les couleurs distinguent le côté <b>chaud</b> (rouge, orange) du côté <b>froid</b> (bleus), comme observé en S1-F2. Source : F. Henninot.</figcaption>
+  </figure>
+
+  <p style="font-size:10.3pt">Dans le cadre ci-dessous, dessinez la croix du frigoriste de <b>votre</b> machine :
+  placez les 4 organes selon la convention (pas selon leur position réelle sur la machine), et reportez, à côté de
+  chacun, la <b>température que vous avez mesurée</b> au point correspondant (feuille 3).</p>
+  <div class="cadre-dessin"><span class="consigne-cadre">Ma croix du frigoriste, avec mes 4 organes et mes températures mesurées — convention : détendeur gauche, compresseur droite, condenseur haut, évaporateur bas</span></div>
+
+  <div class="encadre-question"><b>Question</b> — D'après vos mesures, quelle moitié de la croix est la plus
+  chaude (compresseur → condenseur) et laquelle est la plus froide (détendeur → évaporateur) ? Ces deux moitiés
+  ont un nom : lequel, d'après ce que vous savez déjà (S1-F2) ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <h3 class="section">SYNTHÈSE — ma trace écrite</h3>
+  <div class="jalon">
+    <p style="font-size:10.3pt; margin:0 0 8px"><b>Ce que je retiens de ce module :</b></p>
+    <div class="zone-reponse" style="min-height:2.6em"></div>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statuts du jour : <b>Confortement</b> (C2.4) et <b>Découverte→Confortement</b> (C4.5), non remontés sur École Directe.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:14.4%">0<br>Non évalué</th><th style="width:14.4%">1<br>Non acquis</th><th style="width:14.4%">2<br>En cours d'acquisition</th><th style="width:14.4%">3<br>Acquis</th><th style="width:14.4%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C2.4</b> Sécuriser l'intervention</td><td>sur T8 · T12 · S5.1</td><td>Compétence non observée ce jour.</td><td>Touche une surface hors zone autorisée ou sans le dos de la main, malgré rappel.</td><td>Applique le toucher sécurisé avec l'aide d'un rappel du professeur.</td><td>Applique seul(e) le toucher sécurisé (dos de la main, zones autorisées), sans geste interdit.</td><td>Comme « Acquis », et rappelle spontanément la règle à un camarade.</td></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>sur T8 · S5.1</td><td>Compétence non observée ce jour.</td><td>Fiche de relevés incomplète ou valeurs non mesurées (inventées), malgré aide et rappel.</td><td>Relevés obtenus avec l'aide du professeur (positionnement de la sonde, lecture de l'écran).</td><td>Relève seul(e) les 5 points de mesure, complète sa fiche et lit correctement la plaque signalétique.</td><td>Comme « Acquis », et interprète correctement l'écart de température le plus important du circuit.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>EPI ou zones autorisées non respectés malgré rappel.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>EPI et consignes respectés sans rappel, relevés honnêtes, aucune valeur inventée.</td><td>Comme « Acquis », et aide un pair à repérer un organe ou une zone de mesure.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C2.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.5 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (repérage, relevés, plaques signalétiques, croix, questions répondues)</li>
+    <li>La fiche de sécurité à cocher, signée</li>
+    <li>Le carnet de bord, avec au moins une ligne rédigée sur la journée</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « Utilisation et
+  mesure du thermomètre de sonde — découverte évaporateur, comment ça » (F. Henninot, 2nde TNE, principe du relevé
+  chaud/froid au thermomètre à sonde, adapté et simplifié au niveau CAP 1<sup>re</sup> année — on repère, on ne
+  diagnostique pas) ; démarche de repérage inspirée de « Diagnostic de la machine et état des lieux » (S10, 2A CAP
+  IFCA, F. Henninot), radicalement simplifiée pour une 1<sup>re</sup> approche ; photos de plaques signalétiques
+  Daikin et Mitsubishi Electric (F. Henninot) ; schéma « La croix du frigoriste » (F. Henninot) ; document
+  S1-F2 (F. Henninot, 2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .technique, .depuis-s1{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

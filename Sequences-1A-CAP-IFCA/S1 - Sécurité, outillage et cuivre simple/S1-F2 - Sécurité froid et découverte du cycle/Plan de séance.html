@@ -1,0 +1,212 @@
+<meta charset="utf-8">
+<title>Plan de séance — S1-F2 · Sécurité froid et découverte du cycle</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Sécurité, outillage et cuivre simple — <b>module atelier S1-F2</b> (4 h)</td>
+      <td style="width:38%"><span class="lib">Module S1-F2 · atelier froid, 1<sup>er</sup> contact avec l'atelier</span><b>Sécurité froid et découverte du cycle sur machine</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span> P1 · 1<sup>re</sup> année, sem. 1 (à caler sur le calendrier réel)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 1 · date à confirmer (rentrée sept. 2026)</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — toutes zones + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier élec S1-E1/E2)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T8</b> Sécuriser son intervention sur site<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> aucun prérequis métier — première séance d'atelier<br><span class="nuance">Travaillés :</span> <b>S6.1</b> Santé et sécurité au travail <span class="nuance">nouveau</span> · <b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">nouveau</span> · <b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">nouveau (première approche, par l'observation)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité qui s'impose sans discuter (aucun geste avant consigne) · curiosité et attention pendant l'observation · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte</span> <b>C2.4</b> Sécuriser l'intervention <span class="nuance">sur T8 · S6.1</span><br><span class="statut">Découverte</span> <b>C3.8</b> Trier, valoriser les déchets <span class="nuance">sur T12 · S6.2 — zone de tri découverte pendant la visite</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-2026-S1F2-01</b> : premier jour dans l'atelier. Avant toute intervention sur une
+  installation frigorifique, l'entreprise impose à tout nouvel arrivant un <b>parcours d'accueil sécurité</b> :
+  connaître les zones de l'atelier et ses équipements de sécurité, puis observer une machine frigorifique réelle en
+  fonctionnement pour apprendre à reconnaître ses 4 organes. À l'issue de la journée, un <b>permis de travail
+  atelier</b> doit être rempli et visé par le professeur : <b>sans ce visa, aucune intervention seule en atelier
+  n'est autorisée</b>.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>localiser</b> les zones et les équipements de sécurité de l'atelier (arrêt d'urgence, trousse de secours, extincteur, point d'eau, zone de tri des déchets) ;</li>
+        <li><b>porter</b> les EPI adaptés à chaque zone, sans qu'on me le rappelle ;</li>
+        <li><b>observer</b> une machine frigorifique réelle en fonctionnement et repérer ce qui est chaud, ce qui est froid ;</li>
+        <li><b>construire</b>, à partir de mon observation, la croix du frigoriste (4 organes, haute et basse pression) ;</li>
+        <li><b>compléter</b> mon permis de travail atelier et le faire viser par le professeur.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(aucun prérequis métier : 1<sup>re</sup> séance d'atelier)</i></h4>
+      <ul>
+        <li>respecter une consigne orale et travailler en groupe (acquis scolaire général) ;</li>
+        <li>venir en tenue adaptée (chaussures fermées) demandée en amont de la séance ;</li>
+        <li>aucune connaissance du métier n'est requise : <b>tout est découverte aujourd'hui</b>, sauf la sécurité, qui est démontrée.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode du module : visite-découverte guidée de l'atelier, puis observation d'une machine réelle en fonctionnement</b> —
+  la <b>sécurité ne se découvre pas</b> : elle est <b>démontrée et imposée</b> par le professeur, zone par zone, dès
+  l'entrée dans l'atelier. Le <b>cycle frigorifique</b>, lui, <b>se découvre</b> : les élèves observent une machine en
+  marche, touchent avec précaution (gants fournis) les organes chauds et froids, puis <b>construisent eux-mêmes</b>
+  une première croix du frigoriste à partir de ce qu'ils ont observé — le professeur ne <b>formalise qu'après</b>
+  (observer → nommer → expliciter). Module resserré sur 4 h, en 2 jalons : <b>jalon 1</b> visite guidée des zones de
+  l'atelier ; <b>jalon 2</b> observation de la machine et construction de la croix.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (chaque module d'atelier est vécu deux fois par élève, en demi-groupe)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — découverte très guidée</h4>Le professeur nomme et montre chaque zone,
+      conduit toute la visite pas à pas, désigne lui-même les points chauds/froids de la machine avant que l'élève ne
+      les cherche seul, et construit la croix au tableau en même temps que les élèves la complètent individuellement.</div>
+      <div><h4 style="margin-top:0">Passage 2 — consolidation, moins d'aide</h4>L'élève refait la visite en autonomie
+      guidée (fiche de repérage sans réponses pré-remplies), observe la machine en binôme et complète seul sa croix
+      du frigoriste <b>avant</b> toute correction collective ; le professeur valide plutôt qu'il ne montre.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : circulation dans un atelier inconnu (chute
+  de plain-pied, objets au sol), <b>brûlure légère</b> au contact d'un condenseur ou d'un tuyau de refoulement chaud
+  pendant l'observation, <b>ventilateur en mouvement</b> (ne jamais y introduire les doigts), bruit du compresseur.
+  <b>EPI</b> : chaussures de sécurité (obligatoires dès aujourd'hui), gants de protection thermique fournis pour
+  toucher les parties chaudes de la machine, lunettes montrées en zone brasage (non utilisées ce jour). <b>Gestes
+  interdits</b> : jamais toucher une pièce en mouvement, jamais toucher une surface signalée chaude à main nue,
+  jamais actionner un appareil sans autorisation du professeur, jamais s'approcher de la zone brasage sans lunettes.
+  <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence général, localisé en premier dès l'entrée), alerter le
+  professeur, ne pas déplacer un blessé ; trousse de secours et point d'eau localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S1-F2 · module atelier · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.
+  Préparation de chantier (phases 1 à 5) : <b>1 h 00</b>, à la limite du plafond d'1 h maximum. Une seule demi-journée,
+  pas de pause méridienne : la découverte tient en 2 jalons.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, présentation de l'organisation de la journée (visite guidée puis observation d'une machine réelle).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S1F2-01 : parcours d'accueil sécurité obligatoire avant toute intervention en atelier ; présentation du permis de travail atelier à obtenir en fin de séance.</td><td>Présente l'ordre d'intervention et l'enjeu du permis de travail.</td><td>Reformulent l'objet de la journée.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C2.4, C3.8) et le statut du jour (Découverte, non remontée).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné</b> (première fois pour ces élèves) <b>+ exercice au fil de l'eau</b> : mini-questionnaire « vie d'atelier » à cocher (comportements interdits, EPI déjà connus du règlement intérieur, que faire en cas de retard/absence) pendant l'attente.</td><td>Distribue le mini-questionnaire, contrôle les tenues au vestiaire.</td><td>Se changent par vagues ; en attente, répondent au mini-questionnaire.</td><td>Mini-questionnaire « vie d'atelier » · tenue de travail complète</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> : localisation immédiate, démontrée par le professeur, de l'arrêt d'urgence général et de la trousse de secours de l'atelier (avant toute autre activité) puis <b>planter la notion</b> : le professeur montre à distance une machine à l'arrêt et pose la question ouverte « à votre avis, combien de parties principales, et pourquoi certaines seront chaudes, d'autres froides ? » — aucune réponse donnée, transition vers la visite.</td><td>Localise et commente ARU/trousse, pose la question ouverte sans y répondre.</td><td>Repèrent ARU et trousse, formulent une première hypothèse à l'oral.</td><td>Arrêt d'urgence et trousse de secours de l'atelier</td><td class="obs"></td></tr>
+    <tr><td>50 min</td><td class="ph">6. Guider l'étude (a) — visite-découverte guidée, <span class="jalon">jalon 1</span></td><td>Le professeur conduit la visite zone par zone : zone chantier froid, zone brasage (point chaud), zone électrique, poste de secours (ARU, trousse, extincteur, point d'eau), zone de tri des déchets, affichage sécurité. À chaque zone : consigne de sécurité démontrée, fiche de sécurité à cocher renseignée, repère noté sur le tableau de repérage.</td><td>Conduit la visite, démontre chaque consigne, contrôle le renseignement des fiches.</td><td>Suivent la visite, cochent leur fiche de sécurité, notent un repère par zone.</td><td>Fiche de sécurité à cocher · tableau de repérage des zones</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td>75 min</td><td class="ph">6. Guider l'étude (b) — observation de la machine + construction de la croix, <span class="jalon">jalon 2</span></td><td>Le professeur met en marche une machine du parc TP (climatiseur split ou meuble/armoire frigorifique pédagogique, selon la machine du poste). Observation à distance puis approche encadrée par petits groupes pour toucher (gants fournis) les organes ; renseignement de la fiche chaud/froid ; construction individuelle d'une croix vierge à partir de l'observation ; mise en commun et formalisation (schéma officiel, HP/BP).</td><td>Met seul la machine en marche, encadre les approches par petits groupes, valide les observations, formalise après.</td><td>Observent à distance, approchent par petits groupes, touchent avec gants, remplissent leur fiche et construisent leur croix.</td><td>Machine frigorifique en fonctionnement · gants de protection thermique · fiche d'observation chaud/froid · schéma croix du frigoriste</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des croix individuelles, comparaison avec le schéma officiel ; auto-positionnement par compétence (C2.4, C3.8 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Comparent leur croix, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + signalement du matériel de sécurité manquant (tailles d'EPI, contenu de la trousse à réapprovisionner).</td><td>Collecte, questionne la pertinence des signalements.</td><td>Rédigent carnet et signalement.</td><td>Carnets · fiche de signalement matériel</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Rangement des fiches et du plan de repérage, restitution des gants de protection, vérification par le professeur que la machine observée est arrêtée et sécurisée.</td><td>Supervise l'arrêt de la machine et la remise en ordre.</td><td>Rangent, restituent le matériel prêté.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, remise du permis de travail atelier signé par le professeur, annonce du module suivant.</td><td>Supervise le vestiaire, signe les permis de travail, annonce la suite.</td><td>Se changent, récupèrent leur permis signé, sortent.</td><td>Permis de travail atelier</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  professionnels (accueil sécurité, EPI) · technologie (première approche du cycle frigorifique) · co-intervention
+  français (carnet de bord) · vie scolaire (règlement intérieur de l'atelier).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .passage{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

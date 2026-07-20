@@ -1,0 +1,688 @@
+<meta charset="utf-8">
+<title>Évaluation sommative É3 — sujet élève — semaine 21 — CAP IFCA 1A</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e; --jaune:#fff6cc; --jaune-bord:#e0c34a}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .bandeau-eval{border:2.5px solid var(--jaune-bord); background:var(--jaune); border-radius:6px;
+    padding:8px 16px; margin:0 0 12px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .bandeau-eval b.titre{font-family:'Trebuchet MS',sans-serif; font-size:12.5pt; color:#7a5b00; letter-spacing:.02em}
+  .bandeau-eval .sousligne{font-size:9.5pt; color:#7a5b00}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--jaune)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord)}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:150px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .chrono{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord); margin-bottom:6px; margin-left:8px}
+  .attente{border:1.5px dashed var(--gris); border-radius:6px; background:#f5f5f5; padding:6px 12px; margin:.3em 0 .9em; font-size:9pt; color:var(--gris)}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .annexe{border:3px solid var(--bleu); border-radius:8px; padding:10px 16px; background:var(--fond-doux)}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + CONSIGNES + VUE D'ENSEMBLE DES 3 POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 ÉVALUATION SOMMATIVE É3 — POSITIONNEMENT OFFICIEL</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Épreuve d'étanchéité azote et recherche de fuite</td>
+      <td style="width:38%"><span class="lib">Évaluation sommative</span><b>É3 — semaine 21 — clôture conjointe S5-S6</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquences</span><span class="grand">S5 · S6</span> · sem. 21, dates à caler</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Contexte professionnel</h4>
+  Vous voici à la <b>21<sup>e</sup> semaine</b> de votre première année de formation. <b>Ordre d'intervention
+  n° OI-2027-EVAL-S5S6-01</b> : le chantier de « l'arrière-boutique » entre en <b>réception</b> — le client (et le
+  bureau de contrôle) attendent la preuve que vos travaux tiennent et qu'ils sont sûrs. Sur <b>3 postes
+  indépendants</b> (froid, électricité, théorie), vous montrez <b>seul(e)</b> ce que vous savez faire : assembler par
+  <b>brasage FORT</b> et prouver l'étanchéité d'un circuit par une véritable <b>épreuve à l'azote</b> (vous manipulez
+  vous-même le manodétendeur, professeur présent), localiser et prouver une fuite, câbler un <b>départ moteur
+  industriel</b> d'après un schéma, et répondre à l'écrit sur la sécurité de la pression. On évalue <b>ce que vous
+  avez déjà travaillé plusieurs fois</b> depuis É2 (S5, S6) — rien de nouveau ne vous est demandé aujourd'hui, mais
+  l'exigence monte encore d'un cran.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.5</b> Réseaux fluidiques et mécanique des fluides<br><b>S5.6</b> Réseaux, matériels électriques et de régulation<br><b>S6.2</b> Principaux risques et moyens de prévention</div>
+    <div class="case"><h4>Savoir-être — C2.4 RENFORCÉ</h4>La sécurité <b>EST</b> le savoir-être aujourd'hui, à un
+    niveau supérieur à É1 et É2 : EPI portés sans qu'on vous le rappelle sur les 3 postes, gestes interdits
+    respectés (flamme, azote, tension), honnêteté du PV, du relevé et de l'auto-positionnement. C2.4 est observée
+    et <b>pesée explicitement</b> dans le barème ci-dessous, pour la première fois.</div>
+    <div class="case comp"><h4>Compétences (≤ 4) — Évaluation</h4><span class="statut eval">Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) — sur T10 · S6.2<br><span class="statut eval">Évaluation</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques — sur T10 · S5.6<br><span class="statut eval">Évaluation</span> <b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service — sur T11 · S5.5</div>
+  </div>
+
+  <h3 class="section">Ce qui est évalué aujourd'hui — les 3 postes</h3>
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:14%">Poste</th><th style="width:12%">Durée</th><th style="width:36%">Contenu</th><th>Compétence(s) — ancrage</th></tr>
+    <tr><td><b>FROID</b></td><td>4 h</td><td>Réaliser un assemblage brasé <b>FORT</b> (2 emboîtures), cordon contrôlé ; réaliser une <b>épreuve d'étanchéité à l'azote par paliers</b> et remplir le <b>PV d'épreuve</b> (vous manipulez vous-même le manodétendeur, professeur présent en permanence) ; localiser et <b>prouver une fuite</b> sur un montage fourni</td><td><span class="statut eval">Évaluation</span> <b>C3.4</b> — sur T10 · S6.2 (assemblage)<br><span class="statut eval">Évaluation</span> <b>C3.9</b> — sur T11 · S5.5 (épreuve azote + recherche de fuite)</td></tr>
+    <tr><td><b>ÉLEC</b></td><td>4 h</td><td>Câbler un <b>départ moteur industriel</b> (sectionneur, contacteur, relais thermique, moteur) avec sa <b>commande complète</b> (arrêt S2, marche S1, <b>auto-maintien</b> KM1 13-14, sécurité F1 95-96 — sans les voyants) d'après les schémas fournis, contrôle hors tension consigné avant tout appel, mise sous tension exclusivement par le professeur</td><td><span class="statut eval">Évaluation</span> <b>C3.6</b> — sur T10 · S5.6</td></tr>
+    <tr><td><b>THÉORIE</b></td><td>2 h</td><td>Écrit individuel : la <b>sécurité de la pression</b> (pourquoi l'azote, gestes interdits, ordre de fermeture des gaz) et lecture d'un <b>PV d'épreuve d'étanchéité rempli</b> fourni par le professeur</td><td>appui — nuance <b>C3.9</b></td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Le poste théorie ne porte pas, cette fois, de
+  compétence pratique qui lui soit propre (à la différence d'É2, où la théorie portait C4.5) : il sert à confirmer
+  que vous comprenez POURQUOI vous faites ce que vous faites au poste froid — c'est un appui qui nuance C3.9 et qui
+  pèse sur votre savoir-être.</p>
+
+  <div class="secu"><b class="t">⏱ Consignes générales — valables pour les 3 postes</b>
+  <ul style="margin:.3em 0 0 1.1em; padding:0; font-size:10pt">
+    <li><b>Poste individuel</b> : vous travaillez seul(e), sans aide ni échange avec un camarade, sur chacun des
+    3 postes.</li>
+    <li>Chaque poste est <b>autoportant</b> : ce document contient tout ce qu'il faut, lisez chaque partie en
+    entier avant d'agir.</li>
+    <li><b>Matériel autorisé</b> : uniquement celui indiqué à chaque poste ; pas de note personnelle, pas de
+    téléphone.</li>
+    <li>La sécurité renforcée de S5-F1 (flamme HP), de S5-F2/S6-F1 (azote) et de S5-E1/E2 (électricité)
+    s'applique <b>sans exception</b> : l'évaluation n'exonère de rien. Le professeur reste <b>seul juge</b> pour
+    arrêter un geste dangereux, sur les 3 postes, sans exception.</li>
+    <li>En cas de doute de sécurité, <b>levez la main</b> et attendez le professeur avant d'agir — c'est le seul
+    moment où il intervient sur votre geste.</li>
+    <li>Vous complétez votre <b>auto-positionnement</b> honnêtement, avant que le professeur ne corrige (feuille
+    finale).</li>
+  </ul></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — POSTE FROID · PARTIE A : ASSEMBLAGE BRASÉ FORT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — partie A : assemblage brasé fort</h3>
+  <span class="poste-titre">C3.4 sur T10 · S6.2 — Évaluation</span><span class="chrono">≈ 80 min</span>
+
+  <p style="font-size:10.5pt">Comme au chantier de « l'arrière-boutique » (S5-F1), vous réalisez aujourd'hui, seul(e)
+  et dans les conditions d'une évaluation, un <b>petit assemblage brasé fort</b> (2 emboîtures), sur un gabarit
+  fourni par le professeur (dimensions à faire valider par lui, comme au poste de brasage de S5-F1). Ce sont les
+  4 brevets de S5-F1 — allumer/régler la flamme HP, chauffer au rouge sans percer, déposer le métal d'apport par
+  capillarité, assembler — que vous mobilisez aujourd'hui d'un seul tenant, sans démonstration préalable.</p>
+
+  <h4 style="font-size:11pt">Matériel autorisé pour cette partie</h4>
+  <ul class="liste-num">
+    <li>Tube cuivre, gabarit fourni par le professeur (longueur et diamètre selon le poste, à faire valider)</li>
+    <li>Poste de brasage <b>HP</b> (chalumeau oxy-combustible, bouteille d'oxygène + bouteille de gaz combustible)
+    — <span class="conso">consommable</span> ; dispositifs anti-retour de flamme en place sur chaque poste
+    (vérifiés avant allumage)</li>
+    <li>Métal d'apport (baguette de brasage <b>cuivre-phosphore</b>) + flux décapant <span class="conso">(consommables)</span></li>
+    <li>Tampon abrasif ou toile émeri (décapage mécanique avant brasage)</li>
+    <li>Outil d'expansion (pince à emboîture)</li>
+    <li>Pare-flamme, gants de soudeur (résistants à la chaleur, manchettes), tablier en cuir, chaussures de
+    sécurité (obligatoires)</li>
+    <li>Lunettes de protection à verres teintés, <b>indice de teinte 4 à 7</b> (D'après fiche de poste CDG 50)</li>
+    <li>Extincteur et trousse de secours localisés au poste de brasage (vérifiés en début de créneau)</li>
+    <li>Bac de récupération des chutes de cuivre</li>
+  </ul>
+
+  <div class="secu"><b class="t">⚠ Rappel sécurité — la flamme HP, comme en S5-F1</b> — Gants de soudeur, tablier
+  et lunettes teintées portés avant tout allumage ; jamais de flamme dirigée vers un camarade ni à proximité d'une
+  bouteille de gaz ; jamais toucher un tube fraîchement brasé à main nue ; jamais poser le chalumeau allumé, même un
+  instant ; bouteilles toujours debout et arrimées. <b class="t">🚨 En cas de retour de flamme</b> (le chalumeau
+  « claque ») : fermez <b>immédiatement le robinet du gaz COMBUSTIBLE en premier</b>, puis celui de l'oxygène (D'après
+  INRS ED 742) ; alertez le professeur sans attendre. <b class="t">🚨 En cas de brûlure :</b> refroidissez sous l'eau
+  tempérée, sans interrompre le refroidissement, alertez le professeur.</div>
+
+  <h4 style="font-size:11pt">Les étapes de l'assemblage</h4>
+  <div class="liste-num">
+    <p>☐ 1. Décaper chaque zone d'emboîture (surface propre, sans oxydation)</p>
+    <p>☐ 2. Appliquer le flux décapant</p>
+    <p>☐ 3. Montrer le décapage au professeur AVANT toute chauffe — obligation, pas une option</p>
+    <p>☐ 4. Chauffer uniformément jusqu'à la coloration rouge sombre (température d'environ 750 °C, D'après la
+    fiche CCCA-BTP)</p>
+    <p>☐ 5. Présenter le métal d'apport au point le plus chaud : il doit être aspiré par capillarité, jamais poussé</p>
+    <p>☐ 6. Retirer la flamme dès le cordon complet, sans surchauffer</p>
+    <p>☐ 7. Laisser refroidir sans y toucher, puis contrôler visuellement le cordon</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de contrôle visuel — l'assemblage</h4>
+  <table class="releve">
+    <tr><th>Continu ?</th><th>Brillant ?</th><th>Sans manque ?</th><th>Sans surchauffe ?</th><th>Conforme ?</th></tr>
+    <tr><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td></tr>
+  </table>
+
+  <div class="jalon"><h4>Visa professeur — pièce brasée</h4>
+  <p>☐ Décapage vérifié avant chauffe &nbsp;&nbsp; ☐ Cordon conforme &nbsp;&nbsp; ☐ Refroidissement respecté avant
+  manipulation</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — POSTE FROID · PARTIE B : ÉPREUVE À L'AZOTE + MINI-PV ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — partie B : épreuve d'étanchéité à l'azote et PV d'épreuve</h3>
+  <span class="poste-titre" style="background:#7b5cf5">C3.9 sur T11 · S5.5 — Évaluation</span><span class="chrono">≈ 70 min</span>
+
+  <div class="change"><b class="t">Ce qui change depuis S5-F2</b> — En S5-F2, vous manipuliez le manodétendeur en
+  <b>binôme</b>, à rôles tournants. <b>Aujourd'hui, vous manipulez SEUL(E)</b> — le professeur reste présent en
+  permanence, mais il n'y a plus de partage des rôles. Le document que vous remplissez n'est plus une simple
+  check-list de préparation : c'est le <b>PV D'ÉPREUVE</b> que le chantier de réception (OI-S6-1) exige.</div>
+
+  <h4 style="font-size:11pt">La mise en pression par paliers — un geste que vous conduisez, professeur présent</h4>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Votre pièce brasée et refroidie</b> (ou le montage fourni par le professeur) est présentée, contrôle
+  visuel fait.<br>
+  2. <b>Le professeur reste présent en permanence</b> pendant toute manipulation du manodétendeur.<br>
+  3. <b>Vous raccordez</b> le manodétendeur au montage, sous supervision directe.<br>
+  4. <b>Vous montez PAR PALIERS</b> : jamais directement à la pression finale.<br>
+  5. À <b>chaque palier</b>, vous badigeonnez tous les raccords à l'eau savonneuse et notez le résultat sur le PV
+  ci-dessous.<br>
+  6. Vous ne passez au palier suivant qu'après validation du professeur.<br>
+  7. Ce cycle se répète jusqu'à la <b>pression d'épreuve fixée par le professeur</b>, affichée au poste.<br>
+  8. La pièce est tenue en pression pendant la <b>durée fixée par le professeur</b> pour ce contrôle.<br>
+  9. <b>Le professeur dépressurise et ferme la bouteille</b> en fin d'épreuve.</p>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Pour mémoire : un essai de référence se vérifie
+  sur au moins 24 h (D'après : 1 mise sous azote.docx) ; la durée retenue aujourd'hui, plus courte, est <b>fixée par
+  le professeur</b> selon le temps du poste — ce n'est pas l'épreuve réglementaire complète.</p>
+
+  <div class="secu"><b class="t">⚠ Gestes interdits — rappel absolu</b> — <b>Jamais d'oxygène ni d'air comprimé</b>
+  pour une épreuve d'étanchéité, quelle que soit la situation ; jamais dépasser la pression fixée par le
+  professeur ; jamais monter en pression autrement que par paliers ; jamais se placer dans l'axe des raccords ;
+  jamais agir sans professeur présent à côté de vous.</div>
+
+  <h4 style="font-size:11pt">PV D'ÉPREUVE — mini-relevé</h4>
+  <p style="font-size:10pt">Montage contrôlé : ________________________________</p>
+  <p style="font-size:10pt">Pression d'épreuve fixée par le professeur : __________ bar &nbsp;&nbsp;&nbsp; Durée de
+  tenue fixée par le professeur : __________</p>
+  <table class="releve">
+    <tr><th>Palier</th><th>Pression lue (bar)</th><th>Bulles observées ?</th><th>Conforme ?</th><th>Visa prof.</th></tr>
+    <tr><td>1</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>2</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>3</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Palier final (tenue)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+  <p style="font-size:10.3pt"><b>Verdict du PV</b> : ☐ Circuit <b>ÉTANCHE</b> &nbsp;&nbsp;&nbsp; ☐ Circuit
+  <b>FUYARD</b> (si fuyard, complétez la partie C ci-après)</p>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Signalez le résultat tel qu'il est, même en cas de
+  fuite : l'honnêteté du PV fait partie de l'évaluation du savoir-être, comme en S5-F2.</p>
+
+  <div class="jalon"><h4>Signatures</h4>
+  <p>Signature élève : ________________________ &nbsp;&nbsp;&nbsp; Visa professeur : ________________________
+  &nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — POSTE FROID · PARTIE C : RECHERCHE ET PREUVE D'UNE FUITE + RANGEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE FROID — partie C : localiser et prouver une fuite</h3>
+  <span class="poste-titre" style="background:#7b5cf5">C3.9 sur T11 · S5.5 — Évaluation</span><span class="chrono">≈ 50 min</span>
+
+  <p style="font-size:10.5pt">Comme au défi « tableau de chasse » de S6-F2, le professeur vous confie un
+  <b>montage déjà sous pression</b> (le vôtre s'il s'est révélé fuyard en partie B, ou un montage préparé
+  volontairement fuyard). Votre mission : <b>localiser</b> la ou les fuites, les <b>prouver</b> à l'eau savonneuse,
+  les <b>marquer</b>, et en <b>rendre compte</b> honnêtement — sans jamais toucher vous-même à la bouteille ou au
+  manodétendeur.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Contrôler méthodiquement chaque raccord du montage, un par un, sans en oublier</p>
+    <p>☐ 2. Badigeonner à l'eau savonneuse et observer</p>
+    <p>☐ 3. Marquer au feutre chaque point où une fuite est prouvée</p>
+    <p>☐ 4. Rendre compte au professeur, en désignant précisément chaque fuite trouvée</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de compte rendu</h4>
+  <table class="releve">
+    <tr><th>Raccord contrôlé</th><th>Bulles observées ?</th><th>Fuite prouvée ?</th><th>Emplacement précis marqué</th></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de savoir-être</b> — Vous pensez avoir trouvé toutes les fuites, mais
+  vous n'êtes pas certain(e) d'avoir contrôlé un raccord difficile d'accès. Que faites-vous : vous rendez compte
+  comme si tout était vérifié, ou vous signalez ce doute au professeur ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : on signale toujours un
+  doute plutôt que de rendre un compte-rendu qu'on sait incomplet — l'honnêteté de la preuve fait partie du
+  savoir-être, exactement comme au défi de S6-F2.</p>
+
+  <div class="jalon"><h4>Visa professeur — recherche de fuite</h4>
+  <p>☐ Contrôle méthodique de tous les raccords &nbsp;&nbsp; ☐ Fuite(s) réellement prouvée(s), pas seulement
+  supposée(s) &nbsp;&nbsp; ☐ Compte rendu honnête</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h3 class="section">Rangement — poste froid</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier qu'aucun tube brasé n'est encore chaud avant de quitter le poste</p>
+    <p>☐ 2. Éteindre le chalumeau et fermer les bouteilles de gaz (professeur pour l'azote)</p>
+    <p>☐ 3. Trier les chutes de cuivre, nettoyer le poste, ranger l'outillage</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — POSTE ÉLEC · INTRO + SÉCURITÉ + MATÉRIEL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE ÉLEC — câblage d'un départ moteur industriel</h3>
+  <span class="poste-titre">C3.6 sur T10 · S5.6 — Évaluation</span><span class="chrono">≈ 4 h</span>
+
+  <p style="font-size:10.3pt">Comme en S5-E1/S5-E2/S6-E1, vous câblez le <b>départ moteur</b> qui entraînera le
+  compresseur de la future chambre froide de « l'arrière-boutique » (OI-S6-3) : sectionneur (Q1), contacteur
+  (KM1), relais thermique (F1), moteur (M1), et la <b>commande complète</b> — bouton arrêt (S2), bouton marche
+  (S1), <b>auto-maintien</b> par le contact auxiliaire KM1 13-14. C'est exactement le niveau 1 du contrat de
+  réussite de S6-E1 (<b>sans</b> les voyants H1/H2, qui restent hors évaluation aujourd'hui). Méthode connue :
+  <b>lire le schéma → implanter → câbler la puissance → câbler la commande → CONTRÔLE HORS TENSION → mise sous
+  tension UNIQUEMENT par le professeur.</b> Vous ne mettez <b>jamais</b> votre platine sous tension vous-même.</p>
+
+  <h3 class="section">La consignation — rituel en 4 étapes (rappel NF C 18-510)</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Couper</b> — le sectionneur (Q1) du poste reste ouvert pendant tout le câblage.<br>
+  2. <b>Vérifier l'absence de tension (VAT)</b> — au multimètre, position voltmètre.<br>
+  3. <b>Condamner / signaler</b> — personne d'autre ne remet l'alimentation ; seul le professeur ferme le
+  sectionneur.<br>
+  4. <b>Travailler hors tension</b> — tout le câblage et le contrôle se font sectionneur ouvert.</p>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Gestes interdits</b> — jamais toucher un fil ou une platine sans avoir vérifié
+  l'absence de tension ; jamais câbler ou modifier une platine sous tension ; jamais mettre une platine sous
+  tension vous-même ; jamais provoquer un vrai défaut thermique — <b>seul le bouton test</b> du relais F1 est
+  autorisé ; jamais s'approcher de l'arbre du moteur en rotation. <b class="t">🚨 En cas d'incident :</b> couper
+  (arrêt d'urgence de l'atelier), alerter le professeur, ne jamais déplacer un camarade électrisé.</div>
+
+  <h4 style="font-size:11pt">Matériel autorisé</h4>
+  <ul class="liste-num">
+    <li>Platine en bois équipée d'un rail oméga</li>
+    <li>Sectionneur tripolaire (repère <b>Q1</b>)</li>
+    <li>Contacteur (repère <b>KM1</b>), avec son contact auxiliaire NO <b>13-14</b> (auto-maintien)</li>
+    <li>Relais thermique (repère <b>F1</b>), avec son contact NF <b>95-96</b></li>
+    <li>Bouton-poussoir marche NO (repère <b>S1</b>)</li>
+    <li>Bouton-poussoir arrêt NF (repère <b>S2</b>)</li>
+    <li>Moteur du poste école (repère <b>M1</b>), avec plaque signalétique — couplage selon notice, à faire
+    valider</li>
+    <li>Bornier de phase, de neutre, de terre</li>
+    <li>Fils électriques souples, couleurs normalisées (phases puissance, phase commande, neutre, terre)
+    <span class="conso">(consommable)</span></li>
+    <li>Tournevis plat et cruciforme, pince à dénuder, pince coupante</li>
+    <li>Multimètre (positions ohmmètre et voltmètre)</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — POSTE ÉLEC · CÂBLAGE DU DÉPART MOTEUR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Câblage du départ moteur — d'après les schémas</h3>
+  <p style="font-size:10.3pt">Les schémas développés (puissance : Q1, KM1, F1, M1 · commande : S2, S1,
+  auto-maintien KM1 13-14, F1 95-96, bobine KM1) figurent ci-dessous en réduit et en <b>annexes pleine page</b> en
+  fin de document : gardez les annexes sous les yeux pendant tout le câblage. Ce sont les mêmes schémas que ceux
+  travaillés en S5-E2/S6-E1 — <b>les voyants H1/H2 visibles sur le schéma de commande ne sont PAS câblés
+  aujourd'hui</b> (niveau 2 du contrat de S6-E1, hors évaluation).</p>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-puissance-moteur--sans-reperes.svg" alt="Schéma de puissance réduit, sans repères" style="max-width:56%">
+    <img class="fig" src="../images/schema-commande-marche-arret--sans-reperes.svg" alt="Schéma de commande réduit, sans repères" style="max-width:80%; margin-top:6px">
+  </figure>
+
+  <h4 style="font-size:11pt">Préparer et câbler</h4>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est <b>hors tension</b> (sectionneur Q1 ouvert)</p>
+    <p>☐ 2. Positionner Q1, KM1, F1, S1 et S2 selon le schéma d'implantation, fixer sans forcer</p>
+    <p>☐ 3. Câbler le <b>circuit de puissance</b> : Q1 → contacts de puissance de KM1 (bornes 1-3-5) → sortie KM1
+    (2-4-6) → relais thermique F1 → moteur M1, selon le couplage indiqué</p>
+    <p>☐ 4. Câbler le <b>circuit de commande</b> : une phase de commande → contact 95 de F1 → sortie 96 → bouton
+    arrêt S2 (NF) → bouton marche S1 (NO) → borne A1 de la bobine KM1 → borne A2 vers le neutre (ou l'autre phase
+    de commande, selon le matériel)</p>
+    <p>☐ 5. Câbler l'<b>AUTO-MAINTIEN</b> : le contact auxiliaire KM1 13-14 (NO) <b>en parallèle du bouton marche
+    S1</b> — jamais en série avec la bobine, comme appris en S5-E2</p>
+    <p>☐ 6. Vérifier que chaque connexion est bien serrée et conforme aux couleurs normalisées</p>
+  </div>
+
+  <table class="releve">
+    <tr><th style="width:40%">Mesure de continuité (multimètre, sectionneur ouvert)</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité de la puissance (Q1 → KM1 → F1 → M1, par phase)</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité de la commande (S1 appuyé)</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité de la commande (rien appuyé)</td><td>résistance infinie</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si une valeur ne correspond pas à celle attendue,
+  signalez-le vous-même au professeur avant de l'appeler pour le contrôle final : l'honnêteté du contrôle fait
+  partie de l'évaluation du savoir-être. <b>Une fois votre contrôle conforme, appelez le professeur : lui seul
+  ferme le sectionneur.</b></p>
+
+  <h4 style="font-size:11pt">Essais (réalisés par le professeur)</h4>
+  <div class="jalon"><h4>Contrôle et essais</h4>
+  <p>☐ Câblage vérifié conforme aux schémas par le professeur<br>
+  ☐ Appui sur S1 : le moteur démarre<br>
+  ☐ <b>Relâchement de S1 : le moteur CONTINUE de tourner (auto-maintien)</b><br>
+  ☐ Appui sur S2 : le moteur s'arrête<br>
+  ☐ Bouton test du relais thermique F1 : coupure observée</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — QUESTION + RANGEMENT POSTE ÉLEC ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Question — le rôle du relais thermique dans la commande</h3>
+  <div class="encadre-question"><b>Question</b> — Le contact 95-96 du relais thermique F1 est câblé <b>en série</b>
+  dans le circuit de <b>commande</b>, jamais dans le circuit de puissance. Expliquez avec vos mots pourquoi, et ce
+  qui se passerait si ce contact était absent en cas de surcharge du moteur.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h3 class="section">Question — pourquoi jamais vous-même ?</h3>
+  <div class="encadre-question"><b>Question</b> — Depuis S1, la mise sous tension d'une platine que vous venez de
+  câbler est toujours réservée au professeur. Pourquoi cette règle ne souffre-t-elle aucune exception, même le jour
+  d'une évaluation ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Rangement — poste élec</h3>
+  <div class="liste-num">
+    <p>☐ 1. Remettre la platine <b>hors tension</b> (sectionneur ouvert, débranché)</p>
+    <p>☐ 2. Remettre la molette du multimètre sur OFF, ranger les cordons sans coude serré</p>
+    <p>☐ 3. Ranger les fils, sans les plier de façon serrée</p>
+    <p>☐ 4. Vérifier que le poste est propre et dégagé pour l'élève suivant</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — POSTE THÉORIE : EXERCICE 1 — LA SÉCURITÉ DE LA PRESSION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">POSTE THÉORIE — écrit individuel (2 h)</h3>
+  <span class="poste-titre" style="background:#5d6b7c">Appui — nuance C3.9</span>
+  <p style="font-size:10.3pt">Cet écrit reprend, sous une autre forme, ce que vous avez travaillé en S6-T1 (les
+  risques de la pression, les gaz neutres) et vécu au poste froid de S5-F2/S6-F1. Vous répondez seul(e), sans note
+  ni téléphone.</p>
+
+  <h4 style="font-size:11pt">Exercice 1 — pourquoi l'azote, jamais l'oxygène ni l'air comprimé</h4>
+  <div class="encadre-question"><b>Question a</b> — Expliquez avec vos mots pourquoi on utilise un gaz neutre
+  (l'azote) et jamais de l'oxygène ni de l'air comprimé pour réaliser une épreuve d'étanchéité.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="encadre-question"><b>Question b</b> — L'azote est un gaz que l'on ne sent pas et que l'on ne voit
+  pas. Quel risque particulier présente-t-il dans un local mal ventilé, et quelle est la parade ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h4 style="font-size:11pt">Exercice 2 — l'ordre de fermeture des gaz en cas d'incident</h4>
+  <div class="encadre-question"><b>Question</b> — En cas de retour de flamme au poste de brasage, quel robinet
+  fermez-vous EN PREMIER : celui du gaz combustible, ou celui de l'oxygène ? Justifiez votre réponse.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 9 — POSTE THÉORIE : EXERCICE 3 — LECTURE D'UN PV D'ÉPREUVE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 3 — lire un PV d'épreuve d'étanchéité déjà rempli</h4>
+  <div class="attente">⚠ Le PV ci-dessous est <b>à compléter par le professeur</b>, avec des valeurs internes
+  cohérentes (pression fixée par lui, paliers, verdict), <b>avant la passation</b>. Aucune valeur n'est imprimée
+  dans ce document : c'est une consigne, pas un oubli — comme au poste froid, on ne recopie jamais une valeur de
+  mémoire.</div>
+  <table class="releve">
+    <tr><th style="width:22%">Montage contrôlé</th><th style="width:20%">Pression d'épreuve fixée</th><th>Palier</th><th>Bulles observées ?</th></tr>
+    <tr><td></td><td></td><td>1</td><td></td></tr>
+    <tr><td></td><td></td><td>2</td><td></td></tr>
+    <tr><td></td><td></td><td>3 (final)</td><td></td></tr>
+  </table>
+  <p style="font-size:10.3pt">Verdict inscrit sur le PV fourni : ☐ Étanche ☐ Fuyard</p>
+
+  <div class="encadre-question"><b>Question a</b> — D'après le PV que le professeur vous a remis, à quel palier
+  (le cas échéant) une anomalie a-t-elle été observée ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="encadre-question"><b>Question b</b> — Quel est le verdict final inscrit sur ce PV ? Si le verdict est
+  « fuyard », que doit-on faire avant de pouvoir livrer l'installation au client ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="encadre-question"><b>Question c</b> — Pourquoi un PV d'épreuve doit-il être signé à la fois par
+  l'intervenant et par un responsable, et jamais rempli après coup, de mémoire ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 10 — GRILLE D'ÉVALUATION + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative É3 · semaine 21 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 GRILLE D'ÉVALUATION — POSITIONNEMENT OFFICIEL</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.2pt">
+    <tr><th style="width:14%">Compétence / savoir-être</th><th style="width:8%">Ancrage</th><th style="width:15.5%">0<br>Non évalué</th><th style="width:15.5%">1<br>Non acquis</th><th style="width:15.5%">2<br>En cours d'acquisition</th><th style="width:15.5%">3<br>Acquis</th><th style="width:15.5%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits</td><td>sur T10 · S6.2</td><td>Compétence non observée ce jour.</td><td>Assemblage refusé au contrôle visuel (manque, surchauffe) et/ou percement, malgré aide.</td><td>Assemblage conforme avec l'aide du professeur.</td><td>Réalise seul(e) l'assemblage brasé fort, cordon conforme (continu, brillant, sans manque, sans surchauffe).</td><td>Comme « Acquis », et repère seul(e) un défaut avant de présenter la pièce.</td></tr>
+    <tr><td><b>C3.9</b> Vérifier l'étanchéité d'un circuit</td><td>sur T11 · S5.5</td><td>Compétence non observée ce jour.</td><td>Ne conduit pas la montée par paliers malgré l'aide, ou PV non honnête, ou fuite non trouvée alors qu'elle était accessible.</td><td>Conduit l'épreuve et la recherche de fuite avec l'aide du professeur.</td><td>Conduit seul(e) l'épreuve par paliers, remplit le PV honnêtement, localise et prouve la fuite si elle existe.</td><td>Comme « Acquis », et explique pourquoi on ne teste jamais à l'oxygène ni à l'air comprimé.</td></tr>
+    <tr><td><b>C3.6</b> Câbler, repérer, connecter les liaisons</td><td>sur T10 · S5.6</td><td>Compétence non observée ce jour.</td><td>Câblage non conforme aux schémas (auto-maintien absent ou en série avec la bobine), ou consignation non respectée.</td><td>Câblage fonctionnel avec l'aide du professeur.</td><td>Câble seul(e) le départ moteur (puissance et commande complète), <b>auto-maintien fonctionnel</b> (le moteur continue de tourner au relâchement de S1), contrôle hors tension réalisé avant tout appel.</td><td>Comme « Acquis », et explique le rôle de l'auto-maintien et du contact 95-96 dans la commande.</td></tr>
+    <tr><td>Savoir-être — C2.4 RENFORCÉ, sécurité, honnêteté</td><td>observation aux 3 postes</td><td>Non observé ce jour.</td><td>EPI incomplets, geste dangereux (flamme, azote, tension) ou valeur inventée : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>Sécurité et rigueur respectées sans rappel aux 3 postes, PV et mesures honnêtes, défauts signalés spontanément.</td><td>Comme « Acquis », et reste rigoureux(se) jusqu'au rangement complet des 3 postes.</td></tr>
+  </table>
+  </div>
+
+  <div class="jalon"><h4>Mon auto-positionnement (avant correction professeur)</h4>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">C3.9 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">C3.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">Savoir-être : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Positionnez-vous honnêtement AVANT que le
+  professeur ne corrige : l'écart entre votre auto-positionnement et la correction fait partie de l'observation du
+  savoir-être.</p>
+  <p style="margin-top:8px">Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure de fin : ________________</p></div>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce sujet complété (3 postes : assemblage contrôlé, PV d'épreuve, compte rendu de fuite, câblage contrôlé,
+    écrit théorie, auto-positionnement)</li>
+    <li>La pièce brasée (poste froid) et la platine câblée (poste élec), contrôlées par le professeur</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : T.P Assemblage par
+  brasure forte du tube cuivre, fiche atelier CAP IFCA (F. Henninot, C3-Réaliser — chauffe ≈ 750 °C, fusion
+  &gt; 450 °C) ; fiche procédure CCCA-BTP « Brasure forte » ; INRS ED 742 « Soudage et coupage au chalumeau »
+  (fermeture combustible puis oxygène, oxygène stocké à 200 bar) ; fiche de poste CDG 50 (teinte 4-7) ; documents
+  S5-F1 (brevets 1-4) ; 1 mise sous azote.docx (bouteille pleine ≈ 200 bar, essai de référence 10 bar minimum
+  pendant 24 h) ; FDS - Azote.pdf (asphyxie, ventilation) ; documents S5-F2/S6-F1 (épreuve par paliers, PV
+  d'épreuve) ; documents S6-F2 (recherche de fuite, tableau de chasse) ; documents S5-E1/S5-E2/S6-E1 (départ
+  moteur et commande complète, repères Q1/KM1/F1/S1/S2/M1, contacts auxiliaires 13-14 et 95-96, auto-maintien,
+  consignation NF C 18-510) ; FDS - Azote.pdf et ED 742 (gaz neutre, jamais oxygène ni air
+  comprimé). Forme du document (architecture, barème harmonisé, gestion des absents) : Évaluation sommative É2
+  S3-S4 (semaine 13), F. Henninot. Aucune valeur n'est inventée : pression d'épreuve et durée de tenue fixées par
+  le professeur, PV théorie complété par le professeur avant impression.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE 1 : SCHÉMA DE COMMANDE (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe 1 — document de travail, poste élec</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma de commande — document de travail à compléter avec vos repères</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par
+  poste) : c'est le document à garder sous les yeux pendant tout le câblage de la commande. Reportez-y vous-même
+  les repères (S2 arrêt NF, S1 marche NO, auto-maintien KM1 13-14 en parallèle de S1, sécurité thermique F1 95-96
+  en série, bobine KM1 A1-A2), comme en S5-E2 — même schéma que celui travaillé en S5-E2/S6-E1, <b>sans les
+  voyants</b> : les voyants H1/H2 visibles sur ce schéma ne sont <b>PAS câblés aujourd'hui</b> (niveau 2 du
+  contrat de S6-E1, hors évaluation).</p>
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-commande-marche-arret--sans-reperes.svg" alt="Schéma technique pleine page : commande du départ moteur, sans repères, à compléter" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- ============ ANNEXE 2 : SCHÉMA DE PUISSANCE (impression A3 paysage) ============ -->
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe 2 — document de travail, poste élec</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma de puissance — document de travail à compléter avec vos repères</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par
+  poste) : à garder sous les yeux pendant le câblage de la puissance. Reportez-y les repères Q1 (sectionneur),
+  KM1 (contacts de puissance), F1 (relais thermique), M1 (moteur) — même schéma que celui travaillé en
+  S5-E1/S5-E2/S6-E1.</p>
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-puissance-moteur--sans-reperes.svg" alt="Schéma technique pleine page : puissance du départ moteur, sans repères, à compléter" style="max-width:80%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .bandeau-eval, .jalon, .attente, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

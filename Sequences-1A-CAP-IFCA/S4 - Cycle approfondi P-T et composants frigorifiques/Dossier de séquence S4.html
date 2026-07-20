@@ -1,0 +1,568 @@
+<meta charset="utf-8">
+<title>Dossier de séquence — Séquence S4 · CAP IFCA 1A</title>
+<style>
+  :root{
+    --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+    --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+    --ufa:#0e7a5f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre);
+    font-family:Calibri,'Segoe UI',sans-serif; font-size:14pt; line-height:1.5;
+    margin:0; padding:28px 12px; text-align:left;}
+  h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; text-wrap:balance; margin:0 0 .4em}
+  p{margin:.3em 0 .8em}
+  .feuille{background:#fff; max-width:794px; min-height:1050px; margin:0 auto 30px;
+    padding:34px 46px 20px; box-shadow:0 2px 14px rgba(27,58,99,.13); position:relative;
+    display:flex; flex-direction:column;}
+  /* ---------- INVARIANT : bandeau d'en-tête ---------- */
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:10px; margin-bottom:6px;}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#1e2c5e; letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#7b5cf5; letter-spacing:.03em}
+  .logo-eq{display:block}
+  .sous-entete{display:flex; justify-content:space-between; font-size:10pt; color:var(--gris); margin-bottom:22px;}
+  /* ---------- INVARIANT : pied de page ---------- */
+  .pied{margin-top:auto; padding-top:14px; border-top:1px solid var(--filet);
+    font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;}
+  /* ---------- Page de garde ---------- */
+  .garde-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:6px}
+  .garde-seq{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--orange); font-size:15pt; letter-spacing:.25em; text-transform:uppercase}
+  .garde-titre{font-size:27pt; margin:.15em 0}
+  .garde-soustitre{font-size:14pt; color:var(--gris); font-style:italic; margin-bottom:14px}
+  .garde-meta{display:inline-block; margin:18px auto 6px; border:1px solid var(--filet); border-radius:6px; padding:14px 30px; font-size:12.5pt; text-align:left; background:var(--fond-doux)}
+  .garde-meta b{color:var(--bleu)}
+  .croix{margin:18px auto 8px; display:block}
+  .croix-legende{font-size:9.5pt; color:var(--leger); font-style:italic}
+  .comp-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px}
+  .chip{border:1.5px solid var(--bleu); color:var(--bleu); border-radius:20px; padding:3px 14px; font-size:11pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; background:#fff}
+  .chip small{font-weight:normal; color:var(--gris)}
+  .chip.eval{border-color:#e8d98a; background:#fffdf5}
+  /* ---------- Corps commun ---------- */
+  .titre-page{font-size:19pt; border-left:6px solid var(--orange); padding-left:14px; margin-bottom:4px}
+  .surtitre{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:2px}
+  h3{font-size:13.5pt; margin-top:1.1em; display:flex; align-items:baseline; gap:8px}
+  table{border-collapse:collapse; width:100%; font-size:11pt; margin:.4em 0 1em}
+  th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:9.5pt; letter-spacing:.04em; text-transform:uppercase; padding:6px 9px; text-align:left}
+  td{border:1px solid var(--filet); padding:6px 9px; vertical-align:top}
+  tr:nth-child(even) td{background:var(--fond-doux)}
+  ul,ol{margin:.2em 0 .9em 1.35em; padding:0}
+  li{margin-bottom:.25em}
+  .encadre-secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:12px 18px; margin:.6em 0 1em}
+  .encadre-secu h3{color:#c14a17; margin-top:0}
+  .encadre-secu td{background:transparent!important; border-color:#f3c9b3}
+  .badge-niveau{display:inline-block; font-size:9pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; color:#fff}
+  .nI{background:#9aa5b1}.nC{background:#8a6dbf}.nM{background:#5d6b7c}.nV{background:var(--bleu)}
+  .fleche{color:var(--orange); font-weight:bold}
+  .cartouche-methode{background:var(--fond-doux); border:1px solid var(--filet); border-left:6px solid var(--bleu);
+    border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .cartouche-methode b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu)}
+  .etiquette{font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; letter-spacing:.08em;
+    text-transform:uppercase; border-radius:3px; padding:1px 7px; vertical-align:2px}
+  .et-inv{background:#e3e9f2; color:var(--bleu)}
+  .et-var{background:#ffe4d6; color:#b4501e}
+  .obj{background:var(--fond-doux); border-radius:6px; padding:10px 18px 10px 14px; margin:.3em 0 1em}
+  .obj li{margin-bottom:.35em}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:700px){.duo,.grille-cartes{grid-template-columns:1fr}}
+  .tbl-wrap{overflow-x:auto}
+  @media print{
+    body{background:#fff; padding:0}
+    .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always}
+  }
+  .tab-der{font-size:10pt}
+  .tab-der td{padding:5px 8px}
+  .cols2{columns:2; column-gap:26px; font-size:10.5pt}
+  .regle4{font-size:9.5pt; color:var(--gris); font-style:italic}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; vertical-align:1px; white-space:nowrap}
+  .stD{background:#e6f4ee; color:#0e7a5f; border:1px solid #9fd6c2}
+  .stC{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .stE{background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .grille-modules{font-size:10pt}
+  .grille-modules td{padding:6px 8px}
+  .credits-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:14px}
+  .credits-bloc{max-width:560px; margin:0 auto; border:1px solid var(--filet); border-radius:8px; background:var(--fond-doux); padding:22px 28px; font-size:11.5pt; text-align:left; line-height:1.6}
+  .credits-bloc b{color:var(--bleu)}
+  .sources{font-size:9.5pt; color:var(--gris); text-align:left; max-width:560px; margin:14px auto 0}
+  /* ---------- Formule de Bowers : bandeau 4 cases ---------- */
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.5em 0 1em; font-size:10pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:8px 12px; background:#fff}
+  .formule .case h4{margin:0 0 4px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  @media (max-width:700px){.formule{grid-template-columns:1fr 1fr}}
+  /* ---------- Cartes module (plan de séquence) ---------- */
+  .grille-cartes{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:.4em 0 1em}
+  .carte-module{border:1px solid var(--filet); border-left:5px solid var(--bleu); border-radius:6px; padding:10px 14px; background:#fff}
+  .carte-module.theorie{border-left-color:var(--ufa)}
+  .carte-module.transversal{border-left-color:var(--orange)}
+  .carte-module.evaluation{border-left-color:#c9a300; background:#fffdf5}
+  .carte-module h4{margin:0 0 2px; font-size:13pt; color:var(--bleu); display:flex; align-items:baseline; gap:6px; flex-wrap:wrap}
+  .carte-module .meta-ligne{font-size:8.5pt; color:var(--gris); margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em; font-family:'Trebuchet MS',sans-serif}
+  .carte-module p{font-size:10.5pt; margin:.2em 0 .4em}
+  .carte-module .nuance{display:block; margin-bottom:.3em}
+  .badge-type{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; background:#e3e9f2; color:var(--bleu)}
+  /* ---------- Bandeau É2 ---------- */
+  .bandeau-e1{background:#fff6cc; border:1.5px solid #e8d98a; border-radius:6px; padding:9px 22px; margin:6px auto 4px; max-width:580px; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:#7a5b00; font-size:12.5pt; text-align:center; letter-spacing:.02em}
+  .eval-row td{background:#fff6cc!important}
+</style>
+
+<!-- ============================ FEUILLE 1 : PAGE DE GARDE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>CAP Installateur en Froid et Conditionnement d'Air — 1<sup>re</sup> année</span>
+    <span>Année scolaire 2026-2027 · Période P2</span>
+  </div>
+
+  <div class="garde-centre">
+    <div class="garde-seq">Séquence S4</div>
+    <h1 class="garde-titre">Cycle approfondi P/T<br>et composants frigorifiques</h1>
+    <div class="garde-soustitre">La clef de lecture du frigoriste — et la deuxième évaluation sommative, É2</div>
+
+    <div class="bandeau-e1">◆ É2 — DEUXIÈME ÉVALUATION SOMMATIVE, SEMAINE 13 — C3.4 · C3.6 · C4.5 en statut Évaluation</div>
+
+    <img class="croix" src="images/croix-frigoriste-schema-technique.png" width="300" style="max-width:100%" alt="Croix du Frigoriste — schéma technique du circuit frigorifique">
+    <div class="croix-legende">La Croix reste le repère constant : détendeur GAUCHE · compresseur DROITE · condenseur HAUT · évaporateur BAS. En S4, l'élève relie ce qu'il LIT au manomètre (pression) à ce qu'il LIT sur la réglette P/T (température) — sur les mêmes organes que la Croix, BP côté évaporateur, HP côté condenseur.</div>
+
+    <div class="comp-chips">
+      <span class="chip eval">C4.5 <small>Mesurer, comparer</small> <span class="statut stE">Évaluation</span></span>
+      <span class="chip eval">C3.6 <small>Câbler, connecter</small> <span class="statut stE">Évaluation</span></span>
+      <span class="chip eval">C3.4 <small>Façonner, raccorder</small> <span class="statut stE">Évaluation</span></span>
+      <span class="chip">C3.9 <small>Vérifier l'étanchéité</small> <span class="statut stC">Confortement</span></span>
+      <span class="chip">C2.4 <small>Sécuriser l'intervention</small> <span class="statut stC">Confortement</span></span>
+      <span class="chip">C1.3 <small>Rendre compte</small> <span class="statut stC">Confortement</span></span>
+    </div>
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:6px"><span class="statut stE">Évaluation</span> pour C3.4 · C3.6 · C4.5 — <b>uniquement dans les documents d'É2</b> (semaine 13) : positionnement officiel remonté École Directe, un cran au-dessus d'É1 (charte §2). <span class="statut stC">Confortement</span> pour C3.9 (observée au poste froid d'É2, poids réduit) et pour C2.4 · C1.3 (savoir-être et compte rendu, transversaux aux modules S4-F1/E1/T1 et à É2). <b>Dans les modules S4-F1, S4-E1 et S4-T1 (semaine 12) : Confortement seulement</b> — aucune compétence n'y porte le statut Évaluation, réservé aux seuls documents d'É2.</p>
+
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:2px"><b>S4 est la première séquence de 1A qui PORTE une évaluation sommative</b> depuis É1 (semaine 7, dossier S2) — É2 se range dans le dossier S4 (règle : la séquence la plus récente). C'est une séquence COURTE : 2 semaines seulement, modules à passage UNIQUE (pas de répétition ×2 comme S1-S3) — la semaine 13 entière est consacrée à É2.</p>
+
+    <div class="garde-meta">
+      <b>Semaines 12 à 13</b> · avant Noël 2026, fin de période P2 (dates exactes à caler — point ouvert)<br>
+      <b>3 modules, passage unique</b> — S4-F1 relation P/T sur machine · S4-E1 schémas domestiques,
+      consolidation avant É2 · S4-T1 cycle approfondi P/T (théorie), tous en <b>semaine 12</b> · le carnet
+      de S3 (<b>F3</b>) se poursuit, sa section « préparer É2 » sert de pont — <b>pas de nouveau module F3</b><br>
+      <span style="font-size:10.5pt; color:var(--gris)">Semaine 13 : <b>É2 sur les trois créneaux</b> (froid
+      4 h · élec 4 h · théorie 2 h) — même architecture qu'É1.<br>
+      Statut du dossier : <b>4<sup>e</sup> séquence 1A — en attente du bon à tirer de Franck.</b></span>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 2 : ORGANISATION DES 2 SEMAINES + FORMULE DE BOWERS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — organisation et formule</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">Organisation <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">Deux semaines, passage unique — puis É2</h2>
+  <p>Rotation par demi-groupes inchangée (4 h froid + 4 h élec + 2 h théorie / semaine). À la différence de
+  S1, S2 et S3, <b>chaque module de S4 n'est vécu qu'UNE seule fois</b> (pas d'encadré Passage 1/Passage 2) :
+  la séquence est courte, deux semaines seulement, et toute la semaine 13 doit rester disponible pour É2.
+  <b>S4-F1</b> (froid), <b>S4-E1</b> (élec) et <b>S4-T1</b> (théorie) se déroulent en <b>semaine 12</b> ; la
+  <b>semaine 13</b> est intégralement consacrée à <b>É2</b>, sur les trois créneaux.</p>
+
+  <h3>Qui fait quoi, semaine par semaine</h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Sem.</th><th>Groupe 1</th><th>Groupe 2</th><th>Théorie (classe entière)</th></tr>
+    <tr><td><b>12</b></td><td>Froid <b>S4-F1</b> + Élec <b>S4-E1</b></td><td>Élec <b>S4-E1</b> + Froid <b>S4-F1</b></td><td><b>S4-T1</b> — Cycle approfondi P/T</td></tr>
+    <tr><td><b>13</b></td><td colspan="3" style="text-align:center"><b>É2 — les trois postes</b> : poste FROID (4 h, brasage tendre + contrôle d'étanchéité) · poste ÉLEC (4 h, schéma domestique + protections/DDR) · poste THÉORIE (2 h, relation P/T + composants, écrit individuel). Demi-groupes tournants sur les 2 créneaux de 4 h, théorie en classe entière — même architecture qu'É1.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em">Le fil de l'eau <b>F3</b> se poursuit en continu
+  (même carnet que S1-S2-S3) ; sa section « préparer É2 » sert de pont vers l'évaluation — <b>pas de nouveau
+  module F3 propre à S4</b> (à confirmer par Franck, cf. feuille 4). Dates réelles des semaines 12-13 : <b>à
+  caler — point ouvert</b> (cadrage S4).</p>
+
+  <h3>La formule de Bowers, appliquée à S4, semaine par semaine <span class="etiquette et-inv">Invariant</span></h3>
+  <p style="font-size:11pt">Une compétence ne s'évalue jamais « en l'air » : elle s'exerce <b>au travers d'une
+  tâche</b> professionnelle, <b>en mobilisant un savoir</b>, <b>dans une posture</b> (le savoir-être).
+  <span class="regle4">Formule adaptée par F. Henninot — charte pédagogique §2.</span></p>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:8%">Sem.</th><th style="width:16%">Tâche</th><th style="width:26%">Savoir</th><th style="width:22%">Savoir-être</th><th>= Compétence (statut)</th></tr>
+    <tr><td><b>12</b></td><td>T10 · T11 (S4-F1) · T10 · T11 (S4-E1) · appui (S4-T1)</td><td>Prérequis réactivés S5.1 (S2-F2) · S2.2 (S3-E2) ; travaillés : S5.1 augmenté + <b>S5.2 nouveau</b> (F1, réglette P/T) · S2.2 augmenté (E1, répétition générale) · S5.1 augmenté (T1)</td><td>Honnêteté du relevé (rallye de stations) ; autonomie maximale en conditions blanches ; auto-correction avec grille dévoilée</td><td>C4.5 <span class="statut stC">Confortement</span> (F1) · C3.6 <span class="statut stC">Confortement</span> (E1) · appui savoir (T1)</td></tr>
+    <tr><td><b>13</b></td><td>T10 · T11 · T12 (É2, 3 postes)</td><td>S5.1 · S5.2 évalués (théorie + froid) ; S2.2 évalué (élec)</td><td>Silence pédagogique, consignes écrites, sécurité intégrale — l'évaluation n'exonère de rien</td><td>C3.4 <span class="statut stE">Évaluation</span> (froid) · C3.6 <span class="statut stE">Évaluation</span> (élec) · C4.5 <span class="statut stE">Évaluation</span> (théorie) · C3.9 <span class="statut stC">Confortement</span> (froid, poids réduit)</td></tr>
+    <tr><td><b>F3</b></td><td colspan="1">T1 (continu, suite de S3)</td><td>S3.1 augmenté</td><td>Rituel continu, section « préparer É2 »</td><td>C1.3 <span class="statut stC">Confortement</span></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 3 : PLAN DE SÉQUENCE MODULAIRE — SEMAINE 12 ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — plan de séquence (semaine 12)</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Le même pavillon : on lit la machine</h2>
+  <p style="font-size:11pt"><b>Fil rouge professionnel</b> : le même pavillon que S3 — la liaison frigorifique est
+  désormais brasée et étanche (S3-F1/F2), l'éclairage est posé (S3-E1/E2). En S4, place à la <b>mise en
+  service</b> : on relève, on lit, on comprend comment la machine fonctionne. Ordres d'intervention
+  <b>OI-S4-1</b> (F1) et <b>OI-S4-2</b> (E1). Jamais de nom propre : « le client », « un élève ».
+  <span class="regle4">Règle de charte : jamais plus de 4 compétences par module.</span></p>
+
+  <div class="grille-cartes">
+    <div class="carte-module">
+      <h4>S4-F1 <span class="badge-type">Atelier</span></h4>
+      <div class="meta-ligne">4 h · passage unique · semaine 12 · froid</div>
+      <p><b>Relation P/T sur machine — relevés guidés :</b> rallye de relevés en stations sur la ou les
+      machines (BP à l'arrêt, BP en marche, HP en marche…) — l'élève lit la pression au manomètre, lit la
+      température correspondante sur la <b>réglette P/T</b>, mesure la température réelle (thermomètre de
+      sonde, acquis S2-F2) et COMPARE.</p>
+      <span class="nuance">Tâches T10 · T11 — Savoir travaillé S5.1 augmenté · <b>S5.2 nouveau</b>.</span>
+      <div><b>C4.5</b> <span class="statut stC">Confortement</span> Mesurer, comparer des grandeurs</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>rallye de relevés en stations</b>, tableau
+      de relevés à colonnes pré-imprimées. Le sens découverte : l'élève CONSTATE que pression et température
+      vont ensemble AVANT que la théorie (S4-T1) ne le formalise. <b>Crochet É2</b> : les mêmes gestes de
+      lecture (manomètre + réglette) reviennent au poste froid d'É2.</div>
+    </div>
+
+    <div class="carte-module">
+      <h4>S4-E1 <span class="badge-type">Atelier</span></h4>
+      <div class="meta-ligne">4 h · passage unique · semaine 12 · élec</div>
+      <p><b>Schémas domestiques — consolidation avant É2 :</b> répétition générale en conditions
+      d'évaluation blanche — postes minutés comme É2, l'élève travaille SEUL avec le document (schéma
+      télérupteur de S3-E2), puis s'AUTO-CORRIGE avec la grille (critères d'É2 dévoilés à l'avance).</p>
+      <span class="nuance">Tâches T10 · T11 — Savoir travaillé S2.2 augmenté.</span>
+      <div><b>C3.6</b> <span class="statut stC">Confortement</span> Câbler, repérer, connecter les liaisons
+      électriques et électroniques</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>répétition générale en conditions
+      d'évaluation blanche</b> — transparence totale, l'élève sait exactement ce qui sera regardé ; le
+      professeur circule et lève les derniers blocages. C'est la consolidation directe avant É2.</div>
+    </div>
+  </div>
+
+  <div class="grille-cartes" style="margin-top:14px">
+    <div class="carte-module theorie">
+      <h4>S4-T1 <span class="badge-type">Théorie</span></h4>
+      <div class="meta-ligne">2 h · semaine 12 · classe entière</div>
+      <p><b>Cycle approfondi P/T :</b> changement d'état, ébullition et pression — l'eau bout à 100 °C à
+      pression atmosphérique… et si la pression change ? Lien direct avec la machine et la réglette P/T.</p>
+      <span class="nuance">Appui du savoir S5.1 (augmenté). Zéro calcul d'enthalpie (Bloom 1-2 : constater,
+      nommer, lire).</span>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>démonstration expérimentale + exploitation
+      guidée</b> — l'eau qui bout (valeur sourcée du manuel), « et si on change la pression ? »,
+      transposition machine : pourquoi le froid « se fabrique » en baissant la pression.</div>
+    </div>
+
+    <div class="carte-module transversal">
+      <h4>F3 <span class="badge-type">Fil de l'eau</span></h4>
+      <div class="meta-ligne">continu · semaine 12-13 · transversal</div>
+      <p><b>Carnet de bord</b> — suite directe du carnet de S3 (même carnet) ; sa section « préparer É2 »
+      sert de pont vers l'évaluation. <b>Pas de nouveau module F3 propre à S4</b> — à confirmer par Franck
+      (feuille 4).</p>
+      <span class="nuance">Tâche T1 — Savoir travaillé S3.1 (augmenté).</span>
+      <div><b>C1.3</b> <span class="statut stC">Confortement</span> Rendre compte</div>
+      <div class="cartouche-methode"><b>Méthode</b> : rituel continu, tenu à chaque séance — le carnet de
+      S3 continue tel quel.</div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 4 : ⭐ PAS DE F3 PROPRE + MODULES À PASSAGE UNIQUE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — une séquence courte, deux choix assumés</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">Le cœur de S4 <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">⭐ Pourquoi S4 ne ressemble pas à S1-S2-S3</h2>
+  <p>S4 clôt la période P2 en seulement deux semaines : semaine 12 pour apprendre, semaine 13 pour évaluer.
+  Deux choix structurent tout le dossier, tous deux assumés dans le cadrage :</p>
+
+  <div class="encadre-secu" style="border-color:var(--bleu); background:var(--fond-doux)">
+    <h3 style="color:var(--bleu)">Choix 1 — modules à passage UNIQUE (pas de ×2)</h3>
+    <p style="margin-top:-.3em">Contrairement à S1, S2 et S3 où chaque atelier était vécu deux fois (découverte
+    puis consolidation), <b>S4-F1</b>, <b>S4-E1</b> et <b>S4-T1</b> ne se déroulent qu'<b>une seule fois</b>,
+    en semaine 12. La consolidation ne disparaît pas : elle change de forme — <b>S4-E1 EST déjà une
+    répétition générale en conditions d'évaluation blanche</b> (méthode imposée, feuille 3), et <b>S4-F1
+    prépare directement</b> les gestes de lecture qui reviendront au poste froid d'É2. La séquence est
+    courte pour laisser la semaine 13 entière à É2 — aucun temps mort possible avant l'évaluation.</p>
+
+    <h3 style="color:var(--bleu)">Choix 2 — pas de module F3 propre à S4</h3>
+    <p>Le maître (progression 1A codée) ne liste pas de module F3 dédié pour cette séquence courte : le
+    <b>carnet de bord de S3 continue tel quel</b>, sans nouveau document. Sa section « préparer É2 » sert de
+    <b>pont</b> entre l'apprentissage de semaine 12 et l'évaluation de semaine 13 — l'élève y note ce qu'il
+    doit encore consolider avant le jour J. <b>Aucun nouveau document F3 n'est produit pour S4.</b></p>
+    <p style="margin-bottom:0"><b>⚠ Point à confirmer par Franck au bon à tirer</b> (consigné dans
+    <code>_ETAT.md</code>) : ce choix suit strictement le cadrage S4 (« le maître n'en liste pas pour cette
+    séquence courte »), mais reste soumis à validation avant diffusion.</p>
+  </div>
+
+  <p style="font-size:9.5pt; color:var(--gris)">Aucune valeur ni aucun libellé n'a été inventé pour justifier
+  ces deux choix ; ils reprennent mot pour mot les arbitrages du cadrage <code>_CADRAGE-S4.md</code> (§Contexte
+  et §Découpage en modules).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 5 : ⭐ É1 → É2 — CE QUI MONTE D'UN CRAN ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — É1 → É2, ce qui monte d'un cran</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">É2 — le contrat <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">⭐ É1 → É2 : le spiralaire assumé</h2>
+  <p>Mêmes compétences remontées qu'É1 (<b>C3.4 · C3.6 · C4.5</b>), mais l'EXIGENCE monte d'un cran sur
+  chacun des trois postes. Ce tableau, extrait du corrigé professeur d'É2, l'écrit noir sur blanc.</p>
+
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:12%">Poste</th><th style="width:38%">É1 (semaine 7)</th><th>É2 (semaine 13)</th></tr>
+    <tr><td><b>FROID</b></td><td>Enchaîner les gestes cuivre (coupe, cintrage, dudgeon).</td><td><b>Assembler par brasage tendre</b> (2 emboîtures brasées, cotes contrôlées — adapté de l'exercice source de S3-F2) <b>+ prouver l'étanchéité</b> à l'eau savonneuse (C3.9 Confortement, mise en pression par le professeur, comme S3-F1).</td></tr>
+    <tr><td><b>ÉLEC</b></td><td>Montage domestique simple + mesures.</td><td><b>Câbler un télérupteur d'après le schéma</b> (celui travaillé en S3-E2), circuit protégé (disjoncteur + DDR identifiés — items C3.6 relevés), contrôle hors tension avant mise sous tension par le professeur.</td></tr>
+    <tr><td><b>THÉORIE</b></td><td>Cycle frigorifique + grandeurs U/I/R.</td><td><b>Relation P/T</b> (lecture de réglette/tableau fourni, « quand la pression monte, la température de changement d'état… ») + <b>composants</b> (identifier et donner la fonction — d'après S3-T1, seulement les 9 fonctions SOURCÉES).</td></tr>
+  </table>
+  </div>
+
+  <h3>Le reste du contrat, inchangé depuis É1</h3>
+  <ul>
+    <li><b>Barème global 40 pts</b> comme É1 (harmonisation 1A) ; grille 0-4 par compétence à critères
+    observables, ligne savoir-être (EPI et sécurité s'évaluent AUSSI en évaluation), auto-positionnement.</li>
+    <li><b>Plan de passation</b> cloné de l'architecture d'É1 : demi-groupes tournants sur les 2 créneaux de
+    4 h, théorie en classe entière, gestion des absents (« absent ≠ non évalué »), tiers-temps.</li>
+    <li><b>Remédiation d'É2</b> détaillée dans le corrigé professeur : que fait-on des positionnements 1 et
+    2 → reprise ciblée au début de S5 (même mécanique que S3-T2, le dispositif est désormais rodé), tutorat,
+    variante consolidation.</li>
+    <li>É2 se range dans le dossier <b>S4</b> (règle : la séquence la plus récente).</li>
+  </ul>
+
+  <p style="font-size:9.5pt; color:var(--gris)">É2 = 3 documents (sujet élève · corrigé + grille professeur ·
+  plan de passation) couvrant les 3 postes, sujets repérés en jaune <span style="background:#fff6cc; padding:0 4px; border:1px solid #e8d98a; border-radius:3px">#fff6cc</span>.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 6 : MONTÉE SPIRALAIRE LOCALE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — montée spiralaire locale</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">Progression annuelle <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Montée spiralaire locale — de S3 à S4</h2>
+  <p style="font-size:11pt">Rappel charte §2 et §5 : l'échelle 0-4 (grilles de module/évaluation) est le
+  <b>positionnement constaté</b> un jour donné ; la progression <b>I</b> (Initiation) / <b>C</b>
+  (Consolidation) / M (Maîtrise) / V (Validé) ci-dessous est le <b>niveau visé</b> dans la progression
+  annuelle — deux axes distincts, à ne pas confondre.</p>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Code</th><th style="width:28%">Compétence</th><th style="width:15%">Niveau visé fin S3</th><th style="width:6%"></th><th style="width:15%">Niveau visé fin S4</th><th>En S4</th></tr>
+    <tr><td><b>C4.5</b></td><td>Mesurer, comparer des grandeurs</td><td><span class="badge-niveau nC">Consolidation</span> (formatif S3-T2)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> ÉVALUÉE (É2)</td><td><span class="statut stC">Confortement</span> S4-F1 (rallye de relevés) puis <span class="statut stE">Évaluation</span> officielle É2, poste théorie</td></tr>
+    <tr><td><b>C3.6</b></td><td>Câbler, repérer, connecter les liaisons électriques et électroniques</td><td><span class="badge-niveau nC">Consolidation</span> confirmée (S3-E1/E2)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> ÉVALUÉE (É2)</td><td><span class="statut stC">Confortement</span> S4-E1 (répétition générale) puis <span class="statut stE">Évaluation</span> officielle É2, poste élec</td></tr>
+    <tr><td><b>C3.4</b></td><td>Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)</td><td><span class="badge-niveau nC">Consolidation</span> confirmée (S3-F1/F2)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> ÉVALUÉE (É2)</td><td><span class="statut stE">Évaluation</span> officielle É2, poste froid (brasage tendre, sans passage préparatoire dédié en S4 — appui direct sur les acquis de S3-F2)</td></tr>
+    <tr><td><b>C3.9</b></td><td>Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service</td><td><span class="badge-niveau nI">Initiation</span> (Découverte S3-F1)</td><td class="fleche">→</td><td><span class="badge-niveau nI">Initiation</span> confirmée en évaluation</td><td><span class="statut stC">Confortement</span> — É2, poste froid, poids réduit</td></tr>
+    <tr><td><b>C2.4</b></td><td>Sécuriser l'intervention</td><td><span class="badge-niveau nC">Consolidation</span> (S3-F2, la flamme)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> confirmée</td><td><span class="statut stC">Confortement</span> — savoir-être partout, y compris en É2 (« la sécurité EST le savoir-être »)</td></tr>
+    <tr><td><b>C1.3</b></td><td>Rendre compte</td><td><span class="badge-niveau nC">Consolidation</span> (F3)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> confirmée</td><td><span class="statut stC">Confortement</span> — F3, section « préparer É2 »</td></tr>
+  </table>
+  </div>
+  <p style="font-size:10pt; margin:-.2em 0 .8em"><i>Doctrine — le positionnement 0-4 d'É2 est le constat du
+  jour ; le niveau visé de la progression annuelle reste Consolidation — la Maîtrise arrive en S5-S6.</i></p>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em">Source : progression 1A CAP IFCA codée
+  (en attente de bon à tirer). <b>Un savoir nouveau</b> apparaît en S4, première fois dans la progression
+  1A : <b>S5.2</b> « Fluides frigorigènes, huiles frigorifiques » — abordé UNIQUEMENT par la réglette P/T
+  (S4-F1) : chaque fluide a sa relation P/T, aucun fluide n'est manipulé en 1A, on LIT seulement.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 7 : MÉTHODES VARIÉES + FIL ROUGE SÉCURITÉ ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — méthodes et sécurité</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">Méthodes imposées <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">Méthodes variées par module — aucune reprise de S1/S2/S3</h2>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:12%">Module</th><th style="width:38%">Méthode imposée</th><th>Ce qu'elle apporte</th></tr>
+    <tr><td><b>S4-F1</b></td><td>Rallye de relevés en stations</td><td>Plusieurs points de mesure sur la ou les machines (BP à l'arrêt, BP en marche, HP en marche…) ; à chaque station, l'élève lit la pression, lit la température sur la réglette P/T, mesure la température réelle et COMPARE. L'élève CONSTATE avant que la théorie ne formalise.</td></tr>
+    <tr><td><b>S4-E1</b></td><td>Répétition générale en conditions d'évaluation blanche</td><td>Postes minutés comme É2, l'élève travaille SEUL puis s'AUTO-CORRIGE avec la grille (critères d'É2 dévoilés à l'avance : transparence totale) ; le professeur circule et lève les derniers blocages.</td></tr>
+    <tr><td><b>S4-T1</b></td><td>Démonstration expérimentale + exploitation guidée</td><td>L'eau qui bout (100 °C à pression atmosphérique, valeur sourcée du manuel), « et si on change la pression ? », transposition machine : la réglette P/T, pourquoi le froid « se fabrique » en baissant la pression.</td></tr>
+    <tr><td><b>É2</b></td><td>Conditions réelles d'évaluation</td><td>Postes individuels, consignes écrites, silence pédagogique — le professeur observe et positionne, n'aide plus (sauf sécurité).</td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Fil rouge sécurité de S4 — l'évaluation n'exonère de rien</h3>
+    <ul style="margin-bottom:.3em">
+      <li><b>S4-F1 (rallye de relevés)</b> : machine en marche = présence professeur en permanence (organes
+      chauds, pièces en mouvement) ; l'élève ne touche à aucun organe de réglage.</li>
+      <li><b>S4-E1 (répétition générale)</b> : consignation <b>NF C 15-100</b> avant toute intervention,
+      contrôle hors tension, mise sous tension <b>PAR LE PROFESSEUR</b> uniquement — rituel inchangé, y
+      compris en conditions blanches.</li>
+      <li><b>É2 poste froid</b> : mêmes règles qu'en S3-F2 — flamme démontrée et jamais découverte, EPI
+      (lunettes, gants), pression de mise en service <b>fixée par le professeur</b>, jamais par l'élève ;
+      <b>JAMAIS</b> d'oxygène ni d'air comprimé pour une épreuve d'étanchéité.</li>
+      <li><b>É2 poste élec</b> : consignation <b>NF C 18-510</b>, mise sous tension par le professeur, y
+      compris pendant l'évaluation — <b>l'évaluation n'exonère de RIEN</b> en matière de sécurité.</li>
+      <li><b>Limite assumée</b> : la sécurité ne se « découvre » pas — elle se démontre et s'impose (charte
+      §1), y compris quand l'élève est évalué.</li>
+    </ul>
+    <div class="incident" style="font-size:10pt; background:#fdeaea; border:1px solid #e8b4b4; border-radius:4px; padding:6px 12px; color:#8c2f2f">🚨 <b>En cas d'incident</b> : couper — arrêt d'urgence —, alerter, ne jamais déplacer un
+    élève électrisé avant coupure confirmée. Pour une brûlure : refroidissement à l'eau tempérée, <i>procédure à
+    faire valider par le SST</i>. Arrêt d'urgence et trousse de secours localisés dès l'accueil de chaque séance.</div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 8 : LA SUITE — S5 ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — et après ?</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">La suite <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Après S4 : S5 ouvre par la remédiation d'É2</h2>
+  <p>É2 remonte officiellement <b>C3.4 · C3.6 · C4.5</b> à la contribution certificative (École Directe).
+  Comme après É1, les positionnements 1 (non acquis) et 2 (en cours d'acquisition) ne sont pas laissés de
+  côté : la séquence suivante, <b>S5</b> (P3 — brasage fort + électricité industrielle), <b>s'ouvrira par la
+  remédiation d'É2</b>, <b>même mécanique que S3-T2</b> (le dispositif est désormais rodé) : lecture de sa
+  grille, groupes de besoin tournants, tutorat par les pairs, trace écrite dans F3.</p>
+
+  <div class="carte-module evaluation">
+    <h4>S5 <span class="badge-type" style="background:#e3e9f2; color:var(--bleu)">Séquence suivante</span></h4>
+    <div class="meta-ligne">période P3 · à produire</div>
+    <p><b>P3, brasage fort + électricité industrielle</b> — ouverture par un module de remédiation ciblée sur
+    les résultats réels d'É2 (dispositif à 3 étages, cf. S3-T2), avant d'aborder les contenus neufs de la
+    période.</p>
+    <span class="nuance">Descriptif détaillé, cadrage et sujet : dossier de séquence S5 (chat de production
+    dédié).</span>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 9 : RANGEMENT + CRÉDITS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S4 — rangement et crédits</span>
+    <span>CAP IFCA 1A · P2 · semaines 12-13</span>
+  </div>
+
+  <div class="surtitre">Rangement de la production <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Où trouver le plan de séance de chaque module</h2>
+  <p style="font-size:11pt">Les plans de séance, documents élève et documents professeur <b>ne sont pas recopiés
+  ici</b> : ils vivent chacun dans leur sous-dossier, à la racine du dossier de séquence S4 (convention usine
+  FrigorX).</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th style="width:14%">Module</th><th style="width:46%">Sous-dossier</th><th>Contenu attendu</th></tr>
+    <tr><td><b>S4-F1</b></td><td><code>S4-F1 - Relation P-T sur machine\</code></td><td>Plan de séance · Document élève (TP) · Document professeur (corrigé)</td></tr>
+    <tr><td><b>S4-E1</b></td><td><code>S4-E1 - Schémas domestiques - consolidation avant É2\</code></td><td>Plan de séance · Document élève (TP) · Document professeur (corrigé)</td></tr>
+    <tr><td><b>S4-T1</b></td><td><code>S4-T1 - Cycle approfondi P-T\</code></td><td>Document élève · Document professeur</td></tr>
+    <tr><td><b>É2</b></td><td><code>Évaluation sommative É2 S3-S4 (semaine 13)\</code></td><td>Document élève - sujet · Document professeur - corrigé et grille · Plan de passation</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1.2em">Sortie <b>HTML seulement</b> à ce stade
+  (référence) — PDF et docx natif suivront <b>après le bon à tirer de Franck</b> (cadrage S4, règle 10).</p>
+
+  <div class="surtitre">Crédits</div>
+  <div class="credits-bloc" style="margin:0">
+    <p style="margin:0 0 .8em"><b>Projet inerWeb</b> — © 2026 Franck Henninot.</p>
+    <p style="margin:0 0 .8em">Ce document est produit dans le cadre de l'enseignement du CAP Installateur en Froid
+    et Conditionnement d'Air (IFCA), LPP Jacques Raynaud — Campus EQUATIO.</p>
+    <p style="margin:0 0 .8em"><b>Usage pédagogique non commercial</b> : reproduction et adaptation autorisées pour
+    un usage d'enseignement, à condition de mentionner l'origine (F. Henninot — inerWeb Édu) ; toute exploitation
+    commerciale est interdite.</p>
+    <p style="margin:0">Licence équivalente à <b>CC BY-NC 4.0</b> · <b>inerweb.fr</b></p>
+  </div>
+  <div class="sources">
+    <p style="margin:.8em 0 .3em"><b>Sources autoritaires de ce dossier</b> : cadrage <code>_CADRAGE-S4.md</code>
+    (découpage modulaire, contrat É2, méthodes imposées, codes officiels) · progression 1A CAP IFCA codée
+    (<code>_PROGRESSION-1A-CODEE.md</code>, en attente de bon à tirer) · référentiel officiel CAP IFCA (codes
+    et libellés T/S/C) · charte pédagogique FrigorX (formule de Bowers §2, échelle 0-4 §5, sécurité §7) · dossier
+    de séquence S3 (forme clonée, harmonisation 1A stricte) · documents É1 de S2 (forme clonée pour É2) ·
+    manuel « Le froid exercices » (poste théorie, ébullition/pression, S4-T1). Aucune valeur ni aucun libellé
+    n'a été inventé pour ce dossier ; les points ouverts (F3 propre à S4, dates réelles, copyright, réglette
+    P/T réelle de l'atelier, machine(s) support du rallye, nombre de postes de brasage) sont signalés dans
+    <code>_ETAT.md</code>.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .carte-module, .grille-cartes>div, .bandeau-e1{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

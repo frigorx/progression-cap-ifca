@@ -1,0 +1,444 @@
+<meta charset="utf-8">
+<title>Document professeur — S6-F1 · Épreuve d'étanchéité à l'azote</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .role{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt;
+    border-radius:8px; padding:1px 9px; margin-right:5px}
+  .role.op{background:#e3e9f2; color:var(--bleu); border:1px solid #b9c8e0}
+  .role.ctrl{background:#fff0e6; color:#c14a17; border:1px solid #f0b989}
+  .role.seul{background:#e6f5ec; color:#1f7a4d; border:1px solid #9dd7b6}
+  .avenir{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:9.8pt}
+  .avenir b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Épreuve d'étanchéité azote et recherche de fuite</td>
+      <td style="width:38%"><span class="lib">Module S6-F1 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Épreuve d'étanchéité à l'azote</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S6</span> · semaines 18-19</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — postes binôme puis individuels + zone de mise en pression dédiée + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage, deux demi-journées (semaines 18 et 19)</td>
+      <td><span class="lib">Modalité</span>Pilotage par le document officiel (le PV structure la séance) — méthode imposée du module</td>
+      <td><span class="lib">Encadrement</span>1 professeur, demi-groupe — présence permanente pendant toute manipulation du manodétendeur, y compris passage 2</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">augmenté</span><br><b>S6.3</b> Identification des dangers et prévention <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Vigilance asphyxie · rigueur des paliers · honnêteté du verdict · autonomie croissante (passage 2 seul)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → vers Maîtrise</span> <b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service <span class="nuance">sur T11 · T12 · S6.2 · S6.3</span><br><span class="statut">Confortement → vers Maîtrise</span> <b>C2.4</b> Sécuriser l'intervention <span class="nuance">sur T12</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module S6-F1 :
+  mêmes 2 passages, mêmes 2 jalons par passage, même numérotation, même annexe PV. Il y ajoute : l'organisation
+  des postes d'épreuve, les paliers proposés « à fixer par le professeur », la durée de tenue « à fixer par le
+  professeur », les critères observables du PV, les erreurs typiques et leur remédiation, le minutage 4 h
+  recompté, la différenciation, et l'annonce de ce que ce PV deviendra en 2<sup>e</sup> année. <b>Aucune valeur
+  non autorisée n'est donnée</b> : la pression d'épreuve et la durée de tenue restent <b>« affichées au poste
+  par le professeur, à faire valider »</b> ; les deux seules valeurs sourcées (10 bar minimum pendant 24 h,
+  bouteille pleine ≈ 200 bar) sont identiques à celles du document élève, D'après : 1 mise sous azote.docx.</p>
+
+  <h3 class="section">Méthode pédagogique du module — pilotage par le document officiel</h3>
+  <p style="font-size:10.5pt">En S5-F2, les élèves ont rempli une check-list, encadrés pas à pas. Ce module
+  bascule sur un principe différent : c'est le <b>PV d'épreuve lui-même</b>, et non plus la voix du professeur,
+  qui structure le déroulé — chaque ligne du PV déclenche le geste suivant. Au <b>passage 1</b>, les rôles
+  <span class="role op">OPÉRATEUR</span> / <span class="role ctrl">CONTRÔLEUR SÉCURITÉ</span> de S5-F2 sont
+  <b>conservés</b> : le binôme remplit le PV à deux. Au <b>passage 2</b>, il n'y a plus de rôle séparé — chaque
+  élève <span class="role seul">TIENT SEUL(E)</span> son PV du premier palier à la signature, sous supervision
+  de sécurité continue mais sans plus être guidé pas à pas sur le contenu du document. C'est le cœur de la
+  progressivité spiralaire de ce module : le geste ne change pas, l'autonomie sur le document, si.</p>
+  <div class="vigilance"><b class="t">Point de vigilance central du module</b> — Un PV n'a de valeur que si
+  chaque ligne est renseignée <b>au moment du geste</b>. Un élève qui « complète le PV à la fin, de mémoire »
+  commet la même faute qu'un professionnel qui antidate un rapport : ce point doit être nommé explicitement
+  devant la classe dès la phase 5, avant le premier palier, pas découvert après coup.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (PV d'épreuve, passage 1 binôme / passage 2 seul).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S6-1 : réaliser l'épreuve d'étanchéité officielle du montage brasé et remettre le PV signé.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés et commentés, lien avec la formule (C3.9 et C2.4, Confortement → vers Maîtrise).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; quiz éclair REPRENANT la montée par paliers et le contrôle à l'eau savonneuse de S5-F2 ; annonce du changement du jour (la check-list devient un PV, le passage 2 se tient seul).</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité (asphyxie, gestes interdits : jamais d'oxygène ni d'air comprimé, jamais dépasser la pression fixée) puis « planter la notion » : démonstration professeur du remplissage d'une ligne du PV en conduisant un palier sur un montage témoin → NOMMER « PV d'épreuve » et « verdict motivé » → EXPLICITER en quoi un PV diffère d'une check-list. Rappel/attribution des rôles (passage 1) ou des postes individuels (passage 2).</td></tr>
+    <tr><td><b>85 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — jalon 1 / 1' : identification + montée par paliers</td><td>Passage 1 (85 min) : rôles conservés de S5-F2, identification, installation, montée par paliers, PV renseigné en binôme. Passage 2 (50 min) : chaque élève identifie et installe seul(e), moins d'aide.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td><b>40 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — jalon 2 / 2' : tenue en pression + verdict + signatures</td><td>Passage 1 (40 min) : relevés début/fin, verdict motivé, signatures des deux élèves. Passage 2 (75 min) : même déroulé, seul(e), signature individuelle — PV le plus proche du contrôle réglementaire réel.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des PV et des verdicts, auto-positionnement (C3.9, C2.4 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord + bon de commande (eau savonneuse, consommables).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Dépressurisation et fermeture de la bouteille par le professeur, détente de la vis de réglage, rangement, nettoyage.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S6-F2, recherche de fuite).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; jalon 1/1' + pause 15 min + jalon 2/2' = 2 h 20 (passage 1 : 85+15+40 ; passage 2 :
+  50+15+75) ; synthèse 15 + bon de commande 10 + rangement 10 + clôture 5 = 40 min. Total module : 1 h 00 + 2 h 20
+  + 40 min = <b>4 h 00 exactes</b>, aux deux passages, conforme au plan de séance.</p>
+
+  <div class="avenir"><b class="t">Ce PV, c'est le prélude au contrôle réglementaire de 2<sup>e</sup> année</b> —
+  Ce module reste un module de <b>Confortement</b> (statut affiché sur la grille) : la compétence C3.9 a déjà
+  été rencontrée en Confortement à S5-F2, elle se renforce ici avec un document plus exigeant et davantage
+  d'autonomie (passage 2 seul). En 2<sup>e</sup> année (cf. modèle S12, séance 3), ce même PV deviendra un
+  <b>contrôle d'étanchéité réglementaire</b> où l'élève <b>conçoit lui-même son protocole</b> (pression
+  d'épreuve déterminée depuis la plaque signalétique et la NF EN 378, durée de stabilisation justifiée,
+  méthode de recherche de fuite choisie), le fait valider, puis conclut avec un <b>rapport de preuve</b> destiné
+  au client. Ne pas anticiper cette autonomie de conception ici : en 1A, la pression et la durée restent
+  fixées par le professeur — le rôle de S6-F1 est de faire vivre la LOGIQUE du document officiel, pas encore
+  d'en confier la conception.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ JALON 1 (IDENTIFICATION + MONTÉE PAR PALIERS) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Phase 4 — corrigé du quiz éclair (reprise de la montée par paliers de S5-F2)</h3>
+  <div class="reponse"><b class="t">Item 1 — montée par paliers</b> — Jamais un réglage direct à la pression
+  finale : chaque palier est contrôlé à l'eau savonneuse avant de passer au suivant.</div>
+  <div class="reponse"><b class="t">Item 2 — honnêteté du résultat</b> — Le résultat est noté tel qu'il est
+  observé, y compris en cas de fuite : ce n'est jamais un échec, c'est le résultat normal d'un contrôle.</div>
+  <div class="vigilance"><b class="t">Point de vigilance différenciation</b> — Ce quiz sert de repérage formatif :
+  il confirme, sur le vif, quels élèves ont encore besoin d'un rappel démontré sur le geste avant de leur
+  confier, cette fois, la tenue complète du PV.</div>
+
+  <h3 class="section">Organisation des postes d'épreuve</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Poste d'épreuve</b></td><td>Montage brasé (S5-F1), manomètre de contrôle, PV, eau savonneuse — un poste par binôme au passage 1, un poste par élève au passage 2.</td><td>Vérifier que chaque poste dispose bien de SON montage ; prévoir des montages de secours fournis par le professeur.</td></tr>
+    <tr><td><b>Station azote</b></td><td>Bouteille, manodétendeur — zone unique, accès réservé, professeur présent en permanence pendant toute manipulation.</td><td>Un seul poste manipule à la fois ; ordre de passage organisé pour limiter l'attente ; jamais de montage sous pression sans surveillance directe, y compris pendant la tenue en pression.</td></tr>
+    <tr><td><b>Montage témoin (phase 5)</b></td><td>Préparé à l'avance par le professeur pour la démonstration du remplissage d'une ligne de PV.</td><td>Vérifier avant l'arrivée des élèves que la démonstration porte (paliers lisibles, contrôle net à l'eau savonneuse).</td></tr>
+    <tr><td><b>Combien de montages / postes simultanés ?</b></td><td>Autant que de binômes (passage 1) ou d'élèves (passage 2) si le nombre de montages disponibles le permet ; sinon, rotation organisée.</td><td>Point ouvert (cf. <i>_ETAT.md</i>) : nombre réel de montages d'épreuve disponibles et de manodétendeurs.</td></tr>
+  </table>
+
+  <h3 class="section">Paliers et pression d'épreuve — à fixer par le professeur</h3>
+  <p style="font-size:10.3pt">Aucune valeur n'est imposée par ce document. À titre d'organisation, un
+  <b>enchaînement à 3-4 paliers croissants</b> (par exemple : un palier bas, un ou deux paliers intermédiaires,
+  un palier final égal à la pression d'épreuve retenue) permet de multiplier les occasions de contrôle sans
+  allonger excessivement la séance. Les valeurs exactes, affichées au manomètre pour la classe, restent à la
+  décision du professeur — cf. <i>_ETAT.md</i> (écart entre la valeur du maître de séquence, 20 bar, et la
+  seule valeur d'essai sourcée de la base, 10 bar minimum pendant 24 h).</p>
+
+  <h3 class="section">Durée de tenue en pression — à fixer par le professeur</h3>
+  <p style="font-size:10.3pt">La seule durée sourcée dans la documentation métier est un essai de référence
+  professionnel contrôlé sur <b>10 bar minimum pendant au moins 24 heures</b> (D'après : 1 mise sous
+  azote.docx) — impossible à reproduire dans une séance de 4 h. À titre d'organisation, la durée de tenue
+  observée en atelier peut être calée sur le temps disponible du jalon 2/2' (par exemple, l'essentiel du temps
+  restant après les relevés de début), <b>à faire valider par le professeur</b> selon l'organisation réelle du
+  jour. Ce décalage entre la durée d'atelier et la référence professionnelle doit être <b>nommé explicitement</b>
+  aux élèves (cf. encadré « avenir » en feuille 1) : le geste et la logique du PV sont complets, la durée
+  réglementaire réelle ne l'est pas en une séance de 4 h.</p>
+
+  <h3 class="section">Corrigé — jalon 1 (identification + montée par paliers) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Identification du montage</td><td>Le montage est présenté et identifié sur le PV AVANT tout raccordement — aucun élève ne raccorde de sa propre initiative.</td></tr>
+    <tr><td>Montée par paliers</td><td>Jamais un réglage direct à la pression d'épreuve ; chaque palier est validé par le professeur avant le suivant.</td></tr>
+    <tr><td>Renseignement du PV en temps réel</td><td>Chaque ligne (palier, pression lue, bulles) est remplie IMMÉDIATEMENT après le contrôle, jamais reconstituée en fin de jalon.</td></tr>
+    <tr><td>Passage 1 — rôles</td><td>L'opérateur manipule uniquement en présence du professeur ; le contrôleur badigeonne et renseigne le PV à voix haute.</td></tr>
+    <tr><td>Passage 2 — autonomie</td><td>L'élève mène seul(e) l'ensemble de la séquence, sans qu'aucune étape ne soit sautée faute de démonstration.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Palier sauté</b> (l'élève ou le binôme passe directement à un palier élevé « pour aller plus vite »)</td><td>Arrêt immédiat, rappel ferme : la montée par paliers n'est pas une option, c'est un principe de sécurité non négociable.</td></tr>
+    <tr><td><b>PV rempli après coup</b> (les lignes sont complétées de mémoire en fin de jalon)</td><td>Faire reprendre le palier concerné : un PV n'a de valeur que rempli au moment du geste ; expliciter la comparaison avec un rapport professionnel antidaté.</td></tr>
+    <tr><td>Badigeonnage trop rapide, sans observation réelle</td><td>Faire reprendre le palier : une fuite naissante forme des bulles lentement, un contrôle précipité ne prouve rien.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — question du jalon 1</h3>
+  <div class="reponse"><b class="t">Question</b> — En quoi remplir une ligne du PV à chaque palier est-il
+  différent de « se souvenir » des résultats pour les écrire à la fin ?<br><br>
+  <b>Réponse attendue :</b> un document officiel n'a de valeur probante que s'il enregistre ce qui s'est
+  réellement passé, au moment où ça se passe. Rempli après coup, il ne prouve plus rien : on ne peut plus
+  distinguer un contrôle réellement effectué d'un contrôle simplement « rappelé de mémoire », avec le risque
+  d'oublier un détail ou de reconstituer un résultat qui arrange.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 2 (TENUE EN PRESSION + VERDICT + SIGNATURES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 2 (tenue en pression + verdict + signatures) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Relevés début/fin</td><td>Les deux relevés (pression + heure) sont pris au moment exact de l'isolement et de la fin de tenue, jamais estimés.</td></tr>
+    <tr><td>Verdict motivé</td><td>Le verdict ÉTANCHE/FUYARD est systématiquement accompagné d'une justification chiffrée (comparaison des deux relevés), jamais d'une impression seule.</td></tr>
+    <tr><td>Continuité de la supervision</td><td>Le professeur reste présent à l'identique pendant la tenue en pression, y compris au passage 2.</td></tr>
+    <tr><td>Signature</td><td>La signature n'intervient qu'après le contrôle complet et la validation professeur, jamais avant.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 2</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td><b>Verdict non prouvé</b> (« ça a l'air étanche » sans comparer les deux relevés)</td><td>Recadrage immédiat : faire reprendre la comparaison chiffrée avant toute conclusion — un verdict s'appuie sur des relevés, jamais sur une impression.</td></tr>
+    <tr><td>Signature du PV avant la fin réelle de la tenue en pression</td><td>Recadrage ferme : signer avant d'avoir fini, c'est exactement la faute qu'on cherche à prévenir.</td></tr>
+    <tr><td>Précipitation en fin de séance (temps qui presse)</td><td>Rappeler que le rangement (phase 9) et la dépressurisation restent entièrement du ressort du professeur : il n'y a jamais lieu de se presser sur le verdict pour « gagner du temps ».</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — questions du jalon 2</h3>
+  <div class="reponse"><b class="t">Question</b> — Si le verdict est FUYARD, est-ce un échec ?<br><br>
+  <b>Réponse attendue :</b> non, c'est le résultat normal d'une épreuve. Le professeur dépressurise, l'élève
+  reprend le raccord concerné (retour éventuel à un geste de S5-F1), puis on recommence l'épreuve. Trouver une
+  fuite avant l'arrivée du fluide est justement le but de ce module.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Valoriser explicitement, devant la classe, un
+  élève ou un binôme qui rend un verdict FUYARD bien motivé plutôt que d'espérer que « ça passe » : c'est le
+  niveau 4 du savoir-être de la grille.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ JALON 1' (SEUL, MOINS D'AIDE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 1' (identification + montée par paliers, seul(e)) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Autonomie sur le document</td><td>L'élève identifie et renseigne son PV sans attendre la consigne du professeur — signe d'appropriation, à valoriser même si l'exécution n'est pas parfaite.</td></tr>
+    <tr><td>Rapidité maîtrisée</td><td>L'installation et les premiers paliers vont plus vite qu'au passage 1, sans qu'aucune ligne du PV ne soit sautée.</td></tr>
+    <tr><td>Gestion seul(e) de la pression</td><td>L'élève sollicite le professeur pour la validation de sécurité (chaque palier), pas pour se faire dicter le contenu du PV.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1'</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>« Moins d'aide » interprété comme « moins de rigueur »</td><td>Rappeler que l'autonomie porte sur la démonstration retirée par le professeur, jamais sur le nombre de lignes du PV renseignées.</td></tr>
+    <tr><td>Élève déstabilisé(e) par l'absence de rôle « contrôleur » à qui déléguer la vérification</td><td>Rappeler que c'est justement l'objectif de ce passage : tenir les deux fonctions (manipuler ET vérifier) soi-même, comme le fera un professionnel seul sur un chantier.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — question du jalon 1'</h3>
+  <div class="reponse"><b class="t">Question</b> — Qu'est-ce qui, dans ce que vous avez appris au passage 1,
+  vous permet aujourd'hui de tenir seul(e) le PV sans sauter une seule ligne ?<br><br>
+  <b>Réponse attendue :</b> la familiarité acquise au passage 1 avec la logique du PV (une ligne = un geste) ;
+  le fait d'avoir déjà tenu les deux rôles (opérateur et contrôleur) permet de les enchaîner soi-même sans en
+  oublier un. L'aisance, c'est enchaîner sans rien sauter — pas enchaîner en sautant des vérifications.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CORRIGÉ JALON 2' + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 2' (tenue en pression + verdict + signature seule) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Relevés seul(e)</td><td>L'élève prend lui(elle)-même les deux relevés, sans qu'un pair ou le professeur ne les lui dicte.</td></tr>
+    <tr><td>Qualité du verdict</td><td>Le verdict est motivé par les chiffres, formulé avec les mots justes (« étanche » vs « fuyard »), sans hésitation excessive ni précipitation.</td></tr>
+    <tr><td>Mise en perspective</td><td>L'élève peut formuler, même approximativement, ce qui différera dans un contrôle réglementaire réel (durée, document remis, qui le signe).</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — question de synthèse du jalon 2'</h3>
+  <div class="reponse"><b class="t">Question</b> — En quoi ce PV ressemble-t-il à un contrôle réglementaire
+  réel ? Qu'est-ce qui sera différent ?<br><br>
+  <b>Réponse attendue :</b> ressemblances — un document signé, des relevés chiffrés, un verdict motivé.
+  Différences attendues : un contrôle professionnel se vérifie sur une <b>durée bien plus longue</b> (D'après :
+  1 mise sous azote.docx — un essai de référence se vérifie sur au moins 24 h, pas en une fraction de séance),
+  il porte sur l'installation complète et non un seul montage, et il donne lieu à un <b>document remis au
+  client et conservé par l'entreprise</b>, alors que le PV d'aujourd'hui reste un document pédagogique interne.</div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td><b>Consolidation</b><br><span class="nuance">élèves encore fragiles sur la montée par paliers (S5-F2)</span></td><td>Repérés dès la phase 4 (quiz éclair). Au passage 1, ces élèves gardent le rôle <span class="role ctrl">contrôleur</span> plus longtemps avant de reprendre l'<span class="role op">opérateur</span> ; au passage 2, un pointage de sécurité plus rapproché (sans reprendre le geste à leur place) accompagne le premier jalon seul(e).</td></tr>
+    <tr><td><b>Standard</b></td><td>Déroulement tel que décrit dans le document élève : rôles conservés (passage 1), PV seul (passage 2), 2 jalons.</td></tr>
+    <tr><td><b>Approfondissement</b><br><span class="nuance">tutorat</span></td><td>Une fois leur propre PV signé, ces élèves peuvent, à la demande du professeur, expliquer à un pair pourquoi un verdict s'appuie sur des relevés et non sur une impression — sans jamais manipuler le montage d'un autre poste.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire répété à l'identique (« palier », « tenue », « verdict »), PV très visuel (une ligne = un geste), les deux mots du verdict (étanche/fuyard) associés à un pictogramme simple.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Le PV numéroté, à remplir ligne par ligne, cadre la nouveauté du document ; le passage d'un rôle partagé à un PV tenu seul se prépare en phase 4 par une annonce explicite, pour limiter l'anxiété du changement.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — GRILLE 0-4 (CORRIGÉ) + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C3.9 Confortement</b> (vers Maîtrise —
+  déjà rencontrée en Confortement à S5-F2) ; <b>C2.4 Confortement</b> (vers Maîtrise) — poids réduit, non
+  remonté ici : le statut Évaluation de C3.9 et C2.4 (en ligne savoir-être renforcée) arrivera à É3, semaine 21.
+  <b>0 = compétence non observée ce jour</b> (à ne jamais confondre avec une absence, codée séparément).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service <span class="nuance">sur T11 · T12 · S6.2 · S6.3</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne conduit pas la montée par paliers ni la tenue en pression malgré l'aide (monte trop vite, oublie un relevé, verdict sans lien avec les chiffres).</td>
+      <td>Conduit la montée par paliers et la tenue en pression avec l'aide du professeur.</td>
+      <td>Conduit seul(e) (passage 2) ou dans son rôle du binôme (passage 1) la montée par paliers et la tenue en pression, renseigne le PV en temps réel, formule un verdict motivé par les deux relevés.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi un verdict s'appuie sur des chiffres relevés, jamais sur une impression.</td>
+    </tr>
+    <tr>
+      <td><b>C2.4</b> Sécuriser l'intervention <span class="nuance">sur T12</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Geste dangereux malgré rappel (ne respecte pas l'axe des raccords, dépasse la pression fixée, tente de dépressuriser lui-même).</td>
+      <td>Respecte la sécurité avec des rappels du professeur.</td>
+      <td>Tient son rôle (ou son PV, passage 2) sans rappel, sécurité respectée du premier palier à la signature.</td>
+      <td>Comme « Acquis », et signale spontanément un doute plutôt que de signer un verdict trop vite.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste dangereux (dépasse la pression fixée, agit sans professeur présent) ou signature du PV sans contrôle réel : niveau 1 automatique.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>EPI et gestes respectés sans rappel, PV renseigné ligne par ligne au moment du geste, verdict honnête même en cas de fuite.</td>
+      <td>Comme « Acquis », et au passage 2, tient le PV seul(e) sans qu'aucune ligne ne soit sautée ni reconstituée après coup.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité
+  (dépasser la pression fixée, agir sans professeur présent, oxygène/air comprimé, dépressuriser soi-même)
+  entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du
+  montage : principe de sécurité non négociable. Un verdict signé sans relevé réel est traité comme un
+  manquement grave.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>S6-T1</b> « Risques de la pression, gaz neutres » — la théorie sécurise ce module, même semaine 18 ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (voir module F3) ;</li>
+    <li><b>Modules S5-F1 / S5-F2</b> — le montage brasé éprouvé aujourd'hui, la check-list devenue PV ;</li>
+    <li><b>Poste froid d'É3</b> (semaine 21) — l'élève y manipulera seul le manodétendeur devant le professeur,
+    dans une logique de PV proche de celle vécue au passage 2 de ce module.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : 1 mise sous
+  azote.docx (procédure manodétendeur, bouteille pleine ≈ 200 bar, essai de référence 10 bar minimum pendant
+  24 h) ; FDS - Azote.pdf (Air Liquide — gaz sous pression, asphyxie, ventilation) ; Évaluation pose des
+  manomètres épreuve à l'azote tirage au vide.docx (inspiration de grille) ; tp mise sous azote PFC.docx ;
+  Charte pédagogique FrigorX (§7 sécurité) ; référentiel CAP IFCA (codes C3.9, C2.4, T11, T12, S6.2, S6.3) ;
+  documents S5-F2 (check-list opérateur/contrôleur, chaîne 1→5, image manodetendeur-azote-schema-principe.jpg).
+  Pression d'épreuve et durée de tenue : fixées par le professeur au poste, à faire valider (cf.
+  <i>_CADRAGE-S6.md</i> et <i>_ETAT.md</i> — écart entre la valeur du maître de séquence, 20 bar, et la seule
+  valeur d'essai sourcée de la base, 10 bar minimum pendant 24 h). Modèle 2A allégé (S12, séance 3) consulté
+  pour l'esprit du protocole (conception de protocole, rapport de preuve), sans en reprendre le tirage au vide
+  ni l'autonomie de conception du protocole, hors périmètre de ce module de 1<sup>re</sup> année.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .avenir{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

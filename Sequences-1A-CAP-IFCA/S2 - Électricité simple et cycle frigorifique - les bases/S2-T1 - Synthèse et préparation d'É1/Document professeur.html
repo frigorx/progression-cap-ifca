@@ -1,0 +1,392 @@
+<meta charset="utf-8">
+<title>Document professeur — S2 · Module théorie T1 · Synthèse et préparation d'É1</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .ouvert{border:1.5px dashed #c14a17; border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .ouvert b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Synthèse cycle frigorifique + grandeurs électriques · préparation d'É1</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S2-T1 · 2 h — DOCUMENT PROFESSEUR</span><b>Synthèse et préparation d'É1</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S2</span> · sem. 5-7</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (classe entière, pas d'atelier ce jour)</td>
+      <td><span class="lib">Durée</span>2 h — révision active, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche (annonce É1) → révision active en quiz-tournoi par équipes → application individuelle format É1 → synthèse « je suis prêt(e) »</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — module théorie de synthèse, classe entière</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe · <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">tous deux augmentés — révision de S1-T1/S1-T2, aucun contenu nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Jouer le jeu du quiz honnêtement · travailler seul(e) sans copier · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui d'É1 — grille indicative, non remontée</span> ce module RÉVISE C3.4/C3.6/C4.5 sans les évaluer : le statut <b>Évaluation</b> n'apparaîtra qu'à É1, semaine 7, sur les 3 postes (froid, élec, théorie)</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même numérotation que le document élève
+  (manches 1-4 du quiz, exercices 1-4 de l'application) et y ajoute les réponses attendues, le barème d'équipe,
+  les points de vigilance, la conduite minutée en 4 phases et la différenciation. <b>AUCUNE notion nouvelle</b> :
+  toutes les questions dérivent des documents S1-T1 (« Le cycle frigorifique, les bases ») et S1-T2 (« Les
+  grandeurs électriques U, I, R »), déjà produits et vécus par les élèves. Ce module est un <b>passage
+  d'aisance</b> : même contenu qu'en S1, moins d'aide, plus d'autonomie et de rythme — pas une évaluation. Les
+  seuils chiffrés (surchauffe, sous-refroidissement, HP/BP) restent absents, comme en S1-T1/T2 : ils
+  n'appartiennent pas au calibrage de la 1<sup>re</sup> année.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Quiz-tournoi par équipes</b> (méthode imposée par le cadrage S2, différente du
+  cours actif magistral de S1-T1/T2) : la révision active passe par le jeu et l'émulation collective avant de
+  redevenir individuelle. C'est la <b>progression d'autonomie</b> voulue entre S1 et S2 : en S1, le professeur
+  démontrait puis l'élève répondait ; en S2, l'élève répond d'abord (en équipe, puis seul), le professeur ne
+  reprend que ce qui coince. Bloom CAP 1→3 inchangé (nommer, appliquer une formule donnée, lire une plaque) :
+  aucune montée de niveau, seulement plus d'autonomie dans la restitution.</p>
+  <p style="font-size:10.3pt">Le barème d'équipe est <b>volontairement simple et sans enjeu</b> : 1 point par
+  bonne réponse, 2 si l'équipe est seule à avoir trouvé, total affiché au tableau. <b>Aucune note individuelle
+  n'est remontée</b> sur École Directe pour ce quiz : c'est un outil de révision et de cohésion, pas une
+  évaluation. La grille 0-4 de la feuille 5 (auto-positionnement) n'est pas non plus remontée : elle sert de
+  repère personnel avant É1.</p>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche — annonce d'É1</td><td>2 min : rappel du calendrier (É1 en semaine 7, sur les 3 créneaux froid/élec/théorie). 6 min : présentation transparente du tableau des 3 postes (feuille 1 du document élève) et des 3 compétences ancrées (C3.4, C3.6, C4.5) — insister sur « rien de nouveau, seulement refaire seul(e) ». 2 min : question d'auto-positionnement initiale notée individuellement (sera reprise en phase 4).</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Révision active — quiz-tournoi</td><td>Installation et constitution des équipes — 2 min. 3 min : constitution des équipes de 3-4, choix du nom, rappel des règles et du barème. 9 min : manche 1 (croix, 4 questions, ~2 min chacune dont correction flash). 9 min : manche 2 (vrai/faux, 4 questions). 9 min : manche 3 (grandeurs U/I/R + loi d'Ohm, 4 questions). 8 min : manche 4 (lecture de plaque, 2 questions) + proclamation du classement (sans enjeu, juste pour le jeu) + retour au calme.</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application — entraînement individuel format É1</td><td>Consigne : travail seul(e) et en silence, comme à É1. Exercice 1 (10 min) : croix vierge à compléter. Exercice 2 (8 min) : associer organe/rôle. Exercice 3 (14 min) : 2 calculs guidés loi d'Ohm. Exercice 4 (10 min) : lecture de plaque signalétique. 8 min : correction collective rapide des 4 exercices (le professeur circule pendant le travail individuel pour repérer les difficultés à cibler ici).</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse — « je suis prêt(e) pour É1 »</td><td>10 min : grille d'auto-positionnement C3.4/C3.6/C4.5 en langage élève, complétée individuellement. 5 min : checklist « ce que je révise d'ici la semaine 7 », cases cochées honnêtement. 5 min : retour sur la question d'auto-positionnement de la phase 1, comparaison avant/après, mot de clôture sur l'organisation des révisions (atelier + théorie) avant É1.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à la
+  trame imposée par le cadrage S2 pour le module S2-T1.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ DU QUIZ-TOURNOI (MANCHES 1-4) + BARÈME ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Manche 1 (la croix du frigoriste)</h3>
+  <table class="mini">
+    <tr><th style="width:60%">Question</th><th>Réponse</th></tr>
+    <tr><td>1. Organe à GAUCHE sur la croix</td><td><b>Le détendeur</b></td></tr>
+    <tr><td>2. Organe en HAUT sur la croix</td><td><b>Le condenseur</b></td></tr>
+    <tr><td>3. Le fluide sort du compresseur : il entre d'abord dans...</td><td><b>Le condenseur</b></td></tr>
+    <tr><td>4. Organe qui absorbe la chaleur, fait naître le froid</td><td><b>L'évaporateur</b></td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Reprend exactement le schéma « croix du
+  frigoriste » et le corrigé de S1-T1 (repères 1-4, sens de circulation compresseur→condenseur→détendeur→
+  évaporateur→compresseur). Ne pas laisser réapparaître l'erreur fréquente déjà signalée en S1-T1 : le
+  compresseur « fait du froid » parce qu'il est bruyant/visible — il est côté <b>chaud</b>, c'est l'évaporateur
+  qui produit le froid.</div>
+
+  <h3 class="section">Corrigé — Manche 2 (vrai ou faux)</h3>
+  <table class="mini">
+    <tr><th style="width:70%">Affirmation</th><th>Réponse</th></tr>
+    <tr><td>Le condenseur transforme le liquide en gaz. <span class="nuance">(reprise à l'identique de S1-T1 — repère volontaire pour les élèves)</span></td><td><b>Faux</b> — l'inverse : gaz chaud → liquide.</td></tr>
+    <tr><td>Le compresseur est du côté chaud de la croix.</td><td><b>Vrai</b>.</td></tr>
+    <tr><td>Le multimètre peut mesurer la tension, l'intensité ET la résistance.</td><td><b>Vrai</b> — 3 fonctions dans le même appareil (S1-T2).</td></tr>
+    <tr><td>On peut mesurer une résistance sur un circuit resté sous tension.</td><td><b>Faux</b> — toujours hors tension (TP 04, S1-T2 exercice 3c).</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — Manche 3 (les 3 grandeurs U, I, R)</h3>
+  <table class="mini">
+    <tr><th style="width:60%">Question</th><th>Réponse</th></tr>
+    <tr><td>1. Unité et symbole de la tension</td><td><b>Volt, V</b></td></tr>
+    <tr><td>2. Appareil/position pour mesurer l'intensité</td><td><b>Ampèremètre, position A du multimètre</b></td></tr>
+    <tr><td>3. Unité et symbole de la résistance</td><td><b>Ohm, Ω</b></td></tr>
+    <tr><td>4. U = ____ × ____</td><td><b>U = R × I</b></td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — Manche 4 (lecture de plaque, en éclair)</h3>
+  <table class="mini">
+    <tr><th style="width:60%">Question</th><th>Réponse</th></tr>
+    <tr><td>1. Comment reconnaît-on une grandeur électrique sur une plaque ?</td><td><b>Son unité</b> : V, A, kW électrique, Hz — à distinguer d'une grandeur mécanique (kg, tr/min).</td></tr>
+    <tr><td>2. Intensité relevée, ligne 440 V / 60 Hz</td><td><b>3,60 A</b></td></tr>
+  </table>
+
+  <h3 class="section">Barème d'équipe (rappel)</h3>
+  <p style="font-size:10.3pt">1 point par bonne réponse ; 2 points si l'équipe est la <b>seule</b> à avoir
+  trouvé une réponse correcte à une question donnée. Total affiché au tableau à la fin des 4 manches.
+  <b>Aucune trace individuelle n'est conservée</b> : le tableau de score s'efface après la séance, seule la
+  feuille de révision de chaque élève (ses réponses notées manche par manche) est conservée par lui.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ EXERCICES 1-2 (CROIX + ORGANE/RÔLE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 1 (croix à compléter)</h3>
+  <div class="reponse">Croix à 4 branches : <b>détendeur</b> à GAUCHE, <b>compresseur</b> à DROITE,
+  <b>condenseur</b> en HAUT, <b>évaporateur</b> en BAS (convention absolue, identique depuis S1). Flèche de sens
+  de circulation : compresseur → condenseur → détendeur → évaporateur → retour au compresseur.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Contrairement à S1-T1 où l'élève dessinait la
+  croix pour la première fois (aide possible), ici la consigne est donnée <b>sans exemple affiché</b> : c'est le
+  format exact d'É1. Ne pas afficher le schéma-modèle pendant l'exercice ; l'afficher seulement à la correction.</div>
+
+  <h3 class="section">Corrigé — Exercice 2 (organe → rôle)</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Organe</th><th style="width:10%">Lettre</th><th>Rôle</th></tr>
+    <tr><td>Compresseur</td><td><b>C</b></td><td>Aspire le fluide et le comprime : il chauffe et monte en pression.</td></tr>
+    <tr><td>Détendeur</td><td><b>D</b></td><td>Fait chuter la pression du liquide.</td></tr>
+    <tr><td>Condenseur</td><td><b>A</b></td><td>Refroidit le gaz chaud jusqu'à le rendre liquide.</td></tr>
+    <tr><td>Évaporateur</td><td><b>B</b></td><td>Absorbe la chaleur et transforme le fluide en gaz : c'est ici que naît le froid.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Les lettres des rôles ont été <b>réordonnées</b>
+  par rapport à S1-T1 (A/B/C/D ne correspondent plus aux mêmes organes) : c'est volontaire, pour éviter que
+  l'élève réponde par pur réflexe de position sans relire l'énoncé. Le contenu des 4 phrases est identique à
+  S1-T1 (aucune reformulation, zéro invention).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ EXERCICES 3-4 (OHM + PLAQUE) + POINT OUVERT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 3 (2 calculs guidés, loi d'Ohm)</h3>
+  <div class="reponse"><b class="t">Calcul guidé 1</b> — R = 7,3 Ω (résistance d'un enroulement mesurée hors
+  tension, TP 04, S1-T2) ; U = 230 V (secteur français, valeur normative).<br>
+  I = U ÷ R = 230 ÷ 7,3 ≈ <b>31,5 A</b>.</div>
+  <div class="reponse"><b class="t">Calcul guidé 2</b> — U = 440 V ; I = 3,60 A (plaque moteur Leroy Somer, ligne
+  440 V/60 Hz, Exercice n°1 S4-Électricité, déjà lue en S1-T2).<br>
+  R = U ÷ I = 440 ÷ 3,60 ≈ <b>122 Ω</b>.</div>
+
+  <div class="ouvert"><b class="t">Point ouvert — choix documenté (prolonge le point ouvert de S1-T2)</b>
+  Le document professeur de S1-T2 avait explicitement renoncé à un calcul numérique complet de la loi d'Ohm,
+  faute de triplet U/I/R sourcé et cohérent sur un même composant purement résistif. Pour ce module de
+  <b>révision avant É1</b>, le cadrage S2 demande explicitement « 2 calculs guidés loi d'Ohm avec les valeurs
+  des sources » : les 2 calculs ci-dessus utilisent donc chacun un <b>couple de valeurs réellement mesurées ou
+  lues</b> dans les sources S1-T2 (R = 7,3 Ω, TP 04 ; U = 440 V et I = 3,60 A, plaque moteur), <b>sans inventer
+  aucun nombre</b>. Ce sont deux entraînements <b>indépendants</b> au maniement de la formule (I = U÷R puis
+  R = U÷I) : ils ne prétendent pas décrire le même composant, ni un fonctionnement réel identique. <b>Vigilance
+  interne (à ne PAS enseigner à l'élève ce jour, pas de notion nouvelle)</b> : le calcul guidé 2 applique la
+  formule à un moteur triphasé, charge inductive — la valeur obtenue (≈ 122 Ω) est en toute rigueur physique une
+  <b>impédance apparente</b>, pas une résistance ohmique pure (le vrai R de l'enroulement, mesuré à l'ohmmètre
+  hors tension, est plutôt de l'ordre de grandeur du calcul guidé 1, soit quelques ohms). Cette nuance sera
+  reprise en 2<sup>e</sup> année (séquence S11) ; elle ne doit <b>pas</b> être introduite à l'oral en 1A : pour
+  l'élève, l'exercice reste un simple entraînement au maniement de la formule donnée. <b>À signaler à F.
+  Henninot</b> : si un triplet réel U/I/R cohérent sur un composant purement résistif existe déjà dans la
+  bibliothèque, le substituer ici lors d'une prochaine relecture.</div>
+
+  <h3 class="section">Corrigé — Exercice 4 (lecture de plaque)</h3>
+  <table class="mini">
+    <tr><th style="width:50%">Grandeur (ligne 440 V)</th><th>Valeur</th></tr>
+    <tr><td>1. Intensité absorbée</td><td><b>3,60 A</b></td></tr>
+    <tr><td>2. Puissance mécanique nominale</td><td><b>1,80 kW</b></td></tr>
+    <tr><td>3. Vitesse nominale</td><td><b>1 710 tr/min</b></td></tr>
+    <tr><td>4. Poids du moteur</td><td><b>18 kg</b></td></tr>
+  </table>
+  <div class="reponse"><b class="t">Question</b> — Grandeurs électriques parmi les 4 : <b>l'intensité (3,60 A)
+  uniquement</b> ; la tension (440 V) est donnée dans l'énoncé de la ligne choisie, elle compte aussi comme
+  grandeur électrique si l'élève la cite. La puissance mécanique, la vitesse et le poids sont mécaniques, pas
+  électriques (identique au corrigé S1-T2).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 + DIFFÉRENCIATION + LIEN AVEC É1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S2 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Grille <b>Appui d'É1 — grille indicative, non remontée</b> sur École
+  Directe : elle sert de repère personnel à l'élève avant É1, pas d'évaluation sommative. Les libellés C3.4/C3.6/
+  C4.5 sont donnés en <b>langage élève</b> dans le document élève ; voici leur ancrage exact.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:20%">Compétence ancrée</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:9%">3</th><th class="niv" style="width:9%">4</th></tr>
+    <tr>
+      <td><b>C3.4</b> « Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) » — sur T6/T12 · S2.1 <span class="nuance">Confortement</span></td>
+      <td>Non évalué ce jour.</td>
+      <td>Ne sait pas enchaîner les étapes seul(e), même en atelier.</td>
+      <td>Enchaîne les étapes avec aide (démonstration, rappel).</td>
+      <td>Enchaîne seul(e), la pièce passe les contrôles (cf. corrigés S2-F1).</td>
+      <td>Comme « Acquis », en expliquant ses choix à un pair.</td>
+    </tr>
+    <tr>
+      <td><b>C3.6</b> « Câbler, repérer, connecter les liaisons électriques et électroniques » — sur T10 · S5.6 <span class="nuance">Confortement</span></td>
+      <td>Non évalué ce jour.</td>
+      <td>Ne câble pas seul(e) à partir d'un schéma.</td>
+      <td>Câble avec aide.</td>
+      <td>Câble seul(e), montage fonctionnel au contrôle professeur (cf. corrigés S2-E1).</td>
+      <td>Comme « Acquis », en expliquant ses choix à un pair.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> « Mesurer, comparer des grandeurs » — sur T11 · S5.6 <span class="nuance">Confortement</span></td>
+      <td>Non évalué ce jour.</td>
+      <td>Ne choisit/utilise pas le bon appareil de mesure seul(e).</td>
+      <td>Mesure avec aide.</td>
+      <td>Mesure seul(e), compare sa valeur à ce qui est attendu.</td>
+      <td>Comme « Acquis », en expliquant sa démarche à un pair.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — jeu honnête du quiz, travail individuel sans copier</td>
+      <td>Non observé.</td>
+      <td>Copie ou ne participe pas.</td>
+      <td>Participe mais a besoin d'un rappel.</td>
+      <td>Joue honnêtement, travaille seul(e) pendant l'entraînement.</td>
+      <td>Comme « Acquis », et aide une autre équipe à rester honnête.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance — statuts</b> Ce module reste <b>Appui d'É1 — grille
+  indicative, non remontée</b> pour les 3 compétences : elles ne deviennent <b>Évaluation</b> (remontée École Directe) qu'à É1, semaine 7, ancrées
+  sur les tâches réellement réalisées ce jour-là (T6/T8/T10/T11/T12). Ne jamais laisser croire à l'élève que la
+  grille de ce cours compte pour la note d'É1.</div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Pendant le quiz, laisser ces élèves répondre en dernier dans leur équipe (temps de réflexion supplémentaire) ; pour l'exercice 1, fournir une croix déjà tracée (4 branches vides positionnées) ; pour l'exercice 3, donner le calcul 1 entièrement fait en exemple avant de demander le calcul 2 seul(e).</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : quiz en équipes puis 4 exercices individuels en autonomie, correction collective en fin de séance.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus, à l'oral, après l'exercice 3 : « pourquoi les deux calculs guidés ne donnent-ils pas le même ordre de grandeur de résistance, alors que les deux portent sur un moteur ? » (fait réfléchir sans donner la réponse « impédance », réservée à la 2<sup>e</sup> année — accepter toute hypothèse raisonnable : « ce ne sont pas les mêmes enroulements / pas les mêmes conditions »).</td></tr>
+    <tr><td>FLE</td><td>Équipes mixtes imposées (jamais un seul niveau de français par équipe) ; questions du quiz relues à voix haute avant chaque manche ; pictogrammes déjà utilisés en S1 (compresseur/condenseur/détendeur/évaporateur, U/I/R) réaffichés en support pendant tout le cours.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Une seule manche du quiz projetée à la fois (jamais les 4 en même temps) ; pendant l'application individuelle, autoriser un cache-feuille pour ne travailler que sur l'exercice en cours ; grille de synthèse (feuille 5) présentée ligne par ligne si besoin.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence — É1, semaine 7</h3>
+  <ul class="liste-num">
+    <li>Le poste <b>THÉORIE</b> d'É1 (2 h, écrit individuel) reprend <b>exactement</b> le format de l'application
+    de ce cours (croix à compléter, organe/rôle, calculs loi d'Ohm, lecture de plaque) : mêmes types de
+    questions, autres valeurs/rôles pour éviter le par-cœur pur ;</li>
+    <li>Les postes <b>FROID</b> (4 h) et <b>ÉLEC</b> (4 h) d'É1 sont préparés par les modules atelier S2-F1,
+    S2-F2 et S2-E1 de cette même séquence, pas par ce module théorique ;</li>
+    <li>Le carnet de bord <b>F3</b> peut accueillir la checklist « ce que je révise » de la feuille 5 si
+    l'enseignant souhaite en garder une trace datée (non obligatoire).</li>
+  </ul>
+
+  <h3 class="section">Points ouverts (à faire valider par F. Henninot)</h3>
+  <ol class="liste-num">
+    <li>Dates réelles des semaines 5-7 (calendrier 2026-27) — « à confirmer », comme dans tout le cadrage S2.</li>
+    <li>Répartition exacte des postes d'É1 sur la semaine 7 (proposition du cadrage : froid et élec en
+    demi-groupes tournants sur les 2 créneaux de 4 h, théorie en classe entière sur le créneau de 2 h) — à
+    valider.</li>
+    <li>Point ouvert reporté de S1-T2 (voir feuille 4) : aucun triplet U/I/R sourcé et cohérent sur un
+    composant purement résistif n'a été retrouvé ; les 2 calculs guidés utilisent deux couples de valeurs
+    réelles mais indépendants, avec vigilance interne documentée sur l'impédance apparente du calcul 2.</li>
+    <li>Format exact des autres valeurs et rôles utilisés au poste théorie d'É1 (pour éviter le par-cœur) :
+    à produire avec le sujet É1 lui-même, hors périmètre de ce module de révision.</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : documents S1-T1
+  « Le cycle frigorifique, les bases » et S1-T2 « Les grandeurs électriques U, I, R » (F. Henninot, 2026, et
+  leurs sources déjà citées) ; « eval croix du frigo » (F. Henninot, base 25-26, `_MD\02_CAP-IFCA\
+  Froid-Frigorifique`) pour le format « croix à compléter » — éléments compresseur/détendeur/évaporateur/
+  condenseur seuls repris ; capillaire et pressions HP/BP <b>non repris</b> (notions non vues en S1-T1, hors
+  calibrage 1<sup>re</sup> année) ; plaque signalétique moteur Leroy Somer LS 90L-T et TP 04 – multimètre +
+  correction, résistance d'enroulement 7,3 Ω (F. Henninot) ; schéma « Loi d'Ohm » (F. Henninot) ; cadrage
+  `_CADRAGE-S2.md` (chef d'orchestre usine FrigorX, 16/07/2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .ouvert{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

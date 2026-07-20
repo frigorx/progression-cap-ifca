@@ -1,0 +1,234 @@
+<meta charset="utf-8">
+<title>Plan de séance — S6-E1 · Contacteurs et moteurs — consolidation</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Épreuve d'étanchéité azote et recherche de fuite — <b>module atelier S6-E1</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S6-E1</span><b>Contacteurs et moteurs — consolidation</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S6</span> P3 · semaines 18-19</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 18</b> et <b>passage 2 — semaine 19</b> (dates à caler sur le calendrier réel, cf. <i>_CADRAGE-S6.md</i>) — <b>même contrat de réussite, vécu deux fois</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des platines contacteurs/moteurs + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier froid S6-F1)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">(contacteur/relais thermique/moteur câblés en S5-E1, schéma de commande complet avec auto-maintien et voyants câblé en S5-E2)</span><br><span class="nuance">Travaillé :</span> <b>S5.6</b> <span class="nuance">augmenté — aucun contenu électrique nouveau : c'est l'autonomie qui monte, pas le savoir</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel (NF C 18-510) · vigilance pièces tournantes · rigueur du câblage · <b>honnêteté de la déclaration des aides demandées</b> (contrat) · lucidité du choix de niveau</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → vers Maîtrise</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6 — seule compétence évaluable de ce module</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S6-3</b> : dans l'arrière-boutique, l'armoire électrique du groupe froid doit être
+  <b>fiabilisée</b> avant la réception du chantier : le professeur, responsable du site, vous demande de
+  <b>recâbler le départ moteur en autonomie, sans erreur</b>. Le chantier de réception (É3) approche — c'est la
+  dernière consolidation avant l'épreuve.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>choisir</b>, annoncer et signer un <b>niveau de contrat</b> (1, 2 ou 3), en fonction de mon
+        positionnement réel sur le départ moteur ;</li>
+        <li><b>recâbler seul(e)</b>, sans schéma imposé par le professeur, la <b>puissance et la commande complète</b>
+        d'un départ moteur (sectionneur, contacteur, relais thermique, moteur, auto-maintien) ;</li>
+        <li>si niveau 2 ou 3 : <b>ajouter les voyants</b> de marche et de défaut, conformes au circuit F1 déjà connu ;</li>
+        <li><b>réaliser seul(e) le contrôle hors tension complet</b> (continuité et serrage) avant tout appel au
+        professeur, et <b>déclarer honnêtement</b> chaque aide demandée ;</li>
+        <li><b>tenir mon contrat</b> jusqu'au bout : signature de départ, câblage, essai, bilan signé de fin.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>câbler la partie puissance d'un départ moteur (Q1 → KM1 → F1 → M1), acquis en S5-E1 ;</li>
+        <li>câbler le circuit de commande complet avec auto-maintien, bouton marche S1, bouton arrêt S2, sécurité
+        thermique F1 (95-96) et voyants H1/H2, acquis en S5-E2 ;</li>
+        <li>réaliser seul(e) une consignation/VAT avant toute intervention (acquis depuis S1) ;</li>
+        <li>mon positionnement à É2 sur le poste ÉLEC (C3.6) — s'il était fragile, la variante consolidation de ce
+        module me reprend en priorité.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S5</b> — En S5-E1 et S5-E2, le professeur donnait le schéma
+  et guidait chaque étape. <b>Ici, aucun contenu électrique n'est nouveau</b> : c'est une REPRISE — le seul objectif
+  est de refaire le même départ moteur <b>en autonomie croissante</b>. Les documents S5-E1/S5-E2 (schémas, fiches)
+  deviennent des <b>aides</b>, disponibles sur demande explicite, mais chaque demande est <b>notée au contrat</b> :
+  demander une aide n'est jamais une faute, mais influence le niveau réellement atteint.</div>
+
+  <div class="plan"><b class="t">Méthode du module : contrat de réussite par niveaux</b> — en <b>début de séance</b>,
+  chaque élève <b>choisit</b> son défi parmi 3 niveaux (1 : départ moteur seul, puissance + commande complète, sans
+  aide · 2 : niveau 1 + voyants marche/défaut · 3 : niveau 2 + variante imposée par le professeur), <b>l'annonce</b>
+  au professeur et <b>signe</b> le contrat (annexe pleine page). L'élève câble ensuite en autonomie croissante ; les
+  aides (documents S5) sont demandées explicitement et comptabilisées. En fin de séance, <b>bilan et signature</b>
+  du contrat : niveau tenu, aides utilisées, niveau visé au passage suivant.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 18 et 19)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 18 — contrat au niveau choisi, aides disponibles</h4>
+      L'élève choisit son niveau (1, 2 ou 3) en fonction de son ressenti réel depuis S5, l'annonce et signe le
+      contrat en <b>phase 5</b>. Les documents S5-E1/S5-E2 sont disponibles sur demande explicite : chaque aide
+      demandée est <b>notée au contrat</b> par le professeur, sans pénalité immédiate mais avec effet sur le
+      niveau réellement validé.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 19 — niveau supérieur ou même niveau, SANS AUCUNE aide</h4>
+      Si le niveau du passage 1 a été tenu <b>sans aide</b>, l'élève vise le <b>niveau supérieur</b>. S'il a fallu
+      des aides, ou si le niveau n'a pas été tenu, l'élève <b>reprend le même niveau</b>, mais cette fois <b>sans
+      aucune aide disponible</b> : les documents S5-E1/S5-E2 ne sont plus accessibles pendant le câblage. C'est ce
+      passage qui prépare directement le poste ÉLEC d'É3 (semaine 21), où aucune aide ne sera disponible non plus.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : choc électrique par contact direct avec
+  une pièce sous tension, <b>pièces tournantes du moteur</b>, borne mal serrée qui s'échauffe, déclenchement non
+  maîtrisé si un défaut réel est provoqué. <b>EPI</b> : chaussures de sécurité, pas de bijoux ni de montre, manches
+  ajustées, cheveux longs attachés. <b>Gestes interdits</b> : <b>jamais provoquer un vrai défaut thermique</b> —
+  seul le bouton test du relais thermique est autorisé ; jamais toucher un conducteur nu ; <b>jamais shunter</b> le
+  relais thermique ou une protection ; jamais s'approcher du moteur en rotation ; <b>jamais mettre une platine sous
+  tension soi-même</b> — seul le professeur le fait, après contrôle. <b>Consignation NF C 18-510</b>, rituel acquis
+  depuis S1 : couper → vérifier l'absence de tension (VAT) au multimètre → condamner/signaler → travailler hors
+  tension. <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence de l'atelier, localisé en phase 5),
+  alerter le professeur, <b>ne jamais déplacer un camarade électrisé</b>.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S6-E1 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 18 et 19</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Durées <b>identiques</b> aux deux passages (seul le niveau du contrat et la disponibilité des aides changent).</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (consolidation contacteurs et moteurs).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S6-3 : fiabiliser l'armoire, recâbler le départ moteur en autonomie — le chantier de réception (É3) approche.</td><td>Présente l'ordre d'intervention et l'enjeu É3.</td><td>Reformulent la mission et son lien avec É3.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec C3.6 et le statut du jour (Confortement → vers Maîtrise).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : mini-quiz de reprise sur les repères KM1/S1/S2/F1/H1/H2 et la logique du circuit (S5-E1/S5-E2). <span class="jalon">crochet remédiation</span> Variante consolidation fléchée « élèves fragiles à É2 sur C3.6 » (reprise accompagnée) ; approfondissement = tutorat par un élève solide.</td><td>Distribue le mini-quiz, contrôle les tenues et les EPI, encadre les groupes de besoin.</td><td>Se changent par vagues ; en attente, font le mini-quiz ou tutorent un pair.</td><td>Mini-quiz de reprise S5 · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (arrêt d'urgence et trousse relocalisés, gestes interdits rappelés) puis <b>présentation du contrat de réussite</b> : les 3 niveaux sont expliqués, chaque élève <b>choisit</b>, <b>annonce</b> et <b>signe</b> son contrat (annexe pleine page). Pas de « planter la notion » : aucun contenu nouveau, c'est une reprise.</td><td>Explique les 3 niveaux, recueille les choix et les signatures, relance les choix mal calibrés (voir document professeur).</td><td>Choisissent leur niveau, l'annoncent, signent le contrat.</td><td>Contrat de réussite (annexe) · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>55 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon A</span></td><td>Câblage en autonomie selon le niveau signé : puissance (Q1 → KM1 → F1 → M1) puis début de la commande complète (S2 → S1 + auto-maintien KM1 13-14 → bobine, F1 95-96 en série). Aides sur demande explicite, notées au contrat par le professeur.</td><td>Circule sans imposer le schéma, note chaque aide demandée, veille à la sécurité.</td><td>Câblent en autonomie, demandent une aide si besoin (et l'assument).</td><td>Platines · Q1/KM1/F1/M1/S1/S2 · annexe A3 (accessible seulement si aide demandée, passage 2)</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>70 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon B</span></td><td>Fin du câblage (voyants H1/H2 si niveau 2 ou 3 ; variante si niveau 3), <b>contrôle hors tension complet</b> (continuité et serrage, en autonomie), appel du professeur, mise sous tension et essai <b>par le professeur</b>, puis <b>bilan et signature de fin de contrat</b> (niveau réellement tenu, aides utilisées, niveau visé au passage suivant).</td><td>Valide chaque contrôle hors tension, réalise seul la mise sous tension et les essais, signe le bilan de contrat avec l'élève.</td><td>Terminent le câblage, contrôlent hors tension, appellent le professeur, observent l'essai, complètent et signent le bilan.</td><td>Multimètres · fiche de contrôle · contrat (bilan)</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque élève présente son niveau tenu et son contrôle hors tension ; auto-positionnement (C3.6 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leur niveau tenu, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (fils, cosses, fusibles, voyants de rechange).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Platines remises hors tension et débranchées, multimètres remis sur OFF, fils et outillage rangés, postes vérifiés propres et dégagés.</td><td>Supervise la remise hors tension et le rangement.</td><td>Rangent, vérifient que chaque poste est hors tension.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la suite (passage 2 la semaine suivante, puis É3 en semaine 21).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  Jalon A (55 min) + pause (15 min) + jalon B (70 min) = 2 h 20 ; synthèse 15 + bon de commande 10 + rangement 10 +
+  clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, identique aux deux passages — seul
+  le niveau du contrat et la disponibilité des aides changent (cf. encadré Passage 1/2, feuille 1).</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  électriques (consignation, NF C 18-510, pièces tournantes) · technologie (contacteur, relais thermique, moteur,
+  S5.6) · co-intervention français (carnet de bord, module F3) · préparation directe du poste ÉLEC d'É3 (semaine 21).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Élèves à revoir en priorité (remédiation avant É3)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,792 @@
+<meta charset="utf-8">
+<title>Carnet de bord élève — S3 · Module F3 · Fil de l'eau</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:4px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.9em}
+  .zone-reponse.grande{min-height:6em}
+  .zone-schema{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:10px; margin:.4em 0 .8em;
+    min-height:15em; display:flex; align-items:center; justify-content:center; font-size:9pt; color:var(--leger); font-style:italic; text-align:center}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:8px; text-align:center; min-height:1.6em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .fiche-num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt;
+    border-radius:8px; padding:3px 12px; background:var(--marine); color:#fff; margin-bottom:8px}
+  .rubrique{border:1px solid var(--filet); border-radius:6px; margin:.5em 0 .9em; overflow:hidden}
+  .rubrique .titre-rubrique{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:5px 12px;
+    font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt; color:var(--bleu)}
+  .rubrique .corps-rubrique{padding:10px 14px}
+  .rubrique.commande .titre-rubrique{background:#fff2ea}
+  .rubrique.auto .titre-rubrique{background:#f8f6ff}
+  table.bc{font-size:9.5pt; margin:.3em 0 .5em}
+  table.bc th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.bc td{border:1px solid var(--filet); padding:8px; min-height:1.6em}
+  .champ-libre{border-bottom:1px dotted var(--leger); min-height:1.9em; padding:3px 4px}
+  .grille-remplir{border:1px dashed var(--leger); border-radius:6px; padding:6px 10px; background:var(--fond-doux)}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 0 — COUVERTURE DU CARNET (suite de S1-S2) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre et schémas domestiques</td>
+      <td style="width:38%"><span class="lib">Module F3 · fil de l'eau · 2 h (continu)</span><b>Carnet de bord de chantier — suite</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span></td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Classe</span>________________</td>
+      <td><span class="lib">Poste habituel</span>________________</td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Rappel — vous tenez ce carnet depuis S1</h4>
+  C'est votre <b>3<sup>e</sup></b> carnet. Les rubriques ne changent pas : ce que j'ai fait, mes relevés, mes
+  difficultés, le bon de commande, l'auto-évaluation. Une nouveauté cette fois : une fiche spéciale s'ouvre
+  <b>dès la 1<sup>re</sup> semaine</b> de S3, juste après votre évaluation É1 — elle prépare toute la suite de
+  la séquence.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention</div>
+    <div class="case"><h4>Savoir</h4><b>S3.1</b> Communication technique (augmenté)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la trace écrite · régularité (une fiche par module) · honnêteté de l'auto-évaluation</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C1.3</b> Rendre compte<br><span class="statut">Confortement</span> <b>C2.1</b> Organiser des informations</div>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic; margin:.2em 0 .9em">Statut Confortement :
+  c'est la 3<sup>e</sup> fois que vous rencontrez ces compétences (Découverte en S1, Confortement en S2 et en
+  S3). <b>Toujours pas de note</b> sur le carnet lui-même — l'exigence de précision et d'autonomie continue
+  d'augmenter.</p>
+
+  <h3 class="section">Comment se déroule la séquence S3</h3>
+  <ul class="liste-num">
+    <li><b>Semaine 8</b> : atelier froid <b>S3-F1</b> (cuivre avancé, passage 1) pour un demi-groupe, atelier
+    élec <b>S3-E1</b> (protections et DDR, passage 1) pour l'autre + 2 h de théorie <b>S3-T2</b>, retour d'É1
+    et remédiation, en classe entière.</li>
+    <li><b>Semaine 9</b> : <b>S3-F1</b> (passage 2) et <b>S3-E1</b> (passage 2) — les groupes ont permuté.</li>
+    <li><b>Semaine 10</b> : atelier froid <b>S3-F2</b> (brasage tendre, passage 1), atelier élec <b>S3-E2</b>
+    (télérupteur, passage 1) + 2 h de théorie <b>S3-T1</b>, les composants frigorifiques.</li>
+    <li><b>Semaine 11</b> : <b>S3-F2</b> (passage 2) et <b>S3-E2</b> (minuterie, passage 2) — fin de la
+    séquence, bilan.</li>
+  </ul>
+
+  <div class="duo" style="grid-template-columns:1fr">
+    <div><h4>Ce qui change depuis S2</h4>
+    <ul style="margin:.2em 0 0 1.1em; padding:0; font-size:10pt">
+      <li>La fiche spéciale est <b>en ouverture</b> (semaine 8), pas à la fin : elle recopie vos 2 objectifs de
+      progrès décidés juste après É1, et vous y revenez au bilan (semaine 11).</li>
+      <li>Statut <b>Confortement</b> pour la 2<sup>e</sup> année de suite : encore plus d'autonomie attendue.</li>
+      <li>De nouvelles traces techniques s'ajoutent aux relevés habituels : contrôle croisé d'étanchéité,
+      essais de brasage, schéma collé, composants nommés — une par module.</li>
+      <li>Le bilan de fin de séquence compare ce que vous savez faire de nouveau à vos objectifs post-É1.</li>
+    </ul></div>
+  </div>
+
+  <h3 class="section">Sommaire des fiches de ce carnet</h3>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th>Fiche</th><th>Module visé</th><th>Remplie le</th><th>Visée prof ?</th></tr>
+    <tr><td>Fiche n° 1 — spéciale</td><td>S3-T2 — Après É1 : mes 2 objectifs, où j'en suis (ouverte sem. 8, revue sem. 11)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 2</td><td>S3-F1 — Cuivre avancé et étanchéité simple (2 passages)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 3</td><td>S3-E1 — Protections électriques et DDR (2 passages)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 4</td><td>S3-F2 — Brasage tendre, assemblages (2 passages)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 5</td><td>S3-E2 — Schémas domestiques avancés : télérupteur puis minuterie (2 passages)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 6</td><td>S3-T1 — Les composants frigorifiques</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Le carnet est cumulatif : il totalise 2 h
+  sur l'ensemble de la séquence S3, réparties en petites tranches à chaque module. Les fiches n° 2 à 5 servent
+  <b>deux fois</b> (passage 1 puis passage 2) : demandez une photocopie vierge au professeur avant votre
+  2<sup>e</sup> passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 1 — FICHE N°1 SPÉCIALE : APRÈS É1, MES OBJECTIFS DE PROGRÈS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 1 — SPÉCIALE</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Semaine</span><span class="grand">Semaine 8</span></td>
+      <td style="width:78%"><span class="lib">Module</span> <b>S3-T2</b> — Retour d'É1 et remédiation ciblée ·
+      <span class="lib" style="display:inline">Cette fiche se remplit en deux temps</span> maintenant, puis
+      de nouveau en <b>semaine 11</b>.</td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Pourquoi cette fiche est spéciale</h4>
+  Pendant S3-T2, vous avez relu votre grille 0-4 d'É1 et repéré vos points forts. Vous avez ensuite écrit,
+  sur votre fiche S3-T2, <b>votre plan de progrès</b> : 2 objectifs personnels. Recopiez-les ici, dans votre
+  carnet, pour les garder sous les yeux tout au long de la séquence.</div>
+
+  <div class="jalon"><h4>Mon objectif n° 1 (recopié depuis ma fiche S3-T2)</h4>
+    <div class="zone-reponse"></div>
+  </div>
+
+  <div class="jalon"><h4>Mon objectif n° 2 (recopié depuis ma fiche S3-T2)</h4>
+    <div class="zone-reponse"></div>
+  </div>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic; margin:.4em 0 .8em">Ne remplissez pas la
+  suite maintenant : elle se remplit à la fin de la séquence, au moment du bilan (feuille suivante : « Bilan
+  de séquence S3 », semaine 11).</p>
+
+  <div class="jalon" style="border-color:var(--orange)"><h4>Où j'en suis — à remplir en semaine 11</h4>
+    <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Pour chacun de vos 2 objectifs, dites où
+    vous en êtes à la fin de la séquence S3 : atteint, en progrès, pas encore.</p>
+    <div class="zone-reponse grande"></div>
+    <p style="font-size:9pt; color:var(--gris); margin:6px 0 0">Date du point : ________________</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — FICHE N°2 : MODULE S3-F1 (CUIVRE AVANCÉ ET ÉTANCHÉITÉ) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 2</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S3-T2 &nbsp; ☐ <b>S3-F1</b> Cuivre avancé et étanchéité simple &nbsp; ☐ S3-E1 &nbsp; ☐ S3-F2 &nbsp; ☐ S3-E2 &nbsp; ☐ S3-T1 &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Passage</span>☐ 1 — assemblage guidé, 1<sup>er</sup> contrôle accompagné (sem. 8) &nbsp; ☐ 2 — consolidation, contrôle croisé plus autonome (sem. 9)</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <div class="secu"><b class="t">Sécurité — je le rappelle</b><br>
+  La vérification d'étanchéité se fait à l'eau savonneuse, sous une pression réglée par le professeur.
+  Jamais d'air comprimé ni d'oxygène pour cette épreuve.</div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">Rappel de ce que vous
+  réactivez de S1-S2 : la coupe, le cintrage et le dudgeon, déjà enchaînés en S2-F1. Ici, vous assemblez
+  plusieurs pièces en un petit réseau, et vous vérifiez pour la première fois son étanchéité.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez l'enchaînement réalisé sur votre
+      petit réseau assemblé : coupe, cintrage, dudgeons enchaînés sur plusieurs pièces. Notez aussi comment
+      s'est passé le contrôle croisé : qui vous avez contrôlé, qui vous a contrôlé.</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes relevés / observations</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Une ligne par mesure. La valeur SANS unité
+      n'est pas un relevé. Exemples de grandeurs : longueur du réseau assemblé, nombre de dudgeons, temps
+      total.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:40%">Grandeur</th><th style="width:30%">Valeur</th><th style="width:30%">Unité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+      <p style="font-size:9.5pt; color:var(--gris); margin:8px 0 6px"><b>Contrôle croisé d'étanchéité</b> —
+      chaque binôme contrôle la pièce d'un autre binôme à l'eau savonneuse et signe le contrôle.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:26%"></th><th style="width:26%">Binôme concerné</th><th style="width:26%">Résultat (fuite ? où ?)</th><th style="width:22%">Signature</th></tr>
+        <tr><td style="text-align:left; font-size:8.5pt">Le contrôle que j'ai fait</td><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td style="text-align:left; font-size:8.5pt">Le contrôle que j'ai reçu</td><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué dans l'enchaînement ou
+      dans le contrôle croisé, ce qui a demandé de l'aide, ce qui a été raté puis repris.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche sert 2 fois (passage 1 puis
+  passage 2). Demandez une photocopie vierge au professeur avant votre 2<sup>e</sup> passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — FICHE N°3 : MODULE S3-E1 (PROTECTIONS ÉLECTRIQUES ET DDR) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 3</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S3-T2 &nbsp; ☐ S3-F1 &nbsp; ☐ <b>S3-E1</b> Protections électriques et DDR &nbsp; ☐ S3-F2 &nbsp; ☐ S3-E2 &nbsp; ☐ S3-T1 &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Passage</span>☐ 1 — situation-problème + test du bouton T guidé (sem. 8) &nbsp; ☐ 2 — câblage protégé en autonomie (sem. 9)</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <div class="secu"><b class="t">Sécurité — je le rappelle</b><br>
+  Consignation avant toute intervention (NF C 18-510), contrôle d'absence de tension. Le professeur met
+  sous tension — cette règle ne change pas.</div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">Rappel de ce que vous
+  réactivez de S1-S2 : le câblage de platines (simple allumage, va-et-vient), déjà câblés plusieurs fois.
+  Aujourd'hui, vous ajoutez les protections électriques : fusible, disjoncteur, et le DDR 30 mA.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez la situation-problème posée par
+      le professeur, votre câblage des protections, puis le moment où vous avez testé le DDR (voir la
+      rubrique dédiée ci-dessous).</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes relevés / observations</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Une ligne par mesure. La valeur SANS unité
+      n'est pas un relevé. Exemples de grandeurs : calibre du disjoncteur, sensibilité du DDR.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:40%">Grandeur</th><th style="width:30%">Valeur</th><th style="width:30%">Unité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+      <p style="font-size:9.5pt; color:var(--gris); margin:8px 0 6px"><b>Mon test du bouton T du DDR</b> —
+      qu'avez-vous observé en appuyant sur le bouton T ? Qu'est-ce que cela prouve sur le DDR ?</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué, ce qui a demandé de
+      l'aide, ce qui a été raté puis repris.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche sert 2 fois (passage 1 puis
+  passage 2). Demandez une photocopie vierge au professeur avant votre 2<sup>e</sup> passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — FICHE N°4 : MODULE S3-F2 (BRASAGE TENDRE, ASSEMBLAGES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 4</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S3-T2 &nbsp; ☐ S3-F1 &nbsp; ☐ S3-E1 &nbsp; ☐ <b>S3-F2</b> Brasage tendre — assemblages &nbsp; ☐ S3-E2 &nbsp; ☐ S3-T1 &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Passage</span>☐ 1 — démonstration commentée + 1<sup>ers</sup> essais guidés (sem. 10) &nbsp; ☐ 2 — postes de brasage en rotation, plus d'autonomie (sem. 11)</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <div class="secu"><b class="t">Sécurité — je le rappelle</b><br>
+  Lunettes et gants portés sans qu'on me le demande. Je repère l'extincteur et la trousse de secours avant
+  d'allumer la flamme. Je ventile. Le tube reste chaud après brasage. Jamais de flamme dirigée vers un
+  camarade ni près d'une bouteille.</div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">Rappel de ce que vous
+  réactivez de S3-F1 : l'assemblage de plusieurs pièces de cuivre. Cette fois, l'assemblage est définitif :
+  vous le brasez à l'étain. Le brasage tendre utilise un métal d'apport qui fond en dessous de 450 °C
+  (définition normalisée) — le métal exact utilisé est celui de l'atelier, précisé par le professeur.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez la démonstration commentée du
+      professeur, puis vos propres essais de brasage : préparation des emboîtures, chauffe, apport du métal,
+      refroidissement.</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes relevés / observations</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Une ligne par mesure. La valeur SANS unité
+      n'est pas un relevé. Exemples de grandeurs : cote finale de l'assemblage, temps de chauffe.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:40%">Grandeur</th><th style="width:30%">Valeur</th><th style="width:30%">Unité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+      <p style="font-size:9.5pt; color:var(--gris); margin:8px 0 6px"><b>Mes essais de brasage</b> — une ligne
+      par essai réalisé aujourd'hui.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:14%">Essai n°</th><th style="width:46%">Résultat du contrôle visuel du cordon</th><th style="width:40%">Ce que je corrige au prochain essai</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué, ce qui a demandé de
+      l'aide, ce qui a été raté puis repris.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche sert 2 fois (passage 1 puis
+  passage 2). Demandez une photocopie vierge au professeur avant votre 2<sup>e</sup> passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — FICHE N°5 : MODULE S3-E2 (TÉLÉRUPTEUR PUIS MINUTERIE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 5</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S3-T2 &nbsp; ☐ S3-F1 &nbsp; ☐ S3-E1 &nbsp; ☐ S3-F2 &nbsp; ☐ <b>S3-E2</b> Schémas domestiques avancés &nbsp; ☐ S3-T1 &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Passage</span>☐ 1 — télérupteur, fiche-guide très complétée (sem. 10) &nbsp; ☐ 2 — minuterie, même démarche, aides retirées (sem. 11)</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <div class="secu"><b class="t">Sécurité — je le rappelle</b><br>
+  Consignation avant toute intervention, contrôle d'absence de tension. Le professeur met sous tension —
+  cette règle ne change pas.</div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">Rappel de ce que vous
+  réactivez de S1-S2 : la lecture de schéma et le câblage de platines. Le télérupteur et la minuterie sont
+  des schémas plus complets que le simple allumage ou le va-et-vient.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez la lecture du schéma (télérupteur
+      en passage 1, minuterie en passage 2), le câblage réalisé, le contrôle avant mise sous tension.</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes relevés / observations</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Une ligne par mesure. La valeur SANS unité
+      n'est pas un relevé. Exemples de grandeurs : nombre de points lumineux, section du câble, calibre du
+      disjoncteur.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:40%">Grandeur</th><th style="width:30%">Valeur</th><th style="width:30%">Unité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+      <p style="font-size:9.5pt; color:var(--gris); margin:8px 0 6px"><b>Mon schéma</b> — collez ou recopiez
+      ici le schéma étudié aujourd'hui (télérupteur en passage 1, minuterie en passage 2).</p>
+      <div class="zone-schema">espace réservé — collez ou recopiez votre schéma ici</div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué, ce qui a demandé de
+      l'aide, ce qui a été raté puis repris.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche sert 2 fois (passage 1 puis
+  passage 2). Demandez une photocopie vierge au professeur avant votre 2<sup>e</sup> passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — FICHE N°6 : MODULE S3-T1 (LES COMPOSANTS FRIGORIFIQUES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 6</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S3-T2 &nbsp; ☐ S3-F1 &nbsp; ☐ S3-E1 &nbsp; ☐ S3-F2 &nbsp; ☐ S3-E2 &nbsp; ☐ <b>S3-T1</b> Les composants frigorifiques &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Semaine</span>Semaine 10</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">Rappel de ce que vous
+  réactivez de S1-S2 : la croix du frigoriste et ses 4 organes (compresseur, condenseur, détendeur,
+  évaporateur). Aujourd'hui, vous découvrez d'autres composants qui les entourent sur une vraie machine.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez le parcours des postes tournants
+      d'observation : quels composants avez-vous vus, en photo ou en main, en plus des 4 organes déjà connus ?</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes relevés / observations</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px"><b>3 composants que je sais nommer et leur
+      fonction</b> — une ligne par composant.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:30%">Composant</th><th style="width:45%">Sa fonction</th><th style="width:25%">Poste où je l'ai vu</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué, ce qui a demandé de
+      l'aide, ce qui a été raté puis repris.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <p style="font-size:8.5pt; color:var(--gris); margin:0 0 6px">Rubrique tenue même en module théorie :
+      documentation manquante, calculatrice, matériel de bureau, etc.</p>
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — BILAN DE SÉQUENCE S3 (comparaison avec mes objectifs post-É1) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Bilan de fin de séquence — mon carnet complet</h3>
+  <p style="font-size:10.5pt">Une fois toutes les fiches remplies (fin de la séquence S3, semaine 11), relisez
+  votre carnet en entier et répondez ici. N'oubliez pas de retourner à la <b>Fiche n° 1 — spéciale</b> pour
+  remplir « Où j'en suis » avant de continuer.</p>
+
+  <div class="encadre-question"><b>Question</b> — Quelle difficulté est revenue le plus souvent dans vos
+  fiches, d'un module à l'autre ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Question</b> — Quel relevé ou quelle observation avez-vous eu le plus de
+  mal à noter correctement (contrôle croisé, essai de brasage, schéma, composant) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Ce que je sais faire de NOUVEAU depuis le début de S3</b><br>
+  Donnez au moins un exemple précis pour chacun : braser un assemblage, prouver l'étanchéité d'un circuit,
+  câbler un télérupteur.</div>
+  <div class="zone-reponse grande"></div>
+
+  <div class="encadre-question"><b>Comparaison avec mes objectifs post-É1</b><br>
+  Reprenez vos 2 objectifs de la Fiche n° 1 — spéciale. Pour chacun, avez-vous progressé ? Qu'est-ce qui vous
+  le prouve (une trace précise de ce carnet) ?</div>
+  <div class="zone-reponse grande"></div>
+
+  <h3 class="section">Mon auto-positionnement</h3>
+  <p style="font-size:9pt; color:var(--gris)">Statut <b>Confortement</b> : c'est votre 3<sup>e</sup> rencontre
+  avec C1.3 et C2.1 dans ce carnet. <b>Toujours pas de note officielle</b>. Ce positionnement est un repère
+  pour vous et pour le professeur.</p>
+
+  <p style="font-size:10.5pt"><b>C1.3 — Rendre compte</b> (sur T1 · S3.1) :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10.5pt"><b>C2.1 — Organiser des informations</b> (sur T1 · S3.1) :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10.5pt"><b>Savoir-être</b> — rigueur, régularité, honnêteté :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); margin:8px 0 4px">Ce que je dois revoir en priorité (à
+  reprendre en S4) :</p>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="jalon"><h4>Carnet complet</h4>
+  <p>☐ La Fiche n° 1 — spéciale est remplie <b>avant ET après</b> (objectifs en semaine 8, « où j'en suis » en
+  semaine 11)<br>
+  ☐ Les fiches n° 2 à 5 sont remplies deux fois chacune (passage 1 et passage 2)<br>
+  ☐ La fiche n° 6 (S3-T1) est remplie<br>
+  ☐ Chaque relevé porte une valeur ET une unité ; chaque trace technique (contrôle croisé, essais de brasage,
+  schéma, composants) est complète<br>
+  ☐ Chaque bon de commande a été transmis au professeur en temps voulu<br>
+  ☐ Le bilan de fin de séquence est répondu, avec la comparaison à mes objectifs post-É1</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .rubrique, .jalon, .zone-schema{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

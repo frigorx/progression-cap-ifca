@@ -1,0 +1,193 @@
+<meta charset="utf-8">
+<title>Plan de séance — S10 · Module atelier A1 · Mise en place mécanique</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Mise en place mécanique — chantier de remise en état, <b>module atelier A1</b> (4 h)</td>
+      <td style="width:38%"><span class="lib">Module A1 · 2<sup>e</sup> des 3 modules atelier de S10</span><b>Mise en place mécanique — implanter, tracer, percer, fixer</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> P5 · positionnement : 2<sup>e</sup> année, sem. 2</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 2 · 08/09/2026 (matin)</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A1 + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T14</b> Régler l'installation en fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">augmenté (pressostat)</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">augmenté (manutention, perçage)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste de fixation · respect du port des EPI sans rappel · soin du poste</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.3</b> Implanter, manutentionner, fixer les supportages et équipements <span class="nuance">sur T11 · S6.1</span><br><span class="statut">Confortement</span> <b>C4.6</b> Paramétrer ou régler les valeurs de consigne <span class="nuance">sur T14 · S5.6</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Le chantier de remise en état se poursuit. <b>Ordre d'intervention n° OI-2026-S10-02</b> : le devis est accepté,
+  le client demande la <b>remise en place mécanique complète des organes sur le châssis avant raccordement</b>.
+  Aujourd'hui : implantation, traçage, perçage, fixation des supportages, pose du compresseur, de l'évaporateur
+  et des pressostats. <b>Aucun raccordement fluidique ni électrique cette semaine</b> — fixation mécanique
+  uniquement, contrôle d'aplomb, de niveau et serrage contrôlé.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>implanter</b> les organes sur le châssis à partir d'un plan coté, sans les fixer d'abord ;</li>
+        <li><b>tracer et percer</b> les points de fixation en respectant les règles de sécurité du perçage ;</li>
+        <li><b>fixer mécaniquement</b> compresseur, évaporateur et pressostats, avec un serrage contrôlé ;</li>
+        <li><b>manipuler et pré-régler</b> un pressostat au banc, hors tension et hors fluide.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>le diagnostic établi au module A0 (relire sa fiche de diagnostic) ;</li>
+        <li>nommer les 4 organes de la Croix du Frigoriste ;</li>
+        <li>porter les EPI de l'atelier sans rappel ;</li>
+        <li>lire une cote sur un plan simple.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode du module : démonstration commentée courte, puis pratique guidée en 2 jalons</b> —
+  le professeur montre une fois les gestes de perçage et de fixation (démonstration resserrée, ~20 min), puis
+  chaque binôme réalise <b>2 jalons successifs validés</b> (au lieu de 3 postes tournants sur l'ancienne version
+  8 h) : <b>jalon 1</b> traçage et perçage des points de fixation sur le châssis ; <b>jalon 2</b> fixation des
+  supportages, pose du compresseur et des organes lourds, découverte-préréglage du pressostat au banc. Les
+  binômes qui terminent tôt un jalon basculent en observation active sur l'autre poste en cours, de façon à ce
+  que chacun voie les deux jalons dans la demi-journée.</div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Manutention</b> (PRAP : dos droit, charge près du corps) ·
+  <b>Perçage</b> (lunettes obligatoires, cheveux attachés, jamais de perçage sans lunettes) · risque de coupures
+  sur les tôles et arêtes du châssis · <b>ne jamais forcer un organe au serrage</b> · <b>jamais de mise sous
+  tension</b> cette semaine. <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence), alerter le
+  professeur, ne jamais déplacer un élève blessé sans certitude — trousse de secours et arrêt d'urgence
+  localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S10 · module atelier A1 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.
+  Préparation de chantier (phases 1 à 5) : <b>60 min</b>, au plafond d'1 h maximum. Une seule demi-journée,
+  pas de pause méridienne : la pratique tient en 2 jalons (au lieu de 3 postes tournants sur l'ancienne version 8 h).</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel du fonctionnement du module (démonstration puis pratique guidée en 2 jalons).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S10-02 : devis accepté, remise en place mécanique complète des organes sur le châssis, avant tout raccordement.</td><td>Présente l'ordre d'intervention et les 2 jalons du jour.</td><td>Reformulent la mission du module.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » lus et affichés ; lien avec la formule (C3.3, C4.6) et avec le positionnement du jour (confortement).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : relire sa fiche de diagnostic du module A0 et nommer les 4 organes de la Croix du Frigoriste sur un schéma vierge.</td><td>Distribue l'exercice, contrôle les tenues et les EPI au vestiaire.</td><td>Se changent par vagues ; en attente, font l'exercice sur leur fiche de diagnostic.</td><td>Fiches de diagnostic (module A0) · schéma vierge de la Croix · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (risques du jour : manutention, perçage, coupures ; conduite à tenir en cas d'incident ; arrêt d'urgence et trousse localisés) puis <b>planter la notion</b> : le professeur fait manipuler un pressostat démonté à la classe — OBSERVER en silence (vis de réglage, plages inscrites) → NOMMER « pressostat » → EXPLICITER son rôle de sécurité et de régulation, sans jamais le brancher.</td><td>Anime le rituel sécurité, fait circuler le pressostat, questionne « à votre avis, à quoi sert cette vis ? ».</td><td>Observent l'objet, manipulent à tour de rôle, répondent, notent — ne branchent rien.</td><td>Pressostat démonté (objet de démonstration) · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (a) — démonstration commentée courte</td><td>Démonstration commentée du professeur, resserrée sur les 2 gestes centraux : traçage-pointage-perçage d'un point de fixation sur le châssis, puis fixation contrôlée d'un organe (couple, pas de forçage). Un seul poste, tous les binômes en arc de cercle à distance de sécurité.</td><td>Réalise les gestes en les commentant, insiste sur les points de contrôle (aplomb, niveau, serrage).</td><td>Observent la démonstration à distance de sécurité, ne manipulent rien, notent les points de contrôle.</td><td>Perceuse · niveau à bulle · clé dynamométrique ou clé simple · châssis de démonstration</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (b) — pratique guidée, <span class="jalon">jalon 1</span></td><td>Chaque binôme, sous surveillance rapprochée : implantation des organes sur le châssis à partir du plan coté (sans fixer), report des cotes, pointage puis <b>perçage</b> de l'ensemble des points de fixation du châssis. Remplissage du tableau de contrôle de fixation au fur et à mesure.</td><td>Contrôle le port des lunettes avant tout perçage, circule poste par poste, valide le pointage et l'équerrage avant perçage définitif.</td><td>Implantent, tracent, pointent puis percent en binôme, remplissent leur tableau de contrôle de fixation.</td><td>Châssis · plan d'implantation coté · perceuse + forets · pointeau, marteau · lunettes de protection</td><td class="obs"></td></tr>
+    <tr><td>45 min</td><td class="ph">6. Guider l'étude (c) — pratique guidée, <span class="jalon">jalon 2</span></td><td>Fixation des supportages percés au jalon 1 (serrage contrôlé, aplomb, niveau), puis pose mécanique du compresseur et des organes lourds (évaporateur), et découverte-préréglage du pressostat au banc, hors tension et hors fluide. Finalisation du tableau de contrôle de fixation et du cadre de dessin du plan d'implantation coté.</td><td>Circule, contrôle la manutention (PRAP), valide chaque serrage et l'aplomb/niveau, surveille le pré-réglage du pressostat.</td><td>Fixent les supportages, posent et fixent le compresseur et les organes lourds en manutention à deux, découvrent et pré-règlent le pressostat au banc.</td><td>Compresseur, évaporateur · supportages, visserie · niveau à bulle · pressostats de démonstration · tableau de contrôle de fixation</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque binôme présente sa fiche de pose complétée (jalons 1 et 2) ; auto-positionnement par compétence (C3.3, C4.6 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (matériel manquant, quantités de visserie et de forets).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Outillage, tri des chutes de perçage, nettoyage des postes, vérification visuelle des fixations réalisées dans le module.</td><td>Supervise la remise en ordre.</td><td>Rangent, nettoient, vérifient.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (module A2 — façonnage cuivre).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : technologie (les 4 organes de la Croix du Frigoriste) ·
+  prévention des risques (perçage, manutention PRAP) · co-intervention français (carnet de bord) · chef-d'œuvre (vidéo) · module A0 (diagnostic) déjà entamé.</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

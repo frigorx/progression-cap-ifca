@@ -1,0 +1,428 @@
+<meta charset="utf-8">
+<title>Document professeur — S5-E1 · Contacteurs et moteurs</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Contacteurs et moteurs</td>
+      <td style="width:38%"><span class="lib">Module atelier S5-E1 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Investigation matérielle : le contacteur ouvert en main</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> · semaines 14-15</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des platines + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — deux demi-journées distinctes (semaine 14 et semaine 15)</td>
+      <td><span class="lib">Modalité</span>Investigation matérielle : observer l'appareil ouvert AVANT tout schéma</td>
+      <td><span class="lib">Encadrement</span>1 professeur, consignation appliquée sans rappel</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">prérequis réactivé (protections/DDR S3-E1, télérupteur S3-E2/S4-E1) — travaillé, augmenté aujourd'hui (contacteur, relais thermique, moteur)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel · vigilance pièces tournantes · rigueur du câblage · honnêteté du contrôle</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → vers Maîtrise</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6</span><br><span class="statut">Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T11 · S5.6</span></div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S4 — à annoncer explicitement aux élèves</b> — En
+  S4-Électricité, le contacteur, le relais thermique et le moteur étaient des <b>objets de cours</b> (fiches
+  C06-C07-C08) : constitution lue sur document. <b>S5-E1 les fait entrer en atelier</b> : l'élève tient l'appareil
+  ouvert, avant tout schéma. Statut : <b>Confortement → vers Maîtrise</b> pour C3.6 (câblage, 4<sup>e</sup>
+  rencontre après S1, S2, S3/S4) ; <b>Confortement</b> pour C3.7. <b>Ce module porte aussi la remédiation
+  post-É2</b> : la phase 4 reprend les items du poste ÉLEC d'É2, avec une variante consolidation fléchée pour
+  les élèves positionnés 1-2 sur C3.6, et une variante approfondissement (tutorat) pour les positionnés 3-4
+  (cf. S5-T0). <b>Auto-maintien et voyants ne sont volontairement PAS abordés ici</b> : ce sera le nouveau geste
+  de S5-E2 — aujourd'hui, la commande reste un simple interrupteur marche/arrêt.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change (conduite professeur)</h4>
+  <b>Passage 1 (semaine 14) — investigation matérielle + câblage de la puissance seule.</b> Jalon A (≈ 55 min) :
+  contacteur ouvert distribué par groupe, relais thermique en main, découverte de la plaque signalétique du
+  moteur. Jalon B (≈ 70 min) : câblage de la chaîne de puissance (Q1 → KM1 → F1 → M1), contrôle hors tension
+  (continuité), <b>le professeur alimente brièvement la commande lui-même</b> (poussoir de test ou pont
+  temporaire côté professeur) pour un essai de rotation — l'élève ne câble aucune commande ce jour-là.<br>
+  <b>Passage 2 (semaine 15) — câblage complet, en autonomie guidée.</b> Jalon A' (≈ 50 min) : ajout de la partie
+  commande (interrupteur S1 + contact 95-96 de F1 + bobine KM1), moins d'aide, plus vite qu'au passage 1 ; ne pas
+  redonner le schéma légendé directement, laisser l'élève chercher avant d'intervenir. Jalon B' (≈ 75 min) :
+  contrôle hors tension complet (continuité <b>et</b> serrage, en autonomie), mise sous tension, essai
+  marche/arrêt au S1, <b>essai au bouton test du relais thermique</b> — le professeur valide sans démontrer, mais
+  reste positionné à proximité de chaque mise sous tension.</div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève : mêmes questions, même
+  numérotation, même séquençage en 2 passages × 2 jalons. Il y ajoute : les réponses attendues aux fiches
+  d'investigation matérielle, les critères de contrôle du câblage, la conduite détaillée de l'investigation, les
+  erreurs typiques d'élèves avec leur remédiation, l'organisation du plateau (contacteurs ouverts compris), le
+  minutage recompté pour les deux passages, et la différenciation (consolidation fléchée remédiation-É2 /
+  standard / approfondissement-tutorat + FLE + TDAH-DYS). <b>Aucune valeur non autorisée n'est donnée</b> : la
+  tension de la bobine du contacteur et le calibrage du relais thermique restent <b>« selon le matériel de
+  l'atelier et la plaque du moteur, à faire valider »</b>.</p>
+
+  <h3 class="section">Trame horaire — passage 1 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (contacteurs et moteurs).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S5-3 : câbler le départ moteur du groupe de l'arrière-boutique.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés, lien avec C3.6/C3.7, statuts du jour.</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, mini-quiz de reprise du poste ÉLEC d'É2. <b>Crochet remédiation</b> : groupe consolidation fléché pour les positionnés 1-2 sur C3.6, tutorat pour les positionnés 3-4 (cf. S5-T0).</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (ARU, trousse, gestes interdits dont « jamais de vrai défaut thermique » et « jamais s'approcher du moteur en rotation ») puis <b>investigation matérielle</b> : distribuer un contacteur ouvert par groupe, laisser observer avant toute explication (voir encadré ci-dessous).</td></tr>
+    <tr><td>55 min</td><td class="ph">6. Guider l'étude (a) — jalon A : investigation</td><td>Contacteur ouvert en main (bobine, contacts, ressort), relais thermique en main, découverte de la plaque signalétique du moteur.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>70 min</td><td class="ph">6. Guider l'étude (b) — jalon B : câblage de la puissance</td><td>Câblage de la chaîne Q1 → KM1 → F1 → M1, contrôle hors tension (continuité), appel professeur, essai bref de rotation (commande alimentée par le professeur).</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Présentation du câblage et du contrôle, auto-positionnement, validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Carnet de bord + bon de commande hebdomadaire.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Platines hors tension, multimètres sur OFF, rangement des contacteurs/relais ouverts.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour tenue de ville, annonce du passage 2 (semaine 15).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 1 :</b> préparation 1 h 00 + jalon A (55) +
+  pause (15) + jalon B (70) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b></p>
+
+  <h3 class="section">Trame horaire — passage 2 (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00, identique)</td></tr>
+    <tr><td>60 min</td><td class="ph">Phases 1-5 (identiques au passage 1)</td><td>Accueil, situation (rappeler le passage 1 et l'objectif du jour : commande complète), objectifs, prérequis (reprise du passage 1 sans support), mise en sécurité, rappel des gestes interdits.</td></tr>
+    <tr><td>50 min</td><td class="ph">6. Guider l'étude (a) — jalon A' : câblage complet</td><td>Ajout de la partie commande (S1 + F1 95-96 + bobine KM1), moins d'aide, plus vite qu'au passage 1.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>75 min</td><td class="ph">6. Guider l'étude (b) — jalon B' : contrôle complet + essais</td><td>Contrôle hors tension complet (continuité + serrage), visa professeur, mise sous tension, essai marche/arrêt, essai bouton test du relais thermique — autonomie guidée.</td></tr>
+    <tr><td>40 min</td><td class="ph">7-8-8bis-9-10</td><td>Synthèse, auto-positionnement, bon de commande, rangement, clôture — annonce de la suite (S5-E2 selon rotation).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)"><b>Vérification passage 2 :</b> préparation 1 h 00 + jalon A' (50) +
+  pause (15) + jalon B' (75) = 2 h 20 + synthèse/bon de commande/rangement/clôture 40 min = <b>4 h 00 exactes.</b>
+  Les deux passages totalisent bien 240 min chacun ; seule la répartition entre jalons change, conforme au plan
+  de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ + CORRIGÉ DES FICHES D'INVESTIGATION (JALON A) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Sécurité — un rituel acquis, deux dangers nouveaux</h3>
+  <p style="font-size:10.3pt">La consignation (NF C 18-510) et la VAT ne sont <b>plus démontrées</b> : elles sont
+  exigées sans rappel. Deux règles nouvelles : <b>ne jamais provoquer un vrai défaut thermique</b> (seul le
+  bouton test du relais est autorisé) et <b>ne jamais s'approcher du moteur en rotation</b>.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — La mise sous tension pour l'essai
+  de rotation (passage 1) est <b>systématiquement réalisée par le professeur</b>, la partie commande n'étant pas
+  câblée par l'élève ce jour-là ; prévoir un poussoir de test ou un cavalier de commande côté professeur,
+  clairement identifié et jamais laissé à disposition des élèves.</div>
+
+  <h3 class="section">Corrigé — investigation matérielle du contacteur (jalon A)</h3>
+  <div class="reponse"><b class="t">Texte à compléter :</b><br><br>
+  Le contacteur est un appareil <b>mécanique de connexion</b> capable d'établir, de supporter et d'interrompre un
+  courant, y compris en cas de <b>surcharge</b> en service. Sa bobine (repérée <b>A1-A2</b>) est un enroulement
+  de fil de cuivre : alimentée, elle attire la partie mobile de l'électro-aimant, ce qui ferme les <b>contacts</b>.
+  Les contacts de puissance (1-2, 3-4, 5-6) laissent passer le <b>courant du moteur</b>. Les contacts auxiliaires
+  servent uniquement à la <b>commande</b> (jamais à faire tourner le moteur directement). Le <b>ressort de
+  rappel</b> ramène la partie mobile en position de repos quand la bobine n'est plus alimentée : les contacts
+  s'ouvrent.</div>
+  <div class="vigilance"><b class="t">Point de vigilance pédagogique</b> — Un élève qui répond « les contacts
+  auxiliaires font tourner le moteur » n'a pas encore saisi la distinction essentielle : reprendre par une
+  question (« quel est le repère de ces contacts, et sont-ils reliés au moteur sur le contacteur que vous tenez
+  en main ? »).</div>
+  <div class="reponse"><b class="t">Question — pourquoi un ressort de rappel ?</b><br><br>
+  <b>Réponse attendue :</b> sans ressort de rappel, rien ne ramènerait la partie mobile de l'électro-aimant en
+  position ouverte quand la bobine se désexcite : le contacteur resterait fermé même après la coupure de la
+  commande — le moteur ne pourrait jamais s'arrêter par la commande. Le ressort garantit que <b>l'état de repos
+  du contacteur est toujours « ouvert »</b> (sécurité positive).</div>
+
+  <h3 class="section">Corrigé — le relais thermique (jalon A, suite)</h3>
+  <div class="reponse"><b class="t">Texte à compléter :</b><br><br>
+  Le relais thermique protège le moteur contre les <b>surintensités prolongées</b> (moteur qui force, roulement
+  grippé, phase manquante). En façade : molette de <b>réglage de l'intensité</b>, bouton <b>test</b>, sélecteur
+  <b>réarmement auto/manuel</b> (ou bouton stop). Contact <b>NF</b> (95-96) qui coupe la bobine du contacteur en
+  cas de défaut ; contact <b>NO</b> (97-98) qui peut allumer un voyant de défaut. On le désigne par la lettre
+  <b>F</b> (F1, F2…).</div>
+  <div class="reponse"><b class="t">Question — pourquoi régler la molette d'après la plaque du moteur ?</b><br><br>
+  <b>Réponse attendue :</b> le relais thermique doit déclencher <b>avant</b> que le courant absorbé par le moteur
+  ne l'endommage, mais <b>pas</b> pendant son fonctionnement normal (y compris la pointe de courant au démarrage,
+  brève mais nettement supérieure à l'intensité nominale — valeur selon le moteur, à faire valider). Régler l'intensité de déclenchement sur l'intensité nominale lue en
+  plaque garantit cet équilibre : un réglage au hasard, trop bas, ferait déclencher en fonctionnement normal ;
+  trop haut, ne protégerait plus le moteur.</div>
+
+  <h3 class="section">Corrigé — plaque signalétique du moteur</h3>
+  <p style="font-size:10.3pt">Faire relever par les élèves les valeurs <b>réelles</b> du moteur mis à
+  disposition (tension, intensité nominale, couplage, fréquence) : <b>aucune valeur n'est imposée par ce
+  document</b>, toutes proviennent du matériel de l'atelier. Rappeler qu'un seul couplage sera câblé aujourd'hui,
+  celui indiqué par le professeur selon la notice — les autres couplages (étoile/triangle en détail, Dahlander)
+  restent hors programme de cette année (Bloom 1-3, CAP).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ CÂBLAGE (JALON B ET A') ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — passage 1, jalon B (partie puissance seule)</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Câblage Q1 → KM1 → F1 → M1</td><td>Les 3 phases traversent successivement le sectionneur, les contacts de puissance du contacteur (1-3-5 → 2-4-6), puis le relais thermique, avant le moteur. Une phase qui contourne le relais thermique est un défaut de sécurité à corriger immédiatement (le moteur ne serait plus protégé contre les surcharges).</td></tr>
+    <tr><td>Couleurs des conducteurs</td><td>Phases en noir/marron/violet, comme vu en cours (C06-C08) — un fil de couleur non conforme reste un défaut à corriger.</td></tr>
+    <tr><td>Contrôle hors tension</td><td>Continuité proche de 0 Ω sur chaque phase de bout en bout, résistance infinie entre phases (absence de court-circuit) — identique dans la démarche aux corrigés précédents (S3-E1).</td></tr>
+    <tr><td>Essai de rotation (professeur)</td><td>Le professeur alimente brièvement la commande (poussoir de test ou pont côté professeur) : le moteur doit démarrer et tourner sans à-coup ni bruit anormal. Couper immédiatement en cas de doute.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — passage 2, jalon A' (ajout de la commande)</h3>
+  <div class="reponse"><b class="t">Question — pourquoi le contact 95-96 est-il câblé en série dans la commande ?</b><br><br>
+  <b>Réponse attendue :</b> le contact 95-96 du relais thermique est <b>normalement fermé (NF)</b> : tant qu'il
+  n'y a pas de défaut, il laisse passer le courant de commande vers la bobine du contacteur. En cas de
+  surintensité prolongée, le relais thermique <b>ouvre</b> ce contact : la bobine KM1 n'est plus alimentée, le
+  contacteur retombe (ressort de rappel), les contacts de puissance s'ouvrent et le moteur s'arrête. Câblé dans
+  la partie puissance, ce contact ne pourrait pas couper la commande — c'est bien son rôle de coupure de
+  commande qui protège le moteur.</div>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Ordre des éléments de commande</td><td>F1 (95-96, NF) → S1 (interrupteur) → bobine KM1 (A1-A2). Un élève qui inverse l'ordre ou oublie le contact du relais thermique doit être repris avant tout appel au professeur.</td></tr>
+    <tr><td>Absence d'auto-maintien</td><td>Ce module n'introduit <b>pas</b> l'auto-maintien : S1 est un interrupteur maintenu (position 0/1), pas un bouton poussoir. Si un élève propose un bouton poussoir « comme au collège », expliquer que sans contact d'auto-maintien le moteur s'arrêterait dès qu'on relâche le bouton — ce sera le nouveau geste de S5-E2.</td></tr>
+    <tr><td>Vitesse de câblage</td><td>Un temps de câblage nettement réduit par rapport au passage 1 est un signe positif de consolidation — ne pas presser un élève encore lent, mais le noter pour le suivi.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ CONTRÔLE/ESSAIS + ORGANISATION + ERREURS + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — passage 2, jalon B' (contrôle complet + essais)</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Serrage des bornes</td><td>Chaque borne (Q1, KM1, F1, S1, M1) contrôlée à la main, tournevis en appui : aucun fil qui ressort visible. Une borne desserrée sur un circuit moteur peut chauffer et provoquer un incendie — vigilance non négociable de C3.7.</td></tr>
+    <tr><td>Essai marche/arrêt (S1)</td><td>Le moteur démarre à la fermeture de S1 et s'arrête à son ouverture, sans à-coup.</td></tr>
+    <tr><td>Essai bouton test (F1)</td><td>Coupure attendue du moteur, quasi instantanée. Un relais thermique qui ne coupe pas au test est <b>défectueux</b> : ne jamais l'utiliser en installation réelle (point à mentionner même si non testable en atelier).</td></tr>
+  </table>
+  <div class="reponse"><b class="t">Question de synthèse — pourquoi uniquement le bouton test ?</b><br><br>
+  <b>Réponse attendue :</b> provoquer une vraie surcharge (moteur bloqué, surcharge mécanique) est <b>dangereux</b>
+  et <b>imprévisible</b> — risque d'échauffement, de dommage au moteur, de brûlure. Le bouton test simule le
+  déclenchement <b>en toute sécurité</b>, sans mettre personne en danger ni user le matériel, tout en vérifiant
+  que l'appareil fonctionne réellement.</div>
+
+  <h3 class="section">Organisation du plateau</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Table d'investigation matérielle</b></td><td>Contacteurs ouverts (un par groupe de 2-3 élèves) + relais thermiques en main + un moteur avec plaque signalétique visible.</td><td>Prévoir plusieurs contacteurs ouverts identiques pour que chaque groupe manipule en même temps ; vérifier qu'aucune pièce mobile ne présente d'arête coupante.</td></tr>
+    <tr><td><b>Postes élèves — passage 1</b></td><td>1 platine par élève ou binôme, chaîne de puissance seule (Q1, KM1, F1, M1), multimètre par poste.</td><td>La commande n'est volontairement pas câblée par l'élève au passage 1 : le professeur garde la main sur l'alimentation de la bobine pour l'essai.</td></tr>
+    <tr><td><b>Postes élèves — passage 2</b></td><td>1 platine par élève ou binôme, installation complète (puissance + commande S1).</td><td>Vérifier avant la séance que chaque relais thermique fonctionne au bouton test (sinon le signaler et l'écarter) ; régler chaque relais sur l'intensité du moteur du poste.</td></tr>
+    <tr><td><b>Surveillance renforcée</b></td><td>Le professeur reste positionné à proximité de chaque mise sous tension et de chaque essai de rotation.</td><td>Ne jamais valider plusieurs mises sous tension simultanément sans contrôle individuel de chaque poste ; vigilance particulière sur les pièces tournantes.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Confusion bobine / contacts de puissance / contacts auxiliaires</td><td>Reprendre l'investigation matérielle : faire retoucher le contacteur ouvert, pointer à nouveau chaque pièce nommée.</td></tr>
+    <tr><td>Câblage d'une phase qui contourne le relais thermique</td><td>Faire reprendre le câblage : les 3 phases doivent traverser le relais thermique, sinon la protection n'est plus effective sur cette phase.</td></tr>
+    <tr><td>Élève qui propose un bouton poussoir sans auto-maintien</td><td>Expliquer pourquoi ça ne fonctionnerait pas (le moteur s'arrêterait au relâchement) ; annoncer que l'auto-maintien est le geste nouveau de S5-E2.</td></tr>
+    <tr><td>Tentative de provoquer une vraie surcharge « pour voir »</td><td>Interrompre immédiatement, rappeler la règle non négociable (seul le bouton test), sans exception aux deux passages.</td></tr>
+    <tr><td>Approche du moteur en rotation (main, cheveux, vêtement)</td><td>Interrompre immédiatement, rappeler la règle de distance de sécurité ; vérifier les EPI (cheveux attachés, manches ajustées).</td></tr>
+    <tr><td>Serrage non vérifié avant l'appel au professeur</td><td>Refuser le contrôle tant que chaque borne n'a pas été vérifiée une à une ; ne pas faire le contrôle à la place de l'élève.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation <span class="nuance">(fléchée remédiation É2, positionnés 1-2 sur C3.6)</span></td><td>Reprise accompagnée d'un geste de câblage simple (raccorder une phase au bornier) en phase 4 ; le professeur reste au poste pour le premier raccordement de chaque appareil au passage 1.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, 2 jalons par passage.</td></tr>
+    <tr><td>Approfondissement <span class="nuance">(tutorat, positionnés 3-4)</span></td><td>Après validation de son propre montage, l'élève explique à un pair pourquoi le relais thermique se règle sur l'intensité de la plaque, sans jamais câbler ou tester à sa place ; défi transfert : « et sur l'armoire complète qui arrive en S5-E2 ? »</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire nouveau (bobine, contact, ressort, relais thermique) introduit un mot à la fois, toujours associé au geste ou à la pièce tenue en main ; repères de bornes (1-2, A1-A2, 95-96) toujours montrés du doigt avant d'être nommés.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Les fiches d'investigation sont volontairement courtes et séparées (une par appareil) ; le visa professeur du contrôle avant mise sous tension matérialisé par une case bien visible à ne pas sauter.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5-E1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statuts : <b>C3.6 Confortement → vers Maîtrise</b> ·
+  <b>C3.7 Confortement</b> — jamais Évaluation dans ce module.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Câblage non conforme au schéma, malgré aide, ou consignation non respectée.</td>
+      <td>Câble avec l'aide du professeur pour positionner le matériel ou suivre le schéma.</td>
+      <td>Câble seul(e) la partie puissance (P1) ET la partie commande complète (P2), conformes au schéma.</td>
+      <td>Comme « Acquis », et câble plus vite et avec plus d'assurance au passage 2 qu'au passage 1.</td>
+    </tr>
+    <tr>
+      <td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T11 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne réalise pas de contrôle hors tension avant d'appeler le professeur, même avec aide.</td>
+      <td>Réalise le contrôle hors tension (continuité) avec l'aide du professeur.</td>
+      <td>Réalise seul(e), au passage 2, le contrôle hors tension complet (continuité <b>et</b> serrage) avant d'appeler le professeur.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi le réglage du relais thermique dépend de la plaque du moteur.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste interdit commis (fil touché sans VAT, approche du moteur en rotation, tentative de provoquer un vrai défaut) : <b>niveau 1 automatique</b>, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Consignation, VAT et règle du bouton test appliquées sans rappel, contrôles honnêtes même en cas d'erreur.</td>
+      <td>Comme « Acquis », et veille spontanément à la sécurité d'un pair.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> toute tentative de provoquer un vrai
+  défaut thermique ou toute approche du moteur en rotation entraîne automatiquement un niveau <b>1 — Non
+  acquis</b> sur le savoir-être, quelle que soit la qualité du câblage réalisé ce jour-là : principe non
+  négociable. Les positionnements de ce module <b>alimentent le repérage des élèves à revoir en priorité</b> —
+  utiliser la ligne « élèves à revoir » du plan de séance, en lien avec la remédiation post-É2 (S5-T0).</div>
+  <div class="vigilance"><b class="t">Repérage de l'armoire</b> — Q1 (sectionneur), KM1 (contacteur) et F1
+  (relais thermique) appartiennent au départ moteur du groupe de S5-E1 ; S5-E2 y ajoutera l'auto-maintien, les
+  boutons poussoirs et les voyants sur la même chaîne de puissance, allégée à un seul moteur.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques électriques</b> — consignation, NF C 18-510, pièces tournantes ;</li>
+    <li><b>Technologie</b> — contacteur, relais thermique, moteur (S5.6), symboles normalisés ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (F3) ;</li>
+    <li><b>Remédiation post-É2</b> — module S5-T0 (semaine 14, classe entière), crochet phase 4 de ce module.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « C06 les
+  contacteurs principaux » ÉLÈVE et PROF, F. Henninot (fonction, constitution, 4 ensembles fonctionnels, symbole
+  normalisé) ; « C07 les relais thermiques » ÉLÈVE et PROF, F. Henninot (fonction, façade, contacts 95-96/97-98,
+  déclenchement) ; « C08 moteur » ÉLÈVE et PROF, F. Henninot (principe, réversibilité, symboles mono/tri) ; « Le
+  contacteur.docx », F. Henninot (photos réelles légendées : bobine, circuit magnétique, bornes) ; « Dossier
+  Ressources : Electricité industrielle Activités n°8 et 10 — Appareillages pour le câblage de moteurs », F.
+  Henninot (chaîne départ moteur : sectionneur, protection, relais thermique, contacteur ; caractéristiques du
+  relais thermique et du contacteur) ; « tp_1_1 câblage démarrage direct » (LP A. Croizat, BEP MEI — repères de
+  schéma Q1/KM1/F1, règles de câblage et de section de fil) ; « Série 1 Activité 3 — Raccordement d'un moteur
+  monophasé », F. Henninot (schéma de câblage réel puissance/commande, inspiration du schéma de travail de ce
+  module). Images extraites des fichiers `.docx` sources (dossier `word/media/`), renommées en clair dans
+  `images/`. ⚠ Aucune photographie de plaque signalétique de moteur trouvée dans ces sources : la lecture se
+  fait sur le matériel réel de l'atelier, jamais inventée. Sources anciennes non extraites, à rouvrir si
+  souhaité : « Présentation matériel départ Moteur.ppt », « Raccordement des moteurs électriques.doc ».</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .passage{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

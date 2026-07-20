@@ -1,0 +1,405 @@
+<meta charset="utf-8">
+<title>Cours élève — S4 · Module théorie T1 · Cycle approfondi P/T</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.poste{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:#fff; background:var(--bleu); border-radius:5px 5px 0 0; padding:5px 12px; margin:1.1em 0 0}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .poste-bloc{border:1px solid var(--bleu); border-radius:0 6px 6px 6px; padding:10px 14px; margin:0 0 1em; background:#fff}
+  .banque{border:1px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.3em 0 .8em; font-size:9.5pt}
+  .banque b{font-family:'Trebuchet MS',sans-serif; color:var(--violet)}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>La relation entre pression et température, cycle frigorifique approfondi</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S4-T1 · 2 h</span><b>Cycle approfondi P/T</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S4</span> · sem. 12</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — cours en classe entière</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Comprendre pourquoi un liquide bout à une température différente selon la pression, et faire le lien avec la machine frigorifique : c'est ainsi qu'elle « fabrique » le froid</div>
+    <div class="case"><h4>Savoir-être</h4>Observer avant d'affirmer · être honnête dans mon auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui — aucune compétence positionnée</span> ce cours prépare la relation P/T qui sera relevée sur machine dans S4-F1 et évaluée dans É2 (semaine 13)</div>
+  </div>
+
+  <div class="situation"><h4>Accroche — la casserole qui bout</h4>
+  Le pavillon du chantier va bientôt recevoir la mise en service de son climatiseur. Avant de régler une machine
+  frigorifique, il faut comprendre un phénomène tout simple, que vous connaissez déjà dans la vie de tous les
+  jours : l'eau qui bout dans une casserole.
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/casserole-ebullition-thermometre-manuel-froid.png" alt="Casserole d'eau en ébullition sur une gazinière, avec un thermomètre plongé dans l'eau qui affiche des degrés Celsius" style="max-width:60%;">
+    <figcaption class="legende">D'après le manuel de physique du froid du lycée Jacques Raynaud.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Question de départ</b> — À votre avis, à quelle température l'eau bout-elle ?
+  Notez votre réponse, même si vous n'êtes pas sûr(e). Cette question va rester <b>ouverte</b> pendant toute la
+  démonstration qui va suivre : on va vérifier ensemble, avec un vrai thermomètre plongé dans une vraie casserole.</div>
+  <div class="zone-reponse" style="min-height:2.4em">D'après moi, l'eau bout à _____________ °C.</div>
+  </div>
+
+  <div class="notion"><h4>Ce que vous savez déjà (rappel S3)</h4>
+  <p style="margin:0; font-size:10.3pt">En S3-T1, vous avez appris à <b>nommer</b> les 13 composants d'une
+  installation frigorifique réelle, et vous avez revu la <b>croix du frigoriste</b> : détendeur <b>GAUCHE</b>,
+  compresseur <b>DROITE</b>, condenseur <b>HAUT</b>, évaporateur <b>BAS</b>. Vous savez que le fluide frigorigène
+  <b>change d'état</b> dans le condenseur (il devient liquide) et dans l'évaporateur (il devient gaz). Aujourd'hui,
+  vous allez comprendre <b>pourquoi</b> le fluide change d'état exactement à ces deux endroits, et pas ailleurs :
+  la réponse tient en un mot, la <b>pression</b>.</p>
+  </div>
+
+  <div class="seuil"><b class="t">Ce qui change depuis S3</b> — En S3, vous avez observé et nommé. Aujourd'hui,
+  vous allez <b>comprendre le mécanisme</b> : la pression choisit la température à laquelle un liquide change
+  d'état. É2 arrive en semaine 13 : la relation P/T y sera évaluée à l'écrit, avec les 9 fonctions des composants
+  vues en S3-T1.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE : LA DÉMONSTRATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — la démonstration de la casserole</h3>
+  <p style="font-size:10.3pt">Le professeur fait chauffer de l'eau dans une casserole et plonge un
+  <b>thermomètre</b> dedans. <b>Consigne unique :</b> observez le thermomètre et notez la température toutes les
+  2 minutes dans le tableau ci-dessous. Ne vous approchez pas de la casserole : l'eau et la vapeur sont brûlantes,
+  c'est le professeur seul qui manipule la source de chaleur.</p>
+
+  <table class="releve">
+    <tr><th style="width:16%">Temps (min)</th><th>0</th><th>2</th><th>4</th><th>6</th><th>8</th><th>10</th><th>12</th></tr>
+    <tr><td><b>Température lue (°C)</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question 1</b> — Au début, la température monte vite. Que se passe-t-il ensuite,
+  quand elle approche de 100 °C ? Continue-t-elle à monter au même rythme, plus vite, ou s'arrête-t-elle
+  d'augmenter ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="seuil"><b class="t">Ce que dit le manuel</b> — « 100 °C = seuil d'ébullition de l'eau à la pression
+  atmosphérique. » Autrement dit : tant que l'eau est liquide, la flamme fait monter sa température. Mais dès que
+  l'eau atteint 100 °C, à la pression normale de l'atmosphère, elle se met à bouillir — et sa température
+  <b>reste bloquée</b> à 100 °C, même si vous poussez le feu au maximum.</div>
+
+  <div class="notion"><h4>La chaleur latente — l'énergie « qui n'augmente pas la température »</h4>
+  <p style="margin:0 0 6px; font-size:10.3pt">Quand l'eau est à 100 °C et qu'elle bout, la flamme continue à lui
+  donner de la chaleur. Cette chaleur ne sert plus à faire monter la température (elle est bloquée à 100 °C) :
+  elle sert à <b>faire changer d'état</b> l'eau, c'est-à-dire à la transformer en vapeur. D'après le manuel, cette
+  énergie s'appelle la <b>chaleur latente de vaporisation</b> : « la quantité de chaleur qu'il faut fournir à 1 kg
+  d'eau, à pression et température constantes, pour obtenir 1 kg de vapeur ». On dit que l'eau « attend » : elle
+  encaisse l'énergie sans se réchauffer, et l'utilise entièrement pour changer d'état.</p>
+  <p style="margin:0; font-size:10.3pt"><b>Complétez :</b> quand une casserole d'eau bout, la source de chaleur ne
+  peut plus faire ______________ la température de l'eau, mais elle continue à faire ______________ son état
+  physique.</p>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Petite précision de vocabulaire : le thermomètre de
+  la démonstration affiche des degrés Celsius (°C). Il existe une autre échelle de température, le Kelvin (K),
+  utilisée en physique — vous la retrouverez plus loin dans votre formation.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — DÉCOUVERTE : ET SI ON CHANGE LA PRESSION ? + TRANSPOSITION MACHINE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Et si on changeait la pression ?</h4>
+  <div class="encadre-question"><b>Question 2</b> — Relisez la phrase du manuel : « 100 °C = seuil d'ébullition de
+  l'eau <u>à la pression atmosphérique</u> ». Cette précision n'est pas un hasard : elle veut dire que le seuil de
+  100 °C n'est vrai que pour <b>une</b> pression donnée, celle de l'air autour de nous. Alors, d'après vous : si la
+  pression était plus <b>basse</b> qu'au niveau de la mer — par exemple en altitude, en montagne — est-ce que l'eau
+  bout à une température plus haute, plus basse, ou toujours à 100 °C ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="vigilance"><b class="t">Piste à discuter, pas une valeur à retenir</b> — Cette question ouvre une
+  discussion en classe : le professeur vous donnera des éléments de réponse, mais aucune valeur chiffrée précise de
+  température d'ébullition en altitude n'est affirmée dans ce document. Si un chiffre exact vous intéresse, il est
+  <b>à faire valider</b> avec votre professeur, sur son manuel.</div>
+
+  <div class="notion"><h4>Ce qu'il faut retenir</h4>
+  <p style="margin:0; font-size:11pt; font-weight:bold; color:var(--bleu)">La pression choisit la température à
+  laquelle un liquide change d'état.</p>
+  <p style="margin:6px 0 0; font-size:10.3pt">Baissez la pression : le liquide bout à une température plus basse.
+  Augmentez la pression : il faut une température plus haute pour le faire bouillir — et à l'inverse, un gaz se
+  recondense plus facilement (à une température plus haute) si sa pression est haute.</p>
+  </div>
+
+  <h4 style="font-size:11pt">La transposition sur la machine frigorifique</h4>
+  <p style="font-size:10.3pt">C'est exactement ce principe qu'utilise une machine frigorifique, avec un fluide
+  frigorigène à la place de l'eau.</p>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:22%">Organe (croix du frigoriste)</th><th style="width:16%">Pression</th><th>Ce qui se passe</th></tr>
+    <tr><td><b>Évaporateur</b> — BAS</td><td>BASSE</td><td>Le fluide BOUT (liquide → gaz) à basse température : il absorbe la chaleur de l'air ambiant. <b>C'est comme ça qu'on « fabrique » le froid.</b></td></tr>
+    <tr><td><b>Condenseur</b> — HAUT</td><td>HAUTE</td><td>Le fluide SE CONDENSE (gaz → liquide) à haute température : il rend la chaleur qu'il avait absorbée.</td></tr>
+  </table>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Le détendeur (GAUCHE) fait chuter la pression
+  juste avant l'évaporateur ; le compresseur (DROITE) fait monter la pression juste avant le condenseur. C'est
+  exactement le rôle que vous avez donné à ces deux organes en S3-T1.</p>
+
+  <h4 style="font-size:11pt">Le phénomène de condensation, vécu au quotidien</h4>
+  <p style="font-size:10.3pt">D'après le manuel : la buée qui se dépose sur une vitre froide, ou sur les parois
+  d'une bouteille qui sort du réfrigérateur, c'est de la <b>vapeur d'eau</b> qui rencontre une paroi froide. Elle
+  cède de la <b>chaleur</b> à cette paroi en se condensant : c'est un <b>échange</b> d'énergie, la paroi devient
+  plus chaude et la vapeur redevient liquide.</p>
+  <div class="encadre-question"><b>Question 3</b> — Dans le condenseur de la machine, quelle est la « paroi
+  froide » qui reçoit la chaleur cédée par le fluide qui se condense ?</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — APPLICATION : LA CROIX DU FRIGORISTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION</h3>
+  <h4 style="font-size:11pt">Exercice 1 — placer l'ébullition et la condensation sur la croix du frigoriste</h4>
+  <p style="font-size:10.3pt">Vous connaissez la croix du frigoriste. Rappel de la convention, qui ne change
+  jamais : détendeur <b>GAUCHE</b> · compresseur <b>DROITE</b> · condenseur <b>HAUT</b> · évaporateur <b>BAS</b>.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.png" alt="Schéma de la croix du frigoriste : condenseur en haut, compresseur à droite, détendeur à gauche, évaporateur en bas" style="max-width:62%;">
+    <figcaption class="legende">La croix du frigoriste, vue en S1 et S3-T1.</figcaption>
+  </figure>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/cycle-frigo-Franck.png" alt="Le même cycle vu comme un circuit réel : condenseur en haut, évaporateur en bas, détendeur à gauche, compresseur à droite, tuyauteries colorées selon l'état du fluide" style="width:100%; max-width:520px; border:1px solid var(--filet); border-radius:6px">
+    <figcaption class="legende">Le <b>même</b> cycle, vu comme un <b>circuit réel</b>. Les couleurs suivent le fluide : <b>rouge</b> = gaz chaud haute pression au refoulement du compresseur · <b>orange</b> = liquide haute pression en sortie de condenseur (vers le détendeur) · <b>bleu foncé</b> = basse pression après le détendeur (vers l'évaporateur) · <b>bleu clair</b> = vapeur basse pression à l'aspiration. La croix ci-dessus sert à <b>mémoriser la disposition</b> ; ce schéma montre la <b>circulation</b> et les <b>changements d'état</b>. Source : F. Henninot.</figcaption>
+  </figure>
+
+  <div class="banque"><b>Banque de mots</b> — évaporateur · condenseur · basse · haute · bout (s'évapore) · se
+  condense</div>
+
+  <table class="releve">
+    <tr><th style="width:55%">Question</th><th>Ma réponse</th></tr>
+    <tr><td>Où le fluide BOUT-il (il passe de liquide à gaz) ?</td><td style="height:1.8em"></td></tr>
+    <tr><td>La pression y est-elle basse ou haute ?</td><td style="height:1.8em"></td></tr>
+    <tr><td>Où le fluide SE CONDENSE-t-il (il passe de gaz à liquide) ?</td><td style="height:1.8em"></td></tr>
+    <tr><td>La pression y est-elle basse ou haute ?</td><td style="height:1.8em"></td></tr>
+  </table>
+
+  <div class="notion"><h4>Lien avec S4-F1 (cette semaine, en atelier)</h4>
+  <p style="margin:0; font-size:10.3pt">Cette semaine, en atelier, vous allez vérifier ce principe sur une vraie
+  machine, lors du <b>rallye de relevés en stations</b> : à chaque station, vous lirez la pression au manomètre,
+  vous lirez la température correspondante sur la <b>réglette P/T</b> de l'atelier, puis vous mesurerez la
+  température réelle avec un thermomètre de sonde, et vous comparerez. Ce que vous venez de comprendre en théorie,
+  vous allez le CONSTATER sur la machine.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — APPLICATION : LIRE UNE RÉGLETTE P/T ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 2 — le principe de la réglette P/T</h4>
+  <p style="font-size:10.3pt">Chaque fluide frigorigène a <b>sa propre</b> relation entre pression et température :
+  à une pression donnée, CE fluide-là bout ou se condense à UNE température précise, qui n'est pas la même que
+  pour un autre fluide. Un professionnel n'a pas besoin de calculer cette relation : il la <b>lit</b> sur une
+  <b>réglette P/T</b> (un petit outil que l'on trouve dans tous les ateliers), ou sur l'écran d'un manifold. En
+  1re année, vous ne manipulez <b>aucun</b> fluide frigorigène : vous apprenez seulement à <b>lire</b> une réglette.</p>
+
+  <div style="border:1.5px solid var(--bleu); border-radius:6px; background:#eef4ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt">
+  <b>📄 Ressource fournie — table pression/température.</b> Pour lire une température de saturation à partir d'une pression (ou l'inverse), utilisez la <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Reglette%20P-T%20multi-fluides%20(imprimable).pdf">réglette P/T multi-fluides</a> ou la table du fluide de votre banc : <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R134a%20(saturation,%20-100%20a%20+100%20C).pdf">R134a</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R404A%20(saturation).pdf">R404A</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R410A%20(saturation).pdf">R410A</a>. N'inventez jamais une valeur : lisez-la sur la table.
+  </div>
+
+  <div class="vigilance"><b class="t">Aucune valeur chiffrée dans ce document</b> — Ce tableau est à compléter
+  <b>uniquement avec la réglette réelle de l'atelier</b>, avec votre professeur. Aucun couple pression/température
+  de fluide frigorigène n'est donné ici de mémoire : une valeur non vérifiée sur la réglette serait une erreur.</div>
+
+  <table class="releve">
+    <tr><th style="width:20%">Fluide (à préciser)</th><th style="width:26%">Pression lue (selon la réglette de l'atelier)</th><th>Température de changement d'état lue (selon la réglette de l'atelier)</th></tr>
+    <tr><td></td><td style="height:1.8em"></td><td style="height:1.8em"></td></tr>
+    <tr><td></td><td style="height:1.8em"></td><td style="height:1.8em"></td></tr>
+    <tr><td></td><td style="height:1.8em"></td><td style="height:1.8em"></td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question 4</b> — Sur la réglette, si vous augmentez la pression, que fait la
+  température de changement d'état affichée en face : elle monte, elle descend, ou elle ne change pas ?</div>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <p style="font-size:10.3pt">Ce principe de lecture est le même que celui du rallye S4-F1 : sur la machine, vous
+  lirez une pression au manomètre puis vous chercherez, sur la réglette, la température correspondante — exactement
+  comme dans ce tableau. C'est aussi ce principe qui sera évalué à l'écrit lors d'É2, semaine 13 (lecture d'une
+  réglette ou d'un tableau fourni).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — SYNTHÈSE : FICHE MÉMO + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — ma fiche mémo</h3>
+  <p style="font-size:10.3pt">Complétez ce tableau avec la correction donnée en classe : c'est votre trace écrite,
+  à garder pour vous aider en atelier S4-F1 et pour É2.</p>
+  <div class="trace">
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:34%">Ce que j'ai découvert</th><th>Ce que je retiens</th></tr>
+    <tr><td>La casserole qui bout</td><td></td></tr>
+    <tr><td>Le seuil de 100 °C</td><td></td></tr>
+    <tr><td>La chaleur latente</td><td></td></tr>
+    <tr><td>Et si on change la pression ?</td><td></td></tr>
+    <tr><td>Dans l'évaporateur (BAS)</td><td></td></tr>
+    <tr><td>Dans le condenseur (HAUT)</td><td></td></tr>
+    <tr><td>La réglette P/T</td><td></td></tr>
+  </table>
+  </div>
+  </div>
+
+  <div class="notion"><h4>La phrase à retenir</h4>
+  <p style="margin:0; font-size:11pt; font-weight:bold; color:var(--bleu); text-align:center">« La pression choisit
+  la température de changement d'état. »</p>
+  </div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Ce module est un <b>appui</b> : aucune compétence n'est
+  positionnée, la grille sert uniquement de repère personnel avant É2.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:24%">Ce que je sais faire</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td>Expliquer pourquoi la pression choisit la température de changement d'état, et placer ébullition/condensation sur la croix du frigoriste <span class="nuance">Appui — non noté</span></td><td>Compétence non observée ce jour.</td><td>Je ne relie pas la pression et la température de changement d'état, même avec de l'aide.</td><td>Je sais que la pression joue un rôle, mais j'ai besoin d'aide pour placer évaporateur/condenseur.</td><td>Je sais expliquer seul(e) pourquoi l'évaporateur « fabrique » le froid grâce à la basse pression.</td><td>Comme « Acquis », et je sais lire une réglette P/T avec de l'aide.</td></tr>
+    <tr><td>Savoir-être — j'observe avant d'affirmer, je suis honnête dans mon auto-positionnement</td><td>Non observé.</td><td>J'affirme sans avoir observé la démonstration.</td><td>J'observe mais j'ai besoin d'un rappel pour ne pas répondre trop vite.</td><td>J'observe avant d'affirmer, je remplis mon auto-positionnement seul(e) et honnêtement.</td><td>Comme « Acquis », et j'aide un camarade à comprendre la démonstration.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Comprendre la relation P/T et la placer sur la croix :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe : il
+  prépare directement le rallye de relevés de S4-F1 (cette semaine) et le poste théorie d'É2 (semaine 13).</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « Le froid — exercices
+  élèves » et son corrigé, manuel de physique du froid du Lycée Jacques Raynaud (Enseignement Professionnel,
+  02_CAP-IFCA/S1-Analyse) — sections « Le condenseur : le phénomène de condensation », « La chaleur latente (l) »,
+  « La chaleur sensible ». La phrase « 100 °C = seuil d'ébullition de l'eau à la pression atmosphérique » et les
+  définitions de la chaleur latente de vaporisation/condensation sont reprises telles quelles de ce manuel.
+  Illustration de la casserole en ébullition extraite du même document. Schéma « La Croix du Frigoriste »
+  (F. Henninot, 2026), convention identique à S1-T1 et S3-T1. Aucune valeur de température d'ébullition en altitude
+  ni aucun couple pression/température de fluide frigorigène n'est affirmé dans ce document : ces valeurs sont à
+  lire sur la réglette P/T réelle de l'atelier, avec le professeur.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .poste-bloc, .banque, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

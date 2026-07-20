@@ -1,0 +1,608 @@
+<meta charset="utf-8">
+<title>Dossier de séquence — Séquence S6 · CAP IFCA 1A</title>
+<style>
+  :root{
+    --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+    --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+    --ufa:#0e7a5f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre);
+    font-family:Calibri,'Segoe UI',sans-serif; font-size:14pt; line-height:1.5;
+    margin:0; padding:28px 12px; text-align:left;}
+  h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; text-wrap:balance; margin:0 0 .4em}
+  p{margin:.3em 0 .8em}
+  .feuille{background:#fff; max-width:794px; min-height:1050px; margin:0 auto 30px;
+    padding:34px 46px 20px; box-shadow:0 2px 14px rgba(27,58,99,.13); position:relative;
+    display:flex; flex-direction:column;}
+  /* ---------- INVARIANT : bandeau d'en-tête ---------- */
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:10px; margin-bottom:6px;}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#1e2c5e; letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#7b5cf5; letter-spacing:.03em}
+  .logo-eq{display:block}
+  .sous-entete{display:flex; justify-content:space-between; font-size:10pt; color:var(--gris); margin-bottom:22px;}
+  /* ---------- INVARIANT : pied de page ---------- */
+  .pied{margin-top:auto; padding-top:14px; border-top:1px solid var(--filet);
+    font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;}
+  /* ---------- Page de garde ---------- */
+  .garde-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:6px}
+  .garde-seq{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--orange); font-size:15pt; letter-spacing:.25em; text-transform:uppercase}
+  .garde-titre{font-size:27pt; margin:.15em 0}
+  .garde-soustitre{font-size:14pt; color:var(--gris); font-style:italic; margin-bottom:14px}
+  .garde-meta{display:inline-block; margin:18px auto 6px; border:1px solid var(--filet); border-radius:6px; padding:14px 30px; font-size:12.5pt; text-align:left; background:var(--fond-doux)}
+  .garde-meta b{color:var(--bleu)}
+  .croix{margin:18px auto 8px; display:block}
+  .croix-legende{font-size:9.5pt; color:var(--leger); font-style:italic}
+  .comp-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px}
+  .chip{border:1.5px solid var(--bleu); color:var(--bleu); border-radius:20px; padding:3px 14px; font-size:11pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; background:#fff}
+  .chip small{font-weight:normal; color:var(--gris)}
+  .chip.eval{border-color:#e8d98a; background:#fffdf5}
+  /* ---------- Corps commun ---------- */
+  .titre-page{font-size:19pt; border-left:6px solid var(--orange); padding-left:14px; margin-bottom:4px}
+  .surtitre{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:2px}
+  h3{font-size:13.5pt; margin-top:1.1em; display:flex; align-items:baseline; gap:8px}
+  table{border-collapse:collapse; width:100%; font-size:11pt; margin:.4em 0 1em}
+  th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:9.5pt; letter-spacing:.04em; text-transform:uppercase; padding:6px 9px; text-align:left}
+  td{border:1px solid var(--filet); padding:6px 9px; vertical-align:top}
+  tr:nth-child(even) td{background:var(--fond-doux)}
+  ul,ol{margin:.2em 0 .9em 1.35em; padding:0}
+  li{margin-bottom:.25em}
+  .encadre-secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:12px 18px; margin:.6em 0 1em}
+  .encadre-secu h3{color:#c14a17; margin-top:0}
+  .encadre-secu td{background:transparent!important; border-color:#f3c9b3}
+  .badge-niveau{display:inline-block; font-size:9pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; color:#fff}
+  .nI{background:#9aa5b1}.nC{background:#8a6dbf}.nM{background:#5d6b7c}.nV{background:var(--bleu)}
+  .fleche{color:var(--orange); font-weight:bold}
+  .cartouche-methode{background:var(--fond-doux); border:1px solid var(--filet); border-left:6px solid var(--bleu);
+    border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .cartouche-methode b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu)}
+  .etiquette{font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; letter-spacing:.08em;
+    text-transform:uppercase; border-radius:3px; padding:1px 7px; vertical-align:2px}
+  .et-inv{background:#e3e9f2; color:var(--bleu)}
+  .et-var{background:#ffe4d6; color:#b4501e}
+  .obj{background:var(--fond-doux); border-radius:6px; padding:10px 18px 10px 14px; margin:.3em 0 1em}
+  .obj li{margin-bottom:.35em}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:700px){.duo,.grille-cartes{grid-template-columns:1fr}}
+  .tbl-wrap{overflow-x:auto}
+  @media print{
+    body{background:#fff; padding:0}
+    .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always}
+  }
+  .tab-der{font-size:10pt}
+  .tab-der td{padding:5px 8px}
+  .cols2{columns:2; column-gap:26px; font-size:10.5pt}
+  .regle4{font-size:9.5pt; color:var(--gris); font-style:italic}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; vertical-align:1px; white-space:nowrap}
+  .stD{background:#e6f4ee; color:#0e7a5f; border:1px solid #9fd6c2}
+  .stC{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .stE{background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .grille-modules{font-size:10pt}
+  .grille-modules td{padding:6px 8px}
+  .credits-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:14px}
+  .credits-bloc{max-width:560px; margin:0 auto; border:1px solid var(--filet); border-radius:8px; background:var(--fond-doux); padding:22px 28px; font-size:11.5pt; text-align:left; line-height:1.6}
+  .credits-bloc b{color:var(--bleu)}
+  .sources{font-size:9.5pt; color:var(--gris); text-align:left; max-width:560px; margin:14px auto 0}
+  /* ---------- Formule de Bowers : bandeau 4 cases ---------- */
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.5em 0 1em; font-size:10pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:8px 12px; background:#fff}
+  .formule .case h4{margin:0 0 4px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  @media (max-width:700px){.formule{grid-template-columns:1fr 1fr}}
+  /* ---------- Cartes module (plan de séquence) ---------- */
+  .grille-cartes{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:.4em 0 1em}
+  .carte-module{border:1px solid var(--filet); border-left:5px solid var(--bleu); border-radius:6px; padding:10px 14px; background:#fff}
+  .carte-module.theorie{border-left-color:var(--ufa)}
+  .carte-module.transversal{border-left-color:var(--orange)}
+  .carte-module.evaluation{border-left-color:#c9a300; background:#fffdf5}
+  .carte-module h4{margin:0 0 2px; font-size:13pt; color:var(--bleu); display:flex; align-items:baseline; gap:6px; flex-wrap:wrap}
+  .carte-module .meta-ligne{font-size:8.5pt; color:var(--gris); margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em; font-family:'Trebuchet MS',sans-serif}
+  .carte-module p{font-size:10.5pt; margin:.2em 0 .4em}
+  .carte-module .nuance{display:block; margin-bottom:.3em}
+  .badge-type{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; background:#e3e9f2; color:var(--bleu)}
+  /* ---------- Bandeau signal (É3) ---------- */
+  .bandeau-e1{background:#fff6cc; border:1.5px solid #e8d98a; border-radius:6px; padding:9px 22px; margin:6px auto 4px; max-width:580px; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:#7a5b00; font-size:12.5pt; text-align:center; letter-spacing:.02em}
+  .eval-row td{background:#fff6cc!important}
+  /* ---------- Emplacement réservé ---------- */
+  .encadre-reserve{border:2px dashed var(--gris); border-radius:6px; background:var(--fond-doux); padding:10px 18px; margin:.6em 0 1em; font-size:11pt}
+  .encadre-reserve h3{color:var(--gris); margin-top:0}
+  /* ---------- Encadré calendrier (bleu) ---------- */
+  .encadre-cal{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:12px 18px; margin:.6em 0 1em}
+  .encadre-cal h3{color:var(--bleu); margin-top:0}
+</style>
+
+<!-- ============================ FEUILLE 1 : PAGE DE GARDE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>CAP Installateur en Froid et Conditionnement d'Air — 1<sup>re</sup> année</span>
+    <span>Année scolaire 2026-2027 · Période P3</span>
+  </div>
+
+  <div class="garde-centre">
+    <div class="garde-seq">Séquence S6</div>
+    <h1 class="garde-titre">Épreuve d'étanchéité azote<br>et recherche de fuite</h1>
+    <div class="garde-soustitre">LE geste sécurité de l'année — prouver l'étanchéité, trouver la fuite — et la troisième évaluation sommative, É3</div>
+
+    <div class="bandeau-e1">◆ É3 — SEMAINE 21, TROISIÈME ÉVALUATION SOMMATIVE (conjointe S5-S6) — C3.9 évaluée pour la première fois</div>
+
+    <img class="croix" src="images/croix-frigoriste-schema-technique.svg" width="300" style="max-width:100%" alt="Croix du Frigoriste — schéma technique du circuit frigorifique">
+    <div class="croix-legende">La Croix reste le repère constant : détendeur GAUCHE · compresseur DROITE · condenseur HAUT · évaporateur BAS. En S6, l'élève referme la boucle sécurité du montage dessiné : après le brasage (S5), il PROUVE l'étanchéité du circuit sous azote par paliers jusqu'à la pression d'épreuve fixée par le professeur, puis localise et prouve une fuite volontairement introduite — le geste que le référentiel nomme C3.9.</div>
+
+    <div class="comp-chips">
+      <span class="chip eval">C3.9 <small>Vérifier l'étanchéité</small> <span class="statut stC">Confortement</span><span class="fleche"> → vers Maîtrise</span> <span class="statut stE">Éval. É3</span></span>
+      <span class="chip">C3.6 <small>Câbler, connecter</small> <span class="statut stC">Confortement</span><span class="fleche"> → vers Maîtrise</span></span>
+      <span class="chip">C2.4 <small>Sécuriser l'intervention</small> <span class="statut stC">Confortement</span><span class="fleche"> → vers Maîtrise</span></span>
+      <span class="chip">C4.5 <small>Mesurer, comparer</small> <span class="statut stC">Confortement</span></span>
+      <span class="chip">C1.3 <small>Rendre compte</small> <span class="statut stC">Confortement</span></span>
+      <span class="chip">C1.1 <small>Compléter, transmettre</small> <span class="statut stD">Découverte</span></span>
+    </div>
+
+    <div class="formule">
+      <div class="case"><h4>Tâche</h4>Réaliser l'épreuve d'étanchéité à l'azote et remettre le PV signé, localiser et prouver une fuite, fiabiliser le départ moteur en autonomie — OI-S6-1 à 3 (suite du chantier « arrière-boutique »)</div>
+      <div class="case"><h4>Savoir</h4>S6.2 · S6.3 augmentés (risques pression, gaz neutres) · S5.5 augmenté (étanchéité, recherche de fuite) · S5.6 augmenté (élec, consolidation) · S3.1 augmenté (carnet)</div>
+      <div class="case"><h4>Savoir-être</h4>Autonomie du geste à risque (l'élève manipule seul le manodétendeur) · honnêteté de la preuve de fuite · rigueur du PV rempli au fur et à mesure · contrat de réussite assumé (E1)</div>
+      <div class="case comp"><h4>= Compétence</h4>C3.9 Confortement <b>→ vers Maîtrise</b> (puis <b>Évaluation à É3</b>) · C3.6 et C2.4 → vers Maîtrise · C4.5 · C1.3 Confortement · C1.1 Découverte</div>
+    </div>
+    <p style="font-size:9pt; color:var(--gris); text-align:center; margin-top:-6px">Formule adaptée par F. Henninot — charte pédagogique §2 (« formule de Bowers »).</p>
+
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:6px"><span class="statut stC">Confortement</span> pour C3.9 (S6-F1 puis S6-F2, tend vers la Maîtrise dans cette séquence — <b>c'est la première fois que C3.9 sera positionnée en Évaluation</b>, à É3) · C3.6 (S6-E1, tend vers la Maîtrise) · C2.4 (S6-F1/F2/T1, tend vers la Maîtrise) · C4.5 (S6-F2) · C1.3 (F3) — renforcement de compétences déjà positionnées. <span class="statut stD">Découverte</span> pour C1.1 (F3, via le PV d'épreuve rempli et transmis). <b>C3.4</b> n'est retravaillée dans aucun module de S6 (dernier module : S5-F1, brasage fort) — elle sera positionnée une troisième fois lors d'É3, en même temps que C3.6 et C3.9 (statut <span class="statut stE">Évaluation</span>, voir §Descriptif de l'évaluation). <b>Statut Évaluation UNIQUEMENT dans les documents d'É3.</b></p>
+
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:2px">Cadre académique — contribution certificative CAP IFCA (EP1/EP2/EP3, encore en construction dans l'usine) : S6 nourrit <b>en priorité le geste professionnel d'EP2</b> (épreuve d'étanchéité à l'azote, recherche de fuite) ; le versant électrique (consolidation contacteurs/moteurs) rejoint plutôt le périmètre d'<b>EP3</b>. Répartition indicative, formulation prudente, <b>à faire valider par l'enseignant</b> — cette contribution reste pédagogique : aucune remontée certificative officielle n'a lieu via S6 elle-même (la seule remontée est interne, École Directe, via la note d'É3).</p>
+
+    <div class="garde-meta">
+      <b>Semaines 18 à 21</b> · fin de la période P3 (mars-avril 2027, dates exactes à caler — point ouvert)<br>
+      <b>3 modules d'atelier</b> — S6-F1 Épreuve d'étanchéité à l'azote (sem. 18-19, <b>2 passages</b>) · S6-F2 Recherche
+      de fuite (sem. 20, <b>passage UNIQUE renforcé</b>) · S6-E1 Contacteurs et moteurs — consolidation (sem. 18-19,
+      2 passages) · <b>1 module de théorie</b> — S6-T1 Risques de la pression, gaz neutres (sem. 18) · fil de l'eau
+      <b>F3</b> (carnet de bord, suite S1-S5)<br>
+      <span style="font-size:10.5pt; color:var(--gris)">S6 clôt la période P3 et porte <b>É3, la troisième évaluation
+      sommative</b> (semaine 21, conjointe S5-S6, remontée École Directe) : détail feuille 7.<br>
+      Statut du dossier : <b>6<sup>e</sup> séquence 1A — en attente du bon à tirer de Franck.</b></span>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 2 : ORGANISATION DES 4 SEMAINES + ARBITRAGES + TABLEAU DES MODULES ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S6 — organisation et arbitrages</span>
+    <span>CAP IFCA 1A · P3 · semaines 18-21</span>
+  </div>
+
+  <div class="surtitre">Organisation <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Quatre semaines, dont une entièrement consacrée à É3</h2>
+  <p>Rotation par demi-groupes inchangée (4 h froid + 4 h élec + 2 h théorie / semaine) jusqu'à la semaine 20. La
+  semaine 21 est <b>entièrement consacrée à É3</b> (3 créneaux, même architecture qu'É1/É2) — ce qui laisse
+  <b>3 créneaux froid</b> (sem. 18-20) pour deux modules « ×2 » prévus au maître : l'arbitrage retenu est détaillé
+  ci-dessous.</p>
+
+  <h3>Qui fait quoi, semaine par semaine</h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Sem.</th><th>Groupe 1</th><th>Groupe 2</th><th>Théorie (classe entière)</th></tr>
+    <tr><td><b>18</b></td><td>Froid <b>S6-F1</b> (passage 1) + Élec <b>S6-E1</b> (passage 1)</td><td>Élec <b>S6-E1</b> (passage 1) + Froid <b>S6-F1</b> (passage 1)</td><td><b>S6-T1</b> — Risques de la pression, gaz neutres</td></tr>
+    <tr><td><b>19</b></td><td>Froid <b>S6-F1</b> (passage 2) + Élec <b>S6-E1</b> (passage 2)</td><td>Élec <b>S6-E1</b> (passage 2) + Froid <b>S6-F1</b> (passage 2)</td><td>Théorie libre — co-intervention si la carte le marque</td></tr>
+    <tr><td><b>20</b></td><td>Froid <b>S6-F2</b> (passage unique renforcé) + Élec préparation libre É3</td><td>Élec préparation libre É3 + Froid <b>S6-F2</b> (passage unique renforcé)</td><td>Théorie libre — révision É3</td></tr>
+    <tr class="eval-row"><td><b>21</b></td><td><b>É3</b> — poste FROID (4 h)</td><td><b>É3</b> — poste ÉLEC (4 h)</td><td><b>É3</b> — poste THÉORIE (2 h, classe entière)</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em">Le fil de l'eau <b>F3</b> se poursuit en continu
+  (même carnet que S1-S5), avec sa rubrique « je prépare É3 ». Dates réelles des semaines 18-21 : <b>à caler — point
+  ouvert</b> (cadrage S6, mars-avril 2027).</p>
+
+  <div class="encadre-cal">
+    <h3>⚠ Arbitrages de calendrier — décisions de cadrage, à valider au bon à tirer</h3>
+    <p style="margin-top:-.2em"><b>Contrainte</b> : la semaine 21 entière est réservée à É3, il ne reste que 3
+    créneaux froid (sem. 18-20) pour 2 modules initialement prévus « ×2 » au maître.</p>
+    <ul style="margin-bottom:.3em">
+      <li><b>S6-F1 garde ses 2 passages</b> (sem. 18-19) — c'est <b>LE geste de l'année</b> : l'épreuve d'étanchéité
+      complète ne se comprime pas.</li>
+      <li><b>S6-F2 passe en passage UNIQUE renforcé</b> (sem. 20) — le geste (recherche de fuite) est réinvesti
+      immédiatement au poste froid d'É3 (sem. 21) puis en S7 : un seul passage suffit car la pratique se poursuit
+      sans coupure.</li>
+      <li><b>Le créneau élec de la semaine 20 devient préparation libre d'É3</b> — reprise en autonomie des
+      documents déjà produits (S5-E1, S5-E2, S6-E1), <b>PAS de document neuf</b> créé pour ce créneau.</li>
+    </ul>
+    <p style="margin-bottom:0; font-size:10pt">Les deux arbitrages sont consignés dans <code>_ETAT.md</code> et
+    restent <b>À VALIDER</b> par Franck au bon à tirer.</p>
+  </div>
+
+  <h3>Tableau des modules <span class="etiquette et-inv">repris du cadrage, sans modification</span></h3>
+  <div class="tbl-wrap">
+  <table class="grille-modules">
+    <tr><th>Module</th><th>Type</th><th>Durée</th><th>Sem.</th><th>Contenu</th><th>Compétences (statut)</th><th>Tâches</th><th>Savoirs</th></tr>
+    <tr><td><b>S6-F1</b></td><td>Atelier</td><td>4 h ×2</td><td>18-19</td><td><b>Épreuve d'étanchéité à l'azote</b> : procédure complète — montée par paliers jusqu'à la pression d'épreuve fixée par le professeur, tenue en pression, relevés, PV d'épreuve rempli et signé</td><td><b>C3.9</b> <span class="statut stC">Confortement</span><span class="fleche">→vers Maîtrise</span> · C2.4 <span class="statut stC">Confortement</span><span class="fleche">→vers Maîtrise</span></td><td>T11 · T12</td><td>S6.2 · S6.3 augmentés</td></tr>
+    <tr><td><b>S6-F2</b></td><td>Atelier</td><td>4 h ×1 (passage unique renforcé)</td><td>20</td><td><b>Recherche de fuite</b> : montages volontairement fuyards — localiser, prouver (eau savonneuse), marquer, rendre compte ; présentation des autres moyens (gaz traceur : « selon le matériel de l'atelier, à faire valider »)</td><td>C3.9 <span class="fleche">vers Maîtrise</span> · C4.5 <span class="statut stC">Confortement</span></td><td>T11 · T12</td><td>S5.5 augmenté</td></tr>
+    <tr><td><b>S6-E1</b></td><td>Atelier</td><td>4 h ×2</td><td>18-19</td><td><b>Contacteurs + moteurs — consolidation</b> : refaire en autonomie croissante le départ moteur + commande (acquis S5-E1/E2), contrat de réussite par niveaux</td><td>C3.6 <span class="fleche">vers Maîtrise</span></td><td>T10 · T11 · T12</td><td>S5.6 augmenté</td></tr>
+    <tr><td><b>S6-T1</b></td><td>Théorie</td><td>2 h</td><td>18</td><td><b>Risques de la pression · gaz neutres</b> : pourquoi l'azote, pourquoi jamais l'oxygène, l'asphyxie, la bouteille et son détendeur — la théorie qui SÉCURISE F1</td><td>appui (C2.4)</td><td>—</td><td>S6.2 · S6.3 augmentés</td></tr>
+    <tr><td><b>F3</b></td><td>Fil de l'eau</td><td>2 h continu</td><td>18-21</td><td>Carnet de bord (suite) — le PV d'épreuve s'y intègre ; rubrique « je prépare É3 »</td><td>C1.3 <span class="statut stC">Confortement</span> · C1.1 <span class="statut stD">Découverte</span></td><td>T1</td><td>S3.1 augmenté</td></tr>
+    <tr class="eval-row"><td><b>É3</b></td><td>Sommative</td><td>3 postes</td><td>21</td><td>Poste FROID (4 h : brasage fort + épreuve azote par paliers + recherche/preuve d'une fuite) · poste ÉLEC (4 h : départ moteur contacteur/relais thermique) · poste THÉORIE (2 h : pression et sécurité azote, lecture de PV, écrit individuel)</td><td><b>C3.4 · C3.6 · C3.9</b> <span class="statut stE">Évaluation</span> + C2.4 savoir-être RENFORCÉ</td><td>T10 · T11 · T12</td><td>S5.5 · S6.2</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 3 : PLAN DE SÉQUENCE MODULAIRE — ATELIERS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S6 — plan de séquence (ateliers)</span>
+    <span>CAP IFCA 1A · P3 · semaines 18-21</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Le chantier « arrière-boutique », suite : prouver avant de livrer</h2>
+  <p style="font-size:11pt"><b>Fil rouge professionnel</b> : les liaisons de la future chambre froide sont brasées
+  (S5) — avant l'arrivée du fluide (2<sup>e</sup> année), il faut PROUVER l'étanchéité au client et au « bureau de
+  contrôle ». Ordres d'intervention numérotés <b>OI-S6-1 à OI-S6-3</b> : réaliser l'épreuve d'étanchéité du montage
+  et remettre le PV signé (F1) · un montage « revenu de chantier » fuit — localiser toutes les fuites, les prouver,
+  rendre compte (F2) · fiabiliser l'armoire : le départ moteur doit être recâblé en autonomie, sans erreur (E1).
+  <b>É3 = « chantier de réception »</b> (le client reçoit les travaux). Jamais de nom propre.
+  <span class="regle4">Règle de charte : jamais plus de 4 compétences par module.</span></p>
+
+  <div class="grille-cartes">
+    <div class="carte-module">
+      <h4>S6-F1 <span class="badge-type">Atelier</span> <span class="nuance">OI-S6-1</span></h4>
+      <div class="meta-ligne">4 h × 2 passages (sem. 18-19) · froid</div>
+      <p><b>Épreuve d'étanchéité à l'azote :</b> procédure complète — montée par paliers jusqu'à la pression
+      d'épreuve fixée par le professeur, tenue en pression, relevés, PV d'épreuve rempli et signé.</p>
+      <span class="nuance">Tâches T11 · T12 — Savoir travaillé S6.2 · S6.3 augmentés.</span>
+      <div><b>C3.9</b> <span class="statut stC">Confortement</span><span class="fleche"> → vers Maîtrise</span>
+      Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service<br>
+      <b>C2.4</b> <span class="statut stC">Confortement</span><span class="fleche"> → vers Maîtrise</span> Sécuriser
+      l'intervention</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>pilotage par le document officiel</b> — c'est le
+      PV d'épreuve qui structure la séance : chaque ligne du PV déclenche un geste, l'élève coche et renseigne au
+      fur et à mesure. <b>Passage 1</b> : binôme, rôles S5-F2 conservés (opérateur / contrôleur sécurité).
+      <b>Passage 2</b> : PV tenu SEUL. Le document fait le métier.</div>
+    </div>
+
+    <div class="carte-module">
+      <h4>S6-F2 <span class="badge-type">Atelier</span> <span class="nuance">OI-S6-2</span></h4>
+      <div class="meta-ligne">4 h × 1 passage UNIQUE renforcé (sem. 20) · froid</div>
+      <p><b>Recherche de fuite :</b> montages volontairement fuyards — localiser, prouver (eau savonneuse), marquer,
+      rendre compte ; présentation des autres moyens (gaz traceur : « selon le matériel de l'atelier, à faire
+      valider »).</p>
+      <span class="nuance">Tâches T11 · T12 — Savoir travaillé S5.5 augmenté.</span>
+      <div><b>C3.9</b> <span class="fleche">vers Maîtrise</span> Vérifier l'étanchéité d'un circuit (frigorifique,
+      hydraulique) avant mise en service<br><b>C4.5</b> <span class="statut stC">Confortement</span> Mesurer,
+      comparer des grandeurs</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>défi « tableau de chasse »</b> — montages
+      volontairement fuyards préparés par le professeur (nombre de fuites annoncé ou non, selon variante) ; chaque
+      binôme localise, PROUVE (bulles à l'eau savonneuse), marque, consigne au tableau de chasse ; mise en commun :
+      qui a tout trouvé, comment. L'honnêteté de la preuve = savoir-être. <b>Passage UNIQUE renforcé</b> (arbitrage
+      de calendrier, feuille 2) — pas de passage 2 : le geste est réinvesti immédiatement au poste froid d'É3 puis
+      en S7.</div>
+    </div>
+
+    <div class="carte-module">
+      <h4>S6-E1 <span class="badge-type">Atelier</span> <span class="nuance">OI-S6-3</span></h4>
+      <div class="meta-ligne">4 h × 2 passages (sem. 18-19) · élec</div>
+      <p><b>Contacteurs et moteurs — consolidation :</b> refaire en autonomie croissante le départ moteur + commande
+      (acquis S5-E1/E2), contrat de réussite par niveaux.</p>
+      <span class="nuance">Tâches T10 · T11 · T12 — Savoir travaillé S5.6 augmenté.</span>
+      <div><b>C3.6</b> <span class="statut stC">Confortement</span><span class="fleche"> → vers Maîtrise</span>
+      Câbler, repérer, connecter les liaisons électriques et électroniques</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>contrat de réussite par niveaux</b> — l'élève
+      choisit et annonce son défi (niveau 1 : départ moteur seul refait sans aide · niveau 2 : + voyants
+      marche/défaut · niveau 3 : + variante imposée par le professeur), autonomie croissante de la charte ; le
+      contrat est signé en début de séance et vérifié en fin.</div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 4 : THÉORIE, CARNET · CE QUI CHANGE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S6 — théorie, carnet · ce qui change</span>
+    <span>CAP IFCA 1A · P3 · semaines 18-21</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence, suite <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Théorie et carnet de bord</h2>
+
+  <div class="grille-cartes">
+    <div class="carte-module theorie">
+      <h4>S6-T1 <span class="badge-type">Théorie</span></h4>
+      <div class="meta-ligne">2 h · semaine 18 · classe entière</div>
+      <p><b>Risques de la pression · gaz neutres :</b> pourquoi l'azote, pourquoi jamais l'oxygène, l'asphyxie, la
+      bouteille et son détendeur — la théorie qui SÉCURISE F1.</p>
+      <span class="nuance">Savoir travaillé S6.2 · S6.3 augmentés.</span>
+      <div>Appui <b>C2.4</b> Sécuriser l'intervention (formatif, sans positionnement propre)</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>étude de documents authentiques en groupes</b> —
+      FDS azote, étiquette de bouteille, extraits ED 742 / fiche de poste : chaque groupe extrait « ses » règles et
+      les restitue ; le professeur formalise. (La sécurité ne se découvre pas par l'expérience : elle se lit et
+      s'impose.)</div>
+    </div>
+
+    <div class="carte-module transversal">
+      <h4>F3 <span class="badge-type">Fil de l'eau</span></h4>
+      <div class="meta-ligne">2 h continu · semaines 18-21 · transversal</div>
+      <p><b>Carnet de bord</b> — suite directe du carnet de S1-S5 (même carnet) : le PV d'épreuve s'y intègre,
+      nouvelle rubrique « je prépare É3 ».</p>
+      <span class="nuance">Tâche T1 — Savoir travaillé S3.1 augmenté.</span>
+      <div><b>C1.3</b> <span class="statut stC">Confortement</span> Rendre compte<br><b>C1.1</b>
+      <span class="statut stD">Découverte</span> Compléter, transmettre (via le PV d'épreuve rempli et transmis)</div>
+      <div class="cartouche-methode"><b>Méthode</b> : rituel continu, tenu à chaque séance — le carnet de S1-S5
+      continue tel quel, enrichi de la rubrique « je prépare É3 ».</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.3em">Ce qui change depuis S5 <span class="etiquette et-var">Variable</span></h3>
+  <div class="cartouche-methode">
+    <b>S6-F1</b> : la check-list signée de S5-F2 devient un <b>PV D'ÉPREUVE</b> officiel — même geste (paliers, eau
+    savonneuse), exigence formalisée : montage, pression fixée, tenue, constat, verdict étanche/fuyard, signatures
+    binôme + professeur.<br>
+    <b>S6-F2</b> : première recherche de fuite PROUVÉE en conditions dégradées (montage volontairement fuyard) — en
+    S5-F2, l'élève ne rencontrait que des montages étanches.<br>
+    <b>S6-E1</b> : passage du guidage (S5-E1/E2) au <b>contrat de réussite autonome</b> — l'élève choisit son
+    niveau d'exigence.<br>
+    <b>Au global</b> : le geste sécurité central de l'année (l'épreuve azote) referme la boucle ouverte en S5-F2 ;
+    F2 passe en passage unique car le geste est réinvesti tout de suite après, à É3 puis en S7 (tirage au vide).
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 5 : MÉTHODES VARIÉES + FIL ROUGE SÉCURITÉ RENFORCÉ ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S6 — méthodes et sécurité</span>
+    <span>CAP IFCA 1A · P3 · semaines 18-21</span>
+  </div>
+
+  <div class="surtitre">Méthodes imposées <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">Méthodes variées par module — aucune reprise de S1 à S5</h2>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:12%">Module</th><th style="width:38%">Méthode imposée</th><th>Ce qu'elle apporte</th></tr>
+    <tr><td><b>S6-F1</b></td><td>Pilotage par le document officiel (le PV d'épreuve)</td><td>Chaque ligne du PV déclenche un geste ; passage 2 = PV tenu seul, sans étayage.</td></tr>
+    <tr><td><b>S6-F2</b></td><td>Défi « tableau de chasse »</td><td>Montages fuyards préparés par le professeur, preuve par bulles à l'eau savonneuse, mise en commun ; l'honnêteté de la preuve = savoir-être.</td></tr>
+    <tr><td><b>S6-E1</b></td><td>Contrat de réussite par niveaux</td><td>L'élève choisit et annonce son défi (niveau 1 à 3), autonomie croissante, contrat signé et vérifié.</td></tr>
+    <tr><td><b>S6-T1</b></td><td>Étude de documents authentiques en groupes</td><td>FDS azote, étiquette de bouteille, extraits ED 742 — la sécurité se lit et s'impose, elle ne se découvre pas.</td></tr>
+    <tr><td><b>É3</b></td><td>Conditions réelles, postes individuels, silence pédagogique</td><td>Positionnement individuel authentique, sans étayage.</td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Fil rouge sécurité de S6 — LE geste sécurité de l'année</h3>
+    <ul style="margin-bottom:.3em">
+      <li><b>Azote (S6-F1, S6-F2, É3 poste froid)</b> : gaz inerte = risque d'<b>ASPHYXIE</b> en local confiné (FDS),
+      détendeur azote OBLIGATOIRE, montée PAR PALIERS jusqu'à la pression fixée par le professeur, personne dans
+      l'axe des raccords, lunettes ; gestes interdits : <b>JAMAIS d'oxygène ni d'air comprimé</b> pour une épreuve
+      ou une recherche de fuite.</li>
+      <li><b>Flamme (rappel, poste froid É3 si le brasage fort est réactivé)</b> : mêmes règles que S5-F1 (EPI,
+      bouteilles debout et arrimées, anti-retours de flamme en place) ; en cas de retour de flamme ou d'extinction :
+      <b>fermer le gaz COMBUSTIBLE d'abord, puis l'oxygène</b> (INRS ED 742) — leçon tirée du contrôle du 18/07.</li>
+      <li><b>Élec (S6-E1, É3 poste élec)</b> : consignation <b>NF C 18-510</b>, contrôle hors tension, mise sous
+      tension <b>PAR LE PROFESSEUR</b>, y compris pendant É3.</li>
+      <li><b>Limite assumée</b> : la sécurité ne se « découvre » pas — elle se démontre et s'impose (charte §1) ;
+      en S6, l'élève passe du geste accompagné (S5) au geste autonome SURVEILLÉ (professeur présent, jamais
+      absent).</li>
+    </ul>
+    <div class="incident" style="font-size:10pt; background:#fdeaea; border:1px solid #e8b4b4; border-radius:4px; padding:6px 12px; color:#8c2f2f">🚨 <b>En cas d'incident</b> : en cas de suspicion d'asphyxie (azote) — évacuer, ventiler,
+    alerter, ne jamais entrer seul dans un local suspect. En cas de retour de flamme : couper le combustible d'abord,
+    puis l'oxygène, alerter. Élec : couper — arrêt d'urgence —, alerter, ne jamais déplacer un élève électrisé avant
+    coupure confirmée. Arrêt d'urgence et trousse de secours localisés dès l'accueil de chaque séance, y compris
+    pendant É3.</div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 6 : MONTÉE SPIRALAIRE LOCALE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S6 — montée spiralaire locale</span>
+    <span>CAP IFCA 1A · P3 · semaines 18-21</span>
+  </div>
+
+  <div class="surtitre">Progression annuelle <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Montée spiralaire locale — de S5 à S6</h2>
+  <p style="font-size:11pt">Rappel charte §2 et §5 : l'échelle 0-4 (grilles de module) est le <b>positionnement
+  constaté</b> un jour donné ; la progression <b>I</b> (Initiation) / <b>C</b> (Consolidation) / <b>M</b>
+  (Maîtrise) / <b>V</b> (Validé) ci-dessous est le <b>niveau visé</b> dans la progression annuelle — deux axes
+  distincts, à ne pas confondre. Particularité de S6 : É3 (semaine 21) se range DANS le dossier de cette même
+  séquence — le niveau visé « fin S6 » intègre donc directement le résultat d'É3.</p>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Code</th><th style="width:26%">Compétence</th><th style="width:16%">Niveau visé fin S5</th><th style="width:6%"></th><th style="width:16%">Niveau visé fin S6</th><th>En S6</th></tr>
+    <tr><td><b>C3.9</b></td><td>Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service</td><td><span class="badge-niveau nC">Consolidation</span> (découverte guidée, S5-F2)</td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span> ÉVALUÉE (É3) — <b>NOUVELLE, 1<sup>re</sup> évaluation</b></td><td><span class="statut stC">Confortement</span><span class="fleche">→vers Maîtrise</span> S6-F1 (épreuve complète) puis S6-F2 (recherche de fuite) — ÉVALUÉE en É3</td></tr>
+    <tr><td><b>C3.6</b></td><td>Câbler, repérer, connecter les liaisons électriques et électroniques</td><td><span class="badge-niveau nC">Consolidation</span> vers Maîtrise (S5-E1/E2)</td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span> ÉVALUÉE (É3) — 3<sup>e</sup> positionnement</td><td><span class="statut stC">Confortement</span><span class="fleche">→vers Maîtrise</span> S6-E1 (consolidation autonome) — ÉVALUÉE en É3</td></tr>
+    <tr><td><b>C3.4</b></td><td>Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)</td><td><span class="badge-niveau nC">Consolidation</span> vers Maîtrise (S5-F1, brasage fort)</td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span> ÉVALUÉE (É3) — 3<sup>e</sup> positionnement</td><td>Non retravaillée dans un module S6 — directement réinvestie et évaluée en É3 (brasage fort + épreuve azote)</td></tr>
+    <tr><td><b>C2.4</b></td><td>Sécuriser l'intervention</td><td><span class="badge-niveau nC">Consolidation</span> confirmée, renforcée (S5)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> vers Maîtrise, RENFORCÉE (ligne savoir-être à poids affirmé en É3)</td><td><span class="statut stC">Confortement</span><span class="fleche">→vers Maîtrise</span> S6-F1/F2/T1 — savoir-être renforcé en É3</td></tr>
+    <tr><td><b>C4.5</b></td><td>Mesurer, comparer des grandeurs</td><td><span class="badge-niveau nC">Consolidation</span> confirmée (S5-T2)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> confirmée</td><td><span class="statut stC">Confortement</span> S6-F2 (preuve de fuite = mesure/constat)</td></tr>
+    <tr><td><b>C1.3</b></td><td>Rendre compte</td><td><span class="badge-niveau nC">Consolidation</span> confirmée (S5, F3)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> confirmée</td><td><span class="statut stC">Confortement</span> — F3</td></tr>
+    <tr><td><b>C1.1</b></td><td>Compléter, transmettre</td><td>— (non travaillée)</td><td class="fleche">→</td><td><span class="badge-niveau nI">Initiation</span> NOUVELLE</td><td><span class="statut stD">Découverte</span> F3 — le PV d'épreuve rempli et transmis</td></tr>
+  </table>
+  </div>
+  <p style="font-size:10pt; margin:-.2em 0 .8em"><i>Doctrine — le positionnement 0-4 constaté en atelier reste
+  Confortement dans les modules (C3.9, C3.6, C2.4) ; c'est le NIVEAU VISÉ de la progression annuelle, porté par É3
+  elle-même (rangée dans S6), qui franchit le cran vers la Maîtrise ÉVALUÉE.</i></p>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em">Source : progression 1A CAP IFCA codée (en
+  attente de bon à tirer). <b>Aucun savoir nouveau</b> n'apparaît dans S6 : tous les savoirs travaillés (S6.2 ·
+  S6.3 · S5.5 · S5.6 · S3.1) sont des réactivations « augmentées » de savoirs déjà rencontrés en S1-S5.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 7 : DESCRIPTIF DE L'ÉVALUATION É3 ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S6 — descriptif de l'évaluation</span>
+    <span>CAP IFCA 1A · P3 · semaines 18-21</span>
+  </div>
+
+  <div class="surtitre">Descriptif de l'évaluation <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">É3 — la troisième évaluation sommative (semaine 21)</h2>
+  <p><b>C3.9 passe en <span class="statut stE">Évaluation</span> pour la première fois</b> (spiralaire : Découverte
+  S3-F1 → Confortement S5-F2 → travail S6-F1/F2 → Évaluation É3). C3.4 et C3.6 : troisième positionnement (É1, É2,
+  É3 — l'exigence monte encore d'un cran).</p>
+
+  <h3>É2 → É3 : ce qui monte</h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:14%">Poste</th><th style="width:38%">É2 (semaine 13)</th><th>É3 (semaine 21)</th></tr>
+    <tr><td><b>Froid</b></td><td>Brasage tendre + étanchéité à l'eau savonneuse</td><td><b>Brasage FORT</b> (2 emboîtures, brevets S5-F1) <b>+ épreuve azote par paliers avec mini-PV</b> (l'élève manipule le manodétendeur LUI-MÊME, professeur présent) <b>+ localiser et prouver une fuite</b> sur montage fourni</td></tr>
+    <tr><td><b>Élec</b></td><td>Télérupteur domestique</td><td><b>Départ moteur industriel</b> (contacteur + relais thermique, d'après le schéma travaillé en S5/S6-E1), contrôle hors tension, mise sous tension par le professeur</td></tr>
+    <tr><td><b>Théorie</b></td><td>Relation P/T + composants</td><td><b>Sécurité de la pression</b> (pourquoi l'azote, gestes interdits, lecture d'un PV d'épreuve, ordre de fermeture des gaz)</td></tr>
+  </table>
+  </div>
+
+  <div class="carte-module evaluation">
+    <h4>Structure et barème <span class="badge-type" style="background:#fff6cc; color:#8a6d00">Sommatif</span></h4>
+    <p style="margin-top:-.2em">3 postes (froid 4 h · élec 4 h · théorie 2 h) — <b>C3.4 · C3.6 · C3.9</b> en statut
+    <span class="statut stE">Évaluation</span> + <b>C2.4 savoir-être RENFORCÉ</b> : dans les 3 grilles, la ligne
+    savoir-être est explicitement adossée à C2.4 (EPI sans rappel, check-list respectée, zone sécurisée) — poids
+    affirmé, formulé dans le barème. <b>Barème global 40 pts</b> (harmonisation É1/É2). É3 se range dans <b>ce
+    dossier S6</b> (règle : la séquence la plus récente) — <b>remontée École Directe</b>.</p>
+  </div>
+
+  <h3>Plan de passation</h3>
+  <p>Cloner l'architecture d'É2 : demi-groupes tournants, théorie en classe entière, absents « absent ≠ non évalué »,
+  tiers-temps.</p>
+
+  <h3>Remédiation d'É3</h3>
+  <p>Prévue dans le corrigé professeur : reprise ciblée au début de S7 (mécanique T0 rodée — S3-T2, S5-T0), tutorat,
+  variante consolidation.</p>
+
+  <h3>Spiralaire de C3.9 — le fil qui traverse toute l'année</h3>
+  <div class="cartouche-methode">
+    <b>Découverte</b> S3-F1 (eau savonneuse simple, montage sur pavillon) <span class="fleche">→</span>
+    <b>Confortement</b> S5-F2 (montage d'essai par paliers, check-list signée) <span class="fleche">→</span>
+    <b>Maîtrise travaillée</b> S6-F1 (épreuve complète + PV) et S6-F2 (recherche de fuite) <span class="fleche">→</span>
+    <b>ÉVALUÉE</b> É3 (semaine 21 : épreuve complète + recherche de fuite, élève seul face au manodétendeur,
+    professeur présent).
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 8 : RANGEMENT + CRÉDITS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S6 — rangement et crédits</span>
+    <span>CAP IFCA 1A · P3 · semaines 18-21</span>
+  </div>
+
+  <div class="surtitre">Rangement de la production <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Où trouver le plan de séance de chaque module</h2>
+  <p style="font-size:11pt">Les plans de séance, documents élève et documents professeur <b>ne sont pas recopiés
+  ici</b> : ils vivent chacun dans leur sous-dossier, à la racine du dossier de séquence S6 (convention usine
+  FrigorX).</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th style="width:14%">Module</th><th style="width:46%">Sous-dossier</th><th>Contenu attendu</th></tr>
+    <tr><td><b>S6-F1</b></td><td><code>S6-F1 - Épreuve d'étanchéité à l'azote\</code></td><td>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td><b>S6-F2</b></td><td><code>S6-F2 - Recherche de fuite\</code></td><td>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td><b>S6-E1</b></td><td><code>S6-E1 - Contacteurs et moteurs - consolidation\</code></td><td>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td><b>S6-T1</b></td><td><code>S6-T1 - Risques de la pression et gaz neutres\</code></td><td>Document élève · Document professeur</td></tr>
+    <tr><td><b>F3</b></td><td><code>F3 - Carnet de bord\</code></td><td>Document élève · Document professeur</td></tr>
+    <tr class="eval-row"><td><b>É3</b></td><td><code>Évaluation sommative É3 S5-S6 (semaine 21)\</code></td><td>Document élève - sujet · Document professeur - corrigé et grille · Plan de passation</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 .6em">Totaux horaires recomptés : ateliers documentés —
+  S6-F1 4 h × 2 = <b>8 h</b> (sem. 18-19) + S6-F2 4 h × 1 passage unique = <b>4 h</b> (sem. 20) + S6-E1 4 h × 2 =
+  <b>8 h</b> (sem. 18-19) = <b>20 h</b>. Théorie documentée : S6-T1 2 h (sem. 18) + créneaux libres 2 h (sem. 19)
+  + 2 h (sem. 20, révision É3) = <b>6 h</b>. Créneau élec de la semaine 20 : préparation libre d'É3, <b>4 h NON
+  documentée</b> (reprise autonome des documents S5-E1/E2/S6-E1). F3 : fil de l'eau continu, intégré aux séances
+  existantes (aucune heure supplémentaire). <b>É3 (sem. 21) : 10 h d'évaluation</b> — poste froid 4 h + poste élec
+  4 h + poste théorie 2 h.<br>
+  <b>Total séquence</b> = froid 16 h (F1 8 h + F2 4 h + É3 4 h) + élec 16 h (E1 8 h + préparation libre 4 h + É3
+  4 h) + théorie 8 h (T1 2 h + libre 4 h + É3 2 h) = <b>40 h sur 4 semaines</b>, conforme à l'organisation
+  10 h/semaine/élève du cadrage.</p>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1.2em">Sortie <b>HTML seulement</b> à ce stade
+  (référence) — PDF et docx natif suivront <b>après le bon à tirer de Franck</b> (cadrage S6, règle 10).</p>
+
+  <div class="surtitre">Crédits</div>
+  <div class="credits-bloc" style="margin:0">
+    <p style="margin:0 0 .8em"><b>Projet inerWeb</b> — © 2026 Franck Henninot.</p>
+    <p style="margin:0 0 .8em">Ce document est produit dans le cadre de l'enseignement du CAP Installateur en Froid
+    et Conditionnement d'Air (IFCA), LPP Jacques Raynaud — Campus EQUATIO.</p>
+    <p style="margin:0 0 .8em"><b>Usage pédagogique non commercial</b> : reproduction et adaptation autorisées pour
+    un usage d'enseignement, à condition de mentionner l'origine (F. Henninot — inerWeb Édu) ; toute exploitation
+    commerciale est interdite.</p>
+    <p style="margin:0">Licence équivalente à <b>CC BY-NC 4.0</b> · <b>inerweb.fr</b></p>
+  </div>
+  <div class="sources">
+    <p style="margin:.8em 0 .3em"><b>Sources autoritaires de ce dossier</b> : cadrage <code>_CADRAGE-S6.md</code>
+    (découpage modulaire, arbitrages de calendrier, contrat É3, méthodes imposées, codes officiels) · progression 1A
+    CAP IFCA codée (<code>_PROGRESSION-1A-CODEE.md</code>, en attente de bon à tirer) · référentiel officiel CAP
+    IFCA (codes et libellés T/S/C) · charte pédagogique FrigorX (formule de Bowers §2, échelle 0-4 §5, sécurité §7)
+    · dossier de séquence S5 (forme clonée, harmonisation 1A stricte) · documents S5-F2/S5-E1/S5-E2 produits
+    (check-list devenue PV, schémas réutilisés) · procédure « mise sous azote » (essai 10 bar mini/24 h, bouteille
+    ≈ 200 bar, source unique sourcée) · FDS Azote · INRS ED 742 (sécurité chalumeau, ordre de fermeture des gaz) ·
+    évaluation « pose des manomètres épreuve à l'azote, tirage au vide » (grille d'inspiration). Aucune valeur ni
+    aucun libellé n'a été inventé pour ce dossier ; les points ouverts (arbitrages de calendrier, pression d'épreuve
+    10/20 bar, durée de tenue, gaz traceur réel de l'atelier, dates réelles, copyright) sont signalés dans
+    <code>_ETAT.md</code>.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .carte-module, .grille-cartes>div, .bandeau-e1, .encadre-reserve, .encadre-cal{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

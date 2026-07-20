@@ -1,0 +1,428 @@
+<meta charset="utf-8">
+<title>Document professeur — S11 · Module A2-b · Façonnage complexe et pose des manomètres</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Braser, raccorder les organes, poser les manomètres</td>
+      <td style="width:38%"><span class="lib">Module atelier A2-b · 4 h — DOCUMENT PROFESSEUR</span><b>Façonnage complexe et pose des manomètres</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> · sem. 5 · 29/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A2 + poste façonnage + poste manomètres</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée (pas 4 h + 4 h)</td>
+      <td><span class="lib">Modalité</span>Conduite de chantier en autonomie jalonnée (2 jalons) + carnet de bord (module F3)</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">prérequis</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">prérequis</span><br><b>S2.1</b> Outils, normes et représentation <span class="nuance">augmenté</span><br><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie entre les jalons · tenue rigoureuse du carnet de bord · honnêteté de la mesure</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits <span class="nuance">sur T10 · S2.1</span><br><span class="statut">Découverte→Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11 · S5.2</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module A2-b : mêmes
+  observations et questions, même numérotation, même séquençage en 2 jalons (jalon 1 façonnages complexes,
+  jalon 2 pose des manomètres + lecture de la double graduation). Il y ajoute : les réponses attendues à
+  chaque observation/question avec point de vigilance, les critères observables du contrôle des façonnages et
+  du raccordement des manomètres, l'organisation du plateau, les erreurs typiques d'élèves avec leur
+  remédiation, le minutage 4 h recompté et la différenciation (consolidation / standard / approfondissement +
+  FLE + TDAH-DYS). <b>Aucune valeur chiffrée de pression ou de température n'est inventée</b> : la lecture de
+  la double graduation se fait exclusivement sur l'échelle du manomètre de démonstration réel ou sur la table
+  de saturation du fluide utilisé, et reste dans tous les cas <b>« à faire valider par le professeur »</b>.
+  <b>Le module ne comporte aucune mise sous pression du circuit complet</b> : la mise sous pression et le
+  relevé complet des pressions BP/HP sont réalisés au module A2-c (préréglage au banc), qui suit celui-ci.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Conduite de chantier en autonomie jalonnée + carnet de bord (module F3).</b>
+  Contrairement au module A2-a (démonstration imposée, geste à risque qui se démontre), l'élève conduit ici son
+  chantier <b>en autonomie entre les jalons</b> : le professeur fixe deux jalons de contrôle (façonnages
+  complexes → pose des manomètres), valide chaque jalon avant de laisser passer au suivant, et n'intervient pas
+  en continu. Chaque élève tient son <b>carnet de bord</b> (module F3) tout au long du module : ce qu'il a
+  fait, ce qu'il a mesuré, les écarts constatés. Module resserré sur 4 h : la mise sous pression du circuit et
+  le relevé des pressions (ancien 3<sup>e</sup> jalon de la version 8 h) sont retirés d'A2-b et renvoyés au
+  module A2-c.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — L'autonomie jalonnée ne signifie
+  pas absence de surveillance : le professeur doit circuler en continu entre les postes pour repérer une
+  dérive avant le jalon (façonnage qui s'engage mal, manomètre déjà raccordé du mauvais côté) plutôt que de la
+  découvrir seulement au contrôle. Ne jamais valider un jalon « pour gagner du temps » si le critère observable
+  n'est pas rempli.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 55 min)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation du module (conduite de chantier en autonomie, jalonnée par deux contrôles professeur).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S11-02 : réaliser les façonnages complexes restants (chapeau de gendarme, collecteur), poser et raccorder les manomètres BP/HP, lire la double graduation.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » affichés et commentés, lien avec la formule (C3.4 en évaluation, C4.5 en découverte-confortement).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, exercice au fil de l'eau : repérage sur le schéma de la ligne liquide (annexe A3) des emplacements du chapeau de gendarme, du collecteur et des prises de pression BP/HP.</td></tr>
+    <tr><td>15 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (risques du jour : manipulation de la vanne Schrader, gestes interdits, conduite en cas de fuite) puis « planter la notion » : OBSERVER un manomètre à double graduation posé sur banc → NOMMER les deux échelles (pression / température) → EXPLICITER le principe de correspondance pression-température, sans mise sous pression du circuit complet.</td></tr>
+    <tr><td>20 min</td><td class="ph">6a. Guider l'étude — démonstration de pose d'un manomètre</td><td>Démonstration commentée resserrée du professeur : raccordement d'un manomètre sur une prise de pression Schrader (outil dédié, ordre des manipulations), purge lente, lecture de la pression sur la double graduation. Un seul poste, élèves regroupés à distance de sécurité. C'est le support de la méthode de lecture reprise au jalon 2 (voir feuille 3).</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>1 h 05</td><td class="ph">6b. Guider l'étude — jalon 1 : façonnages complexes</td><td>Chaque élève, en autonomie sur son poste : mesure et repérage des cotes, façonnage du chapeau de gendarme, puis façonnage et assemblage à blanc du collecteur (étapes 1 à 8 du TP). Le professeur valide le passage au jalon 2 (pose des manomètres) après contrôle individuel de chaque façonnage.</td></tr>
+    <tr><td>45 min</td><td class="ph">6c. Guider l'étude — jalon 2 : manomètres + lecture</td><td>Après validation du jalon 1, chaque élève identifie les prises BP/HP, vérifie la fermeture des vannes Schrader, raccorde le manomètre BP sur la prise bleue puis le manomètre HP sur la prise rouge, serre à la main puis un quart de tour à la clé, contrôle visuellement l'absence de fuite (étapes 1 à 7 du TP), puis observe et lit la double graduation sur le manomètre de démonstration (sans mise sous pression du circuit complet). Le professeur valide le montage de chaque élève.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque élève présente son carnet de bord et son montage de manomètres ; auto-positionnement par compétence (C3.4, C4.5 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : finalisation du carnet de bord du module + bon de commande hebdomadaire (matériel manquant, quantités de raccords et de consommables de façonnage).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Rangement des postes de façonnage et de pose des manomètres, nettoyage, vérification visuelle de l'ensemble des montages du module.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (A2-c — fin de la ligne liquide, mise sous pression et préréglage au banc).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+15 = <b>55 min</b>
+  (sous le plafond de 1 h) ; démonstration 20 min + pause 15 min + jalon 1 (1 h 05) + jalon 2 (45 min) = 2 h 45 ;
+  synthèse 15 min + bon de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  55 min + 2 h 45 + 40 min = <b>4 h 00 exactes</b>
+  (soit, en toutes lettres : quatre heures zéro minute), conforme au plan de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ OBSERVER + FAÇONNAGES COMPLEXES (JALON 1) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — OBSERVER le gabarit avant de façonner</h3>
+
+  <div class="reponse"><b class="t">Observation 1</b> — Sur le gabarit du chapeau de gendarme, combien de
+  plis compte-t-on et dans quel sens partent-ils ?<br><br>
+  <b>Réponse attendue :</b> le chapeau de gendarme comporte <b>deux plis</b> (un double pli), orientés en sens
+  <b>opposé</b> l'un de l'autre : le premier pli dévie le tube d'un côté, le second le ramène parallèle à sa
+  direction d'origine mais décalé — d'où la forme en « S » allongé caractéristique. Les angles exacts et le
+  sens précis (gauche/droite ou haut/bas) dépendent du gabarit fourni ce jour-là et de l'obstacle à contourner
+  sur la ligne liquide : <b>à lire sur le gabarit réel du poste, à faire valider par le professeur</b>.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui ne compte qu'un seul pli confond le
+  chapeau de gendarme avec un simple coude : insister sur le <b>double</b> pli et sur le fait que les deux plis
+  vont dans des sens opposés (sinon on obtiendrait un simple décalage d'angle, pas un décalage parallèle).</div>
+
+  <div class="reponse"><b class="t">Observation 2</b> — Sur le schéma de la ligne liquide en annexe, à quoi
+  sert le collecteur : sépare-t-il un débit ou le réunit-il ?<br><br>
+  <b>Réponse attendue :</b> sur le schéma annexe, le collecteur <b>réunit ou répartit</b> plusieurs départs de
+  tube à partir d'une seule ligne — la réponse exacte (il sépare un débit ou il en réunit plusieurs) dépend du
+  sens de circulation représenté sur le schéma de la ligne liquide de la séquence : dans le cas de S11, le
+  collecteur permet à un même détendeur d'alimenter <b>plusieurs départs</b> vers plusieurs évaporateurs, donc
+  il <b>répartit</b> un débit unique en plusieurs départs (fonction inverse d'un collecteur qui réunirait
+  plusieurs aspirations vers un seul compresseur). Faire pointer du doigt le sens de circulation sur le schéma
+  annexe avant de conclure.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Le mot « collecteur » évoque spontanément
+  « réunir » pour beaucoup d'élèves : sur une ligne liquide comme ici, il peut au contraire <b>répartir</b>.
+  Toujours faire vérifier le sens des flèches sur le schéma réel avant de répondre, ne jamais répondre de
+  mémoire sur la fonction du collecteur.</div>
+
+  <h3 class="section">Corrigé — jalon 1 : façonnages complexes</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Cotes du chapeau de gendarme</td><td>Mesures et repères pris directement sur le gabarit fourni, reportés sur le tube avant le premier pli — jamais « à vue ».</td></tr>
+    <tr><td>Qualité du pli (chapeau de gendarme)</td><td>Tube non écrasé, non ovalisé au niveau du pli ; section circulaire conservée sur toute la longueur cintrée.</td></tr>
+    <tr><td>Alignement final (chapeau de gendarme)</td><td>Les deux extrémités du tube façonné restent parallèles à l'axe d'origine, décalage conforme au gabarit.</td></tr>
+    <tr><td>Cotes des départs du collecteur</td><td>Longueurs et emplacements des piquages mesurés et repérés d'après le gabarit avant coupe.</td></tr>
+    <tr><td>Coupe et ébavurage du collecteur</td><td>Coupe perpendiculaire au tube, ébavurage systématique intérieur et extérieur après chaque coupe (arêtes vives = défaut de brasure future).</td></tr>
+    <tr><td>Assemblage à blanc du collecteur</td><td>Tous les départs s'emboîtent sans forcer, sans jeu excessif ni interférence, avant toute brasure définitive (qui aura lieu au module A2-c).</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi assemble-t-on le collecteur « à blanc » avant de
+  le braser définitivement ?<br><br>
+  <b>Réponse attendue :</b> assembler « à blanc » signifie emboîter les pièces du collecteur <b>sans les
+  braser</b>, pour <b>vérifier l'ajustement</b> (bon jeu d'emboîture, alignement des départs, absence
+  d'interférence) <b>avant</b> une opération qui, une fois réalisée, est difficile ou impossible à défaire sans
+  tout démonter et recommencer. Si un défaut d'ajustement apparaît à l'assemblage à blanc, il est facile à
+  corriger (recouper, réajuster) ; le même défaut découvert après brasure obligerait à désassembler des joints
+  brasés, ce qui abîme le tube et fait perdre du temps et du matériau.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève pressé qui saute l'assemblage à blanc
+  « pour gagner du temps » prend le risque inverse : un défaut découvert après brasure coûte largement plus de
+  temps qu'un contrôle à blanc de deux minutes. C'est exactement la logique du jalon 1 du TP : la brasure
+  définitive du collecteur n'a lieu qu'au module A2-c, après validation du professeur sur l'assemblage à blanc
+  d'aujourd'hui.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ POSE DES MANOMÈTRES (JALON 2) + LECTURE PRESSION/TEMPÉRATURE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 2 : pose des manomètres BP et HP</h3>
+  <figure style="margin:6px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-pose-manometre.svg" alt="Schéma technique : pose d'un manomètre BP (bleu) et HP (rouge) sur une prise de pression, lecture à double graduation pression et température"
+         style="max-width:75%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Version repérée pour la correction — BP en bleu, HP en rouge. La couleur du cadran doit toujours correspondre à la couleur de la prise de pression : c'est le premier point à vérifier avant tout serrage.</figcaption>
+  </figure>
+
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Identification des prises</td><td>Prise bleue (BP) et prise rouge (HP) repérées correctement avant tout raccordement, par comparaison directe des couleurs.</td></tr>
+    <tr><td>Vanne Schrader fermée avant raccordement</td><td>Vanne vérifiée fermée avant de visser le flexible, jamais raccordé sur une vanne restée ouverte.</td></tr>
+    <tr><td>Couleur du raccordement</td><td>Manomètre BP (cadran bleu) raccordé uniquement sur la prise bleue ; manomètre HP (cadran rouge) uniquement sur la prise rouge. Aucune inversion tolérée.</td></tr>
+    <tr><td>Serrage</td><td>Serrage à la main puis un quart de tour à la clé, jamais forcé ; joint du flexible vérifié en place avant de serrer.</td></tr>
+    <tr><td>Contrôle d'étanchéité visuel</td><td>Absence de fuite constatée visuellement (et à la mousse savonneuse si besoin) aux deux raccords.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — lecture du manomètre : relation pression / température</h3>
+  <div class="reponse"><b class="t">Point de méthode</b> — la conversion pression → température <b>se lit</b>
+  sur l'échelle double du manomètre de démonstration (échelle extérieure : pression en bar ; échelle
+  intérieure, en face : température de saturation en °C pour le fluide utilisé), <b>ou</b> sur la table de
+  saturation du fluide fournie par le professeur. <b>Aucune valeur n'est donnée dans ce corrigé</b> : la
+  relation pression-température change d'un fluide à l'autre et dépend du modèle exact de manomètre utilisé
+  pour la démonstration. Toute valeur lue doit être <b>faite valider par le professeur</b> avant d'être
+  reportée comme acquise dans le carnet de bord. <b>Aucune mise sous pression du circuit de l'élève n'a lieu
+  aujourd'hui</b> : cette lecture se fait uniquement sur le manomètre de démonstration du poste professeur ; le
+  relevé complet sur le circuit de chaque élève se fera au module A2-c.</div>
+
+  <div class="reponse"><b class="t">Question</b> — Sur le manomètre de démonstration, relevez un repère de
+  pression et lisez la température de saturation en face. Notez les deux valeurs lues.<br><br>
+  <b>Réponse attendue :</b> il n'y a pas de couple de valeurs « correct » universel à donner ici : l'élève doit
+  choisir <b>n'importe quel repère de graduation</b> sur l'échelle de pression du manomètre réellement utilisé
+  en démonstration, et lire <b>en face, sur la même ligne</b>, la température de saturation correspondante.
+  Le professeur vérifie la méthode (bon repère, lecture « en face » et non décalée) plutôt qu'une valeur
+  précise, qui dépend entièrement du manomètre et du fluide affichés ce jour-là.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — L'erreur la plus fréquente est de lire les deux
+  échelles à des hauteurs différentes du cadran (pression prise à un endroit, température prise ailleurs) :
+  faire vérifier que les deux valeurs sont bien alignées sur le même repère.</div>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi le manomètre BP et le manomètre HP n'affichent-ils
+  pas la même pression, alors qu'ils sont sur le même circuit ?<br><br>
+  <b>Réponse attendue :</b> BP et HP ne sont <b>pas au même endroit</b> du circuit frigorifique : la prise BP se
+  situe côté basse pression (après le détendeur, avant l'aspiration du compresseur), la prise HP côté haute
+  pression (après le compresseur, avant le détendeur). Le détendeur crée précisément une <b>chute de
+  pression</b> entre ces deux zones : c'est son rôle. Deux points différents d'un circuit ne sont pas obligés
+  d'être à la même pression dès qu'un organe (détendeur, restriction, vanne fermée) les sépare.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser dire « c'est bizarre, ça devrait
+  être pareil » : faire repérer sur le schéma annexe la position exacte des deux prises par rapport au
+  détendeur avant de répondre. C'est un point de compréhension central pour la suite (préréglage au banc,
+  module A2-c).</div>
+
+  <div class="reponse"><b class="t">Question</b> — Si la pression augmente sur le manomètre, que devient la
+  température de saturation lue en face ?<br><br>
+  <b>Réponse attendue :</b> la température de saturation <b>augmente également</b>. La relation
+  pression-température d'un fluide qui change d'état est une correspondance <b>croissante</b> : plus la
+  pression est élevée, plus la température à laquelle le fluide change d'état (bout/se condense) est élevée.
+  C'est exactement pour cela que le cadran porte deux échelles en vis-à-vis : à chaque repère de pression
+  correspond une seule température de saturation pour un fluide donné, et les deux évoluent toujours dans le
+  <b>même sens</b>.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui répond « elle baisse » applique un
+  raisonnement inversé (peut-être par analogie avec une détente qui refroidit) : reformuler avec l'échelle
+  double sous les yeux, en montrant que les deux graduations montent ensemble sur le cadran.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — ORGANISATION DU PLATEAU + ERREURS TYPIQUES + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation du plateau — postes, rotation, sécurité</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Postes de façonnage</b></td><td>Cintreuse à main ou à ressort, coupe-tube, ébavureur, gabarits (chapeau de gendarme, collecteur), tube cuivre recuit, gants de manutention.</td><td>Un gabarit par poste, contrôlé conforme avant le début du façonnage ; ébavurage systématique après chaque coupe (arêtes vives = risque de coupure et défaut de brasure future).</td></tr>
+    <tr><td><b>Postes manomètres</b></td><td>Manomètre BP (cadran bleu) + manomètre HP (cadran rouge), flexibles de raccordement, clé de raccordement Schrader dédiée, lunettes de protection.</td><td>Vérifier la correspondance de couleur AVANT tout raccordement ; lunettes portées pendant tout raccordement, sans exception.</td></tr>
+    <tr><td><b>Poste de démonstration</b></td><td>Manomètre BP/HP de démonstration à double graduation, prise de pression Schrader, outil de raccordement dédié.</td><td>Un seul poste équipé, élèves regroupés à distance de sécurité ; aucune mise sous pression du circuit complet aujourd'hui.</td></tr>
+  </table>
+  <p style="font-size:10pt" class="vigilance"><b class="t">Rotation —</b> le rythme des deux jalons (façonnages
+  → manomètres) n'est pas nécessairement identique pour tous les élèves : le professeur adapte l'ordre de ses
+  validations individuelles à l'avancement réel de chaque poste, sans faire attendre passivement un élève déjà
+  prêt pour le jalon suivant — lui faire compléter son carnet de bord ou vérifier une seconde fois son montage
+  en attendant.</p>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Façonnage complexe raté (cotes fausses, tube écrasé ou ovalisé au pli)</td><td>Interrompre avant le jalon, faire recontrôler les cotes sur le gabarit, refaire le pli sur une chute de tube avant de reprendre la pièce définitive. Rappeler : cintrer progressivement, sans forcer d'un coup.</td></tr>
+    <tr><td>Chapeau de gendarme avec un seul pli (confondu avec un coude simple)</td><td>Reprendre l'observation 1 avec le gabarit sous les yeux : montrer les deux plis et leur sens opposé avant de laisser continuer.</td></tr>
+    <tr><td>Assemblage à blanc du collecteur sauté (brasage anticipé)</td><td>Stopper immédiatement : le jalon 1 du TP exige la validation de l'assemblage à blanc avant toute brasure définitive (qui de toute façon n'a lieu qu'au module A2-c). Faire désassembler si déjà brasé par erreur.</td></tr>
+    <tr><td>Manomètre forcé au serrage (au-delà d'un quart de tour à la clé)</td><td>Arrêter le geste, faire desserrer, vérifier l'état du joint, reprendre avec la règle main + un quart de tour. Rappeler le risque d'endommagement du filetage ou du joint.</td></tr>
+    <tr><td>Manomètre BP/HP inversés au raccordement</td><td>Interrompre, faire vérifier la couleur du cadran contre la couleur de la prise, corriger le raccordement avant validation du jalon.</td></tr>
+    <tr><td>Lecture BP/HP confondue sur l'échelle double</td><td>Reprendre la démonstration du début du module : faire pointer du doigt l'échelle extérieure (pression) puis l'échelle intérieure en face (température), sur le manomètre de démonstration.</td></tr>
+    <tr><td>Carnet de bord rempli a posteriori « de mémoire » plutôt qu'au fil de l'eau</td><td>Rappeler que l'honnêteté et la tenue au fil de l'eau sont des critères de savoir-être évalués ce jour ; faire reprendre une étape oubliée en la signalant comme telle plutôt que de l'inventer.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Le professeur réalise avec l'élève le premier pli du chapeau de gendarme en commentant chaque geste avant de le laisser continuer seul ; jalons rapprochés (contrôle après chaque façonnage plutôt qu'en fin de bloc) pour sécuriser l'autonomie progressivement.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, autonomie jalonnée par les 2 jalons, carnet de bord tenu au fil de l'eau.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de ses propres jalons, l'élève explique à un pair la fonction du chapeau de gendarme ou du collecteur, et anticipe pourquoi BP et HP afficheront des pressions différentes une fois le circuit sous pression (critère du niveau 4 de la grille C4.5).</td></tr>
+    <tr><td>FLE</td><td>Gabarits annotés avec pictogrammes (flèche de sens, couleur bleu/rouge) plutôt que texte seul ; vocabulaire de sécurité et de couleur répété à l'identique à chaque poste (« bleu = BP », « rouge = HP », « doucement », « stop ») ; démonstration de la pose de manomètre doublée de gestes mimés (montrer le sens de serrage avec la main).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Carnet de bord découpé en cases à cocher séparées, une par étape (comme le TP l'est déjà) ; limiter les sollicitations simultanées en autorisant un seul geste à la fois pendant le raccordement (poser la clé avant de lire le manomètre) ; jalons rapprochés pour éviter l'attente prolongée entre deux validations.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 (CORRIGÉ) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>0 = compétence non observée ce jour</b> (à ne jamais
+  confondre avec une absence, codée séparément sur École Directe).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits <span class="nuance">sur T10 · S2.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Façonnage non conforme au gabarit (cotes fausses, tube écrasé), ou jalon franchi sans validation professeur.</td>
+      <td>Façonnage correct avec une remarque du professeur (cote ou alignement à corriger), repris ensuite.</td>
+      <td>Chapeau de gendarme et collecteur conformes au gabarit, jalons respectés en autonomie, sans aide.</td>
+      <td>Comme « Acquis », et l'élève explique à un pair l'utilité du chapeau de gendarme ou du collecteur.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11 · S5.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Manomètre mal raccordé (BP/HP inversés), ou principe de la double graduation non explicité.</td>
+      <td>Raccordement réalisé avec aide du professeur ; lecture de la double graduation faite avec accompagnement.</td>
+      <td>Manomètres raccordés sans erreur, principe pression-température explicité sans aide sur le manomètre de démonstration.</td>
+      <td>Comme « Acquis », et l'élève anticipe pourquoi BP et HP afficheront des pressions différentes une fois le circuit sous pression.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — autonomie, rigueur du carnet de bord, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Jalons non respectés (avance sans validation), carnet de bord incomplet, ou observation arrangée pour « faire juste ».</td>
+      <td>Autonomie globale correcte, quelques rappels nécessaires sur la tenue du carnet de bord.</td>
+      <td>Jalons respectés sans rappel, carnet de bord tenu au fil de l'eau, observations honnêtes même si imparfaites.</td>
+      <td>Comme « Acquis », et l'élève aide un pair à structurer son carnet de bord sans faire le travail à sa place.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> une observation « arrangée » pour
+  obtenir un résultat jugé plus satisfaisant (lecture recopiée d'un camarade, étape notée sans l'avoir
+  réellement faite) entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que
+  soit par ailleurs la qualité du façonnage ou du raccordement : l'honnêteté est un principe non négociable,
+  cohérent avec l'exigence d'auto-contrôle honnête déjà posée au module A2-a.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Mathématiques</b> — lecture de graduations, relation pression-température ;</li>
+    <li><b>Technologie</b> — rôle des organes de mesure (manomètres BP/HP) ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module ;</li>
+    <li><b>Chef-d'œuvre</b> — captation vidéo possible pour le dossier ;</li>
+    <li><b>Module A2</b> — chantier de projet déjà entamé en S10 et poursuivi au module A2-a.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : TP Complet
+  Manomètres et Pressostat BP CAP IFCA (F. Henninot) ; Fiche CAP IFCA — Pose Manomètres ; Support Pose
+  Manomètres CAP IFCA ; Activité n°10 — Ligne liquide avec prise de pression ; Activité n°4 — Collecteur
+  d'aspiration ; Chapeau de gendarme — façonnage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

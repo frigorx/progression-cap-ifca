@@ -1,0 +1,250 @@
+<meta charset="utf-8">
+<title>Plan de séance — S5-E2 · Schémas de commande industriels</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage fort HP et électricité industrielle — <b>module atelier S5-E2</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S5-E2 · schémas de commande industriels</span><b>Commande complète de l'armoire — classe puzzle (P1) puis transfert autonome (P2)</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> P3 · semaines 16-17</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 16</b> et <b>passage 2 — semaine 17</b> (dates à caler sur le calendrier réel, cf. <i>_CADRAGE-S5.md</i>) — <b>même jeu de documents, vécu deux fois</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone de l'armoire arrière-boutique + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier froid S5-F2)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> <b>S2.2</b> Lecture de plan <span class="nuance">(schéma domestique développé, S3-E2)</span> ; <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">(contacteur, relais thermique — vus ou en cours de découverte en S5-E1, même semaine)</span><br><span class="nuance">Travaillé :</span> <b>S2.2</b> et <b>S5.6</b> <span class="nuance">AUGMENTÉS — 1ʳᵉ rencontre avec un schéma industriel complet (commande + puissance), repères normalisés KM1/S1/S2/F1/H1/H2</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel (consignation NF C 18-510, mise sous tension = geste professeur) · rigueur du câblage collectif · coopération du puzzle (expliquer clairement son bloc, écouter les autres) · honnêteté du contrôle</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · T11 · T12 · S2.2 · S5.6 — cible spiralaire : vers Maîtrise</span><br><span class="statut">Confortement</span> <b>C3.2</b> Identifier sur site les réseaux d'alimentation <span class="nuance">sur T10 · S2.2 — 2ᵉ rencontre (1ʳᵉ en S3-E2), transposée à l'armoire industrielle</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S5-4</b> : le commerce alimentaire de proximité poursuit l'équipement de son
+  <b>arrière-boutique</b>. En S5-E1 (<b>OI-S5-3</b>), vous avez câblé le <b>départ moteur</b> du groupe frigorifique
+  (contacteur, relais thermique). Aujourd'hui, il manque l'essentiel : <b>la commande</b> qui permet à l'exploitant
+  de démarrer et d'arrêter le groupe en toute sécurité, avec un <b>voyant</b> qui confirme la marche et un autre qui
+  signale un défaut. <b>Passage 1</b> : en <b>classe puzzle</b>, chaque groupe devient expert d'un bloc du schéma de
+  commande, puis tous cablent collectivement l'armoire complète. <b>Passage 2</b> : sans le puzzle, vous transposez
+  seul(e) la méthode apprise à une variante.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>lire</b> un schéma de <b>commande</b> et un schéma de <b>puissance</b> industriels, et identifier
+        les repères normalisés (<b>KM1, S1, S2, F1, H1, H2</b>) ;</li>
+        <li>devenir <b>expert</b> d'un bloc du schéma de commande (bouton marche NO · bouton arrêt NF ·
+        auto-maintien 13-14 · sécurité thermique 95-96 · voyants marche/défaut) et <b>l'expliquer</b> à mes pairs ;</li>
+        <li><b>câbler collectivement</b> la commande complète de l'armoire à partir des schémas complétés en groupe ;</li>
+        <li><b>réaliser un contrôle hors tension</b> avant tout essai, réalisé uniquement par le professeur ;</li>
+        <li><b>(passage 2)</b> transposer seul(e), sans le support du puzzle, la même démarche à une variante.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>lire un schéma électrique développé simple (S1-S2) et un schéma d'appareillage de commande automatisée,
+        commande/puissance (télérupteur, minuterie — S3-E2) ;</li>
+        <li>le contacteur et le relais thermique, <b>vus ou en cours de découverte en S5-E1</b> (même semaine) ;</li>
+        <li>réaliser seul(e) une consignation/VAT avant toute intervention (acquis depuis S1) ;</li>
+        <li>le geste central : la mise sous tension reste toujours un geste exclusivement professeur.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S5-E1</b> — En S5-E1, vous avez manipulé <b>un contacteur
+  isolé</b> et câblé un départ moteur simple. Aujourd'hui, vous découvrez un <b>schéma complet</b> qui coordonne
+  plusieurs éléments : un bouton marche, un bouton arrêt, un <b>auto-maintien</b> (le contacteur « s'auto-alimente »
+  après relâchement du bouton), une <b>sécurité thermique</b>, et des <b>voyants</b>. On change d'échelle électrique,
+  comme en froid on passe du brasage tendre au brasage fort : d'un appareil isolé à une <b>armoire industrielle</b>
+  complète. Cette montée en échelle se fait par une méthode nouvelle, le <b>puzzle</b> : personne ne voit le schéma
+  entier d'un coup, chacun devient expert d'un morceau puis le partage.</div>
+
+  <div class="plan"><b class="t">Méthode du module : classe puzzle (jigsaw) puis transfert autonome</b> —
+  <b>Passage 1 (semaine 16)</b> : le schéma de commande est découpé en <b>5 blocs</b> ; chaque binôme devient
+  <b>expert</b> d'un bloc (fiche-support + schéma zoomé de son bloc), puis explique son bloc aux autres en groupes
+  mélangés (un représentant par bloc) → <b>câblage collectif</b> de l'armoire, chaque groupe expert câblant sa
+  propre zone sous contrôle du professeur. <b>Passage 2 (semaine 17)</b> : <b>transfert</b> — plus de puzzle, chaque
+  élève ou binôme câble seul(e) une <b>variante</b>, en autonomie, à partir du schéma complet.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 16 et 17)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 16 — classe puzzle, très guidé</h4>
+      <b>Jalon A</b> (≈ 60 min) : constitution de 5 groupes experts (bouton marche NO, bouton arrêt NF, auto-maintien
+      13-14, sécurité thermique 95-96, voyants marche/défaut), étude de la fiche-support de son bloc, préparation
+      de l'explication, puis restitution croisée en groupes mélangés (un représentant par bloc). <b>Jalon B</b>
+      (≈ 65 min) : câblage collectif de l'armoire (commande + puissance), chaque groupe expert câble sa zone,
+      contrôle hors tension, appel du professeur, mise sous tension et essais. Le professeur reste présent à chaque
+      étape et valide avant chaque geste à risque.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 17 — transfert autonome, sans puzzle</h4>
+      <b>Jalon A'</b> (≈ 40 min) : lecture <b>individuelle</b> (ou en binôme) du schéma complet <b>sans repère</b>,
+      complétion de mémoire des repères KM1/S1/S2/F1/H1/H2 — <b>aides largement retirées</b>, pas de groupes experts
+      cette fois. <b>Jalon B'</b> (≈ 85 min) : câblage d'une <b>variante</b> en autonomie guidée (même logique de
+      circuit, platine et implantation différentes), contrôle hors tension, essais professeur — en <b>autonomie
+      guidée</b> : le professeur valide sans démontrer, sauf à la mise sous tension, geste qui reste, comme
+      toujours, non négociable.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : choc électrique par contact direct avec
+  une pièce sous tension, court-circuit par confusion entre circuit de commande et circuit de puissance, bobine
+  KM1 détruite par un raccordement erroné, désynchronisation du câblage collectif (plusieurs groupes experts
+  câblent simultanément des zones différentes de la <b>même</b> armoire). <b>EPI</b> : chaussures de sécurité, pas
+  de bijoux ni de montre, manches ajustées, cheveux longs attachés. <b>Gestes interdits</b> : jamais toucher un fil
+  ou l'armoire sans VAT, jamais câbler sous tension, jamais mettre l'armoire sous tension soi-même (<b>seul le
+  professeur le fait</b>, après contrôle de <b>chaque</b> zone câblée par les groupes experts). <b>Consignation
+  NF C 18-510</b>, rituel acquis depuis S1 : couper → vérifier l'absence de tension (VAT) au multimètre →
+  condamner/signaler → travailler hors tension. <b class="t">🚨 En cas d'incident :</b> couper (interrupteur
+  général / arrêt d'urgence de l'atelier, localisé en phase 5), alerter le professeur, <b>ne jamais déplacer</b>
+  un camarade électrisé.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S5-E2 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 16 et 17</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. La consignation/VAT n'est plus démontrée (acquise depuis S1) : le temps gagné est réinvesti
+  dans les jalons du puzzle et du câblage collectif.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (puzzle puis câblage collectif, ou transfert autonome au passage 2).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S5-4 : câbler la commande complète de l'armoire de l'arrière-boutique, à la suite du départ moteur câblé en S5-E1.</td><td>Présente l'ordre d'intervention et le fil rouge de la séquence.</td><td>Reformulent la mission du module.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C3.6, C3.2) et les statuts du jour (Confortement, non remontés).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : mini-quiz sans support demandant de citer de mémoire les 4 étapes de la consignation, de reconnaître un schéma commande/puissance simple (télérupteur, S3-E2), et de nommer les deux parties d'un contacteur (S5-E1).</td><td>Distribue le mini-quiz, contrôle les tenues et les EPI au vestiaire.</td><td>Se changent par vagues ; en attente, font le mini-quiz de mémoire.</td><td>Mini-quiz sans schéma · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (arrêt d'urgence et trousse relocalisés, gestes interdits rappelés) puis <b>planter la notion</b> : OBSERVER l'armoire arrière-boutique (schéma réduit projeté) → NOMMER « circuit de commande » et « circuit de puissance » → EXPLICITER pourquoi il faut désormais coordonner PLUSIEURS éléments (bouton, auto-maintien, protection, voyants) et pourquoi la méthode du jour est un <b>puzzle</b> : personne ne voit le schéma entier d'un coup.</td><td>Localise ARU/trousse, anime le rituel planter-la-notion sur le schéma projeté, présente le principe du puzzle et répartit les 5 blocs.</td><td>Observent, répondent, comprennent la distinction commande/puissance et l'organisation en groupes experts.</td><td>Schémas réduits (commande + puissance) · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>60 / 40 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon A / A'</span> : puzzle ou lecture autonome</td><td><b>Passage 1 (60 min)</b> : 5 groupes experts étudient chacun leur bloc (fiche-support + schéma zoomé), préparent une explication, puis restitution croisée en groupes mélangés (un représentant par bloc). <b>Passage 2 (40 min)</b> : plus de puzzle — lecture individuelle ou en binôme du schéma complet sans repère, complétion de mémoire des repères KM1/S1/S2/F1/H1/H2, aides largement retirées.</td><td>Répartit les groupes experts, circule et valide les explications au fil de l'eau (P1) ; au P2, ne redonne pas les repères, relance par une question.</td><td>Étudient leur bloc, expliquent aux autres (P1) ou complètent seul(e)s les repères (P2).</td><td>Fiches-supports des 5 blocs (P1) · schémas commande/puissance réduits + annexes A3 · schéma zoomé par bloc</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>65 / 85 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon B / B'</span> : câblage et essais</td><td><b>Passage 1 (65 min)</b> : câblage collectif de l'armoire, chaque groupe expert câble sa zone (commande) pendant qu'un groupe reprend la puissance (départ moteur, prolongement de S5-E1), contrôle hors tension par zone, appel du professeur, mise sous tension et essais (marche, arrêt, voyants, simulation de défaut si possible). <b>Passage 2 (85 min)</b> : câblage individuel ou en binôme d'une variante, contrôle hors tension, essais professeur — en autonomie guidée.</td><td>Valide chaque contrôle hors tension par zone, réalise seul chaque mise sous tension, anime la coordination entre groupes experts (P1) ; au P2, valide sans démontrer.</td><td>Câblent (collectivement P1, seul(e)s ou en binôme P2), réalisent leur contrôle hors tension, appellent le professeur, observent les essais.</td><td>Armoire arrière-boutique (platine collective P1, platines individuelles P2) · schémas + annexes A3 · multimètres</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque groupe (P1) ou élève (P2) présente sa zone câblée et son schéma complété ; auto-positionnement par compétence (C3.6, C3.2 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leur câblage, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (fils, boutons poussoirs, voyants, relais thermiques de rechange).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Armoire et platines remises hors tension et débranchées, multimètres remis sur OFF, fils et outillage rangés, postes vérifiés propres et dégagés.</td><td>Supervise la remise hors tension et le rangement.</td><td>Rangent, vérifient que chaque poste est hors tension.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la suite (passage 2 la semaine suivante, ou S5-T1 selon la rotation).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  <b>Passage 1</b> : jalon A (60 min) + pause (15 min) + jalon B (65 min) = 2 h 20 ; synthèse 15 + bon de commande
+  10 + rangement 10 + clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.
+  <b>Passage 2</b> : jalon A' (40 min) + pause (15 min) + jalon B' (85 min) = 2 h 20 ; synthèse + bon de commande +
+  rangement + clôture = 40 min (inchangé). Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>. Les deux
+  passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre jalon A/A' et jalon B/B' change.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  électriques (consignation, NF C 18-510) · technologie (lecture de plan industriel, appui S5-E1 et S3-E2) ·
+  co-intervention français (carnet de bord, module F3, préparation à l'explication orale du puzzle) ·
+  remédiation post-É2 (les élèves positionnés 1-2 à C3.6 lors d'É2 bénéficient d'un accompagnement renforcé au
+  jalon B, voir S5-T0 et variante consolidation du document élève).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Élèves à revoir en priorité (auto-maintien, sécurité thermique)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

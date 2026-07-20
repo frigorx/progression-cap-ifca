@@ -1,0 +1,181 @@
+<meta charset="utf-8">
+<title>Plan de séance — S12 · Séance 3 · Étanchéité, vide, évaluation</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .eval-row td{background:#fff6cc!important}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Étanchéité, tirage au vide — chantier de remise en état (A4)</td>
+      <td style="width:38%"><span class="lib">Séance n° 3/3</span><b>Étanchéité à l'azote, tirage au vide — et preuve finale</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S12</span> P6 · positionnement : 2<sup>e</sup> année, sem. 10</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 10 · 17-21/11/2026</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>8 h (4 h + 4 h) — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>Bi-prof (2 pôles), puis évaluation individuelle</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes à détente directe <span class="nuance">à confirmer</span><br><b>S6.1</b> Santé et sécurité <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité pression sans rappel · conclusion honnête sur preuve · rigueur en évaluation</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut eval">Évaluation</span> plein poids, École Directe<br><b>C3.6</b> Câbler, connecter<br><b>C3.9</b> Vérifier l'étanchéité<br><b>C4.1</b> Tirer au vide</div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Avant votre départ en <b>PFMP 3</b>, le client exige la <b>preuve</b> que le circuit est étanche et
+  déshydraté. <b>Ordre d'intervention n° S12-A4-03</b> : rédiger un rapport de preuve (pressions relevées,
+  conclusion argumentée). En fin de journée, <b>audit individuel de qualification</b> : l'évaluation
+  sommative S12, remontée sur École Directe.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>concevoir et justifier</b> un protocole d'épreuve d'étanchéité à l'azote ;</li>
+        <li><b>réaliser</b> l'épreuve et <b>conclure sur preuve</b> (stabilité manométrique, recherche de fuite) ;</li>
+        <li><b>réaliser</b> un tirage au vide et <b>lire</b> un vacuomètre pour statuer sur la déshydratation ;</li>
+        <li><b>réaliser seul</b>, en évaluation, un câblage conforme et son contrôle.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>lire une pression sur un manomètre BP/HP ;</li>
+        <li>situer les organes de la Croix du Frigoriste sur ma machine ;</li>
+        <li>câbler pressostats, régulation et relais KA (séances 1 et 2) ;</li>
+        <li>citer les risques des bouteilles sous pression et de la consignation.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>azote sec (azote R) uniquement</b>, étiquette vérifiée avant tout raccordement
+  (l'oxygène est comburant au contact des huiles = explosion) · <b>détendeur obligatoire</b>, montée en pression progressive ·
+  pression d'épreuve <b>selon la plaque signalétique et la NF EN 378, validée par le professeur</b> ·
+  <b>lunettes pendant toute l'épreuve</b>, vérifiées avant raccordement · purge à l'écart des personnes ·
+  consignation électrique systématique pour le poste câblage.
+  <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence), fermer la bouteille, alerter le professeur —
+  trousse de secours et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S12 · séance 3/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — 10 phases (canon académique), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.
+  Ligne sur fond jaune = évaluation sommative individuelle, remontée sur École Directe.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Matinée — 4 h 00</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel. Annonce de l'enjeu du jour : dernière séance avant la PFMP 3, évaluation sommative en fin de journée.</td><td>Fait l'appel, annonce l'enjeu.</td><td>Répondent, prennent connaissance du planning affiché.</td><td>Liste d'appel · planning affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention S12-A4-03 : le client exige la preuve avant le départ en PFMP 3 ; rapport de preuve à remettre.</td><td>Présente l'ordre d'intervention, questionne sur l'enjeu de la preuve.</td><td>Reformulent la mission du jour.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » lus et affichés ; lien direct avec l'évaluation sommative de fin de journée.</td><td>Affiche et commente.</td><td>Repèrent l'objectif qui les inquiète.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : situer les 4 organes de la Croix du Frigoriste sur la photo de SA machine + repérer l'intrus parmi trois bouteilles (azote / oxygène / air comprimé).</td><td>Distribue l'exercice, vérifie chaque tenue au vestiaire.</td><td>Se changent par vagues ; en attente, font l'exercice.</td><td>Photo de la machine du binôme · fiche 3 bouteilles · EPI</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (azote R uniquement, détendeur, lunettes, purge à l'écart ; conduite incident, arrêt d'urgence et trousse localisés) puis <b>planter la notion</b> : OBSERVER un manomètre témoin raccordé, 2 min en silence → NOMMER (fuite, étanche, stable) → EXPLICITER l'épreuve d'étanchéité. Lancement de la situation-problème : « ta machine tient-elle la pression ? »</td><td>Anime le rituel sécurité, démontre sur le manomètre témoin, pose le problème.</td><td>Énoncent les risques, observent en silence, formulent une hypothèse (étanche / fuyarde) — ne manipulent pas.</td><td>Manomètre témoin sur circuit fermé · fiche sécurité azote</td><td class="obs"></td></tr>
+    <tr><td>40 min</td><td class="ph">6. Guider l'étude (a) — étape A</td><td><b>Conception du protocole</b> : hypothèse écrite + protocole d'épreuve (pression visée, points de contrôle, méthode de recherche de fuite). Question de compréhension à traiter : pourquoi de l'azote et pas de l'air comprimé ?</td><td>Circule, questionne les choix, ne valide aucun protocole non justifié.</td><td>Rédigent hypothèse et protocole au carnet de bord, répondent à la question de sécurité.</td><td>Carnet de bord · consignes de sécurité affichées</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (b) — étape B</td><td><b>Validation des protocoles</b> : chaque binôme présente sa démarche à l'oral ; le professeur fixe la pression d'épreuve définitive selon la plaque signalétique et la NF EN 378.</td><td>Valide ou fait corriger, fixe la pression définitive.</td><td>Présentent oralement, ajustent, notent la pression validée.</td><td>Plaque signalétique de la machine</td><td class="obs"></td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="6">Pause du matin — bouteilles fermées.</td></tr>
+    <tr><td>1 h 55</td><td class="ph">6. Guider l'étude (c) — étape C</td><td><b>Épreuve d'étanchéité à l'azote</b> — port des lunettes vérifié avant tout raccordement ; bouteille + détendeur, montée en pression progressive jusqu'à la valeur validée, recherche de fuite (eau savonneuse ou détecteur), relevé de la stabilité du manomètre dans le temps. Question posée après 3 actions : que signifie une chute de pression sans fuite détectée à l'eau savonneuse ?</td><td>Supervise chaque raccordement, contrôle protocole et pression, questionne chaque binôme.</td><td>Réalisent l'épreuve, notent pression initiale / stabilisée, fuites trouvées ou non, répondent.</td><td>Bouteille d'azote R + détendeur · manifold · eau savonneuse · lunettes</td><td class="obs"></td></tr>
+    <tr class="pause"><td>—</td><td colspan="6">Pause méridienne (hors décompte) — bouteilles fermées, machines hors tension.</td></tr>
+    <tr class="demi"><td colspan="7">Après-midi — 4 h 00</td></tr>
+    <tr><td>1 h 45</td><td class="ph">6. Guider l'étude (d) — étape D</td><td><b>Conclusion sur preuve, puis tirage au vide</b> : verdict écrit (étanche confirmé / fuite localisée) ; raccordement de la pompe à vide, lecture du vacuomètre, notion d'incondensables. Question posée : que veut dire une remontée de pression après isolement (humidité ou fuite) ?</td><td>Fait conclure sur preuve, encadre le tirage au vide, questionne sur la remontée de pression.</td><td>Concluent par écrit, réalisent le tirage au vide, notent la lecture, répondent.</td><td>Pompe à vide + vacuomètre · carnet de bord</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord de la journée + bon de commande hebdomadaire (raccords, azote…) ; finalisation de la feuille F4.</td><td>Collecte, vérifie la complétude.</td><td>Rédigent carnet, bon de commande et feuille F4.</td><td>Carnets · bons de commande · feuille F4</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">9. Ranger — nettoyer</td><td>Bouteilles fermées, outillage rangé, nettoyage des postes, <b>installation des 3 postes d'évaluation</b>.</td><td>Supervise la fermeture des bouteilles, installe les 3 postes.</td><td>Ferment, rangent, nettoient.</td><td>—</td><td class="obs"></td></tr>
+    <tr class="eval-row"><td>1 h 20</td><td class="ph">ÉVALUATION SOMMATIVE S12</td><td><b>Individuelle, 3 postes tournants</b> (l'élève quitte son binôme), rotation chronométrée : <b>poste 1</b> câblage au schéma (C3.6) · <b>poste 2</b> épreuve d'étanchéité sur point de contrôle, conclure (C3.9) · <b>poste 3</b> lecture du vacuomètre et diagnostic déshydratation (C4.1).</td><td>Chronomètre la rotation, observe individuellement, renseigne la grille critériée.</td><td>Passent seuls sur les 3 postes, sans aide du binôme, remplissent leur fiche individuelle.</td><td>Grille critériée S12 (École Directe) · 3 postes équipés</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">8. Évaluer et réajuster</td><td>Bilan collectif sur les points de vigilance observés puis auto-positionnement par compétence (C3.6, C3.9, C4.1 + savoir-être), avant validation professeur.</td><td>Anime le bilan, recueille fiches et auto-positionnements.</td><td>S'auto-positionnent honnêtement, remettent leur fiche.</td><td>Fiche d'auto-positionnement</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, rappel des modalités de la PFMP 3.</td><td>Supervise le vestiaire, clôt et rappelle la PFMP 3.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<p style="max-width:794px; margin:-14px auto 24px; font-size:8pt; color:#9aa5b1; text-align:right">D'après : Dossier de séquence S12.html · Plan de séance.html (séance 1, gabarit)</p>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

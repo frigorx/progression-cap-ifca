@@ -1,0 +1,581 @@
+<meta charset="utf-8">
+<title>Cours élève — S9 · Module théorie T1 · Démarche de diagnostic et conservation des denrées</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.poste{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:#fff; background:var(--bleu); border-radius:5px 5px 0 0; padding:5px 12px; margin:1.1em 0 0; display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .poste-bloc{border:1px solid var(--bleu); border-radius:0 6px 6px 6px; padding:10px 14px; margin:0 0 1em; background:#fff}
+  .banque{border:1px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.3em 0 .8em; font-size:9.5pt}
+  .banque b{font-family:'Trebuchet MS',sans-serif; color:var(--violet)}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .cas{border:1.5px solid var(--bleu); border-radius:8px; padding:8px 14px; margin:.5em 0 1em; background:#fff}
+  .cas h4{margin:0 0 4px; font-size:11pt; color:var(--bleu); display:flex; align-items:center; gap:8px}
+  .cas .num{display:inline-block; background:var(--bleu); color:#fff; border-radius:50%; width:1.6em; height:1.6em; text-align:center; line-height:1.6em; font-size:10pt}
+  .donnees{background:var(--fond-doux); border-radius:6px; padding:6px 10px; font-family:'Consolas',monospace; font-size:9.5pt; margin:.3em 0}
+  .verdict-case{border:1px dashed var(--leger); border-radius:6px; background:#fffef8; padding:6px 10px; margin:.3em 0; min-height:1.6em; font-size:10pt}
+  .icone-symb{display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--filet); border-radius:6px; padding:4px 8px}
+  table.annexe{font-size:9pt}
+  table.annexe th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.6pt; text-transform:uppercase; padding:5px 4px; text-align:center}
+  table.annexe td{border:1px solid var(--filet); padding:2px 4px; text-align:center; height:24px}
+  .vf{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; margin:.3em 0; display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:10pt}
+  .vf .case-vf{border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; font-family:'Trebuchet MS',sans-serif; font-size:9pt; white-space:nowrap}
+  .piege{border:2px solid #c14a17; border-radius:6px; background:#fff2ea; padding:8px 14px; margin:.4em 0 .9em}
+  .piege b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif; font-size:10.5pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Diagnostic frigorifique — démarche et conservation des denrées</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S9-T1 · 2 h</span><b>Démarche de diagnostic + denrées</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span> · sem. 29-30</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — cours d'appui en classe entière : formaliser la démarche vécue en S9-F1 (le « frigoriste-détective ») et comprendre pourquoi et comment on conserve les denrées au froid</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Construire un <b>arbre de diagnostic simple</b> (symptôme → mesure → hypothèse) ; comprendre pourquoi le froid conserve les denrées ; connaître la <b>chaîne du froid</b> ; associer une denrée à sa température et à une enceinte <b>positive</b> ou <b>négative</b></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de raisonnement (ne jamais conclure sans mesurer) · esprit d'équipe pendant la co-construction · honnêteté (dire « à confirmer » plutôt qu'inventer une cause)</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui C4.5 — aucune compétence remontée</span> <span class="nuance">S4.2 augmenté · S5.7 nouveau · S5.1 augmenté</span></div>
+  </div>
+
+  <div class="situation"><h4>Accroche — le SAV, la dernière ligne droite de l'année</h4>
+  Depuis cette semaine (S9-F1), vous jouez les <b>frigoristes-détectives</b> : un client rappelle — « l'armoire positive ne
+  descend plus assez en température » — et vous menez l'enquête sur une machine réelle : relever les indices, mesurer
+  HP/BP/T°, calculer SC et SR, comparer aux cibles, désigner le coupable. Aujourd'hui, en classe entière, on prend du
+  recul sur DEUX choses essentielles pour un frigoriste du froid commercial : <b>comment raisonner</b> face à une panne
+  (on formalise ensemble votre méthode d'enquête en un <b>arbre de diagnostic</b>), et <b>pourquoi</b> on cherche à tenir
+  une température précise — parce qu'une armoire positive ou une chambre négative, ça sert à <b>conserver des denrées</b>,
+  pas juste à faire du froid pour faire du froid.
+
+  <div class="encadre-question"><b>Question de départ</b> — Repensez à un cas rencontré (ou imaginé) en S9-F1. Quelle a
+  été la <b>première chose</b> que vous avez regardée ou mesurée avant de formuler une hypothèse ? Notez-la.</div>
+  <div class="zone-reponse" style="min-height:2.4em">La première chose que j'ai regardée/mesurée, c'est _____________________________________.</div>
+  </div>
+
+  <div class="notion"><h4>Ce que vous savez déjà (rappel S4, S5, S7, S9-F1)</h4>
+  <p style="margin:0 0 6px; font-size:10.3pt">Depuis <b>S4</b> et <b>S7-T1</b>, vous savez lire une pression et une
+  température et les relier (réglette P/T). Depuis <b>S5-T2</b> et <b>S7-T1</b>, vous savez calculer la <b>surchauffe
+  (SC)</b> et le <b>sous-refroidissement (SR)</b> et les comparer aux cibles charte : <b>SC 5-10 K · SR 4-8 K</b>. En
+  <b>S9-F1</b>, vous avez commencé à utiliser TOUT cela ensemble, sur une vraie panne. Il ne manque qu'une chose :
+  une <b>méthode qui range les idées dans l'ordre</b>, pour ne jamais conclure au hasard. C'est l'arbre de diagnostic.</p>
+  </div>
+
+  <div class="seuil"><b class="t">Ce qui change depuis S9-F1</b> — En atelier, vous avez VÉCU une enquête, panne par
+  panne, poste par poste. Aujourd'hui, la classe entière <b>met en commun</b> ces enquêtes et en tire une méthode
+  <b>réutilisable pour n'importe quelle panne simple</b> : c'est le passage de l'expérience vécue à la règle générale
+  — exactement ce qu'un compagnon transmet à un apprenti après plusieurs interventions.</p>
+  </div>
+
+  <div class="vigilance"><b class="t">Un mot avant de commencer</b> — Ce cours ne fait <b>manipuler ni machine ni
+  fluide</b> : c'est un cours de raisonnement, en classe entière. Les rappels de sécurité restent ceux de l'atelier :
+  la mise sous tension d'une machine (S9-F1) est toujours faite par le <b>professeur</b>, avec consignation <b>NF C
+  18-510</b> ; vous ne récupérez jamais de fluide, vous n'ouvrez jamais un circuit en charge (S9-F2). Aujourd'hui, vous
+  raisonnez sur des cas, papier et tableau.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE 1 : CO-CONSTRUIRE L'ARBRE DE DIAGNOSTIC ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE 1 — co-construire l'arbre de diagnostic</h3>
+  <p style="font-size:10.3pt"><b>Consigne</b> — Par équipe, rappelez UN cas rencontré en S9-F1 (ou un cas que le
+  professeur vous propose) : quel était le <b>symptôme</b> ? Qu'avez-vous <b>mesuré</b> (HP, BP, T°, SC, SR) ?
+  Qu'avez-vous <b>conclu</b> ? Remplissez la fiche ci-dessous, puis présentez-la à voix haute : la classe classe
+  ensemble les cas par grandes familles de causes, et le professeur formalise <b>l'arbre de diagnostic</b> (annexe,
+  feuille suivante).</p>
+
+  <h4 class="poste">Fiche de rappel — mon équipe</h4>
+  <div class="poste-bloc">
+  <table class="releve" style="font-size:9.7pt">
+    <tr><td style="text-align:left; width:38%"><b>Symptôme observé</b> (bruit, givre, T° qui ne descend pas…)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>Le compresseur démarrait-il ?</b> oui / non</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>BP</b> (basse / normale / élevée)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>HP</b> (basse / normale / élevée)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>SC mesurée</b> (comparée à la cible 5-10 K)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>SR mesuré</b> (comparé à la cible 4-8 K)</td><td style="text-align:left"></td></tr>
+    <tr><td style="text-align:left"><b>Hypothèse retenue</b></td><td style="text-align:left; height:2.4em"></td></tr>
+  </table>
+  </div>
+
+  <div class="banque"><b>Rappel — les 6 causes archi-classiques du froid commercial simple (vues en S9-F1)</b> —
+  manque de charge / fuite · excès de charge · encrassement ou défaut de ventilation du condenseur · évaporateur givré
+  ou filtre à air colmaté · détendeur mal réglé · défaut électrique. En 1re année, on ne retient QUE ces cas simples et
+  univoques — jamais une panne à plusieurs causes.</div>
+
+  <div class="encadre-question"><b>Question 1</b> — D'après la mise en commun, pourquoi est-il dangereux de conclure
+  à une panne <b>avant</b> d'avoir mesuré HP, BP, SC et SR ? Notez votre idée.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="vigilance"><b class="t">La règle d'or du frigoriste-détective</b> — On <b>observe</b>, on <b>mesure</b>,
+  on <b>compare aux cibles</b>, et SEULEMENT ALORS on <b>conclut</b>. Jamais l'inverse. Un symptôme seul (« ça ne fait
+  pas assez froid ») peut correspondre à plusieurs causes différentes : c'est la mesure qui tranche.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — ANNEXE PLEINE PAGE 1 : L'ARBRE DE DIAGNOSTIC ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document élève — ANNEXE PLEINE PAGE</div>
+  </div>
+
+  <h3 class="section">ANNEXE 1 — l'arbre de diagnostic simple (construit avec le professeur)</h3>
+  <p style="font-size:9.7pt">Complétez les cases en pointillés pendant la formalisation collective. Cet arbre ne
+  couvre que les pannes <b>simples et univoques</b> du froid commercial de 1re année (jamais deux causes en même
+  temps).</p>
+
+  <svg viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:1000px; background:#f7f9fc; border:1px solid #d8dee6; border-radius:8px">
+    <!-- Row 1 : symptôme -->
+    <rect x="220" y="18" width="560" height="54" rx="8" fill="#fff3e6" stroke="#ff6b35" stroke-width="2"/>
+    <text x="500" y="40" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="13" fill="#c14a17">SYMPTÔME signalé par le client</text>
+    <text x="500" y="58" text-anchor="middle" font-size="10.5" fill="#22303f">bruit anormal, givre, T° qui ne descend plus, ne démarre pas…</text>
+
+    <line x1="500" y1="72" x2="500" y2="108" stroke="#1b3a63" stroke-width="2"/>
+    <polygon points="500,108 495,98 505,98" fill="#1b3a63"/>
+
+    <!-- Row 2 : question démarrage -->
+    <rect x="310" y="108" width="380" height="54" rx="8" fill="#e9edf6" stroke="#1b3a63" stroke-width="2"/>
+    <text x="500" y="130" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="13" fill="#1b3a63">Le compresseur démarre-t-il ?</text>
+    <text x="500" y="148" text-anchor="middle" font-size="9.5" fill="#5d6b7c">1re question — toujours, avant toute mesure</text>
+
+    <!-- branch NON -> left -->
+    <line x1="360" y1="162" x2="190" y2="205" stroke="#1b3a63" stroke-width="2"/>
+    <polygon points="190,205 197,196 202,205" fill="#1b3a63" transform="rotate(0)"/>
+    <text x="255" y="188" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11" fill="#c14a17">NON</text>
+
+    <!-- branch OUI -> right -->
+    <line x1="640" y1="162" x2="770" y2="205" stroke="#1b3a63" stroke-width="2"/>
+    <text x="720" y="188" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11" fill="#2f6e3b">OUI</text>
+
+    <!-- Row 3 left : défaut électrique -->
+    <rect x="20" y="205" width="340" height="112" rx="8" fill="#fdecec" stroke="#c14a17" stroke-width="2"/>
+    <text x="190" y="230" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="12.5" fill="#c14a17">DÉFAUT ÉLECTRIQUE</text>
+    <text x="190" y="250" text-anchor="middle" font-size="10" fill="#22303f">Contrôler : tension, continuité,</text>
+    <text x="190" y="266" text-anchor="middle" font-size="10" fill="#22303f">condensateur, pressostats de</text>
+    <text x="190" y="282" text-anchor="middle" font-size="10" fill="#22303f">sécurité, klixon</text>
+    <text x="190" y="302" text-anchor="middle" font-size="9" fill="#5d6b7c" font-style="italic">(poste coffret — S9-E1)</text>
+
+    <!-- Row 3 right : mesurer -->
+    <rect x="540" y="205" width="360" height="112" rx="8" fill="#eef6ec" stroke="#3a8c4a" stroke-width="2"/>
+    <text x="720" y="228" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="12.5" fill="#2f6e3b">MESURER</text>
+    <text x="720" y="248" text-anchor="middle" font-size="10" fill="#22303f">HP, BP, températures</text>
+    <text x="720" y="264" text-anchor="middle" font-size="10" fill="#22303f">calculer SC et SR</text>
+    <text x="720" y="280" text-anchor="middle" font-size="10" fill="#22303f">comparer aux cibles :</text>
+    <text x="720" y="298" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="10.5" fill="#2f6e3b">SC 5-10 K · SR 4-8 K</text>
+
+    <!-- lines to leaves -->
+    <line x1="680" y1="317" x2="560" y2="380" stroke="#1b3a63" stroke-width="2"/>
+    <line x1="760" y1="317" x2="880" y2="380" stroke="#1b3a63" stroke-width="2"/>
+
+    <text x="580" y="352" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="10.5" fill="#1b3a63">BP basse</text>
+    <text x="580" y="366" text-anchor="middle" font-size="9.5" fill="#22303f">+ SC élevée (&gt; 10 K)</text>
+    <text x="860" y="352" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="10.5" fill="#1b3a63">HP élevée</text>
+    <text x="860" y="366" text-anchor="middle" font-size="9.5" fill="#22303f">+ SR élevé (&gt; 8 K)</text>
+
+    <!-- Row 4 leaves -->
+    <rect x="410" y="380" width="300" height="150" rx="8" fill="#fde2e2" stroke="#c14a17" stroke-width="2"/>
+    <text x="560" y="402" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11.5" fill="#c14a17">MANQUE DE CHARGE (fuite)</text>
+    <text x="560" y="418" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11" fill="#c14a17">OU ÉVAPORATEUR GIVRÉ /</text>
+    <text x="560" y="434" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11" fill="#c14a17">FILTRE AIR COLMATÉ</text>
+    <text x="560" y="456" text-anchor="middle" font-size="9.5" fill="#22303f" font-style="italic">à confirmer par l'observation :</text>
+    <text x="560" y="472" text-anchor="middle" font-size="9.5" fill="#22303f">bulles au voyant ? givre visible</text>
+    <text x="560" y="488" text-anchor="middle" font-size="9.5" fill="#22303f">sur l'évaporateur ? débit d'air</text>
+    <text x="560" y="504" text-anchor="middle" font-size="9.5" fill="#22303f">faible ?</text>
+    <text x="560" y="522" text-anchor="middle" font-size="9" fill="#5d6b7c">........................................</text>
+
+    <rect x="730" y="380" width="260" height="150" rx="8" fill="#fff3e6" stroke="#ff6b35" stroke-width="2"/>
+    <text x="860" y="402" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11.5" fill="#c14a17">ENCRASSEMENT /</text>
+    <text x="860" y="418" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11.5" fill="#c14a17">DÉFAUT VENTILATION</text>
+    <text x="860" y="434" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11.5" fill="#c14a17">CONDENSEUR</text>
+    <text x="860" y="454" text-anchor="middle" font-size="9.3" fill="#22303f">(ou excès de charge si</text>
+    <text x="860" y="469" text-anchor="middle" font-size="9.3" fill="#22303f">intensité compresseur</text>
+    <text x="860" y="484" text-anchor="middle" font-size="9.3" fill="#22303f">élevée) — à confirmer :</text>
+    <text x="860" y="500" text-anchor="middle" font-size="9.3" fill="#22303f">condenseur sale/chaud ?</text>
+    <text x="860" y="518" text-anchor="middle" font-size="9" fill="#5d6b7c">........................</text>
+
+    <text x="500" y="600" text-anchor="middle" font-size="10" fill="#5d6b7c">(notez ici, avec le professeur, le cas particulier du détendeur trop ouvert : BP haute + SC faible &lt; 5 K, risque de coup de liquide)</text>
+    <text x="500" y="618" text-anchor="middle" font-size="9" fill="#9aa5b1">........................................................................................................................................</text>
+  </svg>
+  <p style="font-size:8.3pt; color:var(--gris); margin-top:4px">D'après : cadrage pédagogique S9 (tableau de
+  référence prudent des corrélations panne↔symptôme, cas archi-classiques, seuils charte SC 5-10 K / SR 4-8 K,
+  F. Henninot, 19/07/2026) — aucune autre corrélation n'est enseignée ; en cas de doute réel sur une machine, la
+  réponse est toujours « à confirmer selon la machine / la notice constructeur ».</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — DÉCOUVERTE 2 : POURQUOI LE FROID CONSERVE + LA CHAÎNE DU FROID ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE 2 — pourquoi le froid conserve, et la chaîne du froid</h3>
+  <div class="encadre-question"><b>Question 2</b> — D'après vous, pourquoi range-t-on la viande et le poisson au
+  froid, alors qu'à température ambiante ils se dégradent en quelques heures ? Notez une première idée.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="notion"><h4>Ce que le froid fait vraiment</h4>
+  <p style="margin:0; font-size:10.3pt">Un aliment se dégrade sous l'effet de <b>l'activité biologique</b> : les
+  micro-organismes (bactéries, moisissures) prolifèrent, et certains produits (fruits, légumes) continuent de
+  « respirer » après leur récolte. Le <b>froid ralentit</b> cette activité (enceinte positive) ou la <b>stoppe
+  presque totalement</b> (enceinte négative). C'est pour cela qu'un produit <b>décongelé, même partiellement, ne
+  doit JAMAIS être recongelé</b> : la décongélation relance l'activité biologique que le froid avait arrêtée.</p>
+  </div>
+
+  <h4 class="section">La chaîne du froid : ses maillons</h4>
+  <p style="font-size:10.3pt">La <b>chaîne du froid</b> est l'ensemble des traitements par le froid que subit un
+  produit depuis sa fabrication ou sa récolte jusqu'à sa consommation. Complétez le schéma des maillons avec le
+  professeur :</p>
+
+  <svg viewBox="0 0 1000 210" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:1000px; background:#f7f9fc; border:1px solid #d8dee6; border-radius:8px">
+    <line x1="40" y1="110" x2="960" y2="110" stroke="#9aa5b1" stroke-width="2"/>
+    <polygon points="960,110 948,104 948,116" fill="#9aa5b1"/>
+    <g font-family="Trebuchet MS" font-weight="bold" font-size="10" text-anchor="middle" fill="#1b3a63">
+      <rect x="30" y="60" width="130" height="46" rx="6" fill="#e9edf6" stroke="#1b3a63" stroke-width="1.5"/>
+      <text x="95" y="80">Producteur</text><text x="95" y="94" font-weight="normal" font-size="8.5" fill="#5d6b7c">réfrigère dès la récolte</text>
+      <rect x="180" y="60" width="130" height="46" rx="6" fill="#e9edf6" stroke="#1b3a63" stroke-width="1.5"/>
+      <text x="245" y="80">Usine</text><text x="245" y="94" font-weight="normal" font-size="8.5" fill="#5d6b7c">conditionne, surgèle</text>
+      <rect x="330" y="60" width="140" height="46" rx="6" fill="#e9edf6" stroke="#1b3a63" stroke-width="1.5"/>
+      <text x="400" y="80">Entrepôt frigo</text><text x="400" y="94" font-weight="normal" font-size="8.5" fill="#5d6b7c">jusqu'à -25 °C</text>
+      <rect x="490" y="60" width="130" height="46" rx="6" fill="#e9edf6" stroke="#1b3a63" stroke-width="1.5"/>
+      <text x="555" y="80">Transport frigo</text><text x="555" y="94" font-weight="normal" font-size="8.5" fill="#5d6b7c">terre / air / mer</text>
+      <rect x="640" y="60" width="150" height="46" rx="6" fill="#e9edf6" stroke="#1b3a63" stroke-width="1.5"/>
+      <text x="715" y="80">Grossiste / dépôt</text><text x="715" y="94" font-weight="normal" font-size="8.5" fill="#5d6b7c">stockage régional</text>
+      <rect x="810" y="60" width="150" height="46" rx="6" fill="#e9edf6" stroke="#1b3a63" stroke-width="1.5"/>
+      <text x="885" y="80">Vente / domicile</text><text x="885" y="94" font-weight="normal" font-size="8.5" fill="#5d6b7c">+6 à -22 °C selon meuble</text>
+    </g>
+    <text x="500" y="150" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="11" fill="#1b3a63">........................................................................................................</text>
+    <text x="500" y="172" text-anchor="middle" font-size="9.5" fill="#5d6b7c">(notez ici, avec le professeur, LE maillon qui vous semble le plus fragile — le plus facile à interrompre par erreur)</text>
+  </svg>
+  <p style="font-size:8.3pt; color:var(--gris); margin-top:4px">D'après : « La chaîne du froid », T.F.C.A. Technicien
+  du Froid et du Conditionnement d'Air (définition, maillons, températures d'entrepôt et de vente).</p>
+
+  <div class="seuil"><b class="t">Les 2 règles de base de la chaîne du froid</b>
+  <p style="margin:6px 0 0; font-size:10.3pt">1. La chaîne du froid ne doit <b>jamais être interrompue</b>, pour que
+  les produits restent en parfait état.<br>2. Un produit décongelé, <b>même partiellement</b>, ne doit <b>jamais
+  être recongelé</b>, même si son apparence reste saine.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — APPLICATION 1 : LIRE DES RELEVÉS, CONCLURE (3 MINI-CAS) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION 1 — lire des relevés, conclure (à l'aide de l'arbre, annexe 1)</h3>
+  <p style="font-size:10.3pt">Pour chaque cas, utilisez l'arbre de diagnostic (feuille 3) pour proposer une
+  hypothèse. Écrivez votre conclusion dans la case « verdict ».</p>
+
+  <div class="cas"><h4><span class="num">1</span> L'armoire positive ne descend plus assez</h4>
+  <div class="donnees">Compresseur : démarre normalement · BP : basse · HP : basse · SC mesurée : 15 K (cible 5-10 K) · léger givre visible sur l'évaporateur</div>
+  <div class="verdict-case">Verdict : _____________________________________</div>
+  </div>
+
+  <div class="cas"><h4><span class="num">2</span> Le condenseur est chaud et couvert de poussière</h4>
+  <div class="donnees">Compresseur : démarre normalement · BP : normale · HP : élevée · SR mesuré : 9 K (cible 4-8 K) · intensité compresseur : légèrement élevée</div>
+  <div class="verdict-case">Verdict : _____________________________________</div>
+  </div>
+
+  <div class="cas"><h4><span class="num">3</span> Le groupe ne démarre pas du tout</h4>
+  <div class="donnees">Compresseur : aucun bruit, aucun démarrage · aucune mesure HP/BP possible</div>
+  <div class="verdict-case">Verdict : _____________________________________</div>
+  </div>
+
+  <div class="encadre-question"><b>Question 3</b> — Dans le cas 1, le givre visible sur l'évaporateur pourrait aussi
+  correspondre à un <b>filtre à air colmaté</b>, et pas seulement à un manque de charge. Quelle observation
+  supplémentaire (déjà vue en S9-F1) permettrait de trancher entre les deux ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — APPLICATION 2 : VRAI-FAUX CHAÎNE DU FROID ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION 2 — vrai ou faux ? (chaîne du froid et enceintes)</h3>
+  <p style="font-size:10.3pt">Cochez VRAI ou FAUX. Pour chaque FAUX, corrigez en une phrase.</p>
+
+  <div class="vf"><span>1. La chaîne du froid ne doit jamais être interrompue.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>2. Un produit décongelé peut être recongelé sans risque si son apparence reste bonne.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>3. Un entrepôt frigorifique peut stocker des produits jusqu'à -25 °C.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>4. Toutes les enceintes isothermes sont négatives (en dessous de 0 °C).</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+  <div class="vf"><span>5. Le consommateur doit décongeler ses produits le plus tôt possible après l'achat.</span><span class="case-vf">VRAI &nbsp;/&nbsp; FAUX</span></div>
+  <div class="zone-reponse" style="min-height:1.6em"></div>
+
+  <h3 class="section">APPLICATION 3 — la bonne température pour la bonne denrée</h3>
+  <p style="font-size:10.3pt">À l'aide du tableau de l'annexe 2 (feuille suivante), complétez pour chaque denrée sa
+  <b>température de conservation</b> et son <b>enceinte</b> (Positive ou Négative).</p>
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:34%">Denrée</th><th style="width:33%">Température de conservation</th><th>Enceinte (P / N)</th></tr>
+    <tr><td>Viande fraîche préemballée</td><td></td><td></td></tr>
+    <tr><td>Poisson surgelé</td><td></td><td></td></tr>
+    <tr><td>Fromage (vente)</td><td></td><td></td></tr>
+    <tr><td>Crème glacée</td><td></td><td></td></tr>
+    <tr><td>Fruits et légumes</td><td></td><td></td></tr>
+    <tr><td>Plat cuisiné (traiteur)</td><td></td><td></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — ANNEXE PLEINE PAGE 2 : TABLEAU DENRÉE / TEMPÉRATURE / ENCEINTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document élève — ANNEXE PLEINE PAGE</div>
+  </div>
+
+  <h3 class="section">ANNEXE 2 — tableau denrée ↔ température de conservation ↔ enceinte</h3>
+  <p style="font-size:9.7pt">Une enceinte <b>positive</b> est réglée <b>au-dessus de 0 °C</b> (produits frais,
+  réfrigérés). Une enceinte <b>négative</b> est réglée <b>en dessous de 0 °C</b> (produits congelés/surgelés). Utilisez
+  ce tableau pour l'application 3.</p>
+  <div class="tbl-wrap">
+  <table class="annexe" style="font-size:8.8pt">
+    <tr><th style="width:26%">Denrée</th><th style="width:20%">Température de conservation</th><th style="width:14%">Humidité relative</th><th style="width:16%">Enceinte</th></tr>
+    <tr><td style="text-align:left">Viandes fraîches préemballées</td><td>0 à +2 °C</td><td>80 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Carcasses</td><td>0 à +2 °C</td><td>90 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Charcuterie préemballée</td><td>+2 à +4 °C</td><td>80 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Plats cuisinés / traiteur</td><td>0 à +4 °C</td><td>80-85 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Pâtisserie fraîche</td><td>+1 à +3 °C</td><td>80 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Poissons frais sous glace</td><td>0 à +2 °C</td><td>90 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Fruits et légumes</td><td>+6 à +8 °C</td><td>90 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Beurre, œufs, fromage emballés (B.O.F.)</td><td>+4 à +6 °C</td><td>80 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Fromage (vente)</td><td>+6 à +8 °C</td><td>85 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Boissons</td><td>+6 à +8 °C</td><td>75 %</td><td><b>Positive</b></td></tr>
+    <tr><td style="text-align:left">Viandes et poissons congelés</td><td>-18 °C</td><td>90 %</td><td><b>Négative</b></td></tr>
+    <tr><td style="text-align:left">Produits surgelés</td><td>-18 à -20 °C</td><td>–</td><td><b>Négative</b></td></tr>
+    <tr><td style="text-align:left">Crèmes glacées</td><td>-23 à -25 °C</td><td>–</td><td><b>Négative</b></td></tr>
+    <tr><td style="text-align:left">Entrepôt frigorifique (grand stockage)</td><td>jusqu'à -25 °C</td><td>–</td><td><b>Négative</b></td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.3pt; color:var(--gris)">D'après : « Conditions de conservation des denrées », T.F.C.A.
+  Technicien du Froid et du Conditionnement d'Air (viandes, poissons, produits laitiers, congélation) ; « Chambres
+  froides — Généralités », A.F.P.A., septembre 2001 (tableau des types de chambres froides équipant une grande
+  surface de vente, températures et hygrométrie, source Dagard) ; « La chaîne du froid », T.F.C.A. (température des
+  entrepôts et des meubles de vente). Toute température non listée ici = « selon la notice du produit, à faire
+  valider par le professeur ».</p>
+  <p style="font-size:10pt; color:var(--gris)"><i>Valeurs indicatives d'après les sources citées ; se reporter à la
+  réglementation en vigueur et au cahier des charges de l'installation.</i></p>
+
+  <div class="piege"><b class="t">⚠ Le piège à ne jamais commettre</b> — Une enceinte <b>positive</b> n'est pas « pas
+  froide » : +2 °C reste un froid actif qui ralentit les micro-organismes. La différence positive/négative ne porte
+  QUE sur la position par rapport à <b>0 °C</b>, pas sur l'intensité du froid produit par la machine.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — SYNTHÈSE : FICHE MÉMO + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — la fiche mémo du diagnostic et de la conservation</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec la correction donnée en classe : c'est votre <b>trace
+  écrite</b>, à garder pour S9-F2, S9-E1 et pour l'épreuve É4.</p>
+
+  <div class="trace">
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:36%">Étape de la démarche</th><th>Ce que je fais</th></tr>
+    <tr><td>1. Observer</td><td>Noter le symptôme signalé, sans conclure encore.</td></tr>
+    <tr><td>2. Le compresseur démarre-t-il ?</td><td>Première question, avant toute mesure.</td></tr>
+    <tr><td>3. Mesurer</td><td>HP, BP, températures ; calculer SC et SR.</td></tr>
+    <tr><td>4. Comparer</td><td>Aux cibles charte : SC 5-10 K · SR 4-8 K.</td></tr>
+    <tr><td>5. Conclure</td><td>Formuler UNE hypothèse ; « à confirmer » si le doute persiste.</td></tr>
+  </table>
+  </div>
+  </div>
+
+  <div class="notion"><h4>La phrase à retenir</h4>
+  <p style="margin:0; font-size:11pt; font-weight:bold; color:var(--bleu); text-align:center">« On observe, on
+  mesure, on compare aux cibles — et SEULEMENT ALORS on conclut. Le froid ne sert pas à faire du froid : il sert à
+  conserver une denrée précise, à sa bonne température, sans jamais rompre la chaîne. »</p>
+  </div>
+
+  <div class="piege" style="text-align:center"><b class="t">Le piège à ne jamais oublier</b> — Un produit décongelé,
+  même partiellement et même s'il a bonne apparence, ne se recongèle JAMAIS.</div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut <b>Appui</b> (C4.5 théorique) : ce cours ne remonte
+  AUCUNE compétence sur École Directe — c'est une auto-évaluation courte, pour vous situer avant S9-F2.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:24%">Ce que je sais faire</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td>Suivre la démarche observer → mesurer → comparer → conclure et utiliser l'arbre de diagnostic simple
+    <span class="nuance">Appui — S5.1 / C4.5</span></td>
+    <td>Compétence non observée ce jour.</td><td>Je conclus sans mesurer, même avec de l'aide.</td>
+    <td>Je suis la démarche avec de l'aide, je confonds encore parfois les 4 causes possibles.</td>
+    <td>Je suis seul(e) la démarche complète et je propose une hypothèse cohérente avec les mesures.</td>
+    <td>Comme « Acquis », et j'explique à un camarade pourquoi il faut confirmer par l'observation.</td></tr>
+    <tr><td>Associer une denrée à sa température et à une enceinte positive/négative, et citer les 2 règles de la
+    chaîne du froid <span class="nuance">S4.2 / S5.7</span></td>
+    <td>Non observé.</td><td>Je ne sais pas distinguer positif de négatif.</td>
+    <td>Je distingue positif/négatif avec de l'aide, j'oublie parfois une règle.</td>
+    <td>J'associe seul(e) une denrée à sa température/enceinte et je cite les 2 règles.</td>
+    <td>Comme « Acquis », et j'explique pourquoi on ne recongèle jamais un produit décongelé.</td></tr>
+    <tr><td>Savoir-être — rigueur de raisonnement, esprit d'équipe, honnêteté (« à confirmer » plutôt qu'inventer)</td>
+    <td>Non observé.</td><td>Je conclus au hasard, je n'écoute pas la mise en commun.</td>
+    <td>Je participe mais j'ai besoin d'un rappel pour être rigoureux(se).</td>
+    <td>Je mesure avant de conclure et j'écoute la mise en commun.</td>
+    <td>Comme « Acquis », et j'aide un camarade à corriger un raisonnement trop rapide.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Démarche de diagnostic (observer → mesurer → comparer → conclure) :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">Denrées, température, enceinte positive/négative :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe : il
+  prépare S9-F2 (remplacement de composant) et l'épreuve É4 (semaine 32), qui reprend exactement cette démarche sur
+  une machine et sur un écrit « relevés → conclusion de diagnostic + denrées ».</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage pédagogique S9
+  (méthode « co-construction de l'arbre de diagnostic + étude de cas conservation », F. Henninot, 19/07/2026,
+  `_CADRAGE-S9.md` — tableau de référence prudent des corrélations panne↔symptôme, seuils charte SC 5-10 K / SR 4-8
+  K) ; « Conditions de conservation des denrées », T.F.C.A. Technicien du Froid et du Conditionnement d'Air
+  (propriétés thermiques, températures et durées de conservation fraîches/congelées, profs cour Indexee/_Archives/
+  Themes/Froid-Frigorifique) ; « La chaîne du froid », T.F.C.A. (définition, 2 règles de base, maillons, températures
+  d'entrepôt et de vente) ; « Chambres froides — Généralités », A.F.P.A. (Association pour la Formation
+  Professionnelle des Adultes), doc. FC, septembre 2001, source Dagard (tableau des types de chambres froides
+  équipant une grande surface de vente, températures/hygrométrie, notion de chambre modulable en température
+  positive ou négative — 03_BAC-MFER/S2-Systemes/Chambre froide.pdf). Aucune corrélation panne↔symptôme et aucune
+  température de conservation n'est affirmée hors de ces sources ; toute valeur non listée = « selon la machine, la
+  notice ou le produit, à faire valider par le professeur ».</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .poste-bloc, .banque, .vigilance, .cas, .piege, .vf{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} svg{page-break-inside:avoid} }</style>

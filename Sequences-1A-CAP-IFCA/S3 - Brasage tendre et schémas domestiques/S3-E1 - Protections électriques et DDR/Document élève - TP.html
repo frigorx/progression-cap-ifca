@@ -1,0 +1,603 @@
+<meta charset="utf-8">
+<title>TP élève — S3-E1 · Protections électriques et DDR</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:150px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .fiche-appareil{border:1.5px solid var(--filet); border-radius:6px; padding:8px 12px; margin:.5em 0 1em; background:#fbfcfe}
+  .fiche-appareil h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px; border-bottom:1px solid var(--filet); padding-bottom:3px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre et schémas domestiques</td>
+      <td style="width:38%"><span class="lib">Module atelier S3-E1 · 4 h × 2 passages</span><b>Protections électriques et DDR</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · semaines 8-9</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S3-3</b> : le client fait préparer son pavillon pour l'installation future
+  d'un climatiseur. Avant toute chose, il a un problème récurrent à vous signaler : <b>« le circuit du garage
+  disjoncte. »</b> Le professeur, responsable du chantier, vous confie le <b>contrôle et la remise en
+  conformité des protections du tableau électrique</b>. Aujourd'hui, une question guide tout le module :
+  <b>qui protège quoi, dans un tableau électrique ?</b></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel · jamais provoquer un vrai défaut · rigueur du câblage · honnêteté du contrôle</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques<br><span class="statut">Découverte → Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques</div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S2</b> — En S2-E1, le disjoncteur était déjà présent sur
+  votre platine, mais vous ne vous étiez jamais demandé <b>ce qu'il faisait vraiment</b> : c'était un passage
+  obligé avant de câbler, jamais un objet d'étude. <b>Aujourd'hui, la protection devient elle-même le sujet</b> :
+  vous allez découvrir ce que fait chaque appareil, comment il le fait, et un appareil nouveau apparaît, le
+  <b>DDR</b>, qui protège les <b>personnes</b> — pas seulement le matériel. <b>É1 est passée : vos 2 objectifs
+  de progrès s'appliquent ici.</b> Si vous étiez positionné(e) 1 ou 2 sur C3.6 au poste ÉLEC d'É1, la phase de
+  vérification des prérequis d'aujourd'hui vous reprend en priorité — n'hésitez pas à le signaler au
+  professeur.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change</h4>
+  <b>Passage 1 (semaine 8) — découvrir les protections + câbler un circuit protégé par un disjoncteur</b> :
+  vous découvrez les rôles du fusible, du disjoncteur et du DDR, vous testez le bouton T d'un DDR sur une
+  platine de démonstration, puis vous câblez un circuit lampe protégé par un disjoncteur seul.<br>
+  <b>Passage 2 (semaine 9) — câbler l'installation complète, en autonomie guidée</b> : vous câblez cette fois
+  le montage complet — un DDR en tête, puis un disjoncteur, puis le circuit — vous réalisez vous-même le
+  contrôle hors tension (continuité <b>et</b> serrage des connexions), et vous réalisez les essais de
+  déclenchement au bouton test, sur votre propre montage.</div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>nommer le rôle</b> de chacun des 3 appareils de protection (fusible, disjoncteur, DDR) et ce contre
+    quoi chacun protège ;</li>
+    <li><b>identifier</b> un disjoncteur et un DDR sur une façade réelle, et <b>localiser le bouton test
+    (T)</b> du DDR ;</li>
+    <li><b>câbler un circuit lampe protégé par un disjoncteur</b>, avec un contrôle hors tension avant tout
+    appel au professeur ;</li>
+    <li><b>câbler l'installation complète</b> (DDR en tête + disjoncteur + circuit) et réaliser <b>seul(e) le
+    contrôle hors tension</b> (continuité + serrage des connexions) ;</li>
+    <li><b>réaliser un essai de déclenchement</b> au bouton test du DDR, en respectant strictement le seul
+    geste autorisé — <b>jamais provoquer un vrai défaut.</b></li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce module s'appuie sur des gestes déjà vécus en S1 et S2 : je sais déjà <b>réaliser
+  seul(e) une consignation et une vérification d'absence de tension (VAT)</b> avant toute intervention ; je sais
+  <b>câbler un montage domestique protégé par un disjoncteur</b>, même si je ne connaissais pas encore son
+  fonctionnement interne ; je sais <b>manipuler le multimètre en fonction continuité</b>. Je connais aussi mon
+  <b>positionnement au poste ÉLEC de l'évaluation É1</b> (montage + mesures) : si j'étais à 1 ou 2, je le
+  signale au professeur avant de commencer — une reprise ciblée m'est proposée pendant l'exercice au fil de
+  l'eau.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Platine de démonstration du professeur : DDR réel câblé, façade visible, bouton test accessible</li>
+    <li>Platine élève équipée d'un rail oméga (× 1 par poste)</li>
+    <li>Disjoncteur magnétothermique 1P+N (module réel de l'atelier)</li>
+    <li>DDR 30 mA 2P (module réel de l'atelier) — <span class="conso">passage 2 uniquement</span></li>
+    <li>Interrupteur simple (× 1) ; support de lampe (× 1) + ampoule adaptée à la tension d'alimentation</li>
+    <li>Bornier de phase, bornier de neutre, bornier de terre (× 1 chacun)</li>
+    <li>Un fusible et un porte-fusible bipolaire, pour observation et comparaison (non câblés)</li>
+    <li>Vis à bois pour la fixation du matériel <span class="conso">(consommable)</span></li>
+    <li>Fils électriques souples, section du poste école (à faire valider par le professeur), couleurs
+    normalisées : rouge ou marron (phase), bleu (neutre), vert/jaune (terre) <span class="conso">(consommable)</span></li>
+    <li>Tournevis plat et tournevis cruciforme, pince à dénuder, pince coupante</li>
+    <li>Multimètre numérique + jeu de cordons de mesure (rouge + noir)</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ ÉLECTRIQUE DÉVELOPPÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Sécurité électrique — un rituel déjà acquis, une règle nouvelle</h3>
+  <p style="font-size:10.5pt">Vous connaissez déjà la consignation et la vérification d'absence de tension (VAT)
+  depuis S1 : vous les appliquez seul(e), sans rappel. Une règle nouvelle apparaît aujourd'hui, propre aux
+  appareils de protection : <b>on ne provoque jamais un vrai défaut pour « voir si ça marche ».</b> Le DDR se
+  teste <b>uniquement</b> avec son bouton T, prévu pour cela.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Choc électrique par contact direct avec une pièce sous tension</td><td>Ne <b>jamais</b> toucher un fil ou une platine sans avoir vérifié l'absence de tension (VAT). Travailler <b>toujours</b> hors tension pour tout câblage.</td></tr>
+    <tr><td>Déclenchement non maîtrisé si un défaut réel est provoqué « pour tester »</td><td><b>Jamais</b> de court-circuit ni de mise à la terre volontaire. Le <b>seul</b> essai autorisé est le bouton test (T) du DDR.</td></tr>
+    <tr><td>Confusion entre le bouton test (T) et un bouton de réarmement</td><td>Lire l'étiquette de l'appareil avant d'appuyer. En cas de doute, <b>appeler le professeur</b> avant de toucher quoi que ce soit.</td></tr>
+    <tr><td>Shunt (pontage) d'une protection pour « faire marcher quand même »</td><td><b>Jamais</b> ponter un disjoncteur, un DDR ou un fusible, même provisoirement. Une protection pontée ne protège plus rien.</td></tr>
+    <tr><td>Remise sous tension accidentelle pendant le câblage ou le contrôle</td><td>Disjoncteur du poste maintenu ouvert pendant tout le câblage. <b>Seul le professeur</b> ferme le circuit, après contrôle systématique.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">La consignation — rituel NF C 18-510, appliqué sans rappel</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Couper</b> — ouvrir le disjoncteur du poste.<br>
+  2. <b>Vérifier l'absence de tension (VAT)</b> — contrôler au multimètre, position voltmètre.<br>
+  3. <b>Condamner / signaler</b> — le professeur garde la main sur la mise sous tension.<br>
+  4. <b>Travailler hors tension</b> — je câble, je mesure la continuité, <b>toujours</b> disjoncteur ouvert.</p>
+  </div>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li>Jamais toucher un fil ou une platine sans avoir vérifié l'absence de tension ;</li>
+    <li><b>Jamais provoquer un vrai défaut</b> (court-circuit, fil à la terre) pour tester une protection —
+    <b>seul le bouton T</b> du DDR est autorisé ;</li>
+    <li>Jamais toucher un conducteur nu, même hors tension présumée ;</li>
+    <li><b>Jamais shunter (ponter) une protection</b>, quelle qu'elle soit ;</li>
+    <li>Jamais mettre une platine sous tension moi-même — <b>seul le professeur le fait</b>, après contrôle.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous et
+  faites-la viser par le professeur. Tenue et EPI exigés :</p>
+  <ul class="liste-num">
+    <li>Chaussures de sécurité ; Pas de bijoux ni de montre ; Manches ajustées ; Cheveux longs attachés.</li>
+  </ul>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, zone de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — <b>couper</b> (interrupteur général ou arrêt
+  d'urgence de l'atelier, localisé dès l'entrée), <b>alerter</b> immédiatement le professeur, <b>ne jamais
+  déplacer</b> un camarade électrisé sans certitude sur son état. La trousse de secours est localisée dès
+  l'entrée dans l'atelier.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON A : DÉCOUVRIR LES 3 APPAREILS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 8 · JALON A — découvrir les 3 appareils de protection — ≈ 55 min</span>
+
+  <p style="font-size:10.5pt">Vous venez d'observer le professeur déclencher un disjoncteur, puis un DDR.
+  <b>Vous savez qu'un appareil a coupé le circuit — mais lequel protège contre quoi ?</b> Complétez les 3 fiches
+  ci-dessous à partir de ce que le professeur vient d'expliciter.</p>
+
+  <div class="fiche-appareil">
+    <h4>1. Le fusible</h4>
+    <div style="display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap">
+      <img class="fig" src="../images/fusible_1p--sans-reperes.svg" alt="Symbole du fusible, sans repères" style="width:70px">
+      <img class="fig" src="../images/porte_fusible_bipolaire.svg" alt="Porte-fusible bipolaire" style="width:60px">
+      <div style="flex:1; min-width:220px; font-size:10.3pt">
+      Le fusible protège contre les <span class="lignes" style="min-width:26%"></span> (une intensité trop
+      grande pendant longtemps) et les <span class="lignes" style="min-width:26%"></span> (une intensité très
+      grande et brutale). À l'intérieur, un fil calibré <span class="lignes" style="min-width:20%"></span>
+      sous l'effet de la chaleur : le circuit est coupé. Une fois fondu, le fusible
+      <span class="lignes" style="min-width:20%"></span> réutilisable : il faut le
+      <span class="lignes" style="min-width:20%"></span>. Le <b>porte-fusible</b> tient le fusible et permet
+      de le retirer en sécurité, hors tension.
+      </div>
+    </div>
+    <p style="font-size:9.5pt; margin:.5em 0 0"><b>Dessinez le symbole du fusible :</b></p>
+    <div class="cadre-dessin" style="min-height:90px"><span class="consigne-cadre">Cadre de dessin — symbole du fusible</span></div>
+  </div>
+
+  <div class="fiche-appareil">
+    <h4>2. Le disjoncteur</h4>
+    <div style="display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap">
+      <img class="fig" src="../images/disjoncteur_1p_n.svg" alt="Symbole du disjoncteur 1P+N" style="width:70px">
+      <div style="flex:1; min-width:220px; font-size:10.3pt">
+      Le disjoncteur protège contre les <span class="lignes" style="min-width:22%"></span>
+      <b>et</b> les <span class="lignes" style="min-width:22%"></span>. Il a deux mécanismes : un mécanisme
+      <span class="lignes" style="min-width:20%"></span> (un fil qui chauffe et se déforme lentement, pour les
+      surcharges) et un mécanisme <span class="lignes" style="min-width:20%"></span> (une bobine qui réagit
+      très vite, pour les courts-circuits). Contrairement au fusible, le disjoncteur
+      <span class="lignes" style="min-width:22%"></span> après un déclenchement : on peut le remettre en
+      position marche sans le remplacer.
+      </div>
+    </div>
+    <p style="font-size:9.5pt; margin:.5em 0 0"><b>Dessinez le symbole du disjoncteur :</b></p>
+    <div class="cadre-dessin" style="min-height:90px"><span class="consigne-cadre">Cadre de dessin — symbole du disjoncteur</span></div>
+  </div>
+
+  <div class="fiche-appareil">
+    <h4>3. Le DDR (dispositif différentiel résiduel)</h4>
+    <div style="display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap">
+      <img class="fig" src="../images/differentiel_2p--sans-reperes.svg" alt="Symbole du différentiel 2P, sans repères" style="width:60px">
+      <div style="flex:1; min-width:220px; font-size:10.3pt">
+      Le DDR protège les <span class="lignes" style="min-width:22%"></span> — pas seulement le matériel. Il
+      compare en permanence le courant qui entre par la phase et celui qui revient par le neutre. Si une
+      partie du courant s'échappe vers la terre (par exemple à travers le corps d'une personne), le DDR
+      détecte cette <span class="lignes" style="min-width:20%"></span> et coupe le circuit en une fraction de
+      seconde. Sa sensibilité s'exprime en <span class="lignes" style="min-width:18%"></span>. Dans l'habitat,
+      la valeur normalisée est <span class="lignes" style="min-width:12%"></span> mA (norme
+      <span class="lignes" style="min-width:18%"></span>).
+      </div>
+    </div>
+    <p style="font-size:9.5pt; margin:.5em 0 0"><b>Dessinez le symbole du DDR :</b></p>
+    <div class="cadre-dessin" style="min-height:90px"><span class="consigne-cadre">Cadre de dessin — symbole du DDR</span></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · SUITE JALON A : FAÇADE RÉELLE + BOUTON TEST ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Identifier un DDR sur une façade réelle</h3>
+  <p style="font-size:10.3pt">Voici la façade d'un disjoncteur différentiel réel, du type que vous retrouverez
+  sur la platine de démonstration.</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/disj_diff_hager_1p_n--sans-reperes.svg" alt="Façade réelle d'un disjoncteur différentiel, sans repères" style="max-width:42%">
+    <figcaption class="legende">Façade réelle — disjoncteur différentiel 1P+N (matériel réel de l'atelier : modèle et calibre à confirmer par le professeur).</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Question</b> — Sur la façade ci-dessus, <b>entourez le bouton test</b>.
+  D'après vous, quelle lettre le repère habituellement, et pourquoi cette lettre ?</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <h3 class="section">Tester le bouton T — sur la platine de démonstration, en rotation</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine de démonstration est sous tension normale (le professeur confirme)</p>
+    <p>☐ 2. Attendre le signal du professeur avant de toucher quoi que ce soit</p>
+    <p>☐ 3. Appuyer <b>fermement</b> sur le bouton test (T), <b>une seule fois</b></p>
+    <p>☐ 4. Observer : la manette du DDR bascule en position ARRÊT</p>
+    <p>☐ 5. Noter le temps de réaction observé</p>
+    <p>☐ 6. Réarmer : basculer la manette en position MARCHE, <b>sous le contrôle du professeur</b></p>
+  </div>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — Un fusible peut-il, à lui seul, protéger une
+  personne contre l'électrocution ? Expliquez votre réponse avec ce que vous venez d'apprendre sur le DDR.</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+
+  <div class="secu"><b class="t">⚠ Rappel</b> — Le bouton test n'est <b>jamais</b> un jeu : on l'actionne <b>une
+  fois</b>, sur autorisation du professeur, jamais en dehors de cet exercice encadré.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 1 · JALON B : CÂBLER UN CIRCUIT PROTÉGÉ PAR UN DISJONCTEUR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 8 · JALON B — câbler un circuit protégé par un disjoncteur — ≈ 70 min</span>
+
+  <p style="font-size:10.5pt">Vous allez câbler un circuit lampe simple, protégé par un <b>disjoncteur (Q1)</b>.
+  Le schéma complet du montage final (avec le DDR) figure en <b>annexe pleine page</b> : aujourd'hui, câblez
+  uniquement la partie <b>Q1 → S1 → H1</b> (à droite du repère Q0, qui sera ajouté au passage 2).</p>
+
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-circuit-garage-protege--sans-reperes.svg" alt="Schéma réduit du circuit garage protégé, sans repères" style="max-width:95%">
+    <figcaption class="legende">Circuit garage protégé — schéma réduit, sans repères. Le schéma complet légendé figure en
+    <b>annexe pleine page</b> : gardez-le sous les yeux pendant le câblage.</figcaption>
+  </figure>
+
+  <h3 class="section">1. Préparer la platine</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est <b>hors tension</b> (disjoncteur du poste ouvert)</p>
+    <p>☐ 2. Positionner le rail oméga selon les cotes indiquées par le professeur</p>
+    <p>☐ 3. Positionner le disjoncteur (Q1), l'interrupteur (S1) et le support de lampe (H1) selon le schéma d'implantation</p>
+    <p>☐ 4. Fixer chaque élément à la vis, sans forcer</p>
+  </div>
+
+  <h3 class="section">2. Câbler et contrôler hors tension</h3>
+  <div class="liste-num">
+    <p>☐ 1. Raccorder la phase du bornier à l'entrée de Q1</p>
+    <p>☐ 2. Raccorder la sortie de Q1 à l'interrupteur S1, puis à la lampe H1</p>
+    <p>☐ 3. Raccorder le neutre directement du bornier à la lampe H1</p>
+    <p>☐ 4. Vérifier que chaque connexion est bien serrée et conforme aux couleurs normalisées</p>
+  </div>
+
+  <table class="releve">
+    <tr><th style="width:38%">Mesure de continuité (multimètre, disjoncteur ouvert)</th><th>Interrupteur</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>fermé</td><td>proche de 0 Ω (continuité)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>ouvert</td><td>résistance infinie (circuit ouvert)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si une valeur ne correspond pas à celle
+  attendue, signalez-le vous-même au professeur avant de l'appeler pour le contrôle final : l'honnêteté du
+  contrôle fait partie de l'évaluation du savoir-être. <b>Une fois votre contrôle conforme, appelez le
+  professeur : lui seul ferme le disjoncteur.</b></p>
+
+  <div class="secu"><b class="t">⚠ Fin du jalon</b> — Une fois la lampe allumée et validée par le professeur,
+  remettez la platine <b>hors tension</b> avant de passer à la synthèse. Rendez-vous en <b>semaine 9</b> pour
+  le passage 2 (câblage complet DDR + disjoncteur).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON A' : CÂBLAGE COMPLET DDR + DISJONCTEUR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 9 · JALON A' — câblage complet, DDR en tête — ≈ 50 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Aujourd'hui, vous câblez
+  l'installation <b>complète</b> : un <b>DDR (Q0)</b> vient s'ajouter <b>en tête</b>, avant le disjoncteur (Q1).
+  <b>Moins d'aide, plus vite</b> : personne ne vous redémontre la consignation, et le schéma reste le même que
+  celui du passage 1 — à vous de le compléter de mémoire.</div>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-circuit-garage-protege--sans-reperes.svg" alt="Schéma réduit du circuit garage protégé, sans repères" style="max-width:95%">
+    <figcaption class="legende">Circuit garage protégé — même schéma qu'au passage 1. Schéma complet légendé en
+    <b>annexe pleine page</b>.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Question</b> — De mémoire, nommez les 4 appareils du schéma ci-dessus
+  (repères et rôles) : complétez les repères directement sur le schéma. Lequel des deux appareils à 2 pôles
+  protège les <b>personnes</b> ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Préparer et câbler l'installation complète</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est <b>hors tension</b> (disjoncteur du poste ouvert)</p>
+    <p>☐ 2. Positionner le DDR (Q0), le disjoncteur (Q1), l'interrupteur (S1) et le support de lampe (H1),
+    selon le schéma d'implantation retrouvé de mémoire</p>
+    <p>☐ 3. Fixer chaque élément à la vis, sans forcer</p>
+    <p>☐ 4. Raccorder la phase et le neutre de la source aux bornes d'entrée du DDR (Q0)</p>
+    <p>☐ 5. Raccorder les bornes de sortie du DDR à l'entrée du disjoncteur (Q1)</p>
+    <p>☐ 6. Raccorder la sortie phase de Q1 à l'interrupteur S1, puis à la lampe H1</p>
+    <p>☐ 7. Raccorder la sortie neutre de Q1 directement à la lampe H1</p>
+    <p>☐ 8. Vérifier que chaque connexion est bien serrée et conforme au schéma</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — PASSAGE 2 · JALON B' : CONTRÔLE COMPLET + ESSAIS DE DÉCLENCHEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 9 · JALON B' — contrôle complet + essais de déclenchement — ≈ 75 min — autonomie guidée</span>
+  <p style="font-size:10.3pt">Cette fois, le contrôle hors tension porte sur <b>deux points</b> : la continuité
+  <b>et</b> le serrage de chaque connexion (compétence C3.7, en autonomie). Le professeur valide sans démontrer.</p>
+
+  <h3 class="section">1. Contrôle hors tension complet</h3>
+  <table class="releve">
+    <tr><th style="width:34%">Point de contrôle</th><th>Interrupteur</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>fermé</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>ouvert</td><td>résistance infinie</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <div class="liste-num">
+    <p>☐ Serrage vérifié à la main sur <b>chaque</b> borne (Q0, Q1, S1, H1) — aucun fil qui ressort visible</p>
+    <p>☐ Couleurs normalisées respectées sur tout le montage</p>
+  </div>
+
+  <div class="jalon"><h4>Contrôle professeur obligatoire avant remise sous tension</h4>
+  <p>☐ Continuité conforme<br>☐ Serrage de toutes les bornes vérifié<br>☐ Aucun conducteur nu accessible</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h3 class="section">2. Mise sous tension et essais de déclenchement</h3>
+  <p style="font-size:10.3pt">Le professeur ferme le disjoncteur de votre poste après avoir vérifié votre
+  contrôle. Vérifiez que la lampe s'allume, puis réalisez les essais suivants.</p>
+  <div class="liste-num">
+    <p>☐ 1. Appuyer sur le bouton test (T) du DDR — <b>une seule fois</b></p>
+    <p>☐ 2. Observer et noter : la manette du DDR coupe-t-elle bien le circuit ?</p>
+    <p>☐ 3. Réarmer le DDR sous le contrôle du professeur</p>
+    <p>☐ 4. Si le poste le permet, tester le bouton du disjoncteur de la même façon (selon le matériel de
+    l'atelier, à faire valider par le professeur)</p>
+  </div>
+
+  <table class="releve">
+    <tr><th>Essai</th><th>Appareil testé</th><th>Coupure observée ?</th><th>Temps de réaction</th></tr>
+    <tr><td>1</td><td>DDR (bouton T)</td><td>☐ Oui ☐ Non</td><td>☐ instantané ☐ retardé</td></tr>
+    <tr><td>2</td><td>Disjoncteur (si testable)</td><td>☐ Oui ☐ Non</td><td>☐ instantané ☐ retardé</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — Pourquoi teste-t-on <b>uniquement</b> avec le
+  bouton T, et jamais en provoquant un vrai défaut ? Donnez au moins une raison de sécurité.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="secu"><b class="t">⚠ Rappel — fin du passage 2</b> — Avant de ranger, remettez votre platine
+  <b>hors tension</b> (disjoncteur ouvert, débranché) : c'est vous qui coupez, jamais le professeur seul en
+  votre absence.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — RANGEMENT + GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état (à chaque passage)</h3>
+  <div class="liste-num">
+    <p>☐ 1. Remettre la platine <b>hors tension</b> (disjoncteur ouvert, débranchée)</p>
+    <p>☐ 2. Remettre la molette du multimètre sur <b>OFF</b>, débrancher et ranger les cordons sans coude serré</p>
+    <p>☐ 3. Ranger les fils, sans les plier de façon serrée ; jeter les chutes dans le bac approprié</p>
+    <p>☐ 4. Ranger l'outillage (tournevis, pinces, multimètre) à son emplacement</p>
+    <p>☐ 5. Vérifier que le poste est propre et dégagé pour le poste suivant</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis</h4>
+  <p>☐ Passage 1 : 3 fiches complétées, bouton T testé, circuit protégé par disjoncteur câblé et allumé<br>
+  ☐ Passage 2 : circuit complet DDR + disjoncteur câblé, contrôle hors tension conforme (continuité +
+  serrage), essais de déclenchement réalisés</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C3.6 Confortement</b> ·
+  <b>C3.7 Découverte (passage 1) → Confortement (passage 2)</b> — jamais Évaluation dans ce module.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques</td><td>sur T10 · S5.6</td><td>Compétence non observée ce jour.</td><td>Câblage non conforme au schéma, malgré aide, ou consignation non respectée.</td><td>Câble avec l'aide du professeur pour positionner le matériel ou suivre le schéma.</td><td>Câble seul(e) le circuit protégé par disjoncteur (P1) ET l'installation complète DDR + disjoncteur (P2), conformes au schéma.</td><td>Comme « Acquis », et câble plus vite et avec plus d'assurance au passage 2 qu'au passage 1.</td></tr>
+    <tr><td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques</td><td>sur T11 · S5.6</td><td>Compétence non observée ce jour.</td><td>Ne réalise pas de contrôle hors tension avant d'appeler le professeur, même avec aide.</td><td>Réalise le contrôle hors tension (P1 : continuité) avec l'aide du professeur.</td><td>Réalise seul(e) le contrôle hors tension complet au passage 2 (continuité <b>et</b> serrage) avant d'appeler le professeur.</td><td>Comme « Acquis », et explique à un pair pourquoi le contrôle du serrage est aussi important que la continuité.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux (fil touché sans VAT, tentative de provoquer un vrai défaut, protection shuntée) : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>Consignation, VAT et règle du bouton T appliquées sans rappel, contrôles honnêtes même en cas d'erreur.</td><td>Comme « Acquis », et veille spontanément à la sécurité d'un pair.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C3.7 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : fiches, schémas, câblages, contrôles, essais, questions répondues)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (fils, ampoules, fusibles de rechange)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Les appareils de
+  protection et de commande — exercice d'apprentissage (fusible, disjoncteur, DDR), F. Henninot ;
+  Appareils_Protection_ELEVE.docx et Appareils_Protection_PROF.docx (base indexée, _Archives\Divers). Sources
+  anciennes non extraites, à rouvrir si souhaité : « Cours le DDR élèves.doc » et « prof.doc »,
+  « 1-Appareillage de protection domestique bis.doc » — non utilisées ici, rien n'y a été inventé à leur
+  place ; module2_mesures_protection.html : consultée, sans contenu exploitable, non utilisée. Continuité
+  directe des documents S1-E1 et S2-E1 produits pour cette même classe.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE : CIRCUIT GARAGE PROTÉGÉ COMPLET (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Circuit garage protégé — schéma de travail complet (passages 1 et 2)</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par
+  poste) : c'est le document à garder sous les yeux pendant tout le câblage, aux deux passages. Au passage 1,
+  vous ne câblez que la partie Q1 → S1 → H1 (le DDR Q0 est ajouté au passage 2).</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-circuit-garage-protege.svg" alt="Schéma technique pleine page, légendé : circuit garage protégé, DDR + disjoncteur" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon, .fiche-appareil{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

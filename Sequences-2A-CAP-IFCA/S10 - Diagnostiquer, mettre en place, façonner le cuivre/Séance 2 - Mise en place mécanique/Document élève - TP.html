@@ -1,0 +1,540 @@
+<meta charset="utf-8">
+<title>TP élève — S10 · Module atelier A1 · Mise en place mécanique</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Mise en place mécanique — chantier de remise en état (A1)</td>
+      <td style="width:38%"><span class="lib">Module atelier A1 · 4 h</span><b>Mise en place mécanique — implanter, tracer, percer, fixer</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> · sem. 2 · 08/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Votre entreprise poursuit le <b>chantier de remise en état</b> de l'atelier. <b>Ordre d'intervention
+  n° OI-2026-S10-02</b> : le devis est accepté. Le client demande la <b>remise en place mécanique complète
+  des organes sur le châssis</b>, avant tout raccordement fluidique ou électrique. Vous travaillez en
+  <b>binôme</b>, en <b>2 jalons successifs</b> : <b>jalon 1</b> traçage et perçage des points de fixation du
+  châssis, <b>jalon 2</b> fixation des supportages, pose du compresseur et des organes lourds, découverte du
+  pressostat au banc. <b>Aucun branchement, aucune mise sous tension aujourd'hui</b> — uniquement de la
+  mécanique.
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/fixation-compresseur-schema-technique.svg" alt="Schéma technique : détail de fixation du compresseur sur châssis, 4 points de fixation"
+         style="max-width:92%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Détail de fixation à respecter — les valeurs de couple sont données par votre professeur selon la notice de la machine.</figcaption>
+  </figure></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T14</b> Régler l'installation en fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">augmenté</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste de fixation · EPI sans rappel · soin du poste</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.3</b> Implanter, fixer les supportages<br><span class="statut">Confortement</span> <b>C4.6</b> Régler les valeurs de consigne</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>implanter</b> les organes sur le châssis à partir d'un plan coté, sans les fixer d'abord ;</li>
+    <li><b>tracer et percer</b> les points de fixation en respectant les règles de sécurité du perçage ;</li>
+    <li><b>fixer mécaniquement</b> le compresseur, l'évaporateur et les pressostats, avec un serrage contrôlé ;</li>
+    <li><b>manipuler et pré-régler</b> un pressostat au banc, hors tension et hors fluide.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li>le diagnostic de ma machine établi au module A0 (relire ma fiche de diagnostic) ;</li>
+    <li>nommer les 4 organes de la Croix du Frigoriste ;</li>
+    <li>porter les EPI de l'atelier sans qu'on me le rappelle ;</li>
+    <li>lire une cote (mesure en mm) sur un plan simple.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous ne cochez pas tous ces prérequis, prévenez le professeur avant de commencer : un rappel court est possible pendant l'exercice au fil de l'eau.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Châssis de la machine diagnostiquée au module A0 (× 1 par binôme)</li>
+    <li>Plan d'implantation coté du châssis (× 1 par binôme, voir annexe)</li>
+    <li>Compresseur et évaporateur de la machine (à poser, non raccordés) (× 1 jeu)</li>
+    <li>2 pressostats (HP et BP, ou combiné) — objets de manipulation avant pose (× 1 jeu)</li>
+    <li>Perceuse électroportative + forets adaptés au support <span class="conso">(consommable : forets)</span></li>
+    <li>Pointeau et marteau (pour amorcer le perçage)</li>
+    <li>Visserie et supportages de fixation <span class="conso">(consommable)</span></li>
+    <li>Niveau à bulle (× 1 par poste)</li>
+    <li>Clé dynamométrique ou clé plate adaptée aux organes (serrage contrôlé, sans forcer)</li>
+    <li>Lunettes de protection anti-perçage (× 1 par élève)</li>
+    <li>Gants de manutention (× 1 par élève)</li>
+    <li>Fiche de pose (ce document) + crayon</li>
+  </ol>
+
+  <h3 class="section">Consignes de sécurité</h3>
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Manutention de charges (compresseur, évaporateur, châssis)</td><td>Méthode <b>PRAP</b> : dos droit, jambes fléchies, charge portée près du corps ; demander de l'aide à deux pour toute charge lourde.</td></tr>
+    <tr><td>Perçage (projections, coincement du foret, mèche qui accroche)</td><td><b>Lunettes de protection obligatoires</b>, cheveux attachés. <b>Jamais de perçage sans lunettes.</b> Pointer avant de percer, tenir la perceuse fermement à deux mains.</td></tr>
+    <tr><td>Coupures (arêtes de tôle du châssis, chutes de perçage)</td><td>Gants de manutention lors de la manipulation du châssis ; ébavurer les trous percés avant de continuer.</td></tr>
+    <tr><td>Serrage excessif ou organe monté à l'envers</td><td><b>Ne jamais forcer un organe au serrage.</b> Respecter le couple indiqué sur la fiche de pose ; vérifier le sens de montage avant de serrer définitivement.</td></tr>
+    <tr><td>Mise sous tension ou sous fluide accidentelle</td><td><b>Interdiction formelle</b> de brancher électriquement ou de raccorder fluidiquement un organe cette semaine. La machine reste hors tension et hors fluide toute la journée.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous
+  (tâches du jour, risques, EPI portés) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — tâches, risques, EPI" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — couper l'alimentation électrique générale du poste
+  (arrêt d'urgence), alerter immédiatement le professeur, ne jamais déplacer un élève blessé sans certitude
+  sur son état. Trousse de secours et arrêt d'urgence localisés en salle, poste indiqué par le professeur en
+  début de séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — OBSERVER + NOTION DU JOUR (PRESSOSTAT) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">OBSERVER — la notion du jour : le pressostat</h3>
+  <p style="font-size:10.5pt">Le professeur vous fait circuler un pressostat démonté. Observez-le avant de
+  répondre : ne le branchez jamais.</p>
+
+  <div class="encadre-question"><b>Observation 1</b> — Regardez l'extérieur du pressostat. Combien voyez-vous
+  de vis ou de molettes de réglage sur le dessus ? À votre avis, à quoi peuvent-elles servir ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Observation 2</b> — Cherchez une plage de valeurs inscrite sur l'appareil
+  (chiffres, échelle graduée). Que représentent ces chiffres selon vous ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <p style="font-size:10.5pt">Le <b>pressostat</b> est un <b>interrupteur piloté par la pression</b> : quand la
+  pression atteint une valeur réglée (la <b>consigne</b>), il ouvre ou ferme un contact électrique. Il sert soit
+  à la <b>régulation</b> (arrêter ou démarrer la machine automatiquement), soit à la <b>sécurité</b> (couper la
+  machine en cas de pression anormale). Deux organes de réglage principaux : une vis ou molette de <b>consigne</b>
+  (la valeur de déclenchement visée) et une vis ou molette de <b>différentiel</b> (l'écart avant réenclenchement).
+  Aujourd'hui, vous le manipulez <b>au banc, hors fonctionnement</b> : la machine n'est ni sous tension, ni sous
+  fluide. Vous ne faites que découvrir l'objet et vous entraîner à pré-régler une valeur.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi, à votre avis, un pressostat ne se règle-t-il
+  jamais directement sur la machine, sous tension et sous fluide, la première fois ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Plan d'implantation coté du châssis</h3>
+  <p style="font-size:10.5pt">Voici le schéma de principe de l'implantation attendue sur votre châssis. Les
+  repères correspondent aux 3 organes à fixer cette semaine :
+  <b>1 = compresseur</b>, <b>2 = évaporateur</b>, <b>3 = pressostat(s)</b>. Le schéma complet et coté figure
+  en <b>annexe pleine page</b> en fin de document : c'est celui-ci qu'il faut garder sous les yeux pendant le
+  traçage.</p>
+
+  <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:520px; border:1px solid #d8dee6; border-radius:4px; background:#fff; display:block; margin:0 auto">
+    <!-- Châssis -->
+    <rect x="60" y="40" width="480" height="340" fill="none" stroke="#1b3a63" stroke-width="4"/>
+    <text x="300" y="26" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="15" font-weight="bold" fill="#1b3a63">Vue de face — implantation du châssis</text>
+
+    <!-- Pieds de fixation châssis -->
+    <rect x="72" y="368" width="24" height="20" fill="#5d6b7c"/>
+    <rect x="504" y="368" width="24" height="20" fill="#5d6b7c"/>
+
+    <!-- Repère 2 : évaporateur (haut gauche, ailettes) -->
+    <rect x="90" y="70" width="150" height="90" fill="#eef1f5" stroke="#1b3a63" stroke-width="2.5"/>
+    <g stroke="#9aa5b1" stroke-width="2">
+      <line x1="102" y1="80" x2="102" y2="150"/>
+      <line x1="114" y1="80" x2="114" y2="150"/>
+      <line x1="126" y1="80" x2="126" y2="150"/>
+      <line x1="138" y1="80" x2="138" y2="150"/>
+      <line x1="150" y1="80" x2="150" y2="150"/>
+      <line x1="162" y1="80" x2="162" y2="150"/>
+      <line x1="174" y1="80" x2="174" y2="150"/>
+      <line x1="186" y1="80" x2="186" y2="150"/>
+      <line x1="198" y1="80" x2="198" y2="150"/>
+      <line x1="210" y1="80" x2="210" y2="150"/>
+      <line x1="222" y1="80" x2="222" y2="150"/>
+    </g>
+    <circle cx="165" cy="115" r="19" fill="#fff" stroke="#1b3a63" stroke-width="2.5"/>
+    <text x="165" y="121" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="18" font-weight="bold" fill="#1b3a63">2</text>
+    <!-- points de fixation évaporateur -->
+    <circle cx="98" cy="76" r="3.5" fill="#ff6b35"/>
+    <circle cx="232" cy="76" r="3.5" fill="#ff6b35"/>
+    <circle cx="98" cy="154" r="3.5" fill="#ff6b35"/>
+    <circle cx="232" cy="154" r="3.5" fill="#ff6b35"/>
+
+    <!-- Repère 1 : compresseur (bas droite, cuve ronde) -->
+    <ellipse cx="400" cy="290" rx="80" ry="60" fill="#eef1f5" stroke="#1b3a63" stroke-width="2.5"/>
+    <rect x="380" y="235" width="40" height="24" fill="#eef1f5" stroke="#1b3a63" stroke-width="2"/>
+    <circle cx="400" cy="290" r="19" fill="#fff" stroke="#1b3a63" stroke-width="2.5"/>
+    <text x="400" y="296" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="18" font-weight="bold" fill="#1b3a63">1</text>
+    <!-- points de fixation compresseur (silentblocs) -->
+    <circle cx="340" cy="340" r="4" fill="#ff6b35"/>
+    <circle cx="460" cy="340" r="4" fill="#ff6b35"/>
+    <circle cx="340" cy="245" r="4" fill="#ff6b35"/>
+    <circle cx="460" cy="245" r="4" fill="#ff6b35"/>
+
+    <!-- Repère 3 : pressostat (petit boitier sur tuyauterie, haut droite) -->
+    <rect x="360" y="90" width="46" height="60" rx="4" fill="#eef1f5" stroke="#1b3a63" stroke-width="2.5"/>
+    <circle cx="383" cy="112" r="7" fill="#fff" stroke="#1b3a63" stroke-width="2"/>
+    <line x1="383" y1="128" x2="383" y2="150" stroke="#1b3a63" stroke-width="2"/>
+    <circle cx="383" cy="200" r="17" fill="#fff" stroke="#1b3a63" stroke-width="2.5"/>
+    <text x="383" y="206" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="18" font-weight="bold" fill="#1b3a63">3</text>
+    <!-- points de fixation pressostat -->
+    <circle cx="366" cy="96" r="3" fill="#ff6b35"/>
+    <circle cx="400" cy="96" r="3" fill="#ff6b35"/>
+
+    <!-- Cotes générales -->
+    <line x1="60" y1="400" x2="540" y2="400" stroke="#5d6b7c" stroke-width="1"/>
+    <line x1="60" y1="395" x2="60" y2="405" stroke="#5d6b7c" stroke-width="1"/>
+    <line x1="540" y1="395" x2="540" y2="405" stroke="#5d6b7c" stroke-width="1"/>
+    <text x="300" y="415" text-anchor="middle" font-family="Calibri, sans-serif" font-size="12" fill="#5d6b7c">Largeur châssis — cote à relever sur l'annexe</text>
+
+    <text x="90" y="200" font-family="Calibri, sans-serif" font-size="11" fill="#9aa5b1">● = point de fixation à tracer/percer</text>
+  </svg>
+  <p class="legende">Schéma de principe de l'implantation — croquis technique, F. Henninot. Repères : 1 compresseur · 2 évaporateur · 3 pressostat(s). Les points orange marquent les points de fixation à tracer puis percer.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — JALON 1 : TRAÇAGE-PERÇAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Jalon 1 — Traçage et perçage des points de fixation du châssis</h3>
+  <span class="poste-titre">JALON 1 — ≈ 1 h</span>
+  <p style="font-size:10.5pt">À partir du plan d'implantation (annexe pleine page), implantez, tracez et
+  percez tous les points de fixation du châssis. Cochez chaque étape réalisée.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Implanter les organes sur le châssis à partir du plan coté, <b>sans les fixer d'abord</b></p>
+    <p>☐ 2. Reporter les cotes du plan d'implantation sur le châssis (mètre, réglet, crayon)</p>
+    <p>☐ 3. Vérifier l'équerrage et l'alignement avant de marquer définitivement</p>
+    <p>☐ 4. Mettre les lunettes de protection — <b>jamais de perçage sans lunettes</b></p>
+    <p>☐ 5. Pointer chaque point de perçage au pointeau et au marteau (amorce du foret)</p>
+    <p>☐ 6. Percer chaque point avec le foret adapté au support, en tenant la perceuse fermement à deux mains</p>
+    <p>☐ 7. Ébavurer chaque trou percé (chute d'aluminium ou de tôle : jeter dans le bac approprié)</p>
+    <p>☐ 8. Positionner chaque supportage sans le fixer, vérifier qu'il correspond au plan</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de contrôle de perçage — jalon 1</h4>
+  <table class="releve">
+    <tr><th>Point de fixation</th><th>Diamètre perçage (mm)</th><th>Pointé avant perçage ?</th><th>Ébavuré ?</th><th>Conforme ?</th></tr>
+    <tr><td>Support châssis n° 1</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Support châssis n° 2</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Support châssis n° 3</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Support châssis n° 4</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Le diamètre de perçage dépend de la visserie utilisée : demandez la valeur au professeur avant de percer (selon le supportage, à faire valider).</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi pointe-t-on toujours un trou avant de percer, plutôt que de percer directement ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — JALON 2 : FIXATION SUPPORTAGES + COMPRESSEUR + PRESSOSTAT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Jalon 2 — Fixation des supportages, pose du compresseur et des organes lourds</h3>
+  <span class="poste-titre">JALON 2 — ≈ 45 min</span>
+  <p style="font-size:10.5pt">Fixez les supportages percés au jalon 1, puis positionnez et fixez mécaniquement
+  le compresseur et l'évaporateur. <b>Aucun raccordement fluidique ni électrique aujourd'hui.</b></p>
+
+  <div class="liste-num">
+    <p>☐ 1. Fixer chaque supportage avec un serrage contrôlé — <b>ne jamais forcer</b></p>
+    <p>☐ 2. Contrôler l'aplomb et le niveau de chaque supportage au niveau à bulle</p>
+    <p>☐ 3. Vérifier le poids du compresseur avant de le soulever (demander de l'aide si nécessaire)</p>
+    <p>☐ 4. Manutentionner selon la méthode PRAP : dos droit, jambes fléchies, charge près du corps</p>
+    <p>☐ 5. Positionner le compresseur sur ses points de fixation (repère 1 du plan), sans serrer</p>
+    <p>☐ 6. Vérifier le sens de montage de l'organe (orientation des raccords, sens indiqué par le constructeur)</p>
+    <p>☐ 7. Fixer le compresseur avec un serrage contrôlé, en croix si plusieurs vis — <b>ne jamais forcer</b></p>
+    <p>☐ 8. Contrôler l'aplomb et le niveau du compresseur</p>
+    <p>☐ 9. Positionner et fixer l'évaporateur sur ses points de fixation (repère 2 du plan), même méthode</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de contrôle de fixation — jalon 2 (organes)</h4>
+  <table class="releve">
+    <tr><th>Organe</th><th>Nombre de points de fixation</th><th>Serrage réalisé</th><th>Aplomb / niveau</th><th>Conforme ?</th></tr>
+    <tr><td>Compresseur</td><td></td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Évaporateur</td><td></td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Que risque-t-on si un compresseur est fixé sans contrôle d'aplomb ni de niveau, avant même d'être mis en fonctionnement ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Jalon 2 (suite) — Découverte et pré-réglage du pressostat au banc</h3>
+  <p style="font-size:10.5pt"><b>La machine n'est ni sous tension, ni sous fluide.</b> Vous manipulez un
+  pressostat seul, posé sur le banc, pour découvrir ses organes de réglage et vous entraîner à pré-régler
+  une valeur de consigne, pendant que votre binôme termine la fixation des organes lourds.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Identifier la vis ou molette de <b>consigne</b> (souvent repérée « RANGE » ou « SET »)</p>
+    <p>☐ 2. Identifier la vis ou molette de <b>différentiel</b> (souvent repérée « DIFF »)</p>
+    <p>☐ 3. Repérer la plage de valeurs inscrite sur l'appareil (échelle graduée)</p>
+    <p>☐ 4. Pré-régler une valeur de consigne indiquée par le professeur, <b>sans forcer sur les curseurs</b></p>
+    <p>☐ 5. Vérifier la valeur affichée après réglage (aiguille ou repère face à la graduation)</p>
+    <p>☐ 6. Noter la valeur pré-réglée dans le tableau ci-dessous</p>
+    <p>☐ 7. Fixer mécaniquement le pressostat à son emplacement sur le châssis (repère 3 du plan), sans le raccorder</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de contrôle — pressostat</h4>
+  <table class="releve">
+    <tr><th>Grandeur</th><th>Valeur demandée par le professeur</th><th>Valeur pré-réglée relevée</th><th>Conforme ?</th></tr>
+    <tr><td>Consigne (bar)</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Différentiel (bar)</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fixation mécanique du pressostat</td><td>—</td><td>☐ Réalisée ☐ Non réalisée</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">La valeur de consigne dépend de la machine et de sa notice constructeur (préréglage au banc, hors tension) : elle est donnée par le professeur pour cet exercice de découverte, à faire valider avant tout montage définitif.</p>
+
+  <div class="encadre-question"><b>Question</b> — Vous avez pré-réglé une valeur au banc, hors tension et hors fluide. Pourquoi ce pré-réglage n'est-il qu'une première étape, et pas un réglage définitif ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Question</b> — À votre avis, que se passerait-il si l'on montait le pressostat à l'envers (entrée et sortie inversées) sur le circuit ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Cadre de dessin — plan d'implantation coté</h3>
+  <p style="font-size:10.5pt">Reportez ici, <b>en schéma technique coté</b>, l'implantation réelle des 3 organes
+  sur votre châssis (comme le schéma de la feuille 2, mais avec vos propres cotes en mm). Indiquez les repères
+  <b>1</b> compresseur, <b>2</b> évaporateur, <b>3</b> pressostat(s), et les cotes de distance entre chaque
+  point de fixation.</p>
+  <div class="cadre-dessin"><span class="consigne-cadre">Plan d'implantation coté — repères 1 (compresseur), 2 (évaporateur), 3 (pressostat) + cotes en mm</span></div>
+
+  <h3 class="section">Bilan du module — jalons de pose</h3>
+  <div class="jalon"><h4>Jalons franchis aujourd'hui</h4>
+  <p>☐ Jalon 1 réalisé — traçage, perçage des points de fixation du châssis contrôlés<br>
+  ☐ Jalon 2 réalisé — supportages, compresseur et évaporateur fixés, aplomb et niveau contrôlés<br>
+  ☐ Pressostat découvert, valeur pré-réglée, fixation mécanique faite<br>
+  ☐ Aucun raccordement fluidique ni électrique effectué (vérifié)</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:14.4%">0<br>Non évalué</th><th style="width:14.4%">1<br>Non acquis</th><th style="width:14.4%">2<br>En cours d'acquisition</th><th style="width:14.4%">3<br>Acquis</th><th style="width:14.4%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.3</b> Implanter, manutentionner, fixer les supportages et équipements</td><td>sur T11 · S6.1</td><td>Compétence non observée ce jour.</td><td>Fixation non conforme au plan, serrage non contrôlé, ou aplomb/niveau non vérifié.</td><td>Fixation réalisée avec une ou deux erreurs mineures, corrigées après contrôle du professeur.</td><td>Organes implantés et fixés au plan, serrage contrôlé, aplomb et niveau vérifiés, seul.</td><td>Comme « Acquis », et l'élève explique à un pair pourquoi chaque point de fixation est placé à cet endroit.</td></tr>
+    <tr><td><b>C4.6</b> Paramétrer ou régler les valeurs de consigne sur organe de régulation ou de sécurité</td><td>sur T14 · S5.6</td><td>Compétence non observée ce jour.</td><td>Organes de réglage non identifiés, ou valeur pré-réglée non conforme à la demande, sans contrôle.</td><td>Organes identifiés, réglage approché de la valeur demandée, aide du professeur nécessaire.</td><td>Consigne et différentiel identifiés et pré-réglés à la valeur demandée, seul, sans forcer sur les curseurs.</td><td>Comme « Acquis », et l'élève explique à un pair le rôle de chaque vis de réglage sans les confondre.</td></tr>
+    <tr><td>Savoir-être — rigueur du geste, sécurité, soin du poste</td><td>observation continue</td><td>Non observé ce jour.</td><td>Perçage sans lunettes, ou serrage forcé, ou poste non soigné à un moment de la séance.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>EPI portés sans rappel, gestes de fixation soignés, poste rangé en continu.</td><td>Comme « Acquis », et l'élève veille spontanément à la sécurité d'un autre binôme.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.3 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (fiche de pose des 2 jalons, cadre de dessin coté, questions répondues)</li>
+    <li>Carnet de bord du module</li>
+    <li>Bon de commande hebdomadaire (matériel manquant, quantités)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Dossier de présentation pédagogique — Chantier de remise en état (F. Henninot, 2026) ; TP Complet Manomètres/Pressostat BP CAP IFCA.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE : PLAN D'IMPLANTATION COMPLET (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Plan d'implantation complet du châssis — vue de face cotée</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par binôme) : c'est le document à garder sous les yeux pendant tout le traçage. La version réduite en feuille 2 sert au repérage, celle-ci sert au travail.</p>
+
+  <svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" style="width:100%; border:1px solid #d8dee6; border-radius:4px; background:#fff">
+    <text x="450" y="34" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="22" font-weight="bold" fill="#1b3a63">Vue de face — implantation du châssis (repères 1-2-3)</text>
+
+    <!-- Châssis -->
+    <rect x="90" y="70" width="720" height="440" fill="none" stroke="#1b3a63" stroke-width="5"/>
+    <rect x="108" y="490" width="34" height="26" fill="#5d6b7c"/>
+    <rect x="758" y="490" width="34" height="26" fill="#5d6b7c"/>
+
+    <!-- Repère 2 : évaporateur -->
+    <rect x="130" y="110" width="220" height="130" fill="#eef1f5" stroke="#1b3a63" stroke-width="3.5"/>
+    <g stroke="#9aa5b1" stroke-width="2.5">
+      <line x1="150" y1="122" x2="150" y2="228"/>
+      <line x1="168" y1="122" x2="168" y2="228"/>
+      <line x1="186" y1="122" x2="186" y2="228"/>
+      <line x1="204" y1="122" x2="204" y2="228"/>
+      <line x1="222" y1="122" x2="222" y2="228"/>
+      <line x1="240" y1="122" x2="240" y2="228"/>
+      <line x1="258" y1="122" x2="258" y2="228"/>
+      <line x1="276" y1="122" x2="276" y2="228"/>
+      <line x1="294" y1="122" x2="294" y2="228"/>
+      <line x1="312" y1="122" x2="312" y2="228"/>
+      <line x1="330" y1="122" x2="330" y2="228"/>
+    </g>
+    <circle cx="240" cy="175" r="27" fill="#fff" stroke="#1b3a63" stroke-width="3.5"/>
+    <text x="240" y="185" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="26" font-weight="bold" fill="#1b3a63">2</text>
+    <circle cx="140" cy="118" r="5" fill="#ff6b35"/>
+    <circle cx="340" cy="118" r="5" fill="#ff6b35"/>
+    <circle cx="140" cy="232" r="5" fill="#ff6b35"/>
+    <circle cx="340" cy="232" r="5" fill="#ff6b35"/>
+    <text x="240" y="260" text-anchor="middle" font-family="Calibri, sans-serif" font-size="13" fill="#5d6b7c">Évaporateur — 4 points de fixation</text>
+
+    <!-- Repère 1 : compresseur -->
+    <ellipse cx="570" cy="400" rx="120" ry="90" fill="#eef1f5" stroke="#1b3a63" stroke-width="3.5"/>
+    <rect x="540" y="310" width="60" height="36" fill="#eef1f5" stroke="#1b3a63" stroke-width="3"/>
+    <circle cx="570" cy="400" r="27" fill="#fff" stroke="#1b3a63" stroke-width="3.5"/>
+    <text x="570" y="410" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="26" font-weight="bold" fill="#1b3a63">1</text>
+    <circle cx="480" cy="470" r="6" fill="#ff6b35"/>
+    <circle cx="660" cy="470" r="6" fill="#ff6b35"/>
+    <circle cx="480" cy="330" r="6" fill="#ff6b35"/>
+    <circle cx="660" cy="330" r="6" fill="#ff6b35"/>
+    <text x="570" y="500" text-anchor="middle" font-family="Calibri, sans-serif" font-size="13" fill="#5d6b7c">Compresseur — 4 silentblocs (serrage en croix)</text>
+
+    <!-- Repère 3 : pressostat -->
+    <rect x="500" y="120" width="70" height="90" rx="6" fill="#eef1f5" stroke="#1b3a63" stroke-width="3.5"/>
+    <circle cx="535" cy="152" r="10" fill="#fff" stroke="#1b3a63" stroke-width="3"/>
+    <line x1="535" y1="175" x2="535" y2="205" stroke="#1b3a63" stroke-width="3"/>
+    <circle cx="535" cy="270" r="25" fill="#fff" stroke="#1b3a63" stroke-width="3.5"/>
+    <text x="535" y="280" text-anchor="middle" font-family="Trebuchet MS, sans-serif" font-size="26" font-weight="bold" fill="#1b3a63">3</text>
+    <circle cx="512" cy="128" r="4.5" fill="#ff6b35"/>
+    <circle cx="558" cy="128" r="4.5" fill="#ff6b35"/>
+    <text x="535" y="316" text-anchor="middle" font-family="Calibri, sans-serif" font-size="13" fill="#5d6b7c">Pressostat(s) — 2 points de fixation</text>
+
+    <!-- Cotes générales -->
+    <line x1="90" y1="530" x2="810" y2="530" stroke="#5d6b7c" stroke-width="1.5"/>
+    <line x1="90" y1="524" x2="90" y2="536" stroke="#5d6b7c" stroke-width="1.5"/>
+    <line x1="810" y1="524" x2="810" y2="536" stroke="#5d6b7c" stroke-width="1.5"/>
+    <text x="450" y="550" text-anchor="middle" font-family="Calibri, sans-serif" font-size="14" fill="#5d6b7c">Largeur châssis = ______ mm (à relever sur la machine réelle)</text>
+
+    <line x1="60" y1="70" x2="60" y2="510" stroke="#5d6b7c" stroke-width="1.5"/>
+    <text x="35" y="290" text-anchor="middle" font-family="Calibri, sans-serif" font-size="14" fill="#5d6b7c" transform="rotate(-90 35 290)">Hauteur châssis = ______ mm</text>
+
+    <text x="130" y="380" font-family="Calibri, sans-serif" font-size="13" fill="#9aa5b1">● = point de fixation à tracer, pointer puis percer</text>
+    <text x="130" y="400" font-family="Calibri, sans-serif" font-size="13" fill="#9aa5b1">1 = compresseur · 2 = évaporateur · 3 = pressostat(s)</text>
+  </svg>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

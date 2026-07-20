@@ -1,0 +1,687 @@
+<meta charset="utf-8">
+<title>TP élève — S7-F2 · Tirage au vide réel</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .homonymie{border:1.5px dotted var(--gris); border-radius:6px; padding:6px 12px; margin:.4em 0 .9em; font-size:9pt; color:var(--gris); background:#fafbfc}
+  .generique{font-size:8pt; color:var(--gris); font-style:italic}
+  .annexe{border:3px solid var(--bleu); border-radius:8px; padding:10px 16px; background:var(--fond-doux)}
+  .verdict{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt;
+    border-radius:8px; padding:2px 16px; margin-right:8px; border:2px solid var(--filet)}
+  .graphe{background:#fff; border:2px solid var(--bleu); border-radius:6px; position:relative; padding:10px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pose manomètres HP/BP et tirage au vide</td>
+      <td style="width:38%"><span class="lib">Module atelier S7-F2 · 4 h × 2 passages</span><b>Tirage au vide réel</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> · semaines 24-25</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom, prénom (binôme)</span>________________</td>
+      <td><span class="lib">Nom, prénom (binôme)</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S7-2</b> : la liaison cuivre de <b>l'arrière-boutique</b>, brasée fort en
+  S5, puis <b>prouvée étanche au procès-verbal d'épreuve azote en S6</b>, doit maintenant être
+  <b>déshydratée</b> avant que le fluide frigorigène n'y soit introduit (mise en charge simulée en S8, réelle
+  en 2<sup>e</sup> année). Le circuit contient encore de l'air et des traces d'humidité qu'il faut extraire
+  <b>par le vide</b>. Vous allez brancher une <b>pompe à vide</b> et un <b>vacuomètre</b> sur le manifold déjà
+  posé (S7-F1), <b>relever la pression à intervalles réguliers</b>, <b>tracer la courbe temps/pression</b> sur
+  le repère millimétré fourni, <b>constater le palier</b>, puis <b>interpréter une éventuelle remontée</b> de
+  l'aiguille avant de <b>casser le vide à l'azote</b>, en douceur.</p>
+  <div style="display:flex; gap:14px; align-items:flex-start; margin-top:8px">
+    <figure style="margin:0; text-align:center; flex:1">
+      <img src="../images/schema-principe-tirage-au-vide.jpeg" alt="Schéma de principe du tirage au vide : compresseur, manomètres BP/HP, vacuomètre, pompe à vide"
+           style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+      <figcaption class="legende">Schéma de principe : (1)(2) vannes du compresseur, (4)(5) manomètres BP/HP,
+      (6) vacuomètre, (3) pompe à vide. D'après : ressource tirage au vide.docx.</figcaption>
+    </figure>
+  </div></div>
+
+  <div class="homonymie"><b>⚠ Ne pas confondre</b> — ici, « tirage au vide » = <b>mettre le circuit sous vide</b>
+  à la pompe pour le déshydrater. Ce n'est PAS la « régulation par tirage au vide » (pump down), une autre
+  notion d'électrotechnique de régulation vue en 2<sup>e</sup> année.</div>
+
+  <div class="change"><b class="t">Ce qui change depuis S6</b> — En S6, vous avez monté le montage <b>EN
+  PRESSION POSITIVE</b> (azote) pour prouver qu'il ne fuyait pas : le PV est signé, l'étanchéité est acquise.
+  <b>Aujourd'hui c'est l'inverse</b> : vous descendez le même montage <b>EN DÉPRESSION</b> (le vide) pour en
+  extraire l'air et l'humidité — c'est une étape de <b>préparation à la mise en service</b>, pas une nouvelle
+  épreuve d'étanchéité. C'est aussi la <b>première fois</b> qu'un TP vous fait <b>tracer une courbe</b> : au
+  passage 1, le professeur vous montre comment relever et tracer point par point ; au passage 2, vous le faites
+  avec plus d'autonomie, et le professeur vous confronte à un cas particulier à interpréter.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension <span class="nuance">(partiel : seul « tirer au vide »)</span><br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">augmenté (dépression, vacuomètre, courbe temps/pression)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du relevé horodaté · honnêteté du tracé (même si la courbe n'est pas « jolie ») · vigilance pompe électrique · autonomie croissante</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte → Confortement</span> <b>C4.1</b> Tirer au vide le circuit frigorifique<br><span class="statut">Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>brancher la pompe à vide et le vacuomètre</b> sur le manifold, sous supervision du professeur ;</li>
+    <li><b>relever la pression à intervalles réguliers</b> et <b>tracer la courbe temps/pression</b> sur le
+    repère millimétré fourni en annexe ;</li>
+    <li><b>constater le palier</b> : le moment où la descente s'arrête et où la pression se stabilise ;</li>
+    <li><b>interpréter une remontée</b> de l'aiguille après arrêt de la pompe (fuite ? humidité résiduelle ?) ;</li>
+    <li><b>casser le vide à l'azote</b>, en douceur, au détendeur, sous supervision du professeur.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est <b>pas votre première fois</b> devant ce montage : vous l'avez posé et
+  éprouvé, et vous savez déjà lire un manifold. Aujourd'hui, on va plus loin, dans l'autre sens de la pression :</p>
+  <ul class="liste-num">
+    <li><b>poser et lire le manifold</b> (2 manomètres, 3 flexibles) — acquis en <b>S7-F1</b> ;</li>
+    <li><b>manipuler le manodétendeur d'azote par paliers</b>, sous supervision (S5-F2, S6-F1) ;</li>
+    <li>le montage que vous allez tirer au vide est <b>déjà éprouvé et signé étanche</b> (S6) — vous ne
+    recommencez pas l'épreuve, vous préparez la suite ;</li>
+    <li>le lien <b>qualitatif</b> entre pression et température (S4-T1) : vous savez que l'eau bout à 100 °C à
+    pression atmosphérique, et que cette température d'ébullition change si la pression change ;</li>
+    <li><b>É3 est passée</b> : votre plan de progrès personnel s'applique aussi ici, en particulier sur la
+    rigueur du relevé et l'honnêteté du tracé.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si la lecture du manifold ou la montée par
+  paliers à l'azote vous échappent encore, dites-le au professeur avant de commencer : c'est exactement ce que
+  reprend la phase 4 de ce module.</p>
+
+  <h3 class="section">Matériel <span style="font-size:9pt; color:var(--gris); font-weight:normal">(par binôme, aux deux passages)</span></h3>
+  <ol class="liste-num">
+    <li>Le montage éprouvé en S6 (ou un circuit école vidé, fourni par le professeur, à faire valider) — <b>sans fluide frigorigène</b></li>
+    <li>Manifold déjà posé (3 flexibles, 2 manomètres) — S7-F1</li>
+    <li><b>Pompe à vide</b> — appareil électrique, cordon vérifié avant branchement, niveau d'huile contrôlé <span class="generique">(symbole générique <code>pompe_electrique</code> utilisé dans les schémas de ce document, faute de symbole dédié « pompe à vide »)</span></li>
+    <li><b>Vacuomètre</b>, intercalé sur la voie de service du manifold <span class="generique">(symbole générique <code>manometres</code> utilisé dans les schémas de ce document, faute de symbole dédié « vacuomètre »)</span></li>
+    <li>Bouteille d'azote et son manodétendeur — pour la casse du vide, <b>manipulés uniquement sous supervision directe du professeur</b></li>
+    <li>Repère millimétré vierge (en annexe de ce document) + crayon + règle</li>
+    <li>Chronomètre ou montre, pour les relevés à intervalles réguliers</li>
+    <li>Lunettes de protection (× 1 par élève)</li>
+    <li>Fiche de sécurité à cocher + ce document + stylo</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ DÉVELOPPÉE + LOGIQUE DE LA MÉTHODE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Pourquoi tirer au vide ? le vide fait bouillir l'eau à froid</h3>
+  <p style="font-size:10.5pt">Vous avez vu en <b>S4-T1</b> que la température à laquelle l'eau se met à
+  bouillir dépend de la pression : à pression atmosphérique, l'eau bout à 100 °C. Mais si l'on <b>abaisse
+  fortement la pression</b> — ce que fait justement une pompe à vide — l'eau peut se mettre à bouillir, donc à
+  se vaporiser, <b>bien en dessous de 100 °C</b>, y compris à température ambiante ou à froid. C'est exactement
+  ce que l'on recherche dans un circuit frigorifique : la moindre trace d'humidité qui serait restée dans les
+  tuyauteries se vaporise sous le vide, et la pompe l'extrait avec l'air. C'est un principe <b>qualitatif</b> :
+  aucune valeur chiffrée de pression ou de température n'est donnée dans ce document — retenez seulement le
+  lien de cause à effet, déjà rencontré en S4.</p>
+  <div class="secu" style="border-color:var(--bleu); background:var(--fond-doux)"><b class="t" style="color:var(--bleu)">Attention, une nuance importante</b> —
+  le tirage au vide <b>n'est pas, à proprement parler, une épreuve d'étanchéité</b> : c'est le rôle du PV signé
+  en S6. Mais une remontée anormale et rapide de l'aiguille après l'arrêt de la pompe reste un signal à ne
+  jamais ignorer, et à signaler immédiatement au professeur.</div>
+
+  <h3 class="section">La pompe à vide : un appareil à respecter</h3>
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Pompe à vide = <b>appareil électrique</b></td><td>Cordon d'alimentation vérifié <b>avant</b> tout branchement ; jamais de pompe au cordon abîmé.</td></tr>
+    <tr><td>Huile de la pompe <b>chaude</b> en fonctionnement</td><td>Ne jamais toucher le corps de la pompe pendant ou juste après le fonctionnement ; laisser refroidir avant de la déplacer.</td></tr>
+    <tr><td>Échappement d'huile possible à l'orifice d'échappement</td><td>Poste dégagé autour de l'échappement ; ne jamais obstruer l'orifice d'échappement.</td></tr>
+    <tr><td>Pompe démarrée avec un <b>niveau d'huile insuffisant</b></td><td>Vérifier le niveau d'huile au hublot AVANT chaque démarrage — geste systématique, jamais sauté (D'après : tirage au vide.docx).</td></tr>
+    <tr><td><b>Aspirer de l'azote sous pression</b> avec la pompe à vide</td><td><b>Geste interdit</b> : on casse toujours la pression d'azote AVANT de démarrer la pompe — sinon la pompe s'abîme et projette de l'huile (D'après : tirage au vide.docx).</td></tr>
+    <tr><td>Rentrée d'air par l'échappement en fin de tirage</td><td><b>Toujours fermer les vannes du manifold avant d'arrêter la pompe</b>, jamais dans l'autre sens.</td></tr>
+    <tr><td>Casse du vide à l'azote trop rapide</td><td>Manodétendeur obligatoire, montée <b>douce</b>, lunettes de protection — acquis S5/S6.</td></tr>
+  </table>
+  </div>
+
+  <div style="display:flex; gap:14px; align-items:flex-start; margin:8px 0">
+    <figure style="margin:0; text-align:center; flex:1">
+      <img src="../images/pompe-a-vide-en-service.png" alt="Pompe à vide raccordée sur un poste, mains en gants la démarrant"
+           style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+      <figcaption class="legende">Pompe à vide en cours de branchement sur un poste (flexible jaune). D'après :
+      S5S1 pose manifold et tirage au vide PROF.docx.</figcaption>
+    </figure>
+    <figure style="margin:0; text-align:center; flex:1">
+      <img src="../images/vacuometre-digital-photo.png" alt="Vacuomètre numérique, cadran digital"
+           style="max-width:70%; border:1px solid #d5dbe4; border-radius:6px;">
+      <figcaption class="legende">Un vacuomètre : l'appareil de mesure de précision intercalé sur la voie de
+      service, pour lire la dépression. D'après : tirage au vide 24.docx.</figcaption>
+    </figure>
+  </div>
+
+  <h3 class="section">La logique de la méthode : relever, tracer, constater, interpréter</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. Le montage éprouvé de S6 est <b>identifié</b>, sans fluide frigorigène.<br>
+  2. <b>Vérifier le niveau d'huile</b> de la pompe à vide, sous supervision.<br>
+  3. <b>Brancher</b> la pompe à vide et le vacuomètre sur la voie de service du manifold.<br>
+  4. <b>Ouvrir les vannes</b> HP et BP du manifold.<br>
+  5. <b>Démarrer la pompe</b>, sous supervision du professeur.<br>
+  6. À <b>intervalles réguliers</b> (par exemple toutes les 2 à 3 minutes), <b>relever la pression</b> lue au
+  vacuomètre et la <b>reporter aussitôt</b> dans le tableau ET sur le repère millimétré (annexe) — jamais de
+  mémoire, jamais après coup.<br>
+  7. Continuer les relevés jusqu'à ce que la courbe <b>se stabilise</b> : c'est le <b>palier</b>.<br>
+  8. <b>Fermer les vannes du manifold D'ABORD</b>, puis <b>arrêter la pompe</b> — jamais dans l'autre ordre.<br>
+  9. <b>Observer l'aiguille</b> du vacuomètre pendant quelques minutes : reste-t-elle stable, ou remonte-t-elle ?<br>
+  10. <b>Interpréter</b> avec l'aide du professeur, puis <b>casser le vide à l'azote</b>, en douceur, au
+  détendeur.</p>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Pour information (sans que cela soit
+  attendu de vous en séance de 4 h) : en milieu professionnel, on répète parfois l'opération plusieurs fois
+  (méthode dite des « trois vides », en alternant recharge d'azote et nouveau tirage) pour mieux éliminer
+  l'humidité résiduelle d'une grosse installation (D'après : ressource tirage au vide.docx). Le temps de
+  fonctionnement réel d'une pompe à vide varie beaucoup selon la taille de l'installation — aucune durée n'est
+  imposée par ce document : le professeur adapte le jalon au temps disponible et au palier réellement observé.</p>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li><b>Jamais aspirer de l'azote sous pression</b> avec la pompe à vide — toujours casser la pression AVANT ;</li>
+    <li>Jamais démarrer la pompe sans avoir vérifié son niveau d'huile ;</li>
+    <li>Jamais fermer la pompe avant les vannes — toujours <b>vannes d'abord, pompe ensuite</b> ;</li>
+    <li>Jamais de relevé « de mémoire » — chaque point de la courbe se reporte au moment du relevé ;</li>
+    <li>Jamais de casse du vide à l'azote sans détendeur, ni en montée brutale ;</li>
+    <li>Jamais manipuler la bouteille d'azote ou la pompe sans le professeur présent.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous
+  (lunettes portées, poste dégagé, niveau d'huile vérifié) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, poste de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — arrêtez immédiatement toute manipulation, alertez le
+  professeur. Le professeur coupe la pompe et l'arrivée d'azote, ventile si besoin, ne déplace jamais une
+  personne en malaise, alerte. Trousse de secours et arrêt d'urgence localisés en phase 5 de la séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON 1 : BRANCHEMENT + RELEVÉS + TRACÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 24 · JALON 1 — branchement + relevés + tracé — ≈ 85 min</span>
+
+  <div class="liste-num">
+    <p>☐ 1. Présenter le montage au professeur (montage éprouvé en S6, sans fluide) ; le repérer sur ce document</p>
+    <p>☐ 2. Vérifier le niveau d'huile de la pompe à vide, sous supervision</p>
+    <p>☐ 3. Brancher la pompe à vide et le vacuomètre sur la voie de service du manifold</p>
+    <p>☐ 4. Ouvrir les vannes HP et BP du manifold</p>
+    <p>☐ 5. Démarrer la pompe à vide, sous supervision du professeur</p>
+    <p>☐ 6. Relever la pression toutes les 2 à 3 minutes ; reporter chaque valeur dans le tableau ET sur le repère millimétré (annexe), au fur et à mesure</p>
+    <p>☐ 7. Continuer jusqu'à ce que le professeur valide l'apparition d'un palier</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — ma descente (jalon 1)</h4>
+  <table class="releve">
+    <tr><th>N°</th><th>Temps écoulé</th><th>Pression lue (unité de mon vacuomètre)</th><th>Reporté sur la courbe ?</th></tr>
+    <tr><td>1</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>2</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>3</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>4</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>5</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>6</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>7</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>8</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Nombre de relevés, intervalle exact et
+  niveau de vide visé : <b>fixés par le professeur</b>, selon la pratique de l'atelier — aucune valeur n'est
+  imposée par ce document. Utilisez le repère millimétré en annexe pour le tracé : vous y écrirez vous-même
+  l'échelle de pression, selon le vacuomètre de votre poste.</p>
+
+  <div class="encadre-question"><b>Question — agir → noter → réfléchir</b> — Pourquoi relever la pression à
+  intervalles réguliers construit-il une information que n'apporterait pas un relevé unique, fait seulement à
+  la fin ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Indice : une courbe montre COMMENT la
+  pression descend (vite, puis de moins en moins), pas seulement où elle finit.</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1</h4>
+  <p>☐ Niveau d'huile vérifié avant démarrage &nbsp;&nbsp; ☐ Relevés réguliers reportés au fur et à mesure &nbsp;&nbsp; ☐ Aucun geste interdit observé &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · JALON 2 : PALIER + REMONTÉE + INTERPRÉTATION + CASSE AZOTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 24 · JALON 2 — palier + test de remontée + interprétation + casse azote — ≈ 40 min</span>
+  <p style="font-size:10.5pt">Votre courbe montre un <b>palier</b> : la pression ne descend plus. Vous allez
+  maintenant vérifier si ce palier <b>tient</b>, puis rendre le circuit à la pression atmosphérique avec de
+  l'azote, en douceur.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Faire constater le palier par le professeur sur votre courbe</p>
+    <p>☐ 2. <b>Fermer les vannes du manifold D'ABORD</b>, sous supervision</p>
+    <p>☐ 3. <b>Arrêter la pompe</b> — jamais avant d'avoir fermé les vannes</p>
+    <p>☐ 4. Observer l'aiguille du vacuomètre pendant quelques minutes : reste-t-elle stable, remonte-t-elle vite, ou lentement ?</p>
+    <p>☐ 5. Noter votre observation et en discuter l'interprétation avec le professeur</p>
+    <p>☐ 6. Sous supervision du professeur, casser le vide à l'azote au manodétendeur, en douceur</p>
+    <p>☐ 7. Faire viser le jalon par le professeur</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche d'observation — test de remontée (jalon 2)</h4>
+  <table class="releve">
+    <tr><th>Repère</th><th>Constat</th></tr>
+    <tr><td>Aiguille au moment de l'arrêt de la pompe</td><td></td></tr>
+    <tr><td>Aiguille après quelques minutes d'observation</td><td></td></tr>
+    <tr><td>Vitesse de la remontée observée</td><td>☐ Aucune (stable) ☐ Lente ☐ Rapide</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question — interprétation guidée</b> — D'après ce que vous avez vu en
+  S4-T1 (le vide fait bouillir l'eau à froid) : si la remontée est <b>lente</b>, quelle explication l'humidité
+  résiduelle peut-elle apporter ? Et si elle est <b>rapide</b>, à quoi pensez-vous plutôt ?</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Piste : une remontée <b>rapide</b> évoque
+  le plus souvent une <b>fuite</b> (de l'air extérieur rentre dans le circuit) ; une remontée <b>lente</b>, qui
+  se stabilise à un niveau bas, évoque plutôt un peu <b>d'humidité résiduelle</b> qui continue de se vaporiser
+  sous le vide. Ce n'est pas une mesure automatique : c'est une interprétation que le professeur vous aide à
+  construire, à partir de ce que vous observez.</p>
+
+  <div class="secu"><b class="t">⚠ Rappel — casse du vide</b> — La casse du vide à l'azote se fait <b>toujours
+  au manodétendeur, en montée douce</b>, sous supervision directe du professeur, comme en S5/S6 : jamais de
+  montée brutale, lunettes de protection obligatoires.</div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2</h4>
+  <p>☐ Ordre fermeture vannes / arrêt pompe respecté &nbsp;&nbsp; ☐ Observation de la remontée réalisée &nbsp;&nbsp; ☐ Interprétation cohérente avec l'observation &nbsp;&nbsp; ☐ Casse du vide à l'azote effectuée sous supervision</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 2 · JALON 1' : PLUS AUTONOME ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 25 · JALON 1' — branchement et relevés plus autonomes — ≈ 50 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Vous connaissez déjà la
+  procédure : le professeur démontre moins et vous laisse brancher, démarrer et relever <b>plus vite, en
+  autonomie</b>. Il reste présent en permanence pour la sécurité (pompe, azote), mais ne vous souffle plus
+  l'étape suivante.</div>
+
+  <div class="liste-num">
+    <p>☐ 1. Présenter le montage au professeur ; vérifier le niveau d'huile de la pompe</p>
+    <p>☐ 2. Brancher pompe à vide et vacuomètre, ouvrir les vannes du manifold</p>
+    <p>☐ 3. Démarrer la pompe, sous supervision</p>
+    <p>☐ 4. Relever la pression à intervalles réguliers et reporter chaque point sur la courbe, sans attendre le rappel du professeur</p>
+    <p>☐ 5. Faire constater le palier par le professeur</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — ma descente (jalon 1')</h4>
+  <table class="releve">
+    <tr><th>N°</th><th>Temps écoulé</th><th>Pression lue (unité de mon vacuomètre)</th><th>Reporté sur la courbe ?</th></tr>
+    <tr><td>1</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>2</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>3</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>4</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>5</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>6</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Qu'est-ce qui, dans ce que vous avez appris au passage 1,
+  vous permet aujourd'hui de brancher et de relever plus vite, sans qu'on vous rappelle chaque étape ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1'</h4>
+  <p>☐ Branchement mené sans rappel de la procédure &nbsp;&nbsp; ☐ Relevés réguliers, reportés en temps réel &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2'</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON 2' : VARIANTE D'INTERPRÉTATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 25 · JALON 2' — palier + variante d'interprétation + casse azote — ≈ 75 min</span>
+  <p style="font-size:10.5pt">Comme au passage 1, vous constatez le palier, fermez les vannes puis arrêtez la
+  pompe, et observez la remontée. <b>Cette fois</b>, le professeur peut vous confronter à un poste où une
+  petite anomalie a été volontairement laissée (une vanne pas tout à fait fermée, un peu d'humidité restée
+  exprès) : à vous d'observer et de proposer une interprétation, avant validation.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Faire constater le palier par le professeur</p>
+    <p>☐ 2. Fermer les vannes du manifold, puis arrêter la pompe</p>
+    <p>☐ 3. Observer l'aiguille pendant quelques minutes ; noter la vitesse de remontée</p>
+    <p>☐ 4. Proposer une interprétation (fuite ? humidité ? aucune anomalie ?) avant de la faire valider</p>
+    <p>☐ 5. Si le professeur le propose : comparer votre observation avec celle d'un poste voisin (variante)</p>
+    <p>☐ 6. Sous supervision, casser le vide à l'azote en douceur au détendeur</p>
+    <p>☐ 7. Faire viser le jalon</p>
+  </div>
+
+  <h4 style="font-size:11pt">Fiche d'observation — test de remontée (jalon 2')</h4>
+  <table class="releve">
+    <tr><th>Repère</th><th>Constat</th></tr>
+    <tr><td>Aiguille au moment de l'arrêt de la pompe</td><td></td></tr>
+    <tr><td>Aiguille après quelques minutes d'observation</td><td></td></tr>
+    <tr><td>Vitesse de la remontée observée</td><td>☐ Aucune (stable) ☐ Lente ☐ Rapide</td></tr>
+  </table>
+
+  <p style="font-size:10.5pt"><b>Mon interprétation :</b>
+  <span class="verdict" style="border-color:#1f7a4d; color:#1f7a4d">☐ Aucune anomalie</span>
+  <span class="verdict" style="border-color:#c14a17; color:#c14a17">☐ Fuite probable</span>
+  <span class="verdict" style="border-color:var(--violet); color:var(--violet)">☐ Humidité résiduelle probable</span></p>
+  <div class="zone-reponse" style="min-height:2.4em"><span style="font-size:9pt; color:var(--gris)">Justification (à partir de la vitesse de remontée observée) :</span></div>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — En quoi le fait de tracer une courbe, plutôt
+  que de noter un seul chiffre final, vous a-t-il aidé à formuler cette interprétation ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Piste de réflexion : une courbe garde la
+  trace de TOUTE la descente, pas seulement du résultat final — c'est elle qui permet de repérer si la
+  remontée est cohérente avec ce qui s'est passé pendant le tirage.</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2'</h4>
+  <p>☐ Ordre fermeture vannes / arrêt pompe respecté &nbsp;&nbsp; ☐ Interprétation argumentée, même face à la variante &nbsp;&nbsp; ☐ Casse du vide à l'azote effectuée sous supervision</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état (à chaque passage)</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que le professeur a bien ramené le circuit à la pression atmosphérique à l'azote</p>
+    <p>☐ 2. Débrancher la pompe à vide et le vacuomètre, sous supervision</p>
+    <p>☐ 3. Laisser refroidir la pompe avant de la ranger ; vérifier qu'elle n'a pas fui d'huile</p>
+    <p>☐ 4. Nettoyer l'établi de mon poste, essuyer les éventuelles traces d'huile</p>
+    <p>☐ 5. Vérifier que la zone de travail est dégagée et propre pour le poste suivant</p>
+    <p>☐ 6. Retirer les EPI en dernier, une fois le poste totalement rangé</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis</h4>
+  <p>☐ Passage 1 : branchement démontré, courbe tracée, palier constaté, interprétation guidée, casse du vide à l'azote<br>
+  ☐ Passage 2 : branchement autonome, courbe tracée, palier constaté, interprétation face à une variante, casse du vide à l'azote</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C4.1 Découverte → Confortement</b> ·
+  <b>C3.7 Confortement</b> — aucune de ces deux compétences n'est remontée sur École Directe dans ce module
+  (le statut Évaluation arrivera à É4, semaine 32).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C4.1</b> Tirer au vide le circuit frigorifique</td><td>sur T13 · S5.5</td><td>Compétence non observée ce jour.</td><td>Ne conduit pas le branchement ni les relevés malgré l'aide (oublie de vérifier l'huile, relève au hasard, ne trace pas la courbe).</td><td>Conduit le branchement, les relevés et le tracé avec l'aide du professeur (rappel de l'intervalle, de l'ordre vannes/pompe).</td><td>Conduit seul(e) ou en binôme (passage 1) le branchement, relève à intervalles réguliers, trace une courbe lisible, respecte l'ordre fermeture vannes/arrêt pompe.</td><td>Comme « Acquis », et explique à un pair pourquoi on relève à intervalles réguliers plutôt qu'une seule fois.</td></tr>
+    <tr><td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques</td><td>sur T12</td><td>Compétence non observée ce jour.</td><td>Geste dangereux malgré rappel (aspire l'azote sous pression, arrête la pompe avant de fermer les vannes, démarre sans vérifier l'huile).</td><td>Respecte la sécurité et l'ordre des opérations avec des rappels du professeur.</td><td>Respecte sans rappel l'ordre des opérations (huile → branchement → vannes → pompe → relevés → vannes → pompe → azote), interprète la remontée avec l'aide du professeur.</td><td>Comme « Acquis », et signale spontanément une observation inhabituelle (remontée rapide) avant d'attendre qu'on le lui demande.</td></tr>
+    <tr><td>Savoir-être — rigueur, honnêteté, autonomie</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux (aspire l'azote sous pression, agit sans professeur présent) ou relevés inventés/reconstitués : niveau 1 automatique.</td><td>Sécurité globalement respectée, relevés faits avec quelques rappels.</td><td>EPI et gestes respectés sans rappel, relevés honnêtes et horodatés en temps réel, courbe tracée même si le résultat n'est pas « parfait ».</td><td>Comme « Acquis », et au passage 2, mène le jalon en autonomie et argumente son interprétation face à la variante proposée.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C4.1 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C3.7 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous étiez concerné(e) par un objectif de
+  progrès à É3 sur la rigueur du poste ou l'honnêteté du relevé : avez-vous progressé aujourd'hui ?</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : tableaux de relevés, observations, questions répondues)</li>
+    <li><b>Repère millimétré avec la courbe tracée</b> (en annexe), une copie par passage</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (huile pompe, consommables)</li>
+  </ol>
+
+  <div class="secu" style="border-color:var(--violet); background:#f8f6ff"><b class="t" style="color:var(--violet)">Et la suite ?</b> —
+  Le circuit est maintenant déshydraté, sous vide, prêt à recevoir le fluide frigorigène. Cette étape de
+  <b>charge</b> n'arrive pas tout de suite : vous la découvrirez <b>simulée en S8</b>, puis <b>réellement en
+  2<sup>e</sup> année</b>. Aujourd'hui, vous avez préparé le circuit ; la charge sera une autre histoire.</div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : S5S1 pose
+  manifold et tirage au vide ELEVES/PROF/-cour-fh.docx et TD_Pose-manifold-tirage-au-vide_Maximilien-Perret.pdf
+  (procédure de branchement manifold/pompe) ; tirage au vide.docx et tirage au vide 24.docx (théorie du
+  tirage, vérification du niveau d'huile, interdiction de pomper l'azote sous pression, méthode des « trois
+  vides ») ; ressource tirage au vide.docx (schéma légendé de la pompe à vide, principe du montage, rappel
+  « le tirage au vide n'est pas une épreuve d'étanchéité ») ; Le froid, exercices élèves (manuel, S4 — lien
+  qualitatif pression/ébullition) ; documents S5-F2/S6-F1 (manodétendeur azote par paliers) ; Charte
+  pédagogique FrigorX (§7 sécurité) ; référentiel CAP IFCA (codes C4.1, C3.7, T13, T12, S5.5). Niveau de vide
+  visé : fixé par le professeur, selon la pratique de l'atelier, à faire valider — aucune valeur chiffrée
+  n'est donnée dans ce document. Formats anciens non extraits, à rouvrir : « tp tirage au vide.doc »,
+  « Tirage au vide, charge en fluide.DOC », « Manifold, tirage au vide, détection.DOC »,
+  « 10498-3 tirage au vide.PPT » (AFPA).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — ANNEXE PLEINE PAGE : REPÈRE MILLIMÉTRÉ DE LA COURBE DE DESCENTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · ANNEXE pleine page · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section" style="margin-top:0">ANNEXE — REPÈRE MILLIMÉTRÉ : COURBE TEMPS / PRESSION DU TIRAGE AU VIDE</h3>
+  <p style="font-size:10pt; color:var(--gris)">Une copie par passage (☐ 1 ou ☐ 2 ci-dessous). Reportez CHAQUE
+  relevé du tableau de la feuille jalon 1 (ou 1') sur ce repère, au moment même où vous le prenez.</p>
+  <p style="font-size:9.5pt"><b>Passage</b> : ☐ 1 &nbsp;&nbsp; ☐ 2 &nbsp;&nbsp;&nbsp; <b>Montage</b> : ________________ &nbsp;&nbsp;&nbsp; <b>Date</b> : ________________</p>
+
+  <div class="graphe" style="height:600px; margin:8px 0">
+    <svg viewBox="0 0 720 560" width="100%" height="100%" preserveAspectRatio="none" style="display:block">
+      <defs>
+        <pattern id="mm" width="14" height="14" patternUnits="userSpaceOnUse">
+          <path d="M 14 0 L 0 0 0 14" fill="none" stroke="#dbe3ee" stroke-width="1"/>
+        </pattern>
+        <pattern id="cm" width="70" height="70" patternUnits="userSpaceOnUse">
+          <rect width="70" height="70" fill="url(#mm)"/>
+          <path d="M 70 0 L 0 0 0 70" fill="none" stroke="#9fb0c9" stroke-width="1.3"/>
+        </pattern>
+      </defs>
+      <rect x="60" y="10" width="640" height="500" fill="url(#cm)"/>
+      <rect x="60" y="10" width="640" height="500" fill="none" stroke="#1b3a63" stroke-width="2"/>
+      <!-- axe des temps (gradué) -->
+      <line x1="60" y1="510" x2="700" y2="510" stroke="#1b3a63" stroke-width="2.5"/>
+      <text x="710" y="514" font-size="13" fill="#1b3a63" font-family="Trebuchet MS, sans-serif">t</text>
+      <g font-size="11" fill="#22303f" font-family="Calibri, sans-serif" text-anchor="middle">
+        <text x="130" y="528">5</text><text x="200" y="528">10</text><text x="270" y="528">15</text>
+        <text x="340" y="528">20</text><text x="410" y="528">25</text><text x="480" y="528">30</text>
+        <text x="550" y="528">35</text><text x="620" y="528">40</text><text x="690" y="528">45</text>
+      </g>
+      <text x="380" y="546" font-size="12" fill="#5d6b7c" text-anchor="middle" font-style="italic">Temps depuis le démarrage de la pompe (minutes) — repères indicatifs, à adapter au poste</text>
+      <!-- axe des pressions (NON gradué : à écrire par l'élève) -->
+      <line x1="60" y1="10" x2="60" y2="510" stroke="#1b3a63" stroke-width="2.5"/>
+      <text x="30" y="20" font-size="13" fill="#1b3a63" font-family="Trebuchet MS, sans-serif">P</text>
+      <g stroke="#1b3a63" stroke-width="1.5">
+        <line x1="52" y1="90" x2="60" y2="90"/><line x1="52" y1="170" x2="60" y2="170"/>
+        <line x1="52" y1="250" x2="60" y2="250"/><line x1="52" y1="330" x2="60" y2="330"/>
+        <line x1="52" y1="410" x2="60" y2="410"/>
+      </g>
+      <text x="46" y="94" font-size="10" fill="#9aa5b1" text-anchor="end">___</text>
+      <text x="46" y="174" font-size="10" fill="#9aa5b1" text-anchor="end">___</text>
+      <text x="46" y="254" font-size="10" fill="#9aa5b1" text-anchor="end">___</text>
+      <text x="46" y="334" font-size="10" fill="#9aa5b1" text-anchor="end">___</text>
+      <text x="46" y="414" font-size="10" fill="#9aa5b1" text-anchor="end">___</text>
+      <text x="20" y="270" font-size="12" fill="#5d6b7c" text-anchor="middle" font-style="italic" transform="rotate(-90 20 270)">Pression lue au vacuomètre — ÉCHELLE À ÉCRIRE VOUS-MÊME, selon votre appareil</text>
+    </svg>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Les traits « ___ » sur l'axe vertical sont
+  volontairement VIERGES : écrivez vous-même les valeurs, dans l'unité affichée par le vacuomètre de votre
+  poste (bar, mbar, ou toute autre unité selon le modèle), du bas (dépression la plus forte) vers le haut
+  (pression atmosphérique). L'axe horizontal (temps) est gradué à titre indicatif : adaptez-le si votre tirage
+  dure plus ou moins longtemps.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 9 — ANNEXE PLEINE PAGE : SCHÉMA LÉGENDÉ DE LA POMPE À VIDE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7-F2 · ANNEXE pleine page · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section" style="margin-top:0">ANNEXE — Schéma légendé de la pompe à vide (document de travail)</h3>
+  <p style="font-size:10pt; color:var(--gris)">Schéma à garder <b>sous les yeux</b> pour repérer les éléments
+  de votre pompe à vide. Une feuille par poste.</p>
+
+  <div class="annexe">
+    <img src="../images/pompe-a-vide-schema-legende.jpeg" alt="Pompe à vide légendée, 12 repères numérotés" style="width:100%; max-width:520px; display:block; margin:0 auto 10px">
+    <p style="font-size:9.5pt; color:var(--gris); font-style:italic; margin:0 0 12px">D'après : ressource
+    tirage au vide.docx (schéma d'une pompe à vide du commerce, 12 repères). <span class="generique">Aucun
+    symbole normalisé dédié « pompe à vide » n'existe dans la bibliothèque de symboles techniques : le symbole
+    générique <code>pompe_electrique</code> (légendé « pompe à vide ») est utilisé ailleurs dans ce document
+    pour les schémas simplifiés — cette photo légendée reste la référence pour identifier l'appareil réel.</span></p>
+
+    <table class="grille" style="font-size:10pt">
+      <tr><th style="width:8%">Repère</th><th>Élément</th></tr>
+      <tr><td><b>1-2</b></td><td>Vanne(s) et raccord d'aspiration — se raccorde à la voie de service du manifold</td></tr>
+      <tr><td><b>3</b></td><td>Orifice de remplissage d'huile</td></tr>
+      <tr><td><b>4</b></td><td>Hublot de regard — <b>à vérifier avant chaque démarrage</b></td></tr>
+      <tr><td><b>5-6</b></td><td>Boîtier moulé, orifice de vidange d'huile</td></tr>
+      <tr><td><b>7</b></td><td>Socle</td></tr>
+      <tr><td><b>8</b></td><td>Soupape d'isolement</td></tr>
+      <tr><td><b>9</b></td><td>Moteur électrique — cordon à vérifier avant tout branchement</td></tr>
+      <tr><td><b>10</b></td><td>Interrupteur marche/arrêt</td></tr>
+      <tr><td><b>11-12</b></td><td>Échappement (par la poignée) et poignée de transport — <b>jamais obstruer l'échappement</b></td></tr>
+    </table>
+
+    <div class="cadre-dessin" style="margin-top:14px; min-height:150px"><p style="font-size:9.5pt; color:var(--gris); margin:4px 6px">À vous : repérez ci-dessous les mêmes éléments sur LA pompe à vide de votre poste (elle peut différer légèrement du modèle photographié).</p></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .jalon, .annexe, .homonymie{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

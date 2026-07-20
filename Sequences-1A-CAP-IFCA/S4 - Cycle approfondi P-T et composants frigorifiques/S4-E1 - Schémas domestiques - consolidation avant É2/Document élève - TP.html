@@ -1,0 +1,549 @@
+<meta charset="utf-8">
+<title>TP élève — S4-E1 · Schémas domestiques, consolidation avant É2</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .rotation{border:2px dashed var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .rotation h4{color:var(--bleu); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:150px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .symb{display:inline-flex; flex-direction:column; align-items:center; gap:3px; margin:0 10px 10px 0; font-size:8.5pt; color:var(--gris)}
+  .symb img{width:52px; height:52px; object-fit:contain; border:1px solid var(--filet); border-radius:4px; background:#fff; padding:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Cycle approfondi P/T et composants frigorifiques</td>
+      <td style="width:38%"><span class="lib">Module atelier S4-E1 · 4 h, passage unique</span><b>Schémas domestiques — consolidation avant É2</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S4</span> · semaine 12</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S4-2</b> : le pavillon du client est prêt pour la réception des travaux. C'est la
+  <b>dernière visite avant la remise des clés</b>. Le client exige que <b>tout l'éclairage du couloir fonctionne du
+  premier coup</b>, sans reprise le jour de la réception. Vous re-câblez <b>seul(e)</b> le télérupteur du couloir —
+  le même montage que celui appris en S3-E2 — sur le circuit protégé par le disjoncteur <b>Q2</b> et le DDR
+  <b>Q0</b> (S3-E1). Vous travaillez <b>exactement comme au jour de l'évaluation É2</b> : seul(e) avec ce document,
+  poste minuté, silence de travail. Le professeur circule ; il lève un blocage de sécurité si nécessaire, mais il ne
+  fait plus le travail à votre place.</div>
+
+  <div class="change"><b class="t">Ce qui change depuis S3</b> — En S3-E2, vous découvriez le télérupteur avec une
+  fiche-guide très aidée (banque de mots, repères partiels), puis des aides largement retirées pour la minuterie.
+  <b>Aujourd'hui, toute aide disparaît</b> : pas de banque de mots, pas de repère de départ sur le schéma, pas de
+  fiche-guide à trous. Vous travaillez <b>seul(e)</b> avec ce document, dans les conditions exactes du <b>poste
+  élec d'É2</b> : poste minuté, silence pédagogique, contrôle hors tension réalisé <b>avant</b> tout appel au
+  professeur. La grande nouveauté du jour : vous connaissez <b>à l'avance</b> les critères exacts qui seront
+  regardés à l'évaluation — la grille de ce module <b>est celle d'É2</b>, dévoilée aujourd'hui, transparence
+  totale. <b>É2 arrive en semaine 13 : tes objectifs de progrès post-É1 se vérifient maintenant.</b></div>
+
+  <div class="rotation"><h4>Le déroulé du jour — rotation 1 puis rotation 2</h4>
+  Vous vivez ce module en <b>deux rotations</b>, dans la même séance : <b>rotation 1</b>, vous câblez le télérupteur
+  en entier, seul(e), du repérage du schéma jusqu'aux essais, puis vous vous <b>auto-corrigez</b> avec la grille
+  dévoilée. <b>Rotation 2</b>, vous reprenez <b>uniquement</b> ce que vous avez raté au premier essai — un raccord
+  oublié, un serrage insuffisant, une lecture de schéma erronée. Cette reprise ciblée EST la méthode du module :
+  ce n'est pas un recommencement complet, c'est une correction précise de ce qui doit encore progresser avant É2.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.2</b> Lecture de plan <span class="nuance">augmenté (autonomie totale de lecture)</span><br><span class="nuance">Prérequis :</span> câblage du télérupteur (S3-E2), protections Q1/Q0 (S3-E1)</div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie complète (travail seul, silence pédagogique) · rigueur du contrôle hors tension AVANT appel professeur · honnêteté de l'auto-correction</div>
+    <div class="case comp"><h4>Compétence (1 seule)</h4><span class="statut">Confortement</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">— le statut Évaluation n'apparaît pas dans ce module</span></div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>câbler seul(e)</b>, à partir du schéma développé de S3-E2 <b>sans aucun repère donné</b>, le télérupteur
+    du couloir sur un circuit protégé par un disjoncteur (<b>Q2</b>) et un DDR (<b>Q0</b>) ;</li>
+    <li><b>réaliser seul(e) le contrôle hors tension</b> complet (continuité, serrages de chaque connexion)
+    <b>avant</b> tout appel au professeur ;</li>
+    <li>après mise sous tension par le professeur, <b>vérifier le fonctionnement</b> depuis chaque bouton
+    poussoir ;</li>
+    <li><b>m'auto-corriger honnêtement</b> avec la grille dévoilée à l'avance — les mêmes critères que
+    l'évaluation É2 ;</li>
+    <li><b>reprendre en rotation 2</b> les points que je n'ai pas réussis du premier coup, de façon ciblée ;</li>
+    <li><b>m'auto-positionner</b> honnêtement, en tenant compte de mes 2 objectifs de progrès fixés à É1, si je
+    suis concerné(e).</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est <b>pas votre première fois</b> avec ce montage : vous avez câblé un
+  télérupteur en S3-E2, et vous avez câblé les protections Q1/Q0 en S3-E1. Aujourd'hui, on ne redécouvre rien : on
+  <b>consolide</b>, en conditions d'autonomie totale :</p>
+  <ul class="liste-num">
+    <li><b>câbler un télérupteur</b> à partir d'un schéma développé : circuit de commande (boutons poussoirs +
+    bobine) et circuit de puissance (contact + lampes) ;</li>
+    <li><b>identifier et repérer</b> un disjoncteur (Q1 côté garage, Q2 côté éclairage couloir) et un DDR (Q0),
+    sensibilité 30 mA, norme <b>NF C 15-100</b> ;</li>
+    <li><b>réaliser seul(e) une consignation et une vérification d'absence de tension (VAT)</b>, geste acquis
+    depuis S1, appliqué sans rappel ;</li>
+    <li>mon <b>positionnement au poste ÉLEC de l'évaluation É1</b>, et mes 2 objectifs de progrès, si j'en ai —
+    consultez votre carnet F3 de S3 avant de commencer.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si un de ces prérequis vous échappe encore, ce
+  n'est pas grave : signalez-le au professeur pendant l'auto-bilan éclair de la phase 4, plutôt que de deviner
+  pendant le câblage.</p>
+
+  <h3 class="section">Matériel <span style="font-size:9pt; color:var(--gris); font-weight:normal">(par poste individuel)</span></h3>
+  <ol class="liste-num">
+    <li>Platine en bois équipée d'un rail oméga (× 1 par poste)</li>
+    <li>Disjoncteur magnétothermique 1P+N — repère <b>Q2</b> (× 1)</li>
+    <li>DDR 30 mA 2P — repère <b>Q0</b> (× 1)</li>
+    <li>Télérupteur unipolaire ou bipolaire, <span class="nuance">selon matériel de l'atelier, à faire valider par
+    le professeur</span> (× 1)</li>
+    <li>3 boutons poussoirs</li>
+    <li>3 supports de lampe + ampoules adaptées à la tension d'alimentation, ou voyants de simulation</li>
+    <li>Bornier de phase, bornier de neutre, bornier de terre (× 1 chacun)</li>
+    <li>Vis à bois pour la fixation du matériel <span class="conso">(consommable)</span></li>
+    <li>Fils électriques souples, section du poste école (à faire valider par le professeur), couleurs
+    normalisées : rouge ou marron (phase), bleu (neutre), vert/jaune (terre) <span class="conso">(consommable)</span></li>
+    <li>Tournevis plat et tournevis cruciforme, pince à dénuder, pince coupante</li>
+    <li>Multimètre numérique + jeu de cordons de mesure (rouge + noir)</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+    <li>Matériel minuterie (approfondissement, si rotation 1 conforme) — selon disponibilité, à faire valider</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ ÉLECTRIQUE DÉVELOPPÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Sécurité électrique — un rituel déjà acquis, appliqué en autonomie totale</h3>
+  <p style="font-size:10.5pt">Vous connaissez déjà la consignation et la vérification d'absence de tension (VAT)
+  depuis S1 : personne ne vous les redémontre. Aujourd'hui, un point ne change <b>jamais</b> : <b>la mise sous
+  tension et les essais après câblage restent un geste exclusivement professeur</b>, même en conditions
+  d'évaluation blanche.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Choc électrique par contact direct avec une pièce sous tension</td><td>Ne <b>jamais</b> toucher un fil ou une platine sans avoir vérifié l'absence de tension (VAT). Travailler <b>toujours</b> hors tension pour tout câblage.</td></tr>
+    <tr><td>Court-circuit par une bobine de télérupteur mal raccordée</td><td>Respecter strictement le schéma retrouvé : la bobine (A1/A2) ne se raccorde <b>jamais</b> directement en série avec les lampes.</td></tr>
+    <tr><td>Boutons poussoirs mal raccordés (en série au lieu d'en parallèle)</td><td>Chaque bouton poussoir se raccorde <b>en parallèle</b> des autres, jamais en série.</td></tr>
+    <tr><td>Protection Q2 ou DDR Q0 shuntée ou non raccordée en tête de circuit</td><td><b>Jamais</b> ponter une protection ; le DDR Q0 se raccorde toujours <b>en amont</b> du disjoncteur Q2, jamais après.</td></tr>
+    <tr><td>Mise sous tension accidentelle pendant le câblage ou le contrôle</td><td>Disjoncteur du poste maintenu ouvert pendant tout le câblage. <b>Seul le professeur</b> ferme le circuit, après contrôle systématique.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">La consignation — rituel NF C 18-510, appliqué sans rappel</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Couper</b> — ouvrir le disjoncteur du poste.<br>
+  2. <b>Vérifier l'absence de tension (VAT)</b> — contrôler au multimètre, position voltmètre.<br>
+  3. <b>Condamner / signaler</b> — le professeur garde la main sur la mise sous tension.<br>
+  4. <b>Travailler hors tension</b> — je câble, je mesure la continuité, <b>toujours</b> disjoncteur ouvert.</p>
+  </div>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li>Jamais toucher un fil ou une platine sans avoir vérifié l'absence de tension ;</li>
+    <li>Jamais câbler ou modifier une platine sous tension ;</li>
+    <li>Jamais mettre une platine sous tension moi-même — <b>seul le professeur le fait</b>, après contrôle ;</li>
+    <li>Jamais raccorder un bouton poussoir en série sur le circuit de commande — toujours en parallèle ;</li>
+    <li>Jamais shunter (ponter) le disjoncteur Q2 ou le DDR Q0, même provisoirement ;</li>
+    <li>Jamais appeler le professeur pour la mise sous tension sans avoir d'abord terminé mon propre contrôle hors
+    tension — c'est exactement la règle du poste élec d'É2.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous et
+  faites-la viser par le professeur. Tenue et EPI exigés :</p>
+  <ul class="liste-num">
+    <li>Chaussures de sécurité ; Pas de bijoux ni de montre ; Manches ajustées ; Cheveux longs attachés.</li>
+  </ul>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, zone de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — <b>couper</b> (interrupteur général ou arrêt
+  d'urgence de l'atelier, localisé dès l'entrée), <b>alerter</b> immédiatement le professeur, <b>ne jamais
+  déplacer</b> un camarade électrisé sans certitude sur son état. La trousse de secours est localisée dès
+  l'entrée dans l'atelier.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PHASE 4 : AUTO-BILAN ÉCLAIR + QUIZ SYMBOLES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PHASE 4 — VÉRIFIER LES PRÉREQUIS — auto-bilan éclair — ≈ 15 min</span>
+
+  <h3 class="section">1. Où en sont mes 2 objectifs de progrès post-É1 ?</h3>
+  <p style="font-size:10.5pt">Reprenez votre <b>carnet F3 de S3</b> : vous y avez noté vos 2 objectifs de progrès
+  fixés après l'évaluation É1, poste ÉLEC. Avant de commencer le câblage, répondez honnêtement :</p>
+  <div class="liste-num">
+    <p>☐ 1. Mon 1<sup>er</sup> objectif de progrès post-É1 était : <span class="lignes" style="min-width:60%"></span></p>
+    <p>☐ 2. Ai-je progressé dessus depuis S3-E1 et S3-E2 ? ☐ Oui, nettement ☐ En partie ☐ Pas encore</p>
+    <p>☐ 3. Mon 2<sup>e</sup> objectif de progrès post-É1 était : <span class="lignes" style="min-width:60%"></span></p>
+    <p>☐ 4. Ai-je progressé dessus ? ☐ Oui, nettement ☐ En partie ☐ Pas encore</p>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous répondez « pas encore » sur l'un des
+  deux, signalez-le au professeur maintenant : c'est exactement le moment de le reprendre, avant É2.</p>
+
+  <h3 class="section">2. Quiz éclair — reconnaître les symboles</h3>
+  <p style="font-size:10.5pt">Nommez chaque symbole ci-dessous (télérupteur, disjoncteur, DDR, bouton poussoir,
+  lampe) : vous les avez tous déjà rencontrés en S3-E1 et S3-E2.</p>
+  <div style="display:flex; flex-wrap:wrap">
+    <div class="symb"><img src="../images/telerupteur.svg" alt="Symbole 1"><span>Symbole 1 : ______________</span></div>
+    <div class="symb"><img src="../images/disjoncteur_1p_n.svg" alt="Symbole 2"><span>Symbole 2 : ______________</span></div>
+    <div class="symb"><img src="../images/differentiel_2p.svg" alt="Symbole 3"><span>Symbole 3 : ______________</span></div>
+    <div class="symb"><img src="../images/bp_archi.svg" alt="Symbole 4"><span>Symbole 4 : ______________</span></div>
+    <div class="symb"><img src="../images/lampe_fluorescente.svg" alt="Symbole 5"><span>Symbole 5 : ______________</span></div>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — Dans le circuit d'aujourd'hui, lequel de ces 2 appareils
+  (disjoncteur Q2, DDR Q0) se raccorde le plus en amont, le plus près de l'arrivée ? Pourquoi, à votre avis ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="change" style="border-color:var(--bleu); background:var(--fond-doux)"><b class="t" style="color:var(--bleu)">Variante consolidation</b> — Si votre auto-bilan (partie 1) ou votre quiz symboles montre que vous êtes
+  encore fragile sur C3.6, le professeur vous propose une reprise du <b>simple allumage</b> (S1-E1, un
+  interrupteur, une lampe) <b>avant</b> d'attaquer le télérupteur : quelques minutes suffisent pour retrouver les
+  bons gestes de base sans la complexité du circuit de commande.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — ROTATION 1 : REPÉRAGE + CÂBLAGE + CONTRÔLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">ROTATION 1 — câblage en autonomie complète — ≈ 75 min — TRAVAIL SEUL, SILENCE</span>
+
+  <h3 class="section">1. Repérer le schéma — sans aucune aide</h3>
+  <p style="font-size:10.5pt">Voici le schéma unifilaire du couloir, tel que vous l'avez déjà complété en S3-E2 (à
+  titre de rappel de l'implantation) et le schéma développé du télérupteur, <b>sans aucun repère</b>. Repérez
+  vous-même Q2, Q0, S1, S2, S3, A1, A2, L1, L2, L3 <b>avant</b> de commencer à câbler : ne câblez rien tant que
+  vous n'avez pas identifié le circuit de commande (boutons + bobine) et le circuit de puissance (contact +
+  lampes).</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-telerupteur-unifilaire.svg" alt="Schéma unifilaire du télérupteur, rappel de l'implantation" style="max-width:80%">
+    <figcaption class="legende">Rappel — implantation du couloir (identique à S3-E2).</figcaption>
+  </figure>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-telerupteur-developpe--sans-reperes.svg" alt="Schéma développé réduit du télérupteur, sans repères" style="max-width:96%">
+    <figcaption class="legende">Télérupteur — schéma réduit, sans repères. Le schéma complet figure en <b>annexe
+    pleine page</b> : gardez-le sous les yeux pendant tout le câblage.</figcaption>
+  </figure>
+
+  <h3 class="section">2. Préparer la platine et câbler</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que la platine est <b>hors tension</b> (disjoncteur du poste ouvert)</p>
+    <p>☐ 2. Positionner le DDR (Q0), le disjoncteur (Q2), le télérupteur, les 3 boutons poussoirs et les 3 points
+    lumineux, selon le schéma repéré vous-même</p>
+    <p>☐ 3. Fixer chaque élément à la vis, sans forcer</p>
+    <p>☐ 4. Raccorder la phase et le neutre de la source aux bornes d'entrée du DDR (Q0)</p>
+    <p>☐ 5. Raccorder les bornes de sortie du DDR à l'entrée du disjoncteur (Q2)</p>
+    <p>☐ 6. Câbler le <b>circuit de commande</b> : phase (après Q2) → S1, S2, S3 en parallèle → borne A1 (ou B)
+    de la bobine → borne A2 → neutre</p>
+    <p>☐ 7. Câbler le <b>circuit de puissance</b> : phase (après Q2) → contact de sortie du télérupteur → L1, L2,
+    L3 en parallèle → neutre</p>
+    <p>☐ 8. Vérifier que chaque connexion est bien serrée et conforme aux couleurs normalisées</p>
+  </div>
+
+  <h3 class="section">3. Mon contrôle hors tension — avant tout appel au professeur</h3>
+  <table class="releve">
+    <tr><th style="width:44%">Mesure de continuité (multimètre, disjoncteur ouvert)</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité du circuit de commande (un bouton poussoir appuyé)</td><td>proche de 0 Ω</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité du circuit de commande (aucun bouton appuyé)</td><td>résistance infinie</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <div class="liste-num">
+    <p>☐ Serrage vérifié à la main sur <b>chaque</b> borne (Q0, Q2, télérupteur, S1, S2, S3, L1, L2, L3)</p>
+    <p>☐ Couleurs normalisées respectées sur tout le montage</p>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Exactement comme au poste élec d'É2 : vous ne
+  faites aucun appel au professeur avant d'avoir terminé <b>vous-même</b> ce contrôle complet. C'est ce contrôle,
+  et lui seul, qui vous autorise à demander la mise sous tension.</p>
+
+  <div class="jalon"><h4>Appel professeur — contrôle et essais</h4>
+  <p>☐ <b>Avant la mise sous tension</b> : je vais au tableau électrique réel, je montre le DDR, je montre le
+  disjoncteur de mon circuit, je note la sensibilité lue : ______ mA<br>
+  ☐ Câblage vérifié conforme au schéma par le professeur<br>
+  ☐ Mise sous tension par le professeur<br>
+  ☐ Appui sur S1 : la lampe change d'état<br>
+  ☐ Appui sur S2 : la lampe change d'état<br>
+  ☐ Appui sur S3 : la lampe change d'état</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — AUTO-CORRECTION AVEC LA GRILLE D'É2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Auto-correction — la grille dévoilée d'É2</h3>
+  <p style="font-size:10.5pt">Voici la grille qui sera utilisée au poste élec d'<b>É2</b>, en semaine 13. Elle vous
+  est <b>dévoilée aujourd'hui</b> : c'est la transparence totale de ce module. Cochez honnêtement, <b>avant</b> la
+  correction du professeur, ce que vous avez réellement observé sur votre propre câblage.</p>
+
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:20%">Critère observable — poste élec (identique à É2)</th><th style="width:16%">0<br>Non évalué</th><th style="width:16%">1<br>Non acquis</th><th style="width:16%">2<br>En cours</th><th style="width:16%">3<br>Acquis</th><th style="width:16%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>Repérage sur le tableau réel : je sais montrer le DDR et le disjoncteur du circuit, et lire la sensibilité du DDR</b> (le repérage Ph/N/PE sur la platine reste un prérequis contrôlé)</td><td>Non observé.</td><td>Ne montre pas le DDR ni le disjoncteur, ou les confond, malgré aide.</td><td>Montre le DDR et le disjoncteur avec l'aide du professeur ; sensibilité non lue ou erronée.</td><td>Montre seul(e) le DDR et le disjoncteur, lit correctement la sensibilité (30 mA).</td><td>Comme « Acquis », et explique pourquoi le DDR se place en amont du disjoncteur.</td></tr>
+    <tr><td>Câblage conforme au schéma, couleurs respectées, serrages fermes</td><td>Non observé.</td><td>Câblage non conforme au schéma malgré aide, ou plusieurs bornes desserrées.</td><td>Conforme avec l'aide du professeur, pour le schéma ou pour les serrages.</td><td>Câblage conforme au schéma, couleurs respectées, toutes les bornes serrées sans jeu, réalisé seul(e).</td><td>Comme « Acquis », et repère seul(e) une borne douteuse avant contrôle, explique à un pair la différence entre circuit de commande et de puissance.</td></tr>
+    <tr><td>Contrôle hors tension fait AVANT d'appeler le professeur</td><td>Non observé.</td><td>Appelle le professeur sans avoir contrôlé, ou contrôle incomplet.</td><td>Contrôle réalisé mais incomplet (un seul point vérifié) avant l'appel.</td><td>Contrôle complet (continuité + serrages) réalisé seul(e), avant tout appel.</td><td>Comme « Acquis », et signale lui/elle-même un doute avant l'appel plutôt que d'espérer que « ça passe ».</td></tr>
+    <tr><td>Savoir-être — sécurité (consignation, disjoncteur ouvert pendant tout le câblage), autonomie, silence de travail, honnêteté de l'auto-correction</td><td>Non observé.</td><td>Geste dangereux (touche un fil sans VAT, tente une mise sous tension) : niveau 1 automatique ; ou sollicite l'aide à chaque étape.</td><td>Sécurité globalement respectée avec quelques rappels ; travaille seul(e) l'essentiel du temps.</td><td>Consignation et VAT appliquées sans rappel, disjoncteur ouvert en permanence ; travaille en autonomie complète, coche sa grille avant toute correction.</td><td>Comme « Acquis », et veille spontanément à la sécurité d'un pair, identifie honnêtement un point raté sans qu'on le lui demande.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Ces critères sont ceux du poste élec d'É2, sous
+  réserve de la rédaction finale du sujet É2 (même logique, même échelle 0-4). Statut du jour : <b>C3.6
+  Confortement</b> — cette grille ne remonte pas sur École Directe aujourd'hui, mais elle vous prépare directement à
+  ce qui sera noté en semaine 13.</p>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Repérage DDR/disjoncteur + sensibilité : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span> &nbsp;
+  Câblage conforme (schéma, couleurs, serrages) : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10pt">Contrôle avant appel : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span> &nbsp;
+  Savoir-être (dont sécurité) : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <div class="encadre-question"><b>Question</b> — Quel est le critère où vous vous êtes positionné(e) le plus bas ?
+  C'est exactement ce que vous reprendrez en rotation 2.</div>
+  <div class="zone-reponse" style="min-height:2.4em"><span class="consigne-cadre" style="position:static; display:block; font-size:8.5pt; color:#9aa5b1">Mon point à reprendre :</span></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — ROTATION 2 : REPRISE CIBLÉE + APPROFONDISSEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">ROTATION 2 — reprise ciblée — ≈ 50 min</span>
+  <p style="font-size:10.5pt">Vous ne recommencez pas tout le câblage : vous reprenez <b>uniquement</b> le ou les
+  points identifiés en feuille 5. Le professeur circule et lève les derniers blocages, mais il ne fait plus à
+  votre place.</p>
+
+  <h3 class="section">1. Ma reprise ciblée</h3>
+  <div class="liste-num">
+    <p>☐ 1. Je relis le critère où j'étais le plus bas et je relis le passage correspondant du schéma</p>
+    <p>☐ 2. Je reprends exactement ce point (un raccord, un serrage, une lecture de schéma)</p>
+    <p>☐ 3. Je recontrôle hors tension le point repris, seul(e)</p>
+    <p>☐ 4. J'appelle le professeur uniquement pour valider ce point précis</p>
+  </div>
+
+  <div class="jalon"><h4>Validation professeur — rotation 2</h4>
+  <p>☐ Point repris identifié correctement &nbsp;&nbsp; ☐ Reprise conforme &nbsp;&nbsp; ☐ Nouvel auto-positionnement cohérent avec ce qui est observé</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="rotation" style="border-color:var(--orange); background:#fff7f3"><h4 style="color:#c14a17">Approfondissement — si votre rotation 1 était déjà conforme</h4>
+  Câblez <b>aussi</b> la minuterie, <b>de mémoire</b>, en vous appuyant sur ce que vous savez du télérupteur (même
+  circuit de commande, contact de sortie différent) — aide guidée du professeur uniquement en cas de blocage réel.
+  Une fois votre minuterie validée, devenez <b>tuteur</b> : accompagnez un camarade en reprise, sans câbler à sa
+  place.</div>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — En comparant votre rotation 1 et votre rotation 2,
+  qu'est-ce qui a changé dans votre façon de travailler ? Qu'est-ce que cela vous apprend pour le jour d'É2 ?</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE FINALE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état</h3>
+  <div class="liste-num">
+    <p>☐ 1. Remettre la platine <b>hors tension</b> (disjoncteur ouvert, débranchée)</p>
+    <p>☐ 2. Remettre la molette du multimètre sur <b>OFF</b>, débrancher et ranger les cordons sans coude serré</p>
+    <p>☐ 3. Ranger les fils, sans les plier de façon serrée ; jeter les chutes dans le bac approprié</p>
+    <p>☐ 4. Ranger l'outillage (tournevis, pinces, multimètre) à son emplacement</p>
+    <p>☐ 5. Vérifier que le poste est propre et dégagé pour le poste suivant</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis</h4>
+  <p>☐ Rotation 1 : télérupteur câblé sur Q2 + Q0, contrôle hors tension réalisé avant appel, essais professeur
+  concluants, auto-correction faite honnêtement<br>
+  ☐ Rotation 2 : point(s) faible(s) repris et validés — ou minuterie câblée de mémoire + tutorat
+  (approfondissement)</p>
+  <p>Visa professeur (rotation 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (rotation 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation — bilan final du jour</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C3.6 Confortement</b> — seule compétence
+  évaluée, aucun statut Évaluation ici.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques</td><td>sur T10 · T11 · S2.2</td><td>Compétence non observée ce jour.</td><td>Câblage non conforme malgré aide en rotation 1 ET en rotation 2, ou contrôle hors tension non réalisé avant appel.</td><td>Câble avec l'aide du professeur pour au moins un des deux circuits, ou nécessite une reprise complète en rotation 2.</td><td>Câble seul(e) le télérupteur sur Q2 + Q0, conforme au schéma repéré sans aide ; contrôle hors tension complet réalisé avant appel ; reprise ciblée réussie en rotation 2 si nécessaire.</td><td>Comme « Acquis » dès la rotation 1, sans reprise nécessaire ; ou câble aussi la minuterie de mémoire et tutore un pair.</td></tr>
+    <tr><td>Savoir-être — autonomie, sécurité, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux (touche un fil sans VAT, tentative de mise sous tension) ou grille auto-corrigée non honnête : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques sollicitations d'aide au-delà du cadre.</td><td>Travail en autonomie complète, silence respecté, auto-correction honnête, sécurité sans rappel.</td><td>Comme « Acquis », et identifie et corrige seul(e) un point faible avant d'être sollicité(e).</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement final :</b></p>
+  <p style="font-size:10pt">C3.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; Savoir-être : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous étiez positionné(e) 1 ou 2 sur C3.6 à É1 :
+  ce module était votre dernière consolidation avant l'évaluation — avez-vous progressé ?</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (auto-bilan, quiz symboles, câblage, contrôles, auto-correction, reprise)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur</li>
+    <li>Bon de commande hebdomadaire (fils, boutons poussoirs, télérupteurs de rechange)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Document élève - TP.html
+  de S3-E2 (télérupteur — schémas, circuit de commande/circuit de puissance, F. Henninot) et de S3-E1 (protections
+  Q1/Q0, DDR 30 mA, F. Henninot) — mêmes schémas repris, corrigés (repère Q2 pour le disjoncteur du circuit
+  éclairage couloir, distinct de Q1 disjoncteur garage) ; valeurs NF C 15-100 (1,5 mm², 8 points d'éclairage
+  maximum, disjoncteur 16 A, DDR 30 mA) sourcées dans le-telerupteur.pdf et cours-minuterie.pdf
+  (02_CAP-IFCA/S4-Electricite et Froid-Frigorifique) ; Charte pédagogique FrigorX (§6 préparation de chantier, §7
+  sécurité) ; référentiel CAP IFCA (codes C3.6, T10, T11, S2.2) ; grille É1 poste ÉLEC (positionnement réel, à
+  croiser en phase 4 — aucun résultat fictif dans ce document). Symboles : bibliothèque de symboles inerWeb
+  (télérupteur, disjoncteur_1p_n, differentiel_2p, bp_archi, lampe_fluorescente). Continuité directe de la
+  progression S1→S4 pour cette même classe.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE : TÉLÉRUPTEUR — SCHÉMA DÉVELOPPÉ COMPLET, SANS REPÈRES (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Télérupteur — schéma développé de travail complet (sans repères)</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par
+  poste) : c'est le document à garder sous les yeux pendant tout le câblage. Aucun repère n'est donné : vous les
+  retrouvez vous-même, exactement comme au poste élec d'É2.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-telerupteur-developpe--sans-reperes.svg" alt="Schéma technique pleine page : télérupteur, sans repères" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon, .rotation{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

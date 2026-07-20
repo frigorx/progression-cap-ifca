@@ -1,0 +1,320 @@
+<meta charset="utf-8">
+<title>Cours élève — S11 · Module théorie T1 · Le détendeur et la surchauffe</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE + DÉCOUVERTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Le détendeur · la surchauffe</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE T1 · 1 h</span><b>Le détendeur et la surchauffe</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> · sem. 4</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Module de renforcement — pas de tâche d'atelier ancrée ce jour</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du raisonnement · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte — non remontée</span> module de renforcement du savoir S5.1, préparatoire au module atelier A2-c</div>
+  </div>
+
+  <div class="situation"><h4>Accroche</h4>
+  Sur le chantier de la ligne liquide (module A2), un technicien relève au manomètre BP une pression qui
+  correspond à une température de saturation de <b>0 °C</b>. Il pose son thermomètre de contact <b>sur le tube
+  d'aspiration</b>, juste à la sortie de l'évaporateur : il lit <b>7 °C</b>.
+  <div class="encadre-question"><b>Question de départ</b> — Que se passerait-il si, au lieu de 7 °C, le
+  thermomètre affichait exactement 0 °C, la même valeur que la température lue au manomètre ? Qu'est-ce que
+  cela signifierait sur l'état du fluide à cet endroit du circuit ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — le rôle du détendeur</h3>
+  <p style="font-size:10.5pt">Observez le schéma ci-dessous : c'est la <b>croix du frigoriste</b>, la
+  représentation de principe d'un circuit frigorifique à détente directe.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.svg" alt="Schéma de principe de la croix du frigoriste : condenseur, compresseur, détendeur, évaporateur, avec repères 1 à 4 sur les conduites haute et basse pression"
+         style="max-width:90%;">
+    <figcaption class="legende">La croix du frigoriste. Le détendeur est en bas à gauche, entre la ligne liquide HP (repère 2) et l'entrée de l'évaporateur BP (repère 3).</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Observation 1</b> — Sur le schéma, entre quels deux organes le détendeur
+  est-il placé ? Notez ce qui arrive au détendeur (repère 2) et ce qui en sort (repère 3).</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="encadre-question"><b>Observation 2</b> — D'après la légende en bas du schéma, dans quel état le
+  fluide entre-t-il dans le détendeur (repère 2) ? Dans quel état ressort-il côté basse pression (repère 3) ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="notion"><h4>Ce que fait le détendeur</h4>
+  <p style="margin:0; font-size:10.5pt">Le détendeur est placé entre la <b>ligne liquide haute pression</b>
+  (sortie condenseur, fluide entièrement liquide) et l'<b>évaporateur basse pression</b>. En traversant le
+  détendeur, le fluide subit une <b>chute brutale de pression</b>. Cette chute de pression entraîne une
+  <b>chute de température</b> et le début de la <b>vaporisation</b> : à la sortie du détendeur, le fluide est
+  un <b>mélange liquide/vapeur</b> à basse pression et basse température, prêt à s'évaporer dans l'évaporateur
+  en captant de la chaleur.</p>
+  <p style="margin:.5em 0 0; font-size:10.5pt">Le détendeur <b>régule aussi le débit</b> de fluide qui entre
+  dans l'évaporateur : il en laisse passer juste assez pour que tout le fluide ait le temps de s'évaporer
+  avant la sortie, ni trop peu (évaporateur mal alimenté), ni trop (risque de liquide non évaporé en sortie).</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — À votre avis, pourquoi est-il important que le détendeur
+  ne laisse pas passer <b>trop</b> de fluide liquide d'un coup vers l'évaporateur ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE DE LA SURCHAUFFE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module théorie T1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — qu'est-ce que la surchauffe ?</h3>
+  <p style="font-size:10.5pt">Observez maintenant le schéma complet du circuit, avec les deux grandeurs
+  mesurées sur le chantier : la <b>surchauffe</b> côté basse pression, le <b>sous-refroidissement</b> côté
+  haute pression (vu en détail au module T2).</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-surchauffe-sous-refroidissement.svg" alt="Schéma technique : circuit frigorifique avec points de mesure de la surchauffe (sortie évaporateur, aspiration BP) et du sous-refroidissement (sortie condenseur, ligne liquide HP)"
+         style="max-width:92%;">
+    <figcaption class="legende">Où mesurer chaque grandeur. La surchauffe se mesure à la <b>sortie de l'évaporateur</b>, sur la ligne d'aspiration basse pression (encadré bleu). Le sous-refroidissement (encadré orange) sera étudié au module T2.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Observation 3</b> — D'après l'encadré bleu du schéma, avec quelle formule
+  calcule-t-on la surchauffe ? Recopiez-la.</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <p style="font-size:10.5pt">À la sortie de l'évaporateur, tout le fluide doit être <b>entièrement
+  vaporisé</b> (plus une seule goutte de liquide). Si on continue à chauffer légèrement cette vapeur, sa
+  température <b>dépasse un peu</b> la température de saturation correspondant à la pression lue au manomètre
+  BP. Cet écart s'appelle la <b>surchauffe</b> :</p>
+
+  <div class="notion"><h4>Définition — la surchauffe</h4>
+  <p style="margin:0; font-size:10.5pt"><b>Surchauffe = température mesurée (thermomètre de contact, sur le
+  tube d'aspiration) − température de saturation (lue au manomètre BP, convertie en température par le
+  diagramme du fluide ou la réglette).</b></p>
+  <p style="margin:.5em 0 0; font-size:10.5pt">Elle prouve que le fluide qui entre au compresseur est bien
+  <b>100 % vapeur</b>, sans aucune trace de liquide.</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi est-ce grave si du liquide arrive au compresseur ?
+  (Un compresseur est fait pour comprimer un gaz, pas un liquide.)</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="seuil"><b class="t">Seuil autorisé — à retenir</b><br>
+  La surchauffe normale se situe entre <b>5 et 10 K</b> (kelvins, soit le même écart qu'en degrés Celsius).
+  <ul style="margin:.3em 0 0 1.1em; padding:0; font-size:10.5pt">
+    <li>Surchauffe <b>trop faible</b> (proche de 0 K, voire négative) → risque de liquide au compresseur.</li>
+    <li>Surchauffe <b>trop forte</b> (bien au-delà de 10 K) → l'évaporateur n'est pas assez alimenté, la
+    puissance frigorifique baisse.</li>
+  </ul>
+  <p style="margin:.4em 0 0; font-size:9pt; font-style:italic">Toute autre valeur numérique que 5-10 K
+  rencontrée sur un autre document ou une autre plaque signalétique : <b>selon plaque/notice, à faire
+  valider</b> par le professeur.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — APPLICATION (EXERCICES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module théorie T1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION</h3>
+
+  <h4 style="font-size:11pt">Exercice 1 — situer le détendeur sur le schéma</h4>
+  <p style="font-size:10.3pt">Sur le schéma ci-dessous (croix du frigoriste, vue simplifiée), entourez au
+  crayon le détendeur et écrivez à côté, avec une flèche, le sens de circulation du fluide qui le traverse
+  (de la ligne liquide vers l'évaporateur).</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.svg" alt="Schéma de principe de la croix du frigoriste à compléter par l'élève : entourer le détendeur et indiquer le sens de circulation"
+         style="max-width:75%;">
+    <figcaption class="legende">Repérez le détendeur (cadre en bas à gauche) et tracez la flèche du sens de circulation entre la ligne liquide (2) et l'évaporateur (3).</figcaption>
+  </figure>
+
+  <h4 style="font-size:11pt">Exercice 2 — calcul guidé d'une surchauffe, méthode pas-à-pas</h4>
+  <div class="notion" style="margin:.3em 0 .7em"><h4>La démarche en 3 étapes</h4>
+  <p style="margin:0; font-size:10.3pt"><b>1.</b> Relever la pression BP au manomètre → en déduire <b>t0</b>,
+  la température de saturation (donnée directement dans chaque cas ci-dessous). <b>2.</b> Relever <b>θs</b>,
+  la température réelle au thermomètre de contact, sur le tube d'aspiration (donnée directement ci-dessous).
+  <b>3.</b> Calculer <b>Surchauffe = θs − t0</b>, puis comparer au seuil 5-10 K.</p></div>
+
+  <p style="font-size:10.3pt">Voici 4 cas relevés sur chantier, à traiter avec la méthode ci-dessus :</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-calcul-surchauffe-4-cas.png" alt="4 schémas de circuit avec compresseur, évaporateur et détendeur, chacun donnant une température de saturation t0 et une température mesurée au bulbe, à traiter pour calculer la surchauffe"
+         style="max-width:85%;">
+    <figcaption class="legende">4 cas de chantier — pour chacun, calculez la surchauffe avec la méthode ci-dessus.</figcaption>
+  </figure>
+  <table class="releve">
+    <tr><th>Cas</th><th>t0 — température de saturation (donnée)</th><th>θs — température mesurée (donnée)</th><th>Calcul</th><th>Résultat</th><th>Dans la plage 5-10 K ?</th></tr>
+    <tr><td>1</td><td>5 °C</td><td>11 °C</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>2</td><td>−10 °C</td><td>0 °C</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>3</td><td>R448a, P0 = 2 bar → −15 °C (table du fluide)</td><td>−15 °C</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>4</td><td>−12 °C</td><td>−6 °C</td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <div class="encadre-question"><b>Question</b> — Le cas 3 donne une surchauffe de 0 K. Que risque-t-on si
+  cette valeur se confirme sur une vraie installation, et que faut-il faire avant de continuer ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <h4 style="font-size:11pt">Exercice 3 — vrai ou faux</h4>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:70%">Affirmation</th><th>Vrai / Faux</th></tr>
+    <tr><td style="text-align:left">Le détendeur est placé entre le condenseur et le compresseur.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">La surchauffe se mesure à la sortie de l'évaporateur.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Une surchauffe de 0 K signifie qu'il n'y a aucun risque pour le compresseur.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Le détendeur fait chuter la pression et la température du fluide.</td><td>☐ Vrai ☐ Faux</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — SYNTHÈSE / TRACE ÉCRITE + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module théorie T1 · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — ma fiche de trace écrite</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec vos propres mots : c'est elle que vous garderez et
+  relirez avant le module atelier A2-c.</p>
+
+  <div class="trace">
+    <p style="font-size:10.5pt; margin:0 0 8px"><b>1. Le détendeur — je retiens :</b></p>
+    <div class="zone-reponse" style="min-height:3.2em"></div>
+
+    <p style="font-size:10.5pt; margin:14px 0 8px"><b>2. La surchauffe — je retiens :</b></p>
+    <div class="zone-reponse" style="min-height:3.2em"></div>
+
+    <p style="font-size:10.5pt; margin:14px 0 8px"><b>3. Le seuil à connaître :</b></p>
+    <div class="zone-reponse" style="min-height:1.8em">La surchauffe normale se situe entre <span class="lignes" style="min-width:15%"></span> et <span class="lignes" style="min-width:15%"></span> K.</div>
+  </div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:22%">Savoir</th><th style="width:14%">Ancrage</th><th style="width:16%">0<br>Non évalué</th><th style="width:16%">1<br>Non acquis</th><th style="width:16%">2<br>En cours</th><th style="width:16%">3-4<br>Acquis / maîtrisé</th></tr>
+    <tr><td><b>S5.1</b> Rôle du détendeur et notion de surchauffe <span class="nuance">Découverte — non remontée</span></td><td>module T1</td><td>Compétence non observée ce jour.</td><td>Ne sait pas situer le détendeur ni définir la surchauffe.</td><td>Situe le détendeur et calcule une surchauffe avec de l'aide.</td><td>Situe le détendeur, calcule seul une surchauffe et la compare au seuil 5-10 K.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">S5.1 — le détendeur et la surchauffe :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce module de renforcement n'est pas remonté
+  en compétence sur École Directe : il prépare le module atelier A2-c, où la surchauffe sera mesurée
+  réellement au banc.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : schéma
+  « Surchauffe et sous-refroidissement » et schéma « La croix du frigoriste » (F. Henninot) ; exercice 2 —
+  « 2 FCA Révision surchauffe » et son corrigé (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

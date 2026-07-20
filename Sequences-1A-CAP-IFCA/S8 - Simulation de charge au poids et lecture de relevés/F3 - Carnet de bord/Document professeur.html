@@ -1,0 +1,388 @@
+<meta charset="utf-8">
+<title>Carnet de bord professeur — S8 · Module F3 · Fil de l'eau</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.35fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.decouverte{background:#fdecd2; color:#96581b; border-color:#f0cf9e}
+  .statut.transition{background:linear-gradient(90deg,#fdecd2 50%,#e9edf6 50%); color:#7a4a1b; border-color:#e0c9a0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:left; vertical-align:top}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .fiche-num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt;
+    border-radius:8px; padding:3px 12px; background:var(--marine); color:#fff; margin-bottom:8px}
+  .rubrique{border:1px solid var(--filet); border-radius:6px; margin:.5em 0 .9em; overflow:hidden}
+  .rubrique .titre-rubrique{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:5px 12px;
+    font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt; color:var(--bleu)}
+  .rubrique .corps-rubrique{padding:10px 14px}
+  .rubrique.commande .titre-rubrique{background:#fff2ea}
+  .rubrique.auto .titre-rubrique{background:#f8f6ff}
+  .attendu{background:#eef6ec; border-left:3px solid #4a8f3c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .attendu b{color:#2f6b24; font-family:'Trebuchet MS',sans-serif}
+  .exemple{background:#f5f8fc; border-left:3px solid var(--bleu); padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .exemple b{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .erreur{background:#fdeceb; border-left:3px solid #c0392b; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .erreur b{color:#a5281b; font-family:'Trebuchet MS',sans-serif}
+  .remede{background:#fff8e6; border-left:3px solid #c9971c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .remede b{color:#96700f; font-family:'Trebuchet MS',sans-serif}
+  .indicatif{background:#f3f0fb; border-left:3px solid var(--violet); padding:4px 10px; margin:4px 0; font-size:9.5pt; font-style:italic}
+  .indicatif b{color:var(--violet); font-family:'Trebuchet MS',sans-serif; font-style:normal}
+  .special{background:#fdecd2; border-left:3px solid #c9971c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .special b{color:#96581b; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — CADRE GÉNÉRAL DU MODULE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Simulation de charge au poids et lecture de relevés</td>
+      <td style="width:38%"><span class="lib">Module F3 · fil de l'eau · 2 h (continu)</span><b>Carnet de bord de chantier — corrigé professeur</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S8</span></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention<br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoir</h4><b>S3.1</b> Communication technique (augmenté)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la trace écrite · régularité · honnêteté de l'auto-évaluation · un document exploitable par quelqu'un d'autre que l'élève</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4>
+      <span class="statut">Confortement</span> <b>C1.1</b> Compléter, transmettre<br>
+      <span class="statut">Confortement</span> <b>C1.3</b> Rendre compte (niveau visé Maîtrise)
+    </div>
+  </div>
+
+  <h3 class="section">Positionnement du module dans la séquence</h3>
+  <p style="font-size:10.5pt">Le carnet de bord F3 de S8 est la <b>suite directe</b> du carnet ouvert en S1 et
+  poursuivi en S2, S3, S5, S6 et S7 (S4 n'en prévoyait pas, séquence courte tournée vers É2) : même objet
+  physique, mêmes rubriques, même élève qui continue de le tenir. C'est la <b>7<sup>e</sup></b> série de pages du
+  carnet, pour <b>3 nouvelles semaines</b> (26 à 28). Il totalise <b>2 h cumulées</b> sur l'ensemble de la
+  séquence S8, réparties en petites tranches à la fin (ou en tout début) de chaque autre module : S8-F1 et S8-E1
+  (semaines 26 <b>et</b> 27, deux passages chacun), S8-T1 (semaine 26, passage unique, en théorie), S8-F2
+  (semaine 28, passage unique), puis une fiche tournée vers l'avenir (« Je prépare la fin d'année ») et un bilan
+  de séquence (semaine 28). S8 ne porte aucune compétence en statut Évaluation : la dernière échéance sommative
+  était É3 (semaine 21), la prochaine est É4 (semaine 32, rangée en S9).</p>
+
+  <div class="special"><b>Point de vigilance — ne pas confondre statut et niveau visé</b><br>
+  <b>C1.1</b> « Compléter, transmettre » se <b>stabilise</b> en statut <b>Confortement</b> : après la Découverte
+  (S6) puis la transition Découverte → Confortement (S7), c'est désormais un geste installé qu'on continue de
+  vérifier, sans nouveau saut de statut. <b>C1.3</b> « Rendre compte » reste elle aussi en statut
+  <b>Confortement</b> dans cette activité — rien n'est remonté sur le carnet lui-même en S8. Mais le cadrage fixe,
+  pour C1.3, un <b>niveau visé</b> dans la progression spiralaire annuelle : <b>Maîtrise</b>. Ces deux axes sont
+  <b>distincts</b> : le statut décrit ce qui se joue dans l'activité du jour (rien de neuf, Confortement comme
+  depuis plusieurs séquences) ; le niveau visé décrit l'ambition de progression sur l'année entière (un niveau
+  élevé, déjà atteignable pour cette compétence). Ne jamais écrire que C1.3 « passe en Maîtrise » comme statut
+  d'activité — ce serait une confusion entre les deux échelles.</div>
+
+  <div class="situation"><h4>Ce qui distingue S8 de S7 pour ce carnet</h4>
+  En S7, C1.1 était en transition (Découverte → Confortement) : le critère « exploitable par un tiers »
+  apparaissait pour la première fois sur les feuilles de relevés. En S8, ce critère ne change plus de nature — il
+  se <b>consolide</b>. Ce qui change réellement, concrètement, en S8 :
+  <ul style="margin:.3em 0 0 1.1em; padding:0">
+    <li>le carnet range désormais un document de synthèse — la <b>feuille de relevés de mise en service</b>
+    (S8-F2) — qui enchaîne pour la première fois deux gestes déjà appris séparément (vide et charge) ; c'est le
+    document le plus exigeant de toute la séquence pour C1.1 ;</li>
+    <li>aucune évaluation ne s'est tenue entre S7 et S8 : la rubrique habituelle « Après É... » est donc
+    <b>absente</b> de ce carnet, remplacée par une fiche tournée vers l'avant, « Je prépare la fin d'année »
+    (fiche n° 5), qui prépare S9 (diagnostic) et É4 (semaine 32) sans corriger une évaluation qui n'a pas eu
+    lieu.</li>
+  </ul></div>
+
+  <h3 class="section">Ce qu'on attend — la fiche n° 1 (S8-F1, simulation de charge au poids)</h3>
+  <div class="attendu"><b>Ce que j'ai fait</b> — l'élève décrit la tare de la balance, le raccordement de la
+  bouteille d'azote, l'ouverture progressive, la pesée du transfert simulé, le complément et le contrôle final ;
+  il indique combien de répétitions ont été nécessaires pour stabiliser le geste.</div>
+  <div class="attendu"><b>Mes valeurs essentielles</b> — la masse cible fixée par le professeur ET la masse
+  réellement pesée figurent toutes deux, avec unité ; un écart entre les deux est normal et doit être commenté,
+  pas caché.</div>
+  <div class="erreur"><b>Erreur typique</b> — masse notée sans unité, ou confusion entre la masse cible (fixée
+  par le professeur) et une masse de fluide réel imaginée par l'élève.</div>
+  <div class="remede"><b>Remédiation</b> — rappeler systématiquement, avant la pesée, qu'aucune masse de fluide
+  réel n'est en jeu : la seule référence est la masse cible donnée en consigne.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — LIEN CARNET ↔ S8-F2 + DOSSIER DE MISE EN SERVICE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Le lien carnet ↔ S8-F2 : la feuille de relevés vit ici</h3>
+  <p style="font-size:10.5pt">S8-F2 (semaine 28, passage unique) est le module le plus important pour ce carnet :
+  c'est là que l'élève produit, seul, la <b>feuille de relevés de mise en service</b> qui enchaîne le vide
+  (repris de S7-F2) et la charge simulée (reprise de S8-F1). Cette feuille n'est pas un document parmi d'autres :
+  elle est <b>LE</b> document sur lequel se juge, en fin de séquence, la compétence C1.1 dans sa forme la plus
+  aboutie de l'année. Comme en S7, le critère de correction est « exploitable par un tiers » : un autre élève, ou
+  le professeur seul, doit pouvoir la relire et comprendre l'état complet de la mise en service (vide atteint,
+  masse simulée, étapes suivies) sans poser de question à l'auteur.</p>
+  <div class="attendu"><b>Ce qu'on regarde en priorité</b> — la feuille de relevés de S8-F2 doit rester cohérente
+  avec les valeurs déjà produites séparément en S7-F2 (courbe de vide) et en S8-F1 (masse cible/pesée) : elle ne
+  réinvente rien, elle les <b>assemble</b> dans un seul document de synthèse.</div>
+  <div class="remede"><b>Cas de secours</b> — pour un binôme dont le matériel (balance ou pompe) tombe en panne
+  pendant le passage unique, le professeur prépare un jeu de valeurs de repli à intégrer dans la feuille, pour
+  qu'aucun élève ne se retrouve sans document à agrafer dans le carnet.</div>
+
+  <h3 class="section">Le carnet, dossier de mise en service — récapitulatif des documents rangés</h3>
+  <p style="font-size:10.5pt">Comme depuis S6-S7, le carnet range les documents officiels produits dans les
+  modules ateliers — en S8, l'ensemble prend clairement la forme d'un <b>dossier de mise en service</b> :</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:24%">Document officiel</th><th style="width:16%">Produit dans</th><th style="width:16%">Rangé dans F3</th><th style="width:44%">Ce qu'il prouve</th></tr>
+    <tr><td>Check-list de charge « avant-vol » (cochée, minutée)</td><td>S8-F1</td><td>Fiche n° 1</td><td>Le geste de charge simulée a été répété jusqu'à devenir sûr et fluide, sans manipulation de fluide réel</td></tr>
+    <tr><td>Tableau consigne demandée / réglée / prouvée</td><td>S8-E1</td><td>Fiche n° 2</td><td>Le nouveau cahier des charges a été traduit et réglé SEUL, sans la fiche guidée de S7-E1, et le déclenchement a été prouvé</td></tr>
+    <tr><td>Carte d'identité du fluide</td><td>S8-T1</td><td>Fiche n° 3</td><td>La famille, le code couleur, la classe de sécurité et le PRP d'un fluide ont été identifiés d'après un tableau sourcé</td></tr>
+    <tr><td>Feuille de relevés de mise en service</td><td>S8-F2</td><td>Fiche n° 4</td><td>Le vide et la charge simulée ont été enchaînés SEUL, dans un document unique exploitable par un tiers — le sommet du dossier</td></tr>
+  </table>
+  </div>
+  <div class="attendu"><b>Pourquoi c'est important</b> — ce dossier complet, mis bout à bout avec ceux des
+  séquences précédentes, donne au professeur une vision continue des gestes de mise en service maîtrisés avant
+  S9 (diagnostic) et avant É4 (semaine 32) — c'est la meilleure préparation possible à la posture professionnelle
+  qui y sera évaluée.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — ATTENDUS PAR RUBRIQUE + GRILLE INDICATIVE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Attendus des autres rubriques</h3>
+
+  <div class="exemple"><b>S8-E1 — ma consigne demandée/réglée/prouvée</b> — la consigne réglée doit correspondre
+  au <b>nouveau</b> cahier des charges (pas à celui de S7-E1), et la colonne « déclenchement prouvé » ne doit
+  jamais rester vide. L'élève travaille SANS la fiche guidée de S7-E1 : une trace d'autonomie réelle est
+  attendue, pas un simple recopiage.</div>
+  <div class="erreur"><b>Erreur typique</b> — l'élève applique de mémoire la consigne de S7-E1 au lieu de
+  traduire le nouveau cahier des charges fourni.</div>
+  <div class="remede"><b>Remédiation</b> — faire relire à voix haute le nouveau cahier des charges avant que
+  l'élève touche à l'organe.</div>
+
+  <div class="exemple"><b>S8-T1 — ma carte d'identité du fluide / le fluide de l'atelier</b> — la carte doit
+  citer une source (tableau fourni), jamais une valeur de mémoire ; la rubrique « et le fluide de notre atelier »
+  doit nommer le fluide réel indiqué par le professeur, pas celui étudié en équipe s'il diffère.</div>
+  <div class="erreur"><b>Erreur typique</b> — piège classique : un élève classe un fluide inflammable en A2L par
+  réflexe, alors que le tableau fourni (ou le skill <i>fluides-nfen378</i>) montre une classe A3 pour certains
+  fluides — à faire chercher, jamais à corriger sans preuve à l'appui.</div>
+  <div class="remede"><b>Remédiation</b> — faire vérifier la classe sur le tableau distribué avant toute
+  validation, jamais sur une impression première.</div>
+
+  <div class="exemple"><b>S8-F1 — ma check-list de charge « avant-vol »</b> — chaque étape doit être cochée ET
+  horodatée (le temps pris), pas seulement le résultat final ; la masse cible et la masse pesée doivent toutes
+  deux figurer, avec unité.</div>
+  <div class="erreur"><b>Erreur typique</b> — check-list cochée globalement en fin de séance, sans minutage réel
+  étape par étape — signe que la répétition n'a pas été suivie dans le détail.</div>
+  <div class="remede"><b>Remédiation</b> — imposer un chronométrage visible (chronomètre ou minuteur au poste) à
+  chaque étape, dès la 1<sup>re</sup> répétition.</div>
+
+  <div class="exemple"><b>S8-F2 — ma feuille de relevés de mise en service</b> — voir feuille 2 : c'est le
+  document central du carnet cette séquence, il doit assembler cohéremment vide et charge simulée en un seul
+  document exploitable par un tiers.</div>
+  <div class="erreur"><b>Erreur typique</b> — feuille remplie en désordre, sans lien visible entre l'étape vide
+  et l'étape charge, rendant l'enchaînement illisible pour un tiers.</div>
+  <div class="remede"><b>Remédiation</b> — faire annoter, au fil de la séance, l'ordre chronologique des deux
+  étapes directement sur la feuille.</div>
+
+  <div class="indicatif"><b>Grille indicative 0-4 — repère professeur uniquement, NON remontée</b></div>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:18%">0<br>Non évalué</th><th style="width:18%">1<br>Non acquis</th><th style="width:18%">2<br>En cours d'acquisition</th><th style="width:18%">3<br>Acquis</th><th style="width:18%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr>
+      <td><b>C1.1</b> Compléter, transmettre <span class="statut" style="display:block; margin-top:3px">Confortement</span></td>
+      <td>sur T1 · T15 · S3.1</td>
+      <td>Aucune feuille remplie ce jour.</td>
+      <td>Feuille incomplète (lignes vides, unités manquantes) ou incompréhensible sans explication orale de
+      l'élève.</td>
+      <td>Feuille complète et lisible, mais nécessite encore une explication orale pour être comprise par un
+      tiers — comme en S7, sans progrès net sur l'exploitabilité.</td>
+      <td>Feuille complète, lisible, aux unités systématiques ; un autre élève ou le professeur peut la relire
+      seul et comprendre l'état de la mise en service sans poser de question, y compris sur la feuille de
+      synthèse S8-F2.</td>
+      <td>Comme « Acquis », et l'élève range et complète sa feuille sans aucune relance, y compris pour
+      assembler vide et charge simulée en un document unique cohérent.</td>
+    </tr>
+    <tr>
+      <td><b>C1.3</b> Rendre compte <span class="statut" style="display:block; margin-top:3px">Confortement</span> <span class="nuance">niveau visé Maîtrise</span></td>
+      <td>sur T1 · S3.1</td>
+      <td>Carnet non tenu ce jour.</td>
+      <td>Rubriques vides ou aussi sommaires qu'en S1-S3.</td>
+      <td>Rubriques remplies mais encore approximatives sur les nouvelles traces de S8 (check-list minutée,
+      tableau consigne, carte du fluide, feuille de synthèse) ; nécessite une relance du professeur.</td>
+      <td>Toutes les rubriques sont remplies, précises, avec le vocabulaire technique installé depuis S1-S7 ; les
+      documents officiels sont cohérents avec le récit du carnet.</td>
+      <td>Comme « Acquis », et le compte rendu est assez précis et autonome pour qu'un autre élève reproduise le
+      geste sans autre explication — sans relance du professeur pour démarrer le remplissage. C'est ce niveau
+      qui correspond au niveau visé Maîtrise fixé au cadrage.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, régularité, honnêteté, document exploitable par un tiers</td>
+      <td>observation continue</td>
+      <td>Non observé ce jour.</td>
+      <td>Fiche non remplie sans motif, ou feuille remplie sans que l'élève ait vérifié ses propres valeurs.</td>
+      <td>Carnet tenu la plupart du temps ; niveau comparable à S7, sans progrès net sur l'exploitabilité par un
+      tiers.</td>
+      <td>Carnet tenu à chaque module sans rappel ; feuilles, tableaux et check-lists renseignés en connaissance
+      de cause, dans l'idée qu'un autre pourra les relire.</td>
+      <td>Comme « Acquis », et l'élève explique pourquoi un dossier de mise en service doit être compréhensible
+      par un collègue absent au moment des relevés — la posture professionnelle progresse.</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CE QU'ON REGARDE EN FIN DE SÉQUENCE + SYNTHÈSE DES ERREURS + VIGILANCE + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S8 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Ce qu'on regarde en fin de séquence</h3>
+  <p style="font-size:10.5pt">S8 ne porte <b>aucune</b> compétence en statut Évaluation (la dernière échéance
+  sommative était É3, semaine 21 ; la prochaine est É4, semaine 32, rangée en S9). Ce que le professeur regarde
+  en fin de S8 pour F3, pour C1.1 et pour C1.3, reste <b>qualitatif</b> :</p>
+  <ul class="liste-num">
+    <li>Le <b>dossier de mise en service</b> constitué (2 check-lists F1, 2 tableaux consigne E1, 1 carte
+    d'identité du fluide T1, 1 feuille de relevés de synthèse F2) permet de vérifier, module par module, quels
+    élèves produisent déjà des documents exploitables par un tiers — un repère direct pour ajuster
+    l'accompagnement avant S9 et É4.</li>
+    <li>La fiche n° 5 (« Je prépare la fin d'année ») permet de vérifier que l'élève sait s'auto-positionner
+    honnêtement sur l'ensemble des gestes de mise en service appris depuis S1, sans attendre une évaluation pour
+    le faire — c'est un indicateur de maturité utile avant le diagnostic de S9.</li>
+    <li>Le bilan de séquence de la semaine 28 n'est <b>pas</b> une évaluation : il capture un ressenti global sur
+    la répétition du geste de charge, complémentaire au dossier de mise en service. Les deux se lisent ensemble.</li>
+    <li>Cette exploitation reste <b>qualitative</b> : le carnet n'entre jamais dans le calcul d'une note ; il
+    éclaire la préparation de S9 et d'É4, sans préjuger du contenu de cette évaluation.</li>
+    <li>Le carnet ne remplace pas le suivi des compétences en statut Découverte/Confortement introduites dans les
+    modules ateliers eux-mêmes (C4.2, C4.7, C4.1, C4.5, C4.6, C3.6) : ces statuts se lisent dans les documents
+    professeur des modules ateliers, pas dans F3.</li>
+  </ul>
+
+  <h3 class="section">Synthèse des erreurs typiques et remédiations</h3>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:24%">Erreur typique</th><th style="width:38%">Signe observable</th><th style="width:38%">Remédiation</th></tr>
+    <tr><td>Masse cible confondue avec une masse de fluide réel</td><td>Fiche n° 1 : commentaire évoquant un fluide réel (R32, R134a...) au lieu de l'azote simulé</td><td>Rappeler avant chaque pesée qu'aucune masse de fluide réel n'est en jeu</td></tr>
+    <tr><td>Check-list cochée sans minutage réel</td><td>Toutes les cases cochées d'un coup en fin de séance, aucun temps noté par étape</td><td>Imposer un chronométrage visible dès la 1<sup>re</sup> répétition</td></tr>
+    <tr><td>Nouveau cahier des charges ignoré (E1)</td><td>Consigne réglée identique à celle de S7-E1</td><td>Faire relire à voix haute le nouveau cahier des charges avant tout réglage</td></tr>
+    <tr><td>Classification de fluide par réflexe, sans source</td><td>Fluide inflammable classé A2L sans vérification du tableau fourni</td><td>Exiger la vérification sur le tableau distribué ou le skill <i>fluides-nfen378</i> avant validation</td></tr>
+    <tr><td>Feuille de synthèse F2 en désordre</td><td>Aucun lien visible entre l'étape vide et l'étape charge sur la feuille de relevés</td><td>Faire annoter l'ordre chronologique directement sur la feuille pendant la séance</td></tr>
+    <tr><td>Fiche « Je prépare la fin d'année » non complétée</td><td>Tableau des gestes de mise en service resté vide au moment du bilan</td><td>Vérifier la fiche n° 5 avant de viser le carnet en fin de séquence</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Ce qui n'est PAS évalué dans ce module</h3>
+  <p style="font-size:10.5pt">Le carnet de bord ne réévalue pas les compétences techniques travaillées dans les
+  modules atelier (C4.2, C4.7, C4.1, C4.5, C4.6, C3.6…), transversales à tous les modules de la séquence. Un
+  élève peut tenir un carnet déjà très soigné tout en étant encore fragile sur un geste technique d'un module
+  atelier, et inversement — les deux ne se comparent pas directement.</p>
+
+  <div class="jalon"><h4>Points de vigilance pour le professeur</h4>
+  <p>☐ Réserver le temps de remplissage dans chaque module, comme en S1-S3-S5-S6-S7<br>
+  ☐ Vérifier que la masse cible de charge simulée est bien communiquée avant chaque passage de S8-F1<br>
+  ☐ Ne jamais valider une consigne « prouvée » sans l'avoir vue déclencher soi-même en S8-E1<br>
+  ☐ Vérifier que la carte d'identité du fluide de S8-T1 cite une source (tableau fourni), jamais une valeur de
+  mémoire<br>
+  ☐ Préparer un jeu de valeurs de repli pour S8-F2 en cas de panne matérielle pendant le passage unique<br>
+  ☐ Vérifier la cohérence Passage 1 / Passage 2 sur les fiches n° 1 et n° 2 avec le planning de rotation<br>
+  ☐ Récupérer les bons de commande au fil de l'eau pour alimenter le rituel hebdomadaire de l'atelier<br>
+  ☐ Conserver les carnets à portée de main pour le diagnostic de S9 et la préparation d'É4 (S9, semaine 32)</p></div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage modulaire
+  S8 (<i>_CADRAGE-S8.md</i>), en particulier le principe fondateur de la charge simulée à l'azote (source :
+  <i>repere_fluides_frigorigenes_et_attestation_daptitude_.docx</i>, Éducation nationale, catégories I-V de
+  l'attestation d'aptitude — utilisée ici uniquement pour cadrer le distinguo 1<sup>re</sup>/2<sup>e</sup> année,
+  non distribuée aux élèves) · Charte pédagogique FrigorX et Manuel de conception (§2 bis C — trame « au fil de
+  l'eau ») · référentiel CAP IFCA (codes T1, T15 « Renseigner les documents de mise en service », C1.1
+  « Compléter, transmettre », C1.3 « Rendre compte », S3.1) · forme clonée du module F3 des séquences S1, S2, S3,
+  S5, S6 et S7 1A CAP IFCA (Document élève.html / Document professeur.html), continuité stricte pour la même
+  cohorte · classification des fluides frigorigènes (familles, code couleur, classes de sécurité A1/A2L/A2/A3,
+  PRP) d'après le skill <i>fluides-nfen378</i> (NF EN 378 / ASHRAE 34) et les tableaux sourcés du module S8-T1,
+  jamais de valeur affirmée de mémoire · structure de la rubrique bon de commande (référence/désignation/
+  quantité) d'après <i>bond de commande le froid.docx</i> (gabarit fournisseur réel, F. Henninot), déjà restituée
+  en S1, S2, S3, S5, S6, S7 et en 2A · masse cible de charge simulée non affirmée (aucune valeur chiffrée fiable
+  retenue au cadrage) : « fixée par le professeur » partout, y compris dans ce document.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .attendu, .exemple, .erreur, .remede, .indicatif, .special, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,443 @@
+<meta charset="utf-8">
+<title>TP élève — S15 · Module A6-b · Mise en service autonome et validation</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#fff6cc; color:#8a6d00; border:1px solid #e3cf6b}
+  .statut.conf{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .checklist{border:1.5px solid var(--bleu); border-radius:6px; padding:8px 14px; margin:.4em 0 .9em; background:#fff}
+  .checklist h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .checklist .item{border-bottom:1px dotted var(--filet); padding:5px 0}
+  .checklist .item:last-child{border-bottom:none}
+  .decision{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:10px 16px; margin:.6em 0 1em}
+  .decision h4{color:var(--bleu); font-size:11pt; margin:0 0 6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Mise en service finale AUTONOME — répétition générale du CCF EP3</td>
+      <td style="width:38%"><span class="lib">Module A6-b — atelier de S15</span><b>Mise en service autonome et validation</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S15</span> · sem. 21, 05-09/05/2027</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Le groupe frigorifique du chantier, remis en état lors des séquences précédentes (diagnostic, brasure, câblage,
+  étanchéité, tirage au vide, charge), doit repartir en configuration « livraison ». <b>Ordre d'intervention
+  n° S15-A6-03</b> : votre professeur a fait <b>récupérer le fluide</b> de la machine pour vous permettre de
+  rejouer l'intervention complète de mise en service, <b>seul(e)</b>, dans des conditions proches du <b>CCF EP3</b>
+  (l'épreuve qui validera votre diplôme). Vous devez tirer au vide le circuit, le charger, relever ses paramètres de
+  fonctionnement, calculer, régler, puis <b>déclarer</b> — preuves à l'appui — si la machine est <b>validée</b>.
+  <b>Aucune aide méthodique ne vous sera donnée pendant l'intervention</b> : ce document ne contient pas de
+  pas-à-pas. Seul un point d'arrêt sécurité subsiste avant toute remise sous tension.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension<br><b>T14</b> Régler l'installation en fonctionnement<br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes à détente directe <span class="nuance">prérequis</span><br><b>S5.2</b> Fluides frigorigènes, huiles <span class="nuance">prérequis</span><br><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">travaillé</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">travaillé</span></div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie totale hors point d'arrêt sécurité · honnêteté de la déclaration · sécurité sans rappel · calme en répétition d'examen</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><b>C4.1</b> Tirer au vide <span class="statut">Évaluation</span><br><b>C4.5</b> Mesurer, comparer <span class="statut">Évaluation</span><br><b>C4.6</b> Régler les consignes <span class="statut conf">Confortement</span></div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>organiser</b> seul(e) mon intervention à partir d'un ordre d'intervention court, sans pas-à-pas ;</li>
+    <li><b>tirer au vide</b> le circuit frigorifique et <b>vérifier</b> que la dépression reste stable après isolement ;</li>
+    <li><b>charger</b> le circuit en fluide frigorigène, en pesant les quantités, sans aucune perte à l'atmosphère ;</li>
+    <li><b>relever</b> les pressions HP et BP et les températures nécessaires au calcul de la surchauffe et du sous-refroidissement ;</li>
+    <li><b>calculer</b> ces deux écarts, les <b>comparer</b> aux seuils autorisés, et <b>régler</b> les organes de consigne selon la notice, validés par le professeur ;</li>
+    <li><b>déclarer</b>, preuves écrites à l'appui, si la machine est <b>validée</b> ou <b>non validée</b>.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li>poser un manifold sans perte de fluide et lire un manomètre HP (rouge) / BP (bleu) ;</li>
+    <li>réaliser une épreuve d'étanchéité à l'azote et un tirage au vide, lire un vacuomètre (module S12) ;</li>
+    <li>les définitions et les deux formules de la surchauffe et du sous-refroidissement, et leur comparaison aux seuils autorisés (module A5-b) ;</li>
+    <li>consigner une installation électrique selon la NFC 18-510 et réaliser une vérification d'absence de tension (VAT).</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce module ne revient sur aucun de ces prérequis :
+  si l'un d'eux vous manque, dites-le au professeur avant de commencer — il ne sera plus rappelé une fois
+  l'intervention lancée.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Groupe frigorifique du chantier, remis en état, fluide récupéré avant la séance (× 1 par élève ou binôme)</li>
+    <li>Manifold 4 voies avec manomètres HP (rouge) et BP (bleu) (× 1)</li>
+    <li>Pompe à vide + vacuomètre (indicateur de vide) (× 1)</li>
+    <li>Bouteille de charge du fluide de l'installation, avec balance de charge <span class="conso">(consommable)</span> (× 1)</li>
+    <li>Bouteille de récupération dédiée, étiquetée <span class="conso">(si besoin)</span> (× 1)</li>
+    <li>Thermomètre de contact ou pince thermocouple (× 1)</li>
+    <li>Table de correspondance pression-température fournie par le professeur, selon le fluide de l'installation (annexe de ce document, × 1)</li>
+    <li>Notice constructeur de l'installation (× 1)</li>
+    <li>Tournevis de réglage adapté au pressostat / détendeur (× 1)</li>
+    <li>EPI : gants de manipulation fluide, lunettes de sécurité, chaussures de sécurité (× 1 jeu par élève)</li>
+    <li>Cadenas de consignation individuel + matériel de VAT (× 1 par élève)</li>
+    <li>Ce document (check-list « machine validée ») + carnet de bord (module F3) + bon de commande</li>
+  </ol>
+
+  <h3 class="section">Consignes de sécurité</h3>
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Rejet de fluide à l'atmosphère</td><td><b>Interdiction formelle.</b> Tout retrait de fluide passe par la bouteille de récupération dédiée et étiquetée (réglementation F-Gaz).</td></tr>
+    <tr><td>Bouteille chauffée pour accélérer un transfert</td><td><b>Jamais de flamme, jamais de source de chaleur directe</b> sur une bouteille de fluide frigorigène.</td></tr>
+    <tr><td>Pressostat shunté (chaîne de sécurité inactive)</td><td><b>Interdiction formelle</b> de shunter un pressostat ou tout organe de sécurité, même pour « aller plus vite ».</td></tr>
+    <tr><td>Électrisation lors du réglage ou de la remise sous tension</td><td>Consignation <b>NFC 18-510</b> et VAT obligatoires : c'est le <b>point d'arrêt sécurité</b> de cette séance, validé par le professeur avant toute remise sous tension.</td></tr>
+    <tr><td>Pompe à vide mise en route sans vérification</td><td>Vérifier <b>systématiquement</b> le niveau d'huile (hublot de regard) avant chaque mise en route.</td></tr>
+    <tr><td>Projection de fluide au raccordement du manifold</td><td>Lunettes de sécurité et gants portés en continu, ouverture lente et progressive des vannes.</td></tr>
+  </table>
+  </div>
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — couper l'alimentation (arrêt d'urgence), alerter
+  immédiatement le professeur, ne jamais tenter seul(e) un geste non maîtrisé. Trousse de secours et arrêt d'urgence
+  localisés en salle, poste indiqué par le professeur en début de séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — NOTION + EXERCICE FIL DE L'EAU + PLAN D'INTERVENTION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Exercice au fil de l'eau (pendant le passage en tenue)</h3>
+  <p style="font-size:10.5pt">Sur le schéma fluidique réduit ci-dessous (manifold + pompe à vide), entourez le point
+  de raccordement de la pompe à vide, puis rappelez avec vos mots les deux formules apprises en module A5-b :</p>
+  <img class="fig" src="../images/schema-fluidique-manifold-pompe-a-vide.png" alt="Schéma fluidique réduit — manifold et pompe à vide" style="max-width:60%">
+  <p class="legende">Schéma réduit pour repérage — la version complète est en annexe, à garder sous les yeux pendant l'intervention.</p>
+  <p style="font-size:10.5pt">Surchauffe (SC) = <span class="lignes" style="min-width:60%"></span></p>
+  <p style="font-size:10.5pt">Sous-refroidissement (SR) = <span class="lignes" style="min-width:60%"></span></p>
+
+  <h3 class="section">La notion du jour — une déclaration est une preuve, pas une impression</h3>
+  <p style="font-size:10.5pt">Observez les deux comptes rendus de mise en service que le professeur présente.</p>
+  <div class="encadre-question"><b>Observation</b> — Le premier compte rendu dit simplement « la machine
+  fonctionne, tout est bon ». Le second donne des valeurs relevées, des calculs, une comparaison aux seuils et une
+  décision. Sans encore juger lequel est le meilleur technicien, qu'est-ce qui différencie les deux documents ?</div>
+  <div class="zone-reponse"></div>
+  <div class="encadre-question"><b>Question</b> — Si vous étiez le client qui reçoit sa machine, lequel des deux
+  comptes rendus vous rassurerait, et pourquoi ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+  <p style="font-size:10.5pt">Une machine n'est pas « validée » parce qu'un technicien le dit : elle est validée
+  parce que des <b>relevés chiffrés</b>, comparés à des <b>seuils connus</b>, le <b>prouvent</b>. C'est exactement ce
+  que le jury du CCF EP3 attendra de vous : pas une impression, une <b>preuve</b>. C'est le sens du document que vous
+  allez remplir aujourd'hui : une check-list « machine validée ».</p>
+
+  <h3 class="section">Mon plan d'intervention — avant de commencer</h3>
+  <p style="font-size:10.5pt">Ce document ne vous donne <b>aucun ordre imposé</b> pour les opérations à suivre.
+  Avant de toucher au matériel, écrivez <b>vous-même</b>, dans l'ordre que vous jugez pertinent, les grandes étapes
+  de votre intervention (vous pouvez vous aider des titres de la check-list des feuilles suivantes, sans recopier
+  leur ordre si vous pensez qu'un autre ordre est plus logique). Le professeur récupère cette page pour référence :
+  il ne la corrige pas avant l'intervention.</p>
+  <div class="zone-reponse" style="min-height:90px"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CHECK-LIST MACHINE VALIDÉE (1/2) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Check-list « machine validée » — partie 1 : sécurité, vide, charge</h3>
+  <p style="font-size:10.5pt">Cette check-list est votre <b>fil conducteur et votre preuve</b>, pas un mode
+  d'emploi : vous la renseignez au fur et à mesure de votre intervention, dans l'ordre qui vous convient. Chaque
+  case doit être remplie par un <b>relevé réel</b>, jamais par une estimation.</p>
+
+  <div class="checklist"><h4>A. Sécurité générale</h4>
+    <div class="item">EPI portés en continu (lunettes, gants, chaussures de sécurité) ☐</div>
+    <div class="item">Installation consignée avant toute intervention électrique (NFC 18-510) ☐</div>
+    <div class="item"><b>Point d'arrêt sécurité</b> — VAT réalisée et <b>vérifiée par le professeur</b> avant toute remise sous tension : Visa professeur ________________ Heure ________________</div>
+    <div class="item">Niveau d'huile de la pompe à vide vérifié avant mise en route ☐</div>
+  </div>
+
+  <div class="checklist"><h4>B. Tirage au vide</h4>
+    <p style="font-size:10pt; margin:0 0 4px">Raccordez la pompe à vide sur la voie de service du manifold et tirez
+    au vide l'ensemble du circuit. Isolez, puis vérifiez la stabilité de la dépression.</p>
+    <table class="releve">
+      <tr><th>Mesure</th><th>Valeur</th><th>Unité</th></tr>
+      <tr><td>Lecture du vacuomètre juste après isolement</td><td></td><td>mbar</td></tr>
+      <tr><td>Lecture du vacuomètre après attente</td><td></td><td>mbar</td></tr>
+      <tr><td>Durée d'attente observée</td><td></td><td>min</td></tr>
+      <tr><td>Dépression stable ou remontée ?</td><td>Stable ☐&nbsp;&nbsp;Remontée ☐</td><td>—</td></tr>
+    </table>
+    <p style="font-size:10pt">Si la dépression remonte : que faites-vous avant de poursuivre vers la charge ? <span class="lignes" style="min-width:90%"></span></p>
+  </div>
+
+  <div class="checklist"><h4>C. Charge en fluide frigorigène</h4>
+    <p style="font-size:10pt; margin:0 0 4px">La quantité de fluide à introduire est <b>selon la plaque
+    signalétique de l'installation, à faire valider par le professeur</b> — aucune valeur n'est donnée dans ce
+    document.</p>
+    <table class="releve">
+      <tr><th>Mesure</th><th>Valeur</th><th>Unité</th></tr>
+      <tr><td>Méthode de charge choisie (liquide / vapeur)</td><td></td><td>—</td></tr>
+      <tr><td>Masse de la bouteille avant charge</td><td></td><td>kg</td></tr>
+      <tr><td>Masse de la bouteille après charge</td><td></td><td>kg</td></tr>
+      <tr><td>Masse de fluide introduite</td><td></td><td>kg</td></tr>
+      <tr><td>Quantité visée (plaque signalétique, validée par le professeur)</td><td></td><td>kg</td></tr>
+    </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CHECK-LIST MACHINE VALIDÉE (2/2) + DÉCISION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Check-list « machine validée » — partie 2 : relevés, calculs, réglages</h3>
+
+  <div class="checklist"><h4>D. Relevés de fonctionnement</h4>
+    <p style="font-size:10pt; margin:0 0 4px">Installation en marche, relevez au manifold et sur la tuyauterie.
+    N'oubliez jamais les unités.</p>
+    <table class="releve">
+      <tr><th>Grandeur</th><th>Valeur mesurée</th><th>Unité</th></tr>
+      <tr><td>Pression BP (manomètre bleu)</td><td></td><td>bar</td></tr>
+      <tr><td>Pression HP (manomètre rouge)</td><td></td><td>bar</td></tr>
+      <tr><td>T° de saturation BP (table pression-température, annexe)</td><td></td><td>°C</td></tr>
+      <tr><td>T° de saturation HP (table pression-température, annexe)</td><td></td><td>°C</td></tr>
+      <tr><td>T° d'aspiration mesurée</td><td></td><td>°C</td></tr>
+      <tr><td>T° liquide mesurée (sortie condenseur)</td><td></td><td>°C</td></tr>
+      <tr><td>Intensité absorbée par le compresseur</td><td></td><td>A</td></tr>
+    </table>
+  </div>
+
+  <div class="checklist"><h4>E. Calculs — surchauffe et sous-refroidissement</h4>
+    <p style="font-size:10pt; margin:0 0 4px">Reportez-vous à l'annexe « rappel méthode SC/SR » si besoin.</p>
+    <table class="releve">
+      <tr><th>Grandeur</th><th>Calcul et résultat</th><th>Seuil autorisé</th></tr>
+      <tr><td><b>Surchauffe SC</b> = T° aspiration − T° saturation BP</td><td></td><td>5 à 10 K</td></tr>
+      <tr><td><b>Sous-refroidissement SR</b> = T° saturation HP − T° liquide</td><td></td><td>4 à 8 K</td></tr>
+    </table>
+    <p style="font-size:10pt">Mon diagnostic (charge correcte / insuffisante / excessive / incondensables suspectés) : <span class="lignes" style="min-width:95%"></span></p>
+  </div>
+
+  <div class="checklist"><h4>F. Réglages et sécurités</h4>
+    <p style="font-size:10pt; margin:0 0 4px">Selon la notice constructeur, <b>à faire valider par le
+    professeur</b>. Aucune valeur n'est donnée dans ce document : chaque installation a sa propre notice.</p>
+    <table class="releve">
+      <tr><th>Organe réglé / vérifié</th><th>Valeur de consigne (selon notice)</th><th>Validé par le professeur</th></tr>
+      <tr><td>Pressostat BP</td><td></td><td>☐</td></tr>
+      <tr><td>Pressostat HP</td><td></td><td>☐</td></tr>
+      <tr><td>Détendeur (si réglable)</td><td></td><td>☐</td></tr>
+      <tr><td>Bouchons et raccords remis en place</td><td>—</td><td>☐</td></tr>
+    </table>
+  </div>
+
+  <div class="decision"><h4>G. Ma déclaration finale</h4>
+  <p style="font-size:10.5pt; margin:0 0 6px">Au vu de l'ensemble de mes relevés et calculs (parties A à F), je
+  déclare la machine :</p>
+  <p style="font-size:11pt; margin:0 0 8px"><b>MACHINE VALIDÉE</b> ☐ &nbsp;&nbsp;&nbsp; <b>MACHINE NON VALIDÉE</b> ☐</p>
+  <p style="font-size:10.5pt; margin:0 0 4px">Justification (en m'appuyant sur mes chiffres, pas sur une impression) :</p>
+  <div class="zone-reponse" style="min-height:55px"></div>
+  <p style="font-size:10.5pt; margin:8px 0 0">Si « non validée » : quelle action corrective proposez-vous ? <span class="lignes" style="min-width:95%"></span></p>
+  </div>
+
+  <div class="encadre-question"><b>Question de compréhension</b> — Pourquoi une déclaration « machine validée » sans
+  aucun chiffre à l'appui ne serait-elle pas recevable, même si la machine fonctionne réellement bien ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE D'ÉVALUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Observation continue pendant toute l'intervention autonome
+  (pas de poste séparé) : votre professeur vous a observé(e) du début à la fin.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:14.4%">0<br>Non évalué</th><th style="width:14.4%">1<br>Non acquis</th><th style="width:14.4%">2<br>En cours d'acquisition</th><th style="width:14.4%">3<br>Acquis</th><th style="width:14.4%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C4.1</b> Tirer au vide le circuit frigorifique</td><td>sur T13 · S5.1</td><td>Compétence non observée ce jour.</td><td>Vide non atteint ou stabilité après isolement non vérifiée, malgré l'enjeu.</td><td>Vide atteint mais méthode incomplète, ou stabilité contrôlée seulement après rappel du professeur.</td><td>Vide atteint et stabilité vérifiée seul(e) après isolement, méthode correcte, en autonomie complète.</td><td>Comme « Acquis », et diagnostique seul(e) une remontée anormale de pression (fuite ou humidité) sans solliciter le professeur.</td></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>sur T13 · S5.6</td><td>Compétence non observée ce jour.</td><td>Relevés HP/BP/T manquants ou erronés, calcul SC/SR faux et non repéré.</td><td>Relevés et calculs corrects obtenus seulement après sollicitation du professeur hors point d'arrêt.</td><td>Relevés complets, unités correctes, SC et SR calculés et comparés seul(e) aux seuils autorisés.</td><td>Comme « Acquis », et repère de lui/elle-même une valeur aberrante et la re-mesure sans y être invité(e).</td></tr>
+    <tr><td><b>C4.6</b> Paramétrer/régler les valeurs de consigne</td><td>sur T14 · S5.6</td><td>Compétence non observée ce jour.</td><td>Réglage non conforme à la notice ou engagé sans validation professeur au point d'arrêt.</td><td>Réglage cohérent avec le diagnostic mais aide nécessaire sur la lecture de la notice ou le geste.</td><td>Pressostat(s) et/ou détendeur réglés selon la notice, validés par le professeur, en autonomie.</td><td>Comme « Acquis », et explique à un pair le lien entre son diagnostic et le réglage choisi.</td></tr>
+    <tr><td>Savoir-être — autonomie, honnêteté, sécurité</td><td>observation continue</td><td>Non observé ce jour.</td><td>Sollicite le professeur en continu hors point d'arrêt sécurité, ou valeurs arrangées, ou sécurité non respectée.</td><td>Sécurité et rigueur respectées avec rappel ; sollicitations au-delà du point d'arrêt prévu.</td><td>Autonomie complète hors point d'arrêt sécurité, déclaration honnête même en cas d'écart, calme en répétition d'examen.</td><td>Comme « Acquis », et aide spontanément un pair sans compromettre son propre poste ni la rigueur de ses relevés.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C4.1 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.5 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (plan d'intervention, check-list A à G, déclaration finale, auto-positionnement)</li>
+    <li>Carnet de bord (module F3) et bon de commande de la journée</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Série 2 Activité 10 —
+  Mise en service d'un climatiseur ; TP Mise en service du Groupe Frigorifique Sanden ; cahier mise en service
+  (mise sous azote, tirage au vide, charge, surchauffe, sous-refroidissement) ; CAP IFCA EP3 24-25 version finale
+  (calibrage du niveau d'autonomie attendu).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE 1 : SCHÉMA COMPLET (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 10mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma fluidique complet — manifold et pompe à vide</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer de préférence en <b>A3 PAYSAGE</b> : c'est
+  le document à garder sous les yeux pendant toute l'intervention. La version réduite en feuille 2 sert au repérage,
+  celle-ci sert au travail.</p>
+  <img class="fig" src="../images/schema-fluidique-manifold-pompe-a-vide.png" alt="Schéma fluidique complet — manifold et pompe à vide" style="width:100%; border:1px solid #d8dee6">
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- ============ ANNEXE 2 : RAPPEL MÉTHODE SC/SR + TABLE PRESSION-TEMPÉRATURE (à compléter par le professeur) ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — annexe</div>
+  </div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63; font-size:14pt">Rappel — méthode de calcul de la surchauffe et du sous-refroidissement</h2>
+  <p style="font-size:10.5pt">La <b>surchauffe (SC)</b> se mesure côté aspiration : c'est l'écart entre la
+  température réellement mesurée sur la tuyauterie d'aspiration et la température de saturation correspondant à la
+  pression BP lue au manomètre (obtenue via la table ci-dessous). <b>SC = T° aspiration − T° saturation BP.</b>
+  Seuil autorisé : <b>5 à 10 K</b>.</p>
+  <p style="font-size:10.5pt">Le <b>sous-refroidissement (SR)</b> se mesure côté liquide : c'est l'écart entre la
+  température de saturation correspondant à la pression HP lue au manomètre, et la température réellement mesurée
+  en sortie de condenseur, sur la ligne liquide. <b>SR = T° saturation HP − T° liquide.</b> Seuil autorisé :
+  <b>4 à 8 K</b>.</p>
+  <p style="font-size:10.5pt; font-style:italic; color:var(--gris)">Rappel de méthode uniquement — les valeurs
+  chiffrées de votre intervention dépendent entièrement du fluide réel de votre poste et des conditions du jour :
+  aucune valeur n'est donnée ici.</p>
+
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63; font-size:14pt; margin-top:1em">Table de correspondance pression → température de saturation</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ Grille vierge à compléter par le professeur,
+  selon le fluide frigorigène réellement présent sur le poste (table constructeur ou réglette pression-température
+  officielle). <b>Aucune valeur n'est préremplie ici</b> : la correspondance pression-température dépend
+  entièrement du fluide.</p>
+  <table class="releve">
+    <tr><th style="width:34%">Fluide de l'installation (à préciser par le professeur)</th><th colspan="2"></th></tr>
+    <tr><th>Pression relative (bar)</th><th>T° de saturation côté BP (°C)</th><th>T° de saturation côté HP (°C)</th></tr>
+    <tr><td>0</td><td></td><td></td></tr>
+    <tr><td>1</td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td></tr>
+    <tr><td>4</td><td></td><td></td></tr>
+    <tr><td>5</td><td></td><td></td></tr>
+    <tr><td>6</td><td></td><td></td></tr>
+    <tr><td>8</td><td></td><td></td></tr>
+    <tr><td>10</td><td></td><td></td></tr>
+    <tr><td>12</td><td></td><td></td></tr>
+    <tr><td>15</td><td></td><td></td></tr>
+    <tr><td>18</td><td></td><td></td></tr>
+    <tr><td>20</td><td></td><td></td></tr>
+    <tr><td>25</td><td></td><td></td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris)">Utilisation : repérer la pression lue au manomètre dans la colonne de
+  gauche, lire en face la température de saturation correspondante, pour le fluide indiqué en en-tête.</p>
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .checklist, .decision, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

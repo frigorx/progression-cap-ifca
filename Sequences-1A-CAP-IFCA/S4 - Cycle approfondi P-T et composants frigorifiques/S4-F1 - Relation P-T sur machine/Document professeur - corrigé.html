@@ -1,0 +1,419 @@
+<meta charset="utf-8">
+<title>Document professeur — S4-F1 · Relation P/T sur machine</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .attente{border:1.5px dashed var(--gris); border-radius:6px; background:#f5f5f5; padding:6px 12px; margin:.3em 0 .9em; font-size:9pt; color:var(--gris)}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Cycle approfondi P/T et composants frigorifiques</td>
+      <td style="width:38%"><span class="lib">Module S4-F1 · 4 h — DOCUMENT PROFESSEUR</span><b>Relation P/T sur machine — relevés guidés</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S4</span> · semaine 12</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — machine(s) du parc TP + stations du rallye + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h, une seule demi-journée (semaine 12), passage unique</td>
+      <td><span class="lib">Modalité</span>Rallye de relevés en stations (méthode imposée du module)</td>
+      <td><span class="lib">Encadrement</span>1 professeur, demi-groupe</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span><br><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité machine en marche (C2.4, en savoir-être) · rigueur de lecture · honnêteté du relevé</div>
+    <div class="case comp"><h4>Compétence (≤ 4)</h4><span class="statut">Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T10 · T11 · S5.1 · S5.2 — seule compétence évaluée</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module S4-F1 : mêmes
+  stations, même numérotation des jalons. Il y ajoute : les critères observables de conformité d'un relevé, les
+  erreurs typiques et leur remédiation, l'organisation du plateau (rallye en stations), le minutage 4 h recompté et
+  la différenciation. <b>Aucune valeur de pression ou de température n'est donnée dans ce document</b> — la
+  correction porte sur la <b>méthode</b> (cohérence entre la lecture au manomètre, la lecture sur la réglette et
+  la mesure à la sonde, plausibilité de l'écart constaté), jamais sur un chiffre attendu. Les valeurs réelles sont
+  « <b>selon la machine et la réglette de l'atelier, à faire valider</b> ».</p>
+
+  <h3 class="section">Méthode pédagogique du module — le rallye de relevés en stations</h3>
+  <p style="font-size:10.5pt">Les élèves savent déjà mesurer une température à la sonde (S2-F2) et repérer les
+  manomètres HP/BP sur une machine (S3-T1). Ce module ne redémontre ni l'un ni l'autre : il les fait <b>mobiliser
+  ensemble</b>, pour la première fois, sur une lecture nouvelle — la réglette P/T. Le professeur ne donne <b>jamais</b>
+  la relation P/T à l'avance : il organise le rallye de façon à ce que les élèves la <b>construisent eux-mêmes</b>
+  par la répétition, station après station. C'est le sens découverte assumé de la charte : on constate avant de
+  formaliser (formalisation en S4-T1, cette même semaine).</p>
+  <div class="vigilance"><b class="t">Point de vigilance central du module</b> — Ne JAMAIS donner, même
+  oralement, un couple pression/température « pour aider » un élève en difficulté : le professeur guide la
+  <b>méthode de lecture</b> (où regarder sur le cadran, comment repérer la colonne du fluide sur la réglette,
+  où poser la sonde), jamais la valeur elle-même. Une valeur donnée par le professeur avant la lecture de
+  l'élève casse le sens découverte du module.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — passage unique</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (rallye de relevés en stations, machine en fonctionnement).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S4-1 : pavillon presque prêt (liaison brasée-étanche, éclairage posé), apprendre à lire la machine avant la mise en service future.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés et commentés, lien avec la formule (C4.5 Confortement, seule compétence évaluée).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; quiz éclair entre pairs REPRENANT le geste de la sonde (S2-F2) et le repérage des manomètres HP/BP (S3-T1).</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité (machine en marche, organes chauds, ne rien dévisser ni brancher) puis « planter la notion » : démonstration professeur d'UNE station complète (les 4 étapes) → NOMMER « la réglette P/T » → EXPLICITER le sens découverte.</td></tr>
+    <tr><td>40 min</td><td class="ph">6. Guider l'étude (a) — jalon 1 : stations machine à l'arrêt</td><td>Rallye sur la ou les stations « machine à l'arrêt » : premier entraînement aux 4 étapes, sans le risque de la marche.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>85 min</td><td class="ph">6. Guider l'étude (b) — jalon 2 : stations machine en marche + retour à l'arrêt</td><td>Démarrage par le professeur (présence continue) : stations BP en marche et HP en marche, puis arrêt et station « retour à l'arrêt ».</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des écarts relevés, formulation du constat commun (P et T varient ensemble, sans l'expliquer), auto-positionnement puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord + bon de commande (consommables du thermomètre de sonde, feutres).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Vérification de l'arrêt et de la sécurité de la machine, rangement du matériel de mesure.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S4-T1 — pourquoi P et T vont ensemble).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; jalon 1 (40 min) + pause (15 min) + jalon 2 (85 min) = <b>2 h 20</b> ; synthèse 15 + bon
+  de commande 10 + rangement 10 + clôture 5 = <b>40 min</b>. Total module : 1 h 00 + 2 h 20 + 40 min =
+  <b>4 h 00 exactes</b> (240 minutes), passage unique, conforme au plan de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ JALON 1 (STATIONS À L'ARRÊT) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Phase 4 — corrigé du quiz éclair (mobilisation de deux acquis distincts)</h3>
+  <div class="reponse"><b class="t">Item 1 — geste de la sonde (rappel S2-F2)</b> — Tenir la sonde par son câble
+  ou sa poignée isolée, jamais par la pointe métallique en contact avec une surface chaude ; laisser le temps à
+  la valeur de se stabiliser avant de la noter.</div>
+  <div class="reponse"><b class="t">Item 2 — repérage des manomètres HP/BP (rappel S3-T1)</b> — Le manomètre BP
+  (basse pression) est situé côté aspiration du compresseur, souvent à cadran bleu ; le manomètre HP (haute
+  pression) est situé côté refoulement, souvent à cadran rouge. Ce repère de couleur n'est qu'une aide visuelle
+  fréquente, pas une règle universelle : toujours confirmer avec le professeur.</div>
+  <div class="vigilance"><b class="t">Point de vigilance différenciation</b> — Ce quiz est un <b>repérage
+  formatif</b>, pas noté : il permet de confirmer, sur le vif, qui a besoin d'un rappel démontré sur la sonde ou
+  sur les manomètres avant de commencer le rallye — pas d'attendre l'échec au jalon 1 pour s'en apercevoir.</div>
+
+  <h3 class="section">Corrigé — jalon 1 (stations « machine à l'arrêt ») : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Ordre des 4 étapes</td><td>Manomètre → réglette → sonde → comparaison, toujours dans cet ordre : lire la réglette AVANT de mesurer à la sonde évite de « caler » la mesure sur ce qu'on espère trouver.</td></tr>
+    <tr><td>Lecture de la réglette</td><td>Bonne colonne (fluide de la machine identifié), bonne ligne (pression réellement lue, pas arrondie au chiffre le plus proche par facilité).</td></tr>
+    <tr><td>Mesure à la sonde</td><td>Identique aux critères de S2-F2 : sonde tenue par le câble ou la poignée, valeur stabilisée avant lecture.</td></tr>
+    <tr><td>Écart noté</td><td>La case « écart » est remplie même quand l'élève pense s'être trompé — un grand écart annoncé honnêtement vaut mieux qu'un écart arrondi pour « faire propre ».</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Élève lit la réglette sur la mauvaise colonne (mauvais fluide)</td><td>Faire vérifier systématiquement le fluide de la machine (plaque signalétique, feuille 5) avant toute lecture de réglette — rappeler que chaque fluide a SA relation P/T (S5.2).</td></tr>
+    <tr><td>Élève mesure à la sonde AVANT de lire la réglette, puis « ajuste » sa lecture de réglette pour que ça corresponde</td><td>Rappel ferme de l'ordre des 4 étapes : on lit la réglette avant de mesurer, sans connaître encore la valeur de la sonde — sinon le relevé n'a plus de valeur d'observation honnête.</td></tr>
+    <tr><td>Élève arrondit l'écart à zéro « pour que ça marche »</td><td>Valoriser explicitement un écart signalé tel quel, même grand : le but du jour est d'observer, pas d'obtenir un résultat parfait.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — question du jalon 1 (pourquoi commencer à l'arrêt)</h3>
+  <div class="reponse"><b class="t">Question</b> — Pourquoi est-ce le moment le plus simple pour s'entraîner aux
+  3 lectures, avant de les refaire machine en marche ?<br><br>
+  <b>Réponse attendue :</b> à l'arrêt, rien ne varie vite : la pression et la température restent stables le temps
+  de bien faire les 3 lectures, sans le stress de la machine qui tourne, du bruit, ou de la chaleur des organes.
+  C'est l'occasion de bien comprendre la MÉTHODE (où lire, comment comparer) avant de devoir l'appliquer plus vite
+  et dans un environnement plus exigeant en jalon 2.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 2 (STATIONS EN MARCHE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 2 (stations « BP en marche » et « HP en marche ») : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Distance et posture de sécurité</td><td>L'élève reste à la distance indiquée par le professeur, ne touche un organe que si le professeur l'y invite explicitement, avec le dos de la main gantée (rappel S2-F2).</td></tr>
+    <tr><td>Lecture des 2 stations complètes</td><td>BP en marche ET HP en marche sont toutes deux relevées avec les 4 étapes ; un élève qui « saute » une étape sous prétexte d'aller plus vite doit être stoppé.</td></tr>
+    <tr><td>Comparaison BP / HP</td><td>L'élève repère que la station HP affiche une pression plus haute que la station BP, et fait le lien (encore sans l'expliquer) avec une température plus haute.</td></tr>
+    <tr><td>Honnêteté de l'écart</td><td>Résultat noté tel qu'observé, y compris quand l'écart est important — c'est un résultat normal en Confortement, pas un échec.</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">Méthode de vérification du professeur (aucune valeur donnée)</b> — Pour
+  valider un relevé, le professeur ne compare PAS le chiffre de l'élève à une valeur qu'il aurait en tête : il
+  vérifie la <b>cohérence</b> entre les 3 lectures. Concrètement : la température lue sur la réglette et la
+  température mesurée à la sonde doivent être <b>du même ordre de grandeur</b> (un écart de quelques degrés est
+  plausible ; un écart de plusieurs dizaines de degrés signale presque toujours une erreur de colonne sur la
+  réglette, une sonde mal placée, ou une pression mal lue) ; et la pression HP doit toujours être supérieure à la
+  pression BP, à un instant donné. C'est cette cohérence-là qui est corrigée, jamais un couple pression/température
+  précis.</div>
+
+  <h3 class="section">Erreurs typiques — jalon 2</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Élève s'approche d'un organe chaud sans autorisation, « pour vérifier »</td><td>Recadrage ferme et immédiat : rappeler que la lecture au manomètre et à la réglette ne nécessite AUCUN contact ; le toucher n'intervient que si le professeur l'invite explicitement.</td></tr>
+    <tr><td>Écart très important entre réglette et sonde, non signalé</td><td>Ne pas sanctionner l'écart lui-même : faire reprendre la lecture avec l'élève (bonne colonne ? bon point de mesure ?) et valoriser le fait de l'avoir repéré.</td></tr>
+    <tr><td>Élève confond la station HP et la station BP</td><td>Faire revérifier le repère (couleur du cadran si présent, position côté aspiration/refoulement) avant de continuer — lien direct avec S3-T1.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — question du jalon 2 (comparaison BP / HP)</h3>
+  <div class="reponse"><b class="t">Question</b> — Laquelle des deux stations affiche la pression la plus haute ?
+  Et la température la plus haute ? Que remarquez-vous ?<br><br>
+  <b>Réponse attendue :</b> la station <b>HP</b> affiche la pression la plus haute, et c'est aussi elle qui donne,
+  sur la réglette, la température la plus haute. On remarque que <b>quand la pression est plus haute, la
+  température lue est aussi plus haute</b> : c'est exactement le constat que le module vise à faire émerger, sans
+  encore l'expliquer (S4-T1 le fera).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ RETOUR À L'ARRÊT + FLUIDE (S5.2) + SYNTHÈSE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — station « retour à l'arrêt »</h3>
+  <p style="font-size:10.3pt">Après l'arrêt de la machine par le professeur, la pression et la température
+  <b>évoluent progressivement</b> vers une valeur d'équilibre, sans redevenir instantanément celles du jalon 1 :
+  c'est normal, l'équilibre se fait sur plusieurs minutes. Ce constat n'a pas besoin d'être expliqué en détail
+  aujourd'hui (statut Confortement, sens découverte) : il suffit que l'élève <b>observe</b> l'évolution et la
+  <b>compare</b> honnêtement au relevé du jalon 1.</p>
+
+  <h3 class="section">Corrigé — question de synthèse (constat général)</h3>
+  <div class="reponse"><b class="t">Question</b> — Sur les 4 stations, qu'avez-vous constaté entre la pression lue
+  et la température lue sur la réglette ?<br><br>
+  <b>Réponse attendue (dans les mots de l'élève, sens accepté) :</b> à chaque station, une pression plus haute
+  correspond à une température plus haute sur la réglette, et une pression plus basse correspond à une
+  température plus basse. Pression et température « vont ensemble ». <b>Aucune explication du POURQUOI n'est
+  exigée ici</b> : c'est le contenu du module de théorie S4-T1 (changement d'état, ébullition et pression), qui se
+  déroule cette même semaine.</div>
+
+  <h3 class="section">Corrigé — plaque signalétique et fluide de la machine (savoir S5.2, nouveau)</h3>
+  <p style="font-size:10.3pt">L'objectif de cette partie n'est pas de réviser la lecture de plaque (déjà acquise en
+  S2-F2) : c'est d'y ajouter un sens nouveau — <b>le champ « fluide frigorigène » commande directement quelle
+  réglette utiliser</b>. Vérifier que l'élève relève le fluide de la machine du poste <b>sans l'inventer</b> («
+  illisible » est une réponse valide si la plaque ne peut pas être lue).</p>
+
+  <div style="border:1.5px solid var(--bleu); border-radius:6px; background:#eef4ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt">
+  <b>📄 Ressource fournie — table pression/température.</b> Pour lire une température de saturation à partir d'une pression (ou l'inverse), utilisez la <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Reglette%20P-T%20multi-fluides%20(imprimable).pdf">réglette P/T multi-fluides</a> ou la table du fluide de votre banc : <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R134a%20(saturation,%20-100%20a%20+100%20C).pdf">R134a</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R404A%20(saturation).pdf">R404A</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R410A%20(saturation).pdf">R410A</a>. N'inventez jamais une valeur : lisez-la sur la table.
+  </div>
+
+  <div class="reponse"><b class="t">Question</b> — Les deux plaques (Daikin, Mitsubishi) indiquent-elles le même
+  fluide ? Que se passerait-il en utilisant la réglette de la machine du poste pour une machine avec un autre
+  fluide ?<br><br>
+  <b>Réponse attendue :</b> les deux plaques ne portent pas nécessairement le même fluide — le professeur confirme
+  au vu des plaques réellement utilisées. Si on utilisait la réglette d'un fluide pour lire la température d'un
+  autre fluide, la température lue serait <b>fausse</b> : chaque fluide a sa propre relation P/T, ce n'est pas une
+  échelle universelle. C'est pour cela qu'un frigoriste vérifie <b>toujours</b> le fluide sur la plaque avant de
+  choisir sa réglette.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne jamais donner en exemple un couple
+  pression/température précis pour illustrer cette différence entre fluides : le risque de confusion avec une
+  valeur « à retenir » est trop grand pour un public CAP 1A. Rester sur l'idée générale : « chaque fluide a sa
+  propre réglette », sans chiffre.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — DIFFÉRENCIATION + ORGANISATION DU PLATEAU + CROISEMENTS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td><b>Consolidation</b><br><span class="nuance">élèves encore hésitants sur le geste sonde ou le repérage HP/BP</span></td><td>Repérés dès la phase 4 (quiz éclair). Passent en premier au jalon 1 (moment le plus calme), avec un rappel démontré du professeur avant de commencer leur propre rallye ; rotation en stations plus courte pour ne pas les presser.</td></tr>
+    <tr><td><b>Standard</b></td><td>Déroulement tel que décrit dans le document élève : 4 stations, méthode identique à chacune.</td></tr>
+    <tr><td><b>Approfondissement</b><br><span class="nuance">tutorat</span></td><td>Après avoir terminé leur propre rallye, ces élèves formulent une hypothèse écrite sur la raison du lien P/T (sans attendre S4-T1) et peuvent accompagner un pair en consolidation sur la lecture de la réglette.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire répété à l'identique à chaque station (« lire », « comparer », « écart »), pictogramme visuel simple pour les 4 étapes si besoin.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Les 4 étapes, toujours dans le même ordre à chaque station, servent de repère fixe contre la dispersion ; le tableau annexe (une seule page, un seul format) évite de chercher où noter.</td></tr>
+  </table>
+
+  <h3 class="section">Organisation du plateau — le rallye en stations</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Station(s) « à l'arrêt »</b></td><td>Manomètre déjà posé, réglette P/T, thermomètre de sonde — machine non démarrée.</td><td>Premier passage de tous les élèves, avant tout démarrage de machine.</td></tr>
+    <tr><td><b>Station(s) « en marche »</b></td><td>Manomètres BP et HP déjà posés, zone de sécurité délimitée — accès uniquement en présence du professeur.</td><td>Le professeur démarre et reste présent en continu ; jamais deux groupes seuls simultanément près d'une machine en marche.</td></tr>
+    <tr><td><b>Réglette(s) P/T</b></td><td>Un ou plusieurs exemplaires selon l'effectif, réglette de l'atelier — référence à confirmer par le professeur.</td><td>Vérifier avant la séance que la réglette correspond bien au(x) fluide(s) des machines utilisées.</td></tr>
+    <tr><td><b>Zone de rotation</b></td><td>Organisation à l'avance de l'ordre de passage des groupes sur les 4 stations, pour limiter l'attente.</td><td>Prévoir un créneau plus long sur les stations « en marche » (démonstration + supervision continue du professeur).</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Mathématiques</b> — lecture de graduation sur un cadran, lecture croisée dans un tableau à double entrée
+    (réglette) ;</li>
+    <li><b>Prévention des risques</b> — première approche d'une machine en marche avec lecture directe (sans
+    ouverture ni manipulation du circuit) ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (module F3) ;</li>
+    <li><b>Module S4-T1</b> — même semaine, la théorie formalise ce qui a été constaté ici (changement d'état,
+    ébullition et pression) ;</li>
+    <li>prépare la <b>pose autonome</b> des manomètres, différée à S7.</li>
+  </ul>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — GRILLE 0-4 (CORRIGÉ) + POINTS EN ATTENTE + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4-F1 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C4.5 Confortement</b> — déjà rencontrée
+  en Découverte à S2-F2 ; poids réduit, non remonté ici. Seule compétence évaluée dans ce module (règle : ≤ 4
+  compétences, souvent moins). <b>0 = compétence non observée ce jour</b> (à ne jamais confondre avec une
+  absence, codée séparément).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T10 · T11 · S5.1 · S5.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne sait pas lire le manomètre ni la réglette malgré l'aide ; valeurs non relevées ou inventées.</td>
+      <td>Réalise les 3 lectures avec l'aide du professeur (où regarder sur le cadran, où lire la réglette).</td>
+      <td>Réalise seul(e) les 4 étapes à chaque station (manomètre, réglette, sonde, écart) et note honnêtement les écarts, même quand ils surprennent.</td>
+      <td>Comme « Acquis », et formule un constat correct sur le lien entre pression et température observé au fil du rallye.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste dangereux (touche un organe hors zone autorisée, manipule un manomètre) ou valeur inventée : niveau 1 automatique, indépendamment de la qualité du reste du relevé.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>EPI et gestes respectés sans rappel, valeurs honnêtes, aucune valeur inventée.</td>
+      <td>Comme « Acquis », et signale spontanément un doute sur une lecture plutôt que de deviner.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> toute manipulation interdite (toucher un
+  manomètre, s'approcher d'un organe chaud hors autorisation, s'approcher d'une machine en marche sans le
+  professeur) entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la
+  qualité des lectures. De même, une valeur inventée pour « compléter » un tableau est traitée comme un manquement
+  au savoir-être, pas comme une simple imprécision.</div>
+
+  <h3 class="section">Points en attente — à confirmer avant la séance</h3>
+  <div class="attente">
+  <ul class="liste-num" style="margin-bottom:0">
+    <li><b>Réglette P/T réelle de l'atelier</b> — référence exacte et photo, à fournir par le professeur ;</li>
+    <li><b>Machine(s) support du rallye</b> — laquelle ou lesquelles, et combien de stations exactement (les 4
+    stations de ce document — BP à l'arrêt, BP en marche, HP en marche, retour à l'arrêt — sont un exemple de
+    trame, adaptable au matériel réellement disponible) ;</li>
+    <li>Confirmation qu'aucun module F3 propre à S4 n'est produit : le carnet de bord de S3 continue, sa section
+    « préparer É2 » sert de pont (à confirmer par le professeur au bon à tirer).</li>
+  </ul></div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : documents S2-F2 (F.
+  Henninot — geste du thermomètre de sonde, toucher sécurisé, plaques signalétiques Daikin et Mitsubishi Electric)
+  et S3-T1 (F. Henninot — les 13 composants frigorifiques, dont les manomètres HP et BP) ; Charte pédagogique
+  FrigorX (§7 sécurité, §5 échelle 0-4) ; référentiel CAP IFCA (codes C4.5, T10, T11, S5.1, S5.2) ; symbole
+  technique « Manomètres » (bibliothèque de symboles FrigorX, famille frigo_schema). Réglette P/T de l'atelier,
+  machine(s) support et nombre de stations : fixés par le professeur, à faire valider (cf. <i>_CADRAGE-S4.md</i>
+  et <i>_ETAT.md</i>) — aucune valeur ni aucun couple pression/température n'est inventé dans ce document.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .vigilance, .attente{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

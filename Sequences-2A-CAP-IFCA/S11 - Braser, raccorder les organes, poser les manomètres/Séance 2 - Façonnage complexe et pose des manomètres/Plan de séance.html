@@ -1,0 +1,202 @@
+<meta charset="utf-8">
+<title>Plan de séance — S11 · Module A2-b · Façonnage complexe et pose des manomètres</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Braser, raccorder les organes, poser les manomètres — <b>module atelier A2-b</b> (4 h)</td>
+      <td style="width:38%"><span class="lib">Module atelier A2-b · 4 h</span><b>Façonnage complexe et pose des manomètres</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> P5 · positionnement : 2<sup>e</sup> année, sem. 5</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 5 · 29/09/2026 (matin)</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A2 + poste façonnage + poste manomètres</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée (pas 4 h + 4 h) — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> <b>S5.5</b> Réseaux fluidiques et mécanique des fluides · <b>S6.1</b> Santé et sécurité au travail<br><span class="nuance">Travaillés :</span> <b>S2.1</b> Outils, normes et représentation <span class="nuance">augmenté (schéma / repérage)</span> · <b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">nouveau (relation pression-température, lecture d'un manomètre à double graduation)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie entre les jalons · tenue rigoureuse du carnet de bord · honnêteté de la mesure</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits <span class="nuance">sur T10 · S2.1</span><br><span class="statut">Découverte → Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11 · S5.2 — lecture des manomètres BP/HP</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  La ligne liquide a été brasée et raccordée à ses organes au module A2-a. <b>Ordre d'intervention
+  n° OI-2026-S11-02</b> : le client demande la <b>réalisation des façonnages complexes restants</b>
+  (chapeau de gendarme, collecteur), puis la <b>pose et le raccordement des manomètres BP/HP</b> sur les
+  prises de pression, avec <b>lecture de la double graduation</b> (principe pression-température). Aujourd'hui :
+  conduite de chantier en autonomie, par jalons contrôlés par le professeur — chaque élève tient son
+  <b>carnet de bord</b> tout au long du module. <b>La mise sous pression du circuit et le relevé complet des
+  pressions se font au module A2-c</b> : aujourd'hui, la lecture de la double graduation reste une observation
+  sur le manomètre de démonstration, sans mise sous pression du circuit complet.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>façonner un chapeau de gendarme</b> conforme au gabarit demandé ;</li>
+        <li><b>façonner un collecteur</b> à plusieurs piquages, conforme au plan ;</li>
+        <li><b>poser et raccorder</b> un manomètre BP et un manomètre HP sur les prises de pression (vanne Schrader) ;</li>
+        <li><b>lire</b> une pression sur un manomètre à double graduation et en expliciter le principe pression-température.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>nommer les organes et les raccordements du réseau fluidique (S5.5) ;</li>
+        <li>respecter les règles de santé et sécurité au travail de l'atelier (S6.1) ;</li>
+        <li>façonner un tube cuivre (cintrage, emboîture, dudgeon — acquis en S10) et braser sous azote (acquis au module A2-a) ;</li>
+        <li>porter les EPI de l'atelier sans rappel.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode du module : conduite de chantier en autonomie jalonnée (2 jalons) + carnet de bord (module F3)</b> —
+  contrairement au module A2-a (démonstration imposée), l'élève conduit ici son chantier <b>en autonomie
+  entre les jalons</b> : le professeur fixe deux jalons de contrôle (façonnages complexes → pose des
+  manomètres), valide chaque jalon avant de laisser passer au suivant, et n'intervient pas en continu. Chaque
+  élève tient son <b>carnet de bord</b> (module F3) : ce qu'il a fait, ce qu'il a mesuré, les écarts constatés.
+  Module resserré sur 4 h : la mise sous pression du circuit et le relevé complet des pressions BP/HP sont
+  <b>renvoyés au module A2-c</b> ; aujourd'hui, la lecture de la double graduation se fait sur le manomètre de
+  démonstration, en observation, sans mise sous pression du circuit complet.</div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>prise de pression sur circuit</b> : manipuler la <b>vanne Schrader</b> avec
+  l'outil dédié, jamais à la main nue ni avec un outil inadapté · <b>EPI</b> : lunettes de protection, gants,
+  obligatoires pour toute manipulation de raccordement · <b>pas de purge brutale</b> : purger lentement, jamais
+  en direction d'un camarade · <b>coupure lors du façonnage</b> : gants de manutention, ébavurage systématique
+  après chaque coupe. <b class="t">🚨 En cas d'incident :</b> couper/isoler la prise de pression concernée,
+  alerter le professeur, EPI vérifiés avant toute reprise.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S11 · module atelier A2-b · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT le module (écarts, difficultés, durée effective) et nourrit la synthèse.
+  Préparation de chantier (phases 1 à 5) : <b>55 min</b>, sous le plafond d'1 h maximum. Une seule demi-journée,
+  pas de pause méridienne : la pratique tient en 2 jalons (au lieu de 3 sur l'ancienne version 8 h) ; le relevé
+  des pressions sous mise en pression réelle est renvoyé au module A2-c.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 55 min)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel du fonctionnement du module (conduite de chantier en autonomie, jalonnée par deux contrôles professeur).</td><td>Fait l'appel, présente l'organisation du module et les deux jalons de contrôle.</td><td>S'installent, prennent connaissance du déroulé et des jalons du module.</td><td>Liste d'appel · déroulé affiché · carnets de bord</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S11-02 : réaliser les façonnages complexes restants (chapeau de gendarme, collecteur), poser et raccorder les manomètres BP/HP, lire la double graduation.</td><td>Présente l'ordre d'intervention et les pièces à façonner.</td><td>Reformulent la mission du module.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » lus et affichés ; lien avec la formule (C3.4 en évaluation, C4.5 en découverte-confortement).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : repérer sur le schéma de la ligne liquide (annexe A3) les emplacements prévus pour le chapeau de gendarme, le collecteur et les prises de pression BP/HP.</td><td>Distribue l'exercice, contrôle les tenues et les EPI.</td><td>Se changent par vagues ; en attente, font l'exercice de repérage sur schéma.</td><td>Schéma de la ligne liquide (annexe A3) · schéma vierge à compléter · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (risques du jour : manipulation de la vanne Schrader, gestes interdits, conduite à tenir en cas de fuite) puis <b>planter la notion</b> : OBSERVER un manomètre à double graduation posé sur banc → NOMMER les deux échelles (pression / température) → EXPLICITER le principe de correspondance pression-température, sans mise sous pression du circuit complet.</td><td>Anime le rituel sécurité, présente le manomètre de démonstration sur banc.</td><td>Observent le manomètre, répondent aux questions, notent le principe des deux échelles.</td><td>Manomètre de démonstration (double graduation) · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">6a. Guider l'étude — démonstration de pose d'un manomètre</td><td>Démonstration commentée resserrée du professeur : raccordement d'un manomètre sur une prise de pression Schrader (outil dédié, ordre des manipulations), purge lente, lecture de la pression sur la double graduation. Un seul poste, élèves regroupés à distance de sécurité.</td><td>Réalise et commente le raccordement et la lecture, insiste sur les gestes interdits (purge brutale, outil inadapté).</td><td>Observent la démonstration, notent les points de contrôle et la méthode de lecture.</td><td>Manomètre BP + manomètre HP de démonstration · vanne Schrader · outil de raccordement dédié</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td>1 h 05</td><td class="ph">6b. Guider l'étude — <span class="jalon">jalon 1 : façonnages complexes</span></td><td>Chaque élève, en autonomie sur son poste : façonnage du chapeau de gendarme puis du collecteur à plusieurs piquages, conformes au gabarit demandé. Le professeur ne valide le passage au jalon 2 qu'après contrôle individuel de chaque façonnage. Notation au fil de l'eau dans le carnet de bord (étapes, difficultés, mesures prises).</td><td>Laisse les élèves conduire leur chantier, intervient sur sollicitation, contrôle individuellement chaque façonnage avant validation du jalon.</td><td>Façonnent en autonomie chapeau de gendarme et collecteur, tiennent leur carnet de bord au fil de l'eau, sollicitent le professeur en cas de besoin.</td><td>Postes de façonnage (cintreuse, dudgeonnière, gabarits) · tubes cuivre · carnets de bord</td><td class="obs"></td></tr>
+    <tr><td>45 min</td><td class="ph">6c. Guider l'étude — <span class="jalon">jalon 2 : manomètres + lecture</span></td><td>Après validation du jalon 1, chaque élève identifie les prises BP/HP, pose et raccorde son manomètre BP puis son manomètre HP sur les prises de pression de sa ligne liquide (vanne Schrader, outil dédié, purge lente), puis observe et lit la double graduation sur le manomètre de démonstration (principe pression-température, en lecture, sans mise sous pression du circuit complet). Le professeur valide le montage de chaque élève.</td><td>Contrôle le raccordement de chaque manomètre avant validation, rappelle les gestes interdits en cas d'écart, supervise la lecture de la double graduation.</td><td>Posent et raccordent leurs manomètres BP/HP en autonomie, lisent la double graduation, notent au carnet de bord les étapes et les points de vigilance.</td><td>Manomètres BP/HP · prises de pression Schrader · outil de raccordement dédié · carnets de bord</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque élève présente son carnet de bord et son montage de manomètres ; auto-positionnement par compétence (C3.4, C4.5 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leurs façonnages et leur montage, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation · carnets de bord</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (matériel manquant, quantités de raccords et de consommables de façonnage).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Finalisent leur carnet de bord et rédigent le bon de commande.</td><td>Carnets de bord · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Rangement des postes de façonnage et de pose des manomètres, nettoyage, vérification visuelle de l'ensemble des montages du module.</td><td>Supervise le rangement et la remise en ordre.</td><td>Rangent, nettoient, vérifient.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (A2-c — fin de la ligne liquide, mise sous pression et préréglage au banc).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.3em 0 0">Total : 10+10+5+15+15 (min, phases 1→5 = <b>55 min</b>) + 20 min
+  (démonstration) = 1 h 15 + 15 min pause + 1 h 05 (jalon 1) + 45 min (jalon 2) + 15+10+10+5 (min,
+  synthèse/commande/rangement/clôture) = 1 h 15 + 15 min + 1 h 05 + 45 min + 40 min = <b>4 h 00 exactes</b>.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : mathématiques (lecture de graduations, relation pression-température) ·
+  technologie (rôle des organes de mesure) · co-intervention français (carnet de bord) · chef-d'œuvre (vidéo) · module A2 (chantier de projet) déjà entamé en S10 et poursuivi au module A2-a.</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,751 @@
+<meta charset="utf-8">
+<title>Dossier de séquence — Séquence S9 · CAP IFCA 1A</title>
+<style>
+  :root{
+    --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+    --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+    --ufa:#0e7a5f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre);
+    font-family:Calibri,'Segoe UI',sans-serif; font-size:14pt; line-height:1.5;
+    margin:0; padding:28px 12px; text-align:left;}
+  h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; text-wrap:balance; margin:0 0 .4em}
+  p{margin:.3em 0 .8em}
+  .feuille{background:#fff; max-width:794px; min-height:1050px; margin:0 auto 30px;
+    padding:34px 46px 20px; box-shadow:0 2px 14px rgba(27,58,99,.13); position:relative;
+    display:flex; flex-direction:column;}
+  /* ---------- INVARIANT : bandeau d'en-tête ---------- */
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:10px; margin-bottom:6px;}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#1e2c5e; letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#7b5cf5; letter-spacing:.03em}
+  .logo-eq{display:block}
+  .sous-entete{display:flex; justify-content:space-between; font-size:10pt; color:var(--gris); margin-bottom:22px;}
+  /* ---------- INVARIANT : pied de page ---------- */
+  .pied{margin-top:auto; padding-top:14px; border-top:1px solid var(--filet);
+    font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;}
+  /* ---------- Page de garde ---------- */
+  .garde-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:6px}
+  .garde-seq{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--orange); font-size:15pt; letter-spacing:.25em; text-transform:uppercase}
+  .garde-titre{font-size:27pt; margin:.15em 0}
+  .garde-soustitre{font-size:14pt; color:var(--gris); font-style:italic; margin-bottom:14px}
+  .garde-meta{display:inline-block; margin:18px auto 6px; border:1px solid var(--filet); border-radius:6px; padding:14px 30px; font-size:12.5pt; text-align:left; background:var(--fond-doux)}
+  .garde-meta b{color:var(--bleu)}
+  .croix{margin:18px auto 8px; display:block}
+  .croix-legende{font-size:9.5pt; color:var(--leger); font-style:italic}
+  .comp-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px}
+  .chip{border:1.5px solid var(--bleu); color:var(--bleu); border-radius:20px; padding:3px 14px; font-size:11pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; background:#fff}
+  .chip small{font-weight:normal; color:var(--gris)}
+  .chip.eval{border-color:#e8d98a; background:#fffdf5}
+  /* ---------- Corps commun ---------- */
+  .titre-page{font-size:19pt; border-left:6px solid var(--orange); padding-left:14px; margin-bottom:4px}
+  .surtitre{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:2px}
+  h3{font-size:13.5pt; margin-top:1.1em; display:flex; align-items:baseline; gap:8px}
+  table{border-collapse:collapse; width:100%; font-size:11pt; margin:.4em 0 1em}
+  th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:9.5pt; letter-spacing:.04em; text-transform:uppercase; padding:6px 9px; text-align:left}
+  td{border:1px solid var(--filet); padding:6px 9px; vertical-align:top}
+  tr:nth-child(even) td{background:var(--fond-doux)}
+  ul,ol{margin:.2em 0 .9em 1.35em; padding:0}
+  li{margin-bottom:.25em}
+  .encadre-secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:12px 18px; margin:.6em 0 1em}
+  .encadre-secu h3{color:#c14a17; margin-top:0}
+  .encadre-secu td{background:transparent!important; border-color:#f3c9b3}
+  .badge-niveau{display:inline-block; font-size:9pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; color:#fff}
+  .nI{background:#9aa5b1}.nC{background:#8a6dbf}.nM{background:#5d6b7c}.nV{background:var(--bleu)}
+  .fleche{color:var(--orange); font-weight:bold}
+  .cartouche-methode{background:var(--fond-doux); border:1px solid var(--filet); border-left:6px solid var(--bleu);
+    border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .cartouche-methode b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu)}
+  .etiquette{font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; letter-spacing:.08em;
+    text-transform:uppercase; border-radius:3px; padding:1px 7px; vertical-align:2px}
+  .et-inv{background:#e3e9f2; color:var(--bleu)}
+  .et-var{background:#ffe4d6; color:#b4501e}
+  .obj{background:var(--fond-doux); border-radius:6px; padding:10px 18px 10px 14px; margin:.3em 0 1em}
+  .obj li{margin-bottom:.35em}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:700px){.duo,.grille-cartes{grid-template-columns:1fr}}
+  .tbl-wrap{overflow-x:auto}
+  @media print{
+    body{background:#fff; padding:0}
+    .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always}
+  }
+  .tab-der{font-size:10pt}
+  .tab-der td{padding:5px 8px}
+  .cols2{columns:2; column-gap:26px; font-size:10.5pt}
+  .regle4{font-size:9.5pt; color:var(--gris); font-style:italic}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; vertical-align:1px; white-space:nowrap}
+  .stD{background:#e6f4ee; color:#0e7a5f; border:1px solid #9fd6c2}
+  .stC{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .stE{background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .grille-modules{font-size:10pt}
+  .grille-modules td{padding:6px 8px}
+  .credits-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:14px}
+  .credits-bloc{max-width:560px; margin:0 auto; border:1px solid var(--filet); border-radius:8px; background:var(--fond-doux); padding:22px 28px; font-size:11.5pt; text-align:left; line-height:1.6}
+  .credits-bloc b{color:var(--bleu)}
+  .sources{font-size:9.5pt; color:var(--gris); text-align:left; max-width:560px; margin:14px auto 0}
+  /* ---------- Formule de Bowers : bandeau 4 cases ---------- */
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.5em 0 1em; font-size:10pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:8px 12px; background:#fff}
+  .formule .case h4{margin:0 0 4px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  @media (max-width:700px){.formule{grid-template-columns:1fr 1fr}}
+  /* ---------- Cartes module (plan de séquence) ---------- */
+  .grille-cartes{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:.4em 0 1em}
+  .carte-module{border:1px solid var(--filet); border-left:5px solid var(--bleu); border-radius:6px; padding:10px 14px; background:#fff}
+  .carte-module.theorie{border-left-color:var(--ufa)}
+  .carte-module.transversal{border-left-color:var(--orange)}
+  .carte-module.evaluation{border-left-color:#c9a300; background:#fffdf5}
+  .carte-module h4{margin:0 0 2px; font-size:13pt; color:var(--bleu); display:flex; align-items:baseline; gap:6px; flex-wrap:wrap}
+  .carte-module .meta-ligne{font-size:8.5pt; color:var(--gris); margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em; font-family:'Trebuchet MS',sans-serif}
+  .carte-module p{font-size:10.5pt; margin:.2em 0 .4em}
+  .carte-module .nuance{display:block; margin-bottom:.3em}
+  .badge-type{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; background:#e3e9f2; color:var(--bleu)}
+  /* ---------- Bandeau signal ---------- */
+  .bandeau-e1{background:#fff6cc; border:1.5px solid #e8d98a; border-radius:6px; padding:9px 22px; margin:6px auto 4px; max-width:620px; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:#7a5b00; font-size:12.5pt; text-align:center; letter-spacing:.02em}
+  .eval-row td{background:#fff6cc!important}
+  /* ---------- Emplacement réservé ---------- */
+  .encadre-reserve{border:2px dashed var(--gris); border-radius:6px; background:var(--fond-doux); padding:10px 18px; margin:.6em 0 1em; font-size:11pt}
+  .encadre-reserve h3{color:var(--gris); margin-top:0}
+  /* ---------- Encadré calendrier / dispositif (bleu) ---------- */
+  .encadre-cal{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:12px 18px; margin:.6em 0 1em}
+  .encadre-cal h3{color:var(--bleu); margin-top:0}
+  /* ---------- Encadré cadre fluide (sobre, teinte neutre) ---------- */
+  .encadre-fluide{border:2px solid var(--gris); border-radius:6px; background:#f3f5f8; padding:10px 18px; margin:.6em 0 1em; font-size:11pt}
+  .encadre-fluide h3{color:var(--gris); margin-top:0}
+  /* ---------- Encadré capital (principe fondateur de la séquence) ---------- */
+  .encadre-principe{border:3px double var(--bleu); border-radius:6px; background:var(--fond-doux); padding:14px 20px; margin:.6em 0 1.1em}
+  .encadre-principe h3{color:var(--bleu); margin-top:0; font-size:14pt}
+  .encadre-principe p{font-size:11pt}
+  /* ---------- Encadré « boucle l'année » (orange, clôture) ---------- */
+  .encadre-boucle{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:14px 20px; margin:.6em 0 1.1em}
+  .encadre-boucle h3{color:#c14a17; margin-top:0; font-size:14pt}
+  .encadre-boucle p{font-size:11pt}
+</style>
+
+<!-- ============================ FEUILLE 1 : PAGE DE GARDE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>CAP Installateur en Froid et Conditionnement d'Air — 1<sup>re</sup> année</span>
+    <span>Année scolaire 2026-2027 · Période P4</span>
+  </div>
+
+  <div class="garde-centre">
+    <div class="garde-seq">Séquence S9</div>
+    <h1 class="garde-titre">Diagnostic frigorifique simple<br>+ É4</h1>
+    <div class="garde-soustitre">La dernière séquence de 1<sup>re</sup> année — diagnostiquer, remplacer, rendre compte, puis boucler l'année</div>
+
+    <div class="bandeau-e1">◆ S9 = LA DERNIÈRE séquence de 1A — É4 semaine 32 (4<sup>e</sup> et DERNIÈRE évaluation sommative) + clôture S9-T2 semaines 33-36 (bilan de 1<sup>re</sup> année)</div>
+
+    <img class="croix" src="images/croix-frigoriste-schema-technique.svg" width="300" style="max-width:100%" alt="Croix du Frigoriste — schéma technique du circuit frigorifique">
+    <div class="croix-legende">La Croix reste le repère constant : détendeur GAUCHE · compresseur DROITE · condenseur HAUT · évaporateur BAS. En S7-S8, ce circuit a été instrumenté, déshydraté, réglé, câblé et chargé (à blanc). En S9, l'élève change de posture : il ne prépare plus l'installation, il la <b>maintient</b> — il observe cette même Croix en fonctionnement, y relève HP/BP/températures, et en déduit une hypothèse de panne, SANS jamais toucher au fluide qui y circule.</div>
+
+    <div class="comp-chips">
+      <span class="chip eval">C4.1 <small>Tirer au vide le circuit</small> <span class="statut stE">Évaluation</span></span>
+      <span class="chip eval">C4.5 <small>Mesurer, comparer des grandeurs</small> <span class="statut stC">Confortement</span><span class="fleche">→</span><span class="statut stE">Évaluation</span></span>
+      <span class="chip eval">C4.7 <small>Raccorder équipements de charge/mesure</small> <span class="statut stE">Évaluation</span></span>
+      <span class="chip eval">C5.1 <small>Remplacer des composants</small> <span class="statut stD">Découverte</span><span class="fleche">→</span><span class="statut stC">Confortement</span><span class="fleche">→</span><span class="statut stE">Évaluation</span></span>
+      <span class="chip">C3.4 <small>Façonner, raccorder, isoler</small> <span class="statut stC">Confortement</span><span class="fleche"> → visé Maîtrise</span></span>
+      <span class="chip">C3.6 <small>Câbler, connecter</small> <span class="statut stC">Confortement</span><span class="fleche"> → visé Validé</span></span>
+      <span class="chip">C3.7 <small>Contrôler la mise en œuvre</small> <span class="statut stC">Confortement</span><span class="fleche"> → visé Maîtrise</span></span>
+      <span class="chip">C1.1 <small>Compléter, transmettre</small> <span class="statut stC">Confortement</span><span class="fleche"> → visé Consolidation</span></span>
+      <span class="chip">C1.3 <small>Rendre compte</small> <span class="statut stC">Confortement</span><span class="fleche"> → visé Maîtrise</span></span>
+      <span class="chip">C2.4 <small>Sécuriser l'intervention</small> <span class="fleche">fil rouge — pesé à É4</span></span>
+    </div>
+
+    <div class="formule">
+      <div class="case"><h4>Tâche</h4>Diagnostiquer une installation qui ne fonctionne plus normalement, remplacer le composant fautif SANS manipuler de fluide, remettre en état, rendre compte — OI-S9-1 à 4 (le bouquet final de l'année, l'apprenti passe côté SAV)</div>
+      <div class="case"><h4>Savoir</h4>S5.1 augmenté (systèmes à détente directe) · S4.2 nouveau/augmenté (conservation des denrées) · S5.7 nouveau (enceintes isothermes positives/négatives) · S5.5 · S5.6 (réseaux fluidiques/électriques) · S3.1 augmenté (communication technique)</div>
+      <div class="case"><h4>Savoir-être</h4>Rigueur de la démarche d'enquête (observer avant de conclure) · autonomie du dépannage électrique sans fiche · honnêteté du diagnostic (ne jamais inventer une panne) · respect absolu du principe fondateur (jamais de fluide manipulé) · posture de compagnonnage en clôture (tuteur pair)</div>
+      <div class="case comp"><h4>= Compétence</h4>C4.1 · C4.5 · C4.7 · C5.1 <b>Évaluation</b> (É4, 4 max, remontée École Directe) · C3.4, C3.6, C3.7, C1.1, C1.3 <b>Confortement</b> · C2.4 savoir-être, pesé explicitement à É4</div>
+    </div>
+    <p style="font-size:9pt; color:var(--gris); text-align:center; margin-top:-6px">Formule adaptée par F. Henninot — charte pédagogique §2 (« formule de Bowers »).</p>
+
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:6px"><b>C4.1</b> et <b>C4.7</b> passent directement en <span class="statut stE">Évaluation</span> à É4 : consolidées dans S7 puis S8, elles ne sont pas retravaillées dans un module de S9, seulement évaluées « à froid ». <b>C4.5</b> (S9-F1, le pivot du diagnostic) et <b>C5.1</b> (S9-F1 <span class="statut stD">Découverte</span> → S9-F2 <span class="statut stC">Confortement</span>, <b>première rencontre du champ « remplacer »</b>, toujours sans fluide) sont retravaillées en module AVANT d'être positionnées à É4. <span class="statut stC">Confortement</span> pour <b>C3.4</b> (S9-F2, visé Maîtrise), <b>C3.6</b> et <b>C3.7</b> (S9-E1 et S9-F1/F2, visés Validé et Maîtrise — les niveaux les plus élevés de la progression annuelle, atteints en clôture de 1<sup>re</sup> année), <b>C1.1</b> (F3, visé Consolidation) et <b>C1.3</b> (F3, visé Maîtrise, déjà atteint depuis S8 et confirmé ici). <b>C2.4</b> (sécuriser l'intervention) est le fil rouge savoir-être de toute la séquence, <b>pesé explicitement</b> dans la note d'É4 sans faire l'objet d'un positionnement 0-4 séparé.</p>
+
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:2px">Cadre académique — contribution certificative CAP IFCA (EP1/EP2/EP3, encore en construction dans l'usine) : S9 nourrit <b>le geste de diagnostic et de contrôle côté EP1</b> (l'installation qui ne fonctionne plus, la mesure qui tranche), consolide <b>le geste de mise en service côté EP2</b> (vide, raccordements, repris à froid pour l'évaluation) et <b>le contrôle/la communication technique côté EP3</b> (compte rendu d'intervention, schéma de coffret). Répartition indicative, formulation prudente, <b>à faire valider par l'enseignant</b> — cette contribution reste pédagogique, distincte de la <b>remontée officielle École Directe</b> qui a bien lieu via É4 elle-même (C4.1, C4.5, C4.7, C5.1, statut Évaluation).</p>
+
+    <div class="garde-meta">
+      <b>Semaines 29 à 36</b> · période P4 (juin 2027, dates exactes à caler — point ouvert) · <b>8 semaines = 80 h</b>,
+      en deux temps : <b>semaines 29-32</b> = apprentissages + É4 · <b>semaines 33-36</b> = clôture<br>
+      <b>3 modules d'atelier</b> — S9-F1 Diagnostic guidé sur machine (sem. 29-30, <b>2 passages</b>) · S9-F2
+      Remplacement d'un composant simple (sem. 31 et 33, <b>2 passages</b>) · S9-E1 Coffret clim en autonomie
+      (sem. 29-31, <b>2 passages + 1 séance d'autonomie complète</b>) · <b>1 module de théorie</b> — S9-T1 Démarche
+      de diagnostic et conservation des denrées (sem. 29-30) · fil de l'eau <b>F3</b> (carnet de bord, suite S1-S8)<br>
+      <b>É4</b> (semaine 32, 3 postes, 40 pts) puis <b>S9-T2</b> Retour d'É4, remédiation et bilan de 1<sup>re</sup>
+      année (semaines 33-36)<br>
+      <span style="font-size:10.5pt; color:var(--gris)">S9 <b>porte la dernière évaluation sommative de l'année</b>
+      (détail feuilles 7-8). <b>La vraie manipulation du fluide, c'est la 2<sup>e</sup> année</b> (teasing honnête,
+      détail feuille 8).<br>
+      Statut du dossier : <b>9<sup>e</sup> et DERNIÈRE séquence 1A — en attente du bon à tirer de Franck.</b></span>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 2 : PRINCIPE FONDATEUR + ORGANISATION DES 8 SEMAINES + TABLEAU DES MODULES ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — principe fondateur, organisation et modules</span>
+    <span>CAP IFCA 1A · P4 · semaines 29-36</span>
+  </div>
+
+  <div class="surtitre">Principe fondateur <span class="etiquette et-inv">Invariant</span></div>
+  <div class="encadre-principe">
+    <h3>⚠⚠ Diagnostiquer par la mesure, remplacer SANS manipuler de fluide — à verrouiller partout dans S9</h3>
+    <p style="margin-top:-.2em"><b>Diagnostic = observer → mesurer → comparer à une cible → conclure.</b> L'élève
+    lit les symptômes (bruit, givre, température qui ne descend pas), relève <b>HP / BP</b> aux manomètres, les
+    <b>températures</b> (thermomètre de contact), le <b>courant</b> (pince) ; il calcule la <b>surchauffe (SC)</b> et
+    le <b>sous-refroidissement (SR)</b> et les <b>compare aux valeurs cibles</b> (SC 5-10 K · SR 4-8 K, seuils
+    charte — toute autre valeur = « selon la machine/la notice, à faire valider ») ; il formule une <b>hypothèse de
+    panne SIMPLE</b>. Support = machine <b>pédagogique en marche</b>.</p>
+    <p><b>Remplacement de composant = SANS manipulation de fluide.</b> L'élève ne remplace QUE des organes qui
+    n'exigent PAS de toucher au fluide : composants <b>électriques</b> (pressostat, thermostat, relais, condensateur,
+    ventilateur, klixon), <b>mécaniques/externes</b> (fixation, bulbe, isolant), OU un organe sur un circuit
+    <b>préalablement inerté à l'azote par le professeur</b> (récupération du fluide EN AMONT — la récupération
+    réelle, c'est la 2<sup>e</sup> année). L'élève ne récupère JAMAIS de fluide, n'ouvre JAMAIS un circuit en charge,
+    ne braise/ne coupe JAMAIS un circuit contenant du fluide.</p>
+    <p style="margin-bottom:0">Niveau CAP (Bloom 1→3) : panne <b>SIMPLE et UNIVOQUE</b>, un seul défaut à la fois,
+    cas archi-classiques ; arbre de diagnostic à 2-3 branches maximum. <b>Aucune</b> analyse multi-cause,
+    optimisation, dimensionnement ou bilan enthalpique. <b>La manipulation réelle du fluide, la récupération et le
+    diagnostic sur charge réelle, c'est la 2<sup>e</sup> année</b> (S10 diagnostic approfondi, S13-S14
+    récupération/charge, attestation d'aptitude).</p>
+  </div>
+
+  <div class="surtitre">Organisation <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Huit semaines, deux temps : apprentissages puis clôture</h2>
+  <p>Organisation identique à S1-S8 pour les semaines 29-32 (4 h froid + 4 h élec + 2 h théorie / semaine, demi-groupes
+  tournants) ; les semaines 33-36 basculent sur le dispositif transversal de clôture <b>S9-T2</b>.</p>
+
+  <h3>Qui fait quoi, semaine par semaine</h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Sem.</th><th>Froid (4 h)</th><th>Élec (4 h)</th><th>Théorie (2 h)</th></tr>
+    <tr><td><b>29</b></td><td><b>S9-F1</b> diagnostic (passage 1)</td><td><b>S9-E1</b> coffret (passage 1)</td><td><b>S9-T1</b> — démarche de diagnostic + arbre</td></tr>
+    <tr><td><b>30</b></td><td><b>S9-F1</b> diagnostic (passage 2)</td><td><b>S9-E1</b> coffret (passage 2)</td><td><b>S9-T1</b> — denrées et enceintes</td></tr>
+    <tr><td><b>31</b></td><td><b>S9-F2</b> remplacement (passage 1)</td><td><b>S9-E1</b> dépannage minute autonomie (séance « + »)</td><td>Préparation É4 (relevés → conclusion)</td></tr>
+    <tr class="eval-row"><td><b>32</b></td><td><b>É4</b> — poste FROID</td><td><b>É4</b> — poste ÉLEC</td><td><b>É4</b> — poste THÉORIE (écrit 2 h)</td></tr>
+    <tr><td><b>33</b></td><td><b>S9-F2</b> remplacement (passage 2) + reprise</td><td>Reprise ciblée élec</td><td>Correction collective É4 + lancement du bilan</td></tr>
+    <tr><td colspan="3"><b>34-36 — S9-T2</b> (transversal, 3 semaines) : postes de reprise par compétence d'É4, rattrapages, tutorat par pairs, <b>bilan de 1<sup>re</sup> année</b> — <b>PFMP2 possible ici</b> (arbitrage n° 1 du socle, non tranché)</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em">Le fil de l'eau <b>F3</b> se poursuit en continu
+  (même carnet que S1-S8), enrichi de la fiche de compte rendu d'intervention type. Dates réelles des semaines 29-36 :
+  <b>à caler — point ouvert</b> (cadrage S9, juin 2027). Dispositif de clôture <b>S9-T2</b> détaillé feuille 8.</p>
+
+  <h3>Tableau des modules <span class="etiquette et-inv">repris du cadrage, sans modification</span></h3>
+  <div class="tbl-wrap">
+  <table class="grille-modules">
+    <tr><th>Module</th><th>Type</th><th>Durée</th><th>Sem.</th><th>Contenu</th><th>Compétences (statut)</th><th>Tâches</th><th>Savoirs</th></tr>
+    <tr><td><b>S9-F1</b></td><td>Atelier</td><td>4 h ×2</td><td>29-30</td><td><b>Diagnostic guidé sur machine</b> : symptôme → relevés HP/BP + T° → calcul SC/SR → comparaison aux cibles → hypothèse de panne simple (l'arbre). Le « frigoriste-détective ».</td><td><b>C4.5</b> <span class="statut stC">Confortement</span> (visé Validé) · <b>C5.1</b> <span class="statut stD">Découverte</span> (1<sup>re</sup> rencontre, sans fluide) · C3.7 <span class="statut stC">Confortement</span></td><td>T16 · T14</td><td>S5.1 augmenté · S4.2 nouveau</td></tr>
+    <tr><td><b>S9-F2</b></td><td>Atelier</td><td>4 h ×2</td><td>31, 33</td><td><b>Remplacement d'un composant simple + remise en état</b> : dépose/repose d'un organe HORS FLUIDE (pressostat, filtre sur circuit inerté azote, ventilateur…), gamme + auto-contrôle qualité, remise en service, compte rendu.</td><td><b>C5.1</b> <span class="statut stC">Confortement</span> · C3.4 <span class="statut stC">Confortement</span> (visé Maîtrise) · C3.7 <span class="statut stC">Confortement</span></td><td>T16 · T1</td><td>S5.1 augmenté</td></tr>
+    <tr><td><b>S9-E1</b></td><td>Atelier</td><td>4 h ×2+</td><td>29-31</td><td><b>Coffret clim en autonomie / dépannage électrique</b> : remettre en service un coffret présentant un défaut simple (fil débranché, organe HS simulé par le prof), SANS fiche guidée, à partir du schéma.</td><td>C3.6 <span class="statut stC">Confortement</span> (visé Validé) · C3.7 <span class="statut stC">Confortement</span> (visé Maîtrise)</td><td>T16 · T11</td><td>S5.6 augmenté</td></tr>
+    <tr><td><b>S9-T1</b></td><td>Théorie</td><td>2 h</td><td>29-30</td><td><b>La démarche de diagnostic (arbre simple) + le froid et les denrées</b> : co-construire l'arbre symptôme→hypothèse ; conservation des denrées, chaîne du froid, enceintes isothermes positives/négatives.</td><td>appui C4.5 (théorique, non remonté)</td><td>—</td><td>S4.2 augmenté · S5.7 nouveau · S5.1 augmenté</td></tr>
+    <tr><td><b>F3</b></td><td>Fil de l'eau</td><td>2 h continu</td><td>29-36</td><td>Carnet de bord + <b>compte rendu d'intervention type</b> (le carnet devient dossier de maintenance : constat, mesures, diagnostic, action, remise en état).</td><td>C1.3 <span class="statut stC">Confortement</span> (visé Maîtrise) · C1.1 <span class="statut stC">Confortement</span> (visé Consolidation)</td><td>T1 · T16</td><td>S3.1 augmenté</td></tr>
+    <tr class="eval-row"><td><b>É4</b></td><td>Sommative</td><td>2-3 h/poste</td><td><b>32</b></td><td><b>3 postes</b> : FROID (tirer au vide + poser manos + mini-diagnostic + remplacer un composant désigné) · ÉLEC (remettre le coffret en service) · THÉORIE (écrit : relevés → conclusion de diagnostic + denrées).</td><td><b>C4.1 · C4.5 · C4.7 · C5.1</b> <span class="statut stE">Évaluation</span> (4 max, remontée École Directe) + <b>C2.4</b> savoir-être pesé</td><td>T13 · T16 · T1</td><td>S5.1 · S5.5</td></tr>
+    <tr><td><b>S9-T2</b></td><td>Clôture/remédiation</td><td>sem. 33-36</td><td>33-36</td><td><b>Retour d'É4 + remédiation ciblée + BILAN de 1<sup>re</sup> année</b> (postes de reprise, tutorat, auto-positionnement I/C/M/V, objectifs 2A, rattrapages). FORMATIF — rien remonté.</td><td>reprise C4.1/C4.5/C4.7/C5.1/C3.6/C3.7 (formatif)</td><td>T16</td><td>rappel transversal</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 3 : PLAN DE SÉQUENCE MODULAIRE — ATELIERS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — plan de séquence (ateliers)</span>
+    <span>CAP IFCA 1A · P4 · semaines 29-36</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Le SAV — la tournée de dépannage, le bouquet final de l'année</h2>
+  <p style="font-size:11pt">Toute l'année, l'apprenti a INSTALLÉ (cuivre, brasage), PROUVÉ (étanchéité azote), MIS EN
+  SERVICE (vide, manos, réglages, charge à blanc). Cette dernière séquence le fait passer côté <b>MAINTENANCE</b> :
+  le client rappelle — « ça ne fait plus assez de froid », « ça givre », « le disjoncteur a sauté ». L'apprenti
+  <b>observe, mesure, conclut, remplace le composant fautif, remet en état et REND COMPTE</b>. Ordres d'intervention
+  (client générique, jamais de nom propre) : <b>OI-S9-1</b> « L'armoire positive ne descend plus en température.
+  Diagnostiquez. » (F1, démarche guidée) · <b>OI-S9-2</b> « Remplacez le composant identifié, remettez en état,
+  rédigez le compte rendu. » (F2) · <b>OI-S9-3</b> « Le coffret du climatiseur ne démarre plus / disjoncte.
+  Remettez-le en service. » (E1, autonomie) · <b>OI-S9-4</b> intervention complète de mise en service +
+  mini-diagnostic (É4, évaluation individuelle).
+  <span class="regle4">Règle de charte : jamais plus de 4 compétences par module.</span></p>
+
+  <div class="encadre-fluide">
+    <h3>Cadre du diagnostic 1A — rappel</h3>
+    <p style="margin:0">Toute la séquence se déroule <b>sans fluide manipulé</b> : diagnostic par la mesure sur
+    machine en marche (F1), remplacement sur circuit HORS FLUIDE ou inerté à l'azote par le professeur (F2), dépannage
+    électrique (E1) — voir l'encadré capital feuille 2. La vraie manipulation du fluide, avec l'attestation
+    d'aptitude, c'est la 2<sup>e</sup> année.</p>
+  </div>
+
+  <div class="grille-cartes">
+    <div class="carte-module">
+      <h4>S9-F1 <span class="badge-type">Atelier</span> <span class="nuance">OI-S9-1</span></h4>
+      <div class="meta-ligne">4 h × 2 passages (sem. 29-30) · froid</div>
+      <p><b>Diagnostic guidé sur machine :</b> symptôme → relevés HP/BP + températures → calcul SC/SR → comparaison
+      aux cibles (SC 5-10 K, SR 4-8 K) → hypothèse de panne simple. Machine pédagogique EN MARCHE, mise/remise sous
+      tension par le professeur.</p>
+      <span class="nuance">Tâches T16 · T14 — Savoirs travaillés S5.1 augmenté · S4.2 nouveau.</span>
+      <div><b>C4.5</b> <span class="statut stC">Confortement</span> (visé Validé) Mesurer, comparer des grandeurs —
+      le pivot du diagnostic<br><b>C5.1</b> <span class="statut stD">Découverte</span> Remplacer des composants de
+      l'installation (1<sup>re</sup> rencontre, sans fluide)<br><b>C3.7</b> <span class="statut stC">Confortement</span>
+      Contrôler la mise en œuvre des équipements électriques et fluidiques</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>la démarche d'enquête « le frigoriste-détective »</b>
+      — situation-problème de dépannage : le client décrit UN symptôme, l'élève mène l'enquête méthodique (relever
+      les indices → mesurer HP/BP/T° → calculer SC/SR → comparer aux cibles → <b>désigner le coupable parmi une
+      courte liste de suspects</b>). L'arbre de diagnostic se formalise APRÈS la première enquête vécue (« planter la
+      notion » : observer → nommer → expliciter). Le professeur pré-règle une panne simple et univoque par poste.
+      <b>Passage 2</b> : nouvelle enquête, arbre déjà disponible en appui.</div>
+    </div>
+
+    <div class="carte-module">
+      <h4>S9-F2 <span class="badge-type">Atelier</span> <span class="nuance">OI-S9-2</span></h4>
+      <div class="meta-ligne">4 h × 2 passages (sem. 31 et 33) · froid</div>
+      <p><b>Remplacement d'un composant simple + remise en état :</b> dépose/repose d'un organe HORS FLUIDE
+      (pressostat, filtre sur circuit inerté azote, ventilateur…), gamme + auto-contrôle qualité, remise en service,
+      compte rendu.</p>
+      <span class="nuance">Tâches T16 · T1 — Savoir travaillé S5.1 augmenté.</span>
+      <div><b>C5.1</b> <span class="statut stC">Confortement</span> Remplacer des composants de l'installation —
+      sans manipulation de fluide<br><b>C3.4</b> <span class="statut stC">Confortement</span> (visé Maîtrise)
+      Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><b>C3.7</b> <span class="statut stC">Confortement</span>
+      Contrôler la mise en œuvre des équipements électriques et fluidiques</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>la gamme opératoire + auto-contrôle qualité,
+      posture « je signe mon travail »</b> — l'élève reçoit une gamme de dépose/repose qu'il doit respecter ET
+      <b>auto-contrôler étape par étape</b> (check-list qualité : propreté, serrage, étanchéité à l'eau savonneuse
+      pour un raccord hors fluide, contrôle de remise en service). La remise en état se <b>PROUVE</b>. Compte rendu
+      obligatoire. <b>Passage 1</b> (sem. 31, guidé) / <b>Passage 2</b> (sem. 33, après É4 = intégration + reprise).</div>
+    </div>
+
+    <div class="carte-module">
+      <h4>S9-E1 <span class="badge-type">Atelier</span> <span class="nuance">OI-S9-3</span></h4>
+      <div class="meta-ligne">4 h × 2 passages + 1 séance (sem. 29-31) · élec</div>
+      <p><b>Coffret clim en autonomie / dépannage électrique :</b> remettre en service un coffret présentant un défaut
+      simple (fil débranché, organe HS simulé par le professeur), SANS fiche guidée, à partir du schéma.</p>
+      <span class="nuance">Tâches T16 · T11 — Savoir travaillé S5.6 augmenté.</span>
+      <div><b>C3.6</b> <span class="statut stC">Confortement</span> (visé Validé) Câbler, repérer, connecter les
+      liaisons électriques et électroniques<br><b>C3.7</b> <span class="statut stC">Confortement</span> (visé
+      Maîtrise) Contrôler la mise en œuvre des équipements électriques et fluidiques</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>le « dépannage minute » en autonomie complète</b> —
+      le coffret présente un défaut électrique simple posé par le professeur ; l'élève diagnostique et remet en
+      service <b>SANS fiche guidée</b>, en s'appuyant sur le <b>schéma</b> et sa consignation. Différenciation forte :
+      les rapides traitent un 2<sup>e</sup> défaut, deviennent tuteurs. <b>Passage 1</b> (29) / <b>Passage 2</b> (30)
+      / <b>séance « + »</b> (31, dépannage minute intégral en autonomie complète).</div>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 4 : THÉORIE, CARNET · CE QUI CHANGE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — théorie, carnet · ce qui change</span>
+    <span>CAP IFCA 1A · P4 · semaines 29-36</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence, suite <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">La démarche de diagnostic et le carnet de maintenance</h2>
+
+  <div class="grille-cartes">
+    <div class="carte-module theorie">
+      <h4>S9-T1 <span class="badge-type">Théorie</span></h4>
+      <div class="meta-ligne">2 h · semaines 29-30 · classe entière</div>
+      <p><b>La démarche de diagnostic (arbre simple) + le froid et les denrées :</b> co-construire l'arbre
+      symptôme → hypothèse à partir des cas vécus en F1 ; conservation des denrées, chaîne du froid, enceintes
+      isothermes positives/négatives.</p>
+      <span class="nuance">Savoirs travaillés S4.2 augmenté · S5.7 nouveau · S5.1 augmenté.</span>
+      <div>appui C4.5 (théorique, non remonté)</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> : <b>construction collective d'un arbre de décision +
+      étude de cas « la bonne température pour la bonne denrée »</b> — 1<sup>re</sup> partie : les élèves
+      <b>co-construisent</b> l'arbre de diagnostic simple à partir des cas vécus en F1 (carte mentale collective, le
+      professeur formalise) ; 2<sup>e</sup> partie : <b>étude de cas conservation</b> — associer denrée ↔ température
+      ↔ enceinte <b>positive/négative</b>, la chaîne du froid, pourquoi le froid conserve (S4.2, S5.7).</div>
+    </div>
+
+    <div class="carte-module transversal">
+      <h4>F3 <span class="badge-type">Fil de l'eau</span></h4>
+      <div class="meta-ligne">2 h continu · semaines 29-36 · transversal</div>
+      <p><b>Carnet de bord</b> — suite directe du carnet de S1-S8 (même carnet) : chaque séance produit une FEUILLE DE
+      COMPTE RENDU D'INTERVENTION (constat, mesures, diagnostic, action, remise en état) ; le carnet devient
+      progressivement le <b>dossier de maintenance</b> du groupe, puis accueille en clôture (S9-T2) le bilan de
+      1<sup>re</sup> année.</p>
+      <span class="nuance">Tâches T1 · T16 — Savoir travaillé S3.1 augmenté.</span>
+      <div><b>C1.3</b> <span class="statut stC">Confortement</span> (visé Maîtrise) Rendre compte<br><b>C1.1</b>
+      <span class="statut stC">Confortement</span> (visé Consolidation) Compléter, transmettre</div>
+      <div class="cartouche-methode"><b>Méthode</b> : rituel continu, tenu à chaque séance — le carnet de S1-S8
+      continue tel quel, enrichi de la fiche de compte rendu d'intervention type et, en semaine 34, de la rubrique
+      « bilan de mon année ».</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:1.3em">Ce qui change depuis S8 <span class="etiquette et-var">Variable</span></h3>
+  <div class="cartouche-methode">
+    <b>S9-F1</b> : on passe de la mise en service à la <b>MAINTENANCE</b> — l'élève ne prépare plus l'installation,
+    il en cherche la panne ; <b>C5.1 entre au tableau</b>, 1<sup>re</sup> rencontre du champ « remplacer », toujours
+    sans fluide.<br>
+    <b>S9-F2</b> : la remise en état se <b>PROUVE</b> (auto-contrôle qualité, geste « je signe mon travail ») — il ne
+    suffit plus d'exécuter, il faut contrôler son propre travail.<br>
+    <b>S9-E1</b> : le réglage guidé de S7-S8 devient un <b>dépannage en autonomie complète</b>, sans fiche — le
+    sommet de l'autonomie électrique de l'année.<br>
+    <b>Au global</b> : S9 boucle l'année — de l'installation (S1-S6) à la mise en service (S7-S8) à la maintenance
+    (S9). Après É4 et la clôture S9-T2, la 2<sup>e</sup> année ouvrira sur le vrai fluide (attestation d'aptitude,
+    récupération, diagnostic approfondi).
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 5 : MÉTHODES VARIÉES + FIL ROUGE SÉCURITÉ ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — méthodes et sécurité</span>
+    <span>CAP IFCA 1A · P4 · semaines 29-36</span>
+  </div>
+
+  <div class="surtitre">Méthodes imposées <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">Méthodes variées par module — aucune reprise de S1 à S8</h2>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:12%">Module</th><th style="width:38%">Méthode imposée</th><th>Ce qu'elle apporte</th></tr>
+    <tr><td><b>S9-F1</b></td><td>La démarche d'enquête « le frigoriste-détective »</td><td>Enquête méthodique sur symptôme unique : relever, mesurer, calculer SC/SR, comparer aux cibles, désigner le coupable ; l'arbre se formalise après coup.</td></tr>
+    <tr><td><b>S9-F2</b></td><td>Gamme opératoire + auto-contrôle qualité (« je signe mon travail »)</td><td>Gamme de dépose/repose respectée ET auto-contrôlée étape par étape ; la remise en état se prouve, compte rendu obligatoire.</td></tr>
+    <tr><td><b>S9-E1</b></td><td>Le « dépannage minute » en autonomie complète</td><td>Défaut électrique posé par le professeur, remis en service sans fiche guidée, à partir du seul schéma ; différenciation par un 2<sup>e</sup> défaut.</td></tr>
+    <tr><td><b>S9-T1</b></td><td>Construction collective d'un arbre de décision + étude de cas denrées</td><td>Carte mentale collective à partir des cas vécus en F1 ; étude de cas conservation (denrée/température/enceinte).</td></tr>
+    <tr><td><b>S9-T2</b></td><td>Groupes de besoin + tutorat par pairs + entretien-bilan réflexif</td><td>Postes de reprise sur les compétences d'É4, tuteurs pairs, bilan individuel de 1<sup>re</sup> année (détail feuille 8).</td></tr>
+  </table>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Fil rouge sécurité de S9 — C2.4 « Sécuriser l'intervention »</h3>
+    <ul style="margin-bottom:.3em">
+      <li><b>Diagnostic sur machine sous tension (S9-F1)</b> : la mise/remise sous tension est faite <b>PAR LE
+      PROFESSEUR</b> ; consignation <b>NF C 18-510</b> avant toute intervention électrique ; parties chaudes
+      (compresseur, refoulement) et tournantes (ventilateurs) = risque brûlure/coupure.</li>
+      <li><b>Remplacement de composant (S9-F2)</b> : circuit <b>inerté à l'azote par le professeur</b> — gestes
+      interdits : jamais récupérer de fluide, jamais braser/couper un circuit contenant du fluide, jamais
+      d'oxygène/air comprimé.</li>
+      <li><b>Coffret (S9-E1)</b> : consignation NF C 18-510 (VAT), mise sous tension par le professeur pour l'essai.</li>
+      <li><b>Procédure d'urgence</b> : couper (arrêt d'urgence), alerter, ne pas déplacer un électrisé ; trousse et
+      arrêt d'urgence localisés au rituel d'entrée de chaque séance.</li>
+    </ul>
+    <div class="incident" style="font-size:10pt; background:#fdeaea; border:1px solid #e8b4b4; border-radius:4px; padding:6px 12px; color:#8c2f2f">🚨 <b>En cas d'incident</b> : machine qui démarre de façon inattendue —
+    couper, alerter, ne pas s'approcher des parties tournantes. Circuit inerté qui semble en charge — arrêter la
+    manipulation, alerter le professeur, ne rien ouvrir. Élec : couper — arrêt d'urgence —, alerter, ne jamais
+    déplacer un élève électrisé avant coupure confirmée. Arrêt d'urgence et trousse de secours localisés dès
+    l'accueil de chaque séance.</div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 6 : MONTÉE SPIRALAIRE — CLÔTURE DE LA 1re ANNÉE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — montée spiralaire, clôture de la 1<sup>re</sup> année</span>
+    <span>CAP IFCA 1A · P4 · semaines 29-36</span>
+  </div>
+
+  <div class="surtitre">Progression annuelle <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Montée spiralaire — les niveaux visés atteints en fin de 1<sup>re</sup> année</h2>
+  <p style="font-size:11pt">Rappel charte §2 et §5 : l'échelle 0-4 (grilles de module) est le <b>positionnement
+  constaté</b> un jour donné ; la progression <b>I</b> (Initiation) / <b>C</b> (Consolidation) / <b>M</b> (Maîtrise) /
+  <b>V</b> (Validé) ci-dessous est le <b>niveau visé</b> dans la progression annuelle — deux axes distincts, à ne pas
+  confondre. <b>S9 CLÔT la 1<sup>re</sup> année</b> : les niveaux visés ci-dessous sont des <b>plafonds de fin de
+  1A</b>, pas des statuts d'activité (dans les modules S9-F1/F2/E1/T1/F3, le statut reste Découverte/Confortement ;
+  seule É4 porte le statut Évaluation).</p>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:9%">Code</th><th style="width:24%">Compétence</th><th style="width:17%">Niveau visé fin S8</th><th style="width:6%"></th><th style="width:17%">Niveau visé fin S9 (clôture 1A)</th><th>En S9</th></tr>
+    <tr><td><b>C4.5</b></td><td>Mesurer, comparer des grandeurs</td><td><span class="badge-niveau nM">Maîtrise</span> atteinte (S8-F2)</td><td class="fleche">→</td><td><span class="badge-niveau nV">Validé</span> (visé cadrage S9-F1)</td><td>S9-F1 <span class="statut stC">Confortement</span> puis <span class="statut stE">Évaluation</span> à É4 — confirmation sommative du niveau déjà atteint</td></tr>
+    <tr><td><b>C3.6</b></td><td>Câbler, repérer, connecter les liaisons électriques et électroniques</td><td><span class="badge-niveau nM">Maîtrise</span> confirmée (S8-E1)</td><td class="fleche">→</td><td><span class="badge-niveau nV">Validé</span> (visé cadrage S9-E1)</td><td>S9-E1 <span class="statut stC">Confortement</span> — dépannage en autonomie complète, sommet de l'autonomie élec de l'année</td></tr>
+    <tr><td><b>C1.3</b></td><td>Rendre compte</td><td><span class="badge-niveau nM">Maîtrise</span> atteinte (S8, F3)</td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span> confirmée (visé cadrage F3)</td><td>F3 <span class="statut stC">Confortement</span> — compte rendu d'intervention type</td></tr>
+    <tr><td><b>C1.1</b></td><td>Compléter, transmettre</td><td><span class="badge-niveau nC">Consolidation</span> confirmée (S8)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span> (visé cadrage F3)</td><td>F3 <span class="statut stC">Confortement</span> — carnet devenu dossier de maintenance</td></tr>
+    <tr><td><b>C3.4</b></td><td>Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)</td><td>dernier repère : S5 (brasage fort, azote) — non suivie dans les tableaux spiralaires S7-S8</td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span> (visé cadrage S9-F2)</td><td>S9-F2 <span class="statut stC">Confortement</span> — dépose/repose d'organe, gamme + auto-contrôle</td></tr>
+    <tr><td><b>C5.1</b></td><td>Remplacer des composants de l'installation</td><td>— (non travaillée, compétence NOUVELLE)</td><td class="fleche">→</td><td><span class="badge-niveau nC">Consolidation</span></td><td><span class="statut stD">Découverte</span> S9-F1 → <span class="statut stC">Confortement</span> S9-F2 → <span class="statut stE">Évaluation</span> É4 — la manipulation réelle du fluide (au-delà) reste 2<sup>e</sup> année</td></tr>
+  </table>
+  </div>
+  <p style="font-size:10pt; margin:-.2em 0 .6em"><i>Doctrine — S9 étant la dernière séquence de 1A, les niveaux visés
+  ci-dessus sont les <b>plafonds atteints en fin d'année</b> pour ces six compétences ; ils ne préjugent pas d'un
+  plafond toutes années confondues (C5.1 en particulier continuera sa progression en 2<sup>e</sup> année, avec la
+  manipulation réelle du fluide).</i></p>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.2em 0 1em"><b>C4.1</b> (tirer au vide) et <b>C4.7</b>
+  (raccorder les équipements de mesure) sont évaluées à É4 sans qu'un niveau visé spécifique leur soit annoté dans le
+  cadrage : consolidées en S7-S8, elles y sont positionnées « à froid ». <b>C3.7</b> (contrôler la mise en œuvre),
+  travaillée dans S9-F1/F2/E1, atteint un niveau visé <b>Maîtrise</b> (annoté cadrage S9-E1) sans historique
+  spiralaire détaillé dans les dossiers S7-S8. <b>C2.4</b> (sécuriser l'intervention) est un savoir-être transversal,
+  réactivé en continu depuis S1 et <b>pesé explicitement</b> à É4 : il ne suit pas l'échelle I/C/M/V. Aucun niveau
+  n'est affirmé au-delà de ce que porte le cadrage <code>_CADRAGE-S9.md</code>.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 7 : DESCRIPTIF DE L'ÉVALUATION É4 ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — descriptif de l'évaluation É4</span>
+    <span>CAP IFCA 1A · P4 · semaine 32</span>
+  </div>
+
+  <div class="surtitre">Descriptif de l'évaluation <span class="etiquette et-var">Variable</span></div>
+  <h2 class="titre-page">É4 — la 4<sup>e</sup> et DERNIÈRE évaluation sommative de la 1<sup>re</sup> année</h2>
+  <p>À la différence de S7 et S8 (qui n'avaient pas d'évaluation propre), <b>S9 porte É4</b> : la rampe longue ouverte
+  par C4.1 et C4.7 (S7), poursuivie par S8, se referme ici, en même temps que C4.5 (déjà consolidée) et la toute
+  nouvelle C5.1. Format identique à É3 : sujet élève par postes/feuilles + corrigé/grille 0-4 + plan de passation
+  (trio, sous-dossier <code>Évaluation sommative É4 S7-S9 (semaine 32)\</code>).</p>
+
+  <div class="carte-module evaluation">
+    <h4>É4 — ce qui est évalué <span class="badge-type" style="background:#fff6cc; color:#8a6d00">Semaine 32</span></h4>
+    <p style="margin-top:-.2em">4 compétences (maximum charte), statut <b>Évaluation</b>, remontée <b>École
+    Directe</b> : <b>C4.1</b> Tirer au vide le circuit frigorifique · <b>C4.5</b> Mesurer, comparer des grandeurs ·
+    <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle · <b>C5.1</b> Remplacer des composants
+    de l'installation (sans manipulation de fluide). <b>C2.4</b> Sécuriser l'intervention est pesée explicitement en
+    savoir-être, sans positionnement 0-4 séparé. Barème total : <b>40 points</b>.</p>
+  </div>
+
+  <h3>Les 3 postes</h3>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:12%">Poste</th><th style="width:16%">Durée</th><th style="width:38%">Contenu</th><th style="width:22%">Compétences sollicitées</th><th>Points<br><span style="font-weight:normal; text-transform:none">(indicatif)</span></th></tr>
+    <tr><td><b>FROID</b></td><td>2-3 h</td><td>Tirer au vide + poser les manomètres HP/BP + mini-diagnostic (relevés → SC/SR → hypothèse) + remplacer un composant désigné (hors fluide)</td><td>C4.1 · C4.7 · C4.5 · C5.1</td><td>26</td></tr>
+    <tr><td><b>ÉLEC</b></td><td>2-3 h</td><td>Remettre le coffret en service : défaut simple posé par le professeur, à partir du schéma, sans fiche guidée</td><td>appui C4.5 (C3.6 · C3.7 confortés, non remontés)</td><td>6</td></tr>
+    <tr><td><b>THÉORIE</b></td><td>2 h (écrit)</td><td>Relevés → conclusion de diagnostic (raisonnement SC/SR) + question conservation des denrées</td><td>appui C4.5 (S4.2 · S5.7)</td><td>4</td></tr>
+    <tr><td><b>SAVOIR-ÊTRE</b></td><td>3 postes</td><td>Consignation spontanée, honnêteté des relevés et des comptes rendus, sécurité sans rappel</td><td>C2.4 (pesé)</td><td>4</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em"><b>Répartition des points : indicative</b>
+  (Froid 26 [A 9 + B 9 + C 8] + Élec 6 + Théorie 4 + savoir-être C2.4 4 = 40) — la grille détaillée (critères
+  observables 0-4, barème définitif) vit dans le sous-dossier <code>Évaluation sommative É4 S7-S9 (semaine 32)\</code>
+  et reste <b>à faire valider par l'enseignant</b> avant passation.</p>
+
+  <h3>Ce que S9 vérifie sans le remonter, avant É4</h3>
+  <p>Chaque module d'atelier de S9 (S9-F1, S9-F2, S9-E1) comporte sa propre grille formative 0-4 (critères
+  observables, ligne savoir-être, auto-positionnement — charte §5), utilisée par le professeur pour ajuster
+  l'accompagnement et alimenter le carnet F3 ; aucune de ces grilles n'est remontée sur École Directe. C'est
+  <b>uniquement É4</b> qui déclenche la remontée officielle, en statut Évaluation, des quatre compétences listées
+  ci-dessus.</p>
+
+  <h3>Après É4 : aucun report possible, la remédiation se fait en clôture</h3>
+  <p>É4 étant la <b>dernière</b> évaluation sommative de 1<sup>re</sup> année, sa remédiation ne peut pas être
+  reportée en tête d'une séquence suivante (il n'y en a pas) : elle est intégralement prise en charge par le module
+  de clôture <b>S9-T2</b>, semaines 33-36 — détail feuille suivante.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 8 : CLÔTURE — S9-T2, CE QUI BOUCLE L'ANNÉE, PASSERELLE 2A ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — clôture, bilan de 1<sup>re</sup> année et passerelle 2A</span>
+    <span>CAP IFCA 1A · P4 · semaines 33-36</span>
+  </div>
+
+  <div class="surtitre">Clôture <span class="etiquette et-var">Variable — module ajouté au maître</span></div>
+  <h2 class="titre-page">S9-T2 — retour d'É4, remédiation et bilan de 1<sup>re</sup> année</h2>
+
+  <div class="encadre-cal">
+    <h3>⭐ Le dispositif de clôture, à 3 volets (semaines 33-36)</h3>
+    <p style="margin-top:-.2em">É4 est la <b>DERNIÈRE</b> évaluation de la 1<sup>re</sup> année : sa remédiation se
+    fait donc <b>en clôture de S9</b>, dans un module <b>NOUVEAU S9-T2</b>, cloné sur la mécanique rodée des T0
+    (S3-T2 / S5-T0 / S7-T0) mais élargi à la fin d'année.</p>
+    <ul style="margin-bottom:.3em">
+      <li><b>1. Postes de reprise par compétence d'É4</b> (groupes de besoin tournants) : poste <b>DIAGNOSTIC</b>
+      (C4.5 — relire des relevés, refaire un mini-diagnostic guidé), poste <b>MISE EN SERVICE</b> (C4.1/C4.7 —
+      reprendre vide + pose manos), poste <b>REMPLACEMENT</b> (C5.1 — refaire une dépose/repose d'organe hors fluide),
+      poste <b>COFFRET</b> (C3.6/C3.7 — remettre un coffret en service). Élève positionné 1-2 à É4 = <b>REPRISE</b> ;
+      élève positionné 3-4 = <b>TUTEUR pair</b> (fiche tuteur) ou défi transfert. Aucun résultat fictif, aucun
+      prénom ; tableaux à remplir par le professeur.</li>
+      <li><b>2. Bilan de 1<sup>re</sup> année</b> (le temps fort de la clôture) : chaque élève fait le <b>bilan
+      réflexif</b> de son année — <b>auto-positionnement I/C/M/V</b> sur les compétences travaillées (C2.4, C3.4,
+      C3.6, C3.7, C3.9, C4.1, C4.5, C4.6, C4.7, C5.1, C1.1, C1.3), ce qu'il sait faire seul, ses 2-3 objectifs pour la
+      2<sup>e</sup> année.</li>
+      <li><b>3. Rattrapages</b> (élèves absents/en difficulté sur un geste-clé de l'année) : créneaux fléchés, le
+      professeur rejoue le geste manquant.</li>
+    </ul>
+    <p style="margin-bottom:0; font-size:10pt">Le module reste <b>FORMATIF — rien n'est remonté</b>. <b>S9-T2 est un
+    ajout au maître</b> (comme S3-T2, S5-T0 et S7-T0 avant lui) — consigné dans <code>_ETAT.md</code>, à valider par
+    Franck. <b>PFMP2</b> (arbitrage n° 1 du socle, non tranché) : si placée en fin juin, elle occupe une partie des
+    semaines 33-36 — S9-T2 s'ajuste alors sur les créneaux, pas sur le fond.</p>
+  </div>
+
+  <div class="encadre-boucle">
+    <h3>◆ Ce qui boucle l'année — de l'installation à la maintenance</h3>
+    <p style="margin-top:-.2em">L'apprenti a suivi, en 1<sup>re</sup> année, tout le cycle de vie d'une installation
+    frigorifique, côté « arrière-boutique » : <b>installer</b> (cuivre, brasage — S1-S6), <b>prouver</b> (étanchéité
+    à l'azote — S5-S6), <b>mettre en service</b> (manomètres, vide, réglages, câblage, charge simulée — S7-S8), puis
+    <b>maintenir</b> (diagnostiquer par la mesure, remplacer un composant, rendre compte — S9). Chaque étape a été
+    vécue sans jamais manipuler de fluide frigorigène réel : c'est le fil qui tient toute la 1<sup>re</sup> année.</p>
+    <p style="margin-bottom:0">Passerelle explicite : <b>« l'an prochain, tu manipuleras le vrai fluide, avec
+    l'attestation. »</b> La vraie manipulation du fluide (charge, récupération) et le diagnostic approfondi, c'est la
+    <b>2<sup>e</sup> année</b>, avec l'<b>attestation d'aptitude à la manipulation des fluides frigorigènes</b> (S10
+    diagnostic approfondi, S13-S14 récupération/charge) — teasing honnête, à formaliser au bilan individuel.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 9 : RANGEMENT + CRÉDITS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S9 — rangement et crédits</span>
+    <span>CAP IFCA 1A · P4 · semaines 29-36</span>
+  </div>
+
+  <div class="surtitre">Rangement de la production <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Où trouver le plan de séance de chaque module</h2>
+  <p style="font-size:11pt">Les plans de séance, documents élève et documents professeur <b>ne sont pas recopiés
+  ici</b> : ils vivent chacun dans leur sous-dossier, à la racine du dossier de séquence S9 (convention usine
+  FrigorX). <b>7 modules</b> (dont l'évaluation É4 et le module de clôture S9-T2).</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th style="width:14%">Module</th><th style="width:46%">Sous-dossier</th><th>Contenu attendu</th></tr>
+    <tr><td><b>S9-F1</b></td><td><code>S9-F1 - Diagnostic guidé sur machine\</code></td><td>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td><b>S9-F2</b></td><td><code>S9-F2 - Remplacement d'un composant simple\</code></td><td>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td><b>S9-E1</b></td><td><code>S9-E1 - Coffret clim en autonomie\</code></td><td>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td><b>S9-T1</b></td><td><code>S9-T1 - Démarche de diagnostic et conservation des denrées\</code></td><td>Document élève · Document professeur</td></tr>
+    <tr><td><b>F3</b></td><td><code>F3 - Carnet de bord\</code></td><td>Document élève · Document professeur</td></tr>
+    <tr class="eval-row"><td><b>É4</b></td><td><code>Évaluation sommative É4 S7-S9 (semaine 32)\</code></td><td>Document élève - sujet · Document professeur - corrigé et grille · Plan de passation</td></tr>
+    <tr><td><b>S9-T2</b></td><td><code>S9-T2 - Retour d'É4, remédiation et bilan de 1re année\</code></td><td>Document élève · Document professeur</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 .6em">Totaux horaires recomptés : ateliers documentés
+  — S9-F1 4 h × 2 = <b>8 h</b> (sem. 29-30) + S9-F2 4 h × 2 = <b>8 h</b> (sem. 31 et 33) = froid <b>16 h</b> ; S9-E1
+  4 h × 2 passages + 1 séance = <b>12 h</b> (sem. 29-31) documentée + <b>4 h NON documentées</b> (reprise ciblée élec,
+  sem. 33, matériel S9-E1 réutilisé) = élec <b>16 h</b>. Théorie documentée : S9-T1 2 h × 2 = <b>4 h</b> (sem. 29-30)
+  ; <b>4 h NON documentées</b> (préparation É4 sem. 31 + correction collective/lancement du bilan sem. 33) = théorie
+  <b>8 h</b>. <b>É4</b> (semaine 32) : 3 postes documentés dans leur propre sous-dossier — froid 4 h + élec 4 h +
+  théorie (écrit) 2 h = <b>10 h</b>. F3 : fil de l'eau continu, intégré aux séances existantes (aucune heure
+  supplémentaire). <b>S9-T2</b> (semaines 34-36) : <b>30 h</b> documentées dans son propre sous-dossier (postes de
+  reprise, bilan, rattrapages — PFMP2 possible ici, arbitrage non tranché).<br>
+  <b>Total séquence</b> = froid 16 h + élec 16 h + théorie 8 h + É4 10 h + S9-T2 30 h = <b>80 h sur 8 semaines</b>,
+  conforme à l'organisation 10 h/semaine/élève du cadrage. Ce total inclut les 7 sous-dossiers de module listés
+  ci-dessus, qui rejoignent le présent dossier de séquence pour former <b>8 documents-cadre</b> au total dans
+  l'arborescence S9 (19 documents en comptant chaque fichier individuel des sous-dossiers).</p>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1.2em">Sortie <b>HTML seulement</b> à ce stade
+  (référence) — PDF et docx natif suivront <b>après le bon à tirer de Franck</b> (cadrage S9, règle 10). Après le bon
+  à tirer, la séquence rejoint également le RAG documentaire de l'usine (script
+  <code>outils\integrer-production.py</code>).</p>
+
+  <div class="surtitre">Crédits</div>
+  <div class="credits-bloc" style="margin:0">
+    <p style="margin:0 0 .8em"><b>Projet inerWeb</b> — © 2026 Franck Henninot.</p>
+    <p style="margin:0 0 .8em">Ce document est produit dans le cadre de l'enseignement du CAP Installateur en Froid
+    et Conditionnement d'Air (IFCA), LPP Jacques Raynaud — Campus EQUATIO.</p>
+    <p style="margin:0 0 .8em"><b>Usage pédagogique non commercial</b> : reproduction et adaptation autorisées pour
+    un usage d'enseignement, à condition de mentionner l'origine (F. Henninot — inerWeb Édu) ; toute exploitation
+    commerciale est interdite.</p>
+    <p style="margin:0">Licence équivalente à <b>CC BY-NC 4.0</b> · <b>inerweb.fr</b></p>
+  </div>
+  <div class="sources">
+    <p style="margin:.8em 0 .3em"><b>Sources autoritaires de ce dossier</b> : cadrage <code>_CADRAGE-S9.md</code>
+    (principe fondateur diagnostic/remplacement sans fluide, découpage modulaire, dispositif de clôture S9-T2, fil
+    rouge, méthodes imposées, codes officiels, tableau prudent des corrélations panne↔symptôme) · progression 1A CAP
+    IFCA codée (<code>_PROGRESSION-1A-CODEE.md</code>, en attente de bon à tirer — composition d'É4 sem. 32) ·
+    référentiel officiel CAP IFCA (codes et libellés T/S/C, vérifiés le 19/07/2026) · charte pédagogique FrigorX
+    (formule de Bowers §2, échelle 0-4 §5, sécurité §7) · dossiers de séquence S7 et S8 (forme clonée, harmonisation
+    1A stricte) · dossier S7, module S7-T0 (modèle du dispositif de clôture/remédiation) · sources métier de la base
+    indexée (diagnostic de pannes, SC/SR, remplacement de filtre/pressostat/détendeur, câblage coffret, conservation
+    des denrées — détail dans le cadrage). Aucune valeur ni corrélation panne↔symptôme n'a été inventée pour ce
+    dossier au-delà des cas archi-classiques listés au cadrage ; les points ouverts (module S9-T2 à valider, PFMP2,
+    nommage définitif d'É4, matériel réel disponible, arbre de diagnostic et enceintes S5.7 construits ex nihilo à
+    valider, dates réelles, copyright, anciens formats .bin/.doc à rouvrir) sont signalés dans <code>_ETAT.md</code>.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .carte-module, .grille-cartes>div, .bandeau-e1, .encadre-reserve, .encadre-cal, .encadre-fluide, .encadre-principe, .encadre-boucle{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,437 @@
+<meta charset="utf-8">
+<title>Document professeur — S1 · Module E2 · Montages et multimètre</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Sécurité, outillage et cuivre simple</td>
+      <td style="width:38%"><span class="lib">Module atelier E2 · 4 h — DOCUMENT PROFESSEUR</span><b>Montages et multimètre — premières mesures</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span> · semaines 1-4</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des 4 postes de mesure + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée</td>
+      <td><span class="lib">Modalité</span>Manipulation avant nommage + postes tournants de mesure (2 jalons) + fiche de relevés</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">prérequis, nouveau en S1-E1</span><br><b>S5.6</b> <span class="nuance">travaillé, augmenté aujourd'hui</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel · rigueur du geste · honnêteté du relevé</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11 · S5.6</span><br><span class="statut">Découverte</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T11 · S5.6</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module E2 : mêmes
+  observations et questions, même numérotation, même séquençage en 2 jalons (jalon 1 postes hors tension —
+  continuité et résistance —, jalon 2 postes sous tension — tension et intensité). Il y ajoute : les réponses
+  attendues à chaque observation/question avec point de vigilance, les critères observables poste par poste,
+  l'organisation du plateau des 4 postes, le minutage 4 h recompté et la différenciation (consolidation /
+  standard / approfondissement + FLE + TDAH-DYS). <b>Aucune valeur non autorisée n'est donnée</b> : la seule
+  valeur numérique citée est la <b>tension nominale du secteur français (230 V entre phase et neutre, valeur
+  normative)</b> ; toute autre valeur (résistance du composant, intensité du récepteur) dépend du matériel réel
+  du poste et reste <b>« selon le montage du poste, à faire valider »</b>.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Manipulation avant nommage, puis postes tournants de mesure.</b> Conformément
+  au principe « l'objet se manipule avant de se nommer », les élèves prennent le multimètre en main et
+  l'observent (molette, douilles, écran) <b>avant</b> que le mot « multimètre » ne soit prononcé : c'est la
+  phase 5 du déroulement (planter la notion). Les élèves tournent ensuite sur <b>4 postes</b>, par <b>2 jalons
+  successifs</b> organisés selon le risque : <b>jalon 1</b> = postes « hors tension » (continuité, résistance),
+  <b>jalon 2</b> = postes « sous tension » (tension, intensité). Cette progression du plus sûr vers le plus
+  exigeant respecte la logique spiralaire et laisse le temps d'installer le réflexe de sécurité avant d'aborder
+  les postes sous tension. Alternance systématique <b>agir → noter → réfléchir</b> : chaque poste se termine par
+  une question de compréhension avant la rotation, jamais trois mesures d'affilée sans un temps de réflexion.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Le poste <b>intensité</b> est le
+  seul qui exige un <b>contrôle visuel du câblage en série par le professeur avant toute remise sous tension</b>,
+  y compris en passage 2 : c'est une règle de sécurité qui ne s'allège jamais, contrairement au reste du
+  dispositif qui devient plus autonome au fil des deux passages. Prévoir un nombre de postes actifs compatible
+  avec une surveillance continue du poste intensité par le professeur.</p></div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation en 4 postes tournants.</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S1-E2-01 : préparer les postes de mesure du banc école, apprendre à utiliser le multimètre avant les prochains chantiers de câblage.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés et commentés, lien avec la formule (C4.5, C3.7) et le statut Découverte du jour.</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, exercice au fil de l'eau : repérage des organes vus en S1-E1 (interrupteur, lampe, prise) sur schéma vierge, rappel de la règle « hors tension avant d'intervenir ».</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (risques du jour, gestes interdits, conduite en cas d'incident, trousse et coupure générale localisées) puis « planter la notion » : OBSERVER en silence, en main, l'appareil posé sur chaque poste (molette, douilles, écran) SANS le nommer → NOMMER « multimètre » → EXPLICITER ses 4 fonctions.</td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (a) — démonstration resserrée</td><td>Démonstration commentée du professeur sur un poste : une mesure de continuité et une mesure de tension, en insistant sur la règle d'or « hors tension pour tout montage en série » et le geste interdit (jamais d'intensité en parallèle). Support des observations 1 à 3 et des questions de la feuille 2 du TP élève.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (b) — jalon 1 : postes hors tension</td><td>Rotation des binômes entre poste continuité et poste résistance (30 min chacun) : mesure, fiche de relevés, question de compréhension avant la rotation.</td></tr>
+    <tr><td>45 min</td><td class="ph">6. Guider l'étude (c) — jalon 2 : postes sous tension</td><td>Rotation des binômes entre poste tension (20 min) et poste intensité (25 min, câblage en série réalisé hors tension, contrôle professeur obligatoire avant remise sous tension), fiche de relevés, question de compréhension.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des 4 fiches de relevés, auto-positionnement par compétence (C4.5, C3.7 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord + bon de commande hebdomadaire (piles, cordons, fusibles de multimètre).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Multimètres remis sur OFF, cordons rangés, postes remis hors tension et débranchés, zone dégagée.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S1-T2 — les grandeurs électriques U/I/R en théorie).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; démonstration 20 min + pause 15 min + jalon 1 (1 h 00) + jalon 2 (45 min) = 2 h 20 ;
+  synthèse 15 min + bon de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, conforme au plan de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ OBSERVATION DU MULTIMÈTRE (FEUILLE 2 DU TP) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module atelier E2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — OBSERVER l'appareil (feuille 2 du TP élève)</h3>
+  <p style="font-size:10.3pt">Cette phase est la plus importante du module sur le plan pédagogique : les élèves
+  manipulent l'appareil <b>avant</b> qu'il soit nommé. Le professeur circule, ne dit pas encore « multimètre »,
+  et relance par des questions ouvertes (« que remarquez-vous ? », « à quoi cela peut-il servir selon vous ? »).</p>
+
+  <div class="reponse"><b class="t">Observation 1</b> — Combien de douilles comptez-vous et que voyez-vous écrit à côté de chacune ?<br><br>
+  <b>Réponse attendue :</b> selon le modèle du poste, en général 3 ou 4 douilles : une marquée <b>COM</b>
+  (commune), une marquée <b>V Ω</b> (ou VΩmA), et une ou deux marquées <b>A</b> ou <b>mA</b>/<b>10A</b> pour les
+  intensités plus fortes.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Certains élèves confondent les douilles avec des
+  « trous de rangement » : insister sur le fait que chaque douille correspond à un <b>rôle précis</b>, pas à un
+  choix indifférent.</div>
+
+  <div class="reponse"><b class="t">Observation 2</b> — Recopiez 4 lettres ou symboles lus autour de la molette.<br><br>
+  <b>Réponse attendue :</b> selon le modèle, des symboles comme <b>Ω</b>, <b>V</b> (parfois <b>V=</b> et <b>V~</b>),
+  <b>A</b> (parfois <b>A=</b> et <b>A~</b>), le symbole de continuité (souvent une onde ou <b>)))</b>), et la
+  position <b>OFF</b>.</div>
+
+  <div class="reponse"><b class="t">Observation 3</b> — Que se passe-t-il sur l'écran quand on tourne la molette, sans rien brancher ?<br><br>
+  <b>Réponse attendue :</b> l'écran change d'affichage selon la position (par exemple « 0 » ou « OL »/« 1 » en
+  ohmmètre à vide, un affichage figé à 0 en voltmètre à vide) : cela montre que la molette <b>choisit une
+  fonction différente</b> à chaque position, même sans mesure en cours.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser un élève brancher les cordons
+  pendant cette phase d'observation : le geste attendu est seulement de <b>regarder et tourner la molette à
+  vide</b>.</div>
+
+  <div class="reponse"><b class="t">Question</b> — Repérez les 4 grandes familles de fonctions et leur unité.<br><br>
+  <b>Réponse attendue :</b> résistance (Ω), continuité (Ω, résultat sonore), tension (V), intensité (A). Le
+  signe <b>=</b> indique le continu, le signe <b>~</b> l'alternatif.</div>
+
+  <h3 class="section">Erreurs typiques de cette phase + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>L'élève nomme spontanément « multimètre » avant la phase de nommage</td><td>Ne pas corriger frontalement : valoriser l'observation (« qu'est-ce qui te fait dire ça ? ») puis poursuivre le cheminement observer → nommer → expliciter avec le reste du groupe.</td></tr>
+    <tr><td>Confusion entre calibre et fonction</td><td>Reformuler : la fonction dit <i>quoi</i> mesurer (Ω, V, A), le calibre dit <i>jusqu'à combien</i> l'appareil peut afficher dans cette fonction.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 1 (CONTINUITÉ + RÉSISTANCE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module atelier E2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — poste 1 : continuité</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Vérification hors tension avant test</td><td>L'élève vérifie que rien n'est raccordé à une source avant de sortir le multimètre : geste systématique, jamais improvisé.</td></tr>
+    <tr><td>Auto-contrôle de l'appareil</td><td>Les deux pointes de touche mises en contact bipent : c'est la preuve que l'appareil et les cordons fonctionnent avant de tester le composant.</td></tr>
+    <tr><td>Interprétation bip / silence</td><td>Bip = circuit fermé (continuité) ; silence = circuit ouvert (pas de continuité). Aucune valeur numérique n'est demandée ici, seulement une lecture binaire.</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question</b> — L'interrupteur ouvert donne-t-il le même résultat que fermé ? Pourquoi ?<br><br>
+  <b>Réponse attendue :</b> non. En position <b>ouverte</b>, le contact interne est séparé : pas de bip, pas de
+  continuité. En position <b>fermée</b>, le contact se touche : le circuit est refermé, l'appareil bipe. C'est
+  exactement le rôle d'un interrupteur : ouvrir ou fermer le passage du courant.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui répond « ça dépend du courant » n'a
+  pas compris que la continuité teste un état <b>mécanique</b> du contact, pas une intensité : faire reformuler
+  avec les mots « ouvert » et « fermé ».</div>
+
+  <h3 class="section">Corrigé — poste 2 : résistance</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Composant déconnecté avant mesure</td><td>Le composant doit être isolé du reste du circuit ; une résistance mesurée en place, raccordée à d'autres éléments, fausse la lecture (chemins parallèles).</td></tr>
+    <tr><td>Choix du calibre</td><td>Calibre le plus grand d'abord si la valeur n'est pas connue, puis affiné pour une lecture précise.</td></tr>
+    <tr><td>Valeur lue</td><td><b>Selon le composant réellement monté sur le poste, à faire valider par le professeur</b> — aucune valeur cible n'est imposée par ce document.</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question</b> — La valeur serait-elle fiable si le composant restait raccordé au circuit ?<br><br>
+  <b>Réponse attendue :</b> non, ou pas nécessairement. Si le composant reste connecté à d'autres éléments, le
+  multimètre mesure la résistance de <b>tout le chemin</b> disponible entre ses deux pointes de touche, pas
+  seulement celle du composant visé : la valeur lue peut être plus faible ou différente de la valeur réelle du
+  composant seul.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — C'est le point le plus souvent oublié en pratique
+  future (diagnostic sur circuit réel) : rappeler que la résistance ne se mesure fiablement que sur un composant
+  <b>isolé</b>, jamais sur un circuit encore raccordé à sa source ou à d'autres branches.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ JALON 2 (TENSION + INTENSITÉ) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module atelier E2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — poste 3 : tension</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Branchement en parallèle</td><td>Les deux pointes de touche se posent à côté du circuit, sans le couper, entre les deux points à comparer.</td></tr>
+    <tr><td>Sécurité du geste</td><td>Ne jamais toucher les parties métalliques nues des pointes de touche pendant que le circuit est sous tension.</td></tr>
+    <tr><td>Valeurs lues</td><td>Tension nominale du secteur français : <b>230 V</b> entre phase et neutre (valeur normative). Aux bornes de la lampe interrupteur ouvert : <b>0 V</b> (aucun courant ne circule, donc pas de chute de tension dans la lampe). Valeur exacte du poste à confirmer.</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi la tension aux bornes de la lampe est-elle nulle interrupteur ouvert ?<br><br>
+  <b>Réponse attendue :</b> quand l'interrupteur est ouvert, le circuit est coupé : aucun courant ne circule.
+  Sans courant, il n'y a pas de tension aux bornes de la lampe (elle n'est plus reliée électriquement à la
+  source par un chemin fermé). Juste avant l'interrupteur, côté réseau, la tension du secteur reste présente :
+  c'est ce qui différencie « amont » et « aval » d'un organe de coupure.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui répond « il n'y a plus d'électricité
+  du tout » généralise à tort : la tension réseau reste présente en amont de l'interrupteur ouvert ; seule la
+  portion après la coupure est à 0 V. Faire préciser « avant » / « après » l'organe de coupure.</div>
+
+  <h3 class="section">Corrigé — poste 4 : intensité (poste à règle de sécurité renforcée)</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Mise hors tension avant câblage</td><td>Le poste doit être hors tension avant toute coupure du fil et insertion du multimètre en série : geste non négociable.</td></tr>
+    <tr><td>Montage en série</td><td>Le circuit est coupé à l'endroit indiqué et le multimètre est inséré <b>dans</b> le fil, jamais posé « à côté ».</td></tr>
+    <tr><td>Contrôle professeur avant remise sous tension</td><td>Visa obligatoire sur la fiche de relevés avant toute remise sous tension : c'est le point de contrôle central du poste, comme le permis de feu pour un brasage.</td></tr>
+    <tr><td>Valeur lue</td><td><b>Selon le récepteur réellement monté sur le poste, à faire valider par le professeur.</b></td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi couper le circuit pour l'ampèremètre, alors que le voltmètre se pose juste à côté ?<br><br>
+  <b>Réponse attendue :</b> l'intensité est le courant qui <b>circule dans</b> un fil : pour la mesurer, il faut
+  que tout ce courant traverse l'appareil, donc l'insérer <b>dans le chemin du courant</b> (en série). La tension
+  est une <b>différence</b> entre deux points : on la mesure en se branchant <b>en dérivation</b> (en parallèle),
+  sans interrompre le circuit principal. Brancher l'ampèremètre en parallèle créerait un chemin de résistance
+  quasi nulle directement aux bornes de la source : un court-circuit.</div>
+  <div class="vigilance"><b class="t">Point de vigilance — geste interdit</b> — Toute tentative de brancher
+  l'ampèremètre en parallèle doit être interrompue <b>immédiatement</b> par le professeur, avant même la mise
+  sous tension si elle est détectée au câblage. C'est l'erreur la plus dangereuse du module pour le matériel :
+  elle entraîne automatiquement un niveau <b>1 — Non acquis</b> en savoir-être (voir grille, feuille 6).</div>
+
+  <h3 class="section">Corrigé — question de synthèse (feuille 5 du TP élève)</h3>
+  <div class="reponse"><b class="t">Question</b> — Quels postes se mesurent hors tension, lesquels sous tension, et pourquoi ?<br><br>
+  <b>Réponse attendue :</b> continuité et résistance se mesurent <b>hors tension</b> car elles testent une
+  propriété du composant lui-même (son état ouvert/fermé, sa valeur propre), qui existe indépendamment de toute
+  alimentation. Tension et intensité se mesurent <b>sous tension</b> car ce sont des grandeurs qui n'existent que
+  lorsque le circuit fonctionne réellement, alimenté par sa source.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — ORGANISATION DU PLATEAU + ERREURS TYPIQUES + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module atelier E2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation du plateau — 4 postes, rotation, sécurité</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Poste</th><th style="width:38%">Matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>1 · Continuité</b></td><td>Multimètre, cordons, câble multifilaire non repéré, interrupteur démonté sur platine.</td><td>Toujours hors tension ; auto-contrôle de l'appareil (pointes en contact) avant de tester.</td></tr>
+    <tr><td><b>2 · Résistance</b></td><td>Multimètre, cordons, composant résistif isolé sur platine.</td><td>Composant bien déconnecté de tout circuit avant la mesure.</td></tr>
+    <tr><td><b>3 · Tension</b></td><td>Multimètre, cordons, platine secteur sécurisée avec interrupteur et lampe témoin.</td><td>Ne jamais toucher les parties métalliques nues pendant la mesure ; poste sous tension surveillé.</td></tr>
+    <tr><td><b>4 · Intensité</b></td><td>Multimètre, cordons, petit récepteur résistif câblable en série, poste sécurisé.</td><td><b>Poste à surveillance renforcée</b> : contrôle visuel obligatoire du câblage en série avant chaque remise sous tension, par le professeur en personne.</td></tr>
+  </table>
+  <p style="font-size:10pt" class="vigilance"><b class="t">Rotation —</b> jalon 1 (continuité + résistance) puis
+  jalon 2 (tension + intensité) : les binômes ne passent au jalon 2 qu'après avoir terminé le jalon 1, de façon à
+  ce que le réflexe « hors tension d'abord » soit installé avant d'aborder les postes sous tension. Le professeur
+  reste positionné de préférence à proximité du poste intensité pendant tout le jalon 2.</p>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Tentative de mesurer une intensité en branchant en parallèle</td><td>Interrompre immédiatement avant mise sous tension, faire revenir sur le schéma du poste intensité, refaire vérifier le point de coupure du circuit avant nouvel essai.</td></tr>
+    <tr><td>Remise sous tension sans attendre le visa du professeur</td><td>Couper immédiatement, rappeler la règle du visa obligatoire, comparer avec le rituel du permis de feu déjà vu pour le brasage (même logique de contrôle avant risque).</td></tr>
+    <tr><td>Mauvais choix de calibre (trop petit, affichage « OL » ou saturé)</td><td>Faire remonter au calibre supérieur, expliquer que ce n'est pas une panne mais un dépassement d'échelle.</td></tr>
+    <tr><td>Résistance mesurée sans déconnecter le composant</td><td>Faire déconnecter au moins une borne avant de recommencer la mesure, comparer les deux valeurs obtenues.</td></tr>
+    <tr><td>Confusion entre les douilles V Ω et A / mA</td><td>Revenir à la phase d'observation : demander de relire ce qui est écrit à côté de chaque douille avant de brancher.</td></tr>
+    <tr><td>Oubli d'écrire l'unité sur la fiche de relevés</td><td>Rappeler qu'un nombre seul ne veut rien dire en physique : il manque toujours une unité.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Le professeur reste au poste avec le binôme pour la première mesure de chaque poste, calibre déjà annoncé ; fiche de relevés avec la fonction/le calibre déjà écrits, l'élève ne fait que mesurer et lire.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, rotation par les 2 jalons, fiche de relevés complète à chaque poste.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de ses propres mesures, l'élève explique à un pair pourquoi telle fonction et tel calibre conviennent, sans jamais réaliser le câblage à sa place au poste intensité.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire répété à l'identique à chaque poste (« hors tension », « en série », « en parallèle »), expliqué et mimé dès sa première apparition ; un pictogramme simple par fonction (Ω, V, A) collé sur la fiche de relevés ; gestes montrés en plus d'être dits, notamment le geste interdit (mimer « jamais ça » pour le parallèle sur l'intensité).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Fiche de relevés découpée poste par poste, une action à la fois (case à cocher avant de passer à la suivante) ; le contrôle professeur du poste intensité matérialisé par une case bien visible à ne pas sauter ; limiter les sollicitations simultanées : un seul geste à la fois pendant le câblage en série.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — GRILLE 0-4 (CORRIGÉ) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module atelier E2 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>Découverte</b> pour C4.5 et C3.7 —
+  aucun poids sur le diplôme, positionnement non remonté.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne sait pas choisir la fonction/le calibre, lecture erronée même avec aide.</td>
+      <td>Mesure correcte avec l'aide du professeur pour choisir la fonction ou le calibre.</td>
+      <td>Choisit seul la fonction et le calibre, réalise la mesure et note la valeur correctement pour au moins 3 des 4 postes.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi telle fonction convient pour telle grandeur.</td>
+    </tr>
+    <tr>
+      <td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T11 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne respecte pas le hors tension pour le montage en série, ou ne sollicite pas le contrôle du professeur avant remise sous tension.</td>
+      <td>Respecte le hors tension avec un rappel, sollicite le contrôle du professeur après rappel.</td>
+      <td>Respecte seul le hors tension pour le montage en série, sollicite spontanément le contrôle du professeur avant toute remise sous tension.</td>
+      <td>Comme « Acquis », et rappelle la règle à un pair avant qu'il ne commette l'erreur.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté du relevé</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste interdit commis (intensité mesurée en parallèle, ou remise sous tension sans contrôle professeur) : niveau 1 automatique, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Sécurité respectée sans rappel, relevés honnêtes même en cas d'erreur de mesure.</td>
+      <td>Comme « Acquis », et veille spontanément à la sécurité d'un pair.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> toute tentative de brancher
+  l'ampèremètre en parallèle, ou toute remise sous tension sans le visa du professeur, entraîne automatiquement
+  un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du reste des mesures réalisées ce
+  jour-là : c'est un principe de sécurité non négociable, pas un simple critère parmi d'autres.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques électriques</b> — hors tension, gestes interdits, contrôle avant remise sous tension ;</li>
+    <li><b>Mathématiques / sciences</b> — unités de mesure, notion de grandeur (appui S1-T2) ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (voir module F3) ;</li>
+    <li><b>Module S1-E1</b> — câblage domestique simple, déjà entamé en amont ou en parallèle selon la rotation des demi-groupes.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : TP 04 - multimètre +
+  TP 04 - multimètre correction (F. Henninot, base 2nde TNE) ; TP2 atelier elec élèves (F. Henninot / collègues) ;
+  Utilisation d'une pince ampèremétrique (F. Henninot / collègues) ; Exercice 01 et Exercice 02 - S4 Électricité +
+  corrections (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

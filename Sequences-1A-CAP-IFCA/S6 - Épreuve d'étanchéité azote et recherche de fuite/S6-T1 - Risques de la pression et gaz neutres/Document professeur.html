@@ -1,0 +1,482 @@
+<meta charset="utf-8">
+<title>Document professeur — S6 · Module théorie T1 · Risques de la pression et gaz neutres</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .icone-symb{display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--filet); border-radius:6px; padding:4px 8px}
+  .regle-or{border-left:4px solid var(--orange); background:#fff7f3; padding:6px 12px; margin:.3em 0; font-size:10pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Les risques de la pression et les gaz neutres</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S6-T1 · 2 h — DOCUMENT PROFESSEUR</span><b>Risques de la pression, gaz neutres</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S6</span> · sem. 18</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (classe entière) — 3 documents authentiques photocopiés, 1 jeu par équipe</td>
+      <td><span class="lib">Durée</span>2 h — cours actif, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → étude de documents en équipes (A/B/C) → restitution croisée → application → synthèse/trace écrite</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — module théorie de classe entière ; sécurise directement T12 (respecter les consignes de sécurité) travaillée en S6-F1 la semaine suivante</div>
+    <div class="case"><h4>Savoirs</h4><b>S6.2</b> Principaux risques et moyens de prévention · <b>S6.3</b> Identification des dangers et prévention <span class="nuance">tous deux augmentés — prolongent la découverte de l'azote en S5-F2</span></div>
+    <div class="case"><h4>Savoir-être</h4>Lire un document professionnel avant de conclure · travailler en équipe · restituer honnêtement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Confortement — vers Maîtrise</span> <b>C2.4</b> Sécuriser l'intervention — <span class="nuance">positionnement constaté ce jour, poids réduit ; pas de remontée École Directe (réservée à É3)</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la numérotation du document élève (équipes
+  A-B-C, exercices 1 à 3, règles d'or 1 à 6) et y ajoute les réponses attendues, l'organisation matérielle, la
+  conduite minutée en 4 phases, les vigilances et la différenciation. <b>Aucune valeur de pression ou de
+  durée d'épreuve n'est donnée ici</b> : cela relève du document S6-F1 (« pression fixée par le professeur »,
+  « durée de tenue fixée par le professeur ») — ce module T1 travaille le <b>pourquoi</b>, pas la procédure
+  chiffrée.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Étude de documents authentiques en équipes</b> (méthode imposée par le
+  cadrage S6, aucune reprise d'une méthode déjà utilisée en S1→S5) : la sécurité ne se découvre pas par
+  l'expérience — elle se lit dans de vrais documents professionnels, puis elle s'impose. 3 équipes, 3
+  documents différents (FDS azote / bouteille-détendeur INRS / accidents-conduite à tenir), chaque équipe
+  extrait « ses 5 règles », puis restitution croisée : chaque équipe devient experte de son document face aux
+  deux autres. Le professeur formalise les <b>règles d'or</b> après les restitutions, jamais avant.</p>
+  <div class="vigilance"><b class="t">Matériel à préparer</b> — photocopier les 3 extraits de documents (une
+  page par équipe, contenu déjà reproduit sur le document élève, feuilles 2 à 4) en nombre suffisant pour
+  chaque sous-groupe ; prévoir l'affichage ou la projection du pictogramme CLP en grand format pour
+  l'exercice 3. Adapter la taille des équipes à l'effectif réel (ex. 3 équipes de 8 pour 24 élèves).</div>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche</td><td>2 min : présentation du fil rouge (l'arrière-boutique
+    va bientôt subir son épreuve d'étanchéité). 3 min : question de départ notée individuellement (pourquoi
+    ne peut-on pas mettre n'importe quel gaz sous pression dans un circuit frigorifique). 3 min : rappel
+    collectif express de S5-F2 (manodétendeur manipulé par paliers, check-list signée, qui deviendra un PV).
+    2 min : présentation de la méthode du jour (3 équipes, 3 documents authentiques, restitution croisée).</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Découverte</td><td>20 min : travail en équipe — chaque équipe lit
+    SON extrait de document (FDS azote / bouteille-détendeur INRS / accidents-conduite à tenir) et rédige ses
+    5 règles. 15 min : restitution croisée — chaque équipe présente son document et ses règles aux 2 autres
+    (5 min chacune), qui notent une règle retenue. 5 min : le professeur formalise oralement pourquoi
+    l'azote convient à une épreuve et pourquoi l'oxygène/l'air comprimé ne conviennent jamais.</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application</td><td>Exercice 1 (15 min, dont 5 de correction) : 8
+    affirmations vrai/faux à justifier à partir des règles des 3 équipes. Exercice 2 (20 min, dont 5 de
+    correction) : 3 scénarios « que faire si… », raisonnement qualitatif. Exercice 3 (15 min, dont 5 de
+    correction) : lecture du pictogramme CLP « gaz sous pression » extrait de la FDS azote.</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse / trace écrite</td><td>12 min : fiche « règles d'or de
+    l'azote » (6 règles) complétée et corrigée collectivement — trace écrite de référence, à ressortir au
+    début de S6-F1. 8 min : auto-positionnement 0-4 (Confortement, poids réduit) et clôture — annonce que la
+    semaine prochaine, l'élève manipule lui-même le manodétendeur et remplit le PV d'épreuve.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à
+  la trame « Module THÉORIE — 2 h » du cadrage S6 (accroche 10 → découverte 40 → application 50 → synthèse
+  20).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ ÉQUIPE A (FDS AZOTE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Équipe A (FDS azote), les 5 règles attendues</h3>
+  <table class="mini">
+    <tr><th style="width:8%">N°</th><th>Règle attendue, ancrée sur le document</th></tr>
+    <tr><td>1</td><td>L'azote est un <b>gaz sous pression</b> (mention H280) : le récipient peut exploser sous
+    l'effet de la chaleur — jamais de flamme ni de source de chaleur près d'une bouteille (FDS §2.2).</td></tr>
+    <tr><td>2</td><td>L'azote est <b>asphyxiant à forte concentration</b> (FDS §2.3) : il prend la place de
+    l'oxygène dans l'air, sans donner aucun signe d'alerte.</td></tr>
+    <tr><td>3</td><td>Seules les <b>personnes formées</b> manipulent un gaz sous pression ; on contrôle
+    l'absence de fuite sur toute l'installation avant utilisation (FDS §7.1).</td></tr>
+    <tr><td>4</td><td>On stocke la bouteille dans un endroit <b>bien ventilé</b>, à température inférieure à
+    50 °C, <b>debout</b> et sécurisée contre les chutes (FDS §7.2).</td></tr>
+    <tr><td>5</td><td>En cas d'inhalation massive : évacuer la victime en zone non contaminée, la maintenir au
+    chaud et au repos, appeler les secours (FDS §4.1) — « les risques d'asphyxie sont souvent sous-estimés »
+    (FDS §16).</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">Dédramatiser sans minimiser</b> — L'azote <b>n'est pas toxique</b> : ce
+  n'est pas un poison. Le danger vient uniquement du fait qu'il <b>prend la place de l'oxygène</b> dans un
+  espace mal ventilé (formulation exacte de la FDS, §2.3 et §16). Il faut donc dire clairement aux élèves :
+  « l'azote ne vous empoisonne pas, il vous prive d'air » — ni dramatiser à l'excès (l'azote de l'atelier,
+  utilisé en petite quantité avec ventilation normale, est un gaz de travail courant et sûr), ni minimiser
+  (le risque existe bel et bien dès qu'un local est confiné et mal ventilé, et l'azote ne prévient jamais par
+  une odeur).</div>
+
+  <div class="reponse"><b class="t">Pourquoi l'azote pour une épreuve d'étanchéité ?</b> — Parce qu'il est
+  <b>inerte</b> (il ne réagit pas avec les résidus du circuit — huile, traces de flux de brasage), sec, peu
+  coûteux et disponible en bouteille à haute pression : il permet de vérifier l'étanchéité sans risque
+  chimique. C'est un point que la classe formalise elle-même en croisant équipe A (les dangers de l'azote
+  sont maîtrisables si on respecte les règles) et équipe B/C (pourquoi l'oxygène et l'air comprimé sont, eux,
+  écartés).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ ÉQUIPE B (BOUTEILLE ET DÉTENDEUR) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Équipe B (bouteille et détendeur), les 5 règles attendues</h3>
+  <table class="mini">
+    <tr><th style="width:8%">N°</th><th>Règle attendue, ancrée sur le document</th></tr>
+    <tr><td>1</td><td>Le <b>robinet</b> est la partie la plus fragile de la bouteille, l'endroit par où le gaz
+    peut s'échapper : on l'examine régulièrement (ED 742, fiche « Les bouteilles »).</td></tr>
+    <tr><td>2</td><td>On manipule la bouteille <b>avec précaution</b> : jamais comme enclume, cale ou support ;
+    on la déplace à l'aide d'un chariot, jamais en la traînant ou en la faisant rouler.</td></tr>
+    <tr><td>3</td><td>Les volants des robinets se manœuvrent <b>à la main</b> — jamais à la pince ni au
+    marteau ; un robinet endommagé est signalé, jamais réparé par l'utilisateur.</td></tr>
+    <tr><td>4</td><td>Le <b>détendeur</b> ramène la pression de stockage (très haute, variable) à une pression
+    d'utilisation réglée et constante : avant d'ouvrir la bouteille, la vis de détente doit être
+    complètement desserrée, puis on ouvre lentement le robinet (ED 742, fiche « Les détendeurs »).</td></tr>
+    <tr><td>5</td><td>Un détendeur givré se dégivre <b>à l'eau chaude, jamais à la flamme</b> — même logique
+    que la règle n°1 de l'équipe A (jamais de flamme près d'un gaz sous pression).</td></tr>
+  </table>
+
+  <p style="font-size:9.8pt">Le schéma du manodétendeur (déjà rencontré en S5-F2) illustre concrètement la
+  règle n°4 : la bouteille est à très haute pression (ex. 200 bar sur le schéma), le détendeur la ramène à une
+  pression d'utilisation choisie et stable (ex. 8 bar sur le schéma — valeur d'exemple du schéma, pas une
+  consigne pour l'épreuve, qui sera « fixée par le professeur » en S6-F1).</p>
+
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser croire que ce document B parle
+  spécifiquement de l'azote : l'ED 742 est écrit pour les gaz du chalumeau (acétylène, propane, oxygène).
+  Les règles retenues ici (robinet fragile, manipulation avec précaution, détendeur, jamais de flamme) sont
+  des règles <b>générales de tout gaz sous pression en bouteille</b>, transposables telles quelles à la
+  bouteille d'azote. Ne pas transposer les valeurs chiffrées propres au chalumeau (pressions, couleurs de
+  bouteilles) : elles ne concernent pas l'azote et sortent du champ de ce module.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ ÉQUIPE C (ACCIDENTS) + FORMALISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Équipe C (accidents et conduite à tenir), les 5 règles attendues</h3>
+  <table class="mini">
+    <tr><th style="width:8%">N°</th><th>Règle attendue, ancrée sur le document</th></tr>
+    <tr><td>1</td><td>« Une tenue adaptée, une bonne vigilance ainsi qu'une connaissance des risques permettent
+    d'éviter la plupart des accidents » (fiche PRP CAP IFCA) — la sécurité commence AVANT l'accident.</td></tr>
+    <tr><td>2</td><td>En cas d'inhalation ou de malaise respiratoire : mettre la victime en <b>position
+    assise</b> si elle a du mal à respirer, <b>alerter les secours</b> (18 ou 112).</td></tr>
+    <tr><td>3</td><td>Face à un danger, on <b>coupe la source</b> avant de porter secours (exemple électrique :
+    couper le courant, éloigner la victime avec un objet non conducteur) — transposable : on ferme d'abord
+    l'arrivée de gaz avant d'intervenir.</td></tr>
+    <tr><td>4</td><td><b>Équipements de protection individuelle</b> à porter pour ce type d'intervention :
+    lunettes de protection enveloppantes (teinte 4 à 7), gants, chaussures de sécurité (fiche CDG 50).</td></tr>
+    <tr><td>5</td><td>Avant tout travail sous pression : <b>vérifier l'absence de fuite à l'eau savonneuse</b>
+    (fiche CDG 50) — même geste que celui pratiqué depuis S3-F1, retrouvé en S6-F2.</td></tr>
+  </table>
+
+  <h3 class="section">Notions formalisées par le professeur (après les 3 restitutions)</h3>
+  <div class="reponse"><b class="t">Pourquoi jamais l'oxygène ?</b> — D'après l'ED 742 : « Un excès
+  d'oxygène dans l'air ambiant... augmente les risques d'incendie. Les corps gras peuvent s'enflammer
+  spontanément » ; et plus loin : « ne vous servez jamais de l'oxygène à la place de l'air ». Un circuit
+  frigorifique contient toujours des traces d'huile : un excès d'oxygène au contact de cette huile peut
+  provoquer une inflammation spontanée. C'est la raison technique, au-delà de la simple interdiction, pour
+  laquelle l'oxygène n'est <b>jamais</b> utilisé pour une épreuve d'étanchéité.</div>
+  <div class="reponse"><b class="t">Pourquoi jamais l'air comprimé ?</b> — Point non documenté dans les 4
+  sources de ce module : à formuler comme une règle professionnelle de l'atelier, à faire valider
+  (l'air comprimé d'un compresseur d'atelier n'est pas garanti sec ni exempt de traces d'huile de
+  compression). Le dire clairement aux élèves : « selon les règles professionnelles de l'atelier, à faire
+  valider » — ne pas inventer de valeur ou de mécanisme chiffré non sourcé.</div>
+  <div class="vigilance"><b class="t">Erreur typique</b> — Un élève qui dit « l'azote est dangereux, il ne
+  faut presque pas s'en servir » sur-réagit : à corriger en rappelant que l'azote de l'atelier, manipulé
+  selon les règles (ventilation, formation, bouteille debout), est un gaz de travail courant et sûr — le
+  risque vient du <b>non-respect</b> des règles, pas du gaz lui-même.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CORRIGÉ MISE EN COMMUN + EXERCICE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — restitution croisée</h3>
+  <p style="font-size:10.3pt">Vérifier, pendant les présentations, que chaque équipe cite au moins une règle
+  précise (pas une reformulation vague type « il faut faire attention ») et qu'elle indique d'où vient la
+  règle (nom du document). Un élève qui écoute doit pouvoir noter la règle d'une autre équipe avec ses mots.</p>
+
+  <h3 class="section">Corrigé — Exercice 1 (vrai/faux justifié)</h3>
+  <table class="mini">
+    <tr><th style="width:44%">Affirmation</th><th style="width:10%">Réponse</th><th>Justification attendue</th></tr>
+    <tr><td>Épreuve à l'air comprimé si pas d'azote disponible</td><td><b>FAUX</b></td><td>Règle d'atelier
+    (à faire valider) : l'azote est le seul gaz utilisé pour une épreuve ; jamais de remplacement improvisé.</td></tr>
+    <tr><td>On peut sentir l'azote en concentration dangereuse</td><td><b>FAUX</b></td><td>FDS §9 : incolore,
+    « odeur non détectable » — le seuil olfactif est inapproprié pour alerter (§9, §16).</td></tr>
+    <tr><td>Bouteille stockée debout, attachée</td><td><b>VRAI</b></td><td>FDS §7.2 + ED 742 : position
+    verticale, sécurisée contre les chutes.</td></tr>
+    <tr><td>Réparer soi-même un robinet qui coince</td><td><b>FAUX</b></td><td>FDS §7.1 : « ne jamais
+    chercher à réparer ou modifier le robinet » ; ED 742 : robinet endommagé signalé, jamais forcé.</td></tr>
+    <tr><td>Dégivrer un détendeur à l'eau chaude, jamais à la flamme</td><td><b>VRAI</b></td><td>ED 742,
+    fiche « Les détendeurs ».</td></tr>
+    <tr><td>Oxygène dangereux car peut enflammer des matières grasses</td><td><b>VRAI</b></td><td>ED 742 :
+    « un excès d'oxygène... peut provoquer l'inflammation spontanée » des corps gras (huile du circuit).</td></tr>
+    <tr><td>Malaise : évacuer en air non contaminé puis alerter</td><td><b>VRAI</b></td><td>FDS §4.1 (zone non
+    contaminée, chaud, repos, médecin) + fiche PRP CAP IFCA (alerter 18/112).</td></tr>
+    <tr><td>Manipuler sans formation, juste être prudent</td><td><b>FAUX</b></td><td>FDS §7.1 : « seules les
+    personnes ayant l'expérience et la formation appropriée peuvent manipuler les gaz sous pression ».</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — CORRIGÉ EXERCICES 2 ET 3 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 2 (que faire si… ?)</h3>
+  <table class="mini">
+    <tr><th style="width:38%">Situation</th><th>Réponse attendue</th></tr>
+    <tr><td>Un camarade propose de finir à l'air comprimé faute d'azote</td><td><b>Refuser fermement</b> :
+    c'est un geste interdit (règle d'or n°1). Prévenir immédiatement le professeur ; ne jamais improviser un
+    remplacement de gaz, même « pour dépanner ».</td></tr>
+    <tr><td>Chapeau de protection du robinet cassé</td><td><b>Signaler</b> au professeur avant tout rangement
+    (FDS §7.1 : « les robinets endommagés doivent être immédiatement signalés au fournisseur »). Ne pas
+    utiliser ni ranger la bouteille tant que le point n'est pas traité ; ne jamais réparer soi-même.</td></tr>
+    <tr><td>Camarade patraque, étourdi, local mal ventilé près d'une épreuve d'azote</td><td><b>Évacuer</b> la
+    personne en zone ventilée / air non contaminé, <b>alerter</b> le professeur (qui appelle les secours si
+    besoin, 18/112), aérer le local. Rappeler que l'azote ne donne aucun signe (invisible, inodore) : c'est
+    pour cela que la ventilation est une règle systématique, pas une option.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — Exercice 3 (lecture du pictogramme CLP)</h3>
+  <table class="mini">
+    <tr><th style="width:44%">Question</th><th>Réponse attendue</th></tr>
+    <tr><td>Que représente le dessin ?</td><td>La silhouette noire d'une bouteille de gaz.</td></tr>
+    <tr><td>Que signifie ce pictogramme ?</td><td>« Gaz sous pression » (mention H280 de la FDS) — danger
+    physique au sens du règlement CLP (CE 1272/2008), catégorie « Gaz comprimés ».</td></tr>
+    <tr><td>Sur quel objet le retrouve-t-on ?</td><td>Sur l'étiquette de toute bouteille de gaz sous pression :
+    azote, mais aussi oxygène, acétylène, propane, etc.</td></tr>
+    <tr><td>Que faire en le voyant ?</td><td>Ne jamais exposer le récipient à la chaleur ou au soleil, le
+    manipuler avec précaution, vérifier l'absence de fuite avant utilisation — les mêmes règles que celles
+    formalisées par les 3 équipes.</td></tr>
+  </table>
+  <p style="font-size:8.8pt; color:var(--gris); font-style:italic">Pictogramme extrait de la FDS Azote
+  (Air Liquide France Industrie, §2.2, page 1) — étiquetage CLP, règlement CE 1272/2008. Aucune photo ou
+  pictogramme n'a été inventé : image extraite telle quelle du document authentique.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RÈGLES D'OR CORRIGÉES + GRILLE 0-4 + DIFFÉRENCIATION + SUITE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Fiche « règles d'or » corrigée (trace écrite de référence)</h3>
+  <div class="regle-or"><b>Règle d'or n°1</b> — Pour une épreuve d'étanchéité, on utilise toujours
+  <b>l'azote</b>, jamais <b>l'oxygène ni l'air comprimé</b>.</div>
+  <div class="regle-or"><b>Règle d'or n°2</b> — On monte en pression <b>par paliers</b>, jamais d'un coup
+  (pratiqué en S5-F2, repris en S6-F1).</div>
+  <div class="regle-or"><b>Règle d'or n°3</b> — Pendant l'épreuve, personne ne se tient <b>dans l'axe</b> du
+  raccord ou du manomètre.</div>
+  <div class="regle-or"><b>Règle d'or n°4</b> — On travaille et on stocke les bouteilles dans un local
+  <b>ventilé</b>.</div>
+  <div class="regle-or"><b>Règle d'or n°5</b> — L'azote est <b>incolore et inodore</b> : on ne peut pas le
+  détecter par l'odeur, d'où l'importance des 4 règles précédentes.</div>
+  <div class="regle-or"><b>Règle d'or n°6</b> — En cas de malaise près d'une bouteille de gaz, on
+  <b>évacue la victime en air non contaminé</b> puis on alerte (18 ou 112).</div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut <b>Confortement — vers Maîtrise</b> (compétence
+  <b>C2.4</b>, savoirs <b>S6.2/S6.3</b> augmentés) : le positionnement compte pour la progression annuelle,
+  aucune remontée École Directe ce jour (réservée à É3, semaine 21).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Ce que l'élève sait faire</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:10%">3</th><th class="niv" style="width:10%">4</th></tr>
+    <tr>
+      <td><b>C2.4</b> Sécuriser l'intervention : citer et expliquer les gestes interdits et les règles de
+      l'azote <span class="nuance">Confortement</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Confond les gestes autorisés et interdits, même après la correction.</td>
+      <td>Cite certaines règles avec l'aide du professeur ou de sa fiche.</td>
+      <td>Cite seul(e) les gestes interdits (jamais O₂ ni air comprimé) et complète sa fiche « règles d'or »
+      correctement.</td>
+      <td>Comme « Acquis », et explique en plus à un pair pourquoi l'azote convient et pourquoi l'oxygène est
+      dangereux.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — lit un document avant de conclure, travaille en équipe, honnêteté de l'auto-positionnement</td>
+      <td>Non observé.</td>
+      <td>Répond sans avoir lu le document de son équipe, ne participe pas.</td>
+      <td>Lit mais a besoin d'un rappel pour participer activement.</td>
+      <td>Lit avant de répondre, participe à sa carte d'équipe, complète son auto-positionnement honnêtement.</td>
+      <td>Comme « Acquis », et aide un camarade d'une autre équipe à comprendre son document.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Réduire chaque extrait de document à 3 phrases clés au lieu de 5 ; fournir
+    un exemple de règle déjà rédigé pour amorcer la fiche ; pour l'exercice 1, donner déjà la réponse VRAI/FAUX
+    et ne demander que la justification.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : lecture complète de
+    l'extrait, 5 règles rédigées, restitution croisée, 3 exercices en autonomie guidée.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus, à l'oral : « pourquoi l'azote, contrairement à
+    l'oxygène, ne réagit-il pas avec les traces d'huile du circuit ? » (prépare le vocabulaire « gaz inerte »,
+    sans exiger la définition chimique complète, hors Bloom CAP 1A).</td></tr>
+    <tr><td>FLE</td><td>Le pictogramme CLP reste affiché en support visuel permanent avec l'étiquette « gaz
+    sous pression » ; extraits de documents réduits à des phrases courtes sujet-verbe-complément ; une seule
+    règle à la fois annoncée à l'oral, gestes interdits mimés (secouer la tête « non ») en plus d'être dits.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Rôle de « rapporteur » désigné dans chaque équipe pour cadrer la lecture ;
+    limiter le temps de lecture silencieuse à 10 minutes avant relance orale du professeur ; fiche « règles
+    d'or » présentée en phrases courtes à trous, pas de reformulation libre exigée.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la formation</h3>
+  <ul class="liste-num">
+    <li>La semaine prochaine (<b>S6-F1</b>), l'élève manipule lui-même le manodétendeur par paliers et remplit
+    le PV d'épreuve : ce module T1 est le <b>« permis d'entrer »</b> en atelier — aucun élève ne manipule
+    l'azote sans avoir formalisé ces règles.</li>
+    <li>Le geste « vérifier l'absence de fuite à l'eau savonneuse » (règle n°5 de l'équipe C) sera réinvesti
+    directement en <b>S6-F2</b> (recherche de fuite).</li>
+    <li>Ce module sera réactivé au poste théorie d'<b>É3</b> (semaine 21) : sécurité de la pression, gestes
+    interdits, lecture d'un PV d'épreuve.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « Fiche de
+  données de sécurité — Azote » (Air Liquide France Industrie, 089AGIS, rév. du 4/11/2013 —
+  02_CAP-IFCA/C3-Realiser/FDS - Azote.pdf, fiche extraite le 04/07/2026) ; « Soudage et coupage au
+  chalumeau », INRS ED 742, 5<sup>e</sup> édition (2009), réimpression 2010 (_Archives/Divers/ed742 (1).pdf —
+  fiches techniques « Les bouteilles » et « Les détendeurs », extraits transposés au gaz azote, valeurs
+  chiffrées propres au chalumeau non reprises) ; « Conduite à tenir en cas d'accident », préparation TP PRP,
+  CAP IFCA (02_CAP-IFCA/C6-Securite/00 risques d'accidents, conduite à tenir en cas d'accident V2
+  CORRECTION.pdf) ; « Utilisation d'un chalumeau », fiche de poste n°11 « Hygiène-Sécurité », CDG 50,
+  réalisée le 30/06/2010 (02_CAP-IFCA/C6-Securite/1-Fiche chalumeau.pdf — teinte 4-7 des lunettes, eau
+  savonneuse) ; schéma manodétendeur azote et check-list, produits en S5-F2 (F. Henninot, 2026) ; pictogramme
+  CLP extrait de la FDS Azote citée ci-dessus (règlement CE 1272/2008). Aucune valeur de pression d'épreuve ou
+  de durée de tenue n'est donnée dans ce module : elles restent « fixées par le professeur », précisées dans
+  le document S6-F1.</p>
+
+  <div class="vigilance"><b class="t">Point en attente</b> — la justification de l'interdiction de l'air
+  comprimé pour une épreuve n'est sourcée dans aucun des 4 documents de ce module : elle est présentée aux
+  élèves comme une règle professionnelle de l'atelier, à faire valider par le professeur, jamais comme un
+  fait chiffré. Aucun gaz traceur n'est mentionné dans ce module (point réservé à S6-F2, arbitrage n°6 du
+  maître, non tranché).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

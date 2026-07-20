@@ -1,0 +1,339 @@
+<meta charset="utf-8">
+<title>Cours élève — S1 · Module théorie T1 · Le cycle frigorifique, les bases</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:300px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE + DÉBUT DÉCOUVERTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Le cycle frigorifique · les 4 organes · la croix du frigoriste</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S1-T1 · 2 h</span><b>Le cycle frigorifique, les bases</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S1</span> · sem. 1-4</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — cours en classe entière</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Les 4 organes d'une machine qui produit du froid, leur rôle, et le trajet du fluide à l'intérieur</div>
+    <div class="case"><h4>Savoir-être</h4>Observer avant de répondre · être honnête dans mon auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte — non noté</span> ce cours complète le module atelier S1-F2 (sécurité et découverte du cycle sur une vraie machine)</div>
+  </div>
+
+  <div class="situation"><h4>Accroche</h4>
+  Le réfrigérateur sert à conserver les aliments plus longtemps, du magasin jusqu'à votre cuisine : c'est le
+  dernier maillon de ce qu'on appelle la « <b>chaîne du froid</b> ». Mais comment fait-il pour produire du froid ?
+
+  <svg viewBox="0 0 480 175" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:420px; display:block; margin:8px auto 4px">
+    <rect x="10" y="10" width="200" height="150" rx="8" fill="#eef4fb" stroke="#1b3a63" stroke-width="2"/>
+    <text x="110" y="28" text-anchor="middle" font-family="Trebuchet MS,sans-serif" font-size="12" font-weight="bold" fill="#1b3a63">AVANT — intérieur</text>
+    <g stroke="#1b3a63" stroke-width="2" transform="translate(110,92)">
+      <line x1="-26" y1="0" x2="26" y2="0"/><line x1="0" y1="-26" x2="0" y2="26"/>
+      <line x1="-18" y1="-18" x2="18" y2="18"/><line x1="-18" y1="18" x2="18" y2="-18"/>
+    </g>
+    <text x="110" y="150" text-anchor="middle" font-family="Calibri,sans-serif" font-size="10.5" fill="#1b3a63">froid au toucher</text>
+    <rect x="270" y="10" width="200" height="150" rx="8" fill="#fff3ec" stroke="#ff6b35" stroke-width="2"/>
+    <text x="370" y="28" text-anchor="middle" font-family="Trebuchet MS,sans-serif" font-size="12" font-weight="bold" fill="#c14a17">ARRIÈRE — grille noire</text>
+    <g stroke="#c14a17" stroke-width="2">
+      <line x1="292" y1="62" x2="448" y2="62"/><line x1="292" y1="77" x2="448" y2="77"/>
+      <line x1="292" y1="92" x2="448" y2="92"/><line x1="292" y1="107" x2="448" y2="107"/><line x1="292" y1="122" x2="448" y2="122"/>
+    </g>
+    <path d="M300,44 q5,-10 10,0 q5,10 10,0" stroke="#ff6b35" stroke-width="2" fill="none"/>
+    <path d="M338,44 q5,-10 10,0 q5,10 10,0" stroke="#ff6b35" stroke-width="2" fill="none"/>
+    <path d="M376,44 q5,-10 10,0 q5,10 10,0" stroke="#ff6b35" stroke-width="2" fill="none"/>
+    <text x="370" y="150" text-anchor="middle" font-family="Calibri,sans-serif" font-size="10.5" fill="#c14a17">chaud au toucher</text>
+  </svg>
+
+  <div class="encadre-question"><b>Question de départ</b> — D'après vous, pourquoi l'intérieur du réfrigérateur
+  est-il froid, alors que l'arrière (la grille noire) est chaud ? Notez votre idée, même si vous n'êtes pas sûr(e).</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — la Croix du Frigoriste</h3>
+  <p style="font-size:10.5pt">Pour répondre, il faut savoir ce qui se passe DANS la machine. Toute machine qui
+  produit du froid (réfrigérateur, chambre froide, climatiseur) fonctionne avec <b>4 organes principaux</b>,
+  toujours les mêmes, toujours dans le même ordre. On les représente en forme de croix.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/croix-frigoriste-schema-technique.svg" alt="Schéma de principe de la croix du frigoriste : condenseur en haut, compresseur à droite, détendeur à gauche, évaporateur en bas, avec repères 1 à 4 sur les conduites"
+         style="max-width:88%;">
+    <figcaption class="legende">La croix du frigoriste : 4 organes, 4 branches, un seul sens de circulation.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Observation 1</b> — Sans lire la suite, essayez de deviner le nom des 4 organes
+  que vous voyez sur le schéma. Écrivez ce que vous pensez, même si vous n'êtes pas sûr(e).</div>
+  <div class="zone-reponse" style="min-height:2.8em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — LES 4 ORGANES + TRAJET + CHAUD/FROID ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <div class="notion"><h4>Les 4 organes, dans l'ordre où circule le fluide</h4>
+  <p style="margin:0; font-size:10.5pt">
+  1. <b>Le compresseur</b> (le symbole rond, à droite sur le schéma) — il aspire le fluide et le comprime :
+  « comprimer », c'est resserrer un gaz pour qu'il prenne moins de place. Le fluide chauffe et sa pression monte.<br><br>
+  2. <b>Le condenseur</b> (le rectangle en haut) — il reçoit le fluide chaud et le refroidit, jusqu'à ce qu'il
+  redevienne liquide : « condenser », c'est transformer un gaz en liquide en le refroidissant (comme la buée qui
+  se forme sur une vitre froide).<br><br>
+  3. <b>Le détendeur</b> (le symbole à gauche) — il fait chuter d'un coup la pression du liquide : « détendre »,
+  c'est faire baisser la pression, comme quand on dégonfle un pneu d'un coup.<br><br>
+  4. <b>L'évaporateur</b> (le rectangle en bas) — il reçoit le fluide et le transforme en gaz : pour cela, il
+  <b>absorbe la chaleur</b> autour de lui. C'est ici que naît le froid.</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — Une fois sorti de l'évaporateur, vers quel organe le fluide
+  repart-il pour recommencer le cycle ?</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <h3 class="section">Le trajet du fluide</h3>
+  <p style="font-size:10.5pt">Regardez à nouveau le schéma de la feuille 1. Le fluide circule toujours dans le
+  même sens, en boucle fermée : il sort du compresseur en gaz chaud (repère 1), traverse le condenseur et devient
+  liquide (repère 2), passe dans le détendeur et perd sa pression, traverse l'évaporateur où il redevient gaz en
+  captant la chaleur (repères 3 puis 4), puis retourne au compresseur. Le cycle recommence sans arrêt, tant que
+  la machine fonctionne.</p>
+
+  <h3 class="section">Le côté chaud, le côté froid</h3>
+  <p style="font-size:10.5pt">La croix se lit aussi en deux moitiés : le <b>compresseur</b> et le
+  <b>condenseur</b> sont du côté <b>chaud</b> (le fluide y est comprimé, puis refroidi en rejetant sa chaleur
+  vers l'extérieur). Le <b>détendeur</b> et l'<b>évaporateur</b> sont du côté <b>froid</b> (le fluide y absorbe
+  la chaleur : c'est ce qui produit le froid).</p>
+
+  <div class="encadre-question"><b>Observation 2</b> — Sur le schéma de la feuille 1, entourez ou surlignez le
+  côté chaud d'une couleur, le côté froid d'une autre.</div>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <div class="seuil"><b class="t">Attention, ce n'est pas un plan de montage</b> — Le schéma en croix est une
+  convention utilisée pour apprendre et communiquer (détendeur à gauche, compresseur à droite, condenseur en
+  haut, évaporateur en bas) : ce n'est pas la position réelle des organes dans un appareil. Dans un vrai
+  réfrigérateur, par exemple, le condenseur est souvent la grille noire à l'arrière, et l'évaporateur est caché
+  à l'intérieur — pas forcément « en haut » ou « en bas » comme sur le dessin.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — APPLICATION : CROIX VIERGE + RELIER ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION</h3>
+
+  <h4 style="font-size:11pt">Exercice 1 — compléter la croix vierge</h4>
+  <p style="font-size:10.3pt">Dans le cadre ci-dessous, dessinez une croix à 4 branches pour une machine à
+  compression. Respectez la convention vue en cours :</p>
+  <ol class="liste-num">
+    <li>le <b>détendeur</b> à GAUCHE ;</li>
+    <li>le <b>compresseur</b> à DROITE ;</li>
+    <li>le <b>condenseur</b> en HAUT ;</li>
+    <li>l'<b>évaporateur</b> en BAS ;</li>
+    <li>une flèche continue qui montre le sens de circulation du fluide, en boucle fermée.</li>
+  </ol>
+  <div class="cadre-dessin" style="min-height:250px"><span class="consigne-cadre">Croix vierge — 4 organes (détendeur gauche · compresseur droite · condenseur haut · évaporateur bas) + flèche de circulation</span></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Pour aller plus loin (facultatif) : notez à
+  côté de chaque organe s'il est plutôt côté chaud ou côté froid.</p>
+
+  <h4 style="font-size:11pt">Exercice 2 — relier chaque organe à son rôle</h4>
+  <p style="font-size:10.3pt">Reliez (ou notez la lettre correspondante dans la case) chaque organe à la phrase
+  qui décrit son rôle.</p>
+  <table class="releve">
+    <tr><th style="width:60%">Organe</th><th style="width:20%">Rôle (lettre)</th></tr>
+    <tr><td>Évaporateur</td><td></td></tr>
+    <tr><td>Compresseur</td><td></td></tr>
+    <tr><td>Détendeur</td><td></td></tr>
+    <tr><td>Condenseur</td><td></td></tr>
+  </table>
+  <table class="releve" style="font-size:9pt">
+    <tr><th>Rôles à associer</th></tr>
+    <tr><td style="text-align:left">A. Fait chuter la pression du liquide.</td></tr>
+    <tr><td style="text-align:left">B. Aspire le fluide et le comprime : il chauffe et monte en pression.</td></tr>
+    <tr><td style="text-align:left">C. Refroidit le gaz chaud jusqu'à le rendre liquide.</td></tr>
+    <tr><td style="text-align:left">D. Absorbe la chaleur et transforme le fluide en gaz : c'est ici que naît le froid.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — APPLICATION : VRAI/FAUX ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h4 style="font-size:11pt">Exercice 3 — vrai ou faux</h4>
+  <table class="releve" style="font-size:9.5pt">
+    <tr><th style="width:75%">Affirmation</th><th>Vrai / Faux</th></tr>
+    <tr><td style="text-align:left">Le compresseur aspire le fluide côté froid.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Le condenseur transforme le liquide en gaz.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Le détendeur fait monter la pression du fluide.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">L'évaporateur est l'organe qui produit le froid.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Dans un réfrigérateur, la grille noire à l'arrière est la partie la plus froide.</td><td>☐ Vrai ☐ Faux</td></tr>
+    <tr><td style="text-align:left">Les 4 organes sont toujours reliés dans le même ordre, en boucle fermée.</td><td>☐ Vrai ☐ Faux</td></tr>
+  </table>
+
+  <p style="font-size:10.3pt; margin-top:1.2em">Vous avez maintenant tout ce qu'il faut pour répondre, à la
+  feuille suivante, à la question posée tout au début du cours.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — SYNTHÈSE / TRACE ÉCRITE + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S1 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — je réponds à la question du début</h3>
+  <div class="encadre-question"><b>Retour sur la question de départ</b> — Avec vos propres mots : pourquoi
+  l'intérieur du réfrigérateur est-il froid, et l'arrière (la grille noire) est-il chaud ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h3 class="section">Ma fiche de trace écrite</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec vos propres mots : c'est elle que vous garderez.</p>
+  <div class="trace">
+    <p style="font-size:10.5pt; margin:0 0 8px"><b>1. Les 4 organes, dans l'ordre de circulation du fluide :</b></p>
+    <p style="font-size:10.3pt; margin:0 0 10px">le _______________ → le _______________ → le _______________ →
+    le _______________ → (retour au premier)</p>
+
+    <p style="font-size:10.5pt; margin:10px 0 4px"><b>2. C'est dans le/la _______________ que naît le froid.</b></p>
+    <p style="font-size:10.5pt; margin:10px 0 4px"><b>3. C'est dans le/la _______________ que la chaleur est rejetée.</b></p>
+    <p style="font-size:10.5pt; margin:10px 0 10px"><b>4. Dans mon réfrigérateur à la maison :</b> l'intérieur
+    (le froid) correspond à l'_______________ ; la grille noire à l'arrière (le chaud) correspond au
+    _______________.</p>
+
+    <p style="font-size:10.5pt; margin:14px 0 8px"><b>5. Ma croix, en mémoire (schéma minute, sans regarder les feuilles précédentes) :</b></p>
+    <div class="cadre-dessin" style="min-height:170px"><span class="consigne-cadre">Redessinez la croix de mémoire : 4 organes + flèche de circulation</span></div>
+  </div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:24%">Ce que je sais faire</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td>Nommer les 4 organes, dire où circule le fluide, situer le chaud et le froid <span class="nuance">Découverte — non noté</span></td><td>Compétence non observée ce jour.</td><td>Je ne sais pas nommer les 4 organes ni dire où circule le fluide.</td><td>Je nomme les 4 organes avec de l'aide, je situe le chaud et le froid avec de l'aide.</td><td>Je nomme seul(e) les 4 organes, je situe le chaud et le froid, et je redessine correctement la croix de mémoire.</td><td>Comme « Acquis », et je peux l'expliquer à un camarade avec assurance.</td></tr>
+    <tr><td>Savoir-être — j'observe avant de répondre, je suis honnête dans mon auto-positionnement</td><td>Non observé.</td><td>Je réponds avant d'observer, je recopie sans réfléchir.</td><td>J'observe mais j'ai besoin d'un rappel pour ne pas répondre trop vite.</td><td>J'observe avant de répondre, je remplis mon auto-positionnement seul(e) et honnêtement.</td><td>Comme « Acquis », et j'aide un camarade à rester honnête dans son auto-positionnement.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Les 4 organes et le trajet du fluide :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe : il
+  complète le module atelier S1-F2, où vous verrez (ou avez vu) une vraie machine en fonctionnement.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : schéma « La Croix
+  du Frigoriste » (F. Henninot, 2026) ; structure adaptée du document théorie T0 « La Croix du Frigoriste et la
+  lecture de plan » (S10, 2A CAP IFCA, F. Henninot, 05/07/2026) ; noms réels des organes recoupés avec « Dossier
+  ressources n°1 — Schémas fluidiques » (F. Henninot) ; le réfrigérateur domestique comme dernier maillon de la
+  chaîne du froid, d'après « La Chaîne du Froid » (A.F.P.A., mai 2001).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 16/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .cadre-dessin{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

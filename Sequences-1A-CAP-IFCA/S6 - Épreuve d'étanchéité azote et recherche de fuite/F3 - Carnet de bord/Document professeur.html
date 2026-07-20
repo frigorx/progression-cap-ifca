@@ -1,0 +1,411 @@
+<meta charset="utf-8">
+<title>Carnet de bord professeur — S6 · Module F3 · Fil de l'eau</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.35fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.decouverte{background:#fdecd2; color:#96581b; border-color:#f0cf9e}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:left; vertical-align:top}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .fiche-num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt;
+    border-radius:8px; padding:3px 12px; background:var(--marine); color:#fff; margin-bottom:8px}
+  .rubrique{border:1px solid var(--filet); border-radius:6px; margin:.5em 0 .9em; overflow:hidden}
+  .rubrique .titre-rubrique{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:5px 12px;
+    font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt; color:var(--bleu)}
+  .rubrique .corps-rubrique{padding:10px 14px}
+  .rubrique.commande .titre-rubrique{background:#fff2ea}
+  .rubrique.auto .titre-rubrique{background:#f8f6ff}
+  .attendu{background:#eef6ec; border-left:3px solid #4a8f3c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .attendu b{color:#2f6b24; font-family:'Trebuchet MS',sans-serif}
+  .exemple{background:#f5f8fc; border-left:3px solid var(--bleu); padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .exemple b{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .erreur{background:#fdeceb; border-left:3px solid #c0392b; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .erreur b{color:#a5281b; font-family:'Trebuchet MS',sans-serif}
+  .remede{background:#fff8e6; border-left:3px solid #c9971c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .remede b{color:#96700f; font-family:'Trebuchet MS',sans-serif}
+  .indicatif{background:#f3f0fb; border-left:3px solid var(--violet); padding:4px 10px; margin:4px 0; font-size:9.5pt; font-style:italic}
+  .indicatif b{color:var(--violet); font-family:'Trebuchet MS',sans-serif; font-style:normal}
+  .special{background:#fdecd2; border-left:3px solid #c9971c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .special b{color:#96581b; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — CADRE GÉNÉRAL DU MODULE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Épreuve d'étanchéité azote et recherche de fuite</td>
+      <td style="width:38%"><span class="lib">Module F3 · fil de l'eau · 2 h (continu)</span><b>Carnet de bord de chantier — corrigé professeur</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S6</span></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention</div>
+    <div class="case"><h4>Savoir</h4><b>S3.1</b> Communication technique (augmenté)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la trace écrite · régularité · honnêteté de l'auto-évaluation · fiabilité d'un document qui engage une signature</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4>
+      <span class="statut">Confortement</span> <b>C1.3</b> Rendre compte<br>
+      <span class="statut decouverte">Découverte</span> <b>C1.1</b> Compléter, transmettre
+    </div>
+  </div>
+
+  <h3 class="section">Positionnement du module dans la séquence</h3>
+  <p style="font-size:10.5pt">Le carnet de bord F3 de S6 est la <b>suite directe</b> du carnet ouvert en S1 et
+  poursuivi en S2, S3 et S5 (S4 n'en prévoyait pas, séquence courte tournée vers É2) : même objet physique,
+  mêmes rubriques, même élève qui continue de le tenir. C'est la <b>5<sup>e</sup></b> série de pages du
+  carnet, pour <b>4 nouvelles semaines</b> (18 à 21). Il totalise <b>2 h cumulées</b> sur l'ensemble de la
+  séquence S6, réparties en petites tranches à la fin (ou en tout début) de chaque autre module : S6-T1
+  (semaine 18), S6-F1 et S6-E1 (semaines 18 <b>et</b> 19, deux passages chacun), S6-F2 (semaine 20, passage
+  <b>unique</b> renforcé, une seule fiche), puis une fiche dédiée « Je prépare É3 » (semaine 20, en lien avec
+  le créneau élec libre de préparation) et un bilan à chaud après É3 (semaine 21).</p>
+
+  <div class="special"><b>Nouveauté structurelle de S6 — la compétence C1.1 apparaît</b><br>
+  Pour la première fois depuis le début de l'année, ce carnet porte <b>deux</b> compétences au lieu d'une
+  seule : C1.3 « Rendre compte », en Confortement comme depuis S1, ET <b>C1.1 « Compléter, transmettre »</b>,
+  en <b>Découverte</b>. C1.1 ne se travaille pas sur l'ensemble du carnet : elle vit <b>uniquement</b> dans la
+  fiche n° 2 (S6-F1), celle du PV d'épreuve — c'est le premier document officiel de l'année qui engage la
+  signature de l'élève.</div>
+
+  <div class="situation"><h4>Pourquoi Confortement pour C1.3, et pourquoi Découverte pour C1.1</h4>
+  C1.3 a été rencontrée en Découverte (S1) puis en Confortement à chaque séquence suivante (S2, S3, S5) ; le
+  cadrage de S6 la maintient en <b>Confortement</b> — la progressivité spiralaire de la charte ne fait pas
+  encore monter le statut à Maîtrise. C1.1, en revanche, n'a <b>jamais</b> été travaillée avant S6 dans ce
+  carnet : elle démarre donc logiquement en <b>Découverte</b>, exactement comme C1.3 l'avait fait en S1. Ce qui
+  change réellement d'une compétence à l'autre, à ce moment précis :
+  <ul style="margin:.3em 0 0 1.1em; padding:0">
+    <li>pour C1.3, l'autonomie de remplissage continue d'augmenter et le vocabulaire technique se densifie
+    (paliers de pression, tableau de chasse, niveaux de contrat) ;</li>
+    <li>pour C1.1, on ne demande <b>pas</b> la perfection d'un premier essai : on regarde si le PV est complet,
+    lisible, signé et transmis — la compétence elle-même (compléter un document qui engage, puis le
+    transmettre) ne fait que commencer.</li>
+  </ul></div>
+
+  <h3 class="section">Ce qu'on attend, rubrique par rubrique</h3>
+
+  <div class="attendu"><b>Date · Module du jour · Passage (fiches n° 2 et n° 3 uniquement)</b> — remplis
+  systématiquement, cohérents avec le cahier de textes. La fiche n° 4 (S6-F2) n'a PAS de case Passage : c'est
+  un passage unique renforcé, il faut le rappeler à la classe pour éviter toute confusion avec les fiches n° 2
+  et n° 3.</div>
+  <div class="exemple"><b>Exemple attendu</b> — « 09/03/2027 · ☑ S6-F1 Épreuve d'étanchéité à l'azote · Passage
+  ☑ 2 — PV tenu SEUL ».</div>
+
+  <div class="attendu"><b>Ce que j'ai fait</b> — une description factuelle et chronologique des opérations
+  réellement réalisées, avec le vocabulaire technique propre à chaque module (palier de pression, PV, tableau
+  de chasse, niveau de contrat, document authentique).</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S6-F1, épreuve azote)</b> — « J'ai monté
+  l'installation, je suis passé par les paliers indiqués dans le PV, j'ai vérifié à l'eau savonneuse à chaque
+  palier, puis j'ai renseigné et signé le PV avec le professeur. »</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S6-F2, recherche de fuite)</b> — « Mon binôme a
+  reçu un montage à deux fuites annoncées. J'ai testé chaque raccord à l'eau savonneuse dans l'ordre, localisé
+  les deux fuites, et je les ai consignées au tableau de chasse. »</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S6-E1, contacteurs et moteurs)</b> — « J'ai
+  annoncé le niveau 2 (départ moteur + voyants). J'ai câblé seul, le professeur a mis sous tension : le moteur
+  a démarré, les voyants ont fonctionné. »</div>
+  <div class="exemple"><b>Exemple de remplissage attendu (module S6-T1, risques de la pression)</b> — « Mon
+  groupe a étudié la FDS azote. Nous avons retenu : gaz inerte, risque d'asphyxie en local confiné, jamais
+  d'oxygène pour une épreuve. »</div>
+  <div class="erreur"><b>Erreur typique</b> — description encore aussi sommaire qu'en S3-S5 (« on a fait
+  l'épreuve »), sans détail sur les paliers réellement atteints ou sur le contenu du PV.</div>
+  <div class="remede"><b>Remédiation</b> — rappeler l'exigence de précision dès la 1<sup>re</sup> fiche de S6 ;
+  proposer un exemple oral avant que l'élève écrive, sans lui dicter le texte.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SPÉCIFICITÉ C1.1 DÉCOUVERTE + ATTENDUS PAR RUBRIQUE OFFICIELLE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Spécificité C1.1 Découverte — ce qu'on regarde (et ce qu'on ne regarde pas)</h3>
+  <p style="font-size:10.5pt">C1.1 « Compléter, transmettre » est en Découverte : elle ne se juge PAS avec le
+  même niveau d'exigence que C1.3 en Confortement. Concrètement, sur le PV d'épreuve (S6-F1) :</p>
+  <div class="attendu"><b>Ce qu'on regarde</b> — le PV est-il <b>complet</b> (toutes les lignes renseignées,
+  aucun champ laissé vide sans raison) ? Est-il <b>lisible</b> (écriture compréhensible, pas de rature qui rend
+  une valeur illisible) ? Est-il <b>signé</b> (les deux signatures présentes : élève et professeur) ? A-t-il
+  été <b>transmis</b> (rangé/agrafé dans le carnet au bon endroit, remis au professeur en temps voulu) ?</div>
+  <div class="erreur"><b>Ce qu'on NE regarde PAS</b> — la perfection du remplissage au premier essai, une
+  élégance de présentation, une vitesse de remplissage. Un PV avec une valeur mal formulée mais complète,
+  lisible, signée et transmise reste un PV réussi <b>pour la compétence C1.1 Découverte</b> — même si, par
+  ailleurs, le résultat technique de l'épreuve (étanche / fuyard) relève, lui, de C3.9 (évalué dans le document
+  professeur de S6-F1, pas ici).</div>
+  <div class="remede"><b>Remédiation</b> — un élève qui bloque sur le PV (ne sait pas par où commencer) n'est
+  pas en échec sur C1.1 : c'est attendu en Découverte. Le professeur guide oralement le premier remplissage,
+  ligne par ligne, sans remplir à la place de l'élève.</div>
+
+  <h3 class="section">Le lien PV ↔ carnet : le carnet devient un dossier de preuves</h3>
+  <p style="font-size:10.5pt">À partir de S6, le carnet de bord ne contient plus seulement des rubriques
+  narratives (« ce que j'ai fait », « mes difficultés ») : il devient aussi le lieu où l'élève <b>range ses
+  documents officiels de chantier</b>, chacun produit et signé dans le module atelier correspondant, puis
+  agrafé dans F3.</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:22%">Document officiel</th><th style="width:18%">Produit dans</th><th style="width:20%">Rangé dans F3</th><th style="width:40%">Ce qu'il prouve</th></tr>
+    <tr><td>PV d'épreuve d'étanchéité (×2, un par passage)</td><td>S6-F1</td><td>Fiche n° 2</td><td>L'épreuve a été menée par paliers, tenue, contrôlée, verdict rendu — signé élève + professeur (C1.1 + C3.9)</td></tr>
+    <tr><td>Tableau de chasse</td><td>S6-F2</td><td>Fiche n° 4</td><td>Chaque fuite localisée a été prouvée à l'eau savonneuse, pas seulement affirmée (savoir-être : honnêteté de la preuve)</td></tr>
+    <tr><td>Contrat de réussite (×2, un par passage)</td><td>S6-E1</td><td>Fiche n° 3</td><td>Le niveau annoncé par l'élève correspond au niveau réellement atteint, vérifié par le professeur</td></tr>
+  </table>
+  </div>
+  <div class="attendu"><b>Pourquoi c'est important</b> — ce dossier de preuves est directement réinvesti au
+  poste froid d'É3 (semaine 21) : l'élève y manipule à nouveau le manodétendeur lui-même et tient un mini-PV,
+  cette fois en conditions d'évaluation. Le carnet complet de S6 devient alors la meilleure préparation
+  possible, bien avant tout cours de révision classique.</div>
+
+  <h3 class="section">Attendus des autres rubriques</h3>
+  <div class="exemple"><b>S6-F1 — mes relevés de paliers</b> — au moins une ligne par palier atteint, avec un
+  résultat honnête à l'eau savonneuse ; cohérent avec ce qui est écrit dans le PV agrafé juste en dessous.
+  Exemple : « Palier 1 : 5 bar, aucune fuite. Palier 2 : 10 bar (valeur fixée par le professeur), aucune
+  fuite. »</div>
+  <div class="erreur"><b>Erreur typique</b> — un seul palier renseigné dans le carnet alors que le PV en
+  mentionne plusieurs, ou pression notée sans unité.</div>
+  <div class="remede"><b>Remédiation</b> — faire recopier les paliers du PV vers le carnet avant d'agrafer, pour
+  vérifier la cohérence des deux documents.</div>
+
+  <div class="exemple"><b>S6-F2 — mes relevés de fuites</b> — chaque ligne du tableau générique doit
+  correspondre exactement à une ligne du tableau de chasse agrafé (même localisation, même preuve).</div>
+  <div class="erreur"><b>Erreur typique</b> — une fuite notée « trouvée » dans le carnet sans preuve à l'eau
+  savonneuse réellement observée par le professeur.</div>
+  <div class="remede"><b>Remédiation</b> — le professeur confirme chaque fuite au moment où elle est montrée,
+  colonne « Confirmée par le professeur ? » du tableau — ne pas laisser cette colonne vide.</div>
+
+  <div class="exemple"><b>S6-E1 — mon niveau annoncé</b> — le niveau choisi (1, 2 ou 3) doit être cohérent
+  entre la case du contrat de réussite agrafé et la description de la rubrique « Ce que j'ai fait ».</div>
+  <div class="erreur"><b>Erreur typique</b> — élève qui annonce un niveau bas par prudence alors qu'il est
+  capable de plus (ou l'inverse, un niveau trop ambitieux jamais réellement tenu).</div>
+  <div class="remede"><b>Remédiation</b> — rappeler que le contrat s'ajuste au 2<sup>e</sup> passage en fonction
+  du 1<sup>er</sup> : ce n'est pas figé pour toute la séquence.</div>
+
+  <div class="exemple"><b>S6-T1 — mes règles extraites</b> — au moins deux règles par document authentique
+  étudié, chacune reliée à sa source (FDS azote, étiquette, ED 742) ; pas de valeur numérique inventée.</div>
+  <div class="erreur"><b>Erreur typique</b> — règle recopiée sans lien avec le document source, ou confusion
+  entre azote (asphyxie) et oxygène (comburant, jamais utilisé pour une épreuve).</div>
+  <div class="remede"><b>Remédiation</b> — reprendre la question « pourquoi jamais d'oxygène ? » à l'oral avant
+  que l'élève écrive sa réponse.</div>
+
+  <div class="attendu"><b>Fiche n° 5 — Je prépare É3</b> — les points forts cités doivent s'appuyer sur la
+  grille 0-4 d'É2 réellement relue, pas sur un ressenti général. Le tableau « ce que je dois revoir » doit
+  couvrir les <b>trois</b> postes, y compris la théorie (souvent négligée par les élèves au profit du seul
+  geste atelier).</div>
+  <div class="erreur"><b>Erreur typique</b> — fiche remplie uniquement pour le poste froid, rien sur l'élec ni
+  la théorie.</div>
+  <div class="remede"><b>Remédiation</b> — vérifier en circulant que les trois lignes du tableau sont
+  renseignées avant la fin du créneau.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — EXPLOITATION C1.3 + C1.1 + GRILLE INDICATIVE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Comment exploiter le carnet pour C1.3 (Confortement) et C1.1 (Découverte)</h3>
+  <p style="font-size:10.5pt">Le carnet ne se corrige toujours pas comme un TP noté. Concrètement :</p>
+  <ul class="liste-num">
+    <li>Le professeur <b>vise</b> chaque fiche (case « Visée prof ? » du sommaire), toujours sans note ni
+    positionnement officiel remonté dans École Directe.</li>
+    <li>La grille ci-dessous est <b>indicative</b> : elle calibre le regard du professeur sur les deux
+    compétences, à deux niveaux d'exigence différents. Elle n'apparaît <b>pas</b> dans le document élève et ne
+    donne lieu à <b>aucune remontée</b>.</li>
+    <li>C1.3 sera reprise encore en Confortement, voire un jour en Maîtrise, au-delà de S6. C1.1, elle, ne fait
+    que commencer : elle sera retravaillée en Confortement dans une séquence ultérieure, avec d'autres documents
+    officiels (rapports d'intervention, bons de sortie de matériel...).</li>
+  </ul>
+
+  <div class="indicatif"><b>Grille indicative 0-4 — repère professeur uniquement, NON remontée</b></div>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:18%">0<br>Non évalué</th><th style="width:18%">1<br>Non acquis</th><th style="width:18%">2<br>En cours d'acquisition</th><th style="width:18%">3<br>Acquis</th><th style="width:18%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr>
+      <td><b>C1.3</b> Rendre compte <span class="statut" style="display:block; margin-top:3px">Confortement</span></td>
+      <td>sur T1 · S3.1</td>
+      <td>Carnet non tenu ce jour.</td>
+      <td>Rubriques vides ou aussi sommaires qu'en S3-S5.</td>
+      <td>Rubriques remplies mais encore approximatives, notamment sur les nouvelles traces techniques de S6
+      (paliers, tableau de chasse, niveaux de contrat) ; nécessite une relance du professeur.</td>
+      <td>Toutes les rubriques sont remplies, précises, avec le vocabulaire technique installé depuis S1-S5 ;
+      les documents officiels (PV, tableau de chasse, contrat) sont cohérents avec le récit du carnet.</td>
+      <td>Comme « Acquis », et le compte rendu est assez précis et autonome pour qu'un autre élève reproduise le
+      geste sans autre explication — sans relance du professeur pour démarrer le remplissage.</td>
+    </tr>
+    <tr>
+      <td><b>C1.1</b> Compléter, transmettre <span class="statut decouverte" style="display:block; margin-top:3px">Découverte</span></td>
+      <td>sur T1 · S3.1, via le PV S6-F1</td>
+      <td>PV non rempli, ou non agrafé dans le carnet.</td>
+      <td>PV incomplet (lignes vides) ou illisible ; non transmis au professeur en temps voulu.</td>
+      <td>PV complet et lisible, mais rempli avec beaucoup d'aide du professeur ; signatures présentes.</td>
+      <td>PV complet, lisible, signé par l'élève ET le professeur, transmis (agrafé) au bon moment — avec une
+      aide du professeur limitée à un guidage oral, sans remplissage à sa place.</td>
+      <td>Comme « Acquis », et au passage 2 (PV tenu seul), l'élève complète et transmet le document sans aucune
+      relance.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, régularité, honnêteté, fiabilité d'un document signé</td>
+      <td>observation continue</td>
+      <td>Non observé ce jour.</td>
+      <td>Fiche non remplie sans motif, ou signature apposée sans que le contenu du document ait été vérifié
+      par l'élève (signature de complaisance).</td>
+      <td>Carnet tenu la plupart du temps ; niveau comparable à S5, sans progrès net.</td>
+      <td>Carnet tenu à chaque module sans rappel ; PV, tableau de chasse et contrats signés en connaissance de
+      cause ; aucun dépassement de la pression ou de la durée fixées par le professeur.</td>
+      <td>Comme « Acquis », et l'élève comprend et peut expliquer pourquoi sa signature sur le PV engage sa
+      responsabilité — un premier pas vers la posture professionnelle.</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CE QU'ON REGARDE EN FIN DE SÉQUENCE + SYNTHÈSE DES ERREURS + VIGILANCE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Ce qu'on regarde en fin de séquence</h3>
+  <p style="font-size:10.5pt">S6 porte la <b>seule</b> compétence en statut Évaluation de la séquence sur É3
+  (C3.4 · C3.6 · C3.9, rangée dans le dossier S6). Ce que le professeur regarde en fin de S6 pour F3, pour
+  C1.3 et pour C1.1, reste <b>qualitatif</b> :</p>
+  <ul class="liste-num">
+    <li>Le <b>dossier de preuves</b> constitué (2 PV signés, 1 tableau de chasse, 2 contrats de réussite) permet
+    de vérifier, avant même de recevoir les grilles d'É3, quels élèves arrivent avec des documents complets,
+    lisibles, signés — un repère direct pour la mise en confiance avant le poste froid d'É3.</li>
+    <li>La fiche n° 5 « Je prépare É3 » permet de vérifier que chaque élève a identifié ses points d'appui
+    (points forts depuis É2) et ses priorités de révision sur les <b>trois</b> postes, pas seulement l'atelier
+    froid le plus spectaculaire.</li>
+    <li>Le bilan à chaud de la semaine 21 n'est <b>pas</b> l'analyse d'É3 : il capture un ressenti immédiat,
+    complémentaire aux grilles 0-4 qui seront rendues en S7. Les deux se lisent ensemble, pas l'un à la place de
+    l'autre.</li>
+    <li>Cette exploitation reste <b>qualitative</b> : le carnet n'entre jamais dans le calcul d'une note ; il
+    éclaire la préparation des postes et l'attention portée à chaque élève, sans préjuger du contenu d'É3.</li>
+    <li>Le carnet ne remplace pas le suivi des compétences en statut Confortement/Évaluation introduites en S6
+    dans les modules ateliers eux-mêmes (C3.9 vers Maîtrise, C4.5, C3.6 vers Maîtrise, C2.4) : ces statuts se
+    lisent dans les documents professeur des modules ateliers, pas dans F3.</li>
+  </ul>
+
+  <h3 class="section">Synthèse des erreurs typiques et remédiations</h3>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:24%">Erreur typique</th><th style="width:38%">Signe observable</th><th style="width:38%">Remédiation</th></tr>
+    <tr><td>PV incomplet ou illisible</td><td>Champs vides ou écriture illisible sur le PV agrafé (S6-F1)</td><td>Guidage oral ligne par ligne au passage 1 ; ne pas remplir à la place de l'élève</td></tr>
+    <tr><td>Signature de complaisance</td><td>Élève ou professeur signe sans relire le PV rempli</td><td>Relecture croisée obligatoire avant chaque signature</td></tr>
+    <tr><td>Fuite affirmée sans preuve</td><td>Ligne du tableau de chasse sans colonne « Confirmée par le professeur » cochée</td><td>Ne valider une fuite qu'après vérification directe par le professeur</td></tr>
+    <tr><td>Niveau de contrat incohérent</td><td>Niveau annoncé au contrat différent de celui décrit dans « Ce que j'ai fait »</td><td>Vérifier la cohérence à la signature de fin de séance</td></tr>
+    <tr><td>Fiche « Je prépare É3 » centrée sur le seul poste froid</td><td>Tableau des 3 postes partiellement rempli</td><td>Circuler et faire compléter les 3 lignes avant la fin du créneau</td></tr>
+    <tr><td>Bon de commande jamais rempli</td><td>Rubrique constamment vide malgré du matériel manquant visible</td><td>Rappel explicite en fin de phase « Ranger — nettoyer »</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Ce qui n'est PAS évalué dans ce module</h3>
+  <p style="font-size:10.5pt">Le carnet de bord ne réévalue pas les compétences techniques travaillées dans les
+  modules atelier (C3.9, C2.4, C3.6, C4.5…), ni les compétences en statut Évaluation lors d'É3. Il accompagne
+  la <b>consolidation</b> de C1.3 et le <b>démarrage</b> de C1.1, transversales à tous les modules de la
+  séquence. Un élève peut tenir un carnet déjà très soigné tout en étant encore fragile sur un geste technique
+  d'un module atelier, et inversement — les deux ne se comparent pas directement.</p>
+
+  <div class="jalon"><h4>Points de vigilance pour le professeur</h4>
+  <p>☐ Réserver le temps de remplissage dans chaque module, comme en S1-S3-S5<br>
+  ☐ Ne jamais laisser signer un PV, un tableau de chasse ou un contrat sans relecture préalable par l'élève<br>
+  ☐ Vérifier la cohérence Passage 1 / Passage 2 sur les fiches n° 2 et n° 3 avec le planning de rotation<br>
+  ☐ Rappeler explicitement à la classe que la fiche n° 4 (S6-F2) est à <b>passage unique</b>, pas de photocopie<br>
+  ☐ Confirmer chaque fuite du tableau de chasse en direct, ne pas valider a posteriori sur simple déclaration<br>
+  ☐ Réserver en semaine 21, juste après É3, le temps du bilan à chaud — ne pas le reporter à S7<br>
+  ☐ Récupérer les bons de commande au fil de l'eau pour alimenter le rituel hebdomadaire de l'atelier<br>
+  ☐ Conserver les carnets à portée de main pour la remise des grilles d'É3 en S7 (remédiation ciblée)</p></div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage modulaire
+  S6 (<i>_CADRAGE-S6.md</i>), notamment le contrat É3 et la continuité C1.3/C1.1 · Charte pédagogique FrigorX et
+  Manuel de conception (§2 bis C — trame « au fil de l'eau ») · référentiel CAP IFCA (codes T1, C1.1 « Compléter,
+  transmettre », C1.3, S3.1) · forme clonée du module F3 des séquences S1, S2, S3 et S5 1A CAP IFCA (Document
+  élève.html / Document professeur.html), continuité stricte pour la même cohorte · essai azote 10 bar minimum
+  pendant 24 h d'après <i>1 mise sous azote.docx</i> (l'épreuve officielle de S6, à une pression fixée par le
+  professeur, s'en inspire sans en reprendre la valeur) · grille d'inspiration du PV d'épreuve d'après
+  <i>Évaluation pose des manomètres épreuve à l'azote tirage au vide.docx</i> · check-list devenue PV : continuité
+  directe avec les documents produits en S5-F2 · structure de la rubrique bon de commande
+  (référence/désignation/quantité) d'après <i>bond de commande le froid.docx</i> (gabarit fournisseur réel,
+  F. Henninot), déjà restituée en S1, S2, S3, S5 et en 2A.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .attendu, .exemple, .erreur, .remede, .indicatif, .special, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

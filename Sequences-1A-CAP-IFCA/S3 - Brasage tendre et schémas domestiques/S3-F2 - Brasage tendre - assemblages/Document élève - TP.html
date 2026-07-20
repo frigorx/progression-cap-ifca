@@ -1,0 +1,577 @@
+<meta charset="utf-8">
+<title>TP élève — S3-F2 · Brasage tendre : assemblages</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement, pas de note -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre et schémas domestiques</td>
+      <td style="width:38%"><span class="lib">Module atelier S3-F2 · 4 h × 2 passages</span><b>Brasage tendre : assemblages</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · semaines 10-11</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S3-2</b> : vous avez préparé et contrôlé l'étanchéité de la liaison
+  frigorifique du <b>pavillon</b> du client (module S3-F1). Le client attend maintenant l'<b>assemblage
+  DÉFINITIF</b> de cette liaison : les raccords démontables (dudgeon + écrou) utilisés jusqu'ici ne suffisent
+  plus. Il faut <b>braser</b>. C'est le <b>premier geste d'assemblage définitif de votre année</b> : une fois
+  brasé, un tube ne se démonte plus comme un dudgeon. <b>La flamme ne se découvre pas seul(e), elle se
+  démontre</b> : le professeur commence toujours par une démonstration commentée, avant toute prise en main.
+  Ce module se vit <b>deux fois</b> : <b>passage 1 en semaine 10</b> (premiers gestes, sur établi, en position
+  confortable) et <b>passage 2 en semaine 11</b> (l'exercice complet demandé par le client : 3 emboîtures
+  cotées, brasées, contrôlées).</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4>Prérequis : gestes cuivre (S1-S2), étanchéité à l'eau savonneuse (S3-F1)<br><b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur face à un risque nouveau (la flamme) · respect absolu des gestes interdits · honnêteté du contrôle avant brasage</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><span class="statut">Confortement</span> <b>C2.4</b> Sécuriser l'intervention</div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S2</b> — En S2, tous vos assemblages étaient
+  <b>mécaniques et démontables</b> (dudgeon + écrou) : une pièce ratée se refaisait sur un tube neuf, sans
+  conséquence grave. <b>Aujourd'hui, l'assemblage devient DÉFINITIF</b> : un brasage ne se « redéfait » pas
+  comme un dudgeon — votre marge d'erreur est plus faible, votre vigilance doit monter d'un cran. Autre
+  changement important : en S2, vous ne travailliez <b>jamais avec une flamme</b>. À partir d'aujourd'hui, de
+  nouveaux gestes interdits et une nouvelle procédure d'urgence s'ajoutent à tout ce que vous savez déjà sur la
+  sécurité. Statut des deux compétences : <b>Confortement</b> — S3 ne comporte aucune Évaluation remontée
+  (celle-ci, É2, aura lieu plus tard, en S4). É1 est passée : vos 2 objectifs de progrès s'appliquent ici
+  aussi.</div>
+
+  <div class="passage"><h4>Passage 1 / Passage 2 — ce qui change</h4>
+  <b>Passage 1 (semaine 10) — emboîtures + premiers brasages, sur établi, position confortable</b> : après la
+  démonstration commentée du professeur, vous réalisez <b>une emboîture d'essai</b> sur une chute de tube, à
+  votre établi, puis vous la brasez pour la première fois, à un <b>poste de brasage en rotation</b>. Le
+  professeur reste présent à chaque allumage.<br>
+  <b>Passage 2 (semaine 11) — l'exercice complet du client, en autonomie guidée</b> : sur un tube neuf de
+  <b>450 mm</b>, vous réalisez <b>3 emboîtures</b> aux cotes demandées (<b>350 mm ± 2 mm</b>), que vous
+  <b>montrez au professeur AVANT tout brasage</b> — c'est une obligation, pas une option. Vous brasez ensuite
+  les 3 emboîtures et vous <b>contrôlez visuellement chaque cordon</b> (continu, brillant, sans manque, sans
+  surchauffe). Moins d'aide qu'au passage 1, plus d'autonomie : c'est la pièce que le client attend
+  réellement.</div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>réaliser une emboîture</b> conforme à la cote demandée, en respectant sa tolérance (± 2 mm) ;</li>
+    <li><b>définir le brasage tendre</b> (métal d'apport qui fond sous 450 °C) et le distinguer du brasage
+    fort, sans en connaître encore la valeur exacte ;</li>
+    <li><b>respecter la procédure de sécurité renforcée</b> face à la flamme : EPI, gestes interdits,
+    extincteur localisé ;</li>
+    <li><b>montrer mes emboîtures au professeur AVANT de braser</b> — c'est un point de contrôle obligatoire,
+    jamais une option ;</li>
+    <li><b>réaliser un brasage et contrôler visuellement mon cordon</b> : continu, brillant, sans manque, sans
+    surchauffe.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est pas votre première séance de travail du cuivre : vous savez déjà
+  <b>couper, ébavurer, cintrer et dudgeonner</b> un tube (S1-S2), et vous savez <b>contrôler l'étanchéité</b>
+  d'un circuit à l'eau savonneuse, appris la semaine dernière en S3-F1. Vous savez lire une cote avec sa
+  tolérance (± mm) et vous portez vos EPI sans qu'on ait besoin de vous le rappeler. Ce qui est <b>nouveau
+  aujourd'hui</b>, c'est le geste d'<b>emboîture</b> (préparer deux tronçons de même diamètre pour qu'ils
+  s'emboîtent l'un dans l'autre) et bien sûr, la <b>flamme</b>.</p>
+  <ul class="liste-num">
+    <li>couper, ébavurer, cintrer, dudgeonner un tube cuivre (S1-S2) ;</li>
+    <li>contrôler l'étanchéité d'un circuit à l'eau savonneuse (S3-F1) ;</li>
+    <li>lire et respecter une cote donnée avec sa tolérance ;</li>
+    <li>porter les EPI et sécuriser une zone de travail sans rappel.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si un prérequis vous échappe encore,
+  signalez-le au professeur pendant l'exercice au fil de l'eau (phase 4), avant que la démonstration ne
+  commence.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Tube cuivre 14 × 1, plusieurs longueurs (chutes pour l'essai, un tube neuf de 450 mm pour l'exercice
+    du client) — selon le stock de l'atelier, à faire valider par le professeur</li>
+    <li>Poste de brasage (chalumeau, gaz) — <span class="conso">consommable</span>, type et réglage selon
+    l'équipement de l'atelier</li>
+    <li>Métal d'apport (baguette de brasage tendre) <span class="conso">(consommable)</span> — selon la
+    notice du produit utilisé à l'atelier, à faire valider par le professeur</li>
+    <li>Flux décapant <span class="conso">(consommable)</span> — selon la notice du produit utilisé à
+    l'atelier, à faire valider par le professeur</li>
+    <li>Toile abrasive ou brosse métallique (décapage mécanique avant brasage)</li>
+    <li>Outil d'expansion (pince à emboîture), adapté au diamètre 14 mm</li>
+    <li>Mètre ou réglet + feutre marqueur (traçage des cotes)</li>
+    <li>Support ou pince pour maintenir le tube pendant le brasage</li>
+    <li>Gants anti-chaleur (× 1 paire par élève, obligatoires)</li>
+    <li>Lunettes de protection (× 1 par élève, obligatoires)</li>
+    <li>Extincteur localisé au poste de brasage (vérifié en phase 5)</li>
+    <li>Bac de récupération des chutes de cuivre</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — LE BRASAGE TENDRE + SÉCURITÉ RENFORCÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Le brasage tendre — une définition à connaître</h3>
+  <p style="font-size:10.5pt">Le <b>brasage TENDRE</b> est un procédé d'assemblage qui utilise un <b>métal
+  d'apport</b> dont la température de fusion est <b>inférieure à 450 °C</b> (définition normalisée). Le métal
+  d'apport fond <b>sans faire fondre le cuivre du tube</b> : il vient remplir l'espace entre les deux tronçons
+  emboîtés, par capillarité (il est « aspiré » dans le petit espace laissé entre les deux tubes). Il existe un
+  autre procédé, le <b>brasage FORT</b> (ou soudo-brasage), qui utilise une température plus élevée — vous ne
+  l'utilisez pas aujourd'hui, et sa valeur exacte sera vue plus tard dans votre formation. L'alliage exact du
+  métal d'apport, le type de flux décapant et le matériel de brasage utilisés à l'atelier dépendent de la
+  <b>notice du produit</b> réellement en service : ce n'est pas à vous de les deviner, le professeur vous les
+  précisera.</p>
+  <div class="encadre-question"><b>Question</b> — Avec vos propres mots, expliquez pourquoi on appelle ce
+  procédé « brasage <b>tendre</b> » plutôt que « brasage fort ». Qu'est-ce qui les distingue ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h3 class="section">Sécurité renforcée — la flamme arrive</h3>
+  <p style="font-size:10.3pt">Jusqu'ici, vous n'avez jamais travaillé avec une flamme. Aujourd'hui, de
+  nouveaux risques apparaissent : <b>ils ne s'apprennent pas en tâtonnant</b>, le professeur vous les démontre
+  avant toute prise en main.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Brûlure par un tube fraîchement brasé</td><td>Le tube reste chaud <b>LONGTEMPS</b> après l'extinction de la flamme, bien plus longtemps qu'il n'y paraît. <b>Gants anti-chaleur</b> obligatoires ; ne jamais toucher un tube qui vient d'être brasé à main nue.</td></tr>
+    <tr><td>Brûlure ou projection par la flamme elle-même</td><td><b>Lunettes de protection</b> obligatoires pendant tout allumage. Ne jamais approcher son visage ou ses mains de la flamme.</td></tr>
+    <tr><td>Incendie (matériau inflammable à proximité de la flamme)</td><td>Poste de brasage dégagé de tout inflammable ; <b>extincteur localisé et vérifié</b> au rituel d'entrée (phase 5).</td></tr>
+    <tr><td>Explosion ou fuite au niveau de la bouteille de gaz</td><td>Vérification du poste avant tout allumage ; <b>jamais de flamme à proximité d'une bouteille de gaz.</b></td></tr>
+    <tr><td>Inhalation des fumées de flux ou de brasage</td><td>Ventilation du poste vérifiée avant d'allumer (aération ou hotte selon l'atelier).</td></tr>
+    <tr><td>Chalumeau laissé allumé sans surveillance</td><td><b>Jamais poser un chalumeau allumé</b> : on l'éteint dès qu'on n'en a plus besoin, même quelques secondes.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Gestes interdits — à respecter sans exception</h3>
+  <ul class="liste-num">
+    <li><b>Jamais</b> de flamme dirigée vers un pair, même « pour rire » ;</li>
+    <li><b>Jamais</b> de flamme à proximité d'une bouteille de gaz ;</li>
+    <li><b>Jamais</b> toucher un tube qui vient d'être brasé à main nue ;</li>
+    <li><b>Jamais</b> poser le chalumeau allumé, même un instant.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous
+  (gants et lunettes portés, poste dégagé, extincteur localisé) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, poste de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 Procédure d'urgence — brûlure</b> — En cas de brûlure : <b>refroidir
+  immédiatement</b> la zone touchée sous l'<b>eau tempérée</b> (ni glacée, ni chaude) pendant <b>15
+  minutes</b>, sans interrompre le refroidissement — c'est la règle standard de premiers secours (« cooling »),
+  à faire confirmer et affiner par le <b>SST</b> (Sauveteur Secouriste du Travail) de l'établissement.
+  <b>Alertez immédiatement le professeur.</b> Ne percez jamais une cloque, n'appliquez jamais de corps gras.
+  Trousse de secours et extincteur localisés au rituel d'entrée (phase 5).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON 1 : DÉMONSTRATION + EMBOÎTURE D'ESSAI ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 10 · JALON 1 — démonstration + emboîture d'essai — ≈ 55 min</span>
+
+  <h3 class="section">1. Observer la démonstration commentée</h3>
+  <p style="font-size:10.5pt">Le professeur réalise devant vous, en commentant chaque étape, une emboîture
+  puis un brasage complets. <b>Vous n'avez pas encore de chalumeau en main</b> : vous observez et vous
+  notez. Aucune question pendant que la flamme est allumée — vos questions viennent juste après.</p>
+  <div class="liste-num">
+    <p>☐ 1. Allumage du chalumeau (procédure du poste, rappelée par le professeur)</p>
+    <p>☐ 2. Réglage de la flamme</p>
+    <p>☐ 3. Chauffe uniforme du raccord (pas de la baguette directement)</p>
+    <p>☐ 4. Avancée du métal d'apport au point le plus chaud, aspiré par capillarité</p>
+    <p>☐ 5. Retrait de la flamme dès que le cordon est complet, refroidissement sans y toucher</p>
+  </div>
+  <div class="encadre-question"><b>Question</b> — Parmi ces 5 étapes, laquelle vous semble la plus délicate à
+  réussir, et pourquoi ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">2. Réaliser mon emboîture d'essai</h3>
+  <p style="font-size:10.5pt">Sur une chute de tube, à votre établi, en position confortable, réalisez votre
+  <b>première emboîture</b>. Ce n'est pas encore la pièce du client : c'est un essai, pour prendre le geste.</p>
+  <div class="liste-num">
+    <p>☐ 1. Tracer au feutre le repère de l'emboîture, à la cote indiquée par le professeur</p>
+    <p>☐ 2. Décaper l'extérieur du tube à cet endroit (toile abrasive) : une surface propre est indispensable
+    pour que le brasage capillaire fonctionne</p>
+    <p>☐ 3. Réaliser l'emboîture à l'aide de l'outil d'expansion, en élargissant l'extrémité du tube pour
+    qu'elle reçoive le tronçon suivant</p>
+    <p>☐ 4. Emboîter les deux tronçons, vérifier l'alignement et la cote</p>
+  </div>
+
+  <h4 style="font-size:11pt">Ce que je dessine — mon emboîture d'essai avant brasage</h4>
+  <div class="cadre-dessin"><span class="consigne-cadre">Dessinez le tube emboîté : la zone décapée, la cote tracée, l'alignement des deux tronçons.</span></div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — jalon 1</h4>
+  <table class="releve">
+    <tr><th>Cote demandée (mm)</th><th>Cote obtenue (mm)</th><th>Alignement correct ?</th><th>Conforme ?</th></tr>
+    <tr><td>________</td><td>________</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cote exacte demandée pour cet essai : selon
+  le professeur, à faire valider (ce n'est pas encore la cote 350 mm ± 2 mm de l'exercice du client, réservée
+  au passage 2).</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi faut-il décaper le tube avant de le braser, et pas
+  seulement l'essuyer ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1</h4>
+  <p>☐ Emboîture correctement décapée &nbsp;&nbsp; ☐ Cote et alignement conformes &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le brasage (jalon 2)</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · JALON 2 : PREMIER BRASAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 10 · JALON 2 — premier brasage, postes en rotation — ≈ 70 min</span>
+  <p style="font-size:10.5pt">Vous passez maintenant à un <b>poste de brasage</b>, en rotation avec vos
+  camarades (le nombre de postes est limité pour des raisons de sécurité). Le professeur est présent à
+  <b>chaque</b> allumage.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Vérifier le poste : zone dégagée, extincteur à proximité, EPI portés (gants, lunettes)</p>
+    <p>☐ 2. Allumer le chalumeau selon la procédure rappelée à la démonstration</p>
+    <p>☐ 3. Chauffer <b>uniformément</b> le raccord, jamais la baguette directement</p>
+    <p>☐ 4. Approcher le métal d'apport au point le plus chaud : il doit être aspiré tout autour du joint</p>
+    <p>☐ 5. Retirer la flamme dès que le cordon est complet, <b>sans surchauffer</b></p>
+    <p>☐ 6. Laisser refroidir <b>sans y toucher</b> — rappel : le tube reste chaud longtemps</p>
+    <p>☐ 7. Contrôler visuellement le cordon obtenu</p>
+  </div>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/cordon-brasage-criteres.svg" alt="4 exemples de cordon de brasage : conforme, manque de métal, surchauffe, coulure" style="max-width:92%">
+    <figcaption class="legende">Contrôle visuel du cordon — 4 exemples. Croquis pédagogique, F. Henninot.</figcaption>
+  </figure>
+
+  <h4 style="font-size:11pt">Tableau de contrôle visuel — jalon 2</h4>
+  <table class="releve">
+    <tr><th>Cordon continu ?</th><th>Cordon brillant ?</th><th>Pas de manque ?</th><th>Pas de surchauffe ?</th><th>Conforme ?</th></tr>
+    <tr><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Vous venez de retirer la flamme : le tube a l'air froid en
+  surface. Pouvez-vous le saisir à main nue pour le ranger tout de suite ? Expliquez votre réponse en une
+  phrase.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : non — un tube brasé
+  reste chaud longtemps après l'extinction de la flamme, même s'il n'en a plus l'air. On attend le
+  refroidissement visible ou on utilise les gants anti-chaleur, jamais la main nue.</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2</h4>
+  <p>☐ Sécurité respectée à chaque étape &nbsp;&nbsp; ☐ Cordon conforme (continu, brillant, sans manque, sans surchauffe) &nbsp;&nbsp; ☐ Premier brasage réussi</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 2 · JALON A' : LES 3 EMBOÎTURES COTÉES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 11 · JALON A' — traçage et emboîtures cotées — ≈ 60 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Aujourd'hui, vous réalisez
+  <b>l'exercice complet</b> attendu par le client : plus une simple pièce d'essai, mais <b>3 emboîtures cotées
+  avec précision</b>. Moins de démonstration (vous l'avez déjà vue), plus d'autonomie — mais une règle ne
+  change jamais : <b>vous devez montrer vos emboîtures au professeur AVANT de braser.</b></div>
+
+  <div class="encadre-question"><b>Rappel</b> — Sans regarder vos notes, quelle est la valeur en dessous de
+  laquelle un métal d'apport doit fondre pour qu'on parle de brasage <b>tendre</b> ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <h3 class="section">L'exercice du client</h3>
+  <p style="font-size:10.5pt">À l'aide d'un <b>tube de 14 × 1 de 450 mm de longueur</b>, réalisez <b>trois
+  emboîtures</b> aux dimensions ci-dessous.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/emboiture-exercice-source.png" alt="Schéma coté du tube : 3 emboîtures espacées de 100, 100, 100 et 50 mm" style="max-width:82%">
+    <figcaption class="legende">Schéma de traçage — tube 14 × 1, 450 mm, 3 emboîtures. Le schéma complet figure en
+    <b>annexe pleine page</b> : gardez-le sous les yeux pendant le traçage. D'après : EXERCICE emboîture et
+    brasage, fiche atelier CAP IFCA (F. Henninot).</figcaption>
+  </figure>
+
+  <div class="liste-num">
+    <p>☐ 1. Tracer les 3 repères au feutre, aux distances indiquées sur le schéma (100 mm, 100 mm, 100 mm, 50 mm)</p>
+    <p>☐ 2. Décaper chaque zone d'emboîture (toile abrasive)</p>
+    <p>☐ 3. Réaliser les 3 emboîtures à l'outil d'expansion, dans l'ordre du schéma</p>
+    <p>☐ 4. Vérifier la cote totale demandée : <b>350 mm ± 2 mm</b></p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — les 3 emboîtures</h4>
+  <table class="releve">
+    <tr><th>Emboîture</th><th>Cote demandée</th><th>Cote obtenue</th><th>Dans la tolérance (± 2 mm) ?</th></tr>
+    <tr><td>1</td><td>100 mm</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>2</td><td>100 mm</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>3</td><td>100 mm</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Cote totale</td><td>350 mm</td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="secu"><b class="t">⚠ AVANT DE BRASER</b> — Montrez vos <b>3 emboîtures</b> au professeur. C'est
+  une obligation, pas une option : on ne brase jamais une emboîture qui n'a pas été validée.</div>
+
+  <div class="jalon"><h4>Visa professeur — jalon A' (contrôle obligatoire avant brasage)</h4>
+  <p>☐ Les 3 emboîtures sont conformes à la cote (350 mm ± 2 mm) &nbsp;&nbsp; ☐ Décapage vérifié &nbsp;&nbsp; ☐ Autorisé(e) à braser (jalon B')</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON B' : BRASAGE DES 3 EMBOÎTURES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 11 · JALON B' — brasage des 3 emboîtures — ≈ 65 min</span>
+  <p style="font-size:10.5pt">Une fois vos 3 emboîtures validées, brasez-les <b>l'une après l'autre</b>, à un
+  poste de brasage en rotation. Après chaque brasage, laissez refroidir <b>sans toucher</b>, puis contrôlez
+  visuellement le cordon avant de passer à la suivante.</p>
+
+  <h4 style="font-size:11pt">Tableau de contrôle visuel — les 3 cordons</h4>
+  <table class="releve">
+    <tr><th>Emboîture</th><th>Continu ?</th><th>Brillant ?</th><th>Sans manque ?</th><th>Sans surchauffe ?</th><th>Conforme ?</th></tr>
+    <tr><td>1</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td></tr>
+    <tr><td>2</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td></tr>
+    <tr><td>3</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td><td>☐ O ☐ N</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de savoir-être</b> — Vous venez de braser votre 2<sup>e</sup>
+  emboîture et le cordon vous semble « limite » — pas franchement mauvais, mais pas net non plus. Que
+  faites-vous : vous continuez en espérant que ça passe, ou vous le signalez au professeur ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : on alerte toujours
+  le professeur. Un frigoriste honnête signale un doute plutôt que de livrer une pièce non conforme, surtout
+  sur un assemblage définitif qui ne se refait pas facilement.</p>
+
+  <h3 class="section">Pour aller plus loin (non noté aujourd'hui)</h3>
+  <p style="font-size:10.3pt">Vous avez appris en S3-F1 à contrôler l'étanchéité d'un circuit à l'eau
+  savonneuse. Une fois vos 3 emboîtures brasées et refroidies, vous pouvez, si le temps le permet, <b>re-
+  contrôler votre pièce</b> avec cette même méthode. Ce n'est pas évalué aujourd'hui, mais c'est exactement le
+  geste qu'un frigoriste réalise après un assemblage définitif.</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon B' et pièce complète</h4>
+  <p>☐ Les 3 cordons sont conformes &nbsp;&nbsp; ☐ Refroidissement respecté avant manipulation &nbsp;&nbsp; ☐ Défi réussi</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Contrôles finaux</h3>
+  <div class="liste-num">
+    <p>☐ 1. Les 3 emboîtures (passage 2) sont aux cotes demandées (100/100/100 mm, total 350 mm ± 2 mm)</p>
+    <p>☐ 2. Les 3 cordons de brasage sont continus, brillants, sans manque, sans surchauffe</p>
+    <p>☐ 3. La pièce a entièrement refroidi avant toute manipulation à main nue</p>
+    <p>☐ 4. Ma pièce est posée avec mon nom, prête à être présentée</p>
+  </div>
+
+  <h3 class="section">Rangement et remise en état — spécifique au brasage</h3>
+  <div class="liste-num">
+    <p>☐ 1. Éteindre le chalumeau et <b>vérifier qu'il est froid</b> avant de le ranger</p>
+    <p>☐ 2. Fermer la bouteille de gaz du poste</p>
+    <p>☐ 3. Vérifier qu'<b>aucun tube brasé n'est encore chaud</b> avant de quitter la zone</p>
+    <p>☐ 4. Trier les chutes de cuivre dans le bac de récupération</p>
+    <p>☐ 5. Nettoyer le poste, ranger l'outillage à sa place</p>
+    <p>☐ 6. Retirer les EPI en dernier, une fois le poste totalement sécurisé</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis aujourd'hui</h4>
+  <p>☐ Passage 1 : démonstration observée, emboîture d'essai réalisée et brasée, cordon contrôlé<br>
+  ☐ Passage 2 : 3 emboîtures cotées réalisées, montrées au professeur AVANT brasage, brasées, cordons
+  contrôlés<br>
+  ☐ Sécurité renforcée respectée à chaque étape (EPI, gestes interdits, extincteur localisé)</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>Confortement</b> — aucune Évaluation
+  remontée dans S3 (l'évaluation É2 aura lieu plus tard, en S4).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)</td><td>sur T10 · S2.1</td><td>Compétence non observée ce jour.</td><td>Emboîture(s) hors tolérance et/ou cordon refusé au contrôle visuel, malgré aide ou reprise.</td><td>Emboîture(s) et brasage conformes avec l'aide du professeur ou après une reprise.</td><td>Réalise seul(e) les 3 emboîtures cotées (350 mm ± 2 mm) ET un cordon de brasage conforme (continu, brillant, sans manque, sans surchauffe).</td><td>Comme « Acquis », et repère seul(e) un défaut sur son cordon avant de le présenter.</td></tr>
+    <tr><td><b>C2.4</b> Sécuriser l'intervention</td><td>sur T12 · S6.2</td><td>Compétence non observée ce jour.</td><td>Geste interdit commis (flamme vers un pair, flamme près d'une bouteille de gaz, tube chaud touché à main nue, chalumeau posé allumé) : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires (EPI, zone dégagée).</td><td>EPI et gestes respectés sans rappel, extincteur vérifié, zone sécurisée, aucun geste interdit.</td><td>Comme « Acquis », et alerte spontanément un pair sur un risque qu'il n'a pas vu.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux ou précipitation qui compromet la sécurité : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>Applique les consignes sans rappel, montre ses emboîtures avant brasage sans qu'on le lui demande.</td><td>Comme « Acquis », et signale spontanément un doute sur son propre cordon plutôt que de le livrer tel quel.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C2.4 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : relevés, dessins, questions répondues)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (tube, métal d'apport, flux, gaz)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : EXERCICE
+  emboîture et brasage, fiche atelier CAP IFCA (C3-Réaliser, F. Henninot) — dimensions restituées à
+  l'identique (tube 14 × 1, 450 mm, 3 emboîtures, cote 350 mm ± 2 mm, contrôle professeur avant brasage).
+  Continuité directe du document S3-F1 produit pour cette même classe (réseau assemblé, étanchéité). <b>Sources
+  anciennes non extraites, à rouvrir par le professeur si souhaité</b> : « Le brasage tendre.doc », « Le
+  brasage tendre (réalisations pratiques).doc », « 04_brasage.pdf » (document scanné) — aucun contenu de ce TP
+  n'a été inventé à partir de ces sources illisibles.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE 1 : SCHÉMA DE TRAÇAGE COMPLET (impression pleine page) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma de traçage complet — tube 14 × 1, 450 mm, 3 emboîtures (passage 2)</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en pleine page (une feuille par
+  poste) : c'est le document à garder sous les yeux pendant tout le traçage et les emboîtures du jalon A'.
+  Reportez ces cotes directement sur votre tube avant de décaper.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/emboiture-exercice-source.png" alt="Schéma technique pleine page : tube 450 mm, 3 emboîtures cotées 100/100/100/50 mm" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+  <p class="legende" style="text-align:center">D'après : EXERCICE emboîture et brasage, fiche atelier CAP
+  IFCA (C3-Réaliser, F. Henninot) — schéma source restitué à l'identique.</p>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

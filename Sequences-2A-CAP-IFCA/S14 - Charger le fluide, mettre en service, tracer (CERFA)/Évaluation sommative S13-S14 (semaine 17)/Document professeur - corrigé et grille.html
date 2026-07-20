@@ -1,0 +1,466 @@
+<meta charset="utf-8">
+<title>Document professeur — corrigé et grille — Évaluation sommative S13-S14 · semaine 17 · CAP IFCA 2A</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e; --jaune:#fff6cc; --jaune-bord:#e0c34a}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .bandeau-eval{border:2.5px solid var(--jaune-bord); background:var(--jaune); border-radius:6px;
+    padding:8px 16px; margin:0 0 12px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .bandeau-eval b.titre{font-family:'Trebuchet MS',sans-serif; font-size:12.5pt; color:#7a5b00; letter-spacing:.02em}
+  .bandeau-eval .sousligne{font-size:9.5pt; color:#7a5b00}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord)}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .chrono{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord); margin-bottom:6px; margin-left:8px}
+  .bareme{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#e2f3e3; color:#1e6b2f; border:1px solid #9ed3a8; margin-bottom:6px; margin-left:8px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + CE QUE CE DOCUMENT AJOUTE + BARÈME GLOBAL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 ÉVALUATION SOMMATIVE — DOCUMENT PROFESSEUR</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Charger le fluide, mettre en service, tracer (CERFA)</td>
+      <td style="width:38%"><span class="lib">Évaluation sommative — CORRIGÉ ET GRILLE</span><b>Semaine 17 — clôture du bloc S13-S14</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquences</span><span class="grand">S13 · S14</span> · sem. 17, 02-06/03/2027</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Durée</span>1 h minimum / élève</td>
+      <td><span class="lib">Modalité</span>Poste individuel, sans aide</td>
+      <td><span class="lib">Barème</span>20 points (voir répartition ci-dessous)</td>
+      <td><span class="lib">Statut</span><span class="statut eval">Évaluation</span> École Directe</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T2</b> Compléter les documents de traçabilité des fluides frigorigènes<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension<br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><b>S0.1</b> Réglementation et impacts environnementaux <span class="nuance">prérequis</span><br><b>S1.2</b> Pièces et autorisations administratives <span class="nuance">prérequis</span><br><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">prérequis</span><br><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">prérequis</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste · sécurité sans rappel (récupération, jamais de rejet) · honnêteté de la mesure et de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétences (≤ 4) — Évaluation</h4><span class="statut eval">Évaluation</span> <b>C4.2</b> Manipuler le fluide frigorigène et les huiles<br><span class="statut eval">Évaluation</span> <b>C4.5</b> Mesurer, comparer des grandeurs<br><span class="statut eval">Évaluation</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au sujet élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève de l'évaluation
+  sommative S13-S14 : mêmes <b>3 postes</b>, même ordre, même numérotation des étapes et des tableaux. Il y
+  ajoute : ce qui est attendu et les <b>critères observables</b> pour chaque poste, les <b>erreurs typiques</b>
+  d'élèves et leur <b>remédiation</b>, la <b>grille 0-4 corrigée</b> avec un critère par case pour C4.2, C4.5,
+  C4.7 et le savoir-être, le <b>barème/points</b> cohérent avec le plan de passation, ainsi que l'organisation
+  de la correction et la différenciation. <b>Aucune valeur chiffrée n'est inventée</b> : seules deux valeurs
+  de seuil sont fixées — <b>surchauffe (SC) 5-10 K</b> et <b>sous-refroidissement (SR) 4-8 K</b> ; toute autre
+  grandeur (masse de charge nominale, pression de consigne) reste « <b>selon plaque signalétique / notice
+  constructeur, à faire valider</b> ».</p>
+
+  <h3 class="section">Barème global — cohérent avec le plan de passation</h3>
+  <p style="font-size:10.3pt">L'épreuve totalise <b>20 points</b>, répartis sur les trois postes au prorata du
+  minutage du plan de passation (15 + 25 + 15 min de passage effectif = 55 min utiles) ; le point de
+  savoir-être est transversal et vient en observation continue, non retranché des trois postes.</p>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:22%">Poste</th><th style="width:18%">Compétence</th><th style="width:14%">Durée (plan de passation)</th><th style="width:12%">Points</th><th>Répartition des points</th></tr>
+    <tr><td><b>Poste 1</b> — récupération du fluide</td><td>C4.2 sur T2·T13·T15</td><td>15 min</td><td><b>5 pts</b></td><td>Tare vérifiée (1) · aucune fuite/rejet (2) · masse récupérée pesée et notée (2)</td></tr>
+    <tr><td><b>Poste 2</b> — charge + relevés + SC/SR</td><td>C4.5 · C4.7 sur T2·T13·T15</td><td>25 min</td><td><b>8 pts</b></td><td>Vide validé avant charge (1) · manifold raccordé sans fuite (2) · relevés HP/BP/T°/tension/intensité/T° condenseur-évaporateur corrects (2) · calcul SC et SR corrects (3)</td></tr>
+    <tr><td><b>Poste 3</b> — FI-BSD (traçabilité)</td><td>C4.2 sur T2·T13·T15</td><td>15 min</td><td><b>5 pts</b></td><td>Quantités récupérée et chargée reportées correctement (2) · rubriques d'identification complètes (1) · questions répondues (2)</td></tr>
+    <tr><td>Savoir-être transversal</td><td>observation continue</td><td>sur toute l'heure</td><td><b>2 pts</b></td><td>Sécurité sans rappel (jamais de rejet), honnêteté de la mesure et de l'auto-contrôle</td></tr>
+    <tr class="demi"><td colspan="3">Total</td><td colspan="2"><b>20 points</b> — reporté en positionnement 0-4 par compétence sur École Directe (grille feuille 5)</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Le barème en points sert de repère interne pour objectiver la
+  notation détaillée ; c'est le <b>positionnement 0-4 par compétence</b> (C4.2, C4.5, C4.7 + savoir-être) qui
+  est remonté sur École Directe, conformément au statut <b>Évaluation</b> — repère jaune <code
+  style="background:#fff6cc; border:1px solid #e0c34a; border-radius:3px; padding:0 4px">#fff6cc</code>.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ POSTE 1 : RÉCUPÉRATION DU FLUIDE (C4.2) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S13-S14 · semaine 17 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Poste 1 : récupération du fluide (rappel S13)</h3>
+  <span class="poste-titre">C4.2 sur T2 · T13 · T15 — Évaluation</span><span class="chrono">15 min passage élève</span><span class="bareme">5 points</span>
+
+  <p style="font-size:10.3pt">L'élève reprend le geste de récupération démontré en S13 : pesée de la tare,
+  raccordement du groupe de récupération, transfert du fluide, pesée finale et calcul de la masse récupérée
+  par différence. <b>Aucune masse chiffrée n'est fixée par ce document</b> : la masse correcte est <b>celle
+  réellement présente dans le circuit distribué au poste, à faire valider</b> — chaque poste peut contenir une
+  quantité différente, seule la cohérence tare/pesée/calcul compte.</p>
+
+  <h4 class="section">Ce qui est attendu</h4>
+  <ul class="liste-num">
+    <li>La tare de la bouteille de récupération est <b>vérifiée et notée avant</b> le début du transfert, pas estimée après coup ;</li>
+    <li>l'étanchéité des raccords est contrôlée <b>avant</b> l'ouverture des vannes, comme démontré en S13 ;</li>
+    <li>le transfert se poursuit jusqu'au <b>vide résiduel indiqué par le professeur</b>, sans interruption prématurée par manque de rigueur ;</li>
+    <li><b>aucun rejet de fluide à l'atmosphère</b> n'est constaté à aucun moment du geste ;</li>
+    <li>la masse récupérée est calculée par <b>différence exacte</b> entre la pesée finale et la tare, et reportée lisiblement pour être réutilisée au poste 3.</li>
+  </ul>
+
+  <h4 class="section">Critères observables — corrigé du tableau de relevé élève</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Grandeur</th><th>Ce que le professeur vérifie / signe de conformité</th></tr>
+    <tr><td>Tare de la bouteille de récupération</td><td>Pesée réelle affichée sur la balance du poste, notée <b>avant</b> le transfert — <b>valeur exacte selon la bouteille distribuée au poste, à faire valider</b>, jamais une tare générique mémorisée.</td></tr>
+    <tr><td>Masse de la bouteille en fin de récupération</td><td>Pesée réelle après fermeture des vannes et débranchement complet du groupe de récupération.</td></tr>
+    <tr><td>Masse de fluide récupérée</td><td>Calcul par différence (masse finale − tare) exact et cohérent avec les deux pesées relevées ; une erreur de calcul, même avec des pesées correctes, n'est pas acceptée.</td></tr>
+    <tr><td>Pression résiduelle atteinte dans le circuit</td><td>Lecture directe sur le manomètre du groupe de récupération, conforme au seuil annoncé oralement par le professeur en début de séance.</td></tr>
+  </table>
+  </div>
+
+  <h4 class="section">Erreurs typiques observées + remédiation immédiate</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation</th></tr>
+    <tr><td>Tare non vérifiée ou estimée après coup</td><td>Faire repeser la bouteille vide devant l'élève si le temps le permet ; noter l'écart sur la grille (niveau 2 au mieux).</td></tr>
+    <tr><td>Transfert arrêté avant le vide résiduel indiqué</td><td>Faire reprendre le transfert jusqu'au seuil annoncé ; noter l'écart sur la grille sans allonger le temps des autres élèves.</td></tr>
+    <tr><td>Erreur de calcul de la masse récupérée (différence mal faite)</td><td>Faire refaire le calcul devant le professeur à partir des deux pesées réelles ; ce point est un critère de la grille, pas seulement une erreur de traçabilité.</td></tr>
+    <tr><td>Doute sur un rejet de fluide (raccord ouvert avant fin de transfert, bruit de fuite)</td><td>Intervention immédiate obligatoire (sécurité non négociable) ; entraîne automatiquement le niveau 1 sur le savoir-être, indépendamment de la qualité du reste du travail.</td></tr>
+  </table>
+  </div>
+
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — la quantité réellement présente dans
+  le circuit n'est <b>jamais</b> la même valeur générique d'un poste à l'autre : vérifier contre les deux
+  pesées réellement relevées par l'élève, pas contre une masse mémorisée d'un autre poste ou d'une séance
+  précédente.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ POSTE 2 : CHARGE + RELEVÉS + SC/SR (C4.5 · C4.7) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S13-S14 · semaine 17 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Poste 2 : charge, relevés et calcul de la surchauffe (SC) et du sous-refroidissement (SR)</h3>
+  <span class="poste-titre">C4.5 · C4.7 sur T2 · T13 · T15 — Évaluation</span><span class="chrono">25 min passage élève</span><span class="bareme">8 points</span>
+
+  <p style="font-size:10.3pt">Le circuit est <b>préalablement tiré au vide et validé par le professeur</b>
+  avant l'arrivée de l'élève à ce poste — l'élève ne doit jamais charger sans cette validation. Il raccorde le
+  manifold, charge selon la consigne du poste (liquide au condenseur ou vapeur à l'aspiration), démarre,
+  stabilise 10 minutes, relève HP/BP et températures, calcule la surchauffe (SC) et le sous-refroidissement (SR),
+  puis complète le relevé par les grandeurs électriques (tension, intensité, comparées à la plaque signalétique)
+  et les températures entrée/sortie condenseur et évaporateur — même tableau que celui utilisé en S13/S14 (fiche
+  contrat tirage charge / Série 2 Activité 4).</p>
+
+  <div class="vigilance"><b class="t">Seules valeurs chiffrées autorisées par la charte</b> — <b>surchauffe
+  (SC) 5-10 K</b> et <b>sous-refroidissement (SR) 4-8 K</b>. Les pressions HP/BP, les températures relevées et
+  la masse de charge nominale dépendent entièrement de l'installation réelle du poste : elles se lisent « <b>à
+  faire valider</b> », jamais recopiées d'un exemple générique.</div>
+
+  <h4 class="section">Ce qui est attendu</h4>
+  <ul class="liste-num">
+    <li>L'élève <b>fait valider</b> le tirage au vide par le professeur avant toute ouverture de vanne — un
+    élève qui charge sans validation reçoit automatiquement le niveau 1 sur le savoir-être ;</li>
+    <li>le manifold est raccordé sur les bonnes prises (BP/HP), sans fuite audible ni visible ;</li>
+    <li>le point de charge (liquide au condenseur ou vapeur à l'aspiration) correspond à la consigne du
+    poste, jamais choisi au hasard ;</li>
+    <li>les températures sont <b>mesurées</b> au thermomètre de contact (aspiration, liquide), jamais
+    estimées ; les températures de saturation sont <b>lues</b> sur le manomètre ou la table, jamais calculées
+    à partir d'une formule de conversion apprise par cœur sans lecture réelle ;</li>
+    <li>le calcul est : <b>SC = température mesurée à l'aspiration − température de saturation lue côté BP</b>
+    ; <b>SR = température de saturation lue côté HP − température mesurée au liquide</b> ; le résultat est
+    comparé aux seuils autorisés (SC 5-10 K, SR 4-8 K) ;</li>
+    <li>les grandeurs électriques (tension, intensité du groupe de condensation et du moteur évaporateur) sont
+    <b>mesurées</b> à la pince ampèremétrique et au voltmètre, puis <b>comparées</b> à la valeur inscrite sur la
+    plaque signalétique — jamais estimées ;</li>
+    <li>les températures d'entrée et de sortie du condenseur et de l'évaporateur sont relevées au thermomètre de
+    contact, aux mêmes points que ceux démontrés en A5-a/A5-b.</li>
+  </ul>
+
+  <h4 class="section">Critères observables — corrigé du tableau de relevé élève</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Grandeur</th><th>Ce que le professeur vérifie / signe de conformité</th></tr>
+    <tr><td>Pressions HP et BP</td><td>Lecture directe sur le manifold du poste ; cohérence HP > BP systématiquement vérifiée par l'élève lui-même.</td></tr>
+    <tr><td>Températures de saturation (BP et HP)</td><td>Lues sur la double échelle du manomètre ou sur la table pression-température du fluide de l'installation — jamais calculées.</td></tr>
+    <tr><td>Températures mesurées (aspiration, liquide)</td><td>Relevées au thermomètre de contact, posé correctement sur le tube (pas sur un raccord ou une vanne) et isolé si nécessaire.</td></tr>
+    <tr><td>Surchauffe (SC) et sous-refroidissement (SR) calculés</td><td>Calcul arithmétique exact à partir des quatre valeurs relevées ; résultat comparé explicitement aux seuils <b>5-10 K</b> (SC) et <b>4-8 K</b> (SR).</td></tr>
+    <tr><td>Tension et intensité (groupe de condensation, moteur évaporateur)</td><td>Mesure réelle à la pince ampèremétrique et au voltmètre, comparée à la <b>valeur plaquée</b> — un écart important doit être signalé, jamais corrigé seul.</td></tr>
+    <tr><td>Températures entrée/sortie condenseur et évaporateur</td><td>Relevées au thermomètre de contact aux quatre points attendus ; cohérence vérifiée (T° sortie évaporateur > T° entrée évaporateur, T° sortie condenseur &lt; T° entrée condenseur).</td></tr>
+  </table>
+  </div>
+
+  <h4 class="section">Erreurs typiques observées + remédiation immédiate</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation</th></tr>
+    <tr><td>Charge commencée sans validation du vide par le professeur</td><td>Intervention immédiate obligatoire (sécurité non négociable) ; niveau 1 automatique sur le savoir-être, quelle que soit la qualité du reste du poste.</td></tr>
+    <tr><td>Manifold raccordé en inversant BP et HP</td><td>Faire repointer du doigt chaque flexible (bleu = BP, rouge = HP) avant de refaire le relevé ; noter l'écart sur la grille sans reprendre le geste à la place de l'élève.</td></tr>
+    <tr><td>Température « calculée » ou devinée au lieu d'être lue/mesurée</td><td>Faire remontrer le geste de lecture sur la double échelle ou la table, et le geste de mesure au thermomètre de contact ; rappeler que toute valeur non relevée réellement est une atteinte au savoir-être.</td></tr>
+    <tr><td>SC ou SR hors plage sans que l'élève identifie l'écart</td><td>Demander à l'élève de comparer lui-même son résultat aux seuils avant de cocher la case « décision » ; ne pas valider une charge non conforme sans que l'élève l'ait identifié.</td></tr>
+    <tr><td>Tension/intensité relevées mais jamais comparées à la plaque signalétique</td><td>Faire repointer du doigt la valeur inscrite sur la plaque, à côté de la valeur mesurée ; un relevé électrique non comparé n'est pas un relevé exploitable.</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ POSTE 3 : FI-BSD (TRAÇABILITÉ) — C4.2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S13-S14 · semaine 17 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Poste 3 : traçabilité écrite, remplir une FI-BSD</h3>
+  <span class="poste-titre">C4.2 sur T2 · T13 · T15 — Évaluation</span><span class="chrono">15 min passage élève</span><span class="bareme">5 points</span>
+
+  <p style="font-size:10.3pt">L'élève reporte sur la FI-BSD les <b>quantités réellement mesurées</b> aux
+  postes 1 et 2 (masse récupérée, masse chargée) et complète les rubriques d'identification. <b>Aucune
+  quantité n'est fixée par ce document</b> : chaque poste a ses propres valeurs réelles, reportées
+  fidèlement — reproduire ici une valeur chiffrée générique serait une invention contraire à la charte.</p>
+
+  <h4 class="section">Ce qui est attendu</h4>
+  <ul class="liste-num">
+    <li>La masse récupérée reportée est <b>identique</b> à celle calculée au poste 1, sans arrondi abusif ;</li>
+    <li>la masse chargée reportée est <b>identique</b> à celle réellement chargée au poste 2 (lue sur la
+    balance de charge du poste) ;</li>
+    <li>la nature du fluide correspond à celle réellement présente sur l'installation (plaque signalétique ou
+    étiquette du poste) ;</li>
+    <li>les rubriques d'identification (intervenant, installation, date) sont complétées de façon cohérente
+    et lisible ;</li>
+    <li>les deux questions du sujet sont traitées en mobilisant le principe réglementaire attendu, pas
+    seulement une observation descriptive.</li>
+  </ul>
+
+  <h4 class="section">Corrigé des deux questions posées à l'élève</h4>
+  <div class="reponse"><b class="t">Question</b> — Pourquoi doit-on toujours renseigner sur la FI-BSD à la fois
+  la quantité de fluide récupérée ET la quantité chargée, et pas seulement l'une des deux ?<br><br>
+  <b>Réponse attendue :</b> la réglementation F-Gaz impose de <b>tracer chaque mouvement de fluide</b> pour
+  pouvoir calculer les émissions équivalentes CO₂ (tCO₂e) et détecter d'éventuelles fuites ou pertes non
+  déclarées. Si seule la quantité chargée était notée, on ne saurait pas si le fluide récupéré au préalable a
+  bien été entièrement transféré ou s'il en manque une partie (fuite, rejet non tracé). Les deux quantités
+  ensemble permettent de vérifier la <b>cohérence du bilan matière</b> de l'intervention.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui répond seulement « c'est obligatoire »
+  n'a pas identifié le mécanisme : faire reformuler avec les mots « bilan », « fuite » ou « traçabilité », en
+  lien avec le savoir S0.1 (réglementation et impacts environnementaux).</div>
+
+  <div class="reponse"><b class="t">Question</b> — Quel document remet-on au client à l'issue de
+  l'intervention, et pourquoi est-ce obligatoire ?<br><br>
+  <b>Réponse attendue :</b> on remet au client une <b>copie de la fiche d'intervention (FI-BSD)</b>, qui prouve
+  que l'intervention a été réalisée conformément à la réglementation (récupération et charge tracées, fluide
+  identifié, intervenant habilité). C'est une obligation réglementaire (traçabilité F-Gaz) qui protège à la
+  fois le client (preuve de conformité de son installation) et le professionnel (preuve de bonne pratique en
+  cas de contrôle).</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas exiger ici le terme exact « BSFF » (bordereau
+  de suivi des fluides frigorigènes, document distinct utilisé pour le transport des déchets fluorés) : il
+  suffit que l'élève identifie qu'un document de traçabilité écrit est remis au client, avec sa fonction de
+  preuve réglementaire.</div>
+
+  <h4 class="section">Erreurs typiques observées + remédiation immédiate</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation</th></tr>
+    <tr><td>Quantité reportée différente de celle mesurée aux postes 1 ou 2</td><td>Faire comparer la FI-BSD et le tableau de relevé de l'élève lui-même avant de valider ; ne pas corriger la valeur à la place de l'élève.</td></tr>
+    <tr><td>Rubriques d'identification incomplètes ou illisibles</td><td>Faire compléter devant le professeur ; rappeler qu'un document de traçabilité incomplet n'a pas de valeur réglementaire.</td></tr>
+    <tr><td>Confusion entre quantité récupérée et quantité chargée dans les cases de la FI-BSD</td><td>Faire repointer chaque case du formulaire papier en la reliant explicitement au poste correspondant (1 ou 2).</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 CORRIGÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S13-S14 · semaine 17 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 GRILLE D'ÉVALUATION 0-4 — CORRIGÉ</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>0 = compétence non observée ce jour</b> (à ne jamais
+  confondre avec une absence, codée séparément sur École Directe).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C4.2</b> Manipuler le fluide frigorigène et les huiles <span class="nuance">sur T2·T13·T15</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Rejet de fluide constaté, ou récupération/charge non tracée, malgré aide et rappel.</td>
+      <td>Récupération et charge réalisées avec aide du professeur pour le geste ou la traçabilité.</td>
+      <td>Récupération et charge réalisées seul, sans rejet, quantités correctement calculées et reportées sur la FI-BSD.</td>
+      <td>Comme « Acquis », et l'élève explique le lien entre récupération, charge et obligation réglementaire.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T2·T13·T15</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Pressions/températures non relevées, ou SC/SR non calculés malgré aide.</td>
+      <td>Relevés corrects, calcul de SC et/ou SR réalisé avec aide du professeur.</td>
+      <td>Relevés HP/BP/températures/tension/intensité/T° condenseur-évaporateur corrects, SC et SR calculés seul et comparés aux seuils 5-10 K / 4-8 K.</td>
+      <td>Comme « Acquis », et l'élève justifie sa décision (charge conforme / à ajuster) à partir du calcul.</td>
+    </tr>
+    <tr>
+      <td><b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle <span class="nuance">sur T2·T13·T15</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Manifold mal raccordé (fuite, inversion BP/HP) malgré aide et rappel.</td>
+      <td>Manifold raccordé et charge réalisée avec aide du professeur.</td>
+      <td>Manifold raccordé seul, sans fuite, charge réalisée dans le bon sens (liquide/vapeur selon consigne).</td>
+      <td>Comme « Acquis », et l'élève explique pourquoi le point de charge (liquide ou vapeur) a été choisi ainsi.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, sécurité, honnêteté de la mesure</td>
+      <td>Non observé ce jour.</td>
+      <td>EPI incomplets, geste précipité, rejet de fluide, charge sans validation du vide, ou valeur inventée / recopiée non lue réellement : niveau 1 automatique, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Sécurité et rigueur respectées sans rappel, mesures honnêtes, écarts signalés spontanément.</td>
+      <td>Comme « Acquis », et l'élève reste rigoureux jusqu'au rangement complet et à la remise des documents.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — tout geste interdit de sécurité (rejet
+  de fluide à l'atmosphère, charge engagée sans validation du vide, bouteille chauffée à la flamme,
+  intervention électrique sans consignation NFC 18-510) entraîne automatiquement un niveau <b>1 — Non
+  acquis</b> sur le savoir-être, quelle que soit la qualité du reste du travail réalisé ce jour-là : principe
+  de sécurité non négociable, cohérent avec la règle déjà appliquée en S11, S12 et S13.</div>
+
+  <div class="jalon"><h4>Correspondance barème points ↔ positionnement 0-4</h4>
+  <p style="font-size:9.5pt">À titre de repère pour objectiver le passage de la note en points (feuille 1) au
+  positionnement 0-4 remonté sur École Directe : <b>0-1 pt</b> sur un poste → niveau 1 ; <b>score partiel avec
+  remarque</b> → niveau 2 ; <b>score maximal seul</b> → niveau 3 ; <b>score maximal + justification/explication
+  spontanée</b> → niveau 4. Le professeur garde la main sur l'arbitrage final : la grille de critères
+  observables (ci-dessus) prime toujours sur un calcul automatique de points.</p></div>
+
+  <h3 class="section">Organisation de la correction</h3>
+  <ul class="liste-num">
+    <li>La grille 0-4 est remplie <b>en direct, poste par poste</b>, pendant le passage de chaque élève —
+    pas en différé sur les pièces seules, car plusieurs critères (sécurité, autonomie du geste, rapidité de
+    correction d'un défaut signalé) ne s'observent qu'en situation ;</li>
+    <li>la bouteille de récupération pesée (poste 1), la charge réalisée (poste 2) et la FI-BSD complétée
+    (poste 3) sont conservées <b>jusqu'au contrôle sur pièce</b> en fin de créneau, en complément de
+    l'observation en direct ;</li>
+    <li>l'<b>auto-positionnement de l'élève</b> (feuille 5 du sujet élève) est comparé à la correction
+    professeur <b>après</b> la fin de son passage, jamais avant : l'écart entre les deux fait partie de
+    l'observation du savoir-être (honnêteté de l'auto-évaluation) ;</li>
+    <li>en cas d'incident matériel pendant le passage d'un élève (fuite au manifold, balance en panne), un
+    temps compensé à l'identique est accordé, jamais une pénalité (cf. plan de passation, « équité ») ;</li>
+    <li>le positionnement 0-4 par compétence (C4.2, C4.5, C4.7) et le niveau de savoir-être sont saisis sur
+    École Directe au statut <b>Évaluation</b> dès la fin de la demi-journée de passation.</li>
+  </ul>
+
+  <h3 class="section">Différenciation pour la correction</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation dans la correction (le sujet et l'exigence de résultat restent identiques)</th></tr>
+    <tr><td>Consolidation</td><td>Une reformulation orale courte de la consigne est autorisée sur demande de l'élève avant qu'il ne commence son geste, sans donner d'indice sur le résultat attendu ; grille identique, aucune réduction du niveau exigé pour valider « Acquis ».</td></tr>
+    <tr><td>Standard</td><td>Correction telle que décrite ci-dessus, poste par poste, grille complète.</td></tr>
+    <tr><td>Approfondissement</td><td>Le professeur note explicitement sur la grille (case niveau 4) les justifications spontanées de l'élève (lien récupération/réglementation, décision SC/SR argumentée, choix du point de charge) ; à valoriser en synthèse de classe après la passation complète.</td></tr>
+    <tr><td>FLE</td><td>Fiche de poste bilingue ou avec pictogrammes déjà fournie en amont (cf. plan de passation) ; pendant la correction, le professeur peut désigner du doigt le point de contrôle concerné plutôt que le reformuler entièrement à l'oral, pour ne pas orienter la réponse.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Rappel du temps restant à mi-parcours sans indication de résultat (cf. plan de passation) ; grille remplie case par case au fil du passage plutôt qu'en bloc à la fin, pour limiter la charge de restitution en une seule fois côté professeur comme côté élève.</td></tr>
+  </table>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : CERFA FI-BSD CAP (F. Henninot) ; Feuille de relevé de mise en service ; CHARGE EN GAZ ; Calcul sous-refroidissement Prof ; LA SURCHAUFFE et le SR ; fiche contrat tirage charge ; Série 2 Activité 4 - Récupération du fluide ; cadrage modulaire S14.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .bandeau-eval, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

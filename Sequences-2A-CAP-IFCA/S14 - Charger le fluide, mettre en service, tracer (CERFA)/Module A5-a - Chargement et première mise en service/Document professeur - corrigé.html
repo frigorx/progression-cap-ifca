@@ -1,0 +1,478 @@
+<meta charset="utf-8">
+<title>Document professeur — S14 · Module A5-a · Chargement et première mise en service</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Chargement et mise en service (chantier A5)</td>
+      <td style="width:38%"><span class="lib">Module atelier A5-a · 4 h — DOCUMENT PROFESSEUR</span><b>Chargement du fluide et première mise en service</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S14</span> · sem. 15 · 02/02/2027 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A5 (groupe frigorifique remis en état) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée</td>
+      <td><span class="lib">Modalité</span>Démonstration guidée imposée + pratique en postes tournants (Charge & mise en service / Préparation & traçabilité)</td>
+      <td><span class="lib">Encadrement</span>1 professeur, supervision directe continue au poste Charge</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T2</b> Compléter les documents de traçabilité des fluides frigorigènes<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes à détente directe <span class="nuance">prérequis</span> · <b>S6.1</b>/<b>S6.2</b> Santé-sécurité, risques <span class="nuance">prérequis</span><br><b>S5.2</b> Fluides, huiles <span class="nuance">augmenté</span> · <b>S0.1</b> Réglementation environnementale <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Manipulation du fluide sans complaisance · rigueur de la pesée et des relevés · consignation/VAT spontanée · honnêteté du relevé</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement→Évaluation</span> <b>C4.2</b> Manipuler le fluide frigorigène et les huiles<br><span class="statut">Évaluation</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle<br><span class="nuance">sur T2 · T13 · S5.2 · S0.1</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module A5-a : mêmes
+  observations/questions, même numérotation, même séquençage en deux postes tournants (Préparation &
+  traçabilité / Charge & mise en service). Il y ajoute : les réponses attendues avec point de vigilance, les
+  critères observables des deux postes, la conduite détaillée de la démonstration et de la consignation
+  électrique, les erreurs typiques d'élèves avec leur remédiation, l'organisation du plateau, le minutage 4 h
+  recompté et la différenciation. <b>Aucune valeur non autorisée n'est donnée</b> : les seuils de surchauffe
+  (5-10 K) et de sous-refroidissement (4-8 K) ne sont <b>pas mobilisés dans ce module</b> — ils appartiennent au
+  module A5-b (contrôle de la charge par SC/SR et réglages), qui suit celui-ci dans la séquence. Toute valeur de
+  masse de charge, de pression de consigne ou de réglage de pressostat reste <b>« selon la plaque
+  signalétique/notice constructeur, à faire valider »</b>.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Démonstration guidée imposée, puis pratique en postes tournants.</b> La charge
+  en fluide est un geste à risque (fluide sous pression, contact cutané, rejet atmosphérique, remise sous
+  tension) : elle ne se découvre pas par tâtonnement, elle se démontre une fois, intégralement commentée, classe
+  regroupée à distance de sécurité autour d'un seul poste. Les élèves passent ensuite en binômes sur <b>deux
+  postes tournants</b> : le <b>poste Charge & mise en service</b>, où une seule installation est chargée à la
+  fois sous la <b>supervision directe et continue du professeur</b>, et le <b>poste Préparation & traçabilité</b>,
+  sans manipulation à risque, où les binômes en attente lisent la plaque signalétique, pèsent la bouteille et
+  amorcent la fiche d'intervention. Chaque binôme passe par les deux postes au cours des deux rotations.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Une seule charge doit être en
+  cours à la fois sous la supervision directe du professeur : ne jamais autoriser deux binômes à ouvrir une
+  vanne de bouteille simultanément, même sur des installations différentes. Le professeur valide explicitement
+  chaque ouverture avant tout geste.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation du module (démonstration puis pratique en postes tournants).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S14-01 : groupe frigorifique remis en état (chantier A5), circuit tiré au vide et validé en S12 ; charge en fluide et première mise en service.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés et commentés, lien avec la formule (C4.2, C4.7) et le positionnement du jour (confortement vers évaluation).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, exercice au fil de l'eau : relecture du schéma fluidique du circuit tiré au vide en S12 et repérage des voies BP/HP/liquide/vapeur du manifold sur schéma vierge.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (rappel du vide validé, risques du jour, gestes interdits, conduite en cas d'incident, extincteur/point d'eau/trousse localisés) puis « planter la notion » : OBSERVER en silence le manifold raccordé (bouteille fermée) → NOMMER « voie liquide », « voie vapeur », « précharge » → EXPLICITER le choix liquide/vapeur selon fluide et consigne.</td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (a) — démonstration guidée</td><td>Démonstration commentée du professeur sur l'installation de référence : contrôle du vide résiduel, raccordement manifold, précharge, casser le vide, consignation/VAT, démarrage, premiers relevés HP/BP/T. Un seul poste, classe entière à distance de sécurité, aucune manipulation élève. C'est le support des observations 1 à 3 et de la 1<sup>re</sup> question du TP (voir feuille 2).</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>55 min</td><td class="ph">6. Guider l'étude (b) — rotation 1 des postes tournants</td><td>Un binôme au poste <b>Charge & mise en service</b> (contrôle du vide résiduel, raccordement, précharge, consignation/VAT, démarrage, premiers relevés, pesées) sous supervision directe et continue ; les autres binômes au poste <b>Préparation & traçabilité</b> (plaque signalétique, pesée avant charge, amorce de la fiche d'intervention).</td></tr>
+    <tr><td>50 min</td><td class="ph">6. Guider l'étude (c) — rotation 2 : échange des postes</td><td>Les binômes échangent de poste. Même supervision directe et continue au poste Charge. Objectif : chaque binôme aura réalisé au moins une charge complète et une préparation/traçabilité complète à la fin du module.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des relevés HP/BP/T et des masses pesées, auto-positionnement par compétence (C4.2, C4.7 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord + bon de commande hebdomadaire (fluide, consommables).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Fermeture des bouteilles, débranchement des manifolds, nettoyage des postes, contrôle visuel des installations chargées.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (A5-b — contrôle de la charge par SC/SR et réglages).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; démonstration 20 min + pause 15 min + rotation 1 (55 min) + rotation 2 (50 min) =
+  2 h 20 ; synthèse 15 min + bon de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, conforme au plan de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ DÉVELOPPÉE + CORRIGÉ OBSERVATIONS 1-3 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Sécurité charge développée — conduite de la démonstration</h3>
+  <p style="font-size:10.3pt">La charge est un geste à risque qui combine un risque fluidique (fluide sous
+  pression, contact cutané) et un risque électrique (remise sous tension pour le démarrage). La démonstration
+  doit rendre visibles les deux dimensions avant toute pratique élève.</p>
+  <table class="mini">
+    <tr><th style="width:10%">Étape</th><th style="width:30%">Contrôle à réaliser</th><th>Ce que le professeur vérifie / commente pendant la démonstration</th></tr>
+    <tr><td>1</td><td>Vide résiduel</td><td>Manomètre affichant un vide résiduel conforme à l'épreuve validée en S12, montré et commenté avant toute ouverture de vanne.</td></tr>
+    <tr><td>2</td><td>EPI individuels</td><td>Gants anti-gelure et lunettes de protection portés <b>avant</b> tout raccordement, contrôlés un par un.</td></tr>
+    <tr><td>3</td><td>État de la bouteille</td><td>Bouteille vérifiée fermée, sans trace de choc ni de fuite, jamais approchée d'une source de chaleur.</td></tr>
+    <tr><td>4</td><td>Sens de charge</td><td>Voie choisie (liquide au condenseur ou vapeur à l'aspiration) annoncée et justifiée à voix haute selon le fluide et la consigne du jour.</td></tr>
+    <tr><td>5</td><td>Consignation électrique</td><td>Consignation NFC 18-510 et VAT réalisés et commentés <b>avant</b> toute remise sous tension pour le démarrage.</td></tr>
+    <tr><td>6</td><td>Surveillance continue</td><td>Le professeur reste au contact visuel du poste Charge pendant toute la durée de l'ouverture de vanne ; aucune charge n'est jamais laissée sans supervision directe.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — observations de la démonstration (feuille 2 du TP élève)</h3>
+
+  <div class="reponse"><b class="t">Observation 1</b> — Avant d'ouvrir la première vanne, quelles vérifications
+  le professeur a-t-il montrées (état du vide, EPI, état de la bouteille) ?<br><br>
+  <b>Réponse attendue :</b> le vide résiduel affiché au manomètre, comparé à celui validé en S12 ; les EPI
+  (gants anti-gelure, lunettes) déjà portés ; la bouteille contrôlée fermée, sans choc ni fuite visible, tenue à
+  l'écart de toute source de chaleur.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui ne cite que les EPI n'a pas repéré
+  que la <b>vérification du vide</b> est la condition absolue qui conditionne tout le reste : reformuler la
+  hiérarchie « vide d'abord, puis EPI, puis bouteille ».</div>
+
+  <div class="reponse"><b class="t">Observation 2</b> — Sur quelle voie du manifold (liquide ou vapeur) le
+  professeur raccorde-t-il la bouteille en premier, et à quel endroit du circuit ?<br><br>
+  <b>Réponse attendue :</b> dépend du fluide et de la consigne du jour, annoncée par le professeur pendant la
+  démonstration — <b>liquide au condenseur</b> (raccordement en amont du filtre déshydrateur, côté HP) ou
+  <b>vapeur à l'aspiration</b> (côté BP). Aucune règle universelle n'est donnée : le choix dépend du type de
+  fluide (pur ou mélange) et doit toujours être <b>annoncé explicitement</b> avant l'ouverture.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne jamais laisser un élève généraliser « on charge
+  toujours en liquide » ou « toujours en vapeur » : le bon choix dépend du fluide utilisé et doit être confirmé
+  par le professeur à chaque intervention, jamais mémorisé comme une règle fixe.</div>
+
+  <div class="reponse"><b class="t">Observation 3</b> — Observez la bouteille de fluide pendant la précharge :
+  que remarquez-vous à sa surface ?<br><br>
+  <b>Réponse attendue :</b> un léger <b>givrage ou de la buée</b> peut apparaître sur la paroi de la bouteille
+  côté sortie, signe que le fluide liquide s'évapore en cédant du fluide au circuit et que la bouteille se
+  refroidit localement. C'est un phénomène normal à ce stade, pas une anomalie.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui n'observe aucun changement doit être
+  invité à regarder à nouveau lors de la prochaine précharge (poste Charge) : ce repère visuel sera utile plus
+  tard pour évaluer la vitesse de transfert, sans qu'aucune valeur chiffrée ne soit exigée à ce stade.</div>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi ne peut-on jamais commencer une charge tant que le
+  tirage au vide n'a pas été validé ?<br><br>
+  <b>Réponse attendue :</b> un circuit non tiré au vide contient de l'air et de l'humidité résiduelle. L'air
+  élève la pression de condensation et fausse tous les relevés HP/BP/T ; l'humidité, au contact du fluide et de
+  l'huile, forme des acides qui dégradent le circuit et peut geler au détendeur. Charger un circuit non validé,
+  c'est introduire un fluide neuf dans un circuit pollué : la charge serait à refaire après un nouveau tirage au
+  vide, en pure perte de fluide et de temps.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Faire le lien explicite avec S12 : le vide n'est
+  pas une formalité administrative, c'est une condition physique de la qualité de la charge à venir.</div>
+
+  <h4 class="section">Gestes interdits (à énoncer explicitement, sans exception)</h4>
+  <ul class="liste-num">
+    <li>Jamais de rejet de fluide à l'atmosphère (purge à l'air libre), même pour « ajuster rapidement » ;</li>
+    <li>Jamais de bouteille de fluide chauffée à la flamme ou à une source de chaleur directe ;</li>
+    <li>Jamais de remise sous tension sans consignation préalable et vérification au VAT ;</li>
+    <li>Jamais deux binômes n'ouvrant une vanne de charge en même temps sans supervision directe de chacun.</li>
+  </ul>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident :</b> fermer immédiatement la bouteille et couper
+  l'alimentation électrique si nécessaire (arrêt d'urgence), alerter le professeur, aérer en cas de fuite
+  perceptible sans respirer près du point de fuite, refroidir toute gelure/brûlure froide uniquement à l'eau
+  tempérée. Trousse de secours et arrêt d'urgence localisés en début de séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ POSTE PRÉPARATION & TRAÇABILITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — poste Préparation & traçabilité</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Étape</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Lecture de la plaque signalétique</td><td>Le fluide et la masse de charge nominale sont recopiés <b>tels qu'inscrits</b>, sans arrondi ni interprétation. Une plaque illisible ou absente doit être signalée au professeur, jamais devinée.</td></tr>
+    <tr><td>Vérification du vide résiduel</td><td>Lecture du manomètre comparée à la valeur/consigne notée lors de l'épreuve S12 : l'élève <b>vérifie</b>, il ne refait pas le tirage au vide. Un doute doit être signalé avant toute charge.</td></tr>
+    <tr><td>Pesée de la bouteille avant charge</td><td>Bouteille posée bien à plat sur la balance, masse relevée avec l'unité, avant tout raccordement au manifold.</td></tr>
+    <tr><td>Amorce de la fiche d'intervention</td><td>Identité de l'installation, date, fluide et masse nominale théorique reportés lisiblement : ce document sera complété en CERFA au module F4.</td></tr>
+  </table>
+
+  <h4 class="section">Corrigé — encart « Quel fluide, quelle charge ? »</h4>
+  <div class="reponse"><b class="t">Ce qu'il faut retenir</b> — <b>Fluide azéotropique</b> (mélange qui se
+  comporte comme un corps pur) : charge possible en phase vapeur OU en phase liquide. <b>Fluide zéotropique</b>
+  (composants à points d'ébullition différents, mélange qui ne se comporte pas comme un corps pur) : charge
+  <b>toujours en phase liquide</b>, pour ne pas fractionner le mélange — <b>R404A et R410A sont des fluides
+  zéotropiques.</b></div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ce choix n'est <b>pas arbitraire</b> : c'est lui
+  qui justifie la réponse attendue à l'Observation 2 de la feuille 2 (« le bon choix dépend du type de fluide »).
+  Si l'installation du poste est en R404A ou R410A, une charge en phase vapeur est un geste <b>non conforme</b>,
+  même si le professeur ne l'a pas rappelé oralement ce jour-là précis : l'élève doit vérifier la plaque
+  signalétique AVANT de proposer un sens de charge, pas seulement suivre une consigne orale mémorisée.</div>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi la masse de charge nominale n'est-elle jamais
+  estimée ou calculée « à la louche » par l'élève, mais toujours relevée sur la plaque signalétique ou la notice
+  constructeur ?<br><br>
+  <b>Réponse attendue :</b> la masse de charge nominale dépend du volume interne exact du circuit (longueur des
+  tubes, volume de l'évaporateur et du condenseur, présence d'une bouteille accumulatrice…), que l'élève ne peut
+  pas mesurer directement à l'atelier. Le fabricant l'a calculée précisément lors de la conception et l'indique
+  sur la plaque signalétique ou la notice : c'est une <b>donnée réglementaire obligatoire</b>, pas une valeur
+  d'estimation. Une charge basée sur une estimation risquerait un manque ou un excès de fluide, dangereux pour
+  le compresseur et pour la performance de l'installation.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne jamais laisser un élève dire une valeur en
+  grammes « au pif » : rediriger systématiquement vers la plaque signalétique. Aucune valeur de masse de charge
+  n'est fournie ni exigée dans ce document professeur : elle est propre à chaque installation du chantier A5.</div>
+
+  <div class="reponse"><b class="t">Question</b> — Que devez-vous faire si le manomètre n'affiche pas un vide
+  résiduel conforme à celui validé en S12 ?<br><br>
+  <b>Réponse attendue :</b> arrêter immédiatement toute manipulation, ne pas ouvrir de vanne, et appeler le
+  professeur. Un vide non conforme peut signifier une fuite apparue depuis S12 ou une reprise d'humidité : il
+  faut diagnostiquer avant de charger, jamais charger « pour voir ».</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — C'est un point d'arrêt obligatoire du module :
+  aucune improvisation n'est tolérée si le vide n'est pas conforme, même si cela retarde la charge du binôme
+  concerné.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ POSTE CHARGE & MISE EN SERVICE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — poste Charge & mise en service</h3>
+  <table class="mini">
+    <tr><th style="width:26%">Étape</th><th>Points de contrôle du professeur</th></tr>
+    <tr><td>Raccordement manifold</td><td>Voies BP et HP sur les vannes de service du compresseur, voie centrale sur la bouteille, sens liquide/vapeur conforme à la consigne annoncée en démonstration.</td></tr>
+    <tr><td>Précharge et « casser le vide »</td><td>Ouverture progressive, jamais brutale ; pression BP surveillée pour ne pas dépasser les valeurs de sécurité de coupure avant démarrage.</td></tr>
+    <tr><td>Consignation / VAT</td><td>Consignation NFC 18-510 posée avant toute manipulation électrique, absence de tension vérifiée au VAT avant retrait du cadenas et démarrage.</td></tr>
+    <tr><td>Premiers relevés HP/BP/T</td><td>Relevés pris après un début d'équilibre du circuit (pas immédiatement au démarrage), valeurs cohérentes entre elles (HP > BP) et notées avec leur unité.</td></tr>
+    <tr><td>Pesée avant/après et calcul</td><td>Deux pesées réelles sur la même balance, calcul de la différence correctement posé (masse avant − masse après = masse introduite).</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi consigne-t-on l'armoire électrique et vérifie-t-on
+  l'absence de tension au VAT avant de remettre l'installation sous tension, alors que la charge en fluide
+  elle-même n'est pas une opération électrique ?<br><br>
+  <b>Réponse attendue :</b> la <b>première mise en service</b> implique de démarrer le compresseur, donc de
+  remettre l'installation sous tension : c'est cette étape électrique, distincte de la charge fluidique
+  elle-même, qui impose la consignation NFC 18-510 et le contrôle au VAT. Le raisonnement est le même qu'en S12
+  (câblage) : toute intervention sur une armoire ou toute remise sous tension suit la même procédure de
+  sécurité électrique, quel que soit le geste qui la précède.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Faire le lien explicite avec S12 : ce n'est pas
+  une nouvelle règle, c'est la même procédure de consignation réappliquée dans un contexte différent
+  (spiralaire).</div>
+
+  <h3 class="section">Lecture qualitative des premiers relevés (sans seuil chiffré ce jour)</h3>
+  <p style="font-size:10.3pt">Ce module ne demande <b>aucun calcul</b> de surchauffe ni de sous-refroidissement :
+  ces seuils (5-10 K et 4-8 K) et leur exploitation appartiennent au module <b>A5-b</b>. Aujourd'hui, on se
+  contente de relever des valeurs cohérentes et de repérer, qualitativement, des indices simples déjà connus
+  d'un manque ou d'un excès manifeste — c'est le corrigé du tableau « Observation — signes d'un défaut de
+  charge » de la feuille 5 du document élève :</p>
+  <table class="mini">
+    <tr><th style="width:30%">Indice observé</th><th style="width:12%">Signe de</th><th>Interprétation qualitative (sans valeur chiffrée)</th></tr>
+    <tr><td>Sifflement au détendeur</td><td>Manque</td><td>Signe classique de manque de charge : la détente se fait mal, bruit audible côté détendeur.</td></tr>
+    <tr><td>Évaporateur givré (hors cycle de dégivrage programmé)</td><td>Manque</td><td>Peut évoquer un manque de charge.</td></tr>
+    <tr><td>Bulles visibles au voyant liquide en régime stabilisé</td><td>Manque</td><td>Signe de manque de charge : la ligne liquide n'est plus intégralement liquide.</td></tr>
+    <tr><td>Intensité du compresseur plus <b>faible</b> que la valeur de la plaque signalétique</td><td>Manque</td><td>Le compresseur travaille moins que prévu : cohérent avec un manque de charge — toujours comparer à la plaque, jamais « à l'oreille ».</td></tr>
+    <tr><td>Pression HP visiblement élevée</td><td>Excès</td><td>Peut évoquer un excès de charge ou la présence d'incondensables (tirage au vide insuffisant en amont).</td></tr>
+    <tr><td>Compresseur anormalement chaud</td><td>Excès</td><td>Cohérent avec un excès de charge : le condenseur travaille avec un trop-plein de liquide.</td></tr>
+    <tr><td>Intensité du compresseur plus <b>élevée</b> que la valeur de la plaque signalétique</td><td>Excès</td><td>Cohérent avec un excès de charge — toujours comparer à la plaque, jamais « à l'oreille ».</td></tr>
+    <tr><td>Relevés stables et cohérents, aucun signe ci-dessus</td><td>—</td><td>Bon signe pour la suite, sans validation définitive : la validation précise se fait au module A5-b avec le calcul de SC/SR.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne jamais laisser un élève « corriger » lui-même
+  la charge au ressenti aujourd'hui : le rôle de ce module est d'obtenir des <b>premiers relevés fiables</b>, pas
+  un réglage fin. Toute correction de charge se fait uniquement sous la validation explicite du professeur. La
+  comparaison d'intensité se fait toujours contre la <b>valeur inscrite sur la plaque signalétique</b>, jamais
+  contre une valeur mémorisée d'un autre poste.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — ORGANISATION DU PLATEAU + ERREURS TYPIQUES + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation du plateau — postes, rotation, sécurité</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Poste Charge & mise en service</b></td><td>Manifold, bouteille de fluide, VAT, cadenas de consignation, balance, thermomètre, EPI complets par élève.</td><td>Une seule installation chargée à la fois. Le professeur valide chaque ouverture de vanne et chaque remise sous tension avant tout geste.</td></tr>
+    <tr><td><b>Poste Préparation & traçabilité</b></td><td>Plaque signalétique déjà en place, balance partagée, fiche d'intervention, crayons.</td><td>Aucune manipulation à risque à ce poste : c'est volontairement le poste « en attente », pour que personne ne reste inactif.</td></tr>
+    <tr><td><b>Zone de démonstration</b></td><td>Un seul poste équipé (installation de référence), classe entière regroupée à distance de sécurité annoncée.</td><td>Aucune manipulation élève pendant la démonstration ; poste sécurisé et fermé avant de rendre la main aux binômes.</td></tr>
+  </table>
+  <p style="font-size:10pt" class="vigilance"><b class="t">Rotation —</b> deux rotations couvrent l'ensemble des
+  binômes : chacun passe une fois au poste Charge (sous supervision directe) et une fois au poste Préparation.
+  Adapter la durée de chaque rotation au nombre réel de binômes et d'installations disponibles sur le chantier
+  A5, en gardant le principe : <b>une seule charge active à la fois</b>.</p>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Ouverture de vanne avant validation du vide résiduel</td><td>Interrompre immédiatement, faire relire le manomètre et comparer à la valeur S12 ; rappeler que c'est un point d'arrêt non négociable.</td></tr>
+    <tr><td>Confusion entre voie liquide et voie vapeur</td><td>Faire revenir au schéma de la feuille 2/annexe et à la consigne annoncée en démonstration ; ne jamais laisser un élève « deviner ».</td></tr>
+    <tr><td>Ouverture trop rapide de la vanne de charge</td><td>Rappeler le geste démontré : ouverture progressive, surveillance du manomètre, jamais en grand d'un coup (risque de coup de liquide).</td></tr>
+    <tr><td>Démarrage sans consignation ni VAT préalables</td><td>Arrêter, faire reposer la consignation et vérifier l'absence de tension avant toute remise sous tension ; relier explicitement à la procédure de S12.</td></tr>
+    <tr><td>Relevé HP/BP/T pris immédiatement au démarrage</td><td>Rappeler qu'il faut laisser l'installation atteindre un début d'équilibre avant de relever ; sinon, refaire le relevé quelques minutes plus tard.</td></tr>
+    <tr><td>Pesée de la bouteille non posée bien à plat, ou oubliée avant charge</td><td>Reprendre la pesée manquante en la signalant sur la fiche ; rappeler que sans les deux pesées, la masse introduite ne peut pas être calculée.</td></tr>
+    <tr><td>Fuite à un raccord du manifold non signalée</td><td>Faire fermer immédiatement la vanne côté bouteille, resserrer sous contrôle du professeur, jamais poursuivre une charge avec une fuite perceptible.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Le professeur raccorde le manifold avec l'élève, geste par geste commenté, avant de le laisser reproduire seul lors de la rotation 2 ; tableau de relevé simplifié avec unités déjà pré-remplies.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, deux rotations complètes entre les deux postes.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de sa propre charge, l'élève explique à un pair du poste Préparation le choix liquide/vapeur qu'il vient d'observer, sans jamais toucher lui-même au poste Charge d'un autre binôme.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire de sécurité répété à l'identique à chaque poste (« vide », « bouteille », « stop ») ; fiche de relevé avec pictogrammes (balance, manomètre, thermomètre) en plus du texte ; démonstration doublée de gestes mimés (montrer la distance de sécurité, montrer le sens liquide/vapeur du doigt).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Étapes de la liste numérotée cochées une par une, une seule consigne annoncée à la fois pendant la charge ; prévoir un temps de pause court entre les deux rotations pour limiter la précipitation liée à l'attente.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — GRILLE 0-4 (CORRIGÉ) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>0 = compétence non observée ce jour</b> (à ne jamais
+  confondre avec une absence, codée séparément sur École Directe).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C4.2</b> Manipuler le fluide frigorigène et les huiles <span class="nuance">sur T13 · S5.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Rejet de fluide à l'atmosphère, ou charge commencée sans vérification du vide résiduel.</td>
+      <td>Charge réalisée avec l'aide du professeur pour le sens liquide/vapeur ou pour la lecture du vide résiduel.</td>
+      <td>Charge réalisée seul, sens respecté, vide résiduel vérifié avant ouverture, aucun rejet de fluide.</td>
+      <td>Comme « Acquis », et l'élève explique à un pair pourquoi on vérifie le vide avant de charger.</td>
+    </tr>
+    <tr>
+      <td><b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle <span class="nuance">sur T2 · S0.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Manifold mal raccordé, consignation/VAT non réalisés avant mise sous tension.</td>
+      <td>Manifold raccordé et mise sous tension réalisée avec un rappel du professeur.</td>
+      <td>Manifold raccordé seul, consignation et VAT réalisés sans rappel, premiers relevés HP/BP/T cohérents et notés.</td>
+      <td>Comme « Acquis », et l'élève anticipe et vérifie chaque étape avant de solliciter la validation du professeur.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, sécurité, honnêteté du relevé</td>
+      <td>Non observé ce jour.</td>
+      <td>EPI incomplets, ou relevé recopié/inventé plutôt que réellement mesuré : niveau 1 automatique, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, relevés corrects avec un rappel ponctuel.</td>
+      <td>EPI et consignation respectés sans rappel, relevés honnêtes même quand ils sont imparfaits.</td>
+      <td>Comme « Acquis », et l'élève signale spontanément un écart ou une anomalie de son propre relevé.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité (rejet
+  de fluide à l'atmosphère, remise sous tension sans consignation/VAT, bouteille approchée d'une flamme)
+  entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du
+  reste du travail réalisé ce jour-là : c'est un principe de sécurité non négociable, cohérent avec la règle
+  déjà appliquée en S11 pour le brasage et en S12 pour le câblage.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Réglementation environnementale F-Gaz</b> — récupération obligatoire, traçabilité (S0.1) ;</li>
+    <li><b>Co-intervention maths</b> — abaque de puissance frigorifique (module technologie de la semaine) ;</li>
+    <li><b>Co-intervention français</b> — remplissage du CERFA, notice CERFA (voir module F4) ;</li>
+    <li><b>Module A5</b> — chantier de mise en service, poursuivi en A5-b (contrôle de la charge par SC/SR) ;</li>
+    <li><b>Suite logique</b> de S12 (câblage, épreuve azote, vide) et S13 (récupération, déjà en confortement).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : ACT 3. Mise en
+  service de l'installation (F. Henninot, base CAP-BAC PRO) ; CHARGE EN GAZ (F. Henninot) ; fiche contrat tirage
+  charge (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

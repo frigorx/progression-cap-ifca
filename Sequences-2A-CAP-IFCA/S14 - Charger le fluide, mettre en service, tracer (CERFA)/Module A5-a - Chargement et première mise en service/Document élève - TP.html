@@ -1,0 +1,473 @@
+<meta charset="utf-8">
+<title>TP élève — S14 · Module A5-a · Chargement et première mise en service</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE : ligne 2 = identité + positionnement -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Charger le fluide, mettre en service, tracer (CERFA)</td>
+      <td style="width:38%"><span class="lib">Module atelier A5-a · 4 h</span><b>Chargement du fluide et première mise en service</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S14</span> · sem. 15 · 02/02/2027 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Le groupe frigorifique de la chambre froide a été <b>remis en état à l'atelier</b> (chantier A5) : câblage et
+  épreuve d'étanchéité réalisés, <b>circuit tiré au vide et validé</b> en fin de séquence S12. <b>Ordre
+  d'intervention n° OI-2026-S14-01</b> : le client demande la <b>charge en fluide frigorigène</b> et la
+  <b>première mise en service</b> de l'installation. Vous travaillez en binôme, en <b>postes tournants</b>,
+  sous la <b>démonstration imposée</b> du professeur avant toute pratique : la charge est un geste à risque, elle
+  se démontre, elle ne se découvre pas seul.
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-fluidique-manifold-pompe-a-vide.png" alt="Schéma technique réduit : circuit frigorifique avec manifold raccordé, voie de service centrale — pour la charge, cette voie est raccordée à la bouteille de fluide"
+         style="max-width:92%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Circuit et manifold — schéma réduit pour le repérage. C'est le <b>même montage</b> qu'au tirage au vide de S12, sauf la voie de service centrale (jaune) : au lieu de la pompe à vide qui y était raccordée, c'est <b>aujourd'hui la bouteille de fluide</b> qui y est branchée. Le schéma complet, coté, figure en <b>annexe pleine page A3 paysage</b> en fin de document.</figcaption>
+  </figure></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T2</b> Compléter les documents de traçabilité des fluides frigorigènes<br><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">prérequis</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">prérequis</span><br><b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">prérequis</span><br><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">augmenté</span><br><b>S0.1</b> Réglementation et impacts environnementaux <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Manipulation du fluide sans complaisance (jamais de purge à l'air) · rigueur de la pesée et des relevés · consignation/VAT spontanée · honnêteté du relevé</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement→Évaluation</span> <b>C4.2</b> Manipuler le fluide frigorigène et les huiles<br><span class="statut">Évaluation</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle<br><span class="nuance">sur T2 · T13 · S5.2 · S0.1</span></div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>nommer</b> les organes du manifold et <b>distinguer</b> voie liquide / voie vapeur, BP / HP ;</li>
+    <li><b>contrôler</b> que le circuit est bien tiré au vide et validé avant toute charge (jamais de charge sans vide validé) ;</li>
+    <li><b>raccorder</b> le manifold sur l'installation et sur la bouteille de fluide, en respectant le sens demandé ;</li>
+    <li><b>réaliser</b> la première mise en service : consignation/VAT avant mise sous tension, démarrage, premiers relevés HP/BP/T ;</li>
+    <li><b>peser</b> la bouteille avant et après la charge et calculer la quantité de fluide introduite.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <ul class="liste-num">
+    <li><b>lire un schéma fluidique</b> et repérer les organes d'un circuit frigorifique (S5.1) ;</li>
+    <li>mon circuit est <b>tiré au vide et validé</b> depuis la séquence S10-S12 (épreuve à l'azote puis vide) ;</li>
+    <li>les <b>risques électriques</b> et le principe de consignation NFC 18-510 (S6.2, câblage réalisé en S12) ;</li>
+    <li>porter les <b>EPI de l'atelier</b> sans qu'on me le rappelle.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous ne cochez pas tous ces prérequis, prévenez le professeur avant de commencer : un rappel court est possible pendant l'exercice au fil de l'eau, mais <b>jamais pendant la démonstration de sécurité de la charge</b>.</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Groupe frigorifique remis en état, circuit tiré au vide et validé en S12 (× 1 par poste)</li>
+    <li>Manifold : jeu de manomètres BP/HP + flexibles bleu, rouge, jaune (× 1 par poste)</li>
+    <li>Bouteille de fluide frigorigène adaptée à l'installation (× 1 par poste, fournie par le professeur) <span class="conso">consommable</span></li>
+    <li>Balance de pesée pour bouteille de fluide (× 1 pour la rotation)</li>
+    <li>Vérificateur d'absence de tension — VAT (× 1 par poste)</li>
+    <li>Cadenas individuel de consignation + étiquette de condamnation (× 1 par élève)</li>
+    <li>Thermomètre à pince ou sonde de contact (× 1 par poste)</li>
+    <li>Gants anti-gelure (× 1 paire par élève, obligatoires)</li>
+    <li>Lunettes de protection (× 1 par élève, obligatoires)</li>
+    <li>Plaque signalétique de l'installation (déjà en place, à lire sans la démonter)</li>
+    <li>Fiche d'intervention, amorce à compléter aujourd'hui (× 1 par binôme) + crayon</li>
+    <li>Fiche de sécurité à cocher (image ci-dessous)</li>
+    <li>Clé à cliquet ou clé plate adaptée aux raccords du manifold</li>
+  </ol>
+
+  <h3 class="section">Sécurité — la charge en fluide (centrale ce jour)</h3>
+  <div class="secu"><b class="t">🧊 Tirage au vide validé obligatoire</b> — aucune charge ne commence sans
+  <b>vérification du vide résiduel</b> affiché au manomètre, conforme à l'épreuve validée en S12. <b>Sans vide
+  validé, pas d'ouverture de vanne.</b></div>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:32%">Risque</th><th>Parade</th></tr>
+    <tr><td>Gelure ou brûlure froide au contact du fluide liquide</td><td><b>Gants anti-gelure</b> et <b>lunettes de protection</b> obligatoires en permanence pendant la manipulation. Ne jamais laisser le fluide liquide entrer en contact avec la peau.</td></tr>
+    <tr><td>Rejet de fluide à l'atmosphère (purge, fuite à un raccord)</td><td><b>Toujours récupérer, jamais purger à l'air libre</b> : c'est une obligation réglementaire F-Gaz. Contrôler l'étanchéité de chaque raccord du manifold avant d'ouvrir une vanne.</td></tr>
+    <tr><td>Explosion ou surpression d'une bouteille chauffée</td><td><b>Jamais de flamme ni de source de chaleur directe</b> sur une bouteille de fluide pour accélérer le transfert.</td></tr>
+    <tr><td>Électrisation lors de la remise sous tension</td><td><b>Consignation NFC 18-510 et VAT obligatoires</b> avant toute intervention ou mesure sous tension.</td></tr>
+    <tr><td>Coup de liquide au compresseur au démarrage</td><td>Charger <b>progressivement</b>, dans le sens demandé (liquide au condenseur ou vapeur à l'aspiration selon consigne), surveiller le voyant liquide, <b>ne jamais forcer</b> l'introduction du fluide.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10pt">Avant de raccorder le manifold, complétez la <b>fiche de sécurité à cocher</b>
+  ci-dessous (EPI, VAT, risques du poste « travaux électriques ») et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, risques, VAT" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot. Cochez « travaux électriques » et « VAT » pour l'étape de mise sous tension, et notez « risques chimiques » pour la manipulation du fluide.</p>
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — coupez l'arrivée de gaz à la bouteille (fermeture
+  immédiate) et l'arrêt d'urgence électrique si besoin, alertez immédiatement le professeur. En cas de fuite
+  importante, aérez la zone (risque d'anoxie locale) sans respirer près du point de fuite. Ne jamais déplacer un
+  élève électrisé avant confirmation de la coupure. Trousse de secours et arrêt d'urgence localisés en début de
+  séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — OBSERVER + DÉMONSTRATION SÉCURITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">OBSERVER — la démonstration du professeur</h3>
+  <p style="font-size:10.5pt">La charge en fluide est un geste à risque : elle ne se découvre pas seul, elle se
+  <b>démontre</b>. Le professeur réalise devant vous, sur l'installation de référence, le raccordement du
+  manifold, la précharge, la mise en sécurité électrique et le démarrage. <b>Observez sans toucher</b>, avant de
+  répondre.</p>
+
+  <div class="encadre-question"><b>Observation 1</b> — Avant d'ouvrir la première vanne, quelles vérifications le
+  professeur a-t-il montrées (état du vide, EPI, état de la bouteille) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Observation 2</b> — Sur quelle voie du manifold (liquide ou vapeur) le
+  professeur raccorde-t-il la bouteille en premier, et à quel endroit du circuit (condenseur ou aspiration) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Observation 3</b> — Observez la bouteille de fluide pendant la précharge : que
+  remarquez-vous à sa surface ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <p style="font-size:10.5pt">La <b>précharge</b> consiste à introduire une première quantité de fluide dans le
+  circuit à l'arrêt, avant le démarrage du compresseur. Selon le fluide et la consigne du professeur, elle se
+  fait <b>en liquide au condenseur</b> (plus rapide, réservée à certains montages) ou <b>en vapeur à
+  l'aspiration</b> (plus lente, plus sûre pour le compresseur). <b>« Casser le vide »</b> signifie faire remonter
+  la pression du circuit basse pression au-dessus des valeurs de sécurité de coupure basse pression, avant de
+  pouvoir démarrer l'installation. Aucune de ces deux étapes ne peut commencer si le <b>vide résiduel</b> affiché
+  au manomètre n'est pas conforme à l'épreuve déjà validée en S12.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi ne peut-on jamais commencer une charge tant que le
+  tirage au vide n'a pas été validé ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Le manifold pour la charge</h3>
+  <p style="font-size:10.5pt">Voici le schéma de principe du montage : manomètres BP et HP raccordés aux voies
+  de service du compresseur, voie de service centrale (jaune) raccordée à la bouteille de fluide. C'est le même
+  matériel qu'au tirage au vide de S12, seule la voie centrale change de destination.</p>
+
+  <figure style="margin:6px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-fluidique-manifold-pompe-a-vide.png" alt="Schéma technique : montage manifold — manomètres BP/HP, voie de service centrale, pour la charge raccordée à la bouteille de fluide"
+         style="max-width:80%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">Montage manifold pour la charge — voies BP (bleu) et HP (rouge) sur le compresseur, voie centrale (jaune) sur la bouteille de fluide. Réutilisation du schéma de tirage au vide de S12 : la pompe à vide représentée y était branchée sur cette même voie centrale.</figcaption>
+  </figure>
+
+  <div class="encadre-question"><b>Question</b> — Sur le schéma de tirage au vide de S12, la voie jaune était
+  raccordée à la pompe à vide. Sur le schéma d'aujourd'hui, à quoi est-elle raccordée ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — POSTE PRÉPARATION & TRAÇABILITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Poste Préparation & traçabilité</h3>
+  <span class="poste-titre">POSTE PRÉPARATION & TRAÇABILITÉ — rotation 1 ou rotation 2 selon votre ordre de passage</span>
+  <p style="font-size:10.5pt">Pendant qu'un autre binôme est au poste Charge sous la surveillance directe du
+  professeur, vous préparez la traçabilité de l'intervention. Ce poste ne nécessite pas d'ouvrir de vanne.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Relever sur la <b>plaque signalétique</b> de l'installation : la nature du fluide frigorigène et la masse de charge nominale</p>
+    <p>☐ 2. Reporter ces informations sur la <b>fiche d'intervention</b> (amorce, ce document)</p>
+    <p>☐ 3. Vérifier que le manomètre affiche toujours un <b>vide résiduel</b> conforme à l'épreuve validée en S12 — vous ne refaites pas le tirage au vide aujourd'hui, vous <b>vérifiez seulement</b></p>
+    <p>☐ 4. Peser la <b>bouteille de fluide</b> avant la charge, sur la balance, et noter la masse</p>
+    <p>☐ 5. Compléter le début de la fiche d'intervention : identité de l'installation, date, fluide, masse nominale théorique</p>
+  </div>
+
+  <div class="situation"><h4>Quel fluide, quelle charge ? — encart technique</h4>
+  <p style="margin:0 0 .4em">Le fluide relevé sur la plaque signalétique détermine la <b>méthode de charge</b>
+  autorisée :</p>
+  <ul style="margin:.2em 0 .2em 1.1em; padding:0">
+  <li><b>Fluide azéotropique</b> (mélange qui se comporte comme un corps pur) : la charge peut se faire en
+  <b>phase vapeur</b> (côté aspiration) OU en <b>phase liquide</b> (côté condenseur).</li>
+  <li><b>Fluide zéotropique</b> (mélange qui ne se comporte PAS comme un corps pur — ses composants n'ont pas le
+  même point d'ébullition) : la charge doit <b>toujours se faire en phase liquide</b>, pour ne pas déséquilibrer
+  les proportions du mélange. <b>R404A et R410A sont des fluides zéotropiques : charge liquide obligatoire.</b></li>
+  </ul>
+  <p style="margin:.4em 0 0">☐ Le fluide relevé sur votre plaque signalétique est-il R404A ou R410A ?
+  <b>OUI</b> → charge en phase liquide obligatoire. <b>NON</b> → demandez au professeur si la charge en phase
+  vapeur est autorisée sur ce fluide.</p></div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — préparation et traçabilité</h4>
+  <table class="releve">
+    <tr><th style="width:55%">Information</th><th style="width:45%">Valeur relevée</th></tr>
+    <tr><td>Nature du fluide frigorigène (plaque signalétique)</td><td></td></tr>
+    <tr><td>Masse de charge nominale (plaque signalétique)</td><td></td></tr>
+    <tr><td>Vide résiduel affiché (manomètre)</td><td></td></tr>
+    <tr><td>Masse de la bouteille AVANT charge (pesée)</td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">La masse de charge nominale est toujours celle indiquée sur la plaque signalétique ou la notice constructeur de l'installation — elle n'est jamais calculée « à vue » par l'élève.</p>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi la masse de charge nominale n'est-elle jamais estimée
+  ou calculée « à la louche » par l'élève, mais toujours relevée sur la plaque signalétique ou la notice
+  constructeur ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Question</b> — Que devez-vous faire si le manomètre n'affiche pas un vide
+  résiduel conforme à celui validé en S12 ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — POSTE CHARGE & MISE EN SERVICE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Poste Charge & mise en service</h3>
+  <span class="poste-titre">POSTE CHARGE & MISE EN SERVICE — sous supervision directe et continue du professeur</span>
+  <p style="font-size:10.5pt">Une seule installation est chargée à la fois. <b>N'ouvrez aucune vanne sans
+  l'accord du professeur.</b></p>
+
+  <div class="liste-num">
+    <p>☐ 1. Contrôler le <b>vide résiduel</b> affiché au manomètre : conforme à l'épreuve S12 ? Si non, appelez le professeur AVANT toute ouverture</p>
+    <p>☐ 2. Raccorder le manifold sur l'installation (voies BP et HP) et la bouteille de fluide sur la voie centrale, dans le sens demandé par le professeur (liquide au condenseur ou vapeur à l'aspiration)</p>
+    <p>☐ 3. Ouvrir progressivement la vanne de la bouteille : précharge de l'installation, sous le regard du professeur</p>
+    <p>☐ 4. « Casser le vide » : faire remonter la pression BP au-dessus des valeurs de sécurité de coupure, selon la consigne du professeur</p>
+    <p>☐ 5. Fermer la vanne de précharge, <b>consigner</b> l'armoire électrique (NFC 18-510), <b>vérifier l'absence de tension au VAT</b></p>
+    <p>☐ 6. Une fois la remise sous tension autorisée par le professeur, retirer votre cadenas et démarrer l'installation</p>
+    <p>☐ 7. Laisser l'installation atteindre un début d'équilibre, puis relever la pression BP, la pression HP et une température (bulbe ou aspiration)</p>
+    <p>☐ 8. Si besoin, compléter la charge par petites quantités, à la voie autorisée par le professeur, sans jamais forcer</p>
+    <p>☐ 9. Fermer la bouteille, la peser à nouveau, calculer la masse de fluide introduite (masse avant − masse après)</p>
+    <p>☐ 10. Transmettre ce résultat au binôme du poste Préparation pour compléter la fiche d'intervention</p>
+  </div>
+
+  <h4 style="font-size:11pt">Tableau de relevé — premiers relevés HP / BP / T et pesée</h4>
+  <table class="releve">
+    <tr><th style="width:50%">Grandeur</th><th style="width:25%">Valeur relevée</th><th style="width:25%">Unité</th></tr>
+    <tr><td>Pression BP (aspiration)</td><td></td><td>bar</td></tr>
+    <tr><td>Pression HP (refoulement)</td><td></td><td>bar</td></tr>
+    <tr><td>Température mesurée (bulbe ou aspiration)</td><td></td><td>°C</td></tr>
+    <tr><td>Masse de la bouteille AVANT charge</td><td></td><td>kg / g</td></tr>
+    <tr><td>Masse de la bouteille APRÈS charge</td><td></td><td>kg / g</td></tr>
+    <tr><td>Masse de fluide introduite (calcul)</td><td></td><td>kg / g</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Pourquoi consigne-t-on l'armoire électrique et vérifie-t-on
+  l'absence de tension au VAT avant de remettre l'installation sous tension, alors que la charge en fluide
+  elle-même n'est pas une opération électrique ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <span class="poste-titre" style="background:var(--orange)">Dessiner</span>
+  <div class="cadre-dessin"><span class="consigne-cadre">Dessinez ici le schéma simplifié du raccordement manifold que vous venez de réaliser (bouteille, voies BP / HP / liquide-vapeur, installation) — aidez-vous du schéma de la feuille 2</span></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CONTRÔLES + RANGEMENT + GRILLE + BILAN ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module atelier A5-a · CAP IFCA 2A — document élève</div>
+  </div>
+
+  <h3 class="section">Contrôles</h3>
+  <p style="font-size:10.5pt">Avant le rangement, contrôlez l'ensemble du raccordement et de la charge réalisée.</p>
+  <div class="liste-num">
+    <p>☐ 1. Contrôle visuel de l'ensemble du raccordement manifold (aucune fuite audible ou visible)</p>
+    <p>☐ 2. Contrôle que la bouteille de fluide est bien refermée</p>
+    <p>☐ 3. Contrôle que les relevés HP/BP/T sont cohérents avec ce qui a été observé pendant la démonstration</p>
+    <p>☐ 4. Vérifier qu'aucune quantité de fluide n'a été rejetée à l'atmosphère pendant la manipulation</p>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Le contrôle précis de la charge par surchauffe et sous-refroidissement, et les réglages fins des organes de sécurité, sont réalisés dans le module suivant (A5-b) : aujourd'hui, seuls les premiers relevés HP/BP/T et le contrôle visuel sont demandés.</p>
+
+  <h4 style="font-size:11pt">Observation — signes d'un défaut de charge</h4>
+  <p style="font-size:10pt">Sans encore calculer (ce sera fait en A5-b), <b>cochez</b> les signes que vous observez
+  réellement sur votre installation pendant cette première mise en service :</p>
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:50%">Signe observé</th><th style="width:25%">Manque de charge</th><th style="width:25%">Excès de charge</th></tr>
+    <tr><td style="text-align:left">Sifflement au détendeur</td><td>☐</td><td></td></tr>
+    <tr><td style="text-align:left">Évaporateur givré</td><td>☐</td><td></td></tr>
+    <tr><td style="text-align:left">Bulles visibles au voyant liquide</td><td>☐</td><td></td></tr>
+    <tr><td style="text-align:left">Intensité du compresseur plus FAIBLE que la valeur de la plaque signalétique</td><td>☐</td><td></td></tr>
+    <tr><td style="text-align:left">Pression HP visiblement élevée</td><td></td><td>☐</td></tr>
+    <tr><td style="text-align:left">Compresseur plus chaud que d'habitude</td><td></td><td>☐</td></tr>
+    <tr><td style="text-align:left">Intensité du compresseur plus ÉLEVÉE que la valeur de la plaque signalétique</td><td></td><td>☐</td></tr>
+    <tr><td style="text-align:left">Aucun de ces signes observé</td><td colspan="2">☐ (bon signe, sans validation définitive)</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Un ou plusieurs signes cochés ? Ne corrigez rien
+  vous-même : signalez-le au professeur, qui décidera d'un ajustement lors du module A5-b.</p>
+
+  <div class="encadre-question"><b>Question</b> — Que feriez-vous si vous constatiez, après la charge, qu'une
+  petite quantité de fluide s'est échappée par un raccord mal serré ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">Rangement et remise en état</h3>
+  <div class="liste-num">
+    <p>☐ 1. Fermer complètement la vanne de la bouteille de fluide</p>
+    <p>☐ 2. Débrancher le manifold dans l'ordre démontré par le professeur</p>
+    <p>☐ 3. Ranger le manifold, la bouteille et le VAT à l'emplacement indiqué</p>
+    <p>☐ 4. Nettoyer le poste, vérifier qu'aucun outil ne reste sur l'installation</p>
+    <p>☐ 5. Retirer les EPI en dernier, une fois le poste totalement sécurisé</p>
+  </div>
+
+  <div class="jalon"><h4>Jalons franchis aujourd'hui</h4>
+  <p>☐ Vide résiduel contrôlé avant toute ouverture, aucune charge sans validation<br>
+  ☐ Manifold raccordé correctement (voie liquide/vapeur respectée)<br>
+  ☐ Consignation et VAT réalisés avant remise sous tension<br>
+  ☐ Premiers relevés HP/BP/T notés et cohérents<br>
+  ☐ Bouteille pesée avant et après, masse introduite calculée<br>
+  ☐ Aucun rejet de fluide à l'atmosphère</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:14.4%">0<br>Non évalué</th><th style="width:14.4%">1<br>Non acquis</th><th style="width:14.4%">2<br>En cours d'acquisition</th><th style="width:14.4%">3<br>Acquis</th><th style="width:14.4%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C4.2</b> Manipuler le fluide frigorigène et les huiles</td><td>sur T13 · S5.2</td><td>Compétence non observée ce jour.</td><td>Rejet de fluide à l'atmosphère, ou charge commencée sans vérification du vide résiduel.</td><td>Charge réalisée avec l'aide du professeur pour le sens liquide/vapeur ou pour la lecture du vide résiduel.</td><td>Charge réalisée seul, sens respecté, vide résiduel vérifié avant ouverture, aucun rejet de fluide.</td><td>Comme « Acquis », et l'élève explique à un pair pourquoi on vérifie le vide avant de charger.</td></tr>
+    <tr><td><b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle</td><td>sur T2 · S0.1</td><td>Compétence non observée ce jour.</td><td>Manifold mal raccordé, consignation/VAT non réalisés avant mise sous tension.</td><td>Manifold raccordé et mise sous tension réalisée avec un rappel du professeur.</td><td>Manifold raccordé seul, consignation et VAT réalisés sans rappel, premiers relevés HP/BP/T cohérents et notés.</td><td>Comme « Acquis », et l'élève anticipe et vérifie chaque étape avant de solliciter la validation du professeur.</td></tr>
+    <tr><td>Savoir-être — rigueur, sécurité, honnêteté du relevé</td><td>observation continue</td><td>Non observé ce jour.</td><td>EPI incomplets, ou relevé recopié/inventé plutôt que réellement mesuré.</td><td>Sécurité globalement respectée, relevés corrects avec un rappel ponctuel.</td><td>EPI et consignation respectés sans rappel, relevés honnêtes même quand ils sont imparfaits.</td><td>Comme « Acquis », et l'élève signale spontanément un écart ou une anomalie de son propre relevé.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C4.2 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.7 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (préparation, charge, relevés HP/BP/T, pesées, questions répondues)</li>
+    <li>Fiche de sécurité à cocher visée par le professeur</li>
+    <li>Fiche d'intervention amorcée (elle sera complétée en CERFA au module F4)</li>
+    <li>Bon de commande hebdomadaire (fluide, consommables)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : ACT 3. Mise en service de l'installation (F. Henninot, base CAP-BAC PRO) ; CHARGE EN GAZ (F. Henninot) ; fiche contrat tirage charge (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ ANNEXE : MANIFOLD POUR LA CHARGE (impression A3 paysage) ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe — document de travail</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Raccordement manifold pour la charge — schéma de travail</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b> (une feuille par poste) : c'est le document à garder sous les yeux pendant tout le raccordement et la charge. La version réduite des feuilles 1 et 2 sert au repérage, celle-ci sert au travail.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-fluidique-manifold-pompe-a-vide.png" alt="Schéma technique pleine page A3 : circuit frigorifique complet avec manifold — voies BP/HP et voie de service centrale raccordée à la bouteille de fluide pour la charge"
+         style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:10pt; color:#5a6472; margin-top:6px;">Circuit complet avec manifold raccordé : voies <b>BP (bleu)</b> et <b>HP (rouge)</b> sur les vannes de service du compresseur, voie de service <b>centrale (jaune)</b> raccordée <b>aujourd'hui à la bouteille de fluide</b> — c'est la même voie qui portait la pompe à vide lors du tirage au vide de S12.</figcaption>
+  </figure>
+
+  <p style="font-size:10pt; color:var(--gris)">Repères à vérifier sur votre montage réel : sens liquide/vapeur demandé par le professeur, fermeture complète des vannes avant tout démontage, absence de fuite à chaque raccord du manifold.</p>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

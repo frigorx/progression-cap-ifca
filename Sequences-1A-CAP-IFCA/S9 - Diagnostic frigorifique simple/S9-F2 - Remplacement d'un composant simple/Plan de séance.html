@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+<title>Plan de séance — S9-F2 · Remplacement d'un composant simple</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon2{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Remplacement d'un composant simple — <b>module atelier S9-F2</b> (4 h × 2), sans manipulation de fluide</td>
+      <td style="width:38%"><span class="lib">Module S9-F2 · remplacement composant</span><b>Remplacement d'un composant simple</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span> P4 · semaines 29-36</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 31</b> (avant É4) et <b>passage 2 — semaine 33</b> (après É4, intégration + reprise) — dates à caler, cf. <i>_CADRAGE-S9.md</i></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — poste électrique (pressostat, thermostat, relais, condensateur, ventilateur) + poste circuit inerté à l'azote par le professeur (filtre déshydrateur) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe) — consignation NF C 18-510 avant toute intervention électrique ; circuit inerté à l'azote PAR LE PROFESSEUR en amont — <b>aucune manipulation de fluide par l'élève</b></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T16</b> Assurer l'entretien d'une installation <span class="nuance">le cœur métier de S9</span><br><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention <span class="nuance">compte rendu</span></div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> mesures électriques (S1-S6) · raccordements et brasage (S3-S5) · azote et manodétendeur (S5-S6) · manomètres HP/BP (S7-F1) · diagnostic guidé (S9-F1, composant identifié)<br><span class="nuance">Travaillé :</span> <b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la gamme (chaque étape cochée et visée) · sécurité NF C 18-510 et azote · honnêteté de l'auto-contrôle et du compte rendu · posture « je signe mon travail »</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C5.1</b> Remplacer des composants de l'installation — <i>sans manipulation de fluide</i> <span class="nuance">sur T16 · S5.1</span><br><span class="statut">Confortement — visé M</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">poste circuit inerté azote</span><br><span class="statut">Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">auto-contrôle qualité</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S9-2</b> : à la suite du diagnostic mené en S9-F1 sur l'installation de
+  <b>l'arrière-boutique</b>, un composant a été désigné comme fautif. « <b>Remplacez le composant identifié,
+  remettez en état, rédigez le compte rendu.</b> » Vous passez côté <b>maintenance</b> : on ne construit plus une
+  installation, on la répare et on <b>en rend compte</b> — comme le frigoriste qui revient sur un contrat
+  d'entretien.</div>
+
+  <div class="change"><b class="t">Ce qui change depuis S8</b> — En S8, vous étiez encore côté <b>mise en
+  service</b> : on chargeait une installation neuve, prête à démarrer. En S9, on bascule côté <b>MAINTENANCE</b> :
+  S9-F1 a appris à <b>chercher la panne</b> par la mesure ; ce module S9-F2 apprend à <b>remplacer le composant
+  fautif et à rendre compte</b> de l'intervention. Le geste ne change pas de nature (rigueur, sécurité, contrôle),
+  mais son objectif change : réparer, pas construire.</div>
+
+  <div class="plan"><b class="t">Méthode du module : la gamme opératoire + auto-contrôle qualité — « je signe mon
+  travail »</b> — l'élève reçoit une <b>gamme de dépose/repose</b> qu'il doit respecter ET
+  <b>auto-contrôler étape par étape</b> (check-list qualité : propreté, serrage, étanchéité à l'eau savonneuse
+  d'un raccord hors fluide, contrôle de remise en service). La remise en état ne se déclare pas, elle se
+  <b>PROUVE</b> — comme un artisan qui appose sa signature ou son tampon au bas d'un compte rendu, engageant sa
+  responsabilité sur un travail vérifié.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 31 et 33)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 31 — avant É4 — découverte guidée</h4>
+      <b>Jalon 1</b> (≈ 80 min) : démonstration professeur sur un composant <b>électrique</b> (ex. pressostat),
+      puis constat avant intervention, dépose, inspection, montage neuf et repose, gamme guidée et visée pas à
+      pas. <b>Jalon 2</b> (≈ 45 min) : auto-contrôle qualité guidé, essai de remise en service, 1<sup>er</sup>
+      compte rendu d'intervention (guidé).</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 33 — après É4 — intégration et reprise</h4>
+      <b>Jalon 1'</b> (≈ 50 min) : rappel bref, puis un 2<sup>e</sup> composant, cette fois sur le <b>circuit
+      inerté à l'azote par le professeur</b> (ex. filtre déshydrateur), gamme complète menée en <b>autonomie</b>.
+      <b>Jalon 2'</b> (≈ 75 min) : auto-contrôle qualité complet en autonomie, essai de remise en service, compte
+      rendu complet, <b>verdict « je signe mon travail »</b> motivé.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Partie électrique</b> : consignation <b>NF C 18-510</b>
+  (VAT 3 points) avant toute intervention sur un organe électrique ; la mise/remise sous tension définitive est
+  faite par le <b>PROFESSEUR</b>. <b>Partie circuit inerté</b> : le circuit a été <b>préalablement purgé de son
+  fluide et mis sous azote à faible pression par le professeur</b> — azote = gaz inerte, <b>asphyxie possible en
+  local confiné</b> (aucun avertisseur olfactif). <b>Gestes interdits, sans exception</b> : jamais récupérer de
+  fluide, jamais ouvrir un circuit en charge, jamais braser ni couper un circuit contenant du fluide, jamais
+  d'oxygène ni d'air comprimé. <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence), alerter, ne pas
+  déplacer un électrisé ; trousse et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S9-F2 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 31 et 33</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Le professeur reste présent en permanence pendant toute intervention électrique et pendant
+  toute manipulation du circuit inerté à l'azote, aux deux passages : « seul(e) » porte sur le geste et l'auto-contrôle,
+  jamais sur la présence de la supervision sécurité.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (gamme opératoire + auto-contrôle qualité, posture « je signe mon travail »).</td><td>Fait l'appel, rappelle l'organisation et les postes du jour.</td><td>S'installent, retrouvent leur poste binôme.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S9-2 : le composant fautif a été identifié en S9-F1, il faut le remplacer, remettre en état et rendre compte.</td><td>Présente l'ordre d'intervention et le fil rouge maintenance (arrière-boutique).</td><td>Reformulent la mission et le passage « diagnostic → remplacement → compte rendu ».</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les objectifs « je serai capable de… » lus et affichés ; lien avec la formule (C5.1 Confortement, C3.4 Confortement visé M, C3.7 Confortement).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : quiz éclair entre pairs sur les mesures électriques (S1-S6), l'azote et le manodétendeur (S5-S6), la lecture manomètres (S7-F1) et le composant désigné par le diagnostic S9-F1.</td><td>Distribue le quiz éclair, contrôle les tenues et les EPI au vestiaire.</td><td>Se changent par vagues ; en attente, répondent au quiz éclair entre pairs.</td><td>Quiz éclair · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (consignation NF C 18-510 rappelée, gestes interdits fluide, azote sans odeur) puis <b>planter la notion</b> : « pourquoi un artisan appose-t-il sa signature ou son tampon au bas d'un compte rendu, même pour une petite intervention ? » → NOMMER « gamme opératoire + auto-contrôle qualité » → EXPLICITER : suivre une gamme et se contrôler soi-même, étape par étape, c'est ce qui permet de signer un travail en toute honnêteté. Rappel bref « ce qui change depuis S8 ».</td><td>Localise ARU/trousse, anime la question, distribue la gamme (annexe) et désigne les postes.</td><td>Observent, répondent à la question, reçoivent leur gamme.</td><td>Gamme de dépose/repose (annexe) · fiche de sécurité · composants de rechange · outillage</td><td class="obs"></td></tr>
+    <tr><td><b>80 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon2">jalon 1 / 1'</span> : constat + dépose + repose</td><td><b>Passage 1 (80 min)</b> : démonstration professeur sur un composant électrique, puis constat avant intervention, dépose, inspection, montage neuf et repose, gamme guidée pas à pas. <b>Passage 2 (50 min)</b> : rappel bref, puis 2<sup>e</sup> composant sur circuit inerté azote, gamme complète en autonomie.</td><td>Supervise en permanence toute intervention électrique et toute manipulation du circuit inerté, valide chaque étape cochée avant la suivante.</td><td>Observent la démonstration (passage 1) ou rappellent le geste (passage 2), exécutent leur gamme, cochent et font viser chaque étape.</td><td>Poste électrique et/ou poste circuit inerté azote, gamme, outillage, composants neufs</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>45 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon2">jalon 2 / 2'</span> : auto-contrôle qualité + remise en service + compte rendu</td><td><b>Passage 1 (45 min)</b> : auto-contrôle qualité guidé (propreté, serrage, étanchéité eau savonneuse, essai de remise en service), 1<sup>er</sup> compte rendu d'intervention. <b>Passage 2 (75 min)</b> : auto-contrôle qualité complet en autonomie, essai de remise en service, compte rendu complet, verdict « je signe mon travail » motivé.</td><td>Valide chaque critère d'auto-contrôle, supervise l'essai de remise en service, contrôle la cohérence du compte rendu.</td><td>Mènent l'auto-contrôle, assistent à/réalisent l'essai de remise en service, rédigent le compte rendu.</td><td>Check-list qualité, eau savonneuse, compte rendu d'intervention vierge</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : présentation des comptes rendus et des verdicts ; auto-positionnement par compétence (C5.1, C3.4, C3.7 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les comptes rendus et les grilles, valide.</td><td>Présentent leur intervention, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module (F3) + bon de commande hebdomadaire (composants de rechange).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Vérification finale des postes (robinet azote fermé si concerné, outillage complet, ancien composant évacué), nettoyage des établis.</td><td>Supervise le rangement, contrôle la fermeture du circuit inerté et l'évacuation des déchets.</td><td>Rangent, nettoient leur poste.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la suite : É4 en semaine 32 (passage 1) / S9-E1 et bilan de 1<sup>re</sup> année (passage 2).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  <b>Passage 1</b> : jalon 1 (80 min) + pause (15 min) + jalon 2 (45 min) = 2 h 20 ; synthèse 15 + bon de commande
+  10 + rangement 10 + clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.
+  <b>Passage 2</b> : jalon 1' (50 min) + pause (15 min) + jalon 2' (75 min) = 2 h 20 ; synthèse + bon de commande +
+  rangement + clôture = 40 min (inchangé). Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>. Les deux
+  passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre jalon 1/1' et jalon 2/2' change,
+  reflétant le passage d'une gamme guidée (passage 1) à une gamme en autonomie complète (passage 2).</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : S9-F1 « Diagnostic guidé
+  sur machine » (fournit le composant identifié, en amont) · S9-E1 « Coffret clim en autonomie » (même semaines,
+  autre demi-groupe, même logique d'autonomie électrique) · S9-T1 (démarche de diagnostic, théorie) · F3 (carnet de
+  bord + compte rendu type) · É4 en semaine 32 (C5.1 y est évaluée) · S9-T2 (poste de reprise « REMPLACEMENT » en
+  clôture, semaines 33-36, pour les élèves positionnés en difficulté).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Postes ou binômes à revoir en priorité</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

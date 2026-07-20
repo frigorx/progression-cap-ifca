@@ -1,0 +1,474 @@
+<meta charset="utf-8">
+<title>Document professeur — S11 · Séance 1 · Brasage et raccordement de la ligne liquide</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage et raccordement (chantier A2)</td>
+      <td style="width:38%"><span class="lib">Module atelier A2-a · 4 h — DOCUMENT PROFESSEUR</span><b>Brasage et raccordement de la ligne liquide</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> · sem. 4 · 22/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A2 + poste brasage + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée (pas 4 h + 4 h)</td>
+      <td><span class="lib">Modalité</span>Démonstration de sécurité imposée + pratique guidée jalonnée (2 jalons) + fiche d'auto-contrôle qualité de brasure</td>
+      <td><span class="lib">Encadrement</span>1 professeur, permis de feu actif</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.1</b> Outils, normes et représentation <span class="nuance">prérequis</span><br><b>S5.5</b> Réseaux fluidiques <span class="nuance">prérequis</span><br><b>S5.1</b> Systèmes à détente directe <span class="nuance">augmenté</span><br><b>S6.1</b>/<b>S6.2</b> Santé-sécurité, risques <span class="nuance">S6.2 nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité sans rappel (permis de feu respecté) · rigueur du geste · honnêteté de l'auto-contrôle qualité</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement→Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits <span class="nuance">sur T10 · T11 · S5.5 · S6.2</span><br><span class="statut">Découverte</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle <span class="nuance">sur T13 · S5.5</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module A2-a : mêmes
+  8 observations/questions, même numérotation, même séquençage en 2 jalons (jalon 1 brasage, jalon 2 montage des
+  organes + pose des prises de pression). Il y ajoute : les réponses attendues à chaque observation/question avec point de
+  vigilance, les critères observables de la fiche d'auto-contrôle qualité de brasure, la conduite détaillée du
+  permis de feu et du balayage azote, les erreurs typiques d'élèves avec leur remédiation, l'organisation du
+  plateau, le minutage 4 h recompté et la différenciation (consolidation / standard / approfondissement +
+  FLE + TDAH-DYS). <b>Aucune valeur non autorisée n'est donnée</b> : les seuils de surchauffe (5-10 K) et de
+  sous-refroidissement (4-8 K) ne sont pas mobilisés dans ce module (ils appartiennent aux modules théorie T1/T2 et à l'atelier A2-c) ; toute
+  autre valeur (pression de service, débit d'azote, température de flamme) reste <b>« selon la plaque
+  signalétique/notice constructeur, à faire valider »</b>.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Démonstration de sécurité imposée, puis pratique guidée jalonnée.</b> Le
+  brasage est un geste à risque (flamme, gaz sous pression, brûlure) : il ne se découvre pas par tâtonnement,
+  il se démontre une fois, intégralement commenté, classe entière regroupée en arc de cercle à distance de
+  sécurité autour d'un seul poste. Les élèves passent ensuite en binômes sur des postes de brasage individuels,
+  sous balayage d'azote, par <b>2 jalons successifs validés</b> par le professeur (assemblage/brasage → montage
+  des organes et pose des prises de pression), chaque jalon se clôturant par le remplissage de la fiche d'auto-contrôle
+  qualité de brasure. Module resserré sur 4 h : la pratique tient en ~2 h (2 jalons au lieu de 3 sur l'ancienne version 8 h).</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Le nombre de postes de brasage
+  actifs simultanément doit rester compatible avec la surveillance continue du professeur (un seul point de
+  vigilance flamme ne suffit pas si plusieurs binômes brasent en même temps sans supervision directe) : prévoir
+  un nombre de postes de brasage <b>inférieur ou égal</b> à la capacité de surveillance visuelle réelle de
+  l'atelier. Le professeur valide explicitement l'ouverture des gaz de chaque binôme avant tout allumage,
+  poste par poste.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation du module (démonstration puis pratique guidée par 2 jalons).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S11-01 : assembler et braser la ligne liquide façonnée en S10, monter le filtre déshydrateur et le voyant liquide, poser les prises de pression BP/HP.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés et commentés, lien avec la formule (C3.4, C4.7) et le positionnement du jour (confortement vers évaluation).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, exercice au fil de l'eau : relecture du schéma de la ligne liquide façonnée en S10 et repérage des organes (filtre déshydrateur, voyant liquide, détendeur) sur schéma vierge.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (permis de feu visé, risques du jour, gestes interdits, conduite en cas d'incident, extincteur et point d'eau localisés) puis « planter la notion » : OBSERVER en silence le montage de balayage d'azote (sans flamme) → NOMMER « balayage d'azote » → EXPLICITER son rôle anti-oxydation.</td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (a) — démonstration de sécurité imposée</td><td>Démonstration commentée resserrée du professeur : ouverture des bouteilles dans l'ordre, contrôle de flamme, réalisation d'une brasure complète sous balayage d'azote sur chute, extinction et fermeture des bouteilles. Un seul poste, classe entière en arc de cercle à distance de sécurité, aucune manipulation élève. C'est le support des observations 1 à 3 et de la 1<sup>re</sup> question du TP (voir feuille 2).</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (b) — jalon 1 : brasage</td><td>Chaque binôme, sous surveillance rapprochée : préparation du poste (permis de feu individuel, EPI, arrimage bouteilles, préparation des surfaces), puis assemblage et brasage de la ligne liquide sous balayage d'azote poste par poste (le professeur valide l'ouverture des gaz de chaque binôme avant tout allumage). Fiche d'auto-contrôle qualité de brasure remplie à l'issue du jalon.</td></tr>
+    <tr><td>45 min</td><td class="ph">6. Guider l'étude (c) — jalon 2 : organes + prises de pression</td><td>Montage du filtre déshydrateur et du voyant liquide dans le bon sens de circulation (sens vérifié avant brasage), brasage des raccords sous azote, puis pose des prises de pression BP (bleu) et HP (rouge), emplacement conforme au schéma, accessibilité vérifiée pour le raccordement des manomètres au module A2-b. Finalisation de la fiche d'auto-contrôle qualité sur l'ensemble des cordons du module.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des fiches d'auto-contrôle, auto-positionnement par compétence (C3.4, C4.7 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord + bon de commande hebdomadaire (baguettes de brasure, gaz).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Fermeture et rangement des bouteilles de gaz, nettoyage des postes, contrôle visuel de l'ensemble des brasures du module.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (T1 — le détendeur et la surchauffe).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; démonstration 20 min + pause 15 min + jalon 1 (1 h 00) + jalon 2 (45 min) = 2 h 20 ;
+  synthèse 15 min + bon de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, conforme au plan de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ BRASAGE DÉVELOPPÉE + CORRIGÉ OBSERVATIONS 1-3 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Sécurité brasage développée — conduite du permis de feu</h3>
+  <p style="font-size:10.3pt">Le permis de feu est un document formel qui autorise un travail par point chaud
+  dans une zone donnée, pour une durée donnée, après vérification des conditions de sécurité. Il est délivré
+  (ou son équivalent pédagogique appliqué) <b>avant</b> toute flamme, jamais après.</p>
+  <table class="mini">
+    <tr><th style="width:10%">Étape</th><th style="width:30%">Contrôle à réaliser</th><th>Ce que le professeur vérifie / commente pendant la démonstration</th></tr>
+    <tr><td>1</td><td>Dégagement de la zone</td><td>Aucune matière inflammable dans un rayon de sécurité autour du poste de brasage. Sol propre, dégagé.</td></tr>
+    <tr><td>2</td><td>Moyens d'extinction</td><td>Extincteur adapté et point d'eau localisés et accessibles, identifiés à voix haute devant les élèves avant d'allumer.</td></tr>
+    <tr><td>3</td><td>Contrôle du matériel gaz</td><td>Bouteilles arrimées verticalement, flexibles sans fissure ni trace de graisse, raccords serrés, absence de fuite contrôlée avant chaque séance.</td></tr>
+    <tr><td>4</td><td>EPI individuels</td><td>Lunettes teintées, gants cuir, tablier ignifugé portés <b>avant</b> l'allumage, sans exception, contrôlés un par un.</td></tr>
+    <tr><td>5</td><td>Balayage azote</td><td>Circulation d'azote sec dans le tube <b>avant, pendant et après</b> le brasage, à faible débit continu. Débit exact <b>selon la notice du détendeur d'azote utilisé, à faire valider</b>.</td></tr>
+    <tr><td>6</td><td>Surveillance continue</td><td>Le professeur circule sans interruption pendant toute flamme allumée ; aucun poste flamme allumée n'est jamais laissé sans supervision directe.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — observations de la démonstration (feuille 2 du TP élève)</h3>
+
+  <div class="reponse"><b class="t">Observation 1</b> — Avant d'allumer le chalumeau, quels documents ou
+  vérifications le professeur a-t-il montrés (permis, zone, extincteur) ?<br><br>
+  <b>Réponse attendue :</b> la fiche de sécurité à cocher (permis de feu) visée avant toute flamme ; la zone de
+  travail vérifiée dégagée de matières inflammables ; l'extincteur et le point d'eau localisés et montrés du
+  doigt aux élèves ; les EPI (lunettes teintées, gants cuir, tablier) déjà portés au moment de l'allumage.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui ne cite que « les lunettes » n'a pas
+  compris que le permis de feu porte sur la <b>zone</b>, pas seulement sur l'individu : reformuler la distinction
+  EPI individuels / vérifications de zone.</div>
+
+  <div class="reponse"><b class="t">Observation 2</b> — À quel moment le professeur ouvre-t-il le robinet
+  d'azote : avant, pendant, ou après avoir allumé le chalumeau ?<br><br>
+  <b>Réponse attendue :</b> <b>avant</b> l'allumage du chalumeau. L'azote doit déjà circuler dans le tube au
+  moment où la flamme est allumée, et continue de circuler pendant tout le chauffage.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — C'est le point le plus fréquemment mal observé :
+  certains élèves répondent « pendant » parce qu'ils n'ont pas vu le geste d'ouverture, réalisé quelques
+  secondes avant l'allumage. Refaire ce geste au ralenti si la classe hésite majoritairement.</div>
+
+  <div class="reponse"><b class="t">Observation 3</b> — Observez la couleur de la flamme et celle du cuivre
+  chauffé au moment où le professeur approche la baguette de brasure. Que remarquez-vous ?<br><br>
+  <b>Réponse attendue :</b> la flamme est réglée, stable, sans excès de suie ni sifflement ; le cuivre chauffé
+  prend une teinte qui vire progressivement vers un <b>rouge cerise sombre</b> au point le plus chaud, jamais
+  blanc ni étincelant (signe de surchauffe). La baguette fond <b>au contact du cuivre chaud</b>, pas sous la
+  flamme directe.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un cuivre qui vire au rouge vif éclatant ou qui
+  produit des étincelles est en surchauffe : c'est un défaut à signaler à voix haute pendant la démonstration,
+  car c'est exactement l'erreur typique observée ensuite en pratique (voir feuille 4).</div>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi brase-t-on sous azote alors que la brasure
+  fonctionnerait quand même sans lui ?<br><br>
+  <b>Réponse attendue :</b> sans balayage d'azote, l'oxygène de l'air présent à l'intérieur du tube réagit avec
+  le cuivre chauffé et forme de la <b>calamine</b> (un oxyde noir). La brasure elle-même tiendrait mécaniquement,
+  mais la calamine se détacherait plus tard en petits morceaux qui circulent dans le fluide frigorigène et
+  <b>bouchent le filtre déshydrateur, le détendeur ou le compresseur</b>. Le balayage azote ne sert donc pas à
+  la tenue de l'assemblage mais à la <b>propreté interne durable</b> du circuit.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser dire « ça évite que ça brûle » :
+  l'azote ne protège pas de la chaleur, il chasse l'oxygène. Faire reformuler avec le mot « oxydation » ou
+  « calamine ».</div>
+
+  <h4 class="section">Gestes interdits (à énoncer explicitement, sans exception)</h4>
+  <ul class="liste-num">
+    <li>Jamais d'oxygène seul ni d'air comprimé pour une épreuve de pression ou pour souffler un circuit ;</li>
+    <li>Jamais de flamme à proximité d'une matière inflammable, même à distance jugée « suffisante » par l'élève ;</li>
+    <li>Ne jamais quitter un poste flamme allumée, même quelques secondes ;</li>
+    <li>Ne jamais retirer ses lunettes teintées pour « mieux voir » la flamme ou la brasure.</li>
+  </ul>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident :</b> fermer immédiatement l'arrivée de gaz à la source
+  (bouteille), utiliser l'extincteur repéré en début de séance si nécessaire, alerter le professeur, refroidir
+  toute brûlure uniquement à l'eau courante tempérée. Trousse de secours et arrêt d'urgence localisés en salle.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ MONTAGE AZOTE + JALON 1 (BRASAGE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — montage du balayage d'azote</h3>
+  <figure style="margin:6px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-brasage-sous-azote.svg" alt="Schéma technique : montage de balayage d'azote — bouteille, détendeur basse pression, circuit balayé, sens de circulation"
+         style="max-width:75%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Montage de balayage d'azote — bouteille + détendeur BP + circuit balayé. Version repérée pour la correction : débit réglé de façon à sentir un léger souffle en sortie, jamais un jet (réglage exact selon la notice du détendeur, à faire valider).</figcaption>
+  </figure>
+
+  <div class="reponse"><b class="t">Question</b> — Que se passerait-il si le détendeur d'azote était réglé trop
+  haut, avec un débit très fort ?<br><br>
+  <b>Réponse attendue :</b> un débit d'azote trop fort ne rend pas la brasure plus « propre » — il présente au
+  contraire deux risques : (1) il peut <b>refroidir localement</b> le point de chauffe et gêner la fusion
+  correcte de la baguette de brasure (le professeur doit chauffer davantage pour compenser, ce qui favorise la
+  surchauffe ailleurs) ; (2) sur un circuit partiellement fermé, une surpression d'azote peut forcer sur des
+  raccords non encore brasés. Le débit correct reste <b>faible et continu</b>, juste suffisant pour chasser l'air.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser penser « plus d'azote = plus de
+  protection » : c'est un débit de balayage, pas une pressurisation. Faire le lien avec l'observation 2
+  (l'azote coule <i>avant</i> la flamme, à faible débit, pas en jet).</div>
+
+  <h3 class="section">Corrigé — jalon 1 : brasage de la ligne liquide</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Couleur de la brasure</td><td>Cordon régulier, couleur homogène (pas de zone noircie signe de surchauffe locale, pas de zone terne signe de sous-chauffe).</td></tr>
+    <tr><td>Absence de coulure</td><td>L'alliage a été absorbé par capillarité dans le jeu du raccord, sans excès qui goutte ou qui forme une boule à l'extérieur du joint.</td></tr>
+    <tr><td>Absence de porosité</td><td>Pas de petit trou ni de piqûre visible sur le cordon : une porosité, même invisible à l'œil nu au premier regard, est un défaut d'étanchéité potentiel.</td></tr>
+    <tr><td>Recouvrement complet du joint</td><td>Tout le pourtour de l'emboîture est recouvert d'alliage, aucune zone non brasée laissée « pour aller plus vite ».</td></tr>
+    <tr><td>Propreté du tube autour du joint</td><td>Pas de trace de décapant ou de suie excessive autour du cordon.</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Question</b> — Pourquoi laisse-t-on l'azote circuler encore quelques instants
+  après avoir éteint le chalumeau ?<br><br>
+  <b>Réponse attendue :</b> le cuivre reste chaud plusieurs instants après l'extinction de la flamme, et pourrait
+  encore s'oxyder au contact de l'air tant qu'il n'a pas suffisamment refroidi. Maintenir le balayage d'azote
+  pendant ce temps de refroidissement protège le circuit jusqu'à ce que la température ne permette plus
+  l'oxydation.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui coupe l'azote « en même temps que la
+  flamme » par réflexe doit être repris immédiatement : c'est un des gestes les plus souvent oubliés en
+  pratique, à surveiller poste par poste pendant le jalon 1.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ JALON 2 (ORGANES) + JALON 3 (PRISES DE PRESSION) + CONTRÔLES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 2 : montage des organes</h3>
+  <figure style="margin:6px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-ligne-liquide-equipee.svg" alt="Schéma technique : sens de montage du filtre déshydrateur et du voyant liquide sur la ligne liquide"
+         style="max-width:65%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Version repérée pour la correction — la flèche du filtre déshydrateur pointe vers le détendeur (sens de circulation condenseur → détendeur) ; le voyant liquide est monté juste après.</figcaption>
+  </figure>
+
+  <div class="reponse"><b class="t">Question</b> — Que risque-t-on si le filtre déshydrateur est monté à l'envers,
+  flèche vers le condenseur ?<br><br>
+  <b>Réponse attendue :</b> un filtre déshydrateur est directionnel. Monté à l'envers, le fluide le traverse dans
+  le mauvais sens : le tamis et le déshydratant ne retiennent plus correctement l'humidité et les particules, et
+  peuvent même relâcher dans le circuit ce qu'ils avaient déjà piégé. Le circuit reste alors exposé à
+  l'humidité (risque de gel au détendeur, formation d'acides avec certains fluides) et aux particules (risque
+  de bouchage du détendeur). C'est un défaut qui ne se voit pas à l'œil nu après brasage : d'où l'importance de
+  <b>vérifier le sens avant de braser</b>, jamais après.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Insister : ce défaut est <b>invisible une fois
+  brasé</b>. Le contrôle du sens doit être fait et validé par le professeur <b>avant</b> l'allumage du
+  chalumeau pour ce raccord, pas en contrôle final.</div>
+
+  <table class="mini">
+    <tr><th style="width:28%">Organe</th><th>Point de contrôle avant brasage</th></tr>
+    <tr><td>Filtre déshydrateur</td><td>Flèche gravée sur le corps orientée dans le sens de l'écoulement (condenseur → détendeur) ; bouchons d'origine retirés juste avant le brasage, pas avant.</td></tr>
+    <tr><td>Voyant liquide</td><td>Positionné juste après le filtre, sens indiqué par le fabricant respecté ; hublot protégé de la chaleur directe si fragile.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — jalon 2 (suite) : prises de pression</h3>
+  <p style="font-size:10.3pt">Prise de pression BP (bleu) et HP (rouge) posées aux emplacements du schéma,
+  orientées et accessibles pour le raccordement des manomètres au module A2-b. Poser les prises de pression dès
+  ce module est une amorce du raccordement des équipements de charge et de mesure (C4.7, statut Découverte,
+  ancrage sur T13 · S5.5).</p>
+
+  <h3 class="section">Corrigé — contrôles de fin de séance</h3>
+  <div class="reponse"><b class="t">Question</b> — Pourquoi le contrôle d'étanchéité complet n'est-il pas fait
+  aujourd'hui, juste après le brasage ?<br><br>
+  <b>Réponse attendue :</b> un contrôle d'étanchéité complet nécessite une <b>mise sous pression contrôlée</b>
+  du circuit (azote + détection de fuite), ce qui est une opération à part entière avec son propre protocole de
+  sécurité, distincte du brasage. La consigne de la séquence est explicite : « aucune mise sous pression ni sous
+  tension cette semaine » — seul l'assemblage et le brasage sont réalisés aujourd'hui. Le contrôle
+  d'étanchéité sous pression est programmé plus tard dans la séquence (module d'étanchéité), une fois toute la ligne liquide terminée. Aujourd'hui,
+  seul un <b>contrôle visuel</b> du montage (aspect des brasures, sens des organes, position des prises) est
+  demandé.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser un élève improviser un test sous
+  pression « pour vérifier » avec l'azote de balayage : ce n'est pas sa fonction et ce n'est pas encadré
+  aujourd'hui. Rediriger vers le contrôle visuel prévu.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — ORGANISATION DU PLATEAU + ERREURS TYPIQUES + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation du plateau — postes, rotation, sécurité</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Postes de brasage</b></td><td>Chalumeau oxyacétylénique, bouteille d'azote + détendeur + tuyau de balayage, baguette de brasure, décapant si nécessaire, EPI complets par élève, extincteur et point d'eau à proximité immédiate.</td><td>Nombre de postes actifs simultanément limité à la capacité réelle de surveillance continue du professeur. Le professeur valide chaque ouverture de gaz avant tout allumage.</td></tr>
+    <tr><td><b>Zone de démonstration</b></td><td>Un seul poste de brasage équipé, chutes de tube pour la démonstration, classe entière regroupée en arc de cercle à distance de sécurité annoncée.</td><td>Aucune manipulation élève pendant la démonstration ; poste sécurisé et éteint avant de rendre la main aux binômes.</td></tr>
+    <tr><td><b>Poste jalon 2</b> (organes + prises)</td><td>Filtres déshydrateurs neufs (bouchons en place), voyants liquide neufs, prises de pression BP/HP, clés adaptées.</td><td>Vérifier le sens de montage (flèche du filtre) avant tout brasage définitif de cet organe.</td></tr>
+  </table>
+  <p style="font-size:10pt" class="vigilance"><b class="t">Rotation —</b> les binômes qui ne sont pas au poste
+  de brasage à un instant donné complètent leur fiche d'auto-contrôle des assemblages déjà brasés ou préparent
+  le jalon suivant (surfaces, sens de montage), de façon à ce qu'aucun binôme ne reste inactif en attendant son
+  tour de flamme.</p>
+
+  <h3 class="section">Erreurs typiques des élèves + remédiation</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Brasure poreuse ou avec coulure</td><td>Interrompre, faire identifier le défaut sur la fiche d'auto-contrôle (surchauffe locale, alliage en excès), refaire l'assemblage sur chute avant de reprendre. Rappeler : chauffer le raccord, pas la baguette.</td></tr>
+    <tr><td>Azote ouvert trop tard (après l'allumage)</td><td>Arrêter immédiatement la flamme, ouvrir l'azote, attendre quelques secondes de balayage avant de rallumer. Relier à l'observation 2 de la démonstration.</td></tr>
+    <tr><td>Azote coupé en même temps que la flamme</td><td>Rappeler que le cuivre reste chaud après extinction : maintenir le balayage quelques instants de plus, comme démontré.</td></tr>
+    <tr><td>Filtre déshydrateur monté à l'envers</td><td>Faire vérifier le marquage/flèche de sens avant tout serrage ou brasage définitif ; ne jamais braser un filtre dont le sens n'a pas été validé par le professeur.</td></tr>
+    <tr><td>Prise de pression mal serrée ou mal positionnée</td><td>Contrôler le serrage et l'emplacement par rapport au schéma ; une prise mal posée sera détectée au test d'étanchéité en séance suivante — mieux vaut la reprendre maintenant.</td></tr>
+    <tr><td>Retrait prématuré des lunettes teintées</td><td>Sanctionner immédiatement en savoir-être : geste interdit explicite de la séance, sécurité non négociable.</td></tr>
+    <tr><td>Précipitation en fin de séance pour « finir à tout prix »</td><td>Rappeler que la qualité de la brasure conditionne l'étanchéité de toute la ligne liquide ; un assemblage non terminé proprement se termine à la séance suivante, il ne se bâcle pas.</td></tr>
+  </table>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Le professeur brase le premier assemblage du binôme en le commentant geste par geste avant de laisser l'élève reproduire sur chute ; fiche d'auto-contrôle simplifiée avec pictogrammes (coulure/porosité illustrées) plutôt que texte seul.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, pratique guidée par les 2 jalons, fiche d'auto-contrôle complète à chaque assemblage.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de ses propres assemblages, l'élève assiste le professeur en surveillant le balayage azote d'un pair en difficulté (sans jamais tenir le chalumeau à sa place) et explique à voix haute le critère de conformité qu'il contrôle.</td></tr>
+    <tr><td>FLE</td><td>Phrasé très simple sur la fiche d'auto-contrôle (un pictogramme par critère : cordon régulier = coche verte, coulure = croix rouge) ; démonstration de sécurité doublée de gestes mimés (montrer la distance de sécurité avec les bras) plutôt que de longues phrases ; vocabulaire de sécurité répété à l'identique à chaque poste (« flamme », « azote », « stop »).</td></tr>
+    <tr><td>TDAH / DYS</td><td>Fiche d'auto-contrôle découpée en cases à cocher séparées, une par critère ; limiter les sollicitations simultanées en n'autorisant qu'un seul geste à la fois pendant le brasage (poser le chalumeau avant de manipuler la baguette) ; prévoir un temps de pause court entre deux assemblages brasés pour éviter la précipitation liée à l'attente.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — GRILLE 0-4 (CORRIGÉ) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S11 · module atelier A2-a · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>0 = compétence non observée ce jour</b> (à ne jamais
+  confondre avec une absence, codée séparément sur École Directe).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits <span class="nuance">sur T10 · T11 · S5.5 · S6.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Brasure non étanche visuellement (trou, coulure importante), ou permis de feu non respecté.</td>
+      <td>Brasure correcte avec une remarque du professeur (propreté ou pénétration à revoir), corrigée après reprise.</td>
+      <td>Brasures conformes aux 3 critères d'auto-contrôle, réalisées seul sous azote, permis de feu respecté sans rappel.</td>
+      <td>Comme « Acquis », et l'élève explique à un pair pourquoi le balayage d'azote est indispensable.</td>
+    </tr>
+    <tr>
+      <td><b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle <span class="nuance">sur T13 · S5.5</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Prise de pression absente, mal positionnée, ou sens de l'organe non vérifié avant brasage.</td>
+      <td>Prises de pression posées avec aide du professeur pour le repérage de l'emplacement.</td>
+      <td>Filtre déshydrateur, voyant liquide et prises de pression posés seul, sens vérifié avant brasage, conformes au schéma.</td>
+      <td>Comme « Acquis », et l'élève anticipe l'accessibilité des prises de pression pour le futur raccordement des manomètres.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté de l'auto-contrôle</td>
+      <td>Non observé ce jour.</td>
+      <td>EPI incomplets à un moment, poste abandonné flamme allumée, ou auto-contrôle non honnête (défaut caché) : niveau 1 automatique, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires sur le port des EPI.</td>
+      <td>Permis de feu et EPI respectés sans rappel, gestes rigoureux, défauts signalés spontanément au professeur.</td>
+      <td>Comme « Acquis », et l'élève veille spontanément à la sécurité d'un autre poste de brasage.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité
+  (retrait des lunettes, poste flamme laissé sans surveillance, usage d'oxygène seul ou d'air comprimé pour une
+  épreuve) entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la
+  qualité du reste du travail réalisé ce jour-là : c'est un principe de sécurité non négociable, pas un simple
+  critère parmi d'autres — cohérent avec la règle déjà appliquée en S10 pour le perçage sans lunettes.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques professionnels</b> — permis de feu, EPI, gestes interdits ;</li>
+    <li><b>Technologie</b> — rôle des organes de la ligne liquide (filtre déshydrateur, voyant liquide) ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (voir module F3) ;</li>
+    <li><b>Chef-d'œuvre</b> — captation possible pour le dossier ;</li>
+    <li><b>Module A2</b> — chantier de projet déjà entamé en S10 (façonnage de la ligne liquide).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Activité n°7
+  Cintrages + brasures (F. Henninot) ; Activité n°34 Cintrage 90°, emboiture et brasure prof ; Activité n°10
+  Ligne liquide avec prise de pression ; Activité n°4 Collecteur d'aspiration ; F gaz et recherche de fuite
+  (support sécurité).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

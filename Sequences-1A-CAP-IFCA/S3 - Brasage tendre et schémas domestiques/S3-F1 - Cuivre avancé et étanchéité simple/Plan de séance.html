@@ -1,0 +1,245 @@
+<meta charset="utf-8">
+<title>Plan de séance — S3-F1 · Cuivre avancé et étanchéité simple</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre et schémas domestiques — <b>module atelier S3-F1</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S3-F1 · cuivre avancé</span><b>Cuivre avancé et étanchéité simple</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> P2 · semaines 8-9 (S3 court sem. 8-11)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 8</b> et <b>passage 2 — semaine 9</b> (dates à caler sur le calendrier réel, cf. <i>_CADRAGE-S3.md</i>) — <b>même jeu de documents, vécu deux fois</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — établis + poste <b>binôme</b> (petit réseau commun) + zone de mise en pression dédiée (professeur) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier élec S3-E1)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> gestes cuivre vécus ×4 (coupe, cintrage, dudgeon, enchaînement, S1-S2) · <b>S2.1</b> Outils, normes et représentation <span class="nuance">(augmenté en S2-F1)</span> · É1 passée (C3.4 positionnée officiellement)<br><span class="nuance">Travaillés :</span> <b>S2.1</b> Outils, normes et représentation <span class="nuance">augmenté</span> · <b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité cuivre sans rappel · nouvelle vigilance « pression » (jamais toucher la bouteille, jamais d'oxygène ni d'air comprimé) · rigueur d'assemblage · honnêteté du contrôle (passage 1 : sur sa propre pièce ; passage 2 : contrôle croisé SIGNÉ)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">sur T10 · T12 · S2.1</span><br><span class="statut">Découverte</span> <b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service <span class="nuance">sur T11 · T12 · S5.5 — 1<sup>re</sup> rencontre, aucun poids</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S3-1</b> : un client fait préparer son <b>pavillon</b> pour l'installation future
+  d'un <b>climatiseur</b>. Avant que l'équipe pose la machine, vous devez <b>préparer un petit réseau cuivre</b>
+  pour la future liaison frigorifique, et <b>PROUVER qu'il est étanche</b> — un réseau qui fuit ne peut jamais
+  être livré à l'équipe suivante. Ce module ouvre la séquence S3 : il prépare directement <b>S3-F2</b> (brasage
+  tendre, où cette même liaison sera assemblée de façon <b>définitive</b>).</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>assembler</b> un petit réseau cuivre en <b>raccordant</b> plusieurs tronçons entre eux (coupe,
+        cintrage, dudgeon, raccord union) ;</li>
+        <li><b>contrôler l'étanchéité</b> d'un circuit à l'eau savonneuse, sous la pression mise par le
+        professeur ;</li>
+        <li><b>lire et noter honnêtement</b> un résultat de contrôle, même en cas de fuite ;</li>
+        <li>(passage 2) <b>contrôler la pièce d'un autre binôme</b> et signer mon contrôle en toute honnêteté ;</li>
+        <li><b>m'auto-positionner</b> en tenant compte de mes 2 objectifs de progrès fixés à É1, si je suis
+        concerné(e).</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>couper-ébavurer, cintrer (rayon mini 3 × D), dudgeonner (conicité 45°, écrou enfilé avant) — vécus
+        ×4 en S1-S2 ;</li>
+        <li>organiser mon poste et enchaîner les gestes sans interruption (S2-F1) ;</li>
+        <li>les règles de sécurité cuivre déjà acquises (jamais de scie à métaux, jamais de dudgeon forcé) ;</li>
+        <li>mon positionnement à É1 sur C3.4 et mes 2 objectifs de progrès — <b>crochet direct de la
+        remédiation post-É1</b>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S2</b> — En S2-F1, vous réalisiez <b>une seule pièce
+  enchaînée</b> (coupe → cintrage → dudgeon), seul(e) à votre poste, sans jamais vérifier si elle était étanche.
+  <b>Aujourd'hui, vous travaillez en BINÔME</b> sur une pièce commune : un <b>petit réseau</b> qui <b>RACCORDE</b>
+  plusieurs tronçons entre eux, puis vous <b>PROUVEZ qu'il est étanche</b> — c'est la toute première fois que vous
+  rencontrez cette vérification (compétence <b>C3.9</b>, statut <b>Découverte</b> : première rencontre, aucun
+  poids). La mise sous pression reste, comme la mise sous tension en électricité, un geste <b>exclusivement
+  professeur</b>. <b>É1 est passée : tes 2 objectifs de progrès s'appliquent ici</b> — la phase 4 reprend
+  exactement les 2 points du poste FROID d'É1 (cotes du dudgeon, propreté de la coupe).</div>
+
+  <div class="plan"><b class="t">Méthode du module : plan de travail à jalons + contrôle qualité CROISÉ</b> —
+  passage 1 : le professeur valide 2 jalons et chaque binôme contrôle sa propre pièce. Passage 2 : même structure
+  à 2 jalons, mais le contrôle final n'est plus un autocontrôle — les pièces sont échangées entre binômes, et
+  chaque contrôleur signe ce qu'il a réellement observé. Aucune valeur de pression n'est fixée par avance dans ce
+  document : elle est <b>affichée au poste par le professeur</b>, à faire valider.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par binôme, semaines 8 et 9)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 8 — 1<sup>er</sup> réseau + 1<sup>er</sup> contrôle (sur sa propre pièce)</h4>
+      <b>Jalon 1</b> (≈ 85 min) : réalisation d'un petit réseau à 2 tronçons cintrés, reliés par un raccord union
+      (2 dudgeons raccordés). <b>Jalon 2</b> (≈ 40 min) : 1<sup>re</sup> vérification d'étanchéité à l'eau
+      savonneuse, pression mise par le professeur, contrôle de <b>sa propre pièce</b>. Le professeur reste présent
+      à chaque étape à risque.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 9 — pièce plus complexe + contrôle qualité CROISÉ</h4>
+      <b>Jalon 1'</b> (≈ 50 min) : réseau <b>plus complexe</b> (3 tronçons, 2 raccords union), <b>moins d'aide,
+      plus vite</b>. <b>Jalon 2'</b> (≈ 75 min) : <b>CONTRÔLE QUALITÉ CROISÉ</b> — chaque binôme contrôle la pièce
+      d'un <b>AUTRE</b> binôme à l'eau savonneuse et <b>SIGNE</b> son contrôle : l'honnêteté de la mesure devient
+      le cœur de l'évaluation du savoir-être.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : coupures/projections de limaille (cuivre,
+  comme en S1-S2), doigts pincés à la cintreuse/dudgeonnière, <b>projection possible si un raccord lâche sous
+  pression</b>. <b>EPI</b> : gants anti-coupure, lunettes de protection (obligatoires pendant tout contrôle sous
+  pression). <b>Gestes interdits</b> : jamais de scie à métaux pour couper le cuivre ; jamais de dudgeon forcé
+  au-delà de la butée ; <b>jamais d'oxygène ni d'air comprimé pour une épreuve d'étanchéité</b> ; jamais toucher,
+  ouvrir ou fermer la bouteille de gaz neutre (proposition : azote — à faire valider ; choisie et manipulée
+  exclusivement par le professeur, la manipulation de la bouteille attend S5) ; jamais desserrer ou resserrer un raccord tant que le circuit est sous pression ; jamais
+  orienter un raccord sous pression vers soi-même ou un camarade. <b class="t">🚨 En cas d'incident :</b> le
+  professeur coupe la pression, alerte, ne déplace pas une personne blessée, désinfecte immédiatement toute
+  coupure (le cuivre s'infecte vite) — trousse de secours et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S3-F1 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 8 et 9</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. La phase 4 est le <b>crochet de la remédiation post-É1</b> (reprise ciblée des items du poste FROID) :
+  le temps qui y est consacré n'est pas du temps perdu, c'est le point d'appui de toute la séance.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (plan de travail à jalons + contrôle qualité croisé, travail en binôme sur une pièce commune).</td><td>Fait l'appel, rappelle/forme les binômes de poste.</td><td>S'installent, retrouvent leur binôme et leur poste.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S3-1 : préparer un petit réseau cuivre pour la future liaison frigorifique du climatiseur, et PROUVER qu'il est étanche. Rappel explicite du lien avec S3-F2 (brasage définitif, séance suivante).</td><td>Présente l'ordre d'intervention et l'enjeu de la preuve d'étanchéité.</td><td>Reformulent la mission du module et son lien avec S3-F2.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C3.4 Confortement, C3.9 Découverte — 1<sup>re</sup> rencontre, aucun poids).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : quiz éclair entre pairs, REPRISE des 2 items du poste FROID de l'évaluation É1 — cotes du dudgeon (conicité 45°, emboîtement) et propreté de la coupe (ébavurage). <b>Crochet direct de la remédiation post-É1.</b></td><td>Distribue le quiz éclair, contrôle les tenues et les EPI au vestiaire ; repère les élèves positionnés 1-2 à É1 sur C3.4 (variante consolidation).</td><td>Se changent par vagues ; en attente, répondent au quiz éclair entre pairs.</td><td>Quiz éclair (items É1) · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (nouveaux risques : pression, gestes interdits — jamais d'oxygène ni d'air comprimé, jamais toucher la bouteille) puis <b>planter la notion</b> : OBSERVER 2 réseaux témoins déjà réalisés, badigeonnés à l'eau savonneuse par le professeur sous pression (un étanche, un avec un dudgeon mal fait qui fuit) → NOMMER « étanchéité » → EXPLICITER pourquoi la vérifier avant mise en service (pollution, panne, sécurité de l'installation).</td><td>Localise ARU/trousse, réalise la démonstration sous pression (geste à risque = démontré, jamais découvert seul).</td><td>Observent à distance, comparent les 2 réseaux, nomment ce qu'ils voient (bulles / pas de bulles).</td><td>2 réseaux témoins · station de mise en pression · eau savonneuse · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>85 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon 1 / 1'</span> : assemblage du réseau</td><td><b>Passage 1 (85 min)</b> : réalisation d'un réseau à <b>2 tronçons</b> cintrés, reliés par <b>1 raccord union</b> (2 dudgeons). <b>Passage 2 (50 min)</b> : réseau <b>plus complexe</b> à <b>3 tronçons</b> et <b>2 raccords union</b> (4 dudgeons), moins d'aide, plus vite.</td><td>Circule, valide le jalon 1/1' (coupe ébavurée, cintrages sans pincement, dudgeons conformes, raccords bien serrés) avant autorisation de continuer.</td><td>Coupent, cintrent, dudgeonnent et assemblent leur réseau en binôme, présentent au professeur.</td><td>Tubes, raccords union, écrous, outillage complet, fiche de relevé</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>40 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon 2 / 2'</span> : vérification d'étanchéité</td><td><b>Passage 1 (40 min)</b> : 1<sup>re</sup> vérification d'étanchéité à l'eau savonneuse sur <b>sa propre pièce</b>, pression mise par le professeur. <b>Passage 2 (75 min)</b> : <b>CONTRÔLE QUALITÉ CROISÉ</b> — échange des pièces entre binômes, contrôle à l'eau savonneuse de la pièce d'un <b>AUTRE</b> binôme, signature du contrôle.</td><td>Raccorde et règle seul la pression (geste exclusif) ; organise l'échange des pièces en passage 2 ; valide chaque signature de contrôle.</td><td>Badigeonnent, observent, notent honnêtement le résultat, signent (passage 2).</td><td>Eau savonneuse + pinceau, fiche de relevé étanchéité, fiche « contrôle qualité croisé » (passage 2)</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque binôme présente son réseau et son résultat de contrôle ; en passage 2, comparaison du résultat déclaré et du contrôle croisé ; auto-positionnement par compétence (C3.4, C3.9 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leur réseau et leurs relevés, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (tubes, raccords union, écrous, eau savonneuse).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Le professeur dépressurise et débranche la station d'essai ; rangement des outils par poste, tri des chutes de cuivre, nettoyage des établis.</td><td>Dépressurise, supervise le rangement et le tri.</td><td>Rangent, trient, nettoient.</td><td>Bac de récupération des chutes</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S3-F2 — brasage tendre, assemblage définitif de cette même liaison).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  <b>Passage 1</b> : jalon 1 (85 min) + pause (15 min) + jalon 2 (40 min) = 2 h 20 ; synthèse 15 + bon de commande
+  10 + rangement 10 + clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.
+  <b>Passage 2</b> : jalon 1' (50 min) + pause (15 min) + jalon 2' (75 min) = 2 h 20 ; synthèse + bon de commande +
+  rangement + clôture = 40 min (inchangé). Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>. Les deux
+  passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre jalon 1/1' et jalon 2/2' change.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : mathématiques (calcul
+  des longueurs de tube pour 2 puis 3 tronçons) · prévention des risques (mise en pression, gestes interdits) ·
+  co-intervention français (carnet de bord, module F3) · module S3-F2 (brasage tendre — suite directe de cette
+  même liaison, assemblage définitif) · prépare l'usage autonome de la bouteille de gaz neutre (proposition :
+  azote — à faire valider), différé à S5.</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Binômes à revoir en priorité avant S3-F2</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

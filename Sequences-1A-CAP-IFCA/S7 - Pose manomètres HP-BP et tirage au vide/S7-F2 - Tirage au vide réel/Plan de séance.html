@@ -1,0 +1,242 @@
+<meta charset="utf-8">
+<title>Plan de séance — S7-F2 · Tirage au vide réel</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .homonymie{border:1.5px dotted var(--gris); border-radius:6px; padding:6px 12px; margin:.3em 0 .9em; font-size:9pt; color:var(--gris); background:#fafbfc}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pose manomètres HP/BP et tirage au vide — <b>module atelier S7-F2</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S7-F2 · mise en service</span><b>Tirage au vide réel</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> P4 · semaines 24-25</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 24</b> et <b>passage 2 — semaine 25</b> (dates à caler, cf. <i>_CADRAGE-S7.md</i>) — même circuit vécu deux fois</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — postes binôme (montage S6 éprouvé ou circuit école vidé, SANS fluide) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier élec S7-E2)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension <span class="nuance">(PARTIEL : seul « tirer au vide » travaillé ici)</span><br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> manifold posé et lu en S7-F1 (2 manomètres, 3 flexibles) · montage éprouvé et PV signé en S6 · manodétendeur azote par paliers (S5-F2/S6-F1) · relation P/T qualitative (S4-T1)<br><span class="nuance">Travaillé :</span> <b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">augmenté (dépression, vacuomètre, courbe temps/pression)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du relevé (horodaté, honnête même si le tracé n'est pas « joli ») · vigilance pompe électrique (état du cordon, huile chaude, échappement d'huile) · autonomie croissante (passage 2 : relevés et interprétation en grande partie seul(e))</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte → Confortement</span> <b>C4.1</b> Tirer au vide le circuit frigorifique <span class="nuance">sur T13 · S5.5</span><br><span class="statut">Confortement</span> <b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">sur T12</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S7-2</b> : la liaison de <b>l'arrière-boutique</b>, brasée fort en S5 et
+  <b>prouvée étanche au PV d'épreuve azote en S6</b>, doit maintenant être <b>déshydratée</b> avant la future
+  mise en charge (2<sup>e</sup> année) — le circuit contient encore de l'air et de l'humidité qu'il faut
+  extraire par le vide. Vous branchez la pompe à vide et le vacuomètre, vous <b>relevez la pression dans le
+  temps</b>, vous <b>tracez la courbe de descente</b>, et vous rendez un <b>constat argumenté</b> : le vide
+  tient-il, ou une remontée trahit-elle une fuite ou de l'humidité résiduelle ?</div>
+
+  <div class="homonymie"><b>⚠ Ne pas confondre</b> — ce module traite le <b>tirage au vide</b> = mise sous vide
+  du circuit à la pompe (déshydratation avant charge). Il ne traite PAS la « régulation par tirage au vide »
+  (pump down), qui est une tout autre notion d'électrotechnique de régulation, vue en 2<sup>e</sup> année.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>brancher la pompe à vide et le vacuomètre</b> sur le manifold, sous supervision ;</li>
+        <li><b>relever la pression à intervalles réguliers</b> et <b>tracer la courbe temps/pression</b> sur le repère fourni ;</li>
+        <li><b>constater le palier</b> (la descente s'arrête, la pression se stabilise) ;</li>
+        <li><b>interpréter une remontée</b> de l'aiguille après arrêt de la pompe (fuite ? humidité ?) ;</li>
+        <li><b>casser le vide à l'azote</b>, en douceur, au détendeur, sous supervision.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>poser et lire le manifold (2 manomètres, 3 flexibles) — S7-F1 ;</li>
+        <li>manipuler le manodétendeur d'azote par paliers, sous supervision (S5-F2, S6-F1) ;</li>
+        <li>le montage est déjà <b>éprouvé et signé étanche</b> (S6) — c'est ce même montage qu'on déshydrate ;</li>
+        <li>le lien qualitatif pression/température (S4-T1) ;</li>
+        <li>É3 est passée : votre plan de progrès personnel s'applique aussi ici.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S6</b> — En S6, vous avez monté le circuit <b>EN
+  PRESSION POSITIVE</b> (azote) pour prouver qu'il ne fuit pas. <b>Aujourd'hui, c'est l'inverse</b> : vous
+  descendez le circuit <b>EN DÉPRESSION</b> (vide) pour en extraire l'air et l'humidité, avant que le fluide
+  n'y soit introduit. Le montage est le même, le PV de S6 est déjà signé — vous ne recommencez pas l'épreuve
+  d'étanchéité, vous préparez la mise en service. C'est aussi la <b>première fois</b> qu'un TP vous fait
+  <b>tracer une courbe</b> : le professeur vous guide pas à pas au passage 1.</div>
+
+  <div class="plan"><b class="t">Méthode du module : expérience instrumentée + courbe de descente</b> —
+  l'élève relève la pression au vacuomètre à intervalles réguliers, trace la courbe temps/pression sur un
+  repère fourni, constate le palier, interprète une remontée d'aiguille, puis casse le vide à l'azote. Aucun
+  niveau de vide n'est fixé par avance dans ce document : il est <b>affiché au poste par le professeur</b>,
+  selon la pratique de l'atelier, à faire valider.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 24 et 25)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 24 — branchement et courbe démontrés</h4>
+      <b>Jalon 1</b> (≈ 85 min) : branchement guidé pompe + vacuomètre, démarrage, relevés à intervalles
+      réguliers, tracé de la courbe pas à pas avec le professeur.
+      <b>Jalon 2</b> (≈ 40 min) : constat du palier, test de remontée, interprétation guidée, casse du vide à
+      l'azote, visa.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 25 — courbe et interprétation en autonomie</h4>
+      <b>Jalon 1'</b> (≈ 50 min) : branchement et relevés <b>plus autonomes</b>, moins de démonstration.
+      <b>Jalon 2'</b> (≈ 75 min) : le professeur propose une <b>variante d'interprétation</b> (un poste avec une
+      petite anomalie volontaire) pour confronter l'élève à un cas réel de remontée ; discussion plus poussée,
+      casse du vide à l'azote, visa.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : pompe à vide = <b>appareil
+  électrique</b> (état du cordon vérifié avant branchement), <b>huile chaude</b> en fonctionnement,
+  <b>échappement d'huile</b> possible à l'orifice d'échappement ; azote = gaz inerte sous pression (acquis
+  S5/S6). <b>EPI</b> : lunettes de protection pendant toute manipulation. <b>Gestes interdits</b> : <b>jamais
+  aspirer l'azote sous pression avec la pompe</b> — on casse toujours la pression AVANT de pomper, sous peine
+  d'endommager la pompe et de projeter de l'huile ; jamais démarrer la pompe sans avoir vérifié son niveau
+  d'huile ; jamais fermer les vannes et arrêter la pompe dans le désordre — toujours <b>fermer les vannes
+  d'abord</b>, puis arrêter la pompe, pour ne pas faire rentrer d'air par l'échappement ; jamais de montée en
+  pression d'azote brutale — détendeur obligatoire, montée douce. <b class="t">🚨 En cas d'incident :</b> le
+  professeur coupe la pompe et l'arrivée d'azote, ne déplace pas une personne en malaise, alerte — trousse de
+  secours et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S7-F2 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 24 et 25</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Le circuit travaillé est le montage éprouvé en S6 (ou un circuit école vidé), <b>SANS fluide
+  frigorigène</b> : le professeur reste présent en permanence pendant la manipulation de la pompe et de l'azote.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (courbe démontrée au passage 1, en autonomie au passage 2).</td><td>Fait l'appel, rappelle l'organisation et les postes.</td><td>S'installent, retrouvent leur poste binôme.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S7-2 : déshydrater par le vide la liaison déjà éprouvée en S6, avant la charge future (S8).</td><td>Présente l'ordre d'intervention et le lien avec S6.</td><td>Reformulent la mission et son enchaînement avec S6.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C4.1 Découverte→Confortement, C3.7 Confortement).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : quiz éclair entre pairs sur la lecture du manifold (S7-F1) et la montée par paliers à l'azote (S5-F2/S6-F1) ; rappel du lien P/T qualitatif de S4-T1 (« le vide fait bouillir l'eau à froid »).</td><td>Distribue le quiz éclair, contrôle les tenues et les EPI au vestiaire.</td><td>Se changent par vagues ; en attente, répondent au quiz éclair entre pairs.</td><td>Quiz éclair (items S7-F1, S4-T1, S5/S6) · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (rappel : pompe électrique, huile chaude, jamais aspirer l'azote sous pression) puis <b>planter la notion</b> : le professeur démontre UNE fois le branchement pompe + vacuomètre et les premiers relevés sur un poste témoin → NOMMER « palier » et « courbe de descente » → EXPLICITER pourquoi on relève à intervalles réguliers plutôt qu'une seule fois à la fin.</td><td>Localise ARU/trousse, réalise la démonstration commentée, distribue le repère millimétré (annexe).</td><td>Observent la démonstration, repèrent la logique « un relevé régulier construit une courbe ».</td><td>Poste témoin · pompe à vide + vacuomètre · repère millimétré vierge · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td><b>85 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon 1 / 1'</span> : branchement + relevés + tracé</td><td><b>Passage 1 (85 min)</b> : branchement pompe/vacuomètre démontré pas à pas, vérification du niveau d'huile, démarrage, relevés réguliers reportés en tableau ET sur la courbe, avec le professeur. <b>Passage 2 (50 min)</b> : chaque binôme branche et relève plus vite, en autonomie, moins de démonstration.</td><td>Supervise en permanence la pompe et le montage, valide chaque relevé avant le suivant.</td><td>Branchent, démarrent, relèvent et tracent la courbe au fil des minutes.</td><td>Pompe à vide, vacuomètre, montage S6, repère millimétré, chronomètre</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>40 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon 2 / 2'</span> : palier + test de remontée + interprétation + casse azote</td><td><b>Passage 1 (40 min)</b> : constat du palier, fermeture des vannes puis arrêt de la pompe (dans cet ordre), observation de la remontée, interprétation guidée (fuite ? humidité ?), casse du vide à l'azote. <b>Passage 2 (75 min)</b> : même déroulé, avec une <b>variante d'interprétation</b> proposée par le professeur (poste avec anomalie volontaire), discussion plus poussée.</td><td>Valide l'ordre fermeture/arrêt, questionne l'interprétation, supervise la casse du vide à l'azote.</td><td>Constatent le palier, interprètent la remontée, cassent le vide à l'azote sous supervision.</td><td>Manodétendeur azote, chronomètre, fiche d'interprétation</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : présentation des courbes et des interprétations ; auto-positionnement par compétence (C4.1, C3.7 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les courbes et les grilles, valide.</td><td>Présentent leur courbe et leur interprétation, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (huile pompe, consommables).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Le professeur ferme l'arrivée d'azote et vérifie la pression finale du circuit ; rangement des postes, nettoyage des établis (traces d'huile).</td><td>Ferme l'azote, supervise le rangement.</td><td>Rangent, nettoient leur poste.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S7-T1 lecture de relevés, sem. 24 — exploite les relevés réels de F1).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  <b>Passage 1</b> : jalon 1 (85 min) + pause (15 min) + jalon 2 (40 min) = 2 h 20 ; synthèse 15 + bon de commande
+  10 + rangement 10 + clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.
+  <b>Passage 2</b> : jalon 1' (50 min) + pause (15 min) + jalon 2' (75 min) = 2 h 20 ; synthèse + bon de commande +
+  rangement + clôture = 40 min (inchangé). Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>. Les deux
+  passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre jalon 1/1' et jalon 2/2' change.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : S7-T1 « Lecture de
+  relevés » (théorie qui exploite les relevés réels de ce module, semaine 24) · co-intervention français (carnet
+  de bord, module F3) · modules S5-F2/S6-F1 (manodétendeur azote par paliers) · S7-F1 (lecture du manifold) ·
+  S4-T1 (relation pression/température, lien qualitatif) · prépare la charge simulée de S8 puis réelle en 2A.</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Élèves à revoir en priorité (autonomie du tracé)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .homonymie{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

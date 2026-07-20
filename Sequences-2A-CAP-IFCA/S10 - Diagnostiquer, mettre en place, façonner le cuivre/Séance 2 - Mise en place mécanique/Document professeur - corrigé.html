@@ -1,0 +1,327 @@
+<meta charset="utf-8">
+<title>Document professeur — S10 · Module atelier A1 · Mise en place mécanique</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Mise en place mécanique — chantier de remise en état (A1)</td>
+      <td style="width:38%"><span class="lib">Module atelier A1 · 4 h — DOCUMENT PROFESSEUR</span><b>Mise en place mécanique — implanter, tracer, percer, fixer</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S10</span> · sem. 2 · 08/09/2026 (matin)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A1 + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée (pas 4 h + 4 h)</td>
+      <td><span class="lib">Modalité</span>Démonstration commentée courte + pratique guidée jalonnée (2 jalons)</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T14</b> Régler l'installation en fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">augmenté</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste de fixation · EPI sans rappel · soin du poste</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.3</b> Implanter, fixer les supportages<br><span class="statut">Confortement</span> <b>C4.6</b> Régler les valeurs de consigne</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève du module A1 : même
+  séquençage en 2 jalons (jalon 1 traçage-perçage, jalon 2 fixation des supportages + pose du compresseur et
+  des organes lourds + pressostat), mêmes observations et questions, même numérotation. Il y ajoute : les
+  réponses attendues avec point de vigilance, l'organisation du plateau, le minutage 4 h recompté, les erreurs
+  typiques d'élèves avec leur remédiation, la différenciation (consolidation / standard / approfondissement +
+  FLE + TDAH-DYS). <b>Aucune valeur non autorisée n'est donnée</b> : la valeur de consigne du pressostat reste
+  <b>« selon la plaque signalétique/notice constructeur, à faire valider »</b> (préréglage au banc, hors
+  tension et hors fluide) ; aucun seuil SC/SR n'est mobilisé dans ce module.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Démonstration commentée courte, puis pratique guidée en 2 jalons.</b> Le
+  professeur montre une fois, en une démonstration resserrée, les gestes de perçage et de fixation, puis chaque
+  binôme réalise 2 jalons successifs validés (au lieu des 3 postes tournants de l'ancienne version 8 h) :</p>
+  <ul class="liste-num">
+    <li><b>Jalon 1</b> (≈ 1 h) — implantation, traçage et perçage des points de fixation du châssis ;</li>
+    <li><b>Jalon 2</b> (≈ 45 min) — fixation des supportages, pose du compresseur et des organes lourds
+    (évaporateur), et découverte-préréglage du pressostat au banc, hors tension et hors fluide.</li>
+  </ul>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Le professeur doit circuler en
+  continu entre les binômes pour contrôler les gestes de sécurité (perçage, manutention, serrage) avant qu'une
+  erreur ne devienne irréversible (perçage raté, organe forcé). Sur 2 jalons plutôt que 3 postes, la surveillance
+  du perçage (jalon 1, le plus sensible en sécurité) et celle de la manutention de charges (jalon 2) restent les
+  deux points de vigilance continue. Un binôme qui termine tôt un jalon peut observer activement l'autre poste
+  en cours plutôt que de rester inactif.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation du module (démonstration puis pratique guidée par 2 jalons).</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S10-02 : devis accepté, remise en place mécanique complète des organes sur le châssis, avant tout raccordement.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » affichés et commentés, lien avec la formule (C3.3, C4.6) et le positionnement du jour (confortement).</td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage en tenue échelonné ; en attente, exercice au fil de l'eau : relecture de la fiche de diagnostic (module A0) et repérage des 4 organes de la Croix du Frigoriste sur schéma vierge.</td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité de la zone (risques du jour : manutention, perçage, coupures ; conduite en cas d'incident ; arrêt d'urgence et trousse localisés) puis « planter la notion » : manipulation collective d'un pressostat démonté — OBSERVER en silence → NOMMER « pressostat » → EXPLICITER son rôle de sécurité et de régulation, sans jamais le brancher.</td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (a) — démonstration commentée courte</td><td>Démonstration commentée du professeur, resserrée sur les 2 gestes centraux : traçage-pointage-perçage d'un point de fixation, puis fixation contrôlée d'un organe (couple, pas de forçage). Un seul poste, tous les binômes en arc de cercle à distance de sécurité, aucune manipulation élève.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>1 h 00</td><td class="ph">6. Guider l'étude (b) — jalon 1 : traçage-perçage</td><td>Chaque binôme, sous surveillance rapprochée : implantation des organes sur le châssis à partir du plan coté (sans fixer), report des cotes, pointage puis perçage de l'ensemble des points de fixation. Contrôle du port des lunettes avant tout perçage. Tableau de contrôle de perçage rempli au fil de l'eau.</td></tr>
+    <tr><td>45 min</td><td class="ph">6. Guider l'étude (c) — jalon 2 : fixation + organes + pressostat</td><td>Fixation des supportages percés au jalon 1 (serrage contrôlé, aplomb, niveau), pose mécanique du compresseur et de l'évaporateur (manutention PRAP, sens de montage vérifié), et découverte-préréglage du pressostat au banc, hors tension et hors fluide. Finalisation du tableau de contrôle de fixation et du cadre de dessin coté.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun des fiches de pose (jalons 1 et 2), auto-positionnement par compétence (C3.3, C4.6 + savoir-être) puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord + bon de commande hebdomadaire (visserie, forets).</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Outillage, tri des chutes de perçage, nettoyage des postes, vérification visuelle des fixations réalisées dans le module.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (module A2 — façonnage cuivre).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+15+20 =
+  <b>1 h 00</b> (plafond) ; démonstration 20 min + pause 15 min + jalon 1 (1 h 00) + jalon 2 (45 min) = 2 h 20 ;
+  synthèse 15 min + bon de commande 10 min + rangement 10 min + clôture 5 min = 40 min. Total module :
+  1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, conforme au plan de séance.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ NOTION + ORGANISATION DES 3 POSTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A1 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — la notion du jour (le pressostat)</h3>
+  <div class="reponse"><b class="t">Observation 1 attendue</b> — un pressostat classique présente en général
+  deux organes de réglage visibles : une vis ou molette de <b>consigne</b> (souvent notée « RANGE » ou « SET »)
+  et une vis ou molette de <b>différentiel</b> (souvent notée « DIFF »). L'élève doit repérer ces deux organes
+  sans les confondre, sans nécessairement connaître leur nom exact à ce stade — le nom vient après
+  l'observation.</div>
+  <div class="reponse"><b class="t">Observation 2 attendue</b> — l'échelle graduée inscrite sur l'appareil
+  représente la <b>plage de pression réglable</b> (en bar), propre au modèle de pressostat. L'élève doit
+  comprendre qu'il s'agit de valeurs de pression, pas de température ni de temps.</div>
+  <div class="reponse"><b class="t">Réponse attendue — pourquoi ne jamais régler directement sur la machine
+  sous tension et sous fluide ?</b> — Parce qu'un réglage mal maîtrisé sur une installation en fonctionnement
+  peut provoquer un arrêt intempestif, un déclenchement de sécurité non compris par l'élève, voire un risque
+  si l'organe est mal identifié. Le passage par un pré-réglage au banc, hors tension et hors fluide, permet de
+  se familiariser avec le geste et l'objet avant de l'utiliser en conditions réelles, en séance ultérieure.</div>
+  <div class="vigilance"><b class="t">Erreur typique d'élève</b> — confondre le pressostat avec un thermostat,
+  ou penser que la vis de différentiel règle « la pression d'arrêt » directement. Rappeler : la consigne fixe
+  un seuil, le différentiel fixe l'écart avant réenclenchement — les deux valeurs se combinent, elles ne sont
+  pas indépendantes l'une de l'autre.</div>
+
+  <h3 class="section">Organisation matérielle des 2 jalons</h3>
+  <table class="mini">
+    <tr><th style="width:16%">Jalon</th><th style="width:40%">Matériel nécessaire</th><th>Points de vigilance du professeur</th></tr>
+    <tr><td><b>Jalon 1</b><br>Traçage-perçage</td><td>Châssis, plan d'implantation coté (annexe), pointeau, marteau, perceuse + forets, lunettes de protection.</td><td>Vérifier le port des lunettes AVANT tout perçage, sans exception. Contrôler le pointage avant perçage.</td></tr>
+    <tr><td><b>Jalon 2</b><br>Fixation + organes + pressostat</td><td>Supportages percés au jalon 1, visserie, niveau à bulle, clé de serrage, gants de manutention, compresseur et évaporateur de la machine, pressostat(s) démonté(s), banc de manipulation, tournevis de réglage adapté, valeur de consigne à communiquer par le professeur selon la machine.</td><td>Vérifier le serrage des supportages (ni trop lâche, ni forcé). Vérifier la méthode de manutention (PRAP) avant tout levage. Contrôler le sens de montage avant fixation définitive. Vérifier aplomb et niveau après fixation. Rappeler que la machine n'est ni sous tension ni sous fluide ; surveiller qu'aucun élève ne force sur les curseurs de réglage du pressostat.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Les 2 jalons s'enchaînent dans
+  la demi-journée (jalon 1 : 1 h 00 ; jalon 2 : 45 min), après la démonstration commentée. Un binôme qui termine
+  tôt le jalon 1 peut basculer en observation active sur le jalon 2 d'un autre binôme (fixation, manutention) en
+  attendant que tous soient prêts à enchaîner, plutôt que de rester inactif.</div>
+
+  <h3 class="section">Guide d'animation — démonstration commentée</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Geste démontré</th><th>Ce que le professeur commente à voix haute</th></tr>
+    <tr><td>Traçage au réglet + équerre</td><td>« Je reporte la cote du plan, je vérifie l'équerrage avant de marquer définitivement — une cote fausse se répercute sur toute la fixation. »</td></tr>
+    <tr><td>Pointage au pointeau</td><td>« Je pointe avant de percer : le foret ne doit jamais chercher son point d'entrée seul, il dérape sinon. »</td></tr>
+    <tr><td>Perçage avec lunettes</td><td>« Je mets mes lunettes AVANT de prendre la perceuse en main, pas après. » (Insister : geste systématique, jamais d'exception.)</td></tr>
+    <tr><td>Serrage contrôlé (couple ou « à la main ferme »)</td><td>« Je serre jusqu'à ce que ce soit ferme, je ne force pas au-delà — un organe qui grince au serrage est déjà trop serré. »</td></tr>
+    <tr><td>Contrôle d'aplomb et de niveau</td><td>« Je pose le niveau à bulle après fixation, pas avant : c'est le contrôle final qui valide le geste. »</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ DES QUESTIONS + ERREURS TYPIQUES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A1 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — questions du jalon 1 (traçage-perçage)</h3>
+  <div class="reponse"><b class="t">« Pourquoi pointe-t-on toujours un trou avant de percer ? »</b> — Le
+  pointeau crée une amorce qui empêche le foret de « fuir » ou de glisser sur la surface au démarrage du
+  perçage. Sans ce pointage, le foret dérape, le trou se retrouve décalé par rapport à la cote tracée, et le
+  risque de blessure augmente (perte de contrôle de la perceuse au moment de l'accroche).</div>
+  <table class="mini">
+    <tr><th style="width:30%">Grandeur — jalon 1</th><th>Valeur ou méthode attendue</th></tr>
+    <tr><td>Diamètre de perçage</td><td>Selon le diamètre de la visserie utilisée pour le supportage — <b>à faire valider par le professeur avant perçage</b>, en fonction du plan et du matériel réellement disponible.</td></tr>
+    <tr><td>Serrage réalisé (jalon 2)</td><td>Couple de serrage propre à la visserie utilisée — <b>selon le supportage et la notice, à faire valider</b>. À défaut de clé dynamométrique, l'indication « à la main ferme, sans forcer » est acceptée pour cet exercice de mise en place mécanique.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — questions du jalon 2 (fixation + organes)</h3>
+  <div class="reponse"><b class="t">« Que risque-t-on si un compresseur est fixé sans contrôle d'aplomb ni de
+  niveau ? »</b> — Un compresseur mal aplombé peut vibrer anormalement une fois en fonctionnement, fatiguer
+  prématurément ses supports antivibratoires (silentblocs), desserrer sa fixation avec le temps, et transmettre
+  des vibrations aux tuyauteries qui seront brasées lors du prochain module (A2). Un défaut de niveau peut
+  aussi perturber le retour d'huile dans le circuit une fois la machine en fonctionnement. Le contrôle
+  d'aplomb et de niveau, fait dès la mise en place mécanique, évite des reprises coûteuses plus tard dans le
+  chantier.</div>
+
+  <h3 class="section">Corrigé — questions du jalon 2 (pressostat)</h3>
+  <div class="reponse"><b class="t">« Pourquoi ce pré-réglage n'est-il qu'une première étape ? »</b> — Le
+  pré-réglage au banc permet de se familiariser avec le geste (identifier les vis, tourner sans forcer, lire la
+  valeur affichée) sans risque, puisque rien n'est sous tension ni sous fluide. Le réglage définitif, lui, ne
+  pourra se faire qu'une fois le pressostat monté sur le circuit réel, raccordé, et la machine en fonctionnement
+  — ce qui sera vu dans une séance ultérieure de la séquence suivante (câblage puis mise en service). La valeur
+  définitive dépendra alors de la plaque signalétique de la machine et de sa notice constructeur.</div>
+  <div class="reponse"><b class="t">« Que se passerait-il si l'on montait le pressostat à l'envers ? »</b> — Un
+  pressostat mal orienté peut ne pas détecter correctement la pression du côté prévu (par exemple, un
+  pressostat HP raccordé côté BP ne surveillerait pas la bonne grandeur), rendant la sécurité ou la régulation
+  inopérante alors même que l'organe semble en place. C'est pourquoi le sens de montage doit toujours être
+  vérifié sur la notice ou le marquage du corps de l'appareil avant fixation définitive.</div>
+
+  <div class="vigilance"><b class="t">Rappel non négociable — valeurs de consigne</b> — Aucune valeur de
+  consigne ou de différentiel n'est à donner a priori de manière universelle : elle dépend entièrement de la
+  machine, du fluide frigorigène et de la notice constructeur. Pour l'exercice de découverte du jour, le
+  professeur communique une valeur pédagogique adaptée au pressostat de démonstration disponible en atelier,
+  <b>« selon la machine et la notice — à faire valider »</b>.</div>
+
+  <h3 class="section">Erreurs typiques d'élèves</h3>
+  <table class="mini">
+    <tr><th style="width:32%">Erreur observée</th><th>Comment la corriger sur le moment</th></tr>
+    <tr><td>Perçage sans pointeau (foret qui dérape)</td><td>Arrêter le geste, faire reprendre au pointeau avant de reprendre le perçage ; montrer une seconde fois si nécessaire.</td></tr>
+    <tr><td>Serrage excessif (organe grinçant, filetage abîmé)</td><td>Interrompre immédiatement, desserrer, expliquer le risque de casse du filetage ou de l'organe ; refaire un serrage « ferme sans forcer ».</td></tr>
+    <tr><td>Pressostat ou organe monté à l'envers</td><td>Faire vérifier le marquage ou la notice avant de continuer ; ne jamais fixer définitivement avant validation du sens.</td></tr>
+    <tr><td>Absence de contrôle d'aplomb ou de niveau après fixation</td><td>Faire reprendre le contrôle au niveau à bulle avant de passer à l'étape suivante ; rappeler que ce contrôle fait partie du geste, pas une option.</td></tr>
+    <tr><td>Perçage sans lunettes de protection</td><td>Arrêter le geste immédiatement, faire remettre les lunettes ; rappeler que c'est une règle sans exception, pas une recommandation.</td></tr>
+    <tr><td>Tentative de raccordement fluidique ou électrique « pour voir »</td><td>Interrompre fermement : rappeler que la semaine porte exclusivement sur la mécanique, aucun branchement n'est autorisé.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — GRILLE, DIFFÉRENCIATION, CROISEMENTS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S10 · module atelier A1 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Grille d'évaluation — éléments attendus pour la correction</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé.</p>
+  <div class="tbl-wrap">
+  <table class="mini" style="font-size:8.3pt">
+    <tr><th style="width:13%">Compétence / savoir-être</th><th style="width:17.4%">0 — Non évalué</th><th style="width:17.4%">1 — Non acquis</th><th style="width:17.4%">2 — En cours</th><th style="width:17.4%">3 — Acquis</th><th style="width:17.4%">4 — Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C3.3</b> Implanter, manutentionner, fixer les supportages et équipements</td><td>Compétence non observée ce jour.</td><td>Fixation non conforme au plan, serrage non contrôlé (forcé ou insuffisant), ou aplomb/niveau non vérifié après pose.</td><td>Fixation réalisée mais reprise(s) nécessaire(s) après contrôle du professeur (un ou deux points corrigés).</td><td>Compresseur, évaporateur et supportages implantés conformément au plan, serrage contrôlé, aplomb et niveau vérifiés, seul, sans reprise.</td><td>Comme « Acquis », et l'élève explique à un pair la logique d'implantation (pourquoi chaque organe est placé à cet endroit précis) sans relire le plan.</td></tr>
+    <tr><td><b>C4.6</b> Paramétrer ou régler les valeurs de consigne sur organe de régulation ou de sécurité</td><td>Compétence non observée ce jour.</td><td>Organes de réglage (consigne, différentiel) non identifiés ou confondus, valeur pré-réglée non conforme à la demande.</td><td>Organes identifiés correctement, mais réglage approché de la valeur demandée, aide du professeur nécessaire pour l'ajuster.</td><td>Consigne et différentiel identifiés sans erreur, pré-réglés à la valeur demandée par le professeur, seul, sans forcer sur les curseurs.</td><td>Comme « Acquis », et l'élève explique à un pair le rôle respectif des deux vis de réglage sans les confondre.</td></tr>
+    <tr><td>Savoir-être — rigueur du geste, sécurité, soin du poste</td><td>Non observé ce jour.</td><td>Perçage sans lunettes constaté à un moment de la séance, ou serrage forcé, ou poste laissé en désordre.</td><td>Sécurité globalement respectée, un ou deux rappels du professeur nécessaires dans la journée.</td><td>EPI portés sans rappel du début à la fin, gestes de fixation soignés à chaque poste, poste rangé en continu.</td><td>Comme « Acquis », et l'élève veille spontanément à la sécurité d'un autre binôme (rappel du port des lunettes, par exemple).</td></tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — Un perçage réalisé sans lunettes,
+  constaté à n'importe quel moment de la séance, entraîne automatiquement un niveau <b>1 — Non acquis</b> sur
+  le savoir-être, quelle que soit la qualité du reste du travail : c'est un principe de sécurité non
+  négociable, pas un simple critère parmi d'autres.</div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:24%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Plan d'implantation surligné (un point de fixation à la fois, dans l'ordre de traçage) ; le professeur passe en premier sur le jalon 1 pour sécuriser le geste de perçage ; démonstration répétée individuellement si besoin sur le geste de pointage.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, 2 jalons successifs.</td></tr>
+    <tr><td>Approfondissement</td><td>Après la fixation des organes, demander une comparaison entre le rôle du pressostat et celui du thermostat (quelle grandeur chacun surveille), à l'oral, avant le bilan du module.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Fiche de pose découpée visuellement en étapes numérotées courtes, cases à cocher bien séparées ; autoriser une reformulation orale plutôt qu'écrite pour les questions ouvertes si besoin ; limiter les sollicitations simultanées en donnant la priorité de passage sur le jalon 1 (perçage, le plus sensible en sécurité) à ces élèves.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Technologie</b> — les 4 organes de la Croix du Frigoriste, revus en prérequis ;</li>
+    <li><b>Prévention des risques professionnels</b> — méthode PRAP (manutention), risques du perçage ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module ;</li>
+    <li><b>Chef-d'œuvre</b> — captation vidéo possible des gestes de fixation pour le dossier de chef-d'œuvre ;</li>
+    <li><b>Module A0</b> — ce module s'appuie directement sur le diagnostic établi au module A0.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Dossier de présentation pédagogique — Chantier de remise en état (F. Henninot, 2026) ; TP Complet Manomètres/Pressostat BP CAP IFCA.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,510 @@
+<meta charset="utf-8">
+<title>Cours élève — S7 · Module théorie T1 · Lecture de relevés</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.poste{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:#fff; background:var(--bleu); border-radius:5px 5px 0 0; padding:5px 12px; margin:1.1em 0 0; display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .notion{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .notion h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  .poste-bloc{border:1px solid var(--bleu); border-radius:0 6px 6px 6px; padding:10px 14px; margin:0 0 1em; background:#fff}
+  .banque{border:1px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.3em 0 .8em; font-size:9.5pt}
+  .banque b{font-family:'Trebuchet MS',sans-serif; color:var(--violet)}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .cas{border:1.5px solid var(--bleu); border-radius:8px; padding:8px 14px; margin:.5em 0 1em; background:#fff}
+  .cas h4{margin:0 0 4px; font-size:11pt; color:var(--bleu); display:flex; align-items:center; gap:8px}
+  .cas .num{display:inline-block; background:var(--bleu); color:#fff; border-radius:50%; width:1.6em; height:1.6em; text-align:center; line-height:1.6em; font-size:10pt}
+  .donnees{background:var(--fond-doux); border-radius:6px; padding:6px 10px; font-family:'Consolas',monospace; font-size:9.5pt; margin:.3em 0}
+  .verdict-case{border:1px dashed var(--leger); border-radius:6px; background:#fffef8; padding:6px 10px; margin:.3em 0; min-height:1.6em; font-size:10pt}
+  .icone-symb{display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--filet); border-radius:6px; padding:4px 8px}
+  table.annexe{font-size:9pt}
+  table.annexe th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.6pt; text-transform:uppercase; padding:5px 4px; text-align:center}
+  table.annexe td{border:1px solid var(--filet); padding:2px 4px; text-align:center; height:24px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ACCROCHE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Lecture de relevés — HP/BP/températures</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S7-T1 · 2 h</span><b>Lecture de relevés</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> · sem. 24</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — cours en classe entière ; on exploite les relevés que VOTRE binôme a pris la semaine dernière sur le groupe, en atelier (S7-F1), notés dans votre carnet F3</div>
+    <div class="case"><h4>Ce que je vais apprendre</h4>Lire un tableau collectif de <b>vrais relevés</b> de la classe, les confronter à la réglette P/T et aux plages de la charte, repérer une valeur qui « sonne faux » (erreur ou vrai problème ?)</div>
+    <div class="case"><h4>Savoir-être</h4>Honnêteté du relevé rapporté · rigueur du calcul · esprit critique face à SA propre mesure · écoute des autres binômes</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Confortement — vers Maîtrise</span> <b>C4.5</b> Mesurer, comparer des grandeurs — <span class="nuance">S5.1 augmenté</span></div>
+  </div>
+
+  <div class="situation"><h4>Accroche — les relevés du groupe de l'arrière-boutique : tout va bien ?</h4>
+  La semaine dernière (S7-F1), chaque binôme a posé le manifold sur un groupe de l'atelier, l'a purgé
+  brièvement, puis a <b>relevé</b> les pressions HP et BP et des températures, sous la supervision directe du
+  professeur. Ces relevés sont notés dans votre <b>carnet F3</b>. Aujourd'hui, personne ne pose de manomètre :
+  vous allez <b>apporter vos relevés</b>, et toute la classe va les mettre en commun dans un grand tableau, pour
+  répondre à une seule question, pour chaque groupe : <b>« est-ce que tout va bien à l'intérieur ? »</b>
+
+  <div class="encadre-question"><b>Question de départ</b> — Avec seulement deux pressions et deux
+  températures, sans jamais ouvrir le circuit, comment peut-on dire qu'une installation « va bien » ? Notez
+  une première idée, même incomplète.</div>
+  <div class="zone-reponse" style="min-height:2.4em">D'après moi, on peut le savoir en _____________________________________.</div>
+  </div>
+
+  <div class="notion"><h4>Ce que vous savez déjà (rappel S4 et S5-T2)</h4>
+  <p style="margin:0 0 6px; font-size:10.3pt">En <b>S4</b>, vous avez appris à lire, sur une <b>réglette P/T</b>,
+  la température de changement d'état qui correspond à une pression. En <b>S5-T2</b>, sur des relevés
+  <b>simulés</b> fournis par le professeur, vous avez appris à calculer une <b>surchauffe (SC)</b> et un
+  <b>sous-refroidissement (SR)</b>, puis à comparer le résultat aux plages de la charte : <b>SC 5-10 K</b>
+  et <b>SR 4-8 K</b>. La dernière phrase de ce cours disait : « en S7-S8, vous poserez de vrais manomètres et
+  vous mesurerez pour de bon. » <b>Nous y sommes.</b> Aujourd'hui, les pressions et les températures ne sont
+  plus données dans un énoncé : ce sont <b>les vôtres</b>, prises en atelier la semaine dernière.</p>
+  </div>
+
+  <div class="seuil"><b class="t">Ce qui change depuis S5-T2</b> — En S5-T2, une erreur de calcul ne
+  « coûtait » qu'un exercice raté. Aujourd'hui, si votre relevé est faux, c'est TOUT le tableau de la classe
+  qui devient difficile à lire. La rigueur du relevé (S7-F1) et l'honnêteté de ce que vous rapportez comptent
+  autant que le calcul lui-même.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — DÉCOUVERTE : MÉTHODE + RÉGLETTE RAPPELÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">DÉCOUVERTE — la méthode du jour : exploiter les relevés RÉELS de la classe</h3>
+  <p style="font-size:10.3pt"><b>Consigne</b> — Sortez votre carnet F3. Quand votre binôme est appelé, dictez à
+  voix haute au rapporteur (ou au professeur) les 4 valeurs relevées en S7-F1 sur votre groupe : la pression
+  HP lue, la pression BP lue, et les deux températures mesurées (sortie évaporateur, sortie condenseur). Ces
+  valeurs sont recopiées dans le <b>tableau collectif</b> (annexe pleine page, feuille suivante), que toute la
+  classe complète en même temps sur sa propre feuille.</p>
+
+  <div class="notion"><h4>Ce qu'il manque encore pour conclure : la réglette P/T</h4>
+  <p style="margin:0 0 6px; font-size:10.3pt">Une pression HP ou BP lue ne dit rien toute seule : il faut la
+  transformer en température de changement d'état, exactement comme en S4 et en S5-T2, avec la <b>même
+  réglette</b> que vous connaissez déjà.</p>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th>Pression lue (bar)</th><th>1,3</th><th>1,9</th><th>2,5</th><th>3,1</th><th>5,0</th><th>9,2</th><th>11,0</th><th>13,0</th><th>15,0</th><th>17,0</th></tr>
+    <tr><td><b>Température lue (°C)</b></td><td>−40</td><td>−30</td><td>−22</td><td>−18</td><td>0</td><td>+20</td><td>+30</td><td>+35</td><td>+40</td><td>+47</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Même réglette qu'en S4/S5-T2, simulée,
+  indépendante de tout fluide réel : elle sert d'outil de lecture, comme un barème. Si votre pression lue en
+  atelier ne tombe pas exactement sur une valeur de la réglette, prenez la valeur la plus proche et dites-le
+  au professeur (interpolation grossière tolérée à ce niveau).</p>
+  </div>
+
+  <p style="font-size:10.3pt"><b>Rappel des deux formules (S5-T2)</b> :</p>
+  <div class="formule" style="grid-template-columns:1fr 1fr; justify-items:center">
+    <div class="case comp" style="text-align:center; font-size:11pt; font-family:'Trebuchet MS',sans-serif; color:var(--bleu); padding:8px 12px">
+      SC = T mesurée sortie évapo. − t<sub>0</sub> (BP, réglette)
+    </div>
+    <div class="case comp" style="text-align:center; font-size:11pt; font-family:'Trebuchet MS',sans-serif; color:var(--bleu); padding:8px 12px">
+      SR = t<sub>k</sub> (HP, réglette) − T mesurée sortie cond.
+    </div>
+  </div>
+  <div class="seuil"><b class="t">Seuils charte (rappel)</b> — Surchauffe normale : <b>5 à 10 K</b>. Sous-refroidissement
+  normal : <b>4 à 8 K</b>. Un écart hors de ces plages n'est pas forcément une panne : c'est d'abord une
+  <b>question à se poser</b>.</div>
+
+  <div class="encadre-question"><b>Question 1</b> — D'après vous, quelles sont les DEUX raisons possibles pour
+  lesquelles une case du tableau collectif pourrait paraître « fausse » (hors plage) ? Notez vos hypothèses,
+  même incomplètes — on y reviendra en feuille 4.</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — ANNEXE PLEINE PAGE : TABLEAU COLLECTIF DE RELEVÉS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document élève — ANNEXE PLEINE PAGE</div>
+  </div>
+
+  <h3 class="section">ANNEXE — le tableau collectif de la classe (à remplir en direct)</h3>
+  <p style="font-size:9.7pt">Une ligne par binôme appelé. Complétez au fur et à mesure de la mise en commun ;
+  le professeur corrige au tableau, recopiez toute correction.</p>
+  <div class="tbl-wrap">
+  <table class="annexe">
+    <tr><th style="width:9%">Poste / groupe</th><th style="width:9%">HP lue<br>(bar)</th><th style="width:9%">BP lue<br>(bar)</th>
+    <th style="width:9%">t<sub>k</sub> réglette<br>(°C)</th><th style="width:9%">t<sub>0</sub> réglette<br>(°C)</th>
+    <th style="width:10%">T mesurée<br>sortie évapo. (°C)</th><th style="width:10%">T mesurée<br>sortie cond. (°C)</th>
+    <th style="width:9%">SC ou SR<br>(K)</th><th style="width:26%">Verdict (dans / hors plage) — remarque</th></tr>
+    <tr><td>Poste 1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Poste 12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.3pt; color:var(--gris); margin-top:6px">Chaque binôme ne remplit qu'une seule colonne
+  SC <b>ou</b> SR selon ce que ses données permettent de calculer (les deux si vous avez les 4 mesures). En cas
+  de doute sur l'unité ou la lecture, écrivez « à vérifier » plutôt qu'un chiffre inventé.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CHASSE AUX VALEURS ABERRANTES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION — la chasse aux valeurs aberrantes</h3>
+  <div class="notion"><h4>Qu'est-ce qu'une valeur aberrante ?</h4>
+  <p style="margin:0; font-size:10.3pt">C'est une case du tableau qui ne peut <b>physiquement pas</b> être
+  vraie, ou qui est très loin des plages charte sans raison évidente. Exemple : une pression HP lue plus
+  petite que la pression BP lue est <b>impossible</b> — le compresseur comprime toujours, la HP est toujours
+  supérieure à la BP. Avant de conclure « la machine a un problème », un professionnel se pose TOUJOURS trois
+  questions dans l'ordre : ai-je bien <b>lu</b> le cadran ? ai-je bien lu la bonne <b>unité</b> ? est-ce que
+  quelqu'un d'autre peut <b>vérifier</b> ma lecture sur la même machine ?</p>
+  </div>
+
+  <p style="font-size:10.3pt"><b>Entraînement</b> — Ces 3 mini-cas sont <b>fictifs</b> (construits pour
+  l'exercice, comme la réglette), pas des relevés réels de la classe. Pour chacun, dites si la valeur vous
+  semble aberrante et pourquoi (erreur de lecture ? erreur d'unité ? vrai problème possible ?).</p>
+
+  <div class="cas">
+    <h4><span class="num">1</span> Mini-cas — le tableau du poste fictif X</h4>
+    <div class="donnees">HP lue = 9,2 bar &nbsp;·&nbsp; BP lue = 13,0 bar</div>
+    <div class="verdict-case" style="min-height:2.4em"></div>
+  </div>
+
+  <div class="cas">
+    <h4><span class="num">2</span> Mini-cas — le tableau du poste fictif Y</h4>
+    <div class="donnees">t<sub>0</sub> réglette = −18 °C &nbsp;·&nbsp; T mesurée sortie évapo. = −29 °C
+    &nbsp;·&nbsp; SC calculée = −29 − (−18) = −11 K</div>
+    <div class="verdict-case" style="min-height:2.4em"></div>
+  </div>
+
+  <div class="cas">
+    <h4><span class="num">3</span> Mini-cas — le tableau du poste fictif Z</h4>
+    <div class="donnees">t<sub>k</sub> réglette = +35 °C &nbsp;·&nbsp; T mesurée sortie cond. = +6 °C
+    &nbsp;·&nbsp; SR calculée = 35 − 6 = 29 K</div>
+    <div class="verdict-case" style="min-height:2.4em"></div>
+  </div>
+
+  <div class="banque"><b>Rappel de méthode</b> — Un écart énorme et « impossible » (comme le mini-cas 2 ou 3)
+  est presque toujours une <b>erreur de relevé ou de calcul</b> (signe oublié, mauvaise ligne de la réglette,
+  soustraction à l'envers), pas une vraie panne. Une vraie anomalie de machine donne en général un écart hors
+  plage mais <b>raisonnable</b> (quelques Kelvin au-delà du seuil), pas un nombre absurde.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — EXERCICES DE LECTURE DE CADRANS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">APPLICATION — exercices de lecture de cadrans</h3>
+  <p style="font-size:10.3pt"><b>Exercice 1</b> — Observez la photo d'un manifold ci-dessous (deux
+  manomètres, comme celui que vous avez manipulé en S7-F1).</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/cadran-manometre-bp-hp-generique.png" alt="Manomètre générique BP-HP, cadran gradué en bar et psi, échelle température fluide" style="max-width:55%;">
+    <figcaption class="legende">Cadran générique de manomètre (banque de cadrans d'entraînement, sans mention
+    commerciale). D'après le principe des exercices de la série « lecture de manomètres », F. Henninot.</figcaption>
+  </figure>
+  <table class="releve" style="font-size:9.3pt">
+    <tr><th style="width:60%">Question</th><th>Ma réponse</th></tr>
+    <tr><td style="text-align:left">Quelle est l'unité principale gravée sur le grand cercle extérieur du
+    cadran ?</td><td style="height:2em"></td></tr>
+    <tr><td style="text-align:left">Quelle est l'autre unité de pression présente sur le même cadran ?</td><td style="height:2em"></td></tr>
+    <tr><td style="text-align:left">Par convention professionnelle, de quelle couleur est un manomètre
+    BP ? Et un manomètre HP ?</td><td style="height:2em"></td></tr>
+  </table>
+
+  <p style="font-size:10.3pt"><b>Exercice 2</b> — Lisez les deux cadrans d'entraînement ci-dessous (aiguille
+  fixe, pour s'exercer à la lecture), puis cherchez la température correspondante sur la réglette de la
+  feuille 2.</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <svg viewBox="0 0 620 210" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:560px; background:#f7f9fc; border:1px solid #d8dee6; border-radius:8px">
+      <circle cx="155" cy="175" r="112" fill="#eff6ff" stroke="#1e40af" stroke-width="2"/>
+      <text x="155" y="30" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="14" fill="#1e40af">CADRAN BP (0 à 6 bar)</text>
+      <line x1="45" y1="175" x2="45" y2="163" stroke="#1e40af" stroke-width="2"/><text x="27" y="180" font-size="11" fill="#1e40af">0</text>
+      <line x1="59.7" y1="120" x2="70" y2="130" stroke="#1e40af" stroke-width="2"/><text x="44" y="115" font-size="11" fill="#1e40af">1</text>
+      <line x1="100" y1="79.7" x2="107" y2="92" stroke="#1e40af" stroke-width="2"/><text x="89" y="68" font-size="11" fill="#1e40af">2</text>
+      <line x1="155" y1="65" x2="155" y2="78" stroke="#1e40af" stroke-width="2"/><text x="151" y="52" font-size="11" fill="#1e40af">3</text>
+      <line x1="210" y1="79.7" x2="203" y2="92" stroke="#1e40af" stroke-width="2"/><text x="215" y="68" font-size="11" fill="#1e40af">4</text>
+      <line x1="250.3" y1="120" x2="240" y2="130" stroke="#1e40af" stroke-width="2"/><text x="260" y="115" font-size="11" fill="#1e40af">5</text>
+      <line x1="265" y1="175" x2="265" y2="163" stroke="#1e40af" stroke-width="2"/><text x="278" y="180" font-size="11" fill="#1e40af">6</text>
+      <line x1="155" y1="175" x2="159.7" y2="85.1" stroke="#111" stroke-width="3"/>
+      <circle cx="155" cy="175" r="6" fill="#111"/>
+      <text x="155" y="200" text-anchor="middle" font-size="10" fill="#5d6b7c">bar</text>
+
+      <circle cx="460" cy="175" r="112" fill="#fdecec" stroke="#dc2626" stroke-width="2"/>
+      <text x="460" y="30" text-anchor="middle" font-family="Trebuchet MS" font-weight="bold" font-size="14" fill="#c14a17">CADRAN HP (0 à 18 bar)</text>
+      <line x1="350" y1="175" x2="350" y2="163" stroke="#c14a17" stroke-width="2"/><text x="332" y="180" font-size="11" fill="#c14a17">0</text>
+      <line x1="364.7" y1="120" x2="375" y2="130" stroke="#c14a17" stroke-width="2"/><text x="345" y="115" font-size="11" fill="#c14a17">3</text>
+      <line x1="405" y1="79.7" x2="412" y2="92" stroke="#c14a17" stroke-width="2"/><text x="394" y="68" font-size="11" fill="#c14a17">6</text>
+      <line x1="460" y1="65" x2="460" y2="78" stroke="#c14a17" stroke-width="2"/><text x="456" y="52" font-size="11" fill="#c14a17">9</text>
+      <line x1="515" y1="79.7" x2="508" y2="92" stroke="#c14a17" stroke-width="2"/><text x="518" y="68" font-size="11" fill="#c14a17">12</text>
+      <line x1="555.3" y1="120" x2="545" y2="130" stroke="#c14a17" stroke-width="2"/><text x="565" y="115" font-size="11" fill="#c14a17">15</text>
+      <line x1="570" y1="175" x2="570" y2="163" stroke="#c14a17" stroke-width="2"/><text x="583" y="180" font-size="11" fill="#c14a17">18</text>
+      <line x1="460" y1="175" x2="517.9" y2="106.1" stroke="#111" stroke-width="3"/>
+      <circle cx="460" cy="175" r="6" fill="#111"/>
+      <text x="460" y="200" text-anchor="middle" font-size="10" fill="#5d6b7c">bar</text>
+    </svg>
+    <figcaption class="legende">Cadrans d'entraînement (schéma F. Henninot, d'après la structure des exercices
+    de lecture de manomètres) — l'aiguille est fixe, seule la lecture est demandée : aucune valeur de machine
+    réelle n'est affirmée ici.</figcaption>
+  </figure>
+  <table class="releve" style="font-size:9.3pt">
+    <tr><th style="width:34%">Lecture</th><th style="width:22%">Valeur lue (bar)</th><th>T° réglette correspondante</th></tr>
+    <tr><td style="text-align:left">Cadran BP → P<sub>0</sub> lue</td><td class="verdict-case" style="margin:0"></td><td class="verdict-case" style="margin:0">t<sub>0</sub> = _____ °C</td></tr>
+    <tr><td style="text-align:left">Cadran HP → P<sub>k</sub> lue</td><td class="verdict-case" style="margin:0"></td><td class="verdict-case" style="margin:0">t<sub>k</sub> = _____ °C</td></tr>
+  </table>
+
+  <p style="font-size:10.3pt"><b>Exercice 3</b> — Observez ce second cadran, muni d'une <b>zone verte</b>.</p>
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/cadran-manometre-zone-verte-generique.png" alt="Manomètres BP et HP avec zone de fonctionnement normal en vert" style="max-width:55%;">
+    <figcaption class="legende">Cadran générique avec zone verte de fonctionnement normal (banque de cadrans
+    d'entraînement, sans mention commerciale).</figcaption>
+  </figure>
+  <table class="releve" style="font-size:9.3pt">
+    <tr><th style="width:60%">Question</th><th>Ma réponse</th></tr>
+    <tr><td style="text-align:left">D'après vous, à quoi sert la zone verte imprimée sur certains cadrans ?</td><td style="height:2em"></td></tr>
+    <tr><td style="text-align:left">Une aiguille dans la zone verte veut-elle dire, à elle seule, que SC et SR
+    sont forcément corrects ?</td><td style="height:2em"></td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — CAS FOURNIS EN SECOURS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">CAS FOURNIS EN SECOURS — pour les binômes sans relevé exploitable</h3>
+  <p style="font-size:10.3pt">Si votre carnet F3 ne contient pas de relevé exploitable (poste non passé,
+  feuille perdue, mesure incomplète), traitez ces deux cas <b>fictifs</b> à la place, avec la même réglette
+  qu'en feuille 2 (celle de S4/S5-T2).</p>
+
+  <div class="cas">
+    <h4><span class="num">E</span> Cas de secours — poste fictif E</h4>
+    <div class="donnees">P<sub>0</sub> lue = 2,5 bar (BP) &nbsp;·&nbsp; P<sub>k</sub> lue = 15,0 bar (HP)
+    &nbsp;·&nbsp; T mesurée sortie évapo. = −15 °C &nbsp;·&nbsp; T mesurée sortie cond. = +33 °C</div>
+    <table class="releve" style="margin:.3em 0">
+      <tr><th style="width:40%">Calcul</th><th>Résultat</th><th>Verdict (dans / hors plage)</th></tr>
+      <tr><td>t<sub>0</sub> (réglette) = _____ °C &nbsp;·&nbsp; SC = _____ − (_____) =</td><td class="verdict-case"></td><td class="verdict-case"></td></tr>
+      <tr><td>t<sub>k</sub> (réglette) = _____ °C &nbsp;·&nbsp; SR = _____ − _____ =</td><td class="verdict-case"></td><td class="verdict-case"></td></tr>
+    </table>
+  </div>
+
+  <div class="cas">
+    <h4><span class="num">F</span> Cas de secours — poste fictif F</h4>
+    <div class="donnees">P<sub>0</sub> lue = 1,9 bar (BP) &nbsp;·&nbsp; P<sub>k</sub> lue = 9,2 bar (HP)
+    &nbsp;·&nbsp; T mesurée sortie évapo. = −25 °C &nbsp;·&nbsp; T mesurée sortie cond. = +19 °C</div>
+    <table class="releve" style="margin:.3em 0">
+      <tr><th style="width:40%">Calcul</th><th>Résultat</th><th>Verdict (dans / hors plage)</th></tr>
+      <tr><td>t<sub>0</sub> (réglette) = _____ °C &nbsp;·&nbsp; SC = _____ − (_____) =</td><td class="verdict-case"></td><td class="verdict-case"></td></tr>
+      <tr><td>t<sub>k</sub> (réglette) = _____ °C &nbsp;·&nbsp; SR = _____ − _____ =</td><td class="verdict-case"></td><td class="verdict-case"></td></tr>
+    </table>
+  </div>
+
+  <div class="banque"><b>Rappel</b> — SC hors plage BASSE (&lt; 5 K) = risque de coup de liquide au
+  compresseur ; SC hors plage HAUTE (&gt; 10 K) = manque de fluide ou détendeur trop fermé probable. SR hors
+  plage BASSE (&lt; 4 K) = sous-charge probable ; SR hors plage HAUTE (&gt; 8 K) = surcharge ou incondensables
+  probables. Ces hypothèses de cause seront creusées bien plus tard dans votre formation (diagnostic, S9 et
+  au-delà) — aujourd'hui, on se contente de les nommer.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — SYNTHÈSE : CHECK-LIST + TEASER S9 + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S7 · module théorie T1 · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">SYNTHÈSE — la check-list du bon relevé</h3>
+  <p style="font-size:10.3pt">Complétez cette fiche avec la correction donnée en classe : c'est votre <b>trace
+  écrite</b>, à garder pour S7-F2 (tirage au vide réel) et pour toute la suite de votre formation.</p>
+
+  <div class="trace">
+  <div class="tbl-wrap">
+  <table class="releve" style="font-size:9pt">
+    <tr><th style="width:34%">Avant de conclure quoi que ce soit sur une machine, je vérifie…</th><th>Ce que je retiens</th></tr>
+    <tr><td>Ai-je lu la bonne unité (bar, pas psi ni mbar) ?</td><td></td></tr>
+    <tr><td>Ai-je lu le bon manomètre (BP pour t₀, HP pour tk) ?</td><td></td></tr>
+    <tr><td>Ma pression lue tombe-t-elle sur (ou près de) la réglette ?</td><td></td></tr>
+    <tr><td>Ma soustraction (SC ou SR) est-elle faite dans le bon sens ?</td><td></td></tr>
+    <tr><td>Le résultat est-il dans une plage raisonnable, même hors charte ?</td><td></td></tr>
+    <tr><td>Une autre personne peut-elle vérifier ma lecture ?</td><td></td></tr>
+  </table>
+  </div>
+  </div>
+
+  <div class="notion"><h4>La phrase à retenir</h4>
+  <p style="margin:0; font-size:11pt; font-weight:bold; color:var(--bleu); text-align:center">« Un relevé
+  anormal n'est jamais une conclusion : c'est le début d'une question. »</p>
+  </div>
+
+  <div class="seuil" style="text-align:center"><b class="t">Et la suite ?</b> — Plus tard dans votre formation
+  (S9), vous apprendrez à transformer une question sur un relevé en véritable <b>diagnostic</b> : quelle panne,
+  quelle cause, quelle action. Aujourd'hui, vous avez appris à vous méfier d'un relevé et à le confronter à la
+  réglette et aux seuils — c'est le premier réflexe du diagnostiqueur, avant même de chercher une panne.</div>
+
+  <h3 class="section">Auto-positionnement</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut <b>Confortement — vers Maîtrise</b> (C4.5) :
+  formatif, non remonté École Directe.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:24%">Ce que je sais faire</th><th style="width:15.2%">0<br>Non évalué</th><th style="width:15.2%">1<br>Non acquis</th><th style="width:15.2%">2<br>En cours d'acquisition</th><th style="width:15.2%">3<br>Acquis</th><th style="width:15.2%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C4.5</b> Lire un tableau de relevés réels, calculer SC ou SR via la réglette, comparer aux
+    seuils charte et repérer une valeur aberrante <span class="nuance">Confortement — vers Maîtrise</span></td>
+    <td>Compétence non observée ce jour.</td><td>Je confonds HP/BP ou SC/SR, même avec de l'aide.</td>
+    <td>Je calcule avec de l'aide, je ne repère pas seul(e) une valeur aberrante.</td>
+    <td>Je calcule seul(e) SC ou SR à partir de relevés réels et je repère une valeur qui « sonne faux ».</td>
+    <td>Comme « Acquis », et j'explique à un camarade pourquoi une valeur est aberrante (erreur ou vrai
+    problème).</td></tr>
+    <tr><td>Savoir-être — honnêteté du relevé rapporté, rigueur du calcul, esprit critique sur ma propre
+    mesure</td><td>Non observé.</td><td>Je rapporte un relevé sans l'avoir vérifié, je ne participe pas à la
+    mise en commun.</td><td>Je participe mais j'ai besoin d'un rappel pour être rigoureux(se).</td>
+    <td>Je rapporte honnêtement mes relevés et je vérifie mes calculs avant de conclure.</td>
+    <td>Comme « Acquis », et j'aide un camarade à repérer une erreur dans son tableau.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">Lire un tableau de relevés réels, calculer SC/SR, repérer une valeur aberrante :
+  <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce cours n'est pas noté sur École Directe :
+  il prépare le regard du diagnostiqueur, qui se construira pleinement en S9.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage
+  pédagogique S7-T1 (méthode « exploitation des relevés réels de la classe », F. Henninot, 19/07/2026) ;
+  réglette P/T et seuils de surchauffe/sous-refroidissement (charte FrigorX SC 5-10 K · SR 4-8 K), repris à
+  l'identique de S4 et S5-T2 (F. Henninot, 2026) ; principe des exercices de lecture de cadrans, d'après la
+  série « EvaL lecture mano » de l'enseignant (02_CAP-IFCA/Bases-Techniques, F. Henninot) ; banque de cadrans
+  manomètres génériques utilisée en exercice (25 26/vrac fiep 3/Exercices_rapides/manometres — cadrans
+  d'entraînement sans mention commerciale tierce) ; cadrans d'entraînement à aiguille fixe (feuille 5),
+  schémas F. Henninot, 2026, aucune valeur de machine réelle affirmée ; carnet de bord F3 (S7) — relevés
+  réels pris par les binômes en S7-F1. Aucune valeur de pression réelle n'est affirmée dans ce document : les
+  relevés exploités sont ceux, réels, de la classe ; les cas de secours et les mini-cas d'entraînement sont
+  fictifs, construits pour l'exercice.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .notion, .seuil, .trace, .poste-bloc, .banque, .vigilance, .cas{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

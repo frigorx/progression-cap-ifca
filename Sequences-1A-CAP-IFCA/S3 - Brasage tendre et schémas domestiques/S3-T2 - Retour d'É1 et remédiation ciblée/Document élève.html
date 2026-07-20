@@ -1,0 +1,511 @@
+<meta charset="utf-8">
+<title>Document élève — S3-T2 · Retour d'É1 et remédiation ciblée</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t, .passage h4{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  table.grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  table.grille04 .niv{text-align:center; width:15%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  .auto-pos.reel{border-color:#c14a17; color:#c14a17; font-weight:bold}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:70px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .equipe{border:2px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em}
+  .equipe h4{color:var(--violet); font-size:10.5pt; margin:0 0 4px}
+  .trace{border:2px dashed var(--bleu); border-radius:6px; background:#fff; padding:10px 16px; margin:.4em 0 .9em}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre et schémas domestiques — retour d'É1</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S3-T2 · 2 h</span><b>Retour d'É1 — remédiation ciblée</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · sem. 8</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation — pas un nouvel ordre d'intervention, un point d'étape</h4>
+  Le chantier du <b>pavillon</b> continue dans les prochains modules de S3 : brasage, protections électriques,
+  schémas domestiques avancés. Mais <b>avant de repartir</b>, le professeur vous <b>rend votre grille d'évaluation
+  É1</b> (semaine 7). C'est normal de ne pas être à 4 partout : É1 mesurait où vous en étiez, pas votre valeur.
+  Aujourd'hui, vous allez <b>lire votre grille</b>, repérer ce qui doit être repris, puis <b>vous entraîner à
+  nouveau</b> sur les points précis qui coincent encore — un peu comme un frigoriste qui reprend un geste raté
+  avant de passer au chantier suivant, plutôt que d'avancer avec un geste bancal.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail <span class="nuance">seule tâche mobilisée aujourd'hui — aucune tâche nouvelle</span></div>
+    <div class="case"><h4>Savoirs réactivés</h4><b>S2.1</b> Outils, normes et représentation<br><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">déjà vus en S1-S2, rien de nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Honnêteté de mon auto-positionnement · j'accepte un point faible sans me décourager · si je suis tuteur/tutrice, j'aide sans jamais faire à la place ni me moquer</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement — formatif, non remonté</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique)<br><span class="statut">Confortement — formatif, non remonté</span> <b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques<br><span class="statut">Confortement — formatif, non remonté</span> <b>C4.5</b> Mesurer, comparer des grandeurs</div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Ce que ce module N'EST PAS</b> — Ce n'est <b>pas une nouvelle évaluation</b>.
+  Rien de ce que vous ferez aujourd'hui n'est noté ni remonté sur École Directe. C'est un <b>entraînement</b>,
+  comme on refait un geste raté à l'entraînement avant le prochain match. Votre grille d'aujourd'hui reste entre
+  vous et votre carnet F3.</div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>lire</b> ma grille d'évaluation É1 et <b>identifier</b> mes cases 1 et 2 (mes points à reprendre) ;</li>
+    <li><b>m'entraîner à nouveau</b>, en petit groupe, sur le ou les gestes précis qui coincent encore (cuivre,
+    câblage ou mesures, selon ce que le professeur m'indique) ;</li>
+    <li>si je suis positionné(e) 3 ou 4 sur une compétence, <b>aider un camarade</b> sans jamais faire le geste à sa
+    place ;</li>
+    <li><b>formuler 2 objectifs de progrès</b> personnels, clairs, pour la suite de la séquence S3.</li>
+  </ul>
+
+  <h3 class="section">Comment se déroule cette séance</h3>
+  <p style="font-size:10.3pt">Vous ne passez <b>que sur le ou les postes</b> qui correspondent à vos résultats É1,
+  indiqués par le professeur. Il y a 3 postes de reprise : <b>CUIVRE</b> (dudgeon), <b>CÂBLAGE</b> (simple
+  allumage), <b>MESURES</b> (U/I/R). Si vous êtes à 3 ou 4 sur une compétence, vous devenez <b>tuteur/tutrice</b>
+  sur le poste correspondant, ou vous faites un exercice d'approfondissement pendant que d'autres reprennent.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — MA GRILLE É1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">MA GRILLE É1 — je recopie mes résultats</h3>
+  <p style="font-size:10.3pt">Le professeur vous rend votre grille É1 corrigée. Pour chaque compétence, <b>recopiez
+  votre vrai niveau</b> (celui écrit sur votre grille É1, pas ce que vous pensez mériter) dans la case
+  <span class="auto-pos reel">réel</span> ci-dessous, en entourant le bon chiffre. Les 5 colonnes rappellent ce que
+  veut dire chaque niveau — c'est le texte exact de votre grille É1.</p>
+
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:17%">Compétence</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">sur T10 · S2.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Pièce enchaînée non conforme (cote, pincement ou dudgeon fendu), ou organes/croix confondus malgré aide.</td>
+      <td>Pièce conforme avec une remarque, ou croix correcte avec l'aide du professeur.</td>
+      <td>Pièce enchaînée conforme aux 5 critères d'auto-contrôle ET croix correcte (organes, convention, HP/BP), réalisées seul(e).</td>
+      <td>Comme « Acquis », et explique le choix de sa méthode d'enchaînement ou un repère de la machine.</td>
+    </tr>
+    <tr>
+      <td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Câblage non conforme au schéma ou non fonctionnel, ou consignation non respectée.</td>
+      <td>Câblage fonctionnel avec l'aide du professeur pour lire le schéma ou positionner le matériel.</td>
+      <td>Câble seul(e) la variante tirée, conforme au schéma et aux couleurs, contrôle hors tension réalisé avant tout appel.</td>
+      <td>Comme « Acquis », et explique la différence entre les deux variantes à partir du schéma.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11 · S5.6</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Mesure de continuité ou de tension non réalisée ou incohérente malgré aide.</td>
+      <td>Mesures réalisées avec l'aide du professeur pour choisir la fonction ou le calibre.</td>
+      <td>Continuité hors tension ET tension en service mesurées seul(e), valeurs cohérentes, unités correctes.</td>
+      <td>Comme « Acquis », et explique pourquoi la tension change entre les deux points mesurés.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté de la mesure</td>
+      <td>Non observé ce jour.</td>
+      <td>EPI incomplets, geste dangereux, ou valeur inventée/recopiée : niveau 1 automatique.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Sécurité et rigueur respectées sans rappel, mesures honnêtes, défauts signalés spontanément sur les 2 postes pratiques.</td>
+      <td>Comme « Acquis », et reste rigoureux(se) jusqu'au rangement complet des 2 postes.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h4 style="font-size:11pt">Mon positionnement réel (recopié depuis ma grille É1)</h4>
+  <p style="font-size:10pt">C3.4 : <span class="auto-pos reel">0</span><span class="auto-pos reel">1</span><span class="auto-pos reel">2</span><span class="auto-pos reel">3</span><span class="auto-pos reel">4</span>
+  &nbsp;&nbsp; C3.6 : <span class="auto-pos reel">0</span><span class="auto-pos reel">1</span><span class="auto-pos reel">2</span><span class="auto-pos reel">3</span><span class="auto-pos reel">4</span>
+  &nbsp;&nbsp; C4.5 : <span class="auto-pos reel">0</span><span class="auto-pos reel">1</span><span class="auto-pos reel">2</span><span class="auto-pos reel">3</span><span class="auto-pos reel">4</span></p>
+  <p style="font-size:9.5pt; color:#c14a17; font-style:italic">Entourez maintenant, au feutre rouge, <b>chaque case
+  1 ou 2</b> que vous venez de reporter ci-dessus. Ce sont vos points de reprise pour aujourd'hui — c'est exactement
+  ce que vous allez retravailler sur les postes.</p>
+
+  <div class="jalon"><h4>Ce que je retiens</h4>
+  <p style="margin:0; font-size:10.3pt">Un <b>1 ou un 2</b> aujourd'hui ne veut pas dire « je suis nul(le) » : ça
+  veut dire « ce geste précis n'était pas encore assez sûr le jour de l'évaluation ». C'est <b>exactement pour ça</b>
+  qu'existe ce module : reprendre le geste, calmement, en petit groupe, sans note à la clé.</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — POSTE CUIVRE (reprise C3.4) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">POSTE CUIVRE — reprise C3.4 — ≈ 35 min — sur indication du professeur uniquement</span>
+  <h3 class="section">Refaire un dudgeon coté, et le contrôler</h3>
+  <p style="font-size:10.5pt">Vous retrouvez exactement le geste travaillé en <b>S1-F1</b> : le dudgeon, cet embout
+  conique qui permet de raccorder un tube avec un écrou, sans brasure. Le tube que vous recevez est <b>déjà coupé
+  et ébavuré</b> par le professeur : aujourd'hui, on ne reprend <b>que le geste du dudgeon</b>, pas toute la
+  chaîne coupe-cintrage-dudgeon.</p>
+
+  <div class="secu"><b class="t">Rappel sécurité</b> — Gants anti-coupure et lunettes de protection, comme en
+  S1-F1. On ne place jamais les doigts entre le tube et la dudgeonnière pendant le serrage.</div>
+
+  <h4 style="font-size:11pt">Ce qui est demandé</h4>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que le tube est bien ébavuré avant de dudgeonner</p>
+    <p>☐ 2. Enfiler l'écrou sur le tube <b>avant</b> de faire le dudgeon (sinon il ne rentrera plus après)</p>
+    <p>☐ 3. Placer le tube dans le mors de la dudgeonnière, à la <b>cote demandée</b> par le professeur</p>
+    <p>☐ 4. Serrer progressivement la dudgeonnière jusqu'à la butée, sans forcer au-delà</p>
+    <p>☐ 5. Retirer le tube et vérifier l'aspect du dudgeon (cône régulier, pas de fente)</p>
+    <p>☐ 6. Visser l'écrou sur un raccord mâle pour vérifier l'emboîtement</p>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cote demandée : selon le poste et le professeur,
+  à faire valider — elle peut varier d'un groupe à l'autre.</p>
+
+  <h4 style="font-size:11pt">Tableau de relevé — auto-contrôle avant l'appel du professeur</h4>
+  <table class="releve">
+    <tr><th>Cote demandée (mm)</th><th>Cote obtenue (mm)</th><th>Dudgeon conforme ?</th><th>Fente ou craquelure ?</th><th>Emboîtement avec l'écrou ?</th></tr>
+    <tr><td>________</td><td>________</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <p style="font-size:10.3pt">Rappel de S1-F1 : <b>dans 80 % des cas, une fuite vient d'un dudgeon trop grand ou
+  trop petit</b> (D'après : Tube cuivre.pdf, notice AFPA). Si votre dudgeon n'est pas conforme, le bon réflexe
+  reste le même qu'en S1 : <b>recommencer</b> plutôt que forcer.</p>
+
+  <div class="encadre-question"><b>Question</b> — Aujourd'hui, qu'est-ce qui a changé dans votre geste par rapport
+  au jour de l'évaluation É1 ? (Plus posé, plus rapide, mieux compris…)</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <div class="jalon"><h4>Je sors de cette reprise quand…</h4>
+  <p style="margin:0; font-size:10.3pt">…mon dudgeon est <b>régulier, sans fente</b>, et l'écrou s'<b>emboîte sans
+  jeu ni blocage</b>, réalisé <b>seul(e)</b>, sans que le professeur reprenne le geste à ma place.</p>
+  <p style="margin-top:6px">Visa professeur (sortie de reprise) : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — POSTE CÂBLAGE (reprise C3.6) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">POSTE CÂBLAGE — reprise C3.6 — ≈ 35 min — sur indication du professeur uniquement</span>
+  <h3 class="section">Recâbler le simple allumage, sans aide</h3>
+  <p style="font-size:10.5pt">La platine est déjà <b>implantée</b> par le professeur (disjoncteur, interrupteur et
+  lampe déjà fixés) : aujourd'hui, on reprend <b>seulement le geste du câblage</b>, à partir du schéma <b>sans
+  repères</b> — à vous de retrouver Q1, S1 et H1 comme vous l'avez appris en S1-E1.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/schema-simple-allumage--sans-reperes.svg" alt="Schéma développé réduit du simple allumage, sans repères" style="max-width:70%">
+    <figcaption class="legende">Simple allumage, sans repères — retrouvez Q1 (disjoncteur), S1 (interrupteur), H1 (lampe).</figcaption>
+  </figure>
+
+  <div class="secu"><b class="t">Rappel sécurité — ne change jamais</b> — Disjoncteur du poste ouvert pendant tout
+  le câblage. Contrôle hors tension <b>avant</b> d'appeler le professeur. La mise sous tension reste, comme
+  toujours, un geste <b>exclusivement professeur</b>.</div>
+
+  <h4 style="font-size:11pt">Ce qui est demandé</h4>
+  <div class="liste-num">
+    <p>☐ 1. Nommer sur le schéma les 3 éléments retrouvés de mémoire (Q1, S1, H1)</p>
+    <p>☐ 2. Raccorder la phase du bornier à Q1, puis Q1 à S1, puis S1 à H1 (fil rouge ou marron)</p>
+    <p>☐ 3. Raccorder le neutre (fil bleu) directement du bornier à H1</p>
+    <p>☐ 4. Vérifier que chaque connexion est bien serrée et conforme aux couleurs normalisées</p>
+    <p>☐ 5. Réaliser le contrôle hors tension au multimètre (position ohmmètre)</p>
+  </div>
+
+  <table class="releve">
+    <tr><th style="width:34%">Mesure</th><th>Interrupteur</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>fermé</td><td>proche de 0 Ω</td><td>________ Ω</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td style="text-align:left">Continuité du circuit de la lampe</td><td>ouvert</td><td>résistance infinie</td><td>________ Ω</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Si une valeur ne correspond pas à celle attendue,
+  signalez-le vous-même : l'honnêteté du contrôle fait partie de la reprise, comme à É1. Une fois conforme,
+  appelez le professeur — lui seul ferme le disjoncteur pour vérifier que la lampe s'allume et s'éteint.</p>
+
+  <div class="jalon"><h4>Je sors de cette reprise quand…</h4>
+  <p style="margin:0; font-size:10.3pt">…mon câblage est <b>conforme au schéma et aux couleurs</b>, mon contrôle
+  hors tension est fait <b>avant</b> d'appeler le professeur, et j'ai câblé <b>seul(e)</b>, sans démonstration
+  préalable.</p>
+  <p style="margin-top:6px">Visa professeur (sortie de reprise) : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — POSTE MESURES (reprise C4.5) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">POSTE MESURES — reprise C4.5 — ≈ 35 min — sur indication du professeur uniquement</span>
+  <h3 class="section">4 mesures U / I / R, sur un circuit déjà prêt</h3>
+  <p style="font-size:10.5pt">Ici, <b>pas de câblage à refaire</b> : le circuit est déjà monté et vérifié par le
+  professeur. Vous vous concentrez uniquement sur le geste de la <b>mesure</b> : bonne fonction, bon calibre, bonne
+  lecture — exactement les 4 mesures travaillées en S2-E1. Les cases ci-dessous ont déjà leur <b>unité imprimée</b> :
+  vous n'écrivez que le nombre.</p>
+
+  <figure style="margin:8px 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/multimetre-cadran-fonctions.png" alt="Photo d'un multimètre : molette avec positions V=, V~, A=, A~, calibres 1000V/200V/2V/200mV et 5A/1,5A/0,15A/15mA, douilles 10A, mA, COM, VΩ" style="max-width:62%">
+    <figcaption class="legende">Le multimètre de référence — repérez la fonction avant de mesurer.</figcaption>
+  </figure>
+
+  <div class="secu"><b class="t">Geste interdit — ne change jamais</b> — <b>Jamais l'ampèremètre en parallèle</b> :
+  il se branche toujours <b>en série</b>, hors tension, avec le contrôle du professeur avant toute remise sous
+  tension.</div>
+
+  <h4 style="font-size:11pt">1. Continuité, hors tension</h4>
+  <table class="releve">
+    <tr><th style="width:40%">Point de mesure</th><th>Fonction</th><th>Valeur attendue</th><th>Valeur mesurée</th></tr>
+    <tr><td style="text-align:left">Circuit fermé</td><td>Ω / continuité</td><td>proche de 0</td><td>________ Ω</td></tr>
+    <tr><td style="text-align:left">Circuit ouvert</td><td>Ω / continuité</td><td>infinie</td><td>________ Ω</td></tr>
+  </table>
+
+  <h4 style="font-size:11pt">2. Tension, en service (mise sous tension par le professeur)</h4>
+  <table class="releve">
+    <tr><th style="width:52%">Point de mesure</th><th>Fonction</th><th>Valeur mesurée</th></tr>
+    <tr><td style="text-align:left">Entre phase et neutre, en amont</td><td>V~</td><td>________ V</td></tr>
+    <tr><td style="text-align:left">Aux bornes du récepteur, en fonctionnement</td><td>V~</td><td>________ V</td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Repère : 230 V nominal (valeur normative) ; la
+  valeur exacte du poste est à faire confirmer par le professeur.</p>
+
+  <h4 style="font-size:11pt">3. Résistance d'un récepteur, hors tension</h4>
+  <table class="releve">
+    <tr><th style="width:52%">Récepteur mesuré</th><th>Calibre</th><th>Valeur mesurée</th></tr>
+    <tr><td style="text-align:left">Récepteur indiqué par le professeur</td><td>________</td><td>________ Ω</td></tr>
+  </table>
+
+  <h4 style="font-size:11pt">4. Intensité — montage en série, avec visa professeur</h4>
+  <table class="releve">
+    <tr><th style="width:52%">Récepteur mesuré</th><th>Calibre</th><th>Valeur mesurée</th></tr>
+    <tr><td style="text-align:left">Récepteur indiqué par le professeur</td><td>________</td><td>________ A</td></tr>
+  </table>
+  <p style="margin:4px 0">Visa professeur (montage en série vérifié avant remise sous tension) : ________________</p>
+
+  <div class="jalon"><h4>Je sors de cette reprise quand…</h4>
+  <p style="margin:0; font-size:10.3pt">…j'ai réalisé les <b>4 mesures seul(e)</b>, les valeurs sont
+  <b>cohérentes</b> avec ce qui est attendu, et les unités sont correctes.</p>
+  <p style="margin-top:6px">Visa professeur (sortie de reprise) : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — FICHE TUTEUR ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <div class="equipe"><h4>Cette fiche ne concerne que vous si…</h4>
+  <p style="margin:0; font-size:10.3pt">…le professeur vous a positionné(e) <b>3 ou 4</b> sur au moins une des 3
+  compétences (C3.4, C3.6, C4.5). Sur le poste correspondant, vous devenez <b>tuteur ou tutrice</b> d'un camarade
+  en reprise. Si vous êtes 3-4 partout, le professeur peut aussi vous proposer un <b>défi transfert</b>
+  (approfondissement) plutôt qu'un tutorat.</p></div>
+
+  <h3 class="section">Être tuteur, c'est un vrai rôle — pas juste « donner la réponse »</h3>
+  <p style="font-size:10.5pt">Un bon tuteur aide un camarade à <b>réussir par lui-même</b>. Ce n'est pas réussir
+  à sa place. C'est le même principe que le professeur applique avec vous depuis S1 : montrer, questionner,
+  laisser faire.</p>
+
+  <div class="duo">
+    <div><h4>Quoi montrer</h4>
+    <ul><li>Le geste, <b>lentement</b>, une seule fois, en le nommant à voix haute pendant que vous le faites ;</li>
+    <li>où se trouve l'information utile (le schéma, la fiche de sécurité, le tableau de relevé) — pas la réponse
+    écrite dans la case ;</li>
+    <li>votre <b>propre</b> pièce ou montage déjà réalisé, comme exemple, jamais en le faisant sur celui du
+    camarade.</li></ul></div>
+    <div><h4>Quoi dire</h4>
+    <ul><li>« Qu'est-ce que tu observes ? » avant de donner une explication ;</li>
+    <li>« Relis ta consigne, qu'est-ce qui est demandé en premier ? » ;</li>
+    <li>« C'est presque ça, regarde cette partie précise » (pointer, pas corriger à sa place) ;</li>
+    <li>des encouragements sincères, sans exagération : « Là, c'est mieux qu'avant. »</li></ul></div>
+  </div>
+
+  <div class="secu"><b class="t">Ce qu'un tuteur ne fait JAMAIS</b>
+  <ul class="liste-num" style="margin-top:4px">
+    <li><b>Faire le geste à la place</b> du camarade (tenir l'outil, câbler à sa place, brancher le multimètre
+    à sa place) ;</li>
+    <li><b>donner directement la réponse</b> ou le résultat attendu (une valeur, un chiffre, une case cochée) ;</li>
+    <li><b>se moquer</b>, soupirer, ou faire remarquer que « c'est facile » ;</li>
+    <li>comparer publiquement le camarade à d'autres élèves de la classe ;</li>
+    <li>prendre la place du professeur pour valider un contrôle de sécurité (mise sous tension, contrôle final).</li>
+  </ul></div>
+
+  <div class="encadre-question"><b>Avant de commencer votre tutorat</b> — Rappelez-vous d'une fois où quelqu'un
+  vous a aidé sans faire à votre place. Qu'est-ce que cette personne avait fait, exactement, pour vous aider
+  vraiment ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — TRACE ÉCRITE : MON PLAN DE PROGRÈS S3 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-T2 · module théorie remédiation · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">TRACE ÉCRITE — mon plan de progrès S3</h3>
+  <p style="font-size:10.3pt">Vous avez lu votre grille É1, entouré vos points faibles, puis repris un ou plusieurs
+  gestes en petit groupe. Pour finir, formulez <b>2 objectifs de progrès</b> précis et réalistes, à partir de ce que
+  vous avez repéré aujourd'hui. Une phrase-guide vous aide à démarrer.</p>
+
+  <div class="trace">
+  <h4 style="font-size:10.5pt">Objectif de progrès n° 1</h4>
+  <p style="font-size:10.3pt; margin:.2em 0">Compétence concernée : ☐ C3.4 (cuivre) ☐ C3.6 (câblage) ☐ C4.5 (mesures)</p>
+  <p style="font-size:10.3pt; margin:.2em 0">« D'ici la fin de la séquence S3, je m'entraîne à
+  ______________________________________________________________________________
+  pour arriver à ______________________________________________________________ la prochaine fois. »</p>
+  </div>
+
+  <div class="trace">
+  <h4 style="font-size:10.5pt">Objectif de progrès n° 2</h4>
+  <p style="font-size:10.3pt; margin:.2em 0">Compétence concernée : ☐ C3.4 (cuivre) ☐ C3.6 (câblage) ☐ C4.5 (mesures)</p>
+  <p style="font-size:10.3pt; margin:.2em 0">« D'ici la fin de la séquence S3, je m'entraîne à
+  ______________________________________________________________________________
+  pour arriver à ______________________________________________________________ la prochaine fois. »</p>
+  </div>
+
+  <div class="jalon"><h4>À faire avant de partir</h4>
+  <p style="margin:0; font-size:10.3pt">Recopiez ces <b>2 objectifs</b> dans votre <b>carnet de bord F3</b>,
+  rubrique <b>« Après É1 »</b>. Vous y reviendrez en fin de séquence S3 (semaine 11) pour noter où vous en êtes.</p></div>
+
+  <div class="encadre-question"><b>Pour finir</b> — Sur une échelle de 0 à 4, comment vous sentez-vous
+  <b>maintenant</b> sur les points repris aujourd'hui, par rapport au jour d'É1 ?</div>
+  <p style="font-size:10pt">Aujourd'hui : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Rappel : ce module est <b>entièrement formatif</b>.
+  Aucune case de cette feuille, ni des postes de reprise, n'est remontée sur École Directe. Seul votre carnet F3
+  garde une trace de vos 2 objectifs.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : évaluation É1 S1-S2
+  de la même progression (F. Henninot, corrigé et grille, semaine 7) ; Activité n°1 TUBES CUIVRE + correction et
+  TP n°2 - Dudgeon, Tube cuivre.pdf (notice AFPA, F. Cabeza) pour le poste cuivre ; TP 4 électricité domestique
+  CAP et TP simple allumage (F. Henninot) pour le poste câblage ; TP 04 – multimètre + correction, Exercice 01/02
+  – S4 Électricité (F. Henninot) pour le poste mesures ; documents S1-F1, S1-E1 et S2-E1 déjà produits pour cette
+  même classe (reprise à l'identique des exercices, aucun exercice nouveau créé).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .secu, .passage, .cadre-dessin, .equipe, .jalon, .trace, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

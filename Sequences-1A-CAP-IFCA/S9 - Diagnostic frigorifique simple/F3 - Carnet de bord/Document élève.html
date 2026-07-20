@@ -1,0 +1,954 @@
+<meta charset="utf-8">
+<title>Carnet de bord élève — S9 · Module F3 · Fil de l'eau</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.35fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.decouverte{background:#fdecd2; color:#96581b; border-color:#f0cf9e}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:4px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.9em}
+  .zone-reponse.grande{min-height:6em}
+  .zone-schema{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:10px; margin:.4em 0 .8em;
+    min-height:15em; display:flex; align-items:center; justify-content:center; font-size:9pt; color:var(--leger); font-style:italic; text-align:center}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:8px; text-align:center; min-height:1.6em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .fiche-num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt;
+    border-radius:8px; padding:3px 12px; background:var(--marine); color:#fff; margin-bottom:8px}
+  .fiche-num.annexe{background:var(--orange)}
+  .rubrique{border:1px solid var(--filet); border-radius:6px; margin:.5em 0 .9em; overflow:hidden}
+  .rubrique .titre-rubrique{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:5px 12px;
+    font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt; color:var(--bleu)}
+  .rubrique .corps-rubrique{padding:10px 14px}
+  .rubrique.commande .titre-rubrique{background:#fff2ea}
+  .rubrique.auto .titre-rubrique{background:#f8f6ff}
+  .rubrique.officiel .titre-rubrique{background:#fdecd2; color:#96581b}
+  table.bc{font-size:9.5pt; margin:.3em 0 .5em}
+  table.bc th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.bc td{border:1px solid var(--filet); padding:8px; min-height:1.6em}
+  .champ-libre{border-bottom:1px dotted var(--leger); min-height:1.9em; padding:3px 4px}
+  .grille-remplir{border:1px dashed var(--leger); border-radius:6px; padding:6px 10px; background:var(--fond-doux)}
+  .cr-ident{border:1.5px solid var(--bleu); border-radius:6px; overflow:hidden; margin:.3em 0 .9em}
+  .cr-ident table{font-size:9.5pt}
+  .cr-ident td{border:1px solid var(--filet); padding:6px 10px; vertical-align:top}
+  .cr-rubrique{border-left:4px solid var(--orange); background:var(--fond-doux); border-radius:0 6px 6px 0; padding:6px 12px; margin:.6em 0 .3em}
+  .cr-rubrique b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu)}
+  .checklist{font-size:9.5pt; margin:.3em 0}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 0 — COUVERTURE DU CARNET (8e série de pages, S1→S3, S5→S9, S4 en pause) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Diagnostic frigorifique simple</td>
+      <td style="width:38%"><span class="lib">Module F3 · fil de l'eau · 2 h (continu)</span><b>Carnet de bord de chantier — devient un dossier de maintenance</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span></td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Classe</span>________________</td>
+      <td><span class="lib">Poste habituel</span>________________</td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Rappel — même carnet, nouvelles pages</h4>
+  C'est le <b>même carnet</b> que celui tenu en S1, S2, S3, S5, S6, S7 puis S8 (S4 était en pause, séquence
+  courte tournée vers É2) : mêmes rubriques de base (ce que j'ai fait, mes relevés, mes difficultés, le bon de
+  commande, l'auto-évaluation). C'est votre <b>8<sup>e</sup></b> série de pages dans ce carnet, pour
+  <b>8 semaines</b> (semaines 29 à 36) — les <b>dernières de votre 1<sup>re</sup> année</b>.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention<br><b>T16</b> Assurer l'entretien d'une installation</div>
+    <div class="case"><h4>Savoir</h4><b>S3.1</b> Communication technique (augmenté)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la trace écrite · régularité · honnêteté de l'auto-évaluation · <b>un compte rendu exploitable par un collègue absent au moment de l'intervention</b></div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4>
+      <span class="statut">Confortement</span> <b>C1.1</b> Compléter, transmettre <span class="nuance">(niveau visé Confortement)</span><br>
+      <span class="statut">Confortement</span> <b>C1.3</b> Rendre compte <span class="nuance">(niveau visé Maîtrise)</span>
+    </div>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic; margin:.2em 0 .9em"><b>C1.1</b> « Compléter,
+  transmettre » est stable en <b>Confortement</b> depuis S8 : c'est désormais son <b>plateau pour l'année</b>
+  — le professeur ne lui fixe pas d'ambition plus haute que Confortement en 1<sup>re</sup> année. <b>C1.3</b>
+  « Rendre compte » reste elle aussi en statut <b>Confortement</b> dans cette activité (rien n'est noté sur le
+  carnet lui-même) — mais le professeur vise pour elle, sur l'année, un niveau plus élevé : <b>Maîtrise</b>. Ne
+  confondez pas le statut de l'activité (Confortement, ce qui se passe aujourd'hui pour les deux compétences) et
+  le niveau visé dans l'année (deux ambitions différentes selon la compétence).</p>
+
+  <div class="jalon" style="border-color:var(--orange)"><h4>Ce qui change en S9 — le carnet devient un dossier de maintenance</h4>
+  <ul style="margin:.2em 0 0 1.1em; padding:0; font-size:10pt">
+    <li>Depuis S1, vous avez tenu un carnet de <b>MISE EN SERVICE</b> : installer, prouver l'étanchéité, régler,
+    charger. En S9, dernière séquence de l'année, on passe côté <b>MAINTENANCE</b> : on cherche la panne par la
+    mesure, on remplace le composant fautif (jamais de manipulation de fluide en 1<sup>re</sup> année), on remet
+    en état, et on <b>rend compte</b>.</li>
+    <li><b>Nouveauté</b> : chaque intervention terminée (diagnostic, remplacement, dépannage de coffret) se
+    clôture désormais par une <b>feuille de COMPTE RENDU D'INTERVENTION type</b> — le document qu'un vrai
+    frigoriste remet après un dépannage SAV. Elle est présentée à la fiche n° 5 et disponible, vierge, en
+    <b>annexe pleine page</b> à la fin de ce carnet.</li>
+    <li><b>É4</b> (semaine 32) est la <b>DERNIÈRE</b> évaluation de votre 1<sup>re</sup> année. Ce carnet garde
+    une trace de vos 2 objectifs après É4 (fiche n° 6) ; le grand bilan de fin d'année se fait dans le module
+    <b>S9-T2</b> (semaines 33-36), pas dans ce carnet.</li>
+  </ul></div>
+
+  <h3 class="section">Comment se déroule la séquence S9</h3>
+  <ul class="liste-num">
+    <li><b>Semaines 29-30</b> : atelier froid <b>S9-F1</b> (diagnostic guidé sur machine, 2 passages) pour un
+    demi-groupe, atelier élec <b>S9-E1</b> (coffret clim en autonomie, 2 passages) pour l'autre, et théorie
+    <b>S9-T1</b> — démarche de diagnostic (semaine 29) puis conservation des denrées (semaine 30), classe
+    entière.</li>
+    <li><b>Semaine 31</b> : atelier froid <b>S9-F2</b> (remplacement d'un composant, passage 1), atelier élec
+    <b>S9-E1</b> (dépannage minute en autonomie complète), théorie libre (préparation É4 : des relevés à la
+    conclusion).</li>
+    <li><b>Semaine 32 — É4</b> : l'évaluation sommative se tient sur 3 postes (froid, élec, théorie). C'est la
+    <b>dernière évaluation</b> de votre 1<sup>re</sup> année.</li>
+    <li><b>Semaine 33</b> : <b>S9-F2</b> (passage 2 + reprise), reprise ciblée élec, correction collective d'É4 et
+    lancement du bilan.</li>
+    <li><b>Semaines 34-36 — S9-T2</b> : postes de reprise selon vos résultats d'É4, tutorat entre pairs,
+    rattrapages, et <b>bilan complet de votre 1<sup>re</sup> année</b> (dans le module S9-T2, pas dans ce
+    carnet).</li>
+  </ul>
+
+  <h3 class="section">Sommaire des fiches de ce carnet</h3>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th>Fiche</th><th>Module visé</th><th>Remplie le</th><th>Visée prof ?</th></tr>
+    <tr><td>Fiche n° 1</td><td>S9-F1 — Diagnostic guidé sur machine (2 passages) + ma feuille de constat</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 2</td><td>S9-E1 — Coffret clim en autonomie (2 passages + dépannage minute)</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 3</td><td>S9-T1 — Démarche de diagnostic + conservation des denrées</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 4</td><td>S9-F2 — Remplacement d'un composant (2 passages) + ma gamme opératoire</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 5</td><td>Mon compte rendu d'intervention — nouveauté, dossier de maintenance</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Fiche n° 6</td><td>Après É4 — mes 2 objectifs, où j'en suis</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Bilan</td><td>Bilan de séquence S9 — clôture du carnet de 1<sup>re</sup> année</td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>Annexe</td><td>Feuille de compte rendu d'intervention type (vierge, pleine page)</td><td colspan="2">à photocopier avant chaque intervention à clôturer</td></tr>
+  </table>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Le carnet totalise 2 h sur l'ensemble de la
+  séquence S9, réparties en petites tranches à chaque module. Les fiches n° 1, n° 2 et n° 4 servent <b>deux
+  fois</b> (passage 1 puis passage 2) : demandez une photocopie vierge au professeur avant votre 2<sup>e</sup>
+  passage. La fiche n° 6 se remplit en <b>deux temps</b> (objectifs après É4, bilan en semaine 36). L'annexe
+  compte rendu se photocopie <b>autant de fois que d'interventions à clôturer</b> (au moins 3 exemplaires :
+  S9-F1, S9-F2 et une éventuelle reprise en S9-T2).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 1 — FICHE N°1 : MODULE S9-F1 (DIAGNOSTIC GUIDÉ SUR MACHINE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 1</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ <b>S9-F1</b> Diagnostic guidé sur machine &nbsp; ☐ S9-E1 &nbsp; ☐ S9-T1 &nbsp; ☐ S9-F2 &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Passage</span>☐ 1 — première enquête, découverte du geste (sem. 29) &nbsp; ☐ 2 — enquête refaite, hypothèse plus assurée (sem. 30)</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <div class="secu"><b class="t">Sécurité — je le rappelle</b><br>
+  La machine est <b>sous tension</b> pendant le diagnostic : la mise et la remise sous tension sont faites par le
+  <b>PROFESSEUR uniquement</b>. Consignation <b>NF C 18-510</b> avant toute intervention électrique. Le
+  compresseur et le refoulement sont des <b>parties chaudes</b> (brûlure), les ventilateurs des <b>parties
+  tournantes</b> (coupure) : je n'y touche jamais en marche.</div>
+
+  <div class="jalon" style="border-color:var(--orange)"><h4>Ce qui change ici — le frigoriste-détective</h4>
+  Le client décrit UN symptôme (l'armoire ne descend plus assez en température, elle givre, elle disjoncte...).
+  Je mène l'enquête, dans l'ordre : relever les indices → mesurer <b>HP / BP</b> et les <b>températures</b> →
+  calculer <b>SC</b> et <b>SR</b> → comparer aux valeurs cibles (<b>SC 5-10 K · SR 4-8 K</b>) → désigner le
+  coupable parmi une courte liste de suspects proposée par le professeur. L'arbre de diagnostic complet se
+  construit APRÈS, tous ensemble, en S9-T1 — à partir de ce que j'ai vécu ici.</div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez le symptôme signalé par le client,
+      les indices observés (bruit, givre, chaleur anormale...), les mesures effectuées et l'ordre suivi pour
+      arriver à une hypothèse.</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes relevés et mon hypothèse</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Une ligne par grandeur relevée. La valeur SANS
+      unité n'est pas un relevé.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:34%">Grandeur</th><th style="width:33%">Valeur</th><th style="width:33%">Unité</th></tr>
+        <tr><td class="champ-libre">Pression BP</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre">Pression HP</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre">Surchauffe (SC)</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre">Sous-refroidissement (SR)</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+      <p style="font-size:9.5pt; color:var(--gris); margin:6px 0 4px">Mon hypothèse retenue (le suspect désigné, et pourquoi) :</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique officiel">
+    <div class="titre-rubrique">Ma feuille de constat — document officiel</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">La feuille de constat et de relevés (annexe du
+      TP S9-F1) est le document de cette séance. Agrafez-la ici une fois complète, <b>un exemplaire par
+      passage</b> : elle doit montrer l'enchaînement complet symptôme → mesures → hypothèse, pas seulement la
+      conclusion.</p>
+      <div class="zone-schema">espace réservé — agrafez ici votre feuille de constat (annexe TP S9-F1, ce passage)</div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué dans la mesure, le calcul de
+      SC/SR ou le choix de l'hypothèse, ce qui a demandé de l'aide.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche sert 2 fois (passage 1 puis passage
+  2). Demandez une photocopie vierge au professeur avant votre 2<sup>e</sup> passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — FICHE N°2 : MODULE S9-E1 (COFFRET CLIM EN AUTONOMIE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 2</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S9-F1 &nbsp; ☐ <b>S9-E1</b> Coffret clim en autonomie &nbsp; ☐ S9-T1 &nbsp; ☐ S9-F2 &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Passage</span>☐ 1 — 1<sup>er</sup> défaut, sans fiche guidée (sem. 29) &nbsp; ☐ 2 (sem. 30) &nbsp; ☐ dépannage minute, 2<sup>e</sup> défaut (sem. 31)</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <div class="secu"><b class="t">Sécurité — je le rappelle</b><br>
+  Consignation <b>NF C 18-510</b> (vérification d'absence de tension) avant toute intervention. Le professeur met
+  sous tension pour prouver le déclenchement ou l'essai final — cette règle ne change pas.</div>
+
+  <div class="jalon" style="border-color:var(--orange)"><h4>Ce qui change ici — le dépannage minute en autonomie</h4>
+  Le coffret présente un <b>défaut électrique simple</b> posé par le professeur (fil débranché, organe hors
+  service simulé). Je diagnostique et remets en service <b>SANS fiche guidée</b>, en m'appuyant uniquement sur le
+  <b>schéma</b> et sur ma consignation. Si je vais vite, un 2<sup>e</sup> défaut m'est proposé et je deviens
+  tuteur pour un camarade.</div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez le défaut rencontré, la méthode
+      suivie à partir du seul schéma (sans fiche guidée), et la remise en service.</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mon défaut, mon diagnostic, ma remise en service</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:25%">Défaut constaté</th><th style="width:25%">Élément suspecté</th><th style="width:25%">Contrôle réalisé</th><th style="width:25%">Remise en service prouvée (comment ?)</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué dans la lecture du schéma sans
+      fiche guidée, ce qui a demandé de l'aide.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche sert jusqu'à 3 fois (passages 1, 2
+  et dépannage minute). Demandez une photocopie vierge au professeur avant chaque nouveau passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — FICHE N°3 : MODULE S9-T1 (DÉMARCHE DE DIAGNOSTIC + DENRÉES) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 3</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Semaines</span><span class="grand">29-30</span></td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S9-F1 &nbsp; ☐ S9-E1 &nbsp; ☐ <b>S9-T1</b> Démarche de diagnostic + denrées &nbsp; ☐ S9-F2 &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+      <td></td>
+    </tr>
+  </table></div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">Semaine 29 : à partir des cas
+  vécus en S9-F1, la classe <b>co-construit</b> l'arbre de diagnostic simple (symptôme → hypothèse). Semaine 30 :
+  étude de cas « la bonne température pour la bonne denrée » — associer une denrée, une température, et une
+  enceinte <b>positive ou négative</b>, et comprendre la chaîne du froid.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez votre contribution à la carte
+      mentale collective de l'arbre de diagnostic, puis l'étude de cas conservation/denrées.</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique officiel">
+    <div class="titre-rubrique">Mon arbre de diagnostic — document officiel</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Agrafez ici l'arbre de diagnostic construit
+      collectivement (annexe du TP S9-T1) : symptôme → mesures → hypothèse, pour les cas archi-classiques vus en
+      classe.</p>
+      <div class="zone-schema">espace réservé — agrafez ici votre copie de l'arbre de diagnostic (annexe TP S9-T1)</div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ma fiche denrée / température / enceinte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Une ligne par denrée étudiée. Les valeurs
+      viennent du tableau distribué en classe — jamais de mémoire.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:34%">Denrée</th><th style="width:33%">Température cible</th><th style="width:33%">Enceinte (positive / négative)</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué dans la construction de
+      l'arbre ou dans l'association denrée/température/enceinte.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <p style="font-size:8.5pt; color:var(--gris); margin:0 0 6px">Rubrique tenue même en module théorie :
+      documentation manquante, matériel de bureau, etc.</p>
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche ne sert qu'une seule fois (deux
+  demi-séances, semaines 29 et 30, sur la même page).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — FICHE N°4 : MODULE S9-F2 (REMPLACEMENT D'UN COMPOSANT SIMPLE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 4</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Date</span>________________</td>
+      <td style="width:78%"><span class="lib">Module du jour</span>
+        ☐ S9-F1 &nbsp; ☐ S9-E1 &nbsp; ☐ S9-T1 &nbsp; ☐ <b>S9-F2</b> Remplacement d'un composant &nbsp; ☐ Autre : ________</td>
+    </tr>
+    <tr>
+      <td class="accent"><span class="lib">Passage</span>☐ 1 — 1<sup>re</sup> dépose/repose guidée (sem. 31) &nbsp; ☐ 2 — reprise ou 2<sup>e</sup> composant (sem. 33, après É4)</td>
+      <td><span class="lib">Durée passée sur le carnet</span>________________ min</td>
+    </tr>
+  </table></div>
+
+  <div class="secu"><b class="t">Sécurité — je le rappelle</b><br>
+  Le circuit est <b>inerté à l'azote par le professeur</b> avant toute intervention : je n'ouvre jamais un circuit
+  en charge. Gestes <b>interdits</b> : je ne récupère jamais de fluide, je ne braise et ne coupe jamais un circuit
+  contenant du fluide, je n'utilise jamais d'oxygène ni d'air comprimé.</div>
+
+  <div class="jalon" style="border-color:var(--orange)"><h4>Ce qui change ici — je signe mon travail</h4>
+  Je reçois une <b>gamme de dépose/repose</b> que je dois respecter ET <b>auto-contrôler étape par étape</b>
+  (check-list qualité : propreté, serrage, étanchéité à l'eau savonneuse sur le raccord hors fluide, contrôle de
+  remise en service). La remise en état se <b>PROUVE</b>, elle ne se déclare pas. <b>Compte rendu obligatoire</b>
+  à la fin — voir fiche n° 5.</div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai fait</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Décrivez le composant déposé/reposé, les
+      étapes de la gamme suivies dans l'ordre, et le contrôle qualité réalisé.</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mon composant remplacé</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:34%">Composant</th><th style="width:33%">Référence (si connue)</th><th style="width:33%">Motif du remplacement</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique officiel">
+    <div class="titre-rubrique">Ma gamme de dépose/repose + check-list qualité — document officiel</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Agrafez ici la gamme opératoire (annexe du TP
+      S9-F2), cochée étape par étape et <b>auto-contrôlée</b>, <b>un exemplaire par passage</b>.</p>
+      <div class="zone-schema">espace réservé — agrafez ici votre gamme + check-list qualité (annexe TP S9-F2, ce passage)</div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mon compte rendu d'intervention</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Une fois le composant remplacé et la remise
+      en état prouvée, remplissez votre feuille de <b>compte rendu d'intervention</b> (fiche n° 5 puis annexe en
+      fin de carnet). C'est ce document qui clôture officiellement l'intervention.</p>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a bloqué dans la gamme, l'auto-contrôle
+      ou la remise en service, ce qui a demandé de l'aide.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique commande">
+    <div class="titre-rubrique">Matériel manquant → bon de commande</div>
+    <div class="corps-rubrique">
+      <div class="tbl-wrap">
+      <table class="bc">
+        <tr><th style="width:22%">Référence (si connue)</th><th style="width:48%">Désignation</th><th style="width:30%">Quantité</th></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me positionne :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche sert 2 fois (passage 1 semaine 31,
+  passage 2 semaine 33, après É4). Demandez une photocopie vierge avant votre 2<sup>e</sup> passage.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — FICHE N°5 : MON COMPTE RENDU D'INTERVENTION (NOUVEAUTÉ — DOSSIER DE MAINTENANCE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 5</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Semaines</span><span class="grand">31-33</span></td>
+      <td style="width:78%"><span class="lib">Cette fiche</span>accompagne <b>chaque intervention terminée</b>
+      (S9-F1, S9-F2, S9-E1) — nouveauté S9, le dossier de maintenance</td>
+    </tr>
+  </table></div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">Depuis S1, votre carnet était
+  tourné vers la <b>mise en service</b>. En S9, dernière séquence, il devient un <b>dossier de maintenance</b> :
+  chaque intervention terminée se clôture par une feuille de <b>compte rendu d'intervention type</b> — le
+  document qu'un frigoriste remet réellement à son client, ou classe dans le dossier machine, après une
+  intervention SAV.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Pourquoi ce document</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0">Un compte rendu doit être <b>exploitable par un tiers</b> : un collègue
+      qui n'était pas présent doit comprendre ce qui a été signalé, ce qui a été mesuré, ce qui a été conclu, ce
+      qui a été fait — sans avoir besoin de vous poser une seule question.</p>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Les 8 rubriques de mon compte rendu</div>
+    <div class="corps-rubrique">
+      <ul class="liste-num" style="margin-top:0">
+        <li><b>Constat</b> — le symptôme signalé, ce que j'observe en arrivant.</li>
+        <li><b>Mesures relevées</b> — les grandeurs mesurées, chacune avec sa valeur ET son unité.</li>
+        <li><b>Diagnostic</b> — l'hypothèse retenue, comparée à une valeur cible.</li>
+        <li><b>Action menée</b> — ce que j'ai fait concrètement.</li>
+        <li><b>Composant remplacé</b> — désignation et référence si connue (ou « aucun » si diagnostic seul).</li>
+        <li><b>Remise en état</b> — la check-list qui prouve que le travail est propre et fiable.</li>
+        <li><b>Contrôle final</b> — la mesure qui prouve que l'installation fonctionne à nouveau.</li>
+        <li><b>Observations</b> — tout ce qu'un collègue doit savoir en plus.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rubrique officiel">
+    <div class="titre-rubrique">Ma feuille de compte rendu — à remplir en annexe</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0">La feuille complète, prête à remplir, se trouve en
+      <b>ANNEXE PLEINE PAGE</b> à la fin de ce carnet. Photocopiez-la <b>avant chaque intervention à clôturer</b>
+      (au moins 3 exemplaires : S9-F1, S9-F2, et une éventuelle reprise en S9-T2), remplissez-la à la fin de la
+      séance, puis agrafez-la ici en la datant.</p>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes difficultés à rédiger un compte rendu</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Ce qui a été difficile à décrire clairement,
+      ce qui a demandé de l'aide.</p>
+      <div class="zone-reponse"></div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Je sais rédiger un compte rendu exploitable par un tiers :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 4px">Ce que je dois revoir :</p>
+      <div class="zone-reponse" style="min-height:2.4em"></div>
+    </div>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche introduit la démarche ; elle est
+  remplie une fois. Les comptes rendus eux-mêmes se remplissent en annexe, autant de fois que d'interventions.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — FICHE N°6 : APRÈS É4 — MES 2 OBJECTIFS, OÙ J'EN SUIS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num">FICHE N° 6</span>
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:22%"><span class="lib">Semaines</span><span class="grand">32-36</span></td>
+      <td style="width:78%"><span class="lib">Cette fiche se remplit en 2 temps</span>objectifs semaine 32-33 · bilan semaine 36</td>
+    </tr>
+  </table></div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.2em 0 .8em">É4 vient d'avoir lieu (semaine
+  32) : c'est la <b>dernière évaluation</b> de votre 1<sup>re</sup> année. En S9-T2 (semaines 33-36), vous
+  rejoignez un poste de reprise ou de tutorat selon vos résultats. Cette fiche recueille votre plan de progrès
+  pour la toute fin de l'année — le <b>grand bilan complet</b> de votre 1<sup>re</sup> année se fait, lui, dans le
+  module S9-T2.</p>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Ce que j'ai vécu au poste de reprise (S9-T2)</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Quel poste avez-vous rejoint (diagnostic ·
+      mise en service · remplacement · coffret) ? Étiez-vous en reprise, ou tuteur d'un camarade ?</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Mes 2 objectifs pour la fin de l'année</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Un objectif = une compétence précise à
+      améliorer, choisie à partir de votre grille d'É4.</p>
+      <div class="tbl-wrap">
+      <table class="releve">
+        <tr><th style="width:12%">N°</th><th style="width:28%">Compétence visée (C4.1 / C4.5 / C4.7 / C5.1...)</th><th style="width:60%">Ce que je vais faire concrètement pour progresser</th></tr>
+        <tr><td class="champ-libre">1</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+        <tr><td class="champ-libre">2</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="rubrique officiel">
+    <div class="titre-rubrique">Mon plan de progrès — document officiel</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Recopiez ou agrafez ici le plan de progrès
+      rempli en S9-T2, validé par votre tuteur ou le professeur.</p>
+      <div class="zone-schema">espace réservé — agrafez ici votre plan de progrès S9-T2</div>
+    </div>
+  </div>
+
+  <div class="rubrique">
+    <div class="titre-rubrique">Où j'en suis — à remplir en semaine 36</div>
+    <div class="corps-rubrique">
+      <p style="font-size:9.5pt; color:var(--gris); margin:0 0 6px">Pour chacun de vos 2 objectifs : avez-vous
+      progressé ? Sur quel poste de reprise vous êtes-vous appuyé ?</p>
+      <div class="zone-reponse grande"></div>
+    </div>
+  </div>
+
+  <div class="rubrique auto">
+    <div class="titre-rubrique">Auto-évaluation courte</div>
+    <div class="corps-rubrique">
+      <p style="font-size:10pt; margin:0 0 6px"><b>Aujourd'hui, je me sens prêt pour la 2<sup>e</sup> année :</b>
+      <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+    </div>
+  </div>
+
+  <div class="jalon"><h4>Vers la 2<sup>e</sup> année</h4>
+  <p style="margin:0">L'an prochain, vous manipulerez le <b>vrai fluide frigorigène</b>, avec l'attestation
+  d'aptitude, et le diagnostic ira plus loin (récupération réelle, pannes plus complexes). Ce que vous avez
+  appris ici — mesurer, comparer, conclure, rendre compte — reste la même démarche.</p></div>
+
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Cette fiche se remplit en deux temps sur la
+  même page : les objectifs en semaine 32-33, la case « Où j'en suis » en semaine 36. Ne la photocopiez pas.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — BILAN DE SÉQUENCE S9 (SEMAINE 36) — CLÔTURE DU CARNET DE 1RE ANNÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Bilan de séquence S9 (semaine 36)</h3>
+  <p style="font-size:10.5pt">S9 portait à la fois l'évaluation <b>É4</b> (semaine 32, la dernière de l'année) et
+  la clôture de votre 1<sup>re</sup> année. Ce bilan mesure le chemin parcouru dans le diagnostic et la
+  maintenance ; le bilan complet de l'année se fait dans le module S9-T2.</p>
+
+  <div class="jalon"><h4>Ce qui a changé en S9 — rappel</h4>
+  Vous avez diagnostiqué par la mesure (HP/BP, SC, SR, comparaison aux valeurs cibles), remplacé un composant sans
+  jamais manipuler de fluide, remis en service un coffret en autonomie complète, et surtout : vous avez rendu
+  compte de vos interventions comme un vrai dossier de maintenance.</div>
+
+  <div class="encadre-question"><b>Question</b> — Qu'est-ce qui s'est bien passé, sur l'un des modules (F1, E1,
+  T1, F2) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Question</b> — Qu'est-ce qui a été difficile, sur l'un des modules ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="encadre-question"><b>Ce que je sais faire de NOUVEAU depuis le début de S9</b><br>
+  Donnez au moins un exemple précis pour chacun : mener une enquête de diagnostic jusqu'à une hypothèse, remplacer
+  un composant hors fluide en auto-contrôlant mon travail, dépanner un coffret sans fiche guidée, rédiger un
+  compte rendu d'intervention exploitable par un collègue absent.</div>
+  <div class="zone-reponse grande"></div>
+
+  <p style="font-size:9.5pt; color:var(--gris); margin:.4em 0">Avez-vous complété la fiche n° 5 (Mon compte rendu
+  d'intervention) et la fiche n° 6 (Après É4) ? ☐ Oui ☐ Non — si non, faites-le avant de rendre le carnet.</p>
+
+  <h3 class="section">Mon auto-positionnement</h3>
+  <p style="font-size:9pt; color:var(--gris)">Toujours <b>pas de note officielle</b> sur le carnet lui-même. Ce
+  positionnement est un repère pour vous et pour le professeur, distinct de toute grille d'évaluation.</p>
+
+  <p style="font-size:10.5pt"><b>C1.1 — Compléter, transmettre</b> (Confortement, niveau visé Confortement, sur
+  T1 · S3.1) : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10.5pt"><b>C1.3 — Rendre compte</b> (Confortement, niveau visé Maîtrise, sur T1 · T16 ·
+  S3.1) : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10.5pt"><b>Savoir-être</b> — rigueur, régularité, honnêteté, un compte rendu exploitable
+  par un collègue absent : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <p style="font-size:9.5pt; color:var(--gris); margin:8px 0 4px">Ce que je dois revoir en priorité avant la
+  2<sup>e</sup> année :</p>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="jalon"><h4>Carnet complet</h4>
+  <p>☐ La fiche n° 1 (S9-F1) est remplie deux fois, avec les <b>2 feuilles de constat</b> agrafées<br>
+  ☐ La fiche n° 2 (S9-E1) est remplie, avec le tableau défaut/diagnostic rempli<br>
+  ☐ La fiche n° 3 (S9-T1) est remplie, avec l'arbre de diagnostic et la fiche denrée agrafés<br>
+  ☐ La fiche n° 4 (S9-F2) est remplie deux fois, avec les <b>2 gammes + check-lists qualité</b> agrafées<br>
+  ☐ La fiche n° 5 (Mon compte rendu d'intervention) est remplie<br>
+  ☐ Au moins <b>3 feuilles de compte rendu</b> (annexe) sont remplies et agrafées, datées<br>
+  ☐ La fiche n° 6 (Après É4) est remplie dans ses deux temps<br>
+  ☐ Chaque relevé porte une valeur ET une unité ; chaque compte rendu est exploitable sans mon explication orale<br>
+  ☐ Chaque bon de commande a été transmis au professeur en temps voulu<br>
+  ☐ Ce bilan de séquence est répondu</p>
+  <p>Visa professeur : ________________&nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+
+  <div class="situation" style="margin-top:1em"><h4>Fin d'un carnet</h4>
+  C'est la <b>dernière page</b> de votre carnet de 1<sup>re</sup> année : 8 séquences tenues depuis S1. En
+  2<sup>e</sup> année, un nouveau carnet commencera, tourné vers la charge réelle et le diagnostic approfondi,
+  avec votre attestation d'aptitude.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — ANNEXE PLEINE PAGE : FEUILLE DE COMPTE RENDU D'INTERVENTION TYPE (VIERGE) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="fiche-num annexe">ANNEXE — FEUILLE DE COMPTE RENDU D'INTERVENTION TYPE</span>
+
+  <div class="cr-ident"><table>
+    <tr>
+      <td style="width:50%"><b>Client :</b> ________________________________<br><span style="font-size:8.3pt; color:var(--gris)">(générique — jamais de nom réel)</span></td>
+      <td style="width:50%"><b>Adresse / lieu de l'intervention :</b> ____________________</td>
+    </tr>
+    <tr>
+      <td><b>Type d'intervention</b> — ☐ Dépannage &nbsp; ☐ Entretien &nbsp; ☐ Mise en service</td>
+      <td><b>Module concerné</b> — ☐ S9-F1 &nbsp; ☐ S9-F2 &nbsp; ☐ S9-E1 &nbsp; ☐ S9-T2</td>
+    </tr>
+    <tr>
+      <td><b>Technicien (moi) :</b> ________________________________</td>
+      <td><b>Date :</b> ______________ &nbsp; <b>Heure d'arrivée :</b> ______ &nbsp; <b>Heure de départ :</b> ______</td>
+    </tr>
+  </table></div>
+
+  <div class="cr-rubrique"><b>1. Constat</b> — le symptôme signalé, ce que j'observe en arrivant</div>
+  <div class="zone-reponse" style="min-height:3.2em"></div>
+
+  <div class="cr-rubrique"><b>2. Mesures relevées</b> — une ligne par grandeur, valeur ET unité obligatoires</div>
+  <div class="tbl-wrap">
+  <table class="releve" style="margin-top:.3em">
+    <tr><th style="width:34%">Grandeur</th><th style="width:33%">Valeur</th><th style="width:33%">Unité</th></tr>
+    <tr><td class="champ-libre">Pression BP</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+    <tr><td class="champ-libre">Pression HP</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+    <tr><td class="champ-libre">Surchauffe (SC)</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+    <tr><td class="champ-libre">Sous-refroidissement (SR)</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+    <tr><td class="champ-libre">Tension / Intensité</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+    <tr><td class="champ-libre">Autre :</td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+  </table>
+  </div>
+
+  <div class="cr-rubrique"><b>3. Diagnostic</b> — hypothèse retenue, comparée à une valeur cible (SC 5-10 K · SR 4-8 K)</div>
+  <div class="zone-reponse" style="min-height:3.2em"></div>
+
+  <div class="cr-rubrique"><b>4. Action menée</b></div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="cr-rubrique"><b>5. Composant remplacé</b> — désignation, référence si connue, motif (ou « aucun » si diagnostic seul)</div>
+  <div class="tbl-wrap">
+  <table class="releve" style="margin-top:.3em">
+    <tr><th style="width:34%">Désignation</th><th style="width:33%">Référence (si connue)</th><th style="width:33%">Motif</th></tr>
+    <tr><td class="champ-libre"></td><td class="champ-libre"></td><td class="champ-libre"></td></tr>
+  </table>
+  </div>
+
+  <div class="cr-rubrique"><b>6. Remise en état</b> — check-list à cocher</div>
+  <p class="checklist">☐ Propreté &nbsp; ☐ Serrage &nbsp; ☐ Étanchéité contrôlée (eau savonneuse, raccord hors
+  fluide) &nbsp; ☐ Contrôle visuel &nbsp; ☐ Essai de fonctionnement</p>
+
+  <div class="cr-rubrique"><b>7. Contrôle final</b> — la mesure qui prouve que ça fonctionne</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="cr-rubrique"><b>8. Observations</b></div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; margin:6px 0 2px"><b>Remarques du client (générique) :</b></p>
+  <div class="zone-reponse" style="min-height:2em"></div>
+
+  <div class="tbl-wrap" style="margin-top:.5em">
+  <table class="releve">
+    <tr><td style="width:50%"><b>Fait à :</b> ________________ &nbsp; <b>Le :</b> ________________<br><b>Signature technicien (moi) :</b></td>
+    <td style="width:50%"><b>Visa professeur :</b><br><br><b>Date :</b> ________________</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .rubrique, .jalon, .zone-schema, .cr-ident, .cr-rubrique{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

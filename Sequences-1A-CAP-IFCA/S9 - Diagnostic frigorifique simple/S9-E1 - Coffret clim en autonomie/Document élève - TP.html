@@ -1,0 +1,565 @@
+<meta charset="utf-8">
+<title>TP élève — S9-E1 · Coffret clim en autonomie</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:2px dashed var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .passage h4{color:var(--violet); font-size:9.5pt; margin:0 0 4px}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .poste-titre.interdit{background:#c14a17}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .checkbox-step{border:1.5px solid var(--filet); border-radius:6px; background:#fff; padding:6px 10px; margin:.35em 0; font-size:9.7pt}
+  .checkbox-step .num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:#fff; background:var(--bleu); border-radius:50%; width:20px; height:20px; text-align:center; line-height:20px; margin-right:6px; font-size:9pt}
+  .annexe{border:3px solid var(--bleu); border-radius:8px; padding:10px 16px; background:var(--fond-doux)}
+  .verdict{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt;
+    border-radius:8px; padding:2px 16px; margin-right:8px; border:2px solid var(--filet)}
+  .surtitre{font-family:'Trebuchet MS',sans-serif; font-size:9pt; color:var(--gris); margin-bottom:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Coffret clim en autonomie — dépannage électrique simple</td>
+      <td style="width:38%"><span class="lib">Module atelier S9-E1 · 4 h × 2 passages</span><b>Coffret clim en autonomie</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span> · semaines 29-30</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom, prénom (binôme)</span>________________</td>
+      <td><span class="lib">Nom, prénom (binôme)</span>________________</td>
+      <td><span class="lib">Date (passage 1 / passage 2)</span>_______ / _______</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S9-3</b> : le coffret électrique du climatiseur de <b>l'arrière-boutique</b> ne
+  démarre plus, ou a disjoncté à la remise en route. Le client s'impatiente : il attend une remise en service
+  rapide. Vous connaissez déjà ce coffret : vous l'avez <b>câblé entièrement</b> en S7-E2 et vous en avez
+  <b>réglé la consigne</b> en S8-E1. Aujourd'hui, <b>aucune fiche de câblage ne vous est remise</b> : le professeur
+  y a posé un <b>défaut électrique simple</b> avant votre arrivée (un fil débranché, ou un organe simulé hors
+  service), et c'est à vous de <b>diagnostiquer et remettre en service</b>, en autonomie complète, à partir du
+  <b>schéma</b> (annexe pleine page) et de votre propre <b>consignation</b>.
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img class="fig" src="../images/thermostat.svg" alt="Symbole schématique d'un thermostat de régulation" style="max-width:35%">
+    <figcaption class="legende">Le thermostat TH1, réglé en S7-E1/S8-E1, reste en série dans la commande de ce
+    coffret — symbole biblio inerWeb.</figcaption>
+  </figure></div>
+
+  <div class="change"><b class="t">Ce qui change depuis S7-S8</b> — En S7-E2, vous avez câblé ce coffret <b>guidé
+  pas à pas</b>, en binôme organisé (chef d'équipe / exécutant), à partir d'un schéma légendé remis en annexe. En
+  S8-E1, vous avez réglé sa consigne, toujours accompagné(e). <b>Aujourd'hui, le coffret ne se câble plus : il se
+  dépanne.</b> Vous ne recevez <b>aucune fiche pas-à-pas</b> qui vous dirait quoi vérifier, dans quel ordre : seule
+  une <b>méthode générale</b> (page suivante) et le <b>schéma</b> (annexe) vous accompagnent. C'est la dernière
+  séquence de votre première année : l'<b>autonomie complète</b> devient le vrai objectif du module, plus encore
+  que le geste électrique lui-même.</div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>observer</b> un symptôme électrique (rien ne se passe / démarre puis s'arrête / disjoncte / voyant
+    anormal) et le décrire précisément, <b>sans rien toucher</b> ;</li>
+    <li><b>consigner seul(e)</b> le coffret avant toute intervention (NF C 18-510 : couper, Vérifier l'Absence de
+    Tension, condamner/signaler) ;</li>
+    <li><b>me repérer sur le schéma</b> du coffret (annexe) pour <b>remonter le circuit méthodiquement</b>, organe
+    par organe, de l'alimentation jusqu'à la bobine du contacteur ;</li>
+    <li><b>contrôler la continuité</b> de chaque tronçon, comparer une valeur mesurée à une valeur attendue, et
+    <b>localiser précisément</b> l'organe ou la connexion en cause ;</li>
+    <li><b>proposer et réaliser la remise en état</b> (reconnecter un fil, resserrer une borne), <b>sans jamais
+    shunter</b> un organe, quel qu'il soit ;</li>
+    <li><b>faire contrôler</b> ma remise en état par le professeur avant toute remise sous tension, et <b>rendre
+    compte</b> de mon dépannage par écrit, honnêtement, y compris de mes fausses pistes.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est <b>pas votre première fois</b> avec ce coffret : vous l'avez câblé en
+  entier en S7-E2 (Q1, KM1, F1, S1, S2, TH1, H1, H2, M1) et réglé sa consigne en S8-E1. Vous savez déjà :</p>
+  <ul class="liste-num">
+    <li><b>lire le schéma</b> de ce coffret précis et <b>repérer</b> chaque appareil et chaque borne ;</li>
+    <li>réaliser <b>seul(e) une consignation et une vérification d'absence de tension (VAT)</b>, acquis depuis S1 ;</li>
+    <li>utiliser un <b>multimètre en continuité</b> et interpréter un contact NO (normalement ouvert) et NF
+    (normalement fermé) ;</li>
+    <li>ce qu'est un <b>auto-maintien</b> (contact KM1 13-14) et le rôle du <b>relais thermique</b> F1 ;</li>
+    <li>É3 est passée : votre plan de progrès personnel s'applique aussi ici, en particulier sur la rigueur du
+    contrôle avant tout appel au professeur.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si le repérage du schéma de ce coffret vous
+  échappe encore, dites-le au professeur avant de commencer : la phase 4 de ce module le réactive par un quiz
+  éclair.</p>
+
+  <h3 class="section">Matériel <span style="font-size:9pt; color:var(--gris); font-weight:normal">(par binôme, aux deux passages)</span></h3>
+  <ol class="liste-num">
+    <li>Le <b>coffret clim</b> câblé en S7-E2 (Q1, KM1, F1, S1, S2, TH1, H1, H2, M1), sur lequel le professeur a
+    posé un défaut avant la séance — <b>jamais dévoilé à l'avance</b></li>
+    <li>Un <b>multimètre</b> numérique + jeu de cordons de mesure (rouge + noir)</li>
+    <li>Tournevis plat et tournevis cruciforme, pince à dénuder</li>
+    <li>Le <b>schéma du coffret</b>, en <b>annexe pleine page</b> de ce document (référence à consulter en
+    permanence)</li>
+    <li>Un <b>chronomètre</b> (ou téléphone en mode chrono, usage strictement encadré) pour le « minute » du
+    dépannage</li>
+    <li>Le <b>carnet de bord</b> (module F3) pour le compte rendu d'intervention</li>
+    <li>Fiche de sécurité à cocher visée par le professeur + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ + LA MÉTHODE DU DÉPANNAGE MINUTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Sécurité électrique — un rituel acquis, appliqué sans aucun rappel</h3>
+  <p style="font-size:10.5pt">Vous connaissez la consignation et la vérification d'absence de tension (VAT) depuis
+  S1. Aujourd'hui, <b>personne ne vous les redémontre</b>. Un risque particulier s'ajoute à la démarche de
+  dépannage : chercher une panne peut donner l'envie d'aller vite, d'essayer « juste pour voir » — c'est
+  précisément ce qu'il ne faut jamais faire sur un circuit électrique.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Choc électrique par contact direct avec une pièce sous tension</td><td>Ne <b>jamais</b> toucher un fil ou une borne sans avoir consigné et vérifié l'absence de tension (VAT). Chercher la panne <b>toujours</b> hors tension.</td></tr>
+    <tr><td>Tentation de « shunter » un organe pour voir si le moteur démarre</td><td><b>Jamais</b> de shunt (pontage) d'un organe de sécurité ou de régulation, quel qu'il soit — même TH1, même F1. Un shunt masque la panne, il ne la répare pas.</td></tr>
+    <tr><td>Remise sous tension pendant la recherche de panne</td><td>Sectionneur du poste maintenu <b>ouvert</b> pendant toute la recherche et la remise en état. <b>Seul le professeur</b> ferme le circuit, après contrôle systématique.</td></tr>
+    <tr><td>Envie de « tester » un vrai défaut supplémentaire pour accélérer</td><td><b>Jamais</b> provoquer un incident réel (court-circuit, surcharge) pour vérifier une hypothèse — la continuité au multimètre suffit toujours, hors tension.</td></tr>
+    <tr><td>Compte rendu arrangé après coup (temps, hypothèses)</td><td>Le tableau de dépannage se remplit <b>au moment réel</b> de la recherche, y compris les hypothèses fausses : elles font partie de la méthode, pas un aveu d'échec.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">La consignation — rituel NF C 18-510, appliqué sans rappel</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  1. <b>Couper</b> — ouvrir le sectionneur (Q1) du poste.<br>
+  2. <b>Vérifier l'absence de tension (VAT)</b> — contrôler au multimètre, position voltmètre, sur chaque conducteur.<br>
+  3. <b>Condamner / signaler</b> — le professeur garde la main sur la remise sous tension.<br>
+  4. <b>Travailler hors tension</b> — je cherche, je mesure la continuité, <b>toujours</b> sectionneur ouvert.</p>
+  </div>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li>Jamais toucher un fil ou une borne sans avoir vérifié l'absence de tension ;</li>
+    <li><b>Jamais shunter (ponter)</b> un organe de sécurité ou de régulation, même pour « confirmer » une
+    hypothèse ;</li>
+    <li>Jamais provoquer un vrai défaut supplémentaire pour tester une réaction ;</li>
+    <li>Jamais mettre le coffret sous tension moi-même — <b>seul le professeur le fait</b>, après contrôle ;</li>
+    <li>Jamais recopier ou inventer un temps, une valeur mesurée ou une conclusion.</li>
+  </ul>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — <b>couper</b> (interrupteur général ou arrêt d'urgence
+  de l'atelier, localisé dès l'entrée), <b>alerter</b> immédiatement le professeur, <b>ne jamais déplacer</b> un
+  camarade électrisé sans certitude sur son état. La trousse de secours est localisée dès l'entrée dans l'atelier.</div>
+
+  <h3 class="section">La logique du dépannage minute — comprendre avant de chercher</h3>
+  <div class="jalon">
+  <p style="margin:0; font-size:10.3pt">
+  Un frigoriste appelé pour un dépannage ne démonte jamais tout le coffret au hasard : il <b>observe</b> le
+  symptôme, il <b>remonte le circuit méthodiquement</b> à partir du schéma, il <b>mesure</b> à chaque étape pour
+  confirmer ou écarter une hypothèse, et il <b>conclut</b> seulement quand la mesure le prouve. C'est cette logique
+  — <b>du symptôme vers la cause, par élimination</b> — que vous allez appliquer aujourd'hui, sans qu'aucune fiche
+  ne vous dise à l'avance où chercher.</p>
+  </div>
+
+  <h3 class="section">Les 6 étapes du dépannage minute — la méthode, valable pour CHAQUE panne</h3>
+  <div class="checkbox-step"><span class="num">1</span><b>OBSERVER</b> — constater précisément le symptôme (rien ne se passe / démarre puis s'arrête / disjoncte / voyant anormal), sans rien toucher.</div>
+  <div class="checkbox-step"><span class="num">2</span><b>CONSIGNER</b> — NF C 18-510 : couper, VAT, condamner/signaler.</div>
+  <div class="checkbox-step"><span class="num">3</span><b>CONTRÔLER MÉTHODIQUEMENT</b> — en s'appuyant sur le schéma (annexe), remonter le circuit organe par organe, dans l'ordre logique, en mesurant la continuité de chaque tronçon.</div>
+  <div class="checkbox-step"><span class="num">4</span><b>LOCALISER</b> — identifier précisément l'organe ou la connexion en cause (repère exact, borne exacte).</div>
+  <div class="checkbox-step"><span class="num">5</span><b>REMETTRE EN ÉTAT</b> — reconnecter un fil débranché, resserrer une borne desserrée ; si un organe est confirmé hors service, le signaler au professeur — jamais le shunter, jamais le remplacer soi-même sans validation.</div>
+  <div class="checkbox-step"><span class="num">6</span><b>FAIRE CONTRÔLER ET ESSAYER</b> — faire valider ma remise en état par le professeur ; observer l'essai qu'il réalise ; rendre compte par écrit (carnet).</div>
+
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Cette méthode en 6 étapes est <b>la seule aide
+  écrite</b> que vous recevez : elle ne vous dit ni la panne, ni où elle se trouve. C'est en la répétant sur
+  plusieurs dépannages minute que vous gagnez en vitesse ET en sûreté.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — PASSAGE 1 · JALON 1 : DÉMONSTRATION + 1er DÉPANNAGE MINUTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 29 · JALON 1 — démonstration + 1<sup>er</sup> dépannage minute — ≈ 75 min</span>
+
+  <h3 class="section">Étape A — observer la démonstration du professeur</h3>
+  <p style="font-size:10.5pt">Le professeur exécute un dépannage complet <b>sur un poste témoin</b> — jamais le
+  vôtre — en <b>commentant chaque étape</b> de la méthode. Il ne vous montre pas « la » panne, mais <b>comment
+  chercher</b>. Notez ce que vous retenez de sa façon de remonter le schéma.</p>
+  <div class="zone-reponse" style="min-height:2.2em"><span style="font-size:9pt; color:var(--gris)">Ce que je retiens de la démonstration :</span></div>
+
+  <div class="encadre-question"><b>Question — agir → noter → réfléchir</b> — Pourquoi le professeur commence-t-il
+  par <b>observer et décrire</b> le symptôme, avant de toucher au moindre fil ?</div>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Indice : que risque-t-on à démonter un organe au
+  hasard, sans hypothèse construite à partir du symptôme ?</p>
+
+  <h3 class="section">Étape B — 1<sup>er</sup> dépannage minute, encadré</h3>
+  <p style="font-size:10.5pt">Votre coffret présente à présent <b>son propre défaut</b>, posé par le professeur.
+  Menez les 6 étapes de la méthode. Une <b>aide est possible</b> si votre binôme reste bloqué plus de 10 minutes —
+  demandez-la sans honte, elle sera notée sans pénaliser votre positionnement du jour.</p>
+
+  <h3 class="section">Mon dépannage minute n° 1</h3>
+  <table class="releve">
+    <tr><th>Symptôme observé</th><th>Hypothèses envisagées</th><th>Organe/connexion en cause</th><th>Temps total</th><th>Aide demandée ?</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <h3 class="section">Points contrôlés (organe par organe, dans l'ordre du schéma)</h3>
+  <table class="releve">
+    <tr><th>Organe / borne testé</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Une de vos hypothèses de départ s'est-elle révélée fausse ?
+  Laquelle, et qu'est-ce qui vous a permis de l'écarter (quelle mesure) ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1</h4>
+  <p>☐ Consignation réalisée avant toute intervention &nbsp;&nbsp; ☐ Démarche méthodique respectée (pas de
+  démontage au hasard) &nbsp;&nbsp; ☐ Panne n° 1 localisée et remise en état correcte &nbsp;&nbsp; ☐ Autorisé(e) à
+  poursuivre vers le jalon 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — PASSAGE 1 · JALON 2 : 2e DÉPANNAGE MINUTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 1 · SEMAINE 29 · JALON 2 — 2<sup>e</sup> dépannage minute — ≈ 50 min</span>
+  <p style="font-size:10.5pt">Le professeur pose un <b>nouveau défaut</b>, sur un autre organe que le précédent.
+  Vous menez ce 2<sup>e</sup> dépannage minute avec <b>moins d'aide</b> : c'est l'occasion de vérifier que la
+  méthode, et non le souvenir de la panne n° 1, vous guide.</p>
+
+  <h3 class="section">Mon dépannage minute n° 2</h3>
+  <table class="releve">
+    <tr><th>Symptôme observé</th><th>Hypothèses envisagées</th><th>Organe/connexion en cause</th><th>Temps total</th><th>Aide demandée ?</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <h3 class="section">Points contrôlés (organe par organe, dans l'ordre du schéma)</h3>
+  <table class="releve">
+    <tr><th>Organe / borne testé</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question de synthèse — passage 1</b> — Entre le dépannage n° 1 et le n° 2,
+  qu'avez-vous changé dans votre façon de chercher ? Êtes-vous allé(e) plus vite en respectant toujours les 6
+  étapes, ou avez-vous sauté une étape pour gagner du temps ? Soyez honnête : sauter une étape n'est jamais un
+  progrès.</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <h3 class="section">Bilan intermédiaire d'autonomie — fin du passage 1</h3>
+  <table class="releve">
+    <tr><th>Dépannage</th><th>Temps total</th><th>Aide demandée</th><th>Panne correctement remise en état ?</th></tr>
+    <tr><td>N° 1 (jalon 1)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td>N° 2 (jalon 2)</td><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2</h4>
+  <p>☐ Panne n° 2 localisée et remise en état correcte &nbsp;&nbsp; ☐ Méthode respectée sans étape sautée
+  &nbsp;&nbsp; ☐ Poste rangé, sectionneur ouvert &nbsp;&nbsp; ☐ Rendez-vous confirmé en semaine 30 pour le passage 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="secu"><b class="t">⚠ Rappel — fin du passage 1</b> — Remettez votre coffret hors tension (sectionneur
+  ouvert) avant de ranger. Rendez-vous en <b>semaine 30</b> pour le passage 2, en autonomie complète.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — PASSAGE 2 · JALON 1' : 3e DÉPANNAGE MINUTE EN AUTONOMIE COMPLÈTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 30 · JALON 1' — 3<sup>e</sup> dépannage minute, autonomie complète — ≈ 45 min</span>
+  <div class="change"><b class="t">Ce qui change par rapport au passage 1</b> — Vous connaissez déjà les 6 étapes :
+  après un <b>rappel bref</b> de la méthode, vous menez ce dépannage <b>seul(e), sans aide possible</b> sauf
+  question de sécurité. Le professeur reste présent en permanence pour la sécurité, mais il ne guide plus votre
+  recherche.</div>
+
+  <h3 class="section">Mon dépannage minute n° 3</h3>
+  <table class="releve">
+    <tr><th>Symptôme observé</th><th>Hypothèses envisagées</th><th>Organe/connexion en cause</th><th>Temps total</th></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3 class="section">Points contrôlés (organe par organe, dans l'ordre du schéma)</h3>
+  <table class="releve">
+    <tr><th>Organe / borne testé</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question</b> — Qu'est-ce qui, dans vos deux dépannages du passage 1, vous
+  permet aujourd'hui de chercher sans aide, sans paniquer devant un symptôme nouveau ?</div>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1'</h4>
+  <p>☐ Dépannage mené en autonomie complète &nbsp;&nbsp; ☐ Consignation et méthode respectées sans rappel
+  &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2'</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — PASSAGE 2 · JALON 2' : 4e DÉPANNAGE MINUTE + VARIANTE RAPIDES + VERDICT D'AUTONOMIE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">PASSAGE 2 · SEMAINE 30 · JALON 2' — 4<sup>e</sup> dépannage minute + verdict d'autonomie — ≈ 80 min</span>
+  <p style="font-size:10.5pt">Dernier dépannage minute du module. Si votre binôme a été positionné <b>3 ou 4</b> sur
+  les dépannages précédents, vous traitez un <b>double défaut simultané</b> et devenez <b>tuteur</b> d'un autre
+  binôme une fois votre coffret remis en service (sans câbler ni mesurer à sa place).</p>
+
+  <h3 class="section">Mon dépannage minute n° 4</h3>
+  <table class="releve">
+    <tr><th>Symptôme observé</th><th>Hypothèses envisagées</th><th>Organe/connexion en cause</th><th>Temps total</th></tr>
+    <tr><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3 class="section">Points contrôlés (organe par organe, dans l'ordre du schéma)</h3>
+  <table class="releve">
+    <tr><th>Organe / borne testé</th><th>Valeur attendue</th><th>Valeur mesurée</th><th>Conforme ?</th></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+    <tr><td></td><td></td><td></td><td>☐ Oui ☐ Non</td></tr>
+  </table>
+
+  <p style="font-size:10pt"><b>Si double défaut (élèves rapides)</b> : notez ici le <b>2<sup>e</sup></b> organe en
+  cause, distinct du premier, et comment vous avez évité de confondre les deux symptômes.</p>
+  <div class="zone-reponse" style="min-height:2.2em"></div>
+
+  <h3 class="section">Tableau des 4 dépannages minute — bilan complet</h3>
+  <table class="releve">
+    <tr><th>Dépannage</th><th>Temps total</th><th>Aide reçue</th><th>Remis en état ?</th></tr>
+    <tr><td>N° 1 (passage 1)</td><td></td><td></td><td></td></tr>
+    <tr><td>N° 2 (passage 1)</td><td></td><td></td><td></td></tr>
+    <tr><td>N° 3 (passage 2)</td><td></td><td></td><td></td></tr>
+    <tr><td>N° 4 (passage 2)</td><td></td><td></td><td></td></tr>
+  </table>
+
+  <p style="font-size:10.5pt"><b>Mon verdict d'autonomie :</b>
+  <span class="verdict" style="border-color:#1f7a4d; color:#1f7a4d">☐ AUTONOME (méthode tenue seul(e), sans aide, en respectant la sécurité)</span>
+  <span class="verdict" style="border-color:#c14a17; color:#c14a17">☐ À CONSOLIDER</span></p>
+  <div class="zone-reponse" style="min-height:2.2em"><span style="font-size:9pt; color:var(--gris)">Justification :</span></div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2'</h4>
+  <p>☐ Dépannage n° 4 validé &nbsp;&nbsp; ☐ (si rapide) double défaut traité et tutorat réalisé sans câbler à la
+  place du pair &nbsp;&nbsp; ☐ Verdict d'autonomie motivé &nbsp;&nbsp; ☐ Poste rangé, coffret remis à l'état
+  initial</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 7 — RANGEMENT + GRILLE + VARIANTES + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9-E1 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état (à chaque passage)</h3>
+  <div class="liste-num">
+    <p>☐ 1. Remettre le coffret <b>hors tension</b> (sectionneur ouvert, débranché)</p>
+    <p>☐ 2. Vérifier que <b>tous</b> les fils sont reconnectés (retirer complètement la panne posée) et les bornes
+    resserrées à la main</p>
+    <p>☐ 3. Remettre la molette du multimètre sur <b>OFF</b>, débrancher et ranger les cordons sans coude serré</p>
+    <p>☐ 4. Ranger l'outillage (tournevis, pinces, multimètre) à son emplacement</p>
+    <p>☐ 5. Vérifier que le poste est propre et dégagé pour le poste suivant, prêt pour une nouvelle panne</p>
+  </div>
+
+  <div class="jalon"><h4>Bilan de fin de passage</h4>
+  <p>☐ Passage 1 : 2 dépannages minute réalisés (n° 1 et 2), coffret remis à l'état initial ☐ Oui ☐ Non<br>
+  ☐ Passage 2 : 2 dépannages minute réalisés (n° 3 et 4, dont éventuel double défaut), verdict d'autonomie motivé</p>
+  <p>Visa professeur (passage 1) : ________________ &nbsp;&nbsp;&nbsp; Visa professeur (passage 2) : ________________</p></div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statuts du jour : <b>C3.6 Confortement</b> (visé Validé) ·
+  <b>C3.7 Confortement</b> (visé Maîtrise) — aucune remontée École Directe dans ce module (Évaluation = É4, semaine
+  32).</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.6</b> Câbler, repérer, connecter les liaisons électriques et électroniques</td><td>sur T16 · S5.6</td><td>Compétence non observée ce jour.</td><td>Ne repère pas le schéma, ne parvient pas à identifier l'organe en cause même avec aide.</td><td>Repère le schéma et localise l'organe en cause avec l'aide du professeur (rappel d'une étape).</td><td>Repère seul(e) le schéma, localise l'organe en cause, remet en état correctement.</td><td>Comme « Acquis », et explique sa démarche à un pair sans câbler à sa place.</td></tr>
+    <tr><td><b>C3.7</b> Contrôler la mise en œuvre des équipements électriques et fluidiques</td><td>sur T11 · S5.6</td><td>Compétence non observée ce jour.</td><td>Contrôle non méthodique (mesures au hasard, pas de comparaison à une valeur attendue), ou shunt d'un organe.</td><td>Contrôle avec l'aide du professeur (rappel d'une étape de la méthode).</td><td>Contrôle seul(e), méthodiquement, mesure et compare avant de conclure, sans jamais shunter.</td><td>Comme « Acquis », et gagne en rapidité au fil des dépannages sans sauter d'étape.</td></tr>
+    <tr><td>Savoir-être — sécurité, rigueur, honnêteté, autonomie</td><td>observation continue</td><td>Non observé ce jour.</td><td>Geste dangereux malgré rappel (shunt, remise sous tension sans le professeur) : niveau 1 automatique.</td><td>Sécurité globalement respectée, quelques rappels nécessaires.</td><td>Consignation et méthode respectées sans rappel, compte rendu honnête.</td><td>Comme « Acquis », et aide un pair en tuteur sans jamais faire à sa place.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.6 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C3.7 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si vous étiez concerné(e) par un objectif de
+  progrès à É3 sur la rigueur du contrôle ou l'honnêteté de la mesure : avez-vous progressé aujourd'hui ?</p>
+
+  <h3 class="section">Variantes</h3>
+  <ul class="liste-num">
+    <li><b>Consolidation</b> : la panne posée en jalon 1 reste sur un organe déjà très visible (fil débranché sur
+    une borne accessible) ; le professeur reste au poste pour guider la lecture du schéma étape par étape.</li>
+    <li><b>Standard</b> : déroulement tel que décrit dans ce document.</li>
+    <li><b>Approfondissement</b> <span class="nuance">(rapides, tuteurs)</span> : double défaut simultané au jalon
+    2', puis tutorat d'un autre binôme (expliquer la méthode, jamais câbler ni mesurer à sa place).</li>
+  </ul>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (les deux passages : 4 dépannages minute, questions répondues, visas)</li>
+    <li>Carnet de bord (F3) — compte rendu d'intervention de chaque dépannage</li>
+    <li>Fiche de sécurité à cocher visée par le professeur, aux deux passages</li>
+    <li>Bon de commande hebdomadaire (fils, cosses, ampoules de voyants de rechange)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : documents « Plan de
+  séance », « Document élève - TP » et « Document professeur - corrigé » de S7-E2 « Coffret clim et câblage » et
+  S8-E1 « Réglage de consignes guidé » (F. Henninot, 2025-2026 — même coffret, mêmes repères Q1/KM1/F1/S1/S2/TH1/
+  H1/H2/M1, réinvestis ici en dépannage) ; <i>Activité n° 1 câblage schémas de commande.docx</i> et <i>Activité n° 3
+  câblage schémas de puissance.docx</i> (02_CAP-IFCA/C3-Réaliser — logique de lecture des schémas de commande et de
+  puissance, principe transposé au dépannage) ; <i>schemas_cablage_coffrets_MR12_MR15.pdf</i> (02_CAP-IFCA/
+  C1-Communiquer, Johnson Controls France — principe général d'un coffret climatiseur/chambre froide réel,
+  confirmant l'usage professionnel du contrôle méthodique organe par organe). Charte pédagogique FrigorX (§7
+  sécurité) ; référentiel CAP IFCA (codes C3.6, C3.7, T16, T11, S5.6). Aucune valeur non sourcée : le défaut posé et
+  son organe restent <b>« fixés par le professeur, à ne jamais dévoiler à l'avance »</b>.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 8 — ANNEXE PLEINE PAGE : SCHÉMA DU COFFRET ============ -->
+<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 12mm } }</style>
+<div class="feuille annexe-a3" style="min-height:auto">
+  <div class="surtitre">Annexe pleine page — à conserver sous les yeux pendant les 4 dépannages minute (une feuille par binôme)</div>
+  <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma du coffret clim — référence de dépannage</h2>
+  <p style="font-size:10.5pt; color:#5d6b7c; font-style:italic">⚠ À imprimer en <b>A3 PAYSAGE</b>. C'est le MÊME
+  schéma que celui utilisé pour câbler ce coffret en S7-E2 (avec ses repères, cette fois). Servez-vous-en pour
+  remonter le circuit, organe par organe, jusqu'à la panne — c'est votre SEULE aide écrite pendant la recherche.</p>
+
+  <figure style="margin:10px 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/schema-coffret-clim.svg" alt="Schéma technique pleine page du coffret clim, avec tous les repères Q1, KM1, F1, S1, S2, TH1, H1, H2, M1" style="max-width:100%; border:1px solid #d5dbe4; border-radius:6px;">
+  </figure>
+
+  <div class="pied"><span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span><span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span></div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon, .checkbox-step{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

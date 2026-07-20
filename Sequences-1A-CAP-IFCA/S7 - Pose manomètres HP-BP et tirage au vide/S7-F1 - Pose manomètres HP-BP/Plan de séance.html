@@ -1,0 +1,237 @@
+<meta charset="utf-8">
+<title>Plan de séance — S7-F1 · Pose manomètres HP/BP</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pose manomètres HP/BP et tirage au vide — <b>module atelier S7-F1</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S7-F1 · pose des manomètres</span><b>Pose manomètres HP/BP</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> P4 · semaines 22-23</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 22</b> et <b>passage 2 — semaine 23</b> (dates à caler, cf. <i>_CADRAGE-S7.md</i>) — <b>même procédure, vécue deux fois</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — postes manifold sur machines en charge + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur, détenteur de l'attestation d'aptitude (demi-groupe ; l'autre demi-groupe est en atelier élec S7-E1)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail<br><b>T15</b> Renseigner les documents de mise en service <span class="nuance">découverte</span></div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> relation P/T et réglette (S4) · réseaux fluidiques S5.5 (S5/S6) · brasage et étanchéité prouvée S5/S6 · É3 passée<br><span class="nuance">Travaillé :</span> <b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste (serrage à la main, jamais forcé) · supervision directe acceptée sans discussion sur machine en charge · honnêteté de la lecture (jamais une valeur inventée) · autonomie croissante (passage 2)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte → Confortement</span> <b>C4.7</b> Raccorder les équipements de charge, de mesure et de contrôle <span class="nuance">sur T11 · T15 · S5.1</span><br><span class="statut">Confortement → vers Maîtrise</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T15 · S5.1 — réglette S4</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S7-1</b> : l'étanchéité de la chambre froide de l'<b>arrière-boutique</b> a été
+  <b>prouvée au PV</b> en S6. Il faut maintenant préparer la <b>mise en service</b> du groupe de production de
+  froid de l'atelier : <b>poser le manifold, brancher les manomètres HP et BP</b>, et <b>relever les
+  pressions</b> pour la première feuille de mise en service. La charge en fluide elle-même n'arrive qu'en S8
+  (simulée) — aujourd'hui, on observe et on lit, on ne touche pas au fluide.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>reconstituer la procédure de pose</b> du manifold à partir des cartes-étapes mélangées, et la
+        faire valider ;</li>
+        <li><b>brancher les manomètres</b> — repère HP rouge / BP bleu — en respectant la procédure validée ;</li>
+        <li><b>purger brièvement</b> chaque flexible avant serrage définitif ;</li>
+        <li><b>lire les pressions HP et BP</b> et les reporter, avec la température de réglette correspondante,
+        sur une feuille de relevés ;</li>
+        <li><b>déposer proprement</b> le manifold, en reconstituant de la même façon sa procédure de dépose.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>lire la relation pression/température sur la réglette (S4) ;</li>
+        <li>les réseaux fluidiques de base (S5.5, S5/S6) ;</li>
+        <li>le montage a été brasé et son étanchéité prouvée au PV (S5/S6) ;</li>
+        <li>agir sous supervision directe du professeur sur un montage sous pression (S5/S6) ;</li>
+        <li>É3 est passée : votre plan de progrès personnel s'applique aussi ici.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S6</b> — En S6, vous éprouviez un montage <b>sans
+  fluide frigorigène</b> (azote seul). <b>Aujourd'hui, la machine est EN CHARGE</b> : elle contient du fluide
+  frigorigène en fonctionnement. C'est pourquoi la <b>supervision directe du professeur</b> est permanente et
+  non négociable, pourquoi la purge reste <b>toujours brève</b>, et pourquoi vous ne desserrez <b>jamais</b> un
+  flexible sous pression. Vous ne manipulez pas le fluide lui-même (pas de charge, pas de récupération — cela
+  reste S8 puis la 2<sup>e</sup> année) : vous posez, vous lisez, vous déposez.</div>
+
+  <div class="plan"><b class="t">Méthode du module : la procédure à remettre en ordre</b> —
+  les étapes de pose du manifold vous sont fournies <b>MÉLANGÉES</b>, en cartes-étapes (annexe pleine page à
+  découper). Votre binôme doit d'abord <b>reconstituer l'ordre correct</b>, le faire <b>valider par le
+  professeur</b>, puis <b>exécuter</b> sa propre procédure sur la machine. La dépose suit le même principe :
+  comprendre l'ordre avant d'agir.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 22 et 23)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 22 — découverte guidée</h4>
+      <b>Jalon 1</b> (≈ 85 min) : reconstitution des cartes-étapes de pose en binôme, validation, installation
+      du manifold, raccordement HP/BP, purge brève. <b>Jalon 2</b> (≈ 40 min) : lecture des pressions,
+      report sur la feuille de relevés, reconstitution et exécution de la dépose, rangement.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 23 — consolidation, plus d'autonomie</h4>
+      <b>Jalon 1'</b> (≈ 50 min) : reconstitution plus rapide, avec moins d'aide, installation et raccordement.
+      <b>Jalon 2'</b> (≈ 75 min) : lecture à deux moments (mise en régime puis fonctionnement stabilisé),
+      feuille de relevés complète, dépose en autonomie, verdict de cohérence P/T avec la réglette.</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : machine <b>EN CHARGE</b> de fluide
+  frigorigène (contact accidentel = brûlure froide), flexibles/raccords sous pression, projection si un raccord
+  lâche. <b>EPI</b> : lunettes de protection + gants anti-brûlure froide, obligatoires pendant toute
+  manipulation du manifold. <b>Gestes interdits</b> : <b>jamais desserrer un flexible sous pression</b> sans
+  l'avoir purgé au préalable ; <b>jamais ouvrir le circuit</b> frigorifique ; jamais forcer un raccord à la clé
+  (serrage à la MAIN uniquement) ; jamais un relevé inventé ou recopié d'un autre poste. Purges <b>toujours
+  brèves</b> : on limite les émissions de fluide frigorigène dans l'atmosphère (esprit F-Gas), sans qu'aucune
+  manipulation de charge/récupération ne soit demandée ici. <b class="t">🚨 En cas d'incident :</b> le
+  professeur isole la machine, alerte, traite toute projection de fluide comme une brûlure froide (rinçage à
+  l'eau tiède, jamais chaude) ; trousse de secours et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S7-F1 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 22 et 23</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Le professeur, détenteur de l'attestation d'aptitude, reste présent en permanence
+  pendant toute manipulation du manifold sur la machine en charge, y compris au passage 2 où l'élève gagne en
+  autonomie : « seul(e) » porte sur le geste et la lecture, jamais sur la présence de la supervision sécurité.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (procédure à remettre en ordre, passage 1 découverte / passage 2 consolidation).</td><td>Fait l'appel, rappelle l'organisation et les postes manifold.</td><td>S'installent, retrouvent leur poste binôme.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S7-1 : poser les manomètres sur le groupe de l'atelier et relever les pressions pour la feuille de mise en service, après l'étanchéité prouvée en S6.</td><td>Présente l'ordre d'intervention et le fil rouge (arrière-boutique, mise en service).</td><td>Reformulent la mission du module et son lien avec S6.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec la formule (C4.7 Découverte→Confortement, C4.5 Confortement vers M).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : quiz éclair entre pairs sur la lecture de la réglette P/T (S4) et sur les réseaux fluidiques (S5.5), annonce du changement du jour (machine en charge, supervision renforcée, purge brève).</td><td>Distribue le quiz éclair, contrôle les tenues et les EPI (lunettes + gants anti-brûlure froide) au vestiaire.</td><td>Se changent par vagues ; en attente, répondent au quiz éclair entre pairs.</td><td>Quiz éclair réglette P/T · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (rappel : machine en charge, gestes interdits, purge toujours brève) puis <b>planter la notion</b> : le professeur présente UNE carte-étape isolée et demande « avant ou après quoi ? » → NOMMER « procédure » et « ordre logique » → EXPLICITER pourquoi on comprend une procédure avant de l'exécuter (un geste dans le mauvais ordre peut être dangereux ou destructeur sur une machine en charge).</td><td>Localise ARU/trousse, présente la carte-étape et anime la question, distribue les jeux de cartes-étapes mélangées par poste.</td><td>Observent, répondent à la question, reçoivent leur jeu de cartes.</td><td>Cartes-étapes mélangées (jeu par binôme) · manifold · machine du poste · lunettes + gants</td><td class="obs"></td></tr>
+    <tr><td><b>85 / 50 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon 1 / 1'</span> : reconstitution + pose</td><td><b>Passage 1 (85 min)</b> : reconstitution en binôme de l'ordre des cartes-étapes de POSE, validation professeur, installation du manifold, raccordement HP (rouge) / BP (bleu), purge brève. <b>Passage 2 (50 min)</b> : chaque binôme reconstitue plus vite, avec moins d'aide, installe et raccorde.</td><td>Supervise en permanence toute manipulation du manifold sur la machine en charge, valide l'ordre des cartes avant d'autoriser l'exécution.</td><td>Reconstituent l'ordre, font valider, installent le manifold, raccordent, purgent brièvement.</td><td>Machine en charge, manifold, cartes-étapes validées, feuille de relevés</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td><b>40 / 75 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon 2 / 2'</span> : lecture + relevés + dépose</td><td><b>Passage 1 (40 min)</b> : lecture des pressions HP/BP, report sur la feuille de relevés avec la température de réglette correspondante, reconstitution et exécution de la DÉPOSE. <b>Passage 2 (75 min)</b> : lecture à deux moments (mise en régime puis fonctionnement stabilisé), feuille de relevés complète, dépose en autonomie, verdict de cohérence avec la réglette.</td><td>Valide chaque lecture, contrôle la cohérence des relevés, valide l'ordre de la dépose avant exécution.</td><td>Lisent les pressions, renseignent la feuille de relevés, reconstituent et exécutent la dépose.</td><td>Feuille de relevés, réglette P/T, cartes-étapes de dépose</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : présentation des feuilles de relevés ; auto-positionnement par compétence (C4.7, C4.5 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les feuilles et les grilles, valide.</td><td>Présentent leurs relevés, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module (F3) + bon de commande hebdomadaire (consommables, joints).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Vérification finale des postes (manifold rangé, bouchons remis), nettoyage des établis.</td><td>Supervise le rangement, contrôle les bouchons de protection remis sur les vannes de service.</td><td>Rangent, nettoient leur poste.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce du module suivant (S7-F2, tirage au vide réel, sem. 24).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  <b>Passage 1</b> : jalon 1 (85 min) + pause (15 min) + jalon 2 (40 min) = 2 h 20 ; synthèse 15 + bon de commande
+  10 + rangement 10 + clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>.
+  <b>Passage 2</b> : jalon 1' (50 min) + pause (15 min) + jalon 2' (75 min) = 2 h 20 ; synthèse + bon de commande +
+  rangement + clôture = 40 min (inchangé). Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>. Les deux
+  passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre jalon 1/1' et jalon 2/2' change.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : S7-T0 « Retour d'É3 —
+  remédiation ciblée » (même semaine 22, poste étanchéité/brasage/câblage) · co-intervention français (carnet de
+  bord, module F3, feuille de relevés) · modules S5/S6 (montage brasé, étanchéité prouvée au PV) · prépare
+  S7-F2 (tirage au vide réel, sem. 24-25) et S7-T1 (lecture de relevés, sem. 24, qui exploite les relevés
+  produits ici).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Élèves à revoir en priorité (remédiation post-É3)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

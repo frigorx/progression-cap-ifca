@@ -1,0 +1,337 @@
+<meta charset="utf-8">
+<title>Dossier de séquence — S11 · CAP IFCA 2A</title>
+<style>
+  :root{
+    --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+    --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+    --violet:#7b5cf5; --marine:#1e2c5e;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre);
+    font-family:Calibri,'Segoe UI',sans-serif; font-size:14pt; line-height:1.5;
+    margin:0; padding:28px 12px; text-align:left;}
+  h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; text-wrap:balance; margin:0 0 .4em}
+  p{margin:.3em 0 .8em}
+  .feuille{background:#fff; max-width:794px; min-height:1050px; margin:0 auto 30px;
+    padding:34px 46px 20px; box-shadow:0 2px 14px rgba(27,58,99,.13); position:relative;
+    display:flex; flex-direction:column;}
+  /* ---------- en-tête ---------- */
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:10px; margin-bottom:6px;}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:var(--violet); letter-spacing:.03em}
+  .entete img.logo-lycee{height:52px}
+  .entete img.logo-eq{height:52px}
+  .sous-entete{display:flex; justify-content:space-between; font-size:10pt; color:var(--gris); margin-bottom:22px;}
+  /* ---------- pied de page ---------- */
+  .pied{margin-top:auto; padding-top:14px; border-top:1px solid var(--filet);
+    font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;}
+  /* ---------- page de garde ---------- */
+  .garde-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:6px}
+  .garde-seq{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--orange); font-size:15pt; letter-spacing:.25em; text-transform:uppercase}
+  .garde-titre{font-size:26pt; margin:.15em 0}
+  .garde-soustitre{font-size:13.5pt; color:var(--gris); font-style:italic; margin-bottom:10px}
+  .garde-illustration{margin:8px auto 4px; max-width:420px}
+  .garde-illustration img{width:100%; border-radius:8px; box-shadow:0 3px 10px rgba(27,58,99,.18); display:block}
+  .garde-illustration-legende{font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:4px}
+  .garde-meta{display:inline-block; margin:14px auto 6px; border:1px solid var(--filet); border-radius:6px; padding:12px 26px; font-size:12pt; text-align:left; background:var(--fond-doux)}
+  .garde-meta b{color:var(--bleu)}
+  .croix{margin:14px auto 4px}
+  .croix-legende{font-size:9.5pt; color:var(--leger); font-style:italic}
+  .comp-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:10px}
+  .chip{border:1.5px solid var(--bleu); color:var(--bleu); border-radius:20px; padding:3px 14px; font-size:11pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; background:#fff}
+  .chip small{font-weight:normal; color:var(--gris)}
+  /* ---------- corps commun ---------- */
+  .titre-page{font-size:19pt; border-left:6px solid var(--orange); padding-left:14px; margin-bottom:4px}
+  .surtitre{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:2px}
+  h3{font-size:13.5pt; margin-top:1.1em; display:flex; align-items:baseline; gap:8px}
+  table{border-collapse:collapse; width:100%; font-size:11pt; margin:.4em 0 1em}
+  th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:9.5pt; letter-spacing:.04em; text-transform:uppercase; padding:6px 9px; text-align:left}
+  td{border:1px solid var(--filet); padding:6px 9px; vertical-align:top}
+  tr:nth-child(even) td{background:var(--fond-doux)}
+  ul,ol{margin:.2em 0 .9em 1.35em; padding:0}
+  li{margin-bottom:.25em}
+  .encadre-secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:12px 18px; margin:.6em 0 1em}
+  .encadre-secu h3{color:#c14a17; margin-top:0}
+  .encadre-secu td{background:transparent!important; border-color:#f3c9b3}
+  .badge-niveau{display:inline-block; font-size:9pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; color:#fff}
+  .nI{background:#9aa5b1}.nC{background:#8a6dbf}.nM{background:#5d6b7c}.nV{background:var(--bleu)}
+  .fleche{color:var(--orange); font-weight:bold}
+  .cartouche-methode{background:var(--fond-doux); border:1px solid var(--filet); border-left:6px solid var(--bleu);
+    border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .cartouche-methode b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu)}
+  .etiquette{font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; letter-spacing:.08em;
+    text-transform:uppercase; border-radius:3px; padding:1px 7px; vertical-align:2px}
+  .et-inv{background:#e3e9f2; color:var(--bleu)}
+  .et-var{background:#ffe4d6; color:#b4501e}
+  .obj{background:var(--fond-doux); border-radius:6px; padding:10px 18px 10px 14px; margin:.3em 0 1em}
+  .obj li{margin-bottom:.35em}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:700px){.duo{grid-template-columns:1fr}}
+  .tbl-wrap{overflow-x:auto}
+  .regle4{font-size:9.5pt; color:var(--gris); font-style:italic}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; vertical-align:1px; white-space:nowrap}
+  .stD{background:#e6f4ee; color:#0e7a5f; border:1px solid #9fd6c2}
+  .stC{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .stE{background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; background:#fff; padding:9px 16px; margin:.4em 0 1em; font-size:11pt}
+  .situation h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .incident{font-size:10pt; background:#fdeaea; border:1px solid #e8b4b4; border-radius:4px; padding:6px 12px; margin:.4em 0 1em; color:#8c2f2f}
+  .tab-der{font-size:10pt}
+  .tab-der td{padding:5px 8px}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:10pt; letter-spacing:.04em}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .eval-row td{background:#fff6cc!important}
+  .cols2{columns:2; column-gap:26px; font-size:10.5pt}
+  .meta-seance{display:flex; flex-wrap:wrap; gap:8px 22px; font-size:11pt; color:var(--gris); margin:.2em 0 1em}
+  .meta-seance b{color:var(--encre)}
+  .notion{background:var(--fond-doux); border-left:6px solid var(--orange); border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.4em 0 1.1em; font-size:10pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:7px 11px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris)}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .formule b{color:var(--bleu)}
+  @media (max-width:700px){.formule{grid-template-columns:1fr 1fr}}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:11pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:9.5pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8.5pt; letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .annonce{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#fff6cc; color:#7a5b00; border:1px solid #e3cf70}
+  .credits{border:2px solid var(--bleu); border-radius:8px; background:var(--fond-doux); padding:18px 24px; margin:1em 0; font-size:10.5pt; color:var(--gris)}
+  .credits b{color:var(--bleu)}
+  .module-liste{font-size:10.5pt}
+  .module-liste .type{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .module-liste code{font-size:9.5pt; color:var(--gris); background:var(--fond-doux); border-radius:3px; padding:0 4px}
+  @media print{
+    body{background:#fff; padding:0}
+    .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always}
+    tr{page-break-inside:avoid; break-inside:avoid}
+    .barre table, .formule, .situation, .encadre-secu, .secu, .notion, .cartouche-methode, .obj, .duo>div, .plan, .credits{page-break-inside:avoid; break-inside:avoid}
+    h2,h3{page-break-after:avoid}
+    img{page-break-inside:avoid}
+  }
+</style>
+
+<!-- ============================ FEUILLE 1 : PAGE DE GARDE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup">
+      <img class="logo-lycee" src="images/logo-lycee-jacques-raynaud.png" alt="LPP Jacques Raynaud">
+    </div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>CAP Installateur en Froid et Conditionnement d'Air — 2<sup>e</sup> année</span>
+    <span>Année scolaire 2026-2027 · Période P5</span>
+  </div>
+
+  <div class="garde-centre">
+    <div class="garde-seq">Séquence S11</div>
+    <h1 class="garde-titre">Braser, raccorder les organes,<br>poser les manomètres</h1>
+    <div class="garde-soustitre">Le chantier de remise en état se poursuit — module A2, suite et fin</div>
+
+    <svg class="croix" width="220" height="138" viewBox="0 0 240 150" role="img" aria-label="Croix du Frigoriste">
+      <line x1="120" y1="18" x2="120" y2="132" stroke="#1b3a63" stroke-width="2"/>
+      <line x1="30" y1="75" x2="210" y2="75" stroke="#1b3a63" stroke-width="2"/>
+      <g font-family="Trebuchet MS, sans-serif" font-size="11" font-weight="bold" fill="#1b3a63" text-anchor="middle">
+        <text x="120" y="12">COMPRESSEUR</text>
+        <text x="120" y="146">DÉTENDEUR</text>
+      </g>
+      <g font-family="Trebuchet MS, sans-serif" font-size="11" font-weight="bold" fill="#1b3a63">
+        <text x="214" y="79">CONDENSEUR</text>
+        <text x="26" y="79" text-anchor="end">ÉVAPORATEUR</text>
+      </g>
+      <circle cx="120" cy="75" r="5" fill="#ff6b35"/>
+    </svg>
+    <div class="croix-legende">La ligne liquide façonnée en S10 relie condenseur et détendeur — S11 la brase et l'équipe de ses organes de mesure.</div>
+
+    <div class="garde-illustration">
+      <img src="images/croix-frigoriste-schema-technique.svg" alt="Schéma technique du circuit frigorifique : compresseur, condenseur, détendeur, évaporateur" style="max-width:92%">
+      <div class="garde-illustration-legende">Schéma de principe — symboles normalisés, bibliothèque usine FrigorX.</div>
+    </div>
+
+    <div class="comp-chips">
+      <span class="chip">C3.3 <small>Implanter, fixer</small></span>
+      <span class="chip">C3.4 <small>Façonner, raccorder</small></span>
+      <span class="chip">C4.5 <small>Mesurer, comparer</small></span>
+      <span class="chip">C4.6 <small>Paramétrer, régler</small></span>
+      <span class="chip">C4.7 <small>Raccorder charge/mesure</small></span>
+    </div>
+
+    <div class="garde-meta">
+      <b>Semaines 4 à 6</b> · du 22 septembre au 10 octobre 2026 — <b>suite directe de S10</b><br>
+      <b>7 modules indépendants</b> : 3 ateliers de 4 h (A2-a, A2-b, A2-c) · 2 modules théorie de 1 h
+      (T1, T2) · 1 carnet de bord fil de l'eau (F3, 2 h) · 1 évaluation sommative S10-S11 (1 h, sem. 7)<br>
+      <b>Poursuite du chantier de remise en état</b> : la ligne liquide façonnée en S10 est ici brasée,
+      raccordée à ses organes (filtre déshydrateur, voyant liquide), équipée de ses prises de pression
+      et de ses manomètres BP/HP<br>
+      <span style="font-size:10.5pt; color:var(--gris)">Cadre : référentiel <b>CAP IFCA</b> (activités, tâches, savoirs, compétences) ·
+      contribution certificative : la séquence prépare surtout <b>EP2</b> réalisation (façonnage, brasage,
+      raccordement des organes) et amorce <b>EP3</b> mise en service (mesures, lecture des manomètres) —
+      la ligne liquide brasée sur le chantier est le support du CCF</span>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 2 : PLAN DE SÉQUENCE MODULAIRE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup">
+      <img class="logo-lycee" src="images/logo-lycee-jacques-raynaud.png" alt="LPP Jacques Raynaud">
+    </div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S11 — plan de séquence modulaire</span>
+    <span>CAP IFCA 2A · P5 · semaines 4-6 (+ éval sem. 7)</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Vue d'ensemble des modules</h2>
+  <p>C'est la <b>suite directe de S10</b> : la ligne liquide, façonnée à blanc en fin de S10, est ici
+  <b>brasée sous azote</b>, raccordée à ses organes (filtre déshydrateur, voyant liquide), puis équipée
+  de ses <b>prises de pression et de ses manomètres BP/HP</b>. La séquence n'est plus organisée en
+  « séances de 8 h » mais en <b>modules indépendants ≤ 4 h</b>, assemblés sur les semaines 4 à 6. Elle se
+  clôt par la préparation des réglages de surchauffe et de sous-refroidissement, avant l'<b>évaluation
+  sommative officielle S10-S11</b> de la semaine 7, qui remonte le positionnement École Directe.</p>
+
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Sem.</th><th>Module (type · durée)</th><th>Contenu</th><th>Compétences (statut)</th><th>Méthode pédagogique <span class="etiquette et-var" style="background:#fff">Variée</span></th><th>Se croise avec…</th></tr>
+    <tr><td><b>4</b><br>22-26/09</td><td><b>A2-a</b><br>Atelier · 4 h</td><td>Brasage + raccordement de la ligne liquide (filtre déshydrateur, voyant liquide, prises de pression BP/HP)</td><td>C3.4 <span class="statut stC">Confortement</span> → <span class="statut stE">Évaluation</span><br>C4.7 <span class="statut stD">Découverte</span></td><td>Démonstration de sécurité imposée + pratique guidée 2 jalons + fiche d'auto-contrôle qualité</td><td>Prévention des risques (permis de feu, brûlure/incendie) · co-français (carnet de bord) · chef-d'œuvre (vidéo) · module A2 entamé en S10</td></tr>
+    <tr><td><b>4</b></td><td><b>T1</b><br>Théorie · 1 h</td><td>Le détendeur · la surchauffe</td><td>S5.1 <span class="statut stD">Découverte</span></td><td>Cours actif : accroche → découverte → application → synthèse</td><td>Technologie (rôle du détendeur) · module A2-a</td></tr>
+    <tr><td><b>5</b><br>29/09-03/10</td><td><b>A2-b</b><br>Atelier · 4 h</td><td>Façonnage complexe (chapeau de gendarme, collecteur) + pose des manomètres BP/HP + lecture double graduation</td><td>C3.4 <span class="statut stE">Évaluation</span><br>C4.5 <span class="statut stD">Découverte</span> → <span class="statut stC">Confortement</span></td><td>Chantier autonome jalonné (2 jalons) + carnet de bord + relevés</td><td>Mathématiques (lecture de graduations, relation pression-température) · technologie (organes de mesure) · co-français (carnet de bord)</td></tr>
+    <tr><td><b>6</b><br>06-10/10</td><td><b>A2-c</b><br>Atelier · 4 h</td><td>Fin de la ligne liquide + pose complète des manomètres + relevé des pressions + préréglage de consigne au banc</td><td>C4.5 <span class="statut stC">Confortement</span> → <span class="statut stE">Évaluation</span><br>C4.6 <span class="statut stD">Découverte</span></td><td>Chantier jalonné (2 jalons) + mise sous pression contrôlée + préréglage au banc hors tension/fluide</td><td>Mathématiques-sciences (calcul d'écart) · prévention des risques (permis de feu) · S12 = mise en service et réglages</td></tr>
+    <tr><td><b>6</b></td><td><b>T2</b><br>Théorie · 1 h</td><td>Surchauffe / sous-refroidissement · incondensables</td><td>S5.1 · S5.2 <span class="statut stD">Découverte</span> → <span class="statut stC">Confortement</span></td><td>Situation-problème + cours actif (calcul d'écarts, seuils 5-10 K / 4-8 K)</td><td>Module A2-c · prépare l'évaluation sommative</td></tr>
+    <tr><td><b>4-6</b><br>continu</td><td><b>F3</b><br>Fil de l'eau · 2 h</td><td>Carnet de bord de chantier (tenu à chaque module)</td><td>C1.3 · C2.1 <span class="statut stC">Confortement</span></td><td>Fiche-carnet à rubriques, remplie au fil de l'eau</td><td>Co-français (carnet de bord) · tous les modules atelier</td></tr>
+    <tr class="eval-row"><td><b>7</b><br>13-17/10</td><td><b>Évaluation sommative S10-S11</b><br>1 h</td><td>Façonnage + brasure (C3.4) · fixation d'organe (C3.3, reprise S10) · relevé + lecture 2 manomètres (C4.5)</td><td>C3.3 · C3.4 · C4.5 <span class="statut stE">Évaluation</span></td><td>Poste individuel chronométré, remontée École Directe</td><td>Reprise C3.3 (S10) + C3.4, C4.5 (S10-S11) — clôture du module A2</td></tr>
+  </table>
+  </div>
+
+  <h3>La formule de Bowers de la séquence — tâche + savoir + savoir-être → compétence <span class="etiquette et-inv">Invariant</span></h3>
+  <p style="font-size:11pt; margin-bottom:.3em">Une compétence n'est jamais évaluée « en l'air » : elle l'est
+  <b>au travers d'une tâche</b> professionnelle, <b>en mobilisant un savoir</b>, <b>dans une posture</b> (le savoir-être).
+  <span class="regle4">Règle de charte : jamais plus de 4 compétences évaluées dans un module, un TP ou un exercice.</span></p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Module</th><th>Tâches (référentiel CAP IFCA)</th><th>Savoirs</th><th>Savoir-être</th><th>Compétences (≤ 4)</th></tr>
+    <tr><td><b>A2-a</b></td><td><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Tirer au vide, charger et contrôler sous tension <span class="nuance">(amorce, prises de pression)</span></td><td><b>S2.1</b> Outils, normes et représentation <span class="nuance">prérequis</span> · <b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">prérequis</span><br><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span> · <b>S6.1</b>, <b>S6.2</b> Sécurité et prévention des risques <span class="nuance">nouveau</span></td><td rowspan="3">Sécurité sans rappel (permis de feu, EPI) · rigueur du geste de brasage et de façonnage · honnêteté de l'auto-contrôle et de la mesure · autonomie entre les jalons · tenue rigoureuse du carnet de bord</td><td>C3.4 <span class="statut stC">Confortement</span> → <span class="statut stE">Évaluation</span><br>C4.7 <span class="statut stD">Découverte</span></td></tr>
+    <tr><td><b>A2-b</b></td><td><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</td><td><b>S5.5</b>, <b>S6.1</b> <span class="nuance">prérequis</span><br><b>S2.1</b> <span class="nuance">augmenté</span> · <b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">nouveau</span></td><td>C3.4 <span class="statut stE">Évaluation</span><br>C4.5 <span class="statut stD">Découverte</span> → <span class="statut stC">Confortement</span></td></tr>
+    <tr><td><b>A2-c</b></td><td><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T14</b> Régler l'installation en fonctionnement</td><td><b>S5.2</b>, <b>S6.1</b> <span class="nuance">prérequis</span><br><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">nouveau</span> · <b>S5.1</b> <span class="nuance">augmenté</span></td><td>C4.5 <span class="statut stC">Confortement</span> → <span class="statut stE">Évaluation</span><br>C4.6 <span class="statut stD">Découverte</span></td></tr>
+    <tr class="eval-row"><td><b>Éval</b><br><i>sem. 7</i></td><td>T10 · T11 (reprise clôture module A2)</td><td>S2.1 · S5.5 · S5.2 (reprise)</td><td>Autonomie au poste, honnêteté de l'auto-positionnement</td><td>C3.3 <span class="statut stE">Évaluation</span> <i>(reprise S10)</i> · C3.4 <span class="statut stE">Évaluation</span> · C4.5 <span class="statut stE">Évaluation</span></td></tr>
+  </table>
+  </div>
+  <p style="font-size:10pt; color:var(--gris); margin:-.4em 0 1em"><b>Statut d'une compétence dans un module</b> — son poids pour le diplôme n'est pas le même :
+  <span class="statut stD">Découverte</span> première rencontre, aucun poids ·
+  <span class="statut stC">Confortement</span> renforcement, poids réduit (formatif) ·
+  <span class="statut stE">Évaluation</span> positionnement officiel remonté (École Directe), plein poids.
+  Même nuance pour les savoirs : <i>nouveau · augmenté · évalué</i>.</p>
+
+  <h3>Montée spiralaire des compétences sur la séquence</h3>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Code</th><th>Compétence</th><th>Niveau visé en entrée (P5)</th><th></th><th>Niveau visé en sortie (P5)</th></tr>
+    <tr><td><b>C3.3</b></td><td>Implanter, manutentionner, fixer</td><td><span class="badge-niveau nV">Validé</span> <i style="font-size:9pt">(acquis S10)</i></td><td class="fleche">→</td><td><span class="badge-niveau nV">Validé</span> <i style="font-size:9pt">(reprise éval. sem. 7)</i></td></tr>
+    <tr><td><b>C3.4</b></td><td>Façonner, raccorder, assembler, isoler</td><td><span class="badge-niveau nC">Confortement</span></td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span></td></tr>
+    <tr><td><b>C4.5</b></td><td>Mesurer, comparer des grandeurs</td><td><span class="badge-niveau nC">Confortement</span></td><td class="fleche">→</td><td><span class="badge-niveau nM">Maîtrise</span></td></tr>
+    <tr><td><b>C4.6</b></td><td>Paramétrer ou régler les valeurs de consigne</td><td><span class="badge-niveau nC">Confortement</span></td><td class="fleche">→</td><td><span class="badge-niveau nC">Confortement</span> <i style="font-size:9pt">(découverte S11, poursuivi en S12)</i></td></tr>
+    <tr><td><b>C4.7</b></td><td>Raccorder les équipements de charge, de mesure et de contrôle</td><td><span class="badge-niveau nI">Initiation</span></td><td class="fleche">→</td><td><span class="badge-niveau nC">Confortement</span> <i style="font-size:9pt">(amorce, poursuivi en S12)</i></td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin-top:-.4em">Rappel : l'échelle 0-4 (grilles de module) est le <b>positionnement constaté</b> un jour donné ;
+  la progression I (Initiation) / C (Confortement) / M (Maîtrise) / V (Validé) ci-dessus est le <b>niveau visé</b> dans la progression annuelle — deux axes distincts.</p>
+
+  <div class="encadre-secu">
+    <h3>⚠ Fil rouge sécurité de la période P5</h3>
+    <ul style="margin-bottom:.2em">
+      <li><b>Brasage sous azote</b> : permis de feu obligatoire avant toute flamme, chalumeau oxyacétylénique
+      manipulé dans l'ordre, balayage d'azote anti-oxydation systématique, EPI complets (lunettes teintées,
+      gants cuir, tablier ignifugé), extincteur et point d'eau localisés à chaque module.</li>
+      <li><b>Manipulation sous pression</b> (modules A2-b et A2-c) : vanne Schrader avec outil dédié uniquement,
+      jamais de purge brutale ni dirigée vers un camarade, EPI (lunettes, gants) pour toute manipulation.</li>
+      <li><b>Aucune mise sous tension</b> avant l'évaluation sommative de la semaine 7 ; tout préréglage de
+      consigne se fait au banc, hors tension et hors fluide.</li>
+      <li><b>Analyse de risque du chantier</b> renouvelée à chaque module atelier (rituel de mise en sécurité, phase 5).</li>
+    </ul>
+  </div>
+
+  <h3>Évaluation sommative S10-S11 (semaine 7, poste individuel ≥ 1 h)</h3>
+  <p style="margin-bottom:.2em">Repérée en <b>jaune</b> <span style="background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a; border-radius:8px; padding:0 7px; font-size:9pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold">#fff6cc</span> :
+  c'est l'<b>évaluation officielle conjointe</b> que S10 avait « préfigurée » et que S11 prépare directement.
+  Positionnement individuel, poste par poste, en 3 parties courtes — <b>1)</b> un façonnage + une brasure
+  conformes au gabarit (<b>C3.4</b>) · <b>2)</b> mise en place et fixation d'un organe (<b>C3.3</b>, reprise
+  S10) · <b>3)</b> relevé et lecture de 2 manomètres (BP/HP) avec conversion pression → température
+  (<b>C4.5</b>) — grille 0-4 à critères observables, ligne savoir-être, auto-positionnement avant correction.</p>
+  <p style="font-size:10.5pt; color:var(--gris)">C'est le <b>positionnement officiel</b> des trois compétences
+  C3.3 · C3.4 · C4.5 pour le diplôme : statut <b>Évaluation</b>, <b>remontée École Directe</b> à ce moment-là.
+  Elle clôt le module A2 (mise en place mécanique → façonnage → brasage/raccordement) ouvert en S10.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 3 : INVENTAIRE DES MODULES + CRÉDITS ============================ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup">
+      <img class="logo-lycee" src="images/logo-lycee-jacques-raynaud.png" alt="LPP Jacques Raynaud">
+    </div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S11 — inventaire des modules</span>
+    <span>CAP IFCA 2A · P5</span>
+  </div>
+
+  <div class="surtitre">Inventaire <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Les 7 modules et leurs dossiers</h2>
+  <p style="font-size:10.5pt">Chaque module est <b>autoportant</b> : son propre dossier contient plan de
+  module, document élève et document professeur (corrigé), en HTML/PDF/docx. Ce dossier de séquence ne
+  réembarque pas ce détail — il renvoie vers les fichiers, classés par module.</p>
+
+  <div class="tbl-wrap module-liste">
+  <table>
+    <tr><th style="width:9%">Sem.</th><th style="width:16%">Module</th><th style="width:8%">Durée</th><th style="width:34%">Documents produits</th></tr>
+    <tr><td>4</td><td class="type">A2-a — Atelier</td><td>4 h</td><td><code>Séance 1 - Brasage et raccordement de la ligne liquide/</code><br>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td>4</td><td class="type">T1 — Théorie</td><td>1 h</td><td><code>T1 - Le détendeur et la surchauffe/</code><br>Document élève · Document professeur</td></tr>
+    <tr><td>5</td><td class="type">A2-b — Atelier</td><td>4 h</td><td><code>Séance 2 - Façonnage complexe et pose des manomètres/</code><br>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td>6</td><td class="type">A2-c — Atelier</td><td>4 h</td><td><code>Séance 3 - Fin de la ligne liquide et préparation des réglages SC-SR/</code><br>Plan de séance · Document élève - TP · Document professeur - corrigé</td></tr>
+    <tr><td>6</td><td class="type">T2 — Théorie</td><td>1 h</td><td><code>T2 - Surchauffe, sous-refroidissement et incondensables/</code><br>Document élève · Document professeur</td></tr>
+    <tr><td>4-6</td><td class="type">F3 — Fil de l'eau</td><td>2 h (continu)</td><td><code>F3 - Carnet de bord/</code><br>Document élève · Document professeur</td></tr>
+    <tr class="eval-row"><td>7</td><td class="type">Évaluation sommative S10-S11</td><td>1 h</td><td><code>Évaluation sommative S10-S11 (semaine 7)/</code><br>Document élève - sujet · Document professeur - corrigé et grille · Plan de passation</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris); margin-top:-.4em">Les plans de module détaillés (déroulement en phases,
+  minutage, sécurité, grilles) vivent dans chacun de ces dossiers — ils ne sont pas dupliqués ici.</p>
+
+  <h2 class="titre-page" style="margin-top:1.6em">Crédits</h2>
+  <div class="credits">
+    <p style="margin:.2em 0"><b>Projet inerWeb</b> — © 2026 Franck Henninot.</p>
+    <p style="margin:.2em 0">Support pédagogique original conçu et développé par Franck Henninot.</p>
+    <p style="margin:.2em 0">Reproduction, diffusion et adaptation à des fins pédagogiques <b>non commerciales</b>
+    autorisées, sous réserve de conserver cette mention, de citer l'auteur et de ne pas supprimer les crédits.</p>
+    <p style="margin:.2em 0">Exploitation commerciale interdite sans accord écrit.</p>
+    <p style="margin:.2em 0">Équivalent <b>Creative Commons BY-NC 4.0</b> — v1.0 · inerweb.fr</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>

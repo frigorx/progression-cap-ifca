@@ -1,0 +1,442 @@
+<meta charset="utf-8">
+<title>Document professeur — S3-F2 · Brasage tendre : assemblages</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Brasage tendre : assemblages</td>
+      <td style="width:38%"><span class="lib">Module atelier S3-F2 · 4 h × 2 — DOCUMENT PROFESSEUR</span><b>Premier assemblage définitif de l'année</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S3</span> · semaines 10-11</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone dédiée aux postes de brasage (ventilée, dégagée de tout inflammable) + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — deux demi-journées distinctes (semaine 10 et semaine 11)</td>
+      <td><span class="lib">Modalité</span>Démonstration commentée PUIS ateliers tournants : postes de brasage en rotation</td>
+      <td><span class="lib">Encadrement</span>1 professeur, supervision rapprochée à chaque allumage</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4>Prérequis réactivés : gestes cuivre (S1-S2), étanchéité à l'eau savonneuse (S3-F1)<br><b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">augmenté (risques spécifiques à la flamme)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur face à un risque nouveau · respect absolu des gestes interdits · honnêteté du contrôle avant brasage</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">sur T10 · S2.1</span><br><span class="statut">Confortement</span> <b>C2.4</b> Sécuriser l'intervention <span class="nuance">sur T12 · S6.2</span></div>
+  </div>
+
+  <div class="vigilance"><b class="t">Ce qui change depuis S2 — à annoncer explicitement aux élèves</b> — En S2,
+  tous les assemblages étaient <b>mécaniques et démontables</b> (dudgeon + écrou) : une pièce ratée se refaisait
+  sans conséquence. <b>S3-F2 introduit le premier assemblage DÉFINITIF de l'année</b> : un brasage ne se
+  « redéfait » pas comme un dudgeon. C'est aussi la <b>première séance avec une flamme</b> : aucun risque de ce
+  type n'existait en S2. Statut : <b>Confortement</b> pour les deux compétences — aucune Évaluation remontée
+  dans S3 (l'évaluation É2, sur ce contenu et d'autres, aura lieu en S4).</div>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève : même numérotation,
+  mêmes 2 passages × 2 jalons. Il y ajoute : les réponses attendues avec point de vigilance, les critères
+  observables de conformité de l'emboîture et du cordon de brasage, la conduite détaillée de chaque jalon, les
+  erreurs typiques d'élèves avec leur remédiation, l'organisation du plateau (postes de brasage en rotation), le
+  minutage recompté pour les deux passages, et la différenciation. <b>Aucune valeur non autorisée n'est
+  donnée</b> : la seule valeur chiffrée du module est <b>450 °C</b> (limite normalisée du brasage tendre) ; la
+  cote <b>350 mm ± 2 mm</b> vient de l'exercice source restitué à l'identique ; l'alliage exact du métal
+  d'apport, le flux et le matériel de brasage restent <b>« selon la notice du produit utilisé à l'atelier, à
+  faire valider »</b>.</p>
+
+  <h3 class="section">Méthode pédagogique du module — démonstration commentée puis ateliers tournants</h3>
+  <p style="font-size:10.5pt">La charte pédagogique est explicite (§1, limite du « autant que faire se peut ») :
+  <b>les gestes à risque ne se découvrent pas, ils se démontrent et s'imposent.</b> Le professeur réalise donc
+  une démonstration <b>intégrale et commentée</b> au passage 1, avant toute prise en main par les élèves :
+  aucun élève ne manipule un chalumeau sans avoir vu le geste complet au moins une fois. Ensuite, les élèves
+  passent par des <b>postes de brasage en rotation</b> (le nombre de postes est limité par la sécurité,
+  contrairement aux postes cuivre individuels de S1-S2) : le professeur supervise <b>chaque</b> allumage,
+  jamais par lot.</p>
+  <div class="vigilance"><b class="t">Point de vigilance sécurité — non négociable</b> — Ne jamais valider
+  plusieurs allumages simultanément sans surveillance directe de chacun. Un élève en attente de son tour au
+  poste de brasage doit avoir une occupation clairement définie (carnet de bord, observation du binôme,
+  contrôle d'une pièce déjà brasée) : l'inactivité au bord d'un poste à risque est elle-même un facteur
+  d'accident.</div>
+
+  <div class="jalon"><h4>Passage 1 / Passage 2 — ce qui change (conduite professeur)</h4>
+  <b>Passage 1 (semaine 10) — emboîtures + premiers brasages, établi, position confortable.</b> Jalon 1
+  (≈ 55 min) : après la démonstration intégrale, chaque élève réalise <b>une emboîture d'essai</b> sur une
+  chute, à son établi. Jalon 2 (≈ 70 min) : <b>premier brasage</b> de cette emboîture, aux postes en rotation.
+  <b>Ne pas introduire la pièce cotée du client ce jour-là</b>, même si un élève rapide le demande : garder
+  cette progressivité pour le passage 2.<br>
+  <b>Passage 2 (semaine 11) — l'exercice complet du client, en autonomie guidée.</b> Jalon A' (≈ 60 min) :
+  traçage et réalisation des <b>3 emboîtures cotées</b> (350 mm ± 2 mm) sur le tube 450 mm, <b>contrôle
+  professeur obligatoire AVANT tout brasage</b> — ne jamais autoriser un brasage sur une emboîture non vue,
+  même si l'élève semble sûr de lui. Jalon B' (≈ 65 min) : <b>brasage des 3 emboîtures</b>, contrôle visuel du
+  cordon après chacune. La démonstration intégrale <b>n'est pas redonnée</b> : un rappel bref suffit, mais la
+  sécurité, elle, ne s'allège jamais.</div>
+
+  <h3 class="section">Trame horaire — module 4 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, appel, rappel de l'organisation (démonstration puis postes en rotation) — identique aux deux passages.</td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Passage 1 : ordre d'intervention OI-S3-2, assemblage DÉFINITIF de la liaison du pavillon, après l'étanchéité prouvée en S3-F1. Passage 2 : rappel de S3-F1, objectif du jour — l'exercice complet.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés, lien avec C3.4/C2.4, statut Confortement — identique aux deux passages.</td></tr>
+    <tr><td>10 min</td><td class="ph">4. Vérifier les prérequis</td><td>Passage 1 : passage en tenue échelonné, quiz oral sur les gestes cuivre déjà acquis (S1-S2). Passage 2 : passage en tenue échelonné, rappel bref de la définition du brasage tendre (450 °C).</td></tr>
+    <tr><td>25 min</td><td class="ph">5. Donner la démarche</td><td>Mise en sécurité renforcée aux deux passages (extincteur localisé et vérifié, ventilation, gestes interdits — rituel qui ne s'allège jamais). Passage 1 : <b>démonstration commentée intégrale</b> du geste de brasage. Passage 2 : <b>rappel bref</b> du geste, pas de redémonstration intégrale.</td></tr>
+    <tr><td><b>55 / 60 min</b></td><td class="ph">6. Guider l'étude (a) — jalon 1 / A' : emboîture(s)</td><td>Passage 1 (55 min) : jalon 1 — chaque élève réalise une emboîture d'essai sur chute, à son établi, validation individuelle avant brasage. Passage 2 (60 min) : jalon A' — traçage et réalisation des 3 emboîtures cotées (100/100/100/50 mm) sur le tube 450 mm, <b>contrôle professeur obligatoire</b> avant tout brasage.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td><b>70 / 65 min</b></td><td class="ph">6. Guider l'étude (b) — jalon 2 / B' : brasage</td><td>Passage 1 (70 min) : jalon 2 — brasage de l'emboîture d'essai aux postes en rotation, supervision de chaque allumage, contrôle visuel du cordon. Passage 2 (65 min) : jalon B' — brasage des 3 emboîtures en rotation, contrôle visuel du cordon après chacune.</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Présentation des pièces brasées, auto-positionnement, validation professeur — identique aux deux passages.</td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Carnet de bord + bon de commande hebdomadaire (tube, métal d'apport, flux, gaz) — identique aux deux passages.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Chalumeaux éteints et vérifiés froids, gaz fermé, tri des chutes (rangement spécifique brasage) — identique aux deux passages.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour tenue de ville. Passage 1 : annonce du passage 2 (semaine 11). Passage 2 : annonce de la suite (S3-T1 selon rotation).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 10+10+5+10+25 =
+  <b>1 h 00</b> (plafond, identique aux deux passages) ; jalon 1/A' + pause 15 min + jalon 2/B' = 2 h 20 (passage 1 :
+  55+15+70 ; passage 2 : 60+15+65) ; synthèse 15 + bon de commande 10 + rangement 10 + clôture 5 = 40 min. Total
+  module : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, aux deux passages, conforme au plan de séance. Les
+  deux passages totalisent bien <b>240 minutes chacun</b>, seule la répartition entre jalon 1/A' et jalon 2/B'
+  change.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ + CORRIGÉ DÉFINITION + CORRIGÉ JALON 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Sécurité — un rituel qui ne s'allège jamais entre les deux passages</h3>
+  <p style="font-size:10.3pt">Contrairement au rappel de gestes cuivre (qui s'allège d'un passage à l'autre), la
+  sécurité face à la flamme <b>ne s'allège JAMAIS</b> : extincteur vérifié, ventilation contrôlée et gestes
+  interdits rappelés à l'identique aux deux passages. Un seul point évolue : la <b>démonstration intégrale</b>
+  du geste n'est donnée qu'une fois (passage 1) ; au passage 2, un rappel bref suffit pour le <b>geste</b>, mais
+  pas pour la <b>sécurité</b>.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Ne jamais autoriser un élève à
+  allumer seul un chalumeau, aux deux passages, même au 2<sup>e</sup> passage où l'élève semble à l'aise :
+  <b>chaque allumage est supervisé</b>, sans exception, contrairement à la mise sous tension électrique de S2-E1
+  qui pouvait être groupée par poste — ici, un seul poste de brasage à la fois sous le regard du professeur.</div>
+
+  <h3 class="section">Corrigé — la définition du brasage tendre</h3>
+  <div class="reponse"><b class="t">Question</b> — Avec vos propres mots, expliquez pourquoi on appelle ce
+  procédé « brasage tendre » plutôt que « brasage fort ». Qu'est-ce qui les distingue ?<br><br>
+  <b>Réponse attendue :</b> le brasage <b>tendre</b> utilise un métal d'apport qui fond à une température
+  <b>inférieure à 450 °C</b> — c'est cette valeur qui définit la limite normalisée entre tendre et fort. Le
+  brasage <b>fort</b> (ou soudo-brasage) utilise une température plus élevée.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — <b>Ne pas donner la valeur exacte du brasage
+  fort</b> à ce stade, même si un élève insiste : aucune autre valeur chiffrée que 450 °C n'est autorisée par le
+  cadrage de ce module ; le brasage fort sera vu à une étape ultérieure de la formation, avec sa propre source.</div>
+
+  <h3 class="section">Corrigé — jalon 1 (démonstration + emboîture d'essai) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Attention pendant la démonstration</td><td>Aucune question posée pendant que la flamme est allumée ; questions regroupées juste après. Un élève qui parle ou bouge pendant l'allumage doit être immédiatement recadré.</td></tr>
+    <tr><td>Décapage avant emboîture</td><td>Surface propre, sans trace visible d'oxydation ; un décapage insuffisant est la cause la plus fréquente d'un futur cordon non conforme.</td></tr>
+    <tr><td>Cote et alignement de l'emboîture</td><td>Conforme à la cote donnée pour l'essai (fixée par le professeur, pas encore 350 mm) ; alignement des deux tronçons sans jeu excessif.</td></tr>
+    <tr><td>Manipulation avant brasage</td><td>Le tube emboîté est présenté au professeur avant tout allumage, comme dans le rituel qui sera exigé au jalon A' du passage 2.</td></tr>
+  </table>
+
+  <h3 class="section">Erreurs typiques — jalon 1</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Élève qui pose des questions pendant l'allumage de la démonstration</td><td>Interrompre immédiatement, rappeler que les questions attendent l'extinction de la flamme — règle de sécurité, pas de confort.</td></tr>
+    <tr><td>Décapage bâclé ou oublié</td><td>Faire reprendre le décapage avant de continuer ; montrer la différence de surface au toucher (avec gant) entre une zone décapée et une zone non décapée.</td></tr>
+    <tr><td>Emboîture forcée, tronçon abîmé</td><td>Reprendre sur une chute neuve ; rappeler que l'outil d'expansion se manœuvre progressivement, sans forcer.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ JALON 2 + CORRIGÉ JALON A' ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon 2 (premier brasage) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Chauffe du raccord</td><td>Chauffe <b>uniforme</b> du raccord, jamais de la baguette directement ; une chauffe localisée en un seul point est un facteur de surchauffe locale.</td></tr>
+    <tr><td>Avancée du métal d'apport</td><td>Présenté au point le plus chaud, aspiré par capillarité ; un métal d'apport « poussé » à la baguette plutôt qu'aspiré indique une chauffe insuffisante.</td></tr>
+    <tr><td>Retrait de la flamme</td><td>Dès que le cordon est complet ; une flamme maintenue trop longtemps après la formation du cordon provoque la surchauffe (cordon noirci).</td></tr>
+    <tr><td>Refroidissement</td><td>Sans manipulation du tube tant qu'il n'a pas visiblement refroidi ; utilisation des gants anti-chaleur en cas de doute.</td></tr>
+    <tr><td>Aspect final du cordon</td><td>Continu, brillant, sans manque, sans surchauffe — les 4 critères du contrôle visuel (voir croquis du TP élève, feuille 4).</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — question du jalon 2 (brûlure)</h3>
+  <div class="reponse"><b class="t">Question</b> — Vous venez de retirer la flamme : le tube a l'air froid en
+  surface. Pouvez-vous le saisir à main nue pour le ranger tout de suite ?<br><br>
+  <b>Réponse attendue :</b> <b>non</b>. Un tube brasé reste chaud longtemps après l'extinction de la flamme,
+  même s'il n'en a plus l'air en surface. On attend un refroidissement visible et confirmé, ou on utilise
+  systématiquement les gants anti-chaleur — jamais la main nue par estimation visuelle.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — C'est l'erreur de sécurité la plus fréquente sur
+  ce module : un élève qui juge « ça a l'air froid » se fie à l'apparence, pas à une vérification réelle.
+  Rappeler systématiquement cette règle avant chaque rangement de pièce brasée, aux deux passages.</div>
+
+  <h3 class="section">Corrigé — jalon A' (les 3 emboîtures cotées) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Traçage des 3 repères</td><td>Distances 100 mm / 100 mm / 100 mm / 50 mm reportées depuis une extrémité, conformes au schéma source (annexe du TP élève).</td></tr>
+    <tr><td>Cote totale</td><td><b>350 mm ± 2 mm</b> (D'après : EXERCICE emboîture et brasage, fiche atelier CAP IFCA) — seule cote chiffrée autorisée pour cet exercice, restituée à l'identique de la source.</td></tr>
+    <tr><td>Décapage des 3 zones</td><td>Vérifié avant tout brasage, comme au jalon 1.</td></tr>
+    <tr><td>Présentation au professeur AVANT brasage</td><td><b>Obligation non négociable</b>, directement issue de l'exercice source (« montrer au professeur avant de braser ») : ne jamais autoriser un brasage sur une emboîture non contrôlée, quelle que soit l'assurance affichée par l'élève.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance — obligation source</b> — Ce point de contrôle vient
+  directement de l'exercice réel de l'atelier : il structure historiquement le barème source (méthode /15,
+  sécurité /10, autonomie /5, emboîture /10, cote /20, brasage /20). Dans la grille FrigorX 0-4, cette obligation
+  se retrouve dans le critère « Acquis » de C3.4 : la conformité de la cote ET le respect du contrôle avant
+  brasage sont tous deux nécessaires pour valider le niveau 3.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ JALON B' + ERREURS TYPIQUES PASSAGE 2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — jalon B' (brasage des 3 emboîtures) : critères observables</h3>
+  <table class="mini">
+    <tr><th style="width:28%">Critère observable</th><th>Ce qui est attendu / ce qui alerte</th></tr>
+    <tr><td>Ordre de brasage</td><td>Les 3 emboîtures brasées l'une après l'autre, avec refroidissement et contrôle visuel entre chacune — pas d'enchaînement précipité des 3 allumages.</td></tr>
+    <tr><td>Cordon de chaque emboîture</td><td>Continu, brillant, sans manque, sans surchauffe (les 4 critères du croquis, TP élève feuille 4). Une seule des 3 non conforme suffit à repasser en niveau 2 de la grille.</td></tr>
+    <tr><td>Contrôle avant la suivante</td><td>L'élève contrôle visuellement chaque cordon avant de passer à l'emboîture suivante, pas seulement à la toute fin.</td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — question de savoir-être (jalon B')</h3>
+  <div class="reponse"><b class="t">Question</b> — Le cordon de la 2<sup>e</sup> emboîture semble « limite » :
+  que fait l'élève ?<br><br>
+  <b>Réponse attendue :</b> il <b>alerte toujours le professeur</b>. Un frigoriste honnête signale un doute
+  plutôt que de livrer une pièce non conforme — d'autant plus ici que l'assemblage est <b>définitif</b> :
+  contrairement à un dudgeon raté, une emboîture mal brasée ne se corrige pas en la resserrant.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Valoriser explicitement, devant le groupe, un
+  élève qui signale un doute sur son propre cordon plutôt que de le présenter comme terminé : c'est le niveau 4
+  (« Parfaitement maîtrisé ») du savoir-être de la grille.</div>
+
+  <h3 class="section">Erreurs typiques — passage 2</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Cote hors tolérance sur une des 3 emboîtures (précipitation du passage 2, « moins d'aide, plus vite » mal compris)</td><td>Rappeler que l'autonomie ne veut jamais dire moins de rigueur ; faire retracer et reprendre l'emboîture concernée avant tout brasage.</td></tr>
+    <tr><td>Élève qui tente de braser sans montrer ses emboîtures</td><td>Interrompre immédiatement avant tout allumage ; rappeler que ce point de contrôle est non négociable, comme dans l'exercice source de l'atelier.</td></tr>
+    <tr><td>Surchauffe sur la 3<sup>e</sup> emboîture par fatigue de geste ou impatience de terminer</td><td>Faire une pause avant la dernière pièce si nécessaire ; rappeler qu'un cordon noirci est un cordon à refaire, pas un détail.</td></tr>
+    <tr><td>Manipulation d'une pièce encore chaude entre deux brasages</td><td>Interrompre, rappeler la règle du refroidissement systématique ; proposer d'utiliser les gants anti-chaleur en cas de doute.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — ORGANISATION DU PLATEAU + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation du plateau — postes de brasage en rotation</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Zone</th><th style="width:40%">Fonction / matériel</th><th>Points de vigilance</th></tr>
+    <tr><td><b>Établis individuels</b></td><td>Un établi par élève pour le traçage, le décapage et l'emboîture (outil d'expansion, mètre, feutre, toile abrasive) — pas de flamme à ce poste.</td><td>Contrôler chaque emboîture avant d'autoriser le déplacement vers un poste de brasage.</td></tr>
+    <tr><td><b>Postes de brasage (nombre limité)</b></td><td>Chalumeau, gaz, support de maintien, extincteur à proximité immédiate. Nombre de postes selon l'équipement réel de l'atelier — toujours inférieur au nombre d'élèves du demi-groupe.</td><td>Un seul allumage supervisé à la fois par poste ; jamais deux flammes allumées sans professeur à proximité de chacune.</td></tr>
+    <tr><td><b>Poste de démonstration</b></td><td>Poste dédié, préparé à l'avance, visible de tout le groupe — support de la phase 5 au passage 1.</td><td>Vérifier avant l'arrivée des élèves : extincteur en place, zone dégagée, matériel complet.</td></tr>
+    <tr><td><b>Zone d'attente / carnet de bord</b></td><td>Table dédiée où les élèves en attente de leur tour de brasage tiennent leur carnet ou observent un binôme.</td><td>Jamais d'élève inoccupé à proximité immédiate d'un poste de brasage en fonctionnement.</td></tr>
+  </table>
+  <p style="font-size:10pt" class="vigilance"><b class="t">Circulation —</b> le professeur reste positionné à
+  proximité des postes de brasage pendant toute la phase 6 ; la rotation est organisée à l'avance (ordre de
+  passage affiché) pour éviter tout flottement autour d'un poste actif.</p>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Au passage 2, autoriser une emboîture d'essai supplémentaire avant les 3 cotées si le geste du passage 1 n'est pas encore sûr ; le professeur reste au poste pour le premier allumage de chaque élève concerné.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : démonstration puis 2 jalons par passage, contrôle systématique avant brasage.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après validation de sa pièce, l'élève explique à un pair les 4 critères du contrôle visuel du cordon, sans jamais manipuler la flamme à sa place.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire de la sécurité répété à l'identique (« jamais », « toujours », « avant de… ») ; les 4 gestes interdits illustrés par pictogrammes en complément du texte.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Étapes de traçage, emboîture et brasage toujours découpées en cases à cocher séparées ; le point « montrer au professeur AVANT de braser » matérialisé par un encadré visuel impossible à manquer (feuille 5 du TP élève).</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — GRILLE 0-4 (CORRIGÉ) + CROISEMENTS + SOURCES + POINTS EN ATTENTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S3-F2 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>Confortement</b> pour C3.4 et C2.4 —
+  poids réduit, <b>jamais Évaluation</b> dans S3 (l'évaluation officielle É2 aura lieu en S4).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits (frigorifique, hydraulique, aéraulique) <span class="nuance">sur T10 · S2.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Emboîture(s) hors tolérance et/ou cordon refusé au contrôle visuel, malgré aide ou reprise.</td>
+      <td>Emboîture(s) et brasage conformes avec l'aide du professeur ou après une reprise complète.</td>
+      <td>Réalise seul(e) les 3 emboîtures cotées (350 mm ± 2 mm) ET un cordon de brasage conforme (continu, brillant, sans manque, sans surchauffe).</td>
+      <td>Comme « Acquis », et repère seul(e) un défaut sur son cordon avant de le présenter.</td>
+    </tr>
+    <tr>
+      <td><b>C2.4</b> Sécuriser l'intervention <span class="nuance">sur T12 · S6.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Geste interdit commis (flamme vers un pair, flamme près d'une bouteille de gaz, tube chaud touché à main nue, chalumeau posé allumé) : <b>niveau 1 automatique</b>.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires (EPI, zone dégagée).</td>
+      <td>EPI et gestes respectés sans rappel, extincteur vérifié, zone sécurisée, aucun geste interdit.</td>
+      <td>Comme « Acquis », et alerte spontanément un pair sur un risque qu'il n'a pas vu.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — sécurité, rigueur, honnêteté</td>
+      <td>Non observé ce jour.</td>
+      <td>Geste dangereux ou précipitation qui compromet la sécurité : niveau 1 automatique, indépendamment de la qualité de la pièce.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Applique les consignes sans rappel, montre ses emboîtures avant brasage sans qu'on le lui demande.</td>
+      <td>Comme « Acquis », et signale spontanément un doute sur son propre cordon plutôt que de le livrer tel quel.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> tout geste interdit de sécurité
+  (flamme vers un pair, flamme près d'une bouteille de gaz, tube chaud touché à main nue, chalumeau posé allumé)
+  entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être, quelle que soit la qualité du
+  cordon obtenu ce jour-là : principe de sécurité non négociable, cohérent avec les grilles précédentes de
+  l'année.</div>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques</b> — brûlures, incendie, ventilation (S6.2, appui INRS) ;</li>
+    <li><b>Mathématiques</b> — cotes et tolérances (350 mm ± 2 mm), lecture d'un schéma coté ;</li>
+    <li><b>Co-intervention français</b> — rédaction du carnet de bord du module (F3) ;</li>
+    <li><b>Réinvestissement direct de S3-F1</b> — la pièce brasée peut être re-contrôlée à l'eau savonneuse
+    (non évalué ici, mentionné en fin de jalon B') ;</li>
+    <li><b>Évaluation É2</b> (S4) — ce module prépare, sans l'évaluer officiellement, un futur poste d'assemblage
+    définitif.</li>
+  </ul>
+
+  <div class="vigilance"><b class="t">Points à faire valider par Franck</b>
+  <ul class="liste-num" style="margin:.3em 0 0">
+    <li>Alliage exact du métal d'apport, flux et matériel de brasage réellement en service à l'atelier
+    (notice à fournir) ;</li>
+    <li>Procédure de refroidissement à l'eau tempérée (15 min) — règle standard de secourisme, à confirmer et
+    affiner par le SST de l'établissement ;</li>
+    <li>Nombre réel de postes de brasage disponibles à l'atelier, pour caler la taille des groupes de
+    rotation ;</li>
+    <li>Cote exacte de l'emboîture d'essai du passage 1 (jalon 1), laissée au choix du professeur le jour
+    même.</li>
+  </ul></div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : EXERCICE
+  emboîture et brasage, fiche atelier CAP IFCA (C3-Réaliser, F. Henninot) — dimensions et point de contrôle
+  restitués à l'identique (tube 14 × 1, 450 mm, 3 emboîtures, cote 350 mm ± 2 mm, contrôle professeur avant
+  brasage). Continuité directe du document professeur S3-F1 (réseau assemblé, étanchéité à l'eau savonneuse).
+  <b>Sources anciennes non extraites, à rouvrir par le professeur si souhaité</b> : « Le brasage tendre.doc »,
+  « Le brasage tendre (réalisations pratiques).doc » (mêmes dossier que la source utilisée), « 04_brasage.pdf »
+  (document scanné) — aucun contenu de ce document n'a été inventé à partir de ces sources illisibles.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .vigilance, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

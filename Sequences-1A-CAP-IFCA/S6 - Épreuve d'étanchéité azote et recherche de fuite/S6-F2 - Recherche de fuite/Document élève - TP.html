@@ -1,0 +1,454 @@
+<meta charset="utf-8">
+<title>TP élève — S6-F2 · Recherche de fuite</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
+  .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:9.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .cadre-dessin{border:2px solid #1b3a63; border-radius:4px; min-height:220px; margin:6px 0 4px; position:relative}
+  .cadre-dessin .consigne-cadre{position:absolute; top:4px; left:8px; font-size:8.5pt; color:#9aa5b1}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .annexe{border:3px solid var(--bleu); border-radius:8px; padding:10px 16px; background:var(--fond-doux)}
+  .mini-croquis{border:1.5px solid var(--bleu); border-radius:4px; background:#fff; min-height:56px; width:100%}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Épreuve d'étanchéité azote et recherche de fuite</td>
+      <td style="width:38%"><span class="lib">Module atelier S6-F2 · 4 h — PASSAGE UNIQUE</span><b>Recherche de fuite</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S6</span> · semaine 20</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom, prénom (élève 1)</span>________________</td>
+      <td><span class="lib">Nom, prénom (élève 2)</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Positionnement</span>
+        <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+      </td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S6-2</b> : un montage cuivre de l'<b>arrière-boutique</b> (préparé en S5, essayé en
+  <b>S6-F1</b>) est <b>revenu de chantier</b> : le client a signalé un léger sifflement, sans certitude. Avant toute
+  réparation, le bureau de contrôle vous demande de <b>localiser TOUTES les fuites</b> de ce montage, de <b>prouver</b>
+  chacune d'elles à l'eau savonneuse, de la <b>marquer</b>, puis de <b>rendre compte</b> au tableau de chasse. Une
+  fuite oubliée aujourd'hui, c'est une fuite qui reviendra sur le vrai chantier — et sur le plan réglementaire, une
+  fuite non détectée est aussi un enjeu <b>F-Gas</b> (D'après : F gas et recherche de fuite.docx).
+  <figure style="margin:10px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/manodetendeur-azote-schema-principe.jpg" alt="Rappel : bouteille d'azote, manodétendeur, montage sous pression"
+         style="max-width:70%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption class="legende">Rappel (S5-F2 / S6-F1) : c'est ainsi que votre montage a été mis sous pression, PAR
+    PALIERS, par le professeur (ou par l'élève-opérateur sous sa supervision directe), AVANT la séance d'aujourd'hui.
+    Vous ne touchez ni à la bouteille ni au manodétendeur pendant cette recherche de fuite. D'après :
+    1 mise sous azote.docx.</figcaption>
+  </figure></div>
+
+  <div class="change"><b class="t">Pourquoi une seule séance, cette fois</b> — En S6-F1, vous avez vécu l'épreuve
+  d'étanchéité <b>deux fois</b> (semaines 18 et 19). Aujourd'hui, ce module ne se vit <b>qu'une seule fois</b>. Ce
+  n'est pas un module au rabais : la <b>semaine 21</b> est entièrement consacrée à <b>É3</b>, la troisième
+  évaluation, où vous retrouverez <b>exactement ce geste</b> au poste froid — localiser et prouver une fuite sur un
+  montage fourni. C'est ce réinvestissement immédiat, et non un second passage, qui renforce aujourd'hui la
+  compétence <b>C3.9</b>, qui passe une dernière fois en <b>Confortement</b> avant l'Évaluation d'É3.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Honnêteté de la preuve (jamais de fuite déclarée sans bulle vue par un tiers) · rigueur d'une recherche systématique · sécurité (jamais toucher au manodétendeur)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span> <b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service <span class="nuance">vers Maîtrise</span><br><span class="statut">Confortement</span> <b>C4.5</b> Mesurer, comparer des grandeurs</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>rechercher méthodiquement</b> une fuite sur l'ensemble d'un montage sous pression, sans en oublier un seul point ;</li>
+    <li><b>prouver</b> chaque fuite trouvée à l'eau savonneuse (bulles observées, montrées à un tiers avant de continuer) ;</li>
+    <li><b>marquer</b> chaque fuite prouvée (feutre ou étiquette) pour la repérer ensuite ;</li>
+    <li><b>consigner</b> chaque fuite au tableau de chasse (numéro, localisation, preuve, croquis de position) ;</li>
+    <li><b>rendre compte</b>, à l'oral lors de la mise en commun, de ce que j'ai trouvé et comment je l'ai prouvé.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p style="font-size:10.5pt">Ce n'est <b>pas votre première fois</b> face au contrôle d'étanchéité à l'eau
+  savonneuse : vous l'avez découvert en S3-F1, puis approfondi en S5-F2 et en S6-F1. Aujourd'hui, on réutilise ce
+  que vous savez déjà, et on va plus loin :</p>
+  <ul class="liste-num">
+    <li><b>contrôler l'étanchéité à l'eau savonneuse</b> : badigeonner, observer, repérer une bulle, noter honnêtement (S3-F1, S5-F2) ;</li>
+    <li>que la <b>mise sous pression</b> est un geste réservé : professeur, ou élève-opérateur sous supervision directe — jamais improvisé aujourd'hui ;</li>
+    <li>l'<b>épreuve d'étanchéité officielle</b> par paliers, avec PV, que vous venez de vivre en <b>S6-F1</b> ;</li>
+    <li><b>rendre compte par écrit</b> d'une intervention (C1.3, carnet de bord F3).</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Si le contrôle à l'eau savonneuse vous échappe
+  encore, dites-le au professeur avant de commencer : c'est exactement ce que reprend la phase 4 de ce module.</p>
+
+  <h3 class="section">Matériel <span style="font-size:9pt; color:var(--gris); font-weight:normal">(par binôme, sauf mention contraire)</span></h3>
+  <ol class="liste-num">
+    <li>Un montage volontairement fuyard, déjà sous pression (valeur fixée par le professeur), préparé et attribué par le professeur</li>
+    <li>Eau savonneuse en flacon + pinceau ou pulvérisateur, pour le contrôle d'étanchéité <span class="conso">(consommable)</span></li>
+    <li>Chiffon, pour essuyer un raccord et refaire un contrôle en cas de doute <span class="conso">(consommable)</span></li>
+    <li>Feutre indélébile ou étiquettes autocollantes numérotées, pour marquer chaque fuite prouvée <span class="conso">(consommable)</span></li>
+    <li>Brouillon de relevé (feuille libre ou carnet), pour noter au fur et à mesure</li>
+    <li>Tableau de chasse (en annexe de ce document) + stylo</li>
+    <li>Lunettes de protection (× 1 par élève, obligatoires pendant toute la recherche)</li>
+    <li>Fiche de sécurité à cocher + ce document + crayon</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ DÉVELOPPÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Un montage sous pression : on regarde, on ne touche pas à la source</h3>
+  <p style="font-size:10.5pt">Le montage que vous allez examiner est <b>déjà sous pression d'azote</b>, à une valeur
+  fixée par le professeur, exactement comme lors de l'épreuve de S6-F1. L'azote reste un gaz <b>inerte, incolore et
+  inodore</b> : dans un local mal ventilé, il peut provoquer une <b>asphyxie</b> sans aucun signe perceptible
+  (D'après : FDS - Azote.pdf). Aujourd'hui, votre rôle n'est <b>pas</b> de manipuler la source de pression : c'est
+  de <b>chercher, prouver et consigner</b>. Le manodétendeur et la bouteille restent strictement réservés au
+  professeur.</p>
+
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:30%">Risque</th><th>Parade</th></tr>
+    <tr><td>Montage déjà sous pression d'azote (asphyxie si local mal ventilé, projection si un raccord est manipulé)</td><td>Zone ventilée vérifiée en phase 5 ; <b>jamais toucher au manodétendeur ni au robinet</b> (réservé au professeur) ; lunettes de protection portées pendant toute la recherche.</td></tr>
+    <tr><td>Tentation de resserrer un raccord qui fuit, « pour voir si ça s'arrête »</td><td><b>Interdit formellement</b> : on localise et on prouve aujourd'hui, on ne répare pas un montage sous pression. Le professeur dépressurisera avant toute réparation future.</td></tr>
+    <tr><td>Fausse déclaration : annoncer une fuite qui n'a pas été réellement vue par quelqu'un d'autre</td><td>Une fuite ne compte que si la bulle a été <b>vue par un tiers</b> (le contrôleur du binôme voisin ou le professeur) <b>avant</b> d'être marquée et consignée.</td></tr>
+    <tr><td>Recherche incomplète : des zones du montage jamais contrôlées</td><td><b>Méthode systématique imposée</b> : parcourir le montage raccord par raccord, dans un ordre décidé à l'avance, sans sauter un point même s'il « semble » étanche.</td></tr>
+    <tr><td>Bulles confondues avec de l'eau savonneuse simplement déposée sur le raccord</td><td>Observer <b>quelques secondes</b> après badigeonnage ; en cas de doute, <b>essuyer et refaire</b> le contrôle avant de conclure.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Gestes interdits</h3>
+  <ul class="liste-num">
+    <li><b>Jamais toucher au manodétendeur ni au robinet de la bouteille</b> — geste strictement réservé au professeur ;</li>
+    <li><b>Jamais resserrer, démonter ou tenter de réparer un raccord</b> tant que le montage est sous pression ;</li>
+    <li><b>Jamais déclarer une fuite sans preuve</b> montrée et vue par un tiers ;</li>
+    <li>Jamais se placer, ni placer un camarade, <b>dans l'axe des raccords</b> ;</li>
+    <li>Jamais signer le tableau de chasse pour une fuite qu'on n'a pas <b>réellement</b> prouvée.</li>
+  </ul>
+
+  <p style="font-size:10pt">Avant de commencer, complétez la <b>fiche de sécurité à cocher</b> ci-dessous (lunettes
+  portées, poste dégagé, zone ventilée vérifiée) et faites-la viser par le professeur.</p>
+  <img class="fig" src="../images/fiche-securite-a-cocher.png" alt="Fiche de sécurité à cocher — EPI, poste de travail" style="max-width:100%; display:block; margin:0 auto">
+  <p class="legende">Fiche de sécurité à cocher — document CAP, F. Henninot.</p>
+
+  <div class="secu"><b class="t">🚨 En cas d'incident</b> — arrêtez immédiatement toute manipulation, alertez le
+  professeur. En cas de malaise (possible signe d'asphyxie) : le professeur coupe l'arrivée d'azote, ventile la
+  zone, fait sortir la personne à l'air libre, alerte, ne la laisse jamais seule. La trousse de secours et l'arrêt
+  d'urgence sont localisés en phase 5 de la séance.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — JALON 1 : RECHERCHE SYSTÉMATIQUE + PREUVE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">JALON 1 — recherche systématique + preuve — ≈ 75 min</span>
+
+  <div class="liste-num">
+    <p>☐ 1. Recevoir votre montage assigné (déjà sous pression, valeur fixée par le professeur) et votre variante (nombre de fuites annoncé, ou non — voir « Variantes » en dernière feuille)</p>
+    <p>☐ 2. Décider, à deux, d'un <b>ordre de parcours</b> du montage (par exemple : de gauche à droite, raccord par raccord) — pour ne rien oublier</p>
+    <p>☐ 3. Badigeonner le premier raccord à l'eau savonneuse (pinceau ou pulvérisateur), observer quelques secondes</p>
+    <p>☐ 4. Si aucune bulle : noter « conforme » sur le brouillon, passer au point suivant</p>
+    <p>☐ 5. Si des bulles apparaissent : c'est une <b>fuite PROUVÉE</b>. Appeler un tiers (contrôleur du binôme voisin ou professeur) pour qu'il voie la bulle <b>avant de continuer</b></p>
+    <p>☐ 6. Noter immédiatement sur le brouillon : emplacement précis, aspect des bulles (petites et lentes, ou grosses et rapides)</p>
+    <p>☐ 7. En cas de doute, essuyer le raccord et refaire le contrôle</p>
+    <p>☐ 8. Reprendre au point suivant, jusqu'à avoir parcouru <b>l'ensemble du montage</b>, sans exception</p>
+  </div>
+
+  <h4 style="font-size:11pt">Brouillon de relevé — points contrôlés</h4>
+  <table class="releve">
+    <tr><th>Point contrôlé</th><th>Bulles observées ?</th><th>Vu par un tiers ?</th><th>N° de fuite (si prouvée)</th></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td></td><td>☐ Oui ☐ Non</td><td>☐ Oui ☐ Non</td><td></td></tr>
+  </table>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic">Ajoutez des lignes sur une feuille libre si votre
+  montage comporte plus de points de contrôle. Ce brouillon n'est pas noté : c'est le tableau de chasse en annexe,
+  rempli au jalon 2, qui est le document officiel.</p>
+
+  <div class="encadre-question"><b>Question — agir → noter → réfléchir</b> — Pourquoi contrôle-t-on <b>même</b> les
+  raccords qui semblent visuellement irréprochables, et pas seulement ceux qui « ont l'air louches » ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Indice : un raccord peut fuir sans qu'on le
+  voie de l'extérieur. Une méthode systématique remplace-t-elle une impression ?</p>
+
+  <div class="jalon"><h4>Visa professeur — jalon 1</h4>
+  <p>☐ Ordre de parcours annoncé avant de commencer &nbsp;&nbsp; ☐ Chaque fuite prouvée vue par un tiers avant d'être notée &nbsp;&nbsp; ☐ Montage parcouru dans son intégralité &nbsp;&nbsp; ☐ Autorisé(e) à poursuivre vers le jalon 2</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — JALON 2 : MARQUAGE + CONSIGNATION + COMPTE RENDU ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <span class="poste-titre">JALON 2 — marquage + consignation + compte rendu — ≈ 50 min</span>
+  <p style="font-size:10.5pt">Vous avez trouvé et prouvé vos fuites au jalon 1. Il faut maintenant les <b>marquer
+  durablement</b>, les <b>consigner officiellement</b> au tableau de chasse, et <b>rendre compte</b> de votre
+  intervention.</p>
+
+  <div class="liste-num">
+    <p>☐ 1. Reprendre la liste des fuites prouvées au jalon 1 (brouillon de relevé)</p>
+    <p>☐ 2. Pour chaque fuite : <b>marquer</b> clairement le point (feutre indélébile ou étiquette numérotée) — le numéro du marquage doit être <b>le même</b> qu'au tableau de chasse</p>
+    <p>☐ 3. Reporter au <b>tableau de chasse</b> (annexe) : numéro, localisation précise (nommer la pièce : raccord, brasure, joint…), preuve observée (description des bulles), et un petit croquis de sa position sur le montage</p>
+    <p>☐ 4. Faire <b>valider chaque ligne</b> par le professeur avant de la considérer définitive</p>
+    <p>☐ 5. Rédiger le <b>compte rendu bref</b> de l'OI-S6-2 : combien de fuites trouvées, laquelle vous semble la plus préoccupante, montage prêt pour la réparation</p>
+    <p>☐ 6. <b>Signer</b> le tableau de chasse à deux</p>
+  </div>
+
+  <div class="encadre-question"><b>Question</b> — Si vous avez trouvé moins de fuites que ce qui était annoncé
+  (variante consolidation), que faites-vous <b>avant</b> de rendre votre tableau de chasse ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Bonne réponse attendue : recommencer une
+  recherche systématique sur les zones pas encore contrôlées — jamais rendre un tableau incomplet en espérant que
+  « ça passe ».</p>
+
+  <div class="encadre-question"><b>Question de synthèse</b> — Une fuite qui ne fait qu'une toute petite bulle, de
+  temps en temps, est-elle moins grave qu'une fuite qui mousse tout de suite ? Faut-il quand même la noter ?</div>
+  <div class="zone-reponse" style="min-height:2.6em"></div>
+
+  <div class="secu"><b class="t">⚠ Rappel</b> — Vous ne touchez jamais à la dépressurisation du montage : c'est le
+  professeur qui s'en charge en fin de séance (phase 9), avant toute réparation future.</div>
+
+  <div class="jalon"><h4>Visa professeur — jalon 2</h4>
+  <p>☐ Toutes les fuites marquées &nbsp;&nbsp; ☐ Tableau de chasse complet et validé ligne par ligne &nbsp;&nbsp; ☐ Compte rendu rédigé &nbsp;&nbsp; ☐ Tableau de chasse signé par les deux élèves</p>
+  <p>Visa : ________________&nbsp;&nbsp;&nbsp; Heure : ________________</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — RANGEMENT + GRILLE + VARIANTES + DOCUMENTS À REMETTRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F2 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Rangement et remise en état</h3>
+  <div class="liste-num">
+    <p>☐ 1. Vérifier que le professeur a bien dépressurisé le montage avant d'y toucher davantage</p>
+    <p>☐ 2. Nettoyer l'établi de mon poste, essuyer les traces d'eau savonneuse</p>
+    <p>☐ 3. Ranger l'eau savonneuse, les pinceaux, les feutres et étiquettes restants</p>
+    <p>☐ 4. Vérifier que la zone de travail est dégagée et propre pour le poste suivant</p>
+    <p>☐ 5. Retirer les EPI en dernier, une fois le poste totalement rangé</p>
+  </div>
+
+  <h3 class="section">Variantes</h3>
+  <table class="grille" style="font-size:9pt">
+    <tr><th style="width:22%">Variante</th><th>Ce qui change</th></tr>
+    <tr><td><b>Consolidation</b></td><td>Le nombre de fuites du montage est <b>annoncé</b> par le professeur : vous savez quand votre recherche est terminée, ce qui sécurise la méthode avant de généraliser l'exigence.</td></tr>
+    <tr><td><b>Standard</b></td><td>Déroulement tel que décrit dans ce document : nombre annoncé, montage mêlant fuites évidentes et fuites plus discrètes.</td></tr>
+    <tr><td><b>Approfondissement</b><br><span class="nuance">tutorat</span></td><td>Le nombre de fuites <b>n'est pas annoncé</b> : c'est la recherche systématique, et elle seule, qui garantit de toutes les trouver. Une fois votre propre tableau de chasse validé, vous pouvez, à la demande du professeur, expliquer votre méthode à un binôme voisin — <b>sans jamais toucher son montage</b>.</td></tr>
+  </table>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:8.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut du jour : <b>C3.9 Confortement</b> (vers Maîtrise —
+  dernière étape avant l'Évaluation d'É3) · <b>C4.5 Confortement</b> — aucune de ces deux compétences n'est
+  remontée sur École Directe dans ce module.</p>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14.8%">0<br>Non évalué</th><th style="width:14.8%">1<br>Non acquis</th><th style="width:14.8%">2<br>En cours</th><th style="width:14.8%">3<br>Acquis</th><th style="width:14.8%">4<br>Maîtrisé</th></tr>
+    <tr><td><b>C3.9</b> Vérifier l'étanchéité d'un circuit (frigorifique, hydraulique) avant mise en service</td><td>sur T11 · T12 · S5.5</td><td>Compétence non observée ce jour.</td><td>Ne localise pas les fuites même avec aide, ou déclare une fuite sans bulle vue par un tiers.</td><td>Localise et prouve certaines fuites avec l'aide du professeur (rappel d'où chercher).</td><td>Localise et prouve seul(e) toutes les fuites du montage à l'eau savonneuse, note honnêtement chaque preuve.</td><td>Comme « Acquis », et explique à un pair pourquoi il faut contrôler systématiquement même un raccord qui semble sain.</td></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>sur T11 · S5.5</td><td>Compétence non observée ce jour.</td><td>Ne compare pas ses observations (ne remarque pas qu'un raccord fuit plus qu'un autre).</td><td>Compare avec l'aide du professeur (lequel mousse le plus, le plus vite).</td><td>Compare seul(e) l'aspect des fuites trouvées (bulles fines/lentes ou grosses/rapides) et ses résultats avec ceux d'un autre binôme lors de la mise en commun.</td><td>Comme « Acquis », et argumente un ordre de priorité de réparation à faire valider par le professeur.</td></tr>
+    <tr><td>Savoir-être — honnêteté, rigueur, sécurité</td><td>observation continue</td><td>Non observé ce jour.</td><td>Fuite déclarée sans preuve vue par un tiers, ou geste dangereux (touche au manodétendeur, tente de resserrer un raccord sous pression) : niveau 1 automatique.</td><td>Recherche globalement sérieuse, quelques rappels nécessaires (zone oubliée, preuve pas assez montrée).</td><td>Recherche systématique de tout le montage, preuve montrée et vue par un tiers avant consignation, marquage clair.</td><td>Comme « Acquis », et signale spontanément un doute plutôt que d'affirmer, aide un binôme voisin sans toucher son montage.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:10.5pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10pt">C3.9 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C4.5 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Rappel : ce geste sera réinvesti au poste froid
+  d'É3 la semaine prochaine, sans aide cette fois.</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (brouillon de relevé, questions répondues)</li>
+    <li><b>Tableau de chasse signé</b> (en annexe)</li>
+    <li>Compte rendu bref de l'OI-S6-2</li>
+    <li>Fiche de sécurité à cocher visée par le professeur</li>
+    <li>Bon de commande hebdomadaire (eau savonneuse, feutres, étiquettes)</li>
+  </ol>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : détection de
+  fuite.docx (origines des fuites, méthode par bulles/produits moussants comme première approche) ; F gas et
+  recherche de fuite.docx (contexte réglementaire — une fuite constatée doit être réparée puis recontrôlée dans les
+  délais imposés par la réglementation F-Gas) ; 1 mise sous azote.docx (principe du manodétendeur, mise sous
+  pression par paliers) ; FDS - Azote.pdf (gaz sous pression, asphyxie) ; Charte pédagogique FrigorX (§7 sécurité) ;
+  référentiel CAP IFCA (codes C3.9, C4.5, T11, T12, S5.5). Il existe d'autres moyens de rechercher une fuite (gaz
+  traceurs, détecteurs électroniques) : <b>selon le matériel de l'atelier, à faire valider par le professeur</b>.
+  Anciens documents non encore extraits, à rouvrir pour une prochaine édition : 15-RechercheFuite.doc, La recherche
+  de fuites.doc (BTS). Pression du montage et nombre de fuites : fixés par le professeur, à faire valider — aucune
+  valeur inventée dans ce document.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — ANNEXE PLEINE PAGE : TABLEAU DE CHASSE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S6-F2 · ANNEXE pleine page · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section" style="margin-top:0">ANNEXE — Tableau de chasse (recherche de fuite)</h3>
+  <p style="font-size:10pt; color:var(--gris)">Une ligne par fuite <b>réellement prouvée</b> (bulles vues par un
+  tiers). <b>Ce document est LE compte rendu officiel de l'OI-S6-2.</b> Une fuite « déclarée » sans preuve vue par
+  un tiers ne compte pas et ne doit pas figurer ici.</p>
+
+  <div class="annexe">
+  <p style="font-size:10.5pt"><b>Montage contrôlé</b> : ________________________________ &nbsp;&nbsp;
+  <b>Variante</b> : ☐ Consolidation (nombre annoncé) ☐ Standard ☐ Approfondissement (nombre inconnu)</p>
+
+  <table class="grille" style="font-size:8.8pt">
+    <tr>
+      <th style="width:5%">N°</th>
+      <th style="width:19%">Localisation précise</th>
+      <th style="width:23%">Preuve observée (aspect des bulles)</th>
+      <th style="width:16%">Croquis de position</th>
+      <th style="width:15%">Marquage réalisé</th>
+      <th style="width:12%">Vu par</th>
+      <th style="width:10%">Visa prof.</th>
+    </tr>
+    <tr><td>1</td><td></td><td></td><td><div class="mini-croquis"></div></td><td></td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td><td><div class="mini-croquis"></div></td><td></td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td><td><div class="mini-croquis"></div></td><td></td><td></td><td></td></tr>
+    <tr><td>4</td><td></td><td></td><td><div class="mini-croquis"></div></td><td></td><td></td><td></td></tr>
+    <tr><td>5</td><td></td><td></td><td><div class="mini-croquis"></div></td><td></td><td></td><td></td></tr>
+    <tr><td>6</td><td></td><td></td><td><div class="mini-croquis"></div></td><td></td><td></td><td></td></tr>
+  </table>
+  <p style="font-size:8pt; color:var(--gris); font-style:italic">Ajoutez une feuille de continuation si votre
+  montage comporte plus de 6 fuites. « Vu par » : initiales du contrôleur du binôme voisin ou du professeur qui a
+  vu la bulle avant la consignation.</p>
+
+  <p style="font-size:10pt; margin-top:10px"><b>Compte rendu bref de l'OI-S6-2</b></p>
+  <div class="zone-reponse" style="min-height:3.4em"></div>
+
+  <div class="jalon" style="margin-top:14px"><h4>Signatures — engagement sur une observation réelle</h4>
+  <p style="font-size:10pt">En signant ci-dessous, nous certifions avoir réellement vu chaque bulle citée dans ce
+  tableau, avec un tiers, avant de la marquer et de la consigner.</p>
+  <p>Signature élève 1 : ________________________ &nbsp;&nbsp;&nbsp; Signature élève 2 : ________________________</p>
+  <p>Visa professeur : ________________________ &nbsp;&nbsp;&nbsp; Date : ________________</p></div>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin-top:10px">Ce tableau de chasse rendra
+  compte, au poste froid d'É3 (semaine 21), du même geste — cette fois, vous le tiendrez seul(e).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .change, .jalon, .annexe{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

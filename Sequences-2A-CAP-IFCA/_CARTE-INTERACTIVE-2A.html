@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte interactive — CAP IFCA · tous les TP</title>
+<style>
+  :root{
+    --bg:#eef3f9; --grid:#e2e9f2; --surface:#ffffff; --surface-2:#f6f9fc;
+    --ink:#16273c; --muted:#5b6b80; --faint:#93a1b4; --line:#d7e0ec;
+    --bleu:#1b3a63; --bleu-clair:#2f6bb0; --orange:#ff6b35;
+    --s-todo:#94a3b8; --s-html:#3b82f6; --s-cloud:#f59e0b; --s-valide:#14b8a6; --s-rag:#16a34a;
+    --rouge:#dc2626; --violet:#7c3aed; --teal:#0d9488;
+    --shadow:0 1px 2px rgba(27,58,99,.06), 0 6px 22px rgba(27,58,99,.09);
+    --radius:14px;
+    --sans:'Segoe UI',Calibri,'Helvetica Neue',Arial,sans-serif;
+    --disp:'Trebuchet MS','Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0d1522; --grid:#1b2740; --surface:#141f33; --surface-2:#0f1a2c;
+      --ink:#e7eef8; --muted:#9fb0c6; --faint:#647691; --line:#243349;
+      --bleu:#6ea3e0; --bleu-clair:#8ab8ee; --orange:#ff824f;
+      --s-todo:#64748b; --s-html:#5b96f0; --s-cloud:#f0aa3c; --s-valide:#2dd4bf; --s-rag:#34c56a;
+      --rouge:#f26d6d; --violet:#a78bfa; --teal:#2dd4bf;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 26px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#eef3f9; --grid:#e2e9f2; --surface:#ffffff; --surface-2:#f6f9fc;
+    --ink:#16273c; --muted:#5b6b80; --faint:#93a1b4; --line:#d7e0ec;
+    --bleu:#1b3a63; --bleu-clair:#2f6bb0; --orange:#ff6b35;
+    --s-todo:#94a3b8; --s-html:#3b82f6; --s-cloud:#f59e0b; --s-valide:#14b8a6; --s-rag:#16a34a;
+    --rouge:#dc2626; --violet:#7c3aed; --teal:#0d9488;
+    --shadow:0 1px 2px rgba(27,58,99,.06), 0 6px 22px rgba(27,58,99,.09);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1522; --grid:#1b2740; --surface:#141f33; --surface-2:#0f1a2c;
+    --ink:#e7eef8; --muted:#9fb0c6; --faint:#647691; --line:#243349;
+    --bleu:#6ea3e0; --bleu-clair:#8ab8ee; --orange:#ff824f;
+    --s-todo:#64748b; --s-html:#5b96f0; --s-cloud:#f0aa3c; --s-valide:#2dd4bf; --s-rag:#34c56a;
+    --rouge:#f26d6d; --violet:#a78bfa; --teal:#2dd4bf;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 26px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/100% 34px, var(--bg);
+    color:var(--ink); font-family:var(--sans); line-height:1.5;
+    min-height:100vh; padding:0 clamp(14px,3vw,40px) 60px;
+    font-variant-numeric:tabular-nums;
+  }
+  a{color:var(--bleu-clair)}
+  .wrap{max-width:1180px; margin:0 auto}
+
+  /* ===== header ===== */
+  header.top{position:sticky; top:0; z-index:10; margin:0 calc(-1*clamp(14px,3vw,40px));
+    padding:12px clamp(14px,3vw,40px); backdrop-filter:blur(8px);
+    background:color-mix(in srgb,var(--bg) 85%,transparent);
+    border-bottom:1px solid var(--line); display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+  .lockup{display:flex; align-items:center; gap:10px; line-height:1.05}
+  .lockup .flake{width:34px;height:34px;border-radius:9px;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--bleu),var(--bleu-clair));color:#fff;
+    display:grid;place-items:center;font-size:19px;box-shadow:var(--shadow)}
+  .lockup .sig{font-family:var(--disp);font-weight:700}
+  .lockup .sig b{display:block;color:var(--bleu);font-size:13.5px;letter-spacing:.04em}
+  .lockup .sig span{display:block;color:var(--muted);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+  header.top h1{font-family:var(--disp);font-size:clamp(15px,2vw,19px);margin:0;color:var(--ink);
+    font-weight:700;flex:1 1 200px}
+  header.top h1 em{font-style:normal;color:var(--orange)}
+  .search{flex:1 1 260px;max-width:420px;position:relative}
+  .search input{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    border-radius:999px;padding:8px 36px 8px 14px;font:inherit;font-size:13.5px;box-shadow:var(--shadow)}
+  .search input:focus{outline:2px solid var(--bleu-clair);outline-offset:1px}
+  .search .k{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--faint);
+    font-size:11px;border:1px solid var(--line);border-radius:5px;padding:0 5px;background:var(--surface-2)}
+  .toggle{border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;
+    border-radius:999px;padding:7px 12px;font:inherit;font-size:12.5px;display:flex;align-items:center;gap:6px}
+  .toggle:hover{border-color:var(--bleu-clair);color:var(--ink)}
+
+  /* ===== hero ===== */
+  .hero{padding:24px 2px 4px}
+  .hero .eyebrow{font-family:var(--disp);text-transform:uppercase;letter-spacing:.22em;
+    font-size:11px;color:var(--orange);font-weight:700;margin:0 0 8px}
+  .hero h2{font-family:var(--disp);font-size:clamp(23px,4vw,36px);margin:0 0 8px;color:var(--ink);
+    letter-spacing:-.01em;line-height:1.08}
+  .hero p{margin:0;color:var(--muted);max-width:70ch;font-size:14.5px}
+  .pilot-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .pilot-links a{font-family:var(--disp);font-size:12px;font-weight:700;text-decoration:none;
+    border:1px solid var(--line);background:var(--surface);color:var(--bleu-clair);
+    border-radius:999px;padding:5px 12px;box-shadow:var(--shadow)}
+  .pilot-links a:hover{border-color:var(--bleu-clair)}
+
+  /* ===== KPI ===== */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0 6px}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-family:var(--disp);font-size:28px;font-weight:700;color:var(--ink);line-height:1}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:5px}
+  .kpi.accent{border-left:3px solid var(--orange)}
+
+  /* ===== hygiène panel ===== */
+  .hyg{margin-top:22px;background:var(--surface);border:1px solid var(--line);
+    border-left:4px solid var(--rouge);border-radius:var(--radius);padding:14px 18px;box-shadow:var(--shadow)}
+  .hyg h3{font-family:var(--disp);font-size:13.5px;margin:0 0 6px;color:var(--rouge)}
+  .hyg ul{margin:0;padding-left:18px;font-size:13px;color:var(--muted)}
+  .hyg li b{color:var(--ink)}
+  .hyg .note{font-size:12px;color:var(--faint);margin-top:8px}
+
+  /* ===== sections ===== */
+  .sec{margin-top:36px}
+  .sec > h3{font-family:var(--disp);font-size:14px;text-transform:uppercase;letter-spacing:.14em;
+    color:var(--muted);margin:0 0 4px;display:flex;align-items:center;gap:10px}
+  .sec > h3::after{content:"";flex:1;height:1px;background:var(--line)}
+  .sec .subtitle{color:var(--faint);font-size:13px;margin:0 0 14px}
+  .sec .tools{display:flex;gap:8px;margin:0 0 14px}
+  .sec .tools button{border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer;
+    border-radius:8px;padding:5px 11px;font:inherit;font-size:12px}
+  .sec .tools button:hover{color:var(--ink);border-color:var(--bleu-clair)}
+
+  /* période */
+  .pheader{display:flex;align-items:baseline;gap:10px;margin:20px 0 10px}
+  .pheader b{font-family:var(--disp);font-size:16px;color:var(--bleu)}
+  .pheader span{font-size:12px;color:var(--faint)}
+
+  /* ===== carte séquence ===== */
+  .seq{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);margin-bottom:12px;border-left:5px solid var(--st,var(--s-todo));overflow:hidden}
+  .seq > .head{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;user-select:none;
+    flex-wrap:wrap}
+  .seq > .head:hover{background:var(--surface-2)}
+  .seq .code{font-family:var(--disp);font-weight:700;color:var(--bleu);font-size:19px;min-width:44px}
+  .seq .tit{flex:1 1 260px}
+  .seq .tit .t{font-size:14px;font-weight:600;color:var(--ink);line-height:1.25}
+  .seq .tit .meta{font-size:11.5px;color:var(--faint);margin-top:2px}
+  .seq .badge{font-family:var(--disp);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+    padding:3px 10px;border-radius:999px;color:#fff;background:var(--st,var(--s-todo));white-space:nowrap}
+  .seq .count{font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .seq .alertn{font-family:var(--disp);font-size:10.5px;font-weight:700;color:var(--rouge);white-space:nowrap}
+  .seq .chev{color:var(--faint);font-size:13px;transition:transform .15s ease}
+  .seq.open .chev{transform:rotate(90deg)}
+  .seq .body{display:none;border-top:1px solid var(--line);padding:14px 16px 16px;background:var(--surface-2)}
+  .seq.open .body{display:block}
+
+  /* documents racine + pilotage */
+  .rootdocs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+  .rootdocs .lab{font-family:var(--disp);font-size:11px;font-weight:700;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-right:2px}
+
+  /* grille de modules */
+  .mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:10px}
+  .mod{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:11px 12px;
+    box-shadow:var(--shadow);border-top:3px solid var(--mt,var(--bleu-clair))}
+  .mod .mh{display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap}
+  .mod .mid{font-family:var(--disp);font-weight:700;color:var(--bleu);font-size:14px}
+  .mod .mtype{font-family:var(--disp);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:#fff;background:var(--mt,var(--bleu-clair));border-radius:5px;padding:2px 7px}
+  .mod .mwk{font-size:10.5px;color:var(--faint);margin-left:auto;white-space:nowrap}
+  .mod .mt2{font-size:12.6px;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:6px}
+  .mod .chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+  .chip{font-family:var(--disp);font-size:9.5px;font-weight:700;border-radius:6px;padding:1px 6px;
+    background:var(--surface-2);color:var(--bleu);border:1px solid var(--line)}
+  .mod .note{font-size:11px;color:var(--orange);font-weight:600;margin:-2px 0 7px}
+  .docrow{display:flex;align-items:center;gap:6px;padding:4px 0;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .docrow .dl{font-size:12px;color:var(--muted);flex:1 1 auto;min-width:110px}
+  .fmt{font-family:var(--disp);font-size:10px;font-weight:700;text-decoration:none;border-radius:6px;
+    padding:2px 8px;border:1px solid var(--line);background:var(--surface);color:var(--bleu-clair);white-space:nowrap}
+  .fmt:hover{border-color:var(--bleu-clair)}
+  .fmt.main{background:var(--bleu-clair);color:#fff;border-color:var(--bleu-clair)}
+  .fmt.per{color:var(--rouge);border-color:color-mix(in srgb,var(--rouge) 45%,var(--line));
+    border-style:dashed;text-decoration:line-through}
+  .fmt.det{color:var(--s-cloud);border-color:color-mix(in srgb,var(--s-cloud) 55%,var(--line));border-style:dashed}
+
+  /* alertes par séquence */
+  .alerts{margin-top:12px;border:1px dashed color-mix(in srgb,var(--rouge) 40%,var(--line));
+    border-radius:10px;padding:9px 13px;background:var(--surface)}
+  .alerts h4{font-family:var(--disp);margin:0 0 4px;font-size:11.5px;color:var(--rouge);
+    text-transform:uppercase;letter-spacing:.06em}
+  .alerts ul{margin:0;padding-left:17px;font-size:12px;color:var(--muted)}
+
+  /* placeholder S13/S16 */
+  .ghost .body p{margin:0 0 8px;font-size:13px;color:var(--muted);max-width:75ch}
+
+  /* ===== 1re année ===== */
+  .y1{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}
+  .y1 .s{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:10px 12px;
+    box-shadow:var(--shadow);border-left:4px solid var(--s-todo)}
+  .y1 .s .r1{display:flex;gap:8px;align-items:center}
+  .y1 .s .c{font-family:var(--disp);font-weight:700;color:var(--bleu);font-size:13.5px}
+  .y1 .s .w{font-size:10px;color:var(--faint);margin-left:auto}
+  .y1 .s .t{font-size:12px;color:var(--ink);font-weight:600;line-height:1.25;margin-top:2px}
+  .y1 .s .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .y1 .chip{border-style:dashed;color:var(--muted)}
+  .evalflag{font-size:10px;color:var(--orange);font-weight:700;font-family:var(--disp)}
+  .evalflag::before{content:"◆ ";font-size:8px;vertical-align:1px}
+
+  /* légende */
+  .legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:14px}
+  .lg{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+  .lg .sw{width:12px;height:12px;border-radius:4px;background:var(--c)}
+
+  .noresult{display:none;text-align:center;color:var(--faint);font-size:14px;padding:30px 0}
+
+  footer.ft{margin-top:34px;text-align:center;color:var(--faint);font-size:11.5px;padding-top:16px;border-top:1px solid var(--line)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="lockup">
+      <div class="flake">❄</div>
+      <div class="sig"><b>LPP JACQUES RAYNAUD</b><span>Campus ÉQUATIO · F. Henninot</span></div>
+    </div>
+    <h1>Carte interactive <em>CAP IFCA</em> — tous les TP</h1>
+    <div class="search"><input id="q" type="search" placeholder="Chercher un TP, un module, une compétence…" aria-label="Recherche"><span class="k">/</span></div>
+    <button class="toggle" id="tgl"><span id="tglic">◐</span> Thème</button>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Le grand projet · progression 2 ans · indexation de la production</p>
+    <h2>Cliquer sur une séquence, ses TP apparaissent.</h2>
+    <p>Chaque carte de séquence s'ouvre sur ses modules (théorie, ateliers, fil de l'eau, évaluations)
+       et sur <b>tous les documents produits</b>, en lien direct. Le <b>HTML est toujours la version de
+       référence</b> ; les PDF ou docx barrés en rouge sont périmés (audit du 13/07/2026), ceux en
+       orange portent une dette technique.</p>
+    <div class="pilot-links">
+      <a href="../_tableau-de-bord-programme.html">📊 Tableau de bord programme</a>
+      <a href="../_AUDIT-HARMONISATION-2A.md">🔎 Audit d'harmonisation (13/07)</a>
+      <a href="BIBLIOTHEQUE.md">📚 Bibliothèque des sources</a>
+    </div>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="hyg">
+    <h3>⚠ Hygiène des versions — avant d'imprimer, lire ceci</h3>
+    <ul>
+      <li><b>S10</b> : tous les .docx et .pdf sont l'ancienne architecture « 8 h / bi-prof » — seuls les HTML font foi.</li>
+      <li><b>S11</b> : les PDF sont antérieurs à la refonte modulaire (10 sur 11 vérifiés périmés) — imprimer depuis les HTML.</li>
+      <li><b>S12</b> : les .docx viennent de pandoc (3 schémas SVG sans image de repli → rendu blanc possible) — à régénérer en docx natif.</li>
+      <li><b>S14 · S15</b> : HTML seul, c'est normal — la sortie triple (PDF + docx natif) vient <em>après</em> le bon à tirer.</li>
+    </ul>
+    <div class="note">Plan de remise en ordre : phases 0→4 de l'audit (errata de la carte → archivage des périmés → S13/S16 → validation → sortie triple + RAG).</div>
+  </div>
+
+  <section class="sec">
+    <h3>2ᵉ année — les séquences et leurs documents</h3>
+    <p class="subtitle">S10 → S16 · périodes P5-P8 · le liseré de gauche code l'état de production. ◆ = évaluation sommative.</p>
+    <div class="tools">
+      <button id="expand">Tout déplier</button>
+      <button id="collapse">Tout replier</button>
+    </div>
+    <div id="map2a"></div>
+    <div class="noresult" id="nores">Aucun document ne correspond à cette recherche.</div>
+  </section>
+
+  <section class="sec">
+    <h3>1re année — PRODUITE (S1 → S9 · en attente bon à tirer)</h3>
+    <p class="subtitle">S1 → S9 · périodes P1-P4 · 9 séquences, tous les TP cliquables · le liseré de gauche code l'état de production. ◆ = évaluation sommative.</p>
+    <div id="map1a"></div>
+  </section>
+
+  <section class="sec">
+    <h3>Légende</h3>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <footer class="ft">❄ inerWeb Édu — par F. Henninot · carte interactive générée le 16/07/2026 · 1re année intégrée le 19/07/2026 · données non nominatives ·
+  cette carte est une <b>vue</b> : la production vit dans les dossiers de séquence, la donnée de pilotage dans le tableau de bord.</footer>
+</div>
+
+<script>
+"use strict";
+/* ============================================================
+   DONNÉES — inventaire du 16/07/2026 (dossier Sequences-2A-CAP-IFCA)
+   États : rag = validée + RAG · bat = produite, attente bon à tirer ·
+           nuage = à rapatrier · todo = à produire
+   Formats par document : "h" = HTML (référence) · "p" = PDF · "w" = docx
+   Suffixe "!" = périmé (audit 13/07) · "~" = dette technique (pandoc)
+   ============================================================ */
+const ETATS = {
+  bat:  {l:"HTML — attente bon à tirer", v:"--s-html"},
+  rag:  {l:"Validée + RAG",              v:"--s-rag"},
+  nuage:{l:"À rapatrier (nuage)",        v:"--s-cloud"},
+  todo: {l:"À produire",                 v:"--s-todo"}
+};
+const MTYPES = {
+  T:{l:"Théorie",     c:"--violet"},
+  A:{l:"Atelier",     c:"--bleu-clair"},
+  S:{l:"Séance 8 h",  c:"--bleu-clair"},
+  F:{l:"Fil de l'eau",c:"--teal"},
+  E:{l:"Évaluation",  c:"--orange"}
+};
+/* docs d'atelier / théorie / éval : [label, nom de fichier sans extension, formats] */
+const TP  = (f)=>[["Document élève — TP","Document élève - TP",f],["Document professeur — corrigé","Document professeur - corrigé",f],["Plan de séance","Plan de séance",f]];
+const TH  = ()=>[["Document élève","Document élève","h"],["Document professeur","Document professeur","h"]];
+const EV  = (f)=>[["Sujet élève","Document élève - sujet",f],["Corrigé + grille","Document professeur - corrigé et grille",f],["Plan de passation","Plan de passation",f]];
+
+const SEQS = [
+{code:"S10", etat:"bat", periode:"P5", sem:"1-3",
+ titre:"Diagnostiquer, mettre en place, façonner le cuivre",
+ dir:"S10 - Diagnostiquer, mettre en place, façonner le cuivre",
+ comp:["C3.3","C3.4","C4.5"],
+ root:[["Dossier de séquence S10","Dossier de séquence S10","h p! w!"]],
+ pilotage:["_CADRAGE-S10.md","_ETAT.md"],
+ modules:[
+  {id:"T0", type:"T", duree:"1 h", sem:"1", titre:"La Croix du Frigoriste et la lecture de plan",
+   comp:["S5.1","S2.2"], dir:"T0 - La Croix du Frigoriste et la lecture de plan", docs:TH()},
+  {id:"A0", type:"A", duree:"4 h", sem:"1", titre:"Diagnostic de la machine et état des lieux",
+   comp:["C2.1","C1.3"], note:"À renommer A1-a (arbitrage n° 5)",
+   dir:"Séance 1 - Diagnostic de la machine et état des lieux", docs:TP("h p! w!")},
+  {id:"A1", type:"A", duree:"4 h", sem:"2", titre:"Mise en place mécanique",
+   comp:["C3.3","C4.6"], dir:"Séance 2 - Mise en place mécanique", docs:TP("h p! w!")},
+  {id:"A2", type:"A", duree:"4 h", sem:"3", titre:"Façonnage cuivre (ligne liquide à blanc)",
+   comp:["C3.4","C4.5","C3.3"], dir:"Séance 3 - Façonnage cuivre et évaluation de fin de séquence", docs:TP("h p! w!")},
+  {id:"F3", type:"F", duree:"2 h", sem:"1-3", titre:"Carnet de bord (continu)",
+   comp:["C1.3","C2.1"], dir:"F3 - Carnet de bord", docs:TH()}
+ ],
+ evalNote:"◆ Évaluation sommative conjointe S10-S11 — rangée dans S11 (semaine 7).",
+ alertes:["Tous les .docx/.pdf = ancienne version 8 h, à archiver puis régénérer après bon à tirer.",
+          "Module « A0 » hors nomenclature du maître → renommage A1-a proposé (arbitrage n° 5).",
+          "Niveau C3.4 « Maîtrise » (dossier) vs « Validé » (carte) à confirmer (arbitrage n° 11)."]},
+
+{code:"S11", etat:"bat", periode:"P5", sem:"4-7",
+ titre:"Braser, raccorder les organes, poser les manomètres",
+ dir:"S11 - Braser, raccorder les organes, poser les manomètres",
+ comp:["C3.4","C4.5","C4.6","C4.7"],
+ root:[["Dossier de séquence S11","Dossier de séquence S11","h p!"]],
+ pilotage:["_CADRAGE-S11.md","_ETAT.md"],
+ modules:[
+  {id:"A2-a", type:"A", duree:"4 h", sem:"4", titre:"Brasage + raccordement de la ligne liquide",
+   comp:["C3.4","C4.7"], dir:"Séance 1 - Brasage et raccordement de la ligne liquide", docs:TP("h p!")},
+  {id:"T1", type:"T", duree:"1 h", sem:"4", titre:"Le détendeur et la surchauffe",
+   comp:["S5.1"], dir:"T1 - Le détendeur et la surchauffe", docs:TH()},
+  {id:"A2-b", type:"A", duree:"4 h", sem:"5", titre:"Façonnage complexe + pose des manomètres",
+   comp:["C3.4","C4.5"], dir:"Séance 2 - Façonnage complexe et pose des manomètres", docs:TP("h p!")},
+  {id:"A2-c", type:"A", duree:"4 h", sem:"6", titre:"Fin de ligne liquide + préréglage banc (SC/SR)",
+   comp:["C4.5","C4.6"], dir:"Séance 3 - Fin de la ligne liquide et préparation des réglages SC-SR", docs:TP("h p!")},
+  {id:"T2", type:"T", duree:"1 h", sem:"6", titre:"Surchauffe, sous-refroidissement, incondensables",
+   comp:["S5.1","S5.2"], dir:"T2 - Surchauffe, sous-refroidissement et incondensables", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"4-6", titre:"Carnet de bord (continu)",
+   comp:["C1.3","C2.1"], dir:"F3 - Carnet de bord", docs:TH()},
+  {id:"ÉVAL", type:"E", duree:"1 h", sem:"7", titre:"Évaluation sommative S10-S11", eval:true,
+   comp:["C3.3","C3.4","C4.5"], dir:"Évaluation sommative S10-S11 (semaine 7)", docs:EV("h p!")}
+ ],
+ alertes:["PDF antérieurs à la refonte modulaire (10 sur 11 vérifiés périmés « 8 h / 3 jalons ») — imprimer depuis les HTML.",
+          "T13 en semaine 4 : trois documents, trois listes — à trancher (arbitrage n° 10).",
+          "Sujet élève et plan de passation gardent une formulation « séance 1/3 » périmée (corrigé déjà recalé)."]},
+
+{code:"S12", etat:"rag", periode:"P6", sem:"8-10",
+ titre:"Câbler, prouver l'étanchéité, tirer au vide",
+ dir:"S12 - Câbler, prouver l'étanchéité, tirer au vide",
+ comp:["C3.6","C3.7","C3.9","C4.1"],
+ root:[["Dossier de séquence S12","Dossier de séquence S12","h w~"]],
+ pilotage:["_ETAT.md"],
+ modules:[
+  {id:"SÉ 1", type:"S", duree:"8 h", sem:"8", titre:"Câblage de l'armoire électrique",
+   comp:[], dir:"Séance 1 - Câblage de l'armoire électrique", docs:TP("h w~")},
+  {id:"SÉ 2", type:"S", duree:"8 h", sem:"9", titre:"Pressostats et régulation",
+   comp:[], dir:"Séance 2 - Pressostats et régulation", docs:TP("h w~")},
+  {id:"SÉ 3", type:"S", duree:"8 h", sem:"10", titre:"Étanchéité, vide + évaluation sommative (nichée)", eval:true,
+   comp:["C3.6","C3.9","C4.1"], dir:"Séance 3 - Étanchéité, vide, évaluation sommative", docs:TP("h w~")}
+ ],
+ evalNote:"◆ Évaluation sommative semaine 10, nichée dans la séance 3 (3 postes).",
+ alertes:["Structure « 3 × 8 h » pré-modulaire — statu quo encadré recommandé (validée + RAG, la carte prescrit ici la journée 8 h bi-prof).",
+          "Docx pandoc : 3 SVG sans image de repli (rendu blanc hors Word récent) — à régénérer en docx natif.",
+          "Deux versions non identiques du déroulé minuté de la séance 1 — choisir celle qui fait foi."]},
+
+{code:"S13", etat:"nuage", periode:"P7", sem:"11-14",
+ titre:"Récupérer le fluide",
+ comp:["C4.2","C4.7"], ghost:true,
+ ghostTxt:"Produite en session à distance (branche PR n° 1), pas encore rapatriée dans ce dossier. C'est le verrou de la période P7 : le poste 1 « récupération » de l'évaluation sommative S13-S14 en dépend. Rapatriement = étape 1 de la phase 2 de l'audit.",
+ alertes:[]},
+
+{code:"S14", etat:"bat", periode:"P7", sem:"15-17",
+ titre:"Charger le fluide, mettre en service, tracer (CERFA)",
+ dir:"S14 - Charger le fluide, mettre en service, tracer (CERFA)",
+ comp:["C4.2","C4.5","C4.6","C4.7"],
+ root:[["Dossier de séquence S14","Dossier de séquence S14","h"]],
+ pilotage:["_CADRAGE-S14.md","_ETAT.md"],
+ modules:[
+  {id:"A5-a", type:"A", duree:"4 h", sem:"15", titre:"Chargement et première mise en service",
+   comp:["C4.2","C4.7"], dir:"Module A5-a - Chargement et première mise en service", docs:TP("h")},
+  {id:"A5-b", type:"A", duree:"4 h", sem:"16", titre:"Contrôle de la charge (SC/SR) et réglages",
+   comp:["C4.2","C4.5","C4.6"], dir:"Module A5-b - Contrôle de la charge et réglages", docs:TP("h")},
+  {id:"T1", type:"T", duree:"1 h", sem:"15", titre:"Le CERFA et la traçabilité des fluides",
+   comp:[], dir:"T1 - Le CERFA et la traçabilité des fluides", docs:TH()},
+  {id:"F4", type:"F", duree:"—", sem:"15-17", titre:"Feuille de mise en service et CERFA",
+   comp:["C1.1","C4.5"], dir:"F4 - Feuille de mise en service et CERFA", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"15-17", titre:"Carnet de bord (continu)",
+   comp:[], dir:"F3 - Carnet de bord", docs:TH()},
+  {id:"ÉVAL", type:"E", duree:"1 h", sem:"17", titre:"Évaluation sommative S13-S14 (3 postes)", eval:true,
+   comp:["C4.2","C4.5","C4.7"], dir:"Évaluation sommative S13-S14 (semaine 17)", docs:EV("h")}
+ ],
+ alertes:["Le poste 1 « récupération » de l'évaluation dépend de S13 — invérifiable tant qu'elle n'est pas rapatriée.",
+          "Litige C4.4 (carte) vs C4.2/C4.7 (retenu) : le référentiel officiel donne raison à la séquence — corriger LA CARTE (arbitrage n° 3)."]},
+
+{code:"S15", etat:"bat", periode:"P8", sem:"19-21",
+ titre:"Finir le chantier, poser le climatiseur, mettre en service, documenter",
+ dir:"S15 - Finir le chantier, poser le climatiseur, mettre en service, documenter",
+ comp:["C2.3","C4.1","C4.4","C4.5","C4.7","C1.1"],
+ root:[["Dossier de séquence S15","Dossier de séquence S15","h"]],
+ pilotage:["_CADRAGE-S15.md","_ETAT.md"],
+ modules:[
+  {id:"A6-a", type:"A", duree:"4 h", sem:"19", titre:"Pose et raccordement du climatiseur split",
+   comp:["C2.3","C4.4","C4.7"], dir:"Module A6-a - Pose et raccordement du climatiseur", docs:TP("h")},
+  {id:"A6-b", type:"A", duree:"4 h", sem:"21", titre:"Mise en service autonome et validation (groupe du chantier)",
+   comp:["C4.1","C4.5","C4.6"], dir:"Module A6-b - Mise en service autonome et validation", docs:TP("h")},
+  {id:"T1", type:"T", duree:"1 h", sem:"21", titre:"Le dossier technique et la fiche machine (QR)",
+   comp:[], note:"Position à trancher : après A6-b (arbitrage n° 9)",
+   dir:"T1 - Le dossier technique et la fiche machine", docs:TH()},
+  {id:"F6", type:"F", duree:"—", sem:"19-21", titre:"Dossier technique (au fil de l'eau)",
+   comp:[], dir:"F6 - Dossier technique", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"19-21", titre:"Carnet de bord (continu, enjambe la PFMP4)",
+   comp:[], dir:"F3 - Carnet de bord", docs:TH()}
+ ],
+ evalNote:"◆ Pas d'évaluation propre : la sommative S15-S16 = CCF EP3, rangée avec S16.",
+ alertes:["Semaine 20 sans module (étiquettes/QR, révision MES) — lui donner sa case (arbitrage n° 8).",
+          "S15 enjambe la PFMP4 (entre les semaines 19 et 20) — le F3 assure la couture.",
+          "Répartition A6-a (sem. 19) / A6-b (sem. 21) = une interprétation de la carte, à confirmer."]},
+
+{code:"S16", etat:"todo", periode:"P8", sem:"22-23",
+ titre:"MES autonome & maintenance — préparation CCF EP3",
+ comp:["C1.3","C4.1","C5.1"], ghost:true, eval:"CCF EP3",
+ ghostTxt:"Dernière séquence de production 2A, pas encore produite. Elle porte : le CCF EP3 (blanc + passation), la sommative S15-S16, la fiche machine QR / dossier final, la clôture du chantier (machines vers le parc atelier). Sources déjà repérées au moteur sémantique : activités MES/CCF U33 chambre froide, sujets EP3 2023-2025.",
+ alertes:[]},
+];
+
+/* ---- 1re année — PRODUITE (S1 → S9, en attente bon à tirer). Liens relatifs ../Sequences-1A-CAP-IFCA/ ---- */
+const AN1 = [
+{code:"S1", etat:"bat", periode:"P1", sem:"1-4",
+ titre:"Sécurité & outillage + cuivre simple",
+ dir:"../Sequences-1A-CAP-IFCA/S1 - Sécurité, outillage et cuivre simple",
+ comp:["C2.4","C3.4","C3.6"],
+ root:[["Dossier de séquence S1","Dossier de séquence S1","h"]],
+ pilotage:["_CADRAGE-S1.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"1-4", titre:"Cuivre simple — coupe, cintrage, dudgeon", comp:["C3.4","C3.1"], dir:"S1-F1 - Cuivre simple - coupe, cintrage, dudgeon", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"1-4", titre:"Sécurité froid et découverte du cycle", comp:["C2.4","C3.8"], dir:"S1-F2 - Sécurité froid et découverte du cycle", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"1-4", titre:"Électricité domestique simple", comp:["C3.6"], dir:"S1-E1 - Électricité domestique simple", docs:TP("h")},
+  {id:"E2", type:"A", duree:"4 h", sem:"1-4", titre:"Montages et multimètre", comp:["C4.5","C3.7"], dir:"S1-E2 - Montages et multimètre", docs:TP("h")},
+  {id:"T1", type:"T", duree:"2 h", sem:"1-4", titre:"Le cycle frigorifique, les bases", comp:["S5.1"], dir:"S1-T1 - Le cycle frigorifique, les bases", docs:TH()},
+  {id:"T2", type:"T", duree:"2 h", sem:"1-4", titre:"Les grandeurs électriques U I R", comp:["S5.6"], dir:"S1-T2 - Les grandeurs électriques U I R", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"1-4", titre:"Carnet de bord (continu)", comp:["C1.3","C2.1"], dir:"F3 - Carnet de bord", docs:TH()}
+ ]},
+{code:"S2", etat:"bat", periode:"P1", sem:"5-7",
+ titre:"Électricité simple + cycle frigorifique : les bases",
+ dir:"../Sequences-1A-CAP-IFCA/S2 - Électricité simple et cycle frigorifique - les bases",
+ comp:["C3.4","C3.6","C4.5"],
+ root:[["Dossier de séquence S2","Dossier de séquence S2","h"]],
+ pilotage:["_CADRAGE-S2.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"5-6", titre:"Cuivre simple — passage d'aisance", comp:["C3.4"], dir:"S2-F1 - Cuivre simple - passage d'aisance", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"5-6", titre:"Le cycle sur machine réelle", comp:["C2.4","C4.5"], dir:"S2-F2 - Le cycle sur machine réelle", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"5-6", titre:"Montages domestiques et mesures U I R", comp:["C3.6","C4.5"], dir:"S2-E1 - Montages domestiques et mesures U I R", docs:TP("h")},
+  {id:"T1", type:"T", duree:"2 h", sem:"5-6", titre:"Synthèse et préparation d'É1", comp:["S5.1","S5.6"], dir:"S2-T1 - Synthèse et préparation d'É1", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"5-7", titre:"Carnet de bord (continu)", comp:["C1.3","C2.1"], dir:"F3 - Carnet de bord", docs:TH()},
+  {id:"ÉVAL", type:"E", duree:"3 postes", sem:"7", titre:"Évaluation sommative É1 (S1-S2)", eval:true, comp:["C3.4","C3.6","C4.5"], dir:"Évaluation sommative É1 S1-S2 (semaine 7)", docs:EV("h")}
+ ],
+ evalNote:"◆ É1 — première évaluation sommative (semaine 7), 3 postes."},
+{code:"S3", etat:"bat", periode:"P2", sem:"8-11",
+ titre:"Brasage tendre + schémas domestiques",
+ dir:"../Sequences-1A-CAP-IFCA/S3 - Brasage tendre et schémas domestiques",
+ comp:["C3.4","C3.6","C3.9"],
+ root:[["Dossier de séquence S3","Dossier de séquence S3","h"]],
+ pilotage:["_CADRAGE-S3.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"8-11", titre:"Cuivre avancé et étanchéité simple", comp:["C3.4","C3.9"], dir:"S3-F1 - Cuivre avancé et étanchéité simple", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"8-11", titre:"Brasage tendre — assemblages", comp:["C3.4","C2.4"], dir:"S3-F2 - Brasage tendre - assemblages", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"8-11", titre:"Protections électriques et DDR", comp:["C3.6","C3.7"], dir:"S3-E1 - Protections électriques et DDR", docs:TP("h")},
+  {id:"E2", type:"A", duree:"4 h", sem:"8-11", titre:"Schémas domestiques avancés — télérupteur et minuterie", comp:["C3.6","C3.2"], dir:"S3-E2 - Schémas domestiques avancés - télérupteur et minuterie", docs:TP("h")},
+  {id:"T1", type:"T", duree:"2 h", sem:"8-11", titre:"Les composants frigorifiques", comp:["S5.1"], dir:"S3-T1 - Les composants frigorifiques", docs:TH()},
+  {id:"T2", type:"T", duree:"2 h", sem:"8", titre:"Retour d'É1 et remédiation ciblée", comp:["C3.4","C3.6","C4.5"], note:"Remédiation post-É1 (formatif) — ajout au maître, à valider", dir:"S3-T2 - Retour d'É1 et remédiation ciblée", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"8-11", titre:"Carnet de bord (continu)", comp:["C1.3","C2.1"], dir:"F3 - Carnet de bord", docs:TH()}
+ ]},
+{code:"S4", etat:"bat", periode:"P2", sem:"12-13",
+ titre:"Cycle approfondi P/T + composants frigorifiques",
+ dir:"../Sequences-1A-CAP-IFCA/S4 - Cycle approfondi P-T et composants frigorifiques",
+ comp:["C3.4","C3.6","C4.5"],
+ root:[["Dossier de séquence S4","Dossier de séquence S4","h"]],
+ pilotage:["_CADRAGE-S4.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"12", titre:"Relation P/T sur machine", comp:["C4.5"], dir:"S4-F1 - Relation P-T sur machine", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"12", titre:"Schémas domestiques — consolidation avant É2", comp:["C3.6"], dir:"S4-E1 - Schémas domestiques - consolidation avant É2", docs:TP("h")},
+  {id:"T1", type:"T", duree:"2 h", sem:"12", titre:"Cycle approfondi P/T", comp:["S5.1"], dir:"S4-T1 - Cycle approfondi P-T", docs:TH()},
+  {id:"ÉVAL", type:"E", duree:"3 postes", sem:"13", titre:"Évaluation sommative É2 (S3-S4)", eval:true, comp:["C3.4","C3.6","C4.5"], dir:"Évaluation sommative É2 S3-S4 (semaine 13)", docs:EV("h")}
+ ],
+ evalNote:"◆ É2 (semaine 13) — mêmes compétences qu'É1, un cran au-dessus (+ C3.9 Confortement)."},
+{code:"S5", etat:"bat", periode:"P3", sem:"14-17",
+ titre:"Brasage fort (HP) + électricité industrielle",
+ dir:"../Sequences-1A-CAP-IFCA/S5 - Brasage fort HP et électricité industrielle",
+ comp:["C3.4","C3.6","C3.9"],
+ root:[["Dossier de séquence S5","Dossier de séquence S5","h"]],
+ pilotage:["_CADRAGE-S5.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"14-17", titre:"Brasage fort HP", comp:["C3.4","C2.4"], dir:"S5-F1 - Brasage fort HP", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"14-17", titre:"Préparation à l'épreuve azote", comp:["C3.9","C2.4"], dir:"S5-F2 - Préparation à l'épreuve azote", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"14-17", titre:"Contacteurs et moteurs", comp:["C3.6","C3.7"], dir:"S5-E1 - Contacteurs et moteurs", docs:TP("h")},
+  {id:"E2", type:"A", duree:"4 h", sem:"14-17", titre:"Schémas de commande industriels", comp:["C3.6","C3.2"], dir:"S5-E2 - Schémas de commande industriels", docs:TP("h")},
+  {id:"T0", type:"T", duree:"2 h", sem:"14", titre:"Retour d'É2 et remédiation ciblée", comp:["C3.4","C3.6","C4.5"], note:"Remédiation post-É2 (formatif)", dir:"S5-T0 - Retour d'É2 et remédiation ciblée", docs:TH()},
+  {id:"T1", type:"T", duree:"2 h", sem:"14-17", titre:"Pressostats et thermostats", comp:["C4.6"], dir:"S5-T1 - Pressostats et thermostats", docs:TH()},
+  {id:"T2", type:"T", duree:"2 h", sem:"14-17", titre:"Surchauffe et sous-refroidissement simulés", comp:["C4.5"], dir:"S5-T2 - Surchauffe et sous-refroidissement simulés", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"14-17", titre:"Carnet de bord (continu)", comp:["C1.3"], dir:"F3 - Carnet de bord", docs:TH()}
+ ]},
+{code:"S6", etat:"bat", periode:"P3", sem:"18-21",
+ titre:"Épreuve d'étanchéité azote + recherche de fuite",
+ dir:"../Sequences-1A-CAP-IFCA/S6 - Épreuve d'étanchéité azote et recherche de fuite",
+ comp:["C3.4","C3.6","C3.9"],
+ root:[["Dossier de séquence S6","Dossier de séquence S6","h"]],
+ pilotage:["_CADRAGE-S6.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"18-21", titre:"Épreuve d'étanchéité à l'azote", comp:["C3.9","C2.4"], dir:"S6-F1 - Épreuve d'étanchéité à l'azote", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"18-21", titre:"Recherche de fuite", comp:["C3.9","C4.5"], dir:"S6-F2 - Recherche de fuite", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"18-21", titre:"Contacteurs et moteurs — consolidation", comp:["C3.6"], dir:"S6-E1 - Contacteurs et moteurs - consolidation", docs:TP("h")},
+  {id:"T1", type:"T", duree:"2 h", sem:"18-21", titre:"Risques de la pression et gaz neutres", comp:["S6.2","S6.3"], dir:"S6-T1 - Risques de la pression et gaz neutres", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"18-21", titre:"Carnet de bord (PV d'épreuve intégré)", comp:["C1.3","C1.1"], dir:"F3 - Carnet de bord", docs:TH()},
+  {id:"ÉVAL", type:"E", duree:"3 postes", sem:"21", titre:"Évaluation sommative É3 (S5-S6)", eval:true, comp:["C3.4","C3.6","C3.9"], dir:"Évaluation sommative É3 S5-S6 (semaine 21)", docs:EV("h")}
+ ],
+ evalNote:"◆ É3 (semaine 21) — C3.4·C3.6·C3.9, savoir-être C2.4 renforcé."},
+{code:"S7", etat:"bat", periode:"P4", sem:"22-25",
+ titre:"Pose manomètres HP/BP + tirage au vide (réel azote)",
+ dir:"../Sequences-1A-CAP-IFCA/S7 - Pose manomètres HP-BP et tirage au vide",
+ comp:["C4.1","C4.5","C4.7"],
+ root:[["Dossier de séquence S7","Dossier de séquence S7","h"]],
+ pilotage:["_CADRAGE-S7.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"22-25", titre:"Pose manomètres HP-BP", comp:["C4.7","C4.5"], dir:"S7-F1 - Pose manomètres HP-BP", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"22-25", titre:"Tirage au vide réel", comp:["C4.1","C3.7"], dir:"S7-F2 - Tirage au vide réel", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"22-25", titre:"Régulations simples — premier réglage", comp:["C4.6","C3.6"], dir:"S7-E1 - Régulations simples - premier réglage", docs:TP("h")},
+  {id:"E2", type:"A", duree:"4 h", sem:"22-25", titre:"Coffret clim et câblage", comp:["C3.6","C3.7"], dir:"S7-E2 - Coffret clim et câblage", docs:TP("h")},
+  {id:"T0", type:"T", duree:"2 h", sem:"22", titre:"Retour d'É3 et remédiation ciblée", comp:["C3.4","C3.6","C3.9"], note:"Remédiation post-É3 (formatif)", dir:"S7-T0 - Retour d'É3 et remédiation ciblée", docs:TH()},
+  {id:"T1", type:"T", duree:"2 h", sem:"22-25", titre:"Lecture de relevés", comp:["C4.5"], dir:"S7-T1 - Lecture de relevés", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"22-25", titre:"Carnet de bord (relevés systématiques)", comp:["C1.1"], dir:"F3 - Carnet de bord", docs:TH()}
+ ]},
+{code:"S8", etat:"bat", periode:"P4", sem:"26-28",
+ titre:"Simulation de charge (au poids) + lecture de relevés",
+ dir:"../Sequences-1A-CAP-IFCA/S8 - Simulation de charge au poids et lecture de relevés",
+ comp:["C4.1","C4.2","C4.5"],
+ root:[["Dossier de séquence S8","Dossier de séquence S8","h"]],
+ pilotage:["_CADRAGE-S8.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"26-27", titre:"Simulation de charge au poids", comp:["C4.2","C4.7"], dir:"S8-F1 - Simulation de charge au poids", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"28", titre:"Tirage au vide et charge enchaînés", comp:["C4.1","C4.5"], dir:"S8-F2 - Tirage au vide et charge enchaînés", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"26-27", titre:"Réglage de consignes guidé", comp:["C4.6","C3.6"], dir:"S8-E1 - Réglage de consignes guidé", docs:TP("h")},
+  {id:"T1", type:"T", duree:"2 h", sem:"26", titre:"Fluides frigorigènes — familles et étiquettes", comp:["S5.2","S0.1"], dir:"S8-T1 - Fluides frigorigènes - familles et étiquettes", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"26-28", titre:"Carnet de bord (feuille de relevés type)", comp:["C1.1","C1.3"], dir:"F3 - Carnet de bord", docs:TH()}
+ ]},
+{code:"S9", etat:"bat", periode:"P4", sem:"29-36",
+ titre:"Diagnostic frigorifique simple + É4 (dernière séquence)",
+ dir:"../Sequences-1A-CAP-IFCA/S9 - Diagnostic frigorifique simple",
+ comp:["C4.1","C4.5","C4.7","C5.1"],
+ root:[["Dossier de séquence S9","Dossier de séquence S9","h"]],
+ pilotage:["_CADRAGE-S9.md","_ETAT.md"],
+ modules:[
+  {id:"F1", type:"A", duree:"4 h", sem:"29-30", titre:"Diagnostic guidé sur machine", comp:["C4.5","C5.1"], dir:"S9-F1 - Diagnostic guidé sur machine", docs:TP("h")},
+  {id:"F2", type:"A", duree:"4 h", sem:"31-33", titre:"Remplacement d'un composant simple", comp:["C5.1","C3.4"], dir:"S9-F2 - Remplacement d'un composant simple", docs:TP("h")},
+  {id:"E1", type:"A", duree:"4 h", sem:"29-31", titre:"Coffret clim en autonomie", comp:["C3.6","C3.7"], dir:"S9-E1 - Coffret clim en autonomie", docs:TP("h")},
+  {id:"T1", type:"T", duree:"2 h", sem:"29-30", titre:"Démarche de diagnostic et conservation des denrées", comp:["S4.2","S5.7"], dir:"S9-T1 - Démarche de diagnostic et conservation des denrées", docs:TH()},
+  {id:"T2", type:"T", duree:"sem. 33-36", sem:"33-36", titre:"Retour d'É4, remédiation et bilan de 1re année", comp:["C4.5","C5.1"], note:"Clôture d'année : remédiation post-É4 + bilan (formatif) — ajout au maître, à valider", dir:"S9-T2 - Retour d'É4, remédiation et bilan de 1re année", docs:TH()},
+  {id:"F3", type:"F", duree:"2 h", sem:"29-36", titre:"Carnet de bord + compte rendu d'intervention", comp:["C1.3","C1.1"], dir:"F3 - Carnet de bord", docs:TH()},
+  {id:"ÉVAL", type:"E", duree:"3 postes", sem:"32", titre:"Évaluation sommative É4 (S7-S9)", eval:true, comp:["C4.1","C4.5","C4.7","C5.1"], dir:"Évaluation sommative É4 S7-S9 (semaine 32)", docs:EV("h")}
+ ],
+ evalNote:"◆ É4 (semaine 32) — la dernière évaluation de la 1re année, 4 compétences, remédiation en S9-T2."}
+];
+
+const PERIODES = {
+  P1:"Rentrée → Toussaint", P2:"Toussaint → Noël", P3:"Janvier → Février", P4:"Mars → Juin",
+  P5:"Septembre → Toussaint", P6:"Toussaint → Noël", P7:"Janvier → Février", P8:"Mars → Juin"
+};
+
+/* ============================================================ RENDU */
+const $=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+
+function lien(parts){ return encodeURI(parts.filter(Boolean).join("/")); }
+
+/* un lot de puces de formats pour un document */
+function fmtLinks(dirParts, base, fmts){
+  const box=document.createDocumentFragment();
+  fmts.split(" ").forEach(tok=>{
+    const ext=tok[0], flag=tok.slice(1);
+    const map={h:["HTML","html"],p:["PDF","pdf"],w:["DOCX","docx"]};
+    if(!map[ext])return;
+    const a=document.createElement("a");
+    a.textContent=map[ext][0];
+    a.href=lien(dirParts.concat(base+"."+map[ext][1]));
+    a.className="fmt"+(ext==="h"?" main":"")+(flag==="!"?" per":"")+(flag==="~"?" det":"");
+    if(flag==="!")a.title="PÉRIMÉ (audit 13/07) — ancienne version, ne pas imprimer";
+    if(flag==="~")a.title="Dette technique (pandoc, SVG sans repli) — à régénérer en docx natif";
+    if(ext==="h")a.title=a.title||"Version de référence";
+    box.appendChild(a);
+  });
+  return box;
+}
+
+/* carte de séquence 2A */
+function seqCard(s){
+  const st=ETATS[s.etat];
+  const card=$("div","seq"+(s.ghost?" ghost":""));
+  card.style.setProperty("--st","var("+st.v+")");
+  const nDocs=s.modules? s.modules.reduce((n,m)=>n+m.docs.length,0)+(s.root?s.root.length:0) : 0;
+  const head=$("div","head");
+  head.innerHTML=
+    '<span class="code">'+s.code+'</span>'+
+    '<span class="tit"><span class="t">'+s.titre+'</span>'+
+    '<span class="meta">'+s.periode+' · sem. '+s.sem+' · '+(s.comp||[]).join(" · ")+'</span></span>'+
+    (s.eval?'<span class="evalflag">'+s.eval+'</span>':"")+
+    (s.modules?'<span class="count">'+s.modules.length+" modules · "+nDocs+" documents</span>":"")+
+    ((s.alertes&&s.alertes.length)?'<span class="alertn">⚠ '+s.alertes.length+'</span>':"")+
+    '<span class="badge">'+st.l+'</span><span class="chev">▶</span>';
+  card.appendChild(head);
+
+  const body=$("div","body");
+  if(s.ghost){
+    body.appendChild($("p",null,s.ghostTxt));
+  }else{
+    /* documents racine + pilotage */
+    const rd=$("div","rootdocs");
+    rd.appendChild($("span","lab","Séquence :"));
+    s.root.forEach(([label,base,f])=>{
+      rd.appendChild($("span","dl",label+" "));
+      rd.appendChild(fmtLinks([s.dir],base,f));
+    });
+    if(s.pilotage){
+      rd.appendChild($("span","lab","· Pilotage :"));
+      s.pilotage.forEach(p=>{
+        const a=document.createElement("a");
+        a.textContent=p.replace(/^_/,"").replace(".md","");
+        a.href=lien([s.dir,p]); a.className="fmt";
+        rd.appendChild(a);
+      });
+    }
+    body.appendChild(rd);
+
+    /* modules */
+    const grid=$("div","mods");
+    s.modules.forEach(m=>{
+      const mt=MTYPES[m.type];
+      const mod=$("div","mod");
+      mod.style.setProperty("--mt","var("+mt.c+")");
+      mod.dataset.search=norm([s.code,s.titre,m.id,m.titre,(m.comp||[]).join(" "),m.docs.map(d=>d[0]).join(" ")].join(" "));
+      mod.innerHTML='<div class="mh"><span class="mid">'+m.id+'</span>'+
+        '<span class="mtype">'+mt.l+" · "+m.duree+'</span>'+
+        '<span class="mwk">sem. '+m.sem+'</span></div>'+
+        '<div class="mt2">'+m.titre+'</div>'+
+        ((m.comp&&m.comp.length)?'<div class="chips">'+m.comp.map(c=>'<span class="chip">'+c+"</span>").join("")+"</div>":"")+
+        (m.note?'<div class="note">⚠ '+m.note+"</div>":"");
+      m.docs.forEach(([label,base,f])=>{
+        const row=$("div","docrow");
+        row.appendChild($("span","dl",label));
+        row.appendChild(fmtLinks([s.dir,m.dir],base,f));
+        mod.appendChild(row);
+      });
+      grid.appendChild(mod);
+    });
+    body.appendChild(grid);
+    if(s.evalNote)body.appendChild($("p","subtitle",s.evalNote)).style.marginTop="10px";
+  }
+  if(s.alertes&&s.alertes.length){
+    const al=$("div","alerts","<h4>Alertes de l'audit (13/07)</h4>");
+    const ul=$("ul");
+    s.alertes.forEach(a=>ul.appendChild($("li",null,a)));
+    al.appendChild(ul); body.appendChild(al);
+  }
+  card.appendChild(body);
+  head.addEventListener("click",()=>card.classList.toggle("open"));
+  return card;
+}
+
+/* ---- rendu 2A groupé par période ---- */
+(function(){
+  const map=document.getElementById("map2a");
+  ["P5","P6","P7","P8"].forEach(p=>{
+    const seqs=SEQS.filter(s=>s.periode===p);
+    if(!seqs.length)return;
+    const ph=$("div","pheader","<b>"+p+"</b><span>"+PERIODES[p]+"</span>");
+    map.appendChild(ph);
+    seqs.forEach(s=>map.appendChild(seqCard(s)));
+  });
+})();
+
+/* ---- rendu 1A (même moteur que la 2A : cartes dépliables + tuiles cliquables, groupées par période P1-P4) ---- */
+(function(){
+  const map=document.getElementById("map1a");
+  ["P1","P2","P3","P4"].forEach(p=>{
+    const seqs=AN1.filter(s=>s.periode===p);
+    if(!seqs.length)return;
+    const ph=$("div","pheader","<b>"+p+"</b><span>"+PERIODES[p]+"</span>");
+    map.appendChild(ph);
+    seqs.forEach(s=>map.appendChild(seqCard(s)));
+  });
+})();
+
+/* ---- KPI ---- */
+(function(){
+  const ALL=SEQS.concat(AN1);
+  const produites=ALL.filter(s=>!s.ghost&&s.etat!=="todo").length;
+  const nMod=ALL.reduce((n,s)=>n+(s.modules?s.modules.length:0),0);
+  const nDocs=ALL.reduce((n,s)=>{
+    if(!s.modules)return n;
+    return n+(s.root?s.root.length:0)+s.modules.reduce((k,m)=>k+m.docs.length,0);
+  },0);
+  const nAl=SEQS.reduce((n,s)=>n+((s.alertes&&s.alertes.length)||0),0);
+  const data=[
+    {n:produites+" / 16",l:"séquences produites (1A + 2A)"},
+    {n:nMod,l:"modules cliquables"},
+    {n:nDocs,l:"documents HTML de référence",a:1},
+    {n:nAl,l:"alertes d'audit à solder"}
+  ];
+  const box=document.getElementById("kpis");
+  data.forEach(d=>{
+    const k=$("div","kpi"+(d.a?" accent":""));
+    k.appendChild($("div","n",d.n));k.appendChild($("div","l",d.l));
+    box.appendChild(k);
+  });
+})();
+
+/* ---- légende ---- */
+(function(){
+  const lg=document.getElementById("legend");
+  Object.values(ETATS).forEach(e=>{
+    const el=$("div","lg");const sw=$("span","sw");sw.style.setProperty("--c","var("+e.v+")");
+    el.appendChild(sw);el.appendChild($("span",null,e.l));lg.appendChild(el);
+  });
+  [["--violet","Théorie (1 h)"],["--bleu-clair","Atelier (4 h) / séance"],["--teal","Fil de l'eau"],["--orange","Évaluation sommative"]].forEach(([c,l])=>{
+    const el=$("div","lg");const sw=$("span","sw");sw.style.setProperty("--c","var("+c+")");
+    el.appendChild(sw);el.appendChild($("span",null,l));lg.appendChild(el);
+  });
+  const el=$("div","lg");
+  el.innerHTML='<span class="fmt per" style="cursor:default">PDF</span><span>périmé (audit)</span>'+
+    '&nbsp;&nbsp;<span class="fmt det" style="cursor:default">DOCX</span><span>dette pandoc</span>';
+  lg.appendChild(el);
+})();
+
+/* ---- déplier / replier ---- */
+document.getElementById("expand").addEventListener("click",()=>document.querySelectorAll(".seq").forEach(s=>s.classList.add("open")));
+document.getElementById("collapse").addEventListener("click",()=>document.querySelectorAll(".seq").forEach(s=>s.classList.remove("open")));
+
+/* ---- recherche ---- */
+(function(){
+  const q=document.getElementById("q"), nores=document.getElementById("nores");
+  document.addEventListener("keydown",e=>{
+    if(e.key==="/"&&document.activeElement!==q){e.preventDefault();q.focus();}
+    if(e.key==="Escape"&&document.activeElement===q){q.value="";q.dispatchEvent(new Event("input"));q.blur();}
+  });
+  q.addEventListener("input",()=>{
+    const v=norm(q.value.trim());
+    let any=false;
+    document.querySelectorAll(".seq").forEach(card=>{
+      if(!v){card.style.display="";card.classList.remove("open");
+        card.querySelectorAll(".mod").forEach(m=>m.style.display="");return;}
+      const mods=card.querySelectorAll(".mod");
+      let hit=0;
+      mods.forEach(m=>{
+        const ok=m.dataset.search.includes(v);
+        m.style.display=ok?"":"none"; if(ok)hit++;
+      });
+      /* les cartes fantômes (S13/S16) matchent sur leur titre */
+      const selfHit=norm(card.querySelector(".tit").textContent).includes(v);
+      const show=hit>0||selfHit;
+      card.style.display=show?"":"none";
+      card.classList.toggle("open",show&&(hit>0));
+      if(selfHit&&!hit)mods.forEach(m=>m.style.display="");
+      if(show)any=true;
+    });
+    document.querySelectorAll(".pheader").forEach(ph=>{
+      if(!v){ph.style.display="";return;}
+      let el=ph.nextElementSibling,vis=false;
+      while(el&&!el.classList.contains("pheader")){
+        if(el.classList.contains("seq")&&el.style.display!=="none")vis=true;
+        el=el.nextElementSibling;
+      }
+      ph.style.display=vis?"":"none";
+    });
+    nores.style.display=(v&&!any)?"block":"none";
+  });
+})();
+
+/* ---- thème ---- */
+(function(){
+  const btn=document.getElementById("tgl"),ic=document.getElementById("tglic");
+  function cur(){const a=document.documentElement.getAttribute("data-theme");
+    if(a)return a;return matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";}
+  function set(t){document.documentElement.setAttribute("data-theme",t);ic.textContent=t==="dark"?"☾":"☀";}
+  set(cur());
+  btn.addEventListener("click",()=>set(cur()==="dark"?"light":"dark"));
+})();
+</script>
+</body>
+</html>

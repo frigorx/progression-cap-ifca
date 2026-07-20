@@ -1,0 +1,418 @@
+<meta charset="utf-8">
+<title>Carnet de bord professeur — S9 · Module F3 · Fil de l'eau</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.35fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:left; vertical-align:top}
+  table.grille{font-size:9pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .fiche-num{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt;
+    border-radius:8px; padding:3px 12px; background:var(--marine); color:#fff; margin-bottom:8px}
+  .rubrique{border:1px solid var(--filet); border-radius:6px; margin:.5em 0 .9em; overflow:hidden}
+  .rubrique .titre-rubrique{background:var(--fond-doux); border-bottom:1px solid var(--filet); padding:5px 12px;
+    font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10.5pt; color:var(--bleu)}
+  .rubrique .corps-rubrique{padding:10px 14px}
+  .rubrique.commande .titre-rubrique{background:#fff2ea}
+  .rubrique.auto .titre-rubrique{background:#f8f6ff}
+  .attendu{background:#eef6ec; border-left:3px solid #4a8f3c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .attendu b{color:#2f6b24; font-family:'Trebuchet MS',sans-serif}
+  .exemple{background:#f5f8fc; border-left:3px solid var(--bleu); padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .exemple b{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .erreur{background:#fdeceb; border-left:3px solid #c0392b; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .erreur b{color:#a5281b; font-family:'Trebuchet MS',sans-serif}
+  .remede{background:#fff8e6; border-left:3px solid #c9971c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .remede b{color:#96700f; font-family:'Trebuchet MS',sans-serif}
+  .indicatif{background:#f3f0fb; border-left:3px solid var(--violet); padding:4px 10px; margin:4px 0; font-size:9.5pt; font-style:italic}
+  .indicatif b{color:var(--violet); font-family:'Trebuchet MS',sans-serif; font-style:normal}
+  .special{background:#fdecd2; border-left:3px solid #c9971c; padding:4px 10px; margin:4px 0; font-size:9.8pt}
+  .special b{color:#96581b; font-family:'Trebuchet MS',sans-serif}
+  .cr-exemple{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.4em 0 .9em; font-size:9.5pt}
+  .cr-exemple .cle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); display:block; margin-bottom:2px}
+  .cr-exemple p{margin:0 0 6px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — CADRE GÉNÉRAL DU MODULE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Diagnostic frigorifique simple</td>
+      <td style="width:38%"><span class="lib">Module F3 · fil de l'eau · 2 h (continu)</span><b>Carnet de bord de chantier — corrigé professeur</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention<br><b>T16</b> Assurer l'entretien d'une installation</div>
+    <div class="case"><h4>Savoir</h4><b>S3.1</b> Communication technique (augmenté)</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la trace écrite · régularité · honnêteté de l'auto-évaluation · un compte rendu exploitable par un collègue absent au moment de l'intervention</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4>
+      <span class="statut">Confortement</span> <b>C1.1</b> Compléter, transmettre (niveau visé Confortement)<br>
+      <span class="statut">Confortement</span> <b>C1.3</b> Rendre compte (niveau visé Maîtrise)
+    </div>
+  </div>
+
+  <h3 class="section">Positionnement du module dans la séquence</h3>
+  <p style="font-size:10.5pt">Le carnet de bord F3 de S9 est la <b>suite directe</b> du carnet ouvert en S1 et
+  poursuivi en S2, S3, S5, S6, S7 et S8 (S4 n'en prévoyait pas, séquence courte tournée vers É2) : même objet
+  physique, mêmes rubriques de base, même élève qui continue de le tenir. C'est la <b>8<sup>e</sup></b> série de
+  pages du carnet, pour <b>8 semaines</b> (29 à 36) — les <b>dernières de la 1<sup>re</sup> année</b>. Il totalise
+  <b>2 h cumulées</b> sur l'ensemble de la séquence, réparties en petites tranches à la fin (ou en tout début) de
+  chaque autre module : S9-F1 (semaines 29-30, 2 passages), S9-E1 (semaines 29-31, jusqu'à 3 passages), S9-T1
+  (semaines 29-30, 2 demi-séances sur une même fiche), S9-F2 (semaines 31 et 33, 2 passages), puis une fiche
+  nouvelle (compte rendu d'intervention), une fiche « Après É4 », et le bilan de séquence (semaine 36).</p>
+
+  <div class="special"><b>Point de vigilance — ne pas confondre statut et niveau visé</b><br>
+  <b>C1.1</b> « Compléter, transmettre » est <b>stable en Confortement</b> depuis S8 : après la Découverte (S6)
+  puis la transition Découverte → Confortement (S7), c'est un geste installé, et le cadrage fixe pour elle un
+  <b>plafond volontaire</b> pour l'année : le niveau visé <b>reste Confortement</b>, il ne monte pas vers
+  Maîtrise en 1<sup>re</sup> année. <b>C1.3</b> « Rendre compte » reste elle aussi en statut <b>Confortement</b>
+  dans cette activité — rien n'est remonté sur le carnet lui-même. Mais pour C1.3, le cadrage fixe un niveau visé
+  plus élevé : <b>Maîtrise</b>, cohérent avec la nouveauté du compte rendu d'intervention type qui exige un récit
+  plus autonome et plus complet qu'auparavant. Ces deux compétences partagent donc le même statut d'activité
+  (Confortement), mais des ambitions différentes sur l'année — ne jamais écrire que l'une « passe » en Maîtrise
+  comme statut du jour.</div>
+
+  <div class="situation"><h4>Ce qui distingue S9 de S8 pour ce carnet</h4>
+  En S7 et S8, le carnet restait un carnet de <b>mise en service</b> : chaque fiche officielle rangeait un
+  document de pose, de réglage ou de charge. En S9, dernière séquence, le carnet change de nature :
+  <ul style="margin:.3em 0 0 1.1em; padding:0">
+    <li>on passe de la logique « installer / mettre en service » à la logique <b>« diagnostiquer / réparer /
+    rendre compte »</b> — le fil rouge SAV de la séquence ;</li>
+    <li><b>nouveauté</b> : une feuille de <b>compte rendu d'intervention type</b> (fiche n° 5 + annexe pleine
+    page vierge) vient clôturer chaque intervention terminée — c'est le document le plus exigeant jamais demandé
+    dans ce carnet pour C1.1 et C1.3 ;</li>
+    <li>la rubrique habituelle « Après É... » est repoussée en <b>fin</b> de séquence (fiche n° 6), et non en
+    tête comme pour S7-T0 après É3 : É4 se tient en <b>milieu</b> de séquence (semaine 32), pas juste avant. Le
+    grand bilan de l'année entière ne se fait <b>pas</b> dans ce carnet mais dans le module <b>S9-T2</b> — le
+    carnet ne fait que garder une trace légère des 2 objectifs post-É4.</li>
+  </ul></div>
+
+  <h3 class="section">Ce qu'on attend — la fiche n° 1 (S9-F1, diagnostic guidé)</h3>
+  <div class="attendu"><b>Ce que j'ai fait</b> — l'élève décrit le symptôme signalé, les indices observés, les
+  mesures effectuées <b>dans l'ordre</b> (relever → mesurer → calculer → comparer → conclure), pas seulement le
+  résultat final.</div>
+  <div class="attendu"><b>Mes relevés et mon hypothèse</b> — HP, BP, SC, SR figurent tous avec leur unité ;
+  l'hypothèse retenue est justifiée par une comparaison aux valeurs cibles (<b>SC 5-10 K · SR 4-8 K</b>), jamais
+  par une impression.</div>
+  <div class="erreur"><b>Erreur typique</b> — l'élève annonce une hypothèse sans l'appuyer sur ses propres
+  mesures, ou recopie une valeur cible comme si c'était la valeur mesurée.</div>
+  <div class="remede"><b>Remédiation</b> — faire relire, valeur par valeur, la comparaison mesure/cible avant de
+  valider l'hypothèse ; jamais de conclusion sans ce passage explicite.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — LE COMPTE RENDU D'INTERVENTION : ATTENDUS PAR RUBRIQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Le compte rendu d'intervention — LE document nouveau de S9</h3>
+  <p style="font-size:10.5pt">La feuille de compte rendu (annexe pleine page du carnet élève) synthétise, pour
+  <b>chaque intervention terminée</b> (S9-F1 diagnostic seul, S9-F2 remplacement, S9-E1 dépannage coffret), les 8
+  rubriques : <b>constat, mesures relevées, diagnostic, action menée, composant remplacé, remise en état,
+  contrôle final, observations</b>. Le critère de correction, comme pour toutes les traces de F3 depuis S1, reste
+  <b>« exploitable par un tiers »</b> — mais ici dans sa version la plus exigeante de l'année : un collègue qui
+  n'a pas vécu l'intervention doit pouvoir la relire seul et comprendre l'historique complet (ce qui a été
+  signalé, mesuré, conclu, fait, contrôlé), sans poser de question à l'auteur.</p>
+
+  <h4 style="font-size:10.5pt; margin:.6em 0 .2em">Critères d'un compte rendu « exploitable par un tiers »</h4>
+  <ul class="liste-num" style="margin-top:0">
+    <li>Toutes les rubriques sont renseignées ; une rubrique sans objet ce jour porte la mention <b>« sans objet
+    »</b> plutôt que d'être laissée vide sans explication (ex. « composant remplacé : aucun » pour une
+    intervention de diagnostic seul).</li>
+    <li>Chaque mesure porte une <b>valeur ET une unité</b>.</li>
+    <li>Le diagnostic s'appuie sur une <b>comparaison à une valeur cible</b> (SC 5-10 K / SR 4-8 K, ou la
+    consigne/schéma pour un défaut électrique), jamais sur une impression.</li>
+    <li>Le composant remplacé est nommé précisément (désignation, référence si connue).</li>
+    <li>La remise en état est <b>prouvée</b> par la check-list cochée, pas seulement affirmée en une phrase.</li>
+    <li>Un collègue absent au moment de l'intervention peut reconstituer, seul, tout l'historique.</li>
+  </ul>
+
+  <div class="attendu"><b>Constat</b> — le symptôme est décrit tel que signalé (par le client dans l'ordre
+  d'intervention, ou par le professeur pour un défaut posé), pas déjà reformulé comme une conclusion.</div>
+  <div class="attendu"><b>Mesures relevées</b> — cohérentes avec ce qui a réellement été mesuré au poste (F1 : HP/
+  BP/SC/SR ; E1 : tension/continuité ; F2 : contrôle avant et après remplacement).</div>
+  <div class="attendu"><b>Diagnostic</b> — l'hypothèse est reliée explicitement aux corrélations archi-classiques
+  du cadrage (manque de charge, excès de charge, encrassement condenseur, évaporateur givré, détendeur mal
+  réglé, défaut électrique) ; toute autre valeur ou corrélation porte la mention « selon la machine/la notice, à
+  faire valider ».</div>
+  <div class="attendu"><b>Composant remplacé / Remise en état / Contrôle final</b> — cohérents avec la gamme et
+  la check-list qualité de S9-F2 : un composant nommé, une check-list cochée, une mesure de contrôle après
+  intervention (pas seulement « ça marche »).</div>
+
+  <div class="erreur"><b>Erreur typique</b> — rubrique « remise en état » remplie d'une phrase générale (« j'ai
+  vérifié ») sans que la check-list (propreté/serrage/étanchéité/essai) soit réellement cochée.</div>
+  <div class="remede"><b>Remédiation</b> — exiger que chaque case de la check-list soit cochée individuellement
+  avant de considérer le compte rendu complet ; une case non cochée = remise en état non prouvée.</div>
+
+  <h4 style="font-size:10.5pt; margin:.8em 0 .2em">Exemple A — diagnostic seul (S9-F1, pas de remplacement)</h4>
+  <div class="cr-exemple">
+    <span class="cle">Constat</span><p>L'armoire positive ne descend plus en dessous de +8 °C. Pas de bruit
+    anormal signalé.</p>
+    <span class="cle">Mesures relevées</span><p>BP mesurée basse. HP mesurée basse. SC mesurée 14 K (cible 5-10 K,
+    donc élevée). SR non calculé ce jour (mesure non demandée pour ce poste).</p>
+    <span class="cle">Diagnostic</span><p>SC élevée avec BP et HP basses : hypothèse retenue = manque de charge ou
+    fuite (corrélation archi-classique du cadrage), à confirmer par le professeur — aucune valeur de charge
+    affirmée.</p>
+    <span class="cle">Action menée</span><p>Hypothèse transmise au professeur. Aucune intervention sur le fluide :
+    en 1<sup>re</sup> année, la recherche de fuite et la charge réelle ne sont pas manipulées par l'élève.</p>
+    <span class="cle">Composant remplacé</span><p>Aucun (diagnostic seul ce jour).</p>
+    <span class="cle">Remise en état / Contrôle final</span><p>Sans objet ce jour (aucune intervention physique).</p>
+    <span class="cle">Observations</span><p>Cas à surveiller ; hypothèse à confirmer selon la machine. Suite
+    possible en 2<sup>e</sup> année (recherche de fuite réelle, attestation d'aptitude).</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — SUITE EXEMPLE + DIFFÉRENCIATION + GRILLE INDICATIVE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h4 style="font-size:10.5pt; margin:0 0 .2em">Exemple B — remplacement d'un composant (S9-F2)</h4>
+  <div class="cr-exemple">
+    <span class="cle">Constat</span><p>Le compresseur ne démarre plus. Un clic répété est entendu au démarrage,
+    puis plus rien.</p>
+    <span class="cle">Mesures relevées</span><p>Tension d'alimentation mesurée conforme (230 V). Continuité du
+    pressostat BP : absente en position repos (contact resté ouvert). Câblage contrôlé conforme au schéma.</p>
+    <span class="cle">Diagnostic</span><p>Tension et câblage conformes, seul le pressostat BP présente une anomalie
+    de continuité : hypothèse retenue = pressostat BP hors service (défaut électrique, corrélation archi-classique
+    du cadrage).</p>
+    <span class="cle">Action menée</span><p>Consignation NF C 18-510. Circuit préalablement inerté à l'azote par
+    le professeur. Dépose du pressostat BP selon la gamme fournie.</p>
+    <span class="cle">Composant remplacé</span><p>Pressostat BP — référence selon la plaque/notice, à faire
+    valider par le professeur — motif : absence de continuité mesurée, contact resté ouvert.</p>
+    <span class="cle">Remise en état</span><p>☑ Propreté ☑ Serrage ☑ Étanchéité contrôlée (eau savonneuse, raccord
+    hors fluide) ☑ Essai de fonctionnement.</p>
+    <span class="cle">Contrôle final</span><p>Compresseur démarre normalement. Intensité mesurée conforme à la
+    plaque signalétique.</p>
+    <span class="cle">Observations</span><p>RAS, machine rendue en état de marche. Aucune autre anomalie
+    constatée.</p>
+  </div>
+  <p style="font-size:8.5pt; color:var(--gris); font-style:italic; margin:2px 0 10px">Ces deux exemples sont
+  <b>génériques et fictifs</b> (aucun nom propre, aucune valeur chiffrée hors des seuils autorisés par la charte) —
+  ils illustrent la forme attendue, pas une machine réelle de l'atelier.</p>
+
+  <h4 style="font-size:10.5pt; margin:.4em 0 .2em">Différenciation</h4>
+  <div class="exemple"><b>Élèves en difficulté</b> — fournir un compte rendu <b>partiellement pré-rempli</b>
+  (constat et mesures déjà notés par le professeur ou un tuteur) : l'élève complète uniquement diagnostic, action,
+  remise en état et observations. L'objectif reste la rédaction exploitable, pas la collecte des mesures.</div>
+  <div class="exemple"><b>Élèves rapides</b> — un 2<sup>e</sup> défaut ou un 2<sup>e</sup> composant est proposé
+  (comme en S9-E1 et S9-F2) ; l'élève rédige alors <b>2 comptes rendus complets</b> dans la même séance et peut
+  devenir tuteur pour relire celui d'un camarade avant de l'agrafer.</div>
+
+  <div class="indicatif"><b>Grille indicative 0-4 — repère professeur uniquement, NON remontée</b></div>
+  <div class="tbl-wrap">
+  <table class="grille" style="font-size:8.6pt">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th style="width:12%">Ancrage</th><th style="width:18%">0<br>Non évalué</th><th style="width:18%">1<br>Non acquis</th><th style="width:18%">2<br>En cours d'acquisition</th><th style="width:18%">3<br>Acquis</th><th style="width:18%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr>
+      <td><b>C1.1</b> Compléter, transmettre <span class="statut" style="display:block; margin-top:3px">Confortement</span> <span class="nuance">niveau visé Confortement</span></td>
+      <td>sur T1 · S3.1</td>
+      <td>Aucune fiche remplie ce jour.</td>
+      <td>Fiches incomplètes (lignes vides, unités manquantes) ou compte rendu incompréhensible sans explication
+      orale.</td>
+      <td>Documents complets et lisibles, mais nécessitent encore une explication orale pour être compris par un
+      tiers — comme en S7-S8, sans progrès net.</td>
+      <td>Documents complets, lisibles, aux unités systématiques ; un collègue absent peut relire le compte rendu
+      seul et comprendre l'intervention sans poser de question.</td>
+      <td>Comme « Acquis », et l'élève rédige et complète son compte rendu sans aucune relance, y compris la
+      rubrique « sans objet » quand elle s'applique.</td>
+    </tr>
+    <tr>
+      <td><b>C1.3</b> Rendre compte <span class="statut" style="display:block; margin-top:3px">Confortement</span> <span class="nuance">niveau visé Maîtrise</span></td>
+      <td>sur T1 · T16 · S3.1</td>
+      <td>Carnet non tenu ce jour.</td>
+      <td>Rubriques vides ou aussi sommaires qu'en S1-S3.</td>
+      <td>Rubriques remplies mais encore approximatives sur les nouvelles traces de S9 (constat, mesures,
+      diagnostic relié à une valeur cible, composant, remise en état) ; nécessite une relance du professeur.</td>
+      <td>Les 8 rubriques du compte rendu sont remplies, précises, reliées à une valeur cible quand c'est
+      pertinent ; le récit est cohérent avec les documents officiels agrafés.</td>
+      <td>Comme « Acquis », et le compte rendu est assez précis et autonome pour qu'un collègue absent poursuive
+      l'intervention sans autre explication — sans relance du professeur pour démarrer la rédaction. C'est ce
+      niveau qui correspond au niveau visé Maîtrise fixé au cadrage.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, régularité, honnêteté, document exploitable par un tiers</td>
+      <td>observation continue</td>
+      <td>Non observé ce jour.</td>
+      <td>Fiche non remplie sans motif, ou compte rendu rempli sans que l'élève ait vérifié ses propres mesures.</td>
+      <td>Carnet tenu la plupart du temps ; niveau comparable à S7-S8, sans progrès net sur l'exploitabilité.</td>
+      <td>Carnet et comptes rendus tenus à chaque intervention sans rappel, dans l'idée qu'un collègue absent devra
+      s'appuyer dessus.</td>
+      <td>Comme « Acquis », et l'élève explique pourquoi un dossier de maintenance doit être compréhensible par un
+      collègue qui prendrait la suite de l'intervention — la posture professionnelle est installée.</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — ATTENDUS AUTRES RUBRIQUES + SYNTHÈSE ERREURS + VIGILANCE + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module F3 · carnet de bord · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Attendus des autres rubriques</h3>
+
+  <div class="exemple"><b>S9-E1 — mon défaut, mon diagnostic, ma remise en service</b> — l'élément suspecté doit
+  être identifié <b>à partir du schéma seul</b> (sans fiche guidée) ; la colonne « remise en service prouvée » ne
+  doit jamais rester vide.</div>
+  <div class="erreur"><b>Erreur typique</b> — l'élève cherche le défaut par essais successifs sans méthode,
+  au lieu de suivre le schéma pour restreindre les hypothèses.</div>
+  <div class="remede"><b>Remédiation</b> — faire pointer sur le schéma, avant tout essai, les points de contrôle
+  possibles dans l'ordre logique (alimentation → sécurités → organe suspecté).</div>
+
+  <div class="exemple"><b>S9-T1 — mon arbre de diagnostic / ma fiche denrée-enceinte</b> — l'arbre doit reprendre
+  les corrélations archi-classiques vues en F1 (manque de charge, excès de charge, encrassement condenseur,
+  évaporateur givré, détendeur mal réglé, défaut électrique) ; la fiche denrée doit citer le tableau distribué,
+  jamais une température de mémoire.</div>
+  <div class="erreur"><b>Erreur typique</b> — un élève invente une corrélation panne↔symptôme non vue en classe,
+  ou une température de conservation approximative.</div>
+  <div class="remede"><b>Remédiation</b> — renvoyer systématiquement au tableau des corrélations et au tableau
+  denrée/température distribués ; toute valeur non trouvée dans ces tableaux = « à confirmer selon la machine/la
+  notice ».</div>
+
+  <div class="exemple"><b>S9-F2 — mon composant remplacé / ma gamme + check-list qualité</b> — voir feuilles 2-3 :
+  c'est la matière première du compte rendu de cette intervention.</div>
+  <div class="erreur"><b>Erreur typique</b> — check-list cochée globalement en fin de gamme, sans suivi étape par
+  étape ; signe que l'auto-contrôle n'a pas été réellement fait au fil de l'eau.</div>
+  <div class="remede"><b>Remédiation</b> — faire cocher chaque étape immédiatement après l'avoir réalisée, jamais
+  a posteriori en bloc.</div>
+
+  <h3 class="section">Synthèse des erreurs typiques et remédiations</h3>
+  <div class="tbl-wrap">
+  <table class="releve">
+    <tr><th style="width:24%">Erreur typique</th><th style="width:38%">Signe observable</th><th style="width:38%">Remédiation</th></tr>
+    <tr><td>Hypothèse de diagnostic non appuyée sur les mesures propres</td><td>Fiche n° 1 : conclusion écrite avant que les valeurs SC/SR soient calculées</td><td>Exiger le calcul et la comparaison aux valeurs cibles avant toute conclusion</td></tr>
+    <tr><td>Défaut coffret cherché sans méthode</td><td>Essais successifs au hasard, schéma non consulté</td><td>Faire pointer les points de contrôle sur le schéma avant tout essai</td></tr>
+    <tr><td>Corrélation panne↔symptôme inventée</td><td>Hypothèse hors du tableau des cas archi-classiques du cadrage</td><td>Renvoyer systématiquement au tableau de référence, jamais d'improvisation</td></tr>
+    <tr><td>Check-list qualité cochée globalement</td><td>Toutes les cases cochées d'un coup en fin de gamme</td><td>Cocher chaque étape immédiatement après l'avoir réalisée</td></tr>
+    <tr><td>Compte rendu incomplet ou rubrique vide sans motif</td><td>Une rubrique du compte rendu laissée blanche sans mention « sans objet »</td><td>Exiger une mention explicite pour toute rubrique non applicable</td></tr>
+    <tr><td>Composant remplacé mal désigné</td><td>Ligne « composant remplacé » vague (« la pièce cassée »)</td><td>Exiger une désignation précise et, si connue, une référence</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Ce qui n'est PAS évalué dans ce module</h3>
+  <p style="font-size:10.5pt">Le carnet de bord ne réévalue pas les compétences techniques travaillées dans les
+  modules atelier (C4.5, C5.1, C3.4, C3.6, C3.7...), transversales à tous les modules de la séquence. Un élève
+  peut tenir un carnet et un compte rendu déjà très soignés tout en étant encore fragile sur un geste technique
+  d'un module atelier, et inversement — les deux ne se comparent pas directement. Les compétences en statut
+  <b>Évaluation</b> (C4.1, C4.5, C4.7, C5.1) ne sont remontées École Directe qu'à <b>É4</b>, jamais depuis ce
+  carnet.</p>
+
+  <div class="jalon"><h4>Points de vigilance pour le professeur</h4>
+  <p>☐ Réserver le temps de remplissage dans chaque module, comme depuis S1<br>
+  ☐ Préparer, avant chaque module, au moins 3 photocopies vierges de l'annexe compte rendu (F1, F2, reprise
+  éventuelle en S9-T2)<br>
+  ☐ Ne jamais valider un compte rendu où une rubrique reste vide sans la mention « sans objet »<br>
+  ☐ Vérifier que la remise en état de S9-F2 est bien cochée case par case, pas globalement<br>
+  ☐ Vérifier que l'hypothèse de diagnostic de S9-F1/S9-T1 reste dans le tableau des cas archi-classiques du
+  cadrage, jamais une corrélation inventée<br>
+  ☐ Vérifier la cohérence Passage 1 / Passage 2 sur les fiches n° 1, n° 2 et n° 4 avec le planning de rotation<br>
+  ☐ Récupérer les bons de commande au fil de l'eau pour alimenter le rituel hebdomadaire de l'atelier<br>
+  ☐ Conserver les carnets à portée de main pour la préparation d'É4 (semaine 32) et pour les postes de reprise de
+  S9-T2 (semaines 33-36)<br>
+  ☐ Le grand bilan de fin de 1<sup>re</sup> année (auto-positionnement I/C/M/V sur l'ensemble des compétences) se
+  fait dans le document S9-T2, pas dans ce carnet — ne pas dupliquer le travail</p></div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage modulaire S9
+  (<i>_CADRAGE-S9.md</i>), en particulier le principe fondateur du diagnostic par la mesure et du remplacement
+  sans manipulation de fluide en 1<sup>re</sup> année · Charte pédagogique FrigorX et Manuel de conception (§2 bis
+  C — trame « au fil de l'eau ») · référentiel CAP IFCA (codes T1, T16 « Assurer l'entretien d'une installation »,
+  C1.1 « Compléter, transmettre », C1.3 « Rendre compte », S3.1) · forme clonée du module F3 des séquences S1,
+  S2, S3, S5, S6, S7 et S8 1A CAP IFCA (Document élève.html / Document professeur.html), continuité stricte pour
+  la même cohorte · structure de la feuille de compte rendu d'intervention restituée d'après
+  <i>rapport-dintervention.docx</i> (identification client/technicien/dates/temps passé, descriptif de mission,
+  observations, signatures) et <i>fiche d'intervention clim froid.docx</i> / <i>fiche d'intervention.docx</i>
+  (vierge) pour le relevé des paramètres de fonctionnement (électrique, caractéristiques de l'installation,
+  conditions de fonctionnement, réglages des sécurités) — champs restitués et simplifiés au niveau CAP, aucune
+  valeur chiffrée de ces modèles reprise telle quelle · tableau des corrélations panne↔symptôme et seuils SC 5-10
+  K / SR 4-8 K d'après le cadrage S9 uniquement, aucune autre valeur affirmée.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .attendu, .exemple, .erreur, .remede, .indicatif, .special, .jalon, .cr-exemple{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

@@ -1,0 +1,465 @@
+<meta charset="utf-8">
+<title>Document professeur — corrigé et grille — Évaluation sommative S10-S11 · semaine 7 · CAP IFCA 2A</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e; --jaune:#fff6cc; --jaune-bord:#e0c34a}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .bandeau-eval{border:2.5px solid var(--jaune-bord); background:var(--jaune); border-radius:6px;
+    padding:8px 16px; margin:0 0 12px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .bandeau-eval b.titre{font-family:'Trebuchet MS',sans-serif; font-size:12.5pt; color:#7a5b00; letter-spacing:.02em}
+  .bandeau-eval .sousligne{font-size:9.5pt; color:#7a5b00}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord)}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  .poste-titre{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .chrono{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#fff2c4; color:#7a5b00; border:1px solid var(--jaune-bord); margin-bottom:6px; margin-left:8px}
+  .bareme{display:inline-block; font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt;
+    border-radius:8px; padding:2px 10px; background:#e2f3e3; color:#1e6b2f; border:1px solid #9ed3a8; margin-bottom:6px; margin-left:8px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + CE QUE CE DOCUMENT AJOUTE + BARÈME GLOBAL ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 ÉVALUATION SOMMATIVE — DOCUMENT PROFESSEUR</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Braser, raccorder les organes, poser les manomètres</td>
+      <td style="width:38%"><span class="lib">Évaluation sommative — CORRIGÉ ET GRILLE</span><b>Semaine 7 — clôture du bloc S10-S11</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquences</span><span class="grand">S10 · S11</span> · sem. 7, 13-17/10/2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Durée</span>1 h minimum / élève</td>
+      <td><span class="lib">Modalité</span>Poste individuel, sans aide</td>
+      <td><span class="lib">Barème</span>20 points (voir répartition ci-dessous)</td>
+      <td><span class="lib">Statut</span><span class="statut eval">Évaluation</span> École Directe</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><b>S2.1</b> Outils, normes et représentation <span class="nuance">prérequis</span><br><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">prérequis</span><br><b>S5.2</b> Fluides frigorigènes, huiles frigorifiques <span class="nuance">prérequis</span><br><b>S5.5</b> Réseaux fluidiques et mécanique des fluides <span class="nuance">prérequis</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">prérequis</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du geste · sécurité sans rappel · honnêteté de la mesure et de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétences (≤ 4) — Évaluation</h4><span class="statut eval">Évaluation</span> <b>C3.3</b> Implanter, manutentionner, fixer les supportages et équipements<br><span class="statut eval">Évaluation</span> <b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits<br><span class="statut eval">Évaluation</span> <b>C4.5</b> Mesurer, comparer des grandeurs</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au sujet élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève de l'évaluation
+  sommative S10-S11 : mêmes <b>3 parties</b>, même ordre, même numérotation des étapes et des tableaux. Il y
+  ajoute : ce qui est attendu et les <b>critères observables</b> pour chaque partie, les <b>erreurs typiques</b>
+  d'élèves et leur <b>remédiation</b>, la <b>grille 0-4 corrigée</b> avec un critère par case pour C3.3, C3.4,
+  C4.5 et le savoir-être, le <b>barème/points</b> cohérent avec le plan de passation, ainsi que l'organisation
+  de la correction et la différenciation. <b>Aucune valeur chiffrée n'est inventée</b> : la cote du façonnage
+  et le couple de serrage restent « <b>selon le gabarit/la notice fournis au poste, à faire valider</b> » ; la
+  température correspondant à une pression relevée se lit « <b>sur l'échelle du manomètre ou la table de
+  saturation du fluide, à faire valider</b> » — jamais calculée ni recopiée d'une table générique.</p>
+
+  <h3 class="section">Barème global — cohérent avec le plan de passation</h3>
+  <p style="font-size:10.3pt">L'épreuve totalise <b>20 points</b>, répartis sur les trois parties au prorata du
+  minutage du plan de passation (25 + 15 + 15 min de passage effectif = 55 min utiles) ; le point de
+  savoir-être est transversal et vient en observation continue, non retranché des trois parties.</p>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:22%">Partie</th><th style="width:18%">Compétence</th><th style="width:14%">Durée (plan de passation)</th><th style="width:12%">Points</th><th>Répartition des points</th></tr>
+    <tr><td><b>Partie 1</b> — façonnage + brasure</td><td>C3.4 sur T10</td><td>25 min</td><td><b>8 pts</b></td><td>Cote conforme au gabarit (2) · pénétration complète (2) · absence de coulure (2) · propreté (2)</td></tr>
+    <tr><td><b>Partie 2</b> — fixation d'un organe</td><td>C3.3 sur T11</td><td>15 min</td><td><b>5 pts</b></td><td>Sens de montage vérifié (1) · fixation sans jeu (2) · serrage sans marque (1) · aplomb (1)</td></tr>
+    <tr><td><b>Partie 3</b> — relevé + lecture manomètres</td><td>C4.5 sur T11</td><td>15 min</td><td><b>5 pts</b></td><td>Relevé pression BP et HP (2) · lecture température correcte (2) · méthode de lecture cochée + questions (1)</td></tr>
+    <tr><td>Savoir-être transversal</td><td>observation continue</td><td>sur toute l'heure</td><td><b>2 pts</b></td><td>Sécurité sans rappel, honnêteté de la mesure et de l'auto-contrôle</td></tr>
+    <tr class="demi"><td colspan="3">Total</td><td colspan="2"><b>20 points</b> — reporté en positionnement 0-4 par compétence sur École Directe (grille feuille 5)</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Le barème en points sert de repère interne pour objectiver la
+  notation détaillée ; c'est le <b>positionnement 0-4 par compétence</b> (C3.3, C3.4, C4.5 + savoir-être) qui
+  est remonté sur École Directe, conformément au statut <b>Évaluation</b> — repère jaune <code
+  style="background:#fff6cc; border:1px solid #e0c34a; border-radius:3px; padding:0 4px">#fff6cc</code>.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ PARTIE 1 : FAÇONNAGE + BRASURE (C3.4 sur T10) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S10-S11 · semaine 7 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Partie 1 : façonnage et brasure conformes au gabarit</h3>
+  <span class="poste-titre">C3.4 sur T10 — Évaluation</span><span class="chrono">25 min passage élève</span><span class="bareme">8 points</span>
+
+  <p style="font-size:10.3pt">L'élève reporte la cote du gabarit affiché au poste, réalise le façonnage
+  demandé (cintrage ou emboîture selon le gabarit distribué), puis brase sous balayage d'azote selon la
+  procédure démontrée au module A2-a. <b>Aucune cote chiffrée n'est fixée par ce document</b> : la cote
+  correcte est <b>celle du gabarit remis par le professeur au poste, à faire valider</b> — chaque poste peut
+  avoir un gabarit légèrement différent, seule la conformité au gabarit distribué compte.</p>
+
+  <h4 class="section">Ce qui est attendu</h4>
+  <ul class="liste-num">
+    <li>Le report de cote est fait <b>avant</b> le façonnage, pas ajusté après coup par tâtonnement ;</li>
+    <li>le façonnage (cintrage ou emboîture) respecte la forme et la cote du gabarit, dans la tolérance
+    annoncée oralement par le professeur en début de séance ;</li>
+    <li>la préparation des surfaces (toile abrasive jusqu'au cuivre brillant) est faite <b>avant</b> le
+    balayage d'azote et l'allumage ;</li>
+    <li>le balayage d'azote est ouvert <b>avant</b> l'allumage du chalumeau et maintenu pendant tout le
+    brasage, comme démontré au module A2-a (cf. observation 2 du document professeur du module A2-a) ;</li>
+    <li>le cordon obtenu est <b>continu, sans coulure, sans porosité visible</b>, avec pénétration complète
+    du métal d'apport sur tout le pourtour du raccord.</li>
+  </ul>
+
+  <h4 class="section">Critères observables — corrigé de l'auto-contrôle élève</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Critère observable</th><th>Ce que le professeur vérifie / signe de conformité</th></tr>
+    <tr><td>Cote du façonnage conforme au gabarit</td><td>Mesure directe au réglet contre le gabarit affiché au poste ; tolérance annoncée en début de séance (habituellement ± quelques millimètres selon le type de façonnage) — <b>valeur exacte selon le gabarit fourni au poste, à faire valider</b>, jamais une cote générique.</td></tr>
+    <tr><td>Pénétration complète du métal d'apport</td><td>Tout le pourtour de l'emboîture est recouvert d'alliage ; pas de zone non brasée « pour aller plus vite » (même critère que le jalon 1 du module A2-a).</td></tr>
+    <tr><td>Pas de coulure de brasure sur le tube</td><td>L'alliage a été absorbé par capillarité dans le jeu du raccord, sans excès qui goutte ou forme une boule visible à l'extérieur du joint.</td></tr>
+    <tr><td>Propreté : pas de résidu de flux ni de suie</td><td>Aspect propre autour du cordon ; une suie excessive trahit un réglage de flamme incorrect ou un temps de chauffe trop long.</td></tr>
+  </table>
+  </div>
+
+  <h4 class="section">Erreurs typiques observées + remédiation immédiate</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation</th></tr>
+    <tr><td>Cote hors tolérance (report mal fait ou façonnage repris après coup)</td><td>Faire remesurer contre le gabarit devant l'élève ; si le temps le permet en fin de passage, une seule reprise est autorisée, sans allonger le temps des autres élèves.</td></tr>
+    <tr><td>Brasure poreuse ou avec coulure</td><td>Faire identifier le défaut par l'élève lui-même sur sa fiche d'auto-contrôle avant correction (test d'honnêteté du savoir-être) ; ne pas corriger le geste pendant l'épreuve — c'est un point de la grille, pas une reprise en direct.</td></tr>
+    <tr><td>Azote ouvert après l'allumage ou coupé trop tôt</td><td>Noter l'écart sur la grille (savoir-être/sécurité) sans intervenir sur le geste, sauf risque immédiat ; ce point a déjà été démontré et pratiqué au module A2-a, il est pleinement exigible aujourd'hui.</td></tr>
+    <tr><td>Retrait des lunettes teintées ou EPI incomplet</td><td>Intervention immédiate obligatoire (sécurité non négociable) ; entraîne automatiquement le niveau 1 sur le savoir-être, indépendamment de la qualité du reste du travail.</td></tr>
+  </table>
+  </div>
+
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — la cote du gabarit et la tolérance
+  ne sont <b>jamais</b> les mêmes valeurs génériques d'un poste à l'autre : vérifier contre le gabarit
+  réellement distribué à l'élève, pas contre une cote mémorisée d'un autre poste ou d'une séance précédente.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ PARTIE 2 : FIXATION D'UN ORGANE (C3.3 sur T11) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S10-S11 · semaine 7 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Partie 2 : mise en place et fixation d'un organe</h3>
+  <span class="poste-titre">C3.3 sur T11 — Évaluation</span><span class="chrono">15 min passage élève</span><span class="bareme">5 points</span>
+
+  <p style="font-size:10.3pt">L'organe distribué (filtre déshydrateur, voyant liquide ou support de ligne,
+  selon le poste) est positionné et fixé par l'élève, dans le bon sens de circulation, avec le serrage
+  attendu. <b>Aucun couple chiffré n'est fixé par ce document</b> : le serrage correct est <b>celui indiqué
+  par la notice de l'organe ou par la consigne orale du professeur au poste, à faire valider</b> — le
+  contrôle porte sur l'absence de jeu et l'absence de marque/écrasement, pas sur une valeur en N·m.</p>
+
+  <h4 class="section">Ce qui est attendu</h4>
+  <ul class="liste-num">
+    <li>Le <b>sens de circulation</b> (flèche gravée sur l'organe) est vérifié <b>avant</b> de positionner
+    la pièce, jamais après coup — même point de vigilance que le montage du filtre déshydrateur au module A2-a
+    : ce défaut est difficile à corriger une fois l'organe fixé ;</li>
+    <li>le support (collier ou patte) est fixé <b>sans forcer</b> ni sur l'organe ni sur le tube de cuivre ;</li>
+    <li>le serrage obtenu est ferme (aucun jeu à la main) mais <b>sans marque ni écrasement</b> visible
+    sur le support ou le tube ;</li>
+    <li>l'aplomb et l'alignement de l'organe sont corrects, vérifiés au niveau à bulle ou visuellement ;</li>
+    <li>aucun frottement ni point dur ne subsiste sur la ligne après fixation.</li>
+  </ul>
+
+  <h4 class="section">Critères observables — corrigé du tableau de contrôle élève</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:28%">Point de contrôle</th><th>Ce que le professeur vérifie / signe de conformité</th></tr>
+    <tr><td>Sens de montage vérifié avant fixation</td><td>L'élève montre ou nomme la flèche gravée avant de positionner l'organe ; un sens vérifié seulement après contrôle du professeur ne vaut que le niveau « avec aide » (cf. grille).</td></tr>
+    <tr><td>Organe fixé, aucun jeu ni mouvement à la main</td><td>Test direct à la main devant le professeur : aucun mouvement, aucun bruit de jeu du support sur le tube.</td></tr>
+    <tr><td>Serrage réalisé sans marque ni écrasement du support</td><td>Contrôle visuel du support et du tube après serrage ; une marque profonde ou un écrasement du collier signale un serrage excessif — <b>couple exact selon la notice de l'organe, à faire valider</b>, jamais une valeur générique en N·m.</td></tr>
+    <tr><td>Aplomb / alignement de l'organe correct</td><td>Contrôle au niveau à bulle ou à l'œil selon le type d'organe ; l'organe ne doit pas être vrillé ni penché par rapport à l'axe de la ligne.</td></tr>
+  </table>
+  </div>
+
+  <h4 class="section">Corrigé de la question posée à l'élève</h4>
+  <div class="reponse"><b class="t">Question</b> — Que risque-t-on si le support de fixation est trop serré
+  directement sur le tube de cuivre, sans collier adapté ?<br><br>
+  <b>Réponse attendue :</b> un serrage direct et excessif sur le tube de cuivre, sans collier adapté (caoutchouc
+  ou manchon), <b>écrase ou marque localement le tube</b>. Cette déformation peut à terme fragiliser le tube à
+  cet endroit (amorce de fissure sous vibration) et, si le serrage est très excessif, peut aller jusqu'à
+  déformer la section du tube et gêner la circulation du fluide. Un collier ou une patte adaptée répartit la
+  pression de serrage sur une surface plus large et protège le tube.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui répond seulement « ça peut casser »
+  n'a pas identifié le mécanisme : faire reformuler avec les mots « marque », « écrasement » ou
+  « fragilisation », en lien avec le critère observable « serrage sans marque » du tableau de contrôle.</div>
+
+  <h4 class="section">Erreurs typiques observées + remédiation immédiate</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation</th></tr>
+    <tr><td>Organe monté à l'envers (sens non vérifié)</td><td>Noter l'écart sur la grille (niveau 1) ; si le temps du passage le permet, faire redémonter et repositionner dans le bon sens avant la fin du créneau de l'élève, sans allonger le temps des suivants.</td></tr>
+    <tr><td>Support serré directement sur le tube, sans collier adapté</td><td>Signaler le risque de marque/écrasement (cf. question du sujet) ; faire desserrer et intercaler la protection adaptée si le matériel est disponible au poste.</td></tr>
+    <tr><td>Organe fixé mais avec un jeu résiduel (serrage insuffisant)</td><td>Faire resserrer devant le professeur ; noter le niveau selon que l'élève corrige seul ou avec indication.</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ PARTIE 3 : RELEVÉ + LECTURE MANOMÈTRES BP/HP (C4.5 sur T11) ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S10-S11 · semaine 7 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Partie 3 : relevé et lecture de 2 manomètres (BP et HP)</h3>
+  <span class="poste-titre">C4.5 sur T11 — Évaluation</span><span class="chrono">15 min passage élève</span><span class="bareme">5 points</span>
+
+  <p style="font-size:10.3pt">L'élève lit la pression indiquée par chacun des deux manomètres déjà posés sur
+  la ligne liquide (BP en bleu, HP en rouge), puis lit la température correspondante <b>directement sur la
+  double échelle du manomètre ou sur la table de saturation du fluide</b> fournie au poste. <b>Aucune valeur de
+  pression, de température ni de fluide n'est fixée par ce document</b> : chaque poste a sa propre installation,
+  son propre fluide et ses propres valeurs réelles, <b>à lire sur le poste réel, à faire valider</b> par le
+  professeur au moment du passage — reproduire ici une valeur chiffrée serait une invention contraire à la
+  charte.</p>
+
+  <h4 class="section">Ce qui est attendu</h4>
+  <ul class="liste-num">
+    <li>La pression BP et la pression HP sont relevées <b>chacune sur le bon manomètre</b> (BP bleu ≠ HP rouge),
+    sans les confondre ;</li>
+    <li>la température correspondante est <b>lue</b>, jamais calculée ni devinée : soit sur la double
+    graduation bar/°C du manomètre, soit sur la table de saturation du fluide de l'installation — la case
+    « méthode de lecture » du tableau élève doit être cochée en cohérence avec le geste réellement fait ;</li>
+    <li>le fluide de l'installation est identifié correctement (celui indiqué sur la table ou la plaque du
+    poste, jamais un fluide par défaut) ;</li>
+    <li>l'élève répond aux deux questions du sujet en mobilisant le principe physique attendu, pas seulement
+    une observation descriptive.</li>
+  </ul>
+
+  <h4 class="section">Corrigé des deux questions posées à l'élève</h4>
+  <div class="reponse"><b class="t">Question</b> — Le manomètre BP et le manomètre HP n'affichent pas la même
+  pression sur votre installation. Pourquoi, à votre avis ?<br><br>
+  <b>Réponse attendue :</b> le manomètre BP est raccordé du côté <b>basse pression</b> du circuit (aspiration,
+  après le détendeur), le manomètre HP du côté <b>haute pression</b> (refoulement, après le compresseur).
+  Le compresseur crée un écart de pression entre les deux côtés du circuit pour permettre au fluide de changer
+  d'état (évaporation côté BP, condensation côté HP) : c'est le principe même du cycle frigorifique à
+  compression. Les deux pressions sont donc naturellement différentes, ce n'est pas une anomalie.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui répond « parce que ce sont deux
+  manomètres différents » n'explique rien : faire reformuler avec les mots « compresseur », « aspiration »/« refoulement »
+  ou « évaporation »/« condensation », en lien avec le savoir S5.1 (systèmes à détente directe).</div>
+
+  <div class="reponse"><b class="t">Question</b> — À quoi sert de connaître la température correspondant à une
+  pression relevée, pour un frigoriste ?<br><br>
+  <b>Réponse attendue :</b> pour un fluide frigorigène, à chaque pression de saturation correspond une
+  température précise (relation pression-température, S5.2) : connaître cette température permet de savoir à
+  quelle température le fluide s'évapore ou se condense réellement dans l'installation, sans avoir besoin d'une
+  sonde de température supplémentaire. C'est la base indispensable pour, plus tard dans la formation, calculer
+  la surchauffe et le sous-refroidissement (comparer une température mesurée à cette température de saturation
+  lue au manomètre).</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas exiger ici le mot « surchauffe » ou
+  « sous-refroidissement » : ces seuils (5-10 K / 4-8 K) appartiennent au module A2-c (et au module théorie
+  T2), pas à cette évaluation. Il suffit que l'élève relie pression et température au fluide et à son état (évaporation/condensation).</div>
+
+  <h4 class="section">Erreurs typiques observées + remédiation immédiate</h4>
+  <div class="tbl-wrap">
+  <table class="mini">
+    <tr><th style="width:30%">Erreur observée</th><th>Remédiation</th></tr>
+    <tr><td>Pressions BP et HP inversées ou confondues</td><td>Faire repointer du doigt le manomètre bleu (BP) et le manomètre rouge (HP) avant de refaire lire ; noter l'écart sur la grille sans reprendre le relevé à la place de l'élève.</td></tr>
+    <tr><td>Température « calculée » ou devinée au lieu d'être lue</td><td>Faire remontrer le geste de lecture sur la double échelle ou sur la table réelle du poste ; rappeler que toute valeur non lue réellement est une atteinte au savoir-être (honnêteté de la mesure).</td></tr>
+    <tr><td>Case « méthode de lecture » non cochée ou incohérente avec le geste observé</td><td>Demander à l'élève de montrer où il a lu la valeur avant de valider la case ; c'est un point de traçabilité de la grille, pas un détail secondaire.</td></tr>
+    <tr><td>Confusion du fluide de l'installation</td><td>Faire vérifier la plaque signalétique ou l'étiquette de l'installation avant de relire la table de saturation correspondante.</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 CORRIGÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Évaluation sommative S10-S11 · semaine 7 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <div class="bandeau-eval">
+    <b class="titre">🟡 GRILLE D'ÉVALUATION 0-4 — CORRIGÉ</b>
+    <span class="sousligne">Statut : <b>Évaluation</b> — remontée École Directe</span>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>0 = compétence non observée ce jour</b> (à ne jamais
+  confondre avec une absence, codée séparément sur École Directe).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.4</b> Façonner, raccorder, assembler, isoler les circuits <span class="nuance">sur T10</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Cote hors tolérance du gabarit, ou brasure non étanche visuellement (trou, coulure importante).</td>
+      <td>Façonnage et brasure conformes avec une remarque du professeur, corrigés après reprise.</td>
+      <td>Façonnage à la cote du gabarit et brasure conforme aux 3 critères d'auto-contrôle (pénétration, absence de coulure, propreté), réalisés seul.</td>
+      <td>Comme « Acquis », et l'élève explique le choix de sa méthode de façonnage ou de brasage.</td>
+    </tr>
+    <tr>
+      <td><b>C3.3</b> Implanter, manutentionner, fixer les supportages et équipements <span class="nuance">sur T11</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Organe mal orienté, non fixé, ou fixation lâche / support endommagé.</td>
+      <td>Organe positionné et fixé avec aide du professeur pour le sens ou le serrage.</td>
+      <td>Organe positionné dans le bon sens, fixé et serré seul (sans jeu, sans marque), aplomb correct.</td>
+      <td>Comme « Acquis », et l'élève justifie le choix du support ou du serrage utilisé.</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Pression non relevée ou relevée sans lien avec le bon manomètre (BP/HP confondus).</td>
+      <td>Pressions relevées correctement, température lue avec aide du professeur.</td>
+      <td>Pressions BP et HP relevées seul, température lue seule sur l'échelle ou la table, méthode de lecture cochée en cohérence avec le geste.</td>
+      <td>Comme « Acquis », et l'élève explique pourquoi BP et HP diffèrent sur l'installation.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, sécurité, honnêteté de la mesure</td>
+      <td>Non observé ce jour.</td>
+      <td>EPI incomplets, geste précipité, ou valeur inventée / recopiée non lue réellement : niveau 1 automatique, indépendamment de la qualité du reste du travail.</td>
+      <td>Sécurité globalement respectée, quelques rappels nécessaires.</td>
+      <td>Sécurité et rigueur respectées sans rappel, mesures honnêtes, défauts signalés spontanément.</td>
+      <td>Comme « Acquis », et l'élève reste rigoureux jusqu'au rangement complet du poste.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — tout geste interdit de sécurité
+  (retrait des lunettes, poste flamme laissé sans surveillance, usage d'oxygène seul ou d'air comprimé, purge
+  d'une prise de pression sans autorisation) entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le
+  savoir-être, quelle que soit la qualité du reste du travail réalisé ce jour-là : principe de sécurité non
+  négociable, cohérent avec la règle déjà appliquée en S10 et au module A2-a de S11.</div>
+
+  <div class="jalon"><h4>Correspondance barème points ↔ positionnement 0-4</h4>
+  <p style="font-size:9.5pt">À titre de repère pour objectiver le passage de la note en points (feuille 1) au
+  positionnement 0-4 remonté sur École Directe : <b>0-1 pt</b> sur une partie → niveau 1 ; <b>score partiel
+  avec remarque</b> → niveau 2 ; <b>score maximal seul</b> → niveau 3 ; <b>score maximal + justification/explication
+  spontanée</b> → niveau 4. Le professeur garde la main sur l'arbitrage final : la grille de critères
+  observables (ci-dessus) prime toujours sur un calcul automatique de points.</p></div>
+
+  <h3 class="section">Organisation de la correction</h3>
+  <ul class="liste-num">
+    <li>La grille 0-4 est remplie <b>en direct, poste par poste</b>, pendant le passage de chaque élève —
+    pas en différé sur les pièces seules, car plusieurs critères (sécurité, autonomie du geste, rapidité de
+    correction d'un défaut signalé) ne s'observent qu'en situation ;</li>
+    <li>le façonnage brasé (partie 1) et l'organe fixé (partie 2) sont conservés <b>jusqu'au contrôle sur
+    pièce</b> en fin de créneau, en complément de l'observation en direct ;</li>
+    <li>l'<b>auto-positionnement de l'élève</b> (feuille 5 du sujet élève) est comparé à la correction
+    professeur <b>après</b> la fin de son passage, jamais avant : l'écart entre les deux fait partie de
+    l'observation du savoir-être (honnêteté de l'auto-évaluation) ;</li>
+    <li>en cas d'incident matériel pendant le passage d'un élève (organe défectueux, manomètre en panne), un
+    temps compensé à l'identique est accordé, jamais une pénalité (cf. plan de passation, « équité ») ;</li>
+    <li>le positionnement 0-4 par compétence (C3.3, C3.4, C4.5) et le niveau de savoir-être sont saisis sur
+    École Directe au statut <b>Évaluation</b> dès la fin de la demi-journée de passation.</li>
+  </ul>
+
+  <h3 class="section">Différenciation pour la correction</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation dans la correction (le sujet et l'exigence de résultat restent identiques)</th></tr>
+    <tr><td>Consolidation</td><td>Une reformulation orale courte de la consigne est autorisée sur demande de l'élève avant qu'il ne commence son geste, sans donner d'indice sur le résultat attendu ; grille identique, aucune réduction du niveau exigé pour valider « Acquis ».</td></tr>
+    <tr><td>Standard</td><td>Correction telle que décrite ci-dessus, poste par poste, grille complète.</td></tr>
+    <tr><td>Approfondissement</td><td>Le professeur note explicitement sur la grille (case niveau 4) les justifications spontanées de l'élève (choix de méthode, choix de support, explication de l'écart BP/HP) ; à valoriser en synthèse de classe après la passation complète.</td></tr>
+    <tr><td>FLE</td><td>Fiche de poste bilingue ou avec pictogrammes déjà fournie en amont (cf. plan de passation) ; pendant la correction, le professeur peut désigner du doigt le point de contrôle concerné plutôt que le reformuler entièrement à l'oral, pour ne pas orienter la réponse.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Rappel du temps restant à mi-parcours sans indication de résultat (cf. plan de passation) ; grille remplie case par case au fil du passage plutôt qu'en bloc à la fin, pour limiter la charge de restitution en une seule fois côté professeur comme côté élève.</td></tr>
+  </table>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : CCF_EP2_Faconnage_CAP_IFCA (F. Henninot) ; Grille_Evaluation_EP2_Faconnage ; TP_Complet_Manometres_Pressostat_BP_CAP_IFCA ; Fiche_CAP_IFCA_Pose_Manometres ; Activité n°10 Ligne liquide avec prise de pression.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .bandeau-eval, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

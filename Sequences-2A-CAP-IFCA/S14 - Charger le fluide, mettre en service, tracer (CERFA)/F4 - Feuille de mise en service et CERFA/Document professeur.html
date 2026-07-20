@@ -1,0 +1,344 @@
+<meta charset="utf-8">
+<title>Document professeur — S14 · Module F4 · Feuille de mise en service et CERFA</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#fff6cc; color:#8a6d00; border:1px solid #e3cf6b}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .etape{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px;
+    padding:2px 9px; background:var(--bleu); color:#fff; margin-bottom:6px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  table.mes{font-size:9.3pt; margin:.4em 0 .9em}
+  table.mes th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mes td{border:1px solid var(--filet); padding:6px; vertical-align:middle}
+  table.mes td.champ{background:var(--fond-doux); font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); width:38%}
+  table.mes td.val{text-align:left}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + MINUTAGE AU FIL DE A5-a/A5-b ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Charger, mettre en service, tracer</td>
+      <td style="width:38%"><span class="lib">Module F4 · fil de l'eau · 2 h — DOCUMENT PROFESSEUR</span><b>Feuille de mise en service et CERFA</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S14</span> · sem. 15-16</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Atelier — au fil des modules A5-a et A5-b</td>
+      <td><span class="lib">Durée</span>2 h cumulées, réparties en 4 étapes, pas de module isolé</td>
+      <td><span class="lib">Modalité</span>Renseignement de documents réels, en autonomie guidée</td>
+      <td><span class="lib">Encadrement</span>1 professeur, atelier, postes tournants</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T2</b> Compléter les documents de traçabilité des fluides<br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><b>S1.2</b> Pièces et autorisations administratives<br><b>S0.1</b> Réglementation et impacts environnementaux</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de la mesure · honnêteté du relevé · régularité (une rubrique remplie à chaque étape, pas tout d'un coup en fin de séquence)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → Évaluation</span> <b>C1.1</b> Compléter, transmettre <span class="nuance">sur T2·T15 · S1.2·S0.1</span><br><span class="statut">Confortement</span> <b>C4.5</b> Mesurer, comparer</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au support élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même structure en 4 étapes que le
+  support élève et y ajoute, pour chaque champ, les <b>attendus</b> et un <b>exemple entièrement rempli</b> avec
+  des valeurs plausibles, marquées <span class="nuance">« exemple — selon installation »</span>. <b>Aucune
+  valeur cible n'est inventée</b> : seuls la surchauffe (5-10 K) et le sous-refroidissement (4-8 K) sont des
+  seuils réglementaires généraux ; toutes les autres valeurs (pressions, consignes de pressostat, quantité
+  d'huile) sont propres à l'installation du jour, à relever réellement au banc.</p>
+
+  <h3 class="section">Minutage — 2 h réparties au fil de A5-a et A5-b (8 h d'atelier)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:16%">Moment</th><th style="width:14%">Durée</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">F4 n'est pas un module isolé : il s'intercale dans A5-a (4 h) et A5-b (4 h)</td></tr>
+    <tr><td>Début A5-a</td><td>15 min</td><td>Fiche d'identification de l'installation : lecture de plaque signalétique, repérage de la bouteille de fluide recyclé (issue de S13). Fait en même temps que la préparation de chantier d'A5-a, pas en plus.</td></tr>
+    <tr><td>Fin A5-a</td><td>25 min</td><td>Relevé de mise en service, juste après la charge et le démarrage : pressions, températures, intensités, sens de rotation. C'est le moment où les valeurs sont les plus fiables (machine stabilisée).</td></tr>
+    <tr><td>Pendant A5-b</td><td>40 min</td><td>Calculs SC/SR, comparaison aux seuils, décision d'ajustement, relevé des consignes de régulation, contrôle d'étanchéité du circuit chargé. Intégré au temps de réglage d'A5-b.</td></tr>
+    <tr><td>Fin A5-b</td><td>40 min</td><td>CERFA/FI-BSD complet et bon d'intervention, à partir des valeurs réellement relevées. Auto-positionnement C1.1/C4.5.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 15 + 25 + 40 + 40 = <b>120 min exactes (2 h)</b>, conforme
+  à la trame « Module F4 — fil de l'eau · 2 h » du cadrage S14. Ce temps est prélevé <b>sur</b> les 8 h
+  d'atelier A5-a/A5-b, pas ajouté en dehors.</p>
+
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser les élèves reporter tout le
+  remplissage à la toute fin d'A5-b « pour aller plus vite » : les valeurs de la feuille 2 (relevé) doivent être
+  prises <b>au moment</b> de la mise en service, sinon elles deviennent des estimations, pas des mesures. C'est
+  précisément l'objet de la ligne savoir-être de la grille.</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — EXEMPLE REMPLI : IDENTIFICATION + RELEVÉ MES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module F4 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <span class="etape">EXEMPLE — selon installation, à adapter au banc réel</span>
+  <h3 class="section">Exemple rempli — fiche d'identification</h3>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><td class="champ">Nom / repère</td><td class="val">Machine frigorifique — atelier pédagogique, poste n° 2 <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Marque / Type / Référence / N° série</td><td class="val">selon la machine réellement affectée au poste — <span class="nuance">à relever sur la plaque, non inventé ici</span></td></tr>
+    <tr><td class="champ">Nature du fluide</td><td class="val"><b>R410A</b> — Type : <b>HFC</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Huile</td><td class="val">Synthétique POE (Polyol Ester), compatible R410A — quantité <b>0,8 L</b> <span class="nuance">(exemple — selon notice constructeur, à faire valider)</span></td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Exemple rempli — relevé de mise en service</h3>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Scénario retenu pour l'exemple : chambre
+  froide positive, consigne +4 °C, fluide R410A. Toutes les valeurs sont indicatives — la classe relève ses
+  propres valeurs sur son banc.</p>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><td class="champ">Pression HP — Pk</td><td class="val"><b>28,0 bar</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Température de condensation — T°k</td><td class="val"><b>48 °C</b> <span class="nuance">(lue sur abaque R410A à partir de 28,0 bar — exemple)</span></td></tr>
+    <tr><td class="champ">Pression BP — Po</td><td class="val"><b>9,0 bar</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Température d'évaporation — T°o</td><td class="val"><b>−1 °C</b> <span class="nuance">(lue sur abaque R410A à partir de 9,0 bar — exemple)</span></td></tr>
+    <tr><td class="champ">Θ refoulement compresseur</td><td class="val"><b>78 °C</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Θ aspiration compresseur</td><td class="val"><b>6 °C</b> <span class="nuance">(exemple — sert au calcul de surchauffe, feuille 3)</span></td></tr>
+    <tr><td class="champ">Θ sortie condenseur</td><td class="val"><b>42 °C</b> <span class="nuance">(exemple — sert au calcul de sous-refroidissement)</span></td></tr>
+    <tr><td class="champ">Θ sortie évaporateur</td><td class="val"><b>−2 °C</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Intensité — compresseur</td><td class="val"><b>4,8 A</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Intensité — ventilo-évaporateur</td><td class="val"><b>0,6 A</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Sens de rotation ventilos</td><td class="val">Conformes <span class="nuance">(exemple — à vérifier réellement au flux d'air / à la flèche du carter)</span></td></tr>
+  </table>
+  </div>
+
+  <div class="reponse"><b class="t">Corrigé de la question (feuille 2 élève)</b> — Pourquoi comparer une
+  température de saturation (lue sur abaque à partir d'une pression) et une température mesurée directement ?<br><br>
+  <b>Réponse attendue :</b> la température de saturation donne l'état théorique du fluide à cette pression ; la
+  température mesurée directement (au thermomètre de contact) donne l'état réel du tube à cet endroit. L'écart
+  entre les deux, c'est justement la <b>surchauffe</b> ou le <b>sous-refroidissement</b> (calculés feuille 3) :
+  sans les deux valeurs, aucun de ces deux contrôles n'est possible.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — EXEMPLE REMPLI : CALCULS SC/SR + RÉGULATION + ÉTANCHÉITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module F4 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <span class="etape">EXEMPLE — calculs à partir des relevés de la feuille 2</span>
+  <h3 class="section">Corrigé — calculs de contrôle</h3>
+  <div class="reponse"><b class="t">Surchauffe</b> = Θ aspiration − T°o = 6 °C − (−1 °C) = <b>7 K</b><br>
+  → <b>Dans la plage 5-10 K</b> : conforme.</div>
+  <div class="reponse"><b class="t">Sous-refroidissement</b> = T°k − Θ sortie condenseur = 48 °C − 42 °C = <b>6 K</b><br>
+  → <b>Dans la plage 4-8 K</b> : conforme.</div>
+  <div class="vigilance"><b class="t">Décision attendue dans cet exemple</b> — Les deux valeurs sont conformes :
+  case à cocher « Valeurs conformes, rien à ajuster ». <b>Prévoir aussi, pour la classe, un cas volontairement
+  hors plage</b> sur un autre poste ou un exercice de rattrapage, afin de vérifier que les élèves cochent
+  « complément de charge nécessaire » ou « alerte professeur » à bon escient, et ne valident pas
+  automatiquement une valeur calculée sans la comparer au seuil.</div>
+
+  <h4 class="section">Exemple — points de consigne de régulation</h4>
+  <table class="mes">
+    <tr><td class="champ">Point de consigne</td><td class="val"><b>+4 °C</b> <span class="nuance">(exemple, chambre positive)</span></td></tr>
+    <tr><td class="champ">Pbp cut-in / différentiel</td><td class="val"><b>8,5 bar / 1,5 bar</b> <span class="nuance">(exemple — selon notice constructeur, à faire valider)</span></td></tr>
+    <tr><td class="champ">Php sécu cut-off / différentiel</td><td class="val"><b>30 bar / 4 bar</b> <span class="nuance">(exemple — selon notice constructeur, à faire valider)</span></td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Bien faire dire aux élèves que <b>seuls</b> les
+  seuils de surchauffe et sous-refroidissement sont des valeurs réglementaires générales ; les consignes de
+  pressostat sont propres à chaque machine et doivent toujours être validées sur la plaque/notice, jamais
+  déduites d'un autre poste.</div>
+
+  <h4 class="section">Exemple — contrôle d'étanchéité du circuit chargé</h4>
+  <table class="mes">
+    <tr><td class="champ">Méthode</td><td class="val">Détecteur électronique, complété d'une recherche visuelle aux raccords sertis <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Points contrôlés</td><td class="val">Raccords manifold, vanne de service, nouvelle liaison frigorifique sertie <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Fuite détectée ?</td><td class="val"><b>Non</b> <span class="nuance">(exemple)</span></td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — EXEMPLE REMPLI : CERFA / FI-BSD ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module F4 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <span class="etape">EXEMPLE — traçabilité de la charge</span>
+  <h3 class="section">Corrigé — CERFA / FI-BSD</h3>
+  <div class="tbl-wrap">
+  <table class="mes">
+    <tr><td class="champ">Charge initiale (récupérée en S13, fluide recyclé)</td><td class="val"><b>1,8 kg</b> <span class="nuance">(exemple)</span></td></tr>
+    <tr><td class="champ">Complément apporté en A5-a</td><td class="val"><b>0,3 kg</b> <span class="nuance">(exemple — appoint après remplacement du filtre déshydrateur)</span></td></tr>
+    <tr><td class="champ">Charge totale</td><td class="val"><b>2,1 kg</b></td></tr>
+    <tr><td class="champ">GWP / PRG du fluide (R410A)</td><td class="val"><b>2 088</b> <span class="nuance">(exemple de CERFA réel — voir module T1 ; à vérifier sur tableau réglementaire officiel pour toute autre situation)</span></td></tr>
+    <tr><td class="champ">Tonne équivalent CO₂</td><td class="val"><b>≈ 4,38 t CO₂e</b> (calcul détaillé ci-dessous)</td></tr>
+    <tr><td class="champ">Type de fluide manipulé</td><td class="val"><b>recyclé</b> (fluide récupéré en S13, réintroduit dans la même machine)</td></tr>
+    <tr><td class="champ">Identifiant du contenant</td><td class="val">numéro de la bouteille de stockage utilisée en S13 <span class="nuance">(à reporter, propre à chaque binôme)</span></td></tr>
+    <tr><td class="champ">Nature de l'intervention</td><td class="val"><b>mise en service</b></td></tr>
+    <tr><td class="champ">Détenteur</td><td class="val">Lycée Jacques Raynaud — atelier pédagogique</td></tr>
+  </table>
+  </div>
+
+  <div class="reponse"><b class="t">Calcul détaillé du tCO₂e</b><br><br>
+  Charge totale = 1,8 kg + 0,3 kg = <b>2,1 kg</b> = <b>0,0021 t</b><br>
+  tCO₂e = 0,0021 × 2 088 = <b>4,3848</b>, soit <b>≈ 4,38 t CO₂e</b>.</div>
+
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Même erreur qu'au module T1 (oubli de la
+  conversion kg → tonnes) : vérifier en priorité l'unité de la masse utilisée dans le calcul avant de valider
+  le résultat d'un élève.</div>
+
+  <div class="vigilance"><b class="t">Sur la partie « bordereau de suivi de déchets »</b> — Rappeler qu'elle
+  ne s'applique <b>pas</b> ici : le fluide recyclé reste dans la même machine, il n'est ni détruit ni envoyé en
+  traitement. La partie BSD/Trackdéchets concerne un fluide qui <b>quitte</b> le circuit vers une filière de
+  traitement — cas qui sera rencontré dans l'évaluation sommative S13-S14 (rappel de récupération).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE 0-4 CORRIGÉE + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S14 · module F4 · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>C1.1 est en Confortement → Évaluation</b> (remontée
+  École Directe) ; C4.5 en Confortement.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:16%">Compétence</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:18%">3-4</th></tr>
+    <tr>
+      <td><b>C1.1</b> Compléter, transmettre <span class="nuance">sur T2·T15 · S1.2·S0.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Feuille MES et/ou CERFA incomplets ou illisibles malgré aide et rappel.</td>
+      <td>Documents remplis avec l'aide du professeur, quelques erreurs de report (charge totale, GWP mal recopié).</td>
+      <td>Feuille MES et CERFA complets, cohérents entre eux (mêmes valeurs de charge des deux côtés) et exacts, en autonomie (niveau 4 : peut expliquer à un pair pourquoi tel champ est renseigné ainsi).</td>
+    </tr>
+    <tr>
+      <td><b>C4.5</b> Mesurer, comparer <span class="nuance">sur T13·T14 · S5.1·S5.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Relevés faux, sans unité, ou pris hors du bon moment (estimés a posteriori) malgré aide.</td>
+      <td>Relevés justes avec aide du professeur, comparaison SC/SR aux seuils partielle ou approximative.</td>
+      <td>Relevés justes avec unité, pris au bon moment, SC/SR calculés et comparés seul aux seuils 5-10 K / 4-8 K, décision cohérente (niveau 4 : décision correcte même sur un cas volontairement hors plage).</td>
+    </tr>
+    <tr>
+      <td>Savoir-être</td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Valeurs inventées ou reportées en fin de séance sans lien avec une vraie mesure.</td>
+      <td>Rigueur du relevé avec rappel du professeur.</td>
+      <td>Relève au fil de l'eau sans rappel, signale spontanément une valeur douteuse plutôt que de l'inventer, aide un pair sans perturber son propre relevé.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fournir un tableau de correspondance pression → température de saturation du fluide utilisé (au lieu de faire chercher sur abaque) ; limiter le contrôle SC/SR à un seul des deux calculs si le temps manque, l'autre étant fait collectivement.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève, les 4 étapes réparties dans A5-a/A5-b, en autonomie guidée.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus : « si le complément de 0,3 kg avait été un fluide vierge et non recyclé, quel champ du CERFA changerait, et quelle traçabilité supplémentaire (bouteille de fluide vierge, facture d'achat) faudrait-il conserver ? » (lien avec l'évaluation sommative S13-S14).</td></tr>
+    <tr><td>FLE</td><td>Feuille de mise en service annotée avec pictogrammes (manomètre, thermomètre, pince ampèremétrique) à côté de chaque ligne de relevé ; formule SC/SR affichée sous forme de schéma fléché comme au module T1 ; vocabulaire « détenteur / opérateur / fluide recyclé » réaffiché avec image avant de commencer le CERFA.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Chaque étape (identification, relevé, calculs, CERFA) présentée comme une fiche séparée à sortir une par une plutôt qu'un document unique dense ; zones de réponse bien délimitées ; encourager une pause courte entre le relevé (feuille 2) et les calculs (feuille 3) si besoin, sans rallonger le total de 2 h.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence</h3>
+  <ul class="liste-num">
+    <li>Le carnet de bord <b>F3</b> peut accueillir une trace courte de chaque étape de F4 si le professeur le
+    souhaite (non obligatoire) ;</li>
+    <li>L'<b>évaluation sommative S13-S14</b> (semaine 17) reprend la même logique de feuille MES + CERFA sur un
+    poste individuel, avec un cas de récupération à tracer en plus de la charge.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Feuille de
+  relevé de mise en service.docx, CERFA FI-BSD CAP.docx (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .mes{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

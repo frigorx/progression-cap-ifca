@@ -1,0 +1,463 @@
+<meta charset="utf-8">
+<title>Document professeur — S9 · Module théorie T1 · Démarche de diagnostic et conservation des denrées</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .icone-symb{display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--filet); border-radius:6px; padding:4px 8px}
+  .regle-or{border-left:4px solid var(--orange); background:#fff7f3; padding:6px 12px; margin:.3em 0; font-size:10pt}
+  .seuil{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.5pt}
+  .seuil b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .cas{border:1.5px solid var(--bleu); border-radius:8px; padding:8px 14px; margin:.5em 0 1em; background:#fff}
+  .cas h4{margin:0 0 4px; font-size:11pt; color:var(--bleu); display:flex; align-items:center; gap:8px}
+  .cas .num{display:inline-block; background:var(--bleu); color:#fff; border-radius:50%; width:1.6em; height:1.6em; text-align:center; line-height:1.6em; font-size:10pt}
+  .donnees{background:var(--fond-doux); border-radius:6px; padding:6px 10px; font-family:'Consolas',monospace; font-size:9.5pt; margin:.3em 0}
+  .piege{border:2px solid #c14a17; border-radius:6px; background:#fff2ea; padding:8px 14px; margin:.4em 0 .9em}
+  .piege b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif; font-size:10.5pt}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Diagnostic frigorifique — démarche et conservation des denrées</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S9-T1 · 2 h — DOCUMENT PROFESSEUR</span><b>Démarche de diagnostic + denrées</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S9</span> · sem. 29-30</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (classe entière) — vidéoprojecteur ou tableau</td>
+      <td><span class="lib">Durée</span>2 h — cours actif, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → co-construction de l'arbre + étude de cas denrées → applications (relevés, vrai-faux, association) → synthèse</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>— (aucune tâche d'atelier ce jour, module théorie de classe entière) ; ce cours formalise la démarche vécue en S9-F1 et prépare É4 (poste théorie : relevés → conclusion + denrées)</div>
+    <div class="case"><h4>Savoirs</h4><b>S4.2</b> Action du froid sur la conservation des denrées <span class="nuance">augmenté</span> · <b>S5.7</b> Enceintes isothermes positives et négatives <span class="nuance">nouveau</span> · <b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur de raisonnement (ne jamais conclure sans mesurer) · esprit d'équipe pendant la co-construction · honnêteté (« à confirmer » plutôt qu'inventer une cause)</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui C4.5 — aucune compétence remontée</span> <span class="nuance">C4.5 « Mesurer, comparer des grandeurs » est le pivot du diagnostic — travaillée en Confortement dans les modules d'atelier (S9-F1), ici en appui théorique uniquement, aucune remontée École Directe. La remontée officielle se fait UNIQUEMENT à É4.</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend la structure du cours élève (accroche → co-construction de
+  l'arbre de diagnostic → pourquoi le froid conserve/chaîne du froid → applications → synthèse) et y ajoute
+  l'organisation de la co-construction, la conduite minutée en 4 phases, les corrigés complets des applications
+  (mini-cas de diagnostic, vrai-faux, association denrée/température/enceinte), les explications causales de
+  l'arbre, la différenciation et les sources. <b>Aucune corrélation panne↔symptôme et aucune température de
+  conservation ne sont affirmées hors des sources citées</b> en fin de document — conforme au principe ZÉRO
+  invention du cadrage S9.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Construction collective d'un arbre de décision + étude de cas « la bonne
+  température pour la bonne denrée »</b> (méthode imposée par le cadrage S9, aucune reprise d'une méthode déjà
+  utilisée en S1→S8) : la classe part des cas <b>réellement vécus en S9-F1</b> (ou proposés par le professeur si le
+  passage F1 de l'équipe n'a pas encore eu lieu), les met en commun, et le professeur <b>formalise</b> avec les
+  élèves l'arbre de diagnostic (principe DÉCOUVERTE de la charte : observer → nommer → expliciter). La seconde
+  partie applique le même principe à la conservation : partir de ce que les élèves savent déjà intuitivement (le
+  froid conserve) pour construire la notion sourcée d'enceinte positive/négative et de chaîne du froid.</p>
+
+  <div class="vigilance"><b class="t">Matériel à préparer</b> — Un moyen de projeter ou d'afficher en grand l'arbre
+  de diagnostic (annexe 1) et le tableau denrée/température (annexe 2) pendant la formalisation ; un tableau ou
+  paperboard pour noter les cas rappelés par les équipes lors de la mise en commun. Aucune bouteille, aucune machine,
+  aucun outillage : ce module ne manipule rien.</p>
+  </div>
+
+  <div class="reponse"><b class="t">Point en attente (cadrage S9)</b> — Ce document suppose que les équipes ont déjà
+  vécu AU MOINS un passage de S9-F1 avant ce cours (semaine 29, le module théorie peut se placer après le 1er
+  passage). Si ce n'est pas le cas pour certaines équipes, le professeur fournit lui-même 2-3 cas fictifs mais
+  strictement conformes au tableau de corrélations du cadrage (feuille 2, document professeur) pour ne pas bloquer
+  la co-construction.</div>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche</td><td>3 min : rappel du fil rouge SAV (le client rappelle, le
+    frigoriste-détective) et lien avec les cas déjà rencontrés en S9-F1 cette semaine. 4 min : question de départ
+    notée individuellement (quelle a été la première chose mesurée avant de conclure). 3 min : présentation du
+    double objectif du jour (formaliser l'arbre + comprendre la conservation des denrées) et rappel bref que ce
+    cours ne manipule ni machine ni fluide (les règles de sécurité restent celles de l'atelier S9-F1/F2/E1).</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Découverte</td><td><b>Partie 1 — l'arbre (20 min)</b> : 10 min, par équipe,
+    rappel d'un cas vécu en S9-F1 sur la fiche de rappel (feuille 2, document élève) ; le professeur circule, relance
+    sans donner la réponse (« et le compresseur, il démarrait ? »). 10 min : mise en commun orale, le professeur
+    classe les cas au tableau par grande famille de cause et formalise avec la classe l'arbre de diagnostic (annexe
+    1) — <b>DEUX questions seulement structurent l'arbre</b> : « le compresseur démarre-t-il ? » puis « BP/HP, SC/SR,
+    comparés aux cibles ? ». <b>Partie 2 — le froid et les denrées (20 min)</b> : 8 min, notion « pourquoi le froid
+    conserve » (activité biologique ralentie ou stoppée) à partir de la question ouverte ; 12 min, la chaîne du
+    froid — ses maillons et ses 2 règles de base, construits avec le schéma (feuille 4, document élève).</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application</td><td>20 min : application 1, les 3 mini-cas de lecture de
+    relevés (feuille 5) — correction collective cas par cas, en insistant sur la question 3 (comment discriminer
+    manque de charge / évaporateur givré / filtre colmaté par l'observation directe). 10 min : application 2,
+    vrai-faux chaîne du froid et enceintes (feuille 6), correction rapide, justifications à l'oral avant validation.
+    20 min : application 3, associer denrée/température/enceinte (feuille 6, tableau à l'aide de l'annexe 2) —
+    travail individuel puis correction collective.</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse / trace écrite</td><td>8 min : fiche mémo de la démarche de
+    diagnostic (feuille 8) corrigée collectivement — trace écrite de référence pour S9-F2 et É4. 7 min : fiche mémo
+    conservation, phrase à retenir et piège « positive ≠ pas froide » corrigés. 5 min : auto-positionnement (Appui,
+    non remonté) et clôture — annonce de la suite (S9-F2 remplacement de composant, É4 semaine 32).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à la
+  trame « Module THÉORIE — 2 h » du cadrage S9 (accroche 10 → découverte 40 → application 50 → synthèse 20).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CONDUITE DE LA CO-CONSTRUCTION + CORRIGÉ COMPLET DE L'ARBRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Conduite pratique de la co-construction de l'arbre</h3>
+  <p style="font-size:10.3pt">Le cœur du module dépend des cas réellement rapportés par les équipes. Cette section
+  donne la conduite à tenir et le corrigé causal complet, pas des valeurs à imposer d'avance.</p>
+
+  <h4 class="section">Comment mener la mise en commun</h4>
+  <ol class="liste-num">
+    <li>Faire annoncer chaque équipe (symptôme → mesures → hypothèse) avant de commenter : l'élève reste acteur de
+    sa propre enquête, comme en S9-F1.</li>
+    <li>Noter au tableau, en 2 colonnes, « le compresseur démarre-t-il ? » (oui/non) puis, si oui, les couples
+    BP/HP et SC/SR rapportés par chaque équipe.</li>
+    <li>Faire émerger la question du professeur : « est-ce qu'un même symptôme (ex. : ne fait pas assez de froid)
+    peut avoir plusieurs causes possibles ? » — réponse attendue : oui, d'où la nécessité de mesurer avant de
+    conclure.</li>
+    <li>Formaliser l'arbre en 2 questions seulement (compresseur ? puis BP/HP-SC/SR ?) : ne jamais complexifier au-
+    delà de 2-3 branches, conformément au niveau CAP (Bloom 1→3).</li>
+  </ol>
+
+  <h4 class="section">Corrigé causal complet — pourquoi chaque mesure oriente vers quelle cause</h4>
+  <table class="mini">
+    <tr><th style="width:26%">Cause (archi-classique, cadrage S9)</th><th>Ce que montrent les mesures, et pourquoi</th></tr>
+    <tr><td>Manque de charge / fuite</td><td>Moins de fluide en circulation : BP et HP baissent toutes les deux ; la
+    vapeur aspirée a le temps de se réchauffer avant le compresseur, donc <b>SC élevée</b> (&gt; 10 K) ; bulles au
+    voyant si le circuit en est équipé ; givre à l'évaporateur possible ; la température ne descend plus.</td></tr>
+    <tr><td>Excès de charge</td><td>Trop de fluide liquide en HP : le sous-refroidissement se prolonge, donc <b>SR
+    élevé</b> (&gt; 8 K) ; HP élevée ; intensité du compresseur élevée (il travaille contre une pression plus
+    forte).</td></tr>
+    <tr><td>Encrassement / défaut de ventilation du condenseur</td><td>L'échange thermique au condenseur est moins
+    efficace : la chaleur s'évacue mal, donc <b>HP élevée</b> ; le SR reste souvent normal ou légèrement élevé ;
+    condenseur chaud et sale au toucher/à l'observation.</td></tr>
+    <tr><td>Évaporateur givré / filtre à air colmaté / défaut de ventilation évaporateur</td><td>Moins de surface ou
+    de débit d'air côté froid : l'échange baisse, donc <b>BP basse</b> et <b>SC élevée</b> (la vapeur se réchauffe
+    davantage avant le compresseur) ; débit d'air faible constaté au ventilateur évaporateur.</td></tr>
+    <tr><td>Détendeur trop fermé</td><td>Moins de fluide envoyé vers l'évaporateur : <b>BP basse</b>, <b>SC
+    élevée</b> — signature proche du manque de charge, à distinguer par le réglage du détendeur lui-même.</td></tr>
+    <tr><td>Détendeur trop ouvert</td><td>Trop de fluide envoyé, parfois encore liquide en sortie d'évaporateur :
+    <b>BP haute</b>, <b>SC faible</b> (&lt; 5 K) — risque de <b>coup de liquide</b> au compresseur, cas à part signalé
+    en vigilance dans l'annexe 1 (non développé en branche complète : réservé à une observation ponctuelle).</td></tr>
+    <tr><td>Défaut électrique</td><td>Le compresseur ne démarre pas ou disjoncte : aucune mesure HP/BP possible tant
+    que le défaut n'est pas levé — on contrôle tension, continuité, condensateur, pressostats de sécurité, klixon
+    (poste coffret, transversal avec S9-E1).</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">Pourquoi l'arbre ne fait que 2 questions</b> — Le cadrage S9 impose un arbre à
+  <b>2-3 branches maximum</b>, niveau CAP (Bloom 1→3) : JAMAIS d'analyse multi-cause, jamais de tentative de faire
+  deviner directement les 6 causes en une seule fois. Les deux leaves de l'annexe 1 (« BP basse + SC élevée » et
+  « HP élevée + SR élevé ») rassemblent chacune PLUSIEURS causes archi-classiques : c'est volontaire — l'élève de 1A
+  apprend à réduire le champ des possibles par la mesure, puis à <b>confirmer par l'observation directe</b> (givre,
+  bulles, propreté du condenseur, intensité), pas à isoler la cause unique dès la première mesure.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ MINI-CAS + VRAI-FAUX ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Application 1, les 3 mini-cas (feuille 5, document élève)</h3>
+
+  <div class="cas"><h4><span class="num">1</span> L'armoire positive ne descend plus assez</h4>
+  <div class="donnees">Compresseur : démarre normalement · BP : basse · HP : basse · SC mesurée : 15 K (cible 5-10 K) · léger givre visible sur l'évaporateur</div>
+  <p style="font-size:10pt; margin:6px 0 0"><b>Verdict attendu</b> : BP basse + SC élevée → <b>manque de charge
+  (fuite) probable OU évaporateur givré / filtre à air colmaté</b> — le givre visible penche vers un problème côté
+  aspiration (givrage/filtre), mais ne suffit pas à exclure une fuite : <b>à confirmer</b> par l'observation des
+  bulles au voyant (fuite) et par le contrôle du filtre/ventilateur évaporateur.</p>
+  </div>
+
+  <div class="cas"><h4><span class="num">2</span> Le condenseur est chaud et couvert de poussière</h4>
+  <div class="donnees">Compresseur : démarre normalement · BP : normale · HP : élevée · SR mesuré : 9 K (cible 4-8 K) · intensité compresseur : légèrement élevée</div>
+  <p style="font-size:10pt; margin:6px 0 0"><b>Verdict attendu</b> : HP élevée + SR légèrement élevé + condenseur
+  sale et chaud à l'observation → <b>encrassement / défaut de ventilation du condenseur</b>. L'intensité seulement
+  « légèrement » élevée oriente plutôt vers l'encrassement que vers un excès de charge franc (qui donnerait une
+  intensité nettement plus élevée).</p>
+  </div>
+
+  <div class="cas"><h4><span class="num">3</span> Le groupe ne démarre pas du tout</h4>
+  <div class="donnees">Compresseur : aucun bruit, aucun démarrage · aucune mesure HP/BP possible</div>
+  <p style="font-size:10pt; margin:6px 0 0"><b>Verdict attendu</b> : <b>défaut électrique</b> — contrôler tension,
+  continuité, condensateur, pressostats de sécurité, klixon (poste coffret, transversal S9-E1). Aucune mesure
+  frigorifique n'est possible tant que le défaut électrique n'est pas levé : c'est pour cela que « le compresseur
+  démarre-t-il ? » est TOUJOURS la première question de l'arbre.</p>
+  </div>
+
+  <div class="reponse"><b class="t">Question 3 (feuille 5)</b> — Observation supplémentaire attendue pour trancher
+  entre manque de charge et évaporateur givré/filtre colmaté : regarder s'il y a des <b>bulles au voyant liquide</b>
+  (signe de manque de charge) et vérifier l'état du <b>filtre à air et du ventilateur de l'évaporateur</b> (signe de
+  colmatage/givrage). Valoriser toute réponse qui cite au moins une observation directe, refuser toute réponse qui
+  propose de « mesurer encore la même chose ».</div>
+
+  <h3 class="section">Corrigé — Application 2, vrai ou faux (feuille 6, document élève)</h3>
+  <table class="mini">
+    <tr><th style="width:6%">N°</th><th style="width:48%">Affirmation</th><th style="width:10%">Réponse</th><th>Justification</th></tr>
+    <tr><td>1</td><td>La chaîne du froid ne doit jamais être interrompue.</td><td><b>VRAI</b></td><td>1re règle de
+    base (source TFCA) : toute interruption compromet la conservation, même brève.</td></tr>
+    <tr><td>2</td><td>Un produit décongelé peut être recongelé sans risque si son apparence reste bonne.</td><td>
+    <b>FAUX</b></td><td>2e règle de base : la décongélation relance l'activité biologique que le froid avait
+    stoppée, même si l'aspect reste sain — le risque n'est pas visible à l'œil.</td></tr>
+    <tr><td>3</td><td>Un entrepôt frigorifique peut stocker des produits jusqu'à -25 °C.</td><td><b>VRAI</b></td><td>
+    Un des maillons de la chaîne du froid (source TFCA) : les entrepôts frigorifiques stockent de grandes quantités
+    à température constante, jusqu'à -25 °C.</td></tr>
+    <tr><td>4</td><td>Toutes les enceintes isothermes sont négatives (en dessous de 0 °C).</td><td><b>FAUX</b></td>
+    <td>Il existe des enceintes <b>positives</b> (au-dessus de 0 °C, produits frais — la majorité des exemples de
+    l'annexe 2) ET des enceintes <b>négatives</b> (en dessous de 0 °C, produits congelés/surgelés).</td></tr>
+    <tr><td>5</td><td>Le consommateur doit décongeler ses produits le plus tôt possible après l'achat.</td><td>
+    <b>FAUX</b></td><td>Source TFCA, conseils au consommateur : décongeler les produits <b>le plus tard possible</b>,
+    juste avant leur cuisson ou leur consommation.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ ÉTUDE DE CAS DENRÉE/TEMPÉRATURE/ENCEINTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Application 3, la bonne température pour la bonne denrée (feuille 6, document élève)</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Denrée</th><th style="width:34%">Température de conservation</th><th>Enceinte</th></tr>
+    <tr><td>Viande fraîche préemballée</td><td>0 à +2 °C</td><td><b>Positive</b></td></tr>
+    <tr><td>Poisson surgelé</td><td>-18 à -20 °C</td><td><b>Négative</b></td></tr>
+    <tr><td>Fromage (vente)</td><td>+6 à +8 °C</td><td><b>Positive</b></td></tr>
+    <tr><td>Crème glacée</td><td>-23 à -25 °C</td><td><b>Négative</b></td></tr>
+    <tr><td>Fruits et légumes</td><td>+6 à +8 °C</td><td><b>Positive</b></td></tr>
+    <tr><td>Plat cuisiné (traiteur)</td><td>0 à +4 °C</td><td><b>Positive</b></td></tr>
+  </table>
+  <p style="font-size:9.8pt">Valeurs directement lues dans l'annexe 2 (tableau sourcé A.F.P.A./T.F.C.A.). Refuser
+  toute valeur inventée : si un élève propose une température absente du tableau, renvoyer systématiquement à
+  « selon le produit précis, à vérifier sur son emballage/sa notice ».</p>
+  <p style="font-size:10pt; color:var(--gris)"><i>Valeurs indicatives d'après les sources citées ; se reporter à la
+  réglementation en vigueur et au cahier des charges de l'installation.</i></p>
+
+  <h3 class="section">Corrigé de la notion « enceinte positive / négative » (annexe 2)</h3>
+  <div class="regle-or">Une enceinte <b>positive</b> est réglée à une température de consigne <b>au-dessus de
+  0 °C</b> : c'est le cas de la très grande majorité des denrées fraîches (viandes, poissons frais, produits
+  laitiers, fruits et légumes, plats cuisinés). Une enceinte <b>négative</b> est réglée <b>en dessous de 0 °C</b> :
+  c'est le cas des produits congelés et surgelés. Cette distinction est directement confirmée par la source AFPA
+  (« Chambres froides — Généralités ») : les chambres froides modulables « peuvent avoir un volume de 2 à plus de
+  10 000 m³, en température positive ou en température négative », et les portes pivotantes existent en deux
+  épaisseurs d'isolation « selon l'exploitation de la chambre froide en température positive ou négative ».</div>
+
+  <div class="piege"><b class="t">⚠ Piège à surveiller</b> — Un élève qui pense qu'« enceinte positive » signifie
+  « pas vraiment froide » doit être repris : +2 °C reste un froid actif, largement suffisant pour ralentir la
+  prolifération microbienne sur la durée de conservation indiquée. Positive/négative ne qualifie QUE la position par
+  rapport à 0 °C, jamais l'intensité ou l'efficacité du froid produit.</div>
+
+  <h3 class="section">Corrigé de la fiche mémo « pourquoi le froid conserve » (feuille 4, document élève)</h3>
+  <div class="reponse"><b class="t">Question 2</b> — Pourquoi la viande et le poisson se dégradent-ils à température
+  ambiante ?<br><b>Réponse attendue</b> : à température ambiante, l'<b>activité biologique</b> (prolifération des
+  micro-organismes, respiration des végétaux) continue normalement et dégrade le produit en quelques heures. Le
+  froid <b>ralentit</b> cette activité (enceinte positive) ou la <b>stoppe presque totalement</b> (enceinte
+  négative) — sans jamais la supprimer définitivement, d'où le risque si la chaîne est rompue ou si un produit
+  décongelé est recongelé.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — GRILLE, DIFFÉRENCIATION, LIEN AVEC LA SUITE, SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S9 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement (feuille 8, document élève)</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut <b>Appui</b> (savoirs <b>S4.2</b> augmenté, <b>S5.7</b>
+  nouveau, <b>S5.1</b> augmenté ; compétence <b>C4.5</b> théorique) : auto-évaluation formative, aucune remontée
+  École Directe — la remontée officielle de C4.5 se fait UNIQUEMENT à É4 (semaine 32).</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Ce que l'élève sait faire</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:10%">3</th><th class="niv" style="width:10%">4</th></tr>
+    <tr>
+      <td>Suivre la démarche observer → mesurer → comparer → conclure, utiliser l'arbre simple
+      <span class="nuance">Appui — S5.1 / C4.5</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Conclut sans mesurer, même avec de l'aide.</td>
+      <td>Suit la démarche avec de l'aide, confond encore parfois les causes.</td>
+      <td>Suit seul(e) la démarche complète, hypothèse cohérente avec les mesures.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi confirmer par l'observation.</td>
+    </tr>
+    <tr>
+      <td>Associer une denrée à sa température et à une enceinte positive/négative, citer les 2 règles de la
+      chaîne du froid <span class="nuance">S4.2 / S5.7</span></td>
+      <td>Non observé.</td>
+      <td>Ne distingue pas positif de négatif.</td>
+      <td>Distingue avec de l'aide, oublie parfois une règle.</td>
+      <td>Associe seul(e) denrée/température/enceinte, cite les 2 règles.</td>
+      <td>Comme « Acquis », et explique le risque du produit recongelé.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur de raisonnement, esprit d'équipe, honnêteté (« à confirmer »)</td>
+      <td>Non observé.</td>
+      <td>Conclut au hasard, n'écoute pas la mise en commun.</td>
+      <td>Participe mais a besoin d'un rappel pour être rigoureux(se).</td>
+      <td>Mesure avant de conclure, écoute la mise en commun.</td>
+      <td>Comme « Acquis », et aide un camarade à corriger un raisonnement rapide.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fournir la fiche de rappel (feuille 2) partiellement pré-remplie (symptôme et
+    mesures déjà notés, hypothèse à trouver seule) ; limiter les mini-cas de l'application 1 aux cas 1 et 3 ; traiter
+    l'association denrée/température en collectif plutôt qu'en individuel.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : co-construction complète, 3
+    mini-cas, 5 affirmations vrai-faux, association individuelle avec correction collective.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander de justifier pourquoi le cas du détendeur trop ouvert (BP haute, SC
+    faible &lt; 5 K) n'est pas traité comme une branche complète de l'arbre ; faire comparer les seuils H.R.
+    (humidité relative) entre deux denrées de l'annexe 2 et expliquer pourquoi ils diffèrent.</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire positif/négatif systématiquement associé à un pictogramme (soleil rouge = au-
+    dessus de 0 °C, flocon bleu = en dessous de 0 °C) affiché au tableau ; phrases courtes sujet-verbe-complément
+    pour la fiche de rappel ; rôle de « lecteur du tableau annexe » désigné par équipe.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Arbre de diagnostic distribué en grand format A3 pour suivi visuel pendant la
+    formalisation ; limiter le vrai-faux à 3 affirmations (1, 2, 5) traitées une par une au tableau avant le travail
+    individuel ; rôle de « rapporteur » désigné dans chaque équipe pour la mise en commun.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la formation</h3>
+  <ul class="liste-num">
+    <li>La trace écrite de ce module (arbre de diagnostic + tableau denrées) est réinvestie directement en <b>S9-F2</b>
+    (compte rendu d'intervention) et sert de référence pour le poste théorie d'<b>É4</b> (semaine 32) : « relevés →
+    conclusion de diagnostic + denrées ».</li>
+    <li>La démarche observer → mesurer → comparer → conclure, installée ici en 1re année sur des pannes simples,
+    sera reprise et approfondie en <b>2e année</b> (S10, diagnostic approfondi) avec analyse multi-cause et
+    manipulation réelle du fluide.</li>
+    <li>La notion d'enceinte positive/négative posée ici (S5.7) prépare toute future rencontre avec une chambre
+    froide réelle, y compris en dehors de la filière IFCA (bases communes du froid commercial).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage pédagogique S9
+  (méthode « co-construction de l'arbre de diagnostic + étude de cas conservation », F. Henninot, 19/07/2026,
+  `_CADRAGE-S9.md` — tableau de référence prudent des corrélations panne↔symptôme, cas archi-classiques et
+  univoques uniquement, seuils charte SC 5-10 K / SR 4-8 K) ; « Conditions de conservation des denrées », T.F.C.A.
+  Technicien du Froid et du Conditionnement d'Air (propriétés thermiques, températures et durées de conservation
+  fraîches et congelées par catégorie de denrée — viandes, poissons, produits laitiers, fruits et légumes, profs
+  cour Indexee/_Archives/Themes/Froid-Frigorifique) ; « La chaîne du froid », T.F.C.A. (définition, 2 règles de
+  base, maillons de la production à la consommation, températures d'entrepôt jusqu'à -25 °C et de meubles de vente
+  +6 à -22 °C, conseils au consommateur) ; « Chambres froides — Généralités », A.F.P.A. (Association pour la
+  Formation Professionnelle des Adultes), doc. FC, septembre 2001, source Dagard (tableau des types de chambres
+  froides équipant une grande surface de vente — températures et hygrométrie par denrée —, notion de chambre
+  modulable et de porte en température positive ou négative — 03_BAC-MFER/S2-Systemes/Chambre froide.pdf). Aucune
+  corrélation panne↔symptôme, aucune température de conservation et aucune notion d'enceinte positive/négative ne
+  sont affirmées hors de ces sources ; toute valeur non listée = « selon la machine, la notice ou le produit, à
+  faire valider par le professeur ».</p>
+
+  <div class="vigilance"><b class="t">Points en attente (cadrage S9)</b> — Le nombre de cas réellement disponibles
+  issus de S9-F1 au moment du cours dépend du calendrier réel des rotations de demi-groupes (point ouvert du
+  cadrage) : ce document prévoit un repli avec des cas fournis par le professeur si nécessaire (feuille 1). Les
+  corrélations panne↔symptôme de l'arbre restent <b>à faire valider par Franck</b> avant diffusion définitive
+  (angle mort de la base documentaire, construit ex nihilo à partir du cadrage). La notion d'enceintes
+  positives/négatives (S5.7) reste également <b>à valider</b>, peu de source dédiée disponible au-delà du document
+  AFPA utilisé ici.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance, .cas, .piege{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

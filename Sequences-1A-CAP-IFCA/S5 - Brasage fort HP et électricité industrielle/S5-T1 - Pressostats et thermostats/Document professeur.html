@@ -1,0 +1,409 @@
+<meta charset="utf-8">
+<title>Document professeur — S5 · Module théorie T1 · Pressostats et thermostats</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  .icone-symb{display:inline-flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--filet); border-radius:6px; padding:4px 8px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Les organes de sécurité et de régulation</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S5-T1 · 2 h — DOCUMENT PROFESSEUR</span><b>Pressostats et thermostats</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S5</span> · sem. 15</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (classe entière) — 3 appareils réels apportés par le professeur</td>
+      <td><span class="lib">Durée</span>2 h — cours actif, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → équipes d'experts (3 appareils) → mise en commun → application → synthèse/trace écrite</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — module théorie de classe entière</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">augmenté — prolonge S3-T1 (pressostat combiné, manomètres) et S4-F1 (relation P/T)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Observer avant de conclure · travailler en équipe · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte — aucun poids, aucune remontée</span> <b>C4.6</b> Paramétrer ou régler les valeurs de consigne sur organe de régulation ou de sécurité — 1ʳᵉ rencontre théorique ; le réglage réel est hors champ ce jour (S7-S8)</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même numérotation que le document élève
+  (équipes A-B-C, exercices 1 à 3) et y ajoute les réponses attendues, l'organisation matérielle, la conduite
+  minutée en 4 phases, les erreurs typiques et la différenciation. La notice AFPA source (« Pressostat »,
+  22 pages) est écrite pour un public Bac Pro/BTS et couvre le réglage, la maintenance, la sélection : ce
+  module CAP 1A n'en retient que le <b>rôle</b>, le <b>branchement</b> et les notions de <b>consigne</b> et de
+  <b>différentiel</b> (Bloom CAP 1-2 : citer, nommer, expliquer) — <b>aucun réglage n'est pratiqué ni même
+  démontré</b> ce jour.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Équipes d'experts + carte d'identité technique</b> (méthode imposée par le
+  cadrage S5, aucune reprise d'une méthode déjà utilisée en S1→S4) : 3 équipes, 3 appareils réels différents
+  (pressostat HP, pressostat BP, thermostat), une carte d'identité par équipe, puis mise en commun où chaque
+  équipe devient « experte » de son appareil face aux autres. Le professeur formalise les notions de consigne
+  et de différentiel <b>après</b> les présentations, jamais avant (charte : observer → nommer → expliciter).</p>
+  <div class="vigilance"><b class="t">Matériel à confirmer</b> — le nombre d'appareils réels disponibles à
+  l'atelier (pressostats HP, BP, thermostats, combien de chacun) est <b>à vérifier par le professeur</b> avant
+  la séance. S'il n'y a qu'un seul exemplaire de chaque, les 3 équipes peuvent tourner par sous-groupes de
+  10 minutes au lieu de garder l'appareil 20 minutes en continu ; adapter la taille des équipes à l'effectif
+  réel (ex. 3 équipes de 8 pour 24 élèves, ou dédoubler chaque appareil en 2 sous-équipes de 4 si le matériel
+  le permet).</div>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche</td><td>2 min : présentation du fil rouge (l'arrière-boutique attend sa chambre froide, mais une machine qui tourne seule doit être protégée). 3 min : question de départ notée individuellement (à quoi sert un appareil qui surveille une pression ou une température en continu). 3 min : rappel collectif express du pressostat combiné et des manomètres HP/BP (S3-T1) et de la relation P/T (S4-F1). 2 min : consigne de la découverte à venir (équipes d'experts, 3 appareils).</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Découverte</td><td>20 min : travail en équipe — chaque équipe observe SON appareil (forme, raccords, étiquette, vis de réglage sans y toucher) et remplit sa carte d'identité. 15 min : mise en commun — chaque équipe présente son appareil aux 2 autres (5 min chacune), qui complètent leur tableau comparatif. 5 min : le professeur formalise les notions de <b>consigne</b> et de <b>différentiel</b>, communes aux 3 appareils.</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application</td><td>Exercice 1 (15 min, dont 5 de correction) : associer symbole, nom et rôle des 3 appareils. Exercice 2 (20 min, dont 5 de correction) : 3 scénarios (HP qui monte, BP qui descend, température qui remonte) — raisonnement qualitatif, aucune valeur chiffrée exigée. Exercice 3 (15 min, dont 5 de correction) : placer les 3 appareils sur la croix du frigoriste + mention des pressostats combinés HP/BP.</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse / trace écrite</td><td>12 min : fiche mémo (tableau des 3 appareils) complétée et corrigée collectivement — trace écrite de référence, réutilisée en atelier électrique (câblage de pressostats dans un circuit de commande, vu plus tard). 8 min : auto-positionnement 0-4 (Découverte, non noté) et clôture — annonce que le réglage réel viendra en S7-S8.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à la
+  trame « Module THÉORIE — 2 h » du cadrage S5 (accroche 10 → découverte 40 → application 50 → synthèse 20).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ CARTES D'IDENTITÉ HP ET BP ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — carte d'identité, Équipe A (pressostat HP)</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Champ</th><th>Réponse attendue</th></tr>
+    <tr><td>Nom exact</td><td>Pressostat haute pression (pressostat HP)</td></tr>
+    <tr><td>Rôle</td><td>Il agit sur l'ouverture ou la fermeture d'un contact électrique selon la pression mesurée et la valeur de son réglage ; il contrôle la pression de refoulement (HP) du compresseur (D'après : « Pressostat », notice AFPA, F. Cabeza, p.3).</td></tr>
+    <tr><td>Où il se branche</td><td>Côté HP de l'installation (souvent près du refoulement du compresseur — <i>éviter</i> de le raccorder directement sur la vanne de refoulement, qui peut rester fermée par inadvertance et le laisser hors service, AFPA p.13).</td></tr>
+    <tr><td>Ce qu'il surveille</td><td>Une pression (la pression haute).</td></tr>
+    <tr><td>Consigne</td><td>La valeur de pression à laquelle l'appareil déclenche (coupe le circuit électrique si la HP dépasse cette valeur, en fonction sécurité ; ou ferme le circuit en fonction régulation). Réglée <b>selon la notice du fabricant</b> et <b>validée par le professeur</b> — aucune valeur n'est à retenir aujourd'hui.</td></tr>
+    <tr><td>Différentiel</td><td>L'écart entre la pression d'enclenchement et la pression de coupure. <span class="nuance">Exemple donné par la notice AFPA (p.11), pour illustrer le principe seulement : enclenchement 4,2 bar, coupure 1,8 bar → différentiel = 4,2 − 1,8 = 2,4 bar. Ce n'est pas la valeur de votre machine.</span></td></tr>
+  </table>
+
+  <h3 class="section">Corrigé — carte d'identité, Équipe B (pressostat BP)</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Champ</th><th>Réponse attendue</th></tr>
+    <tr><td>Nom exact</td><td>Pressostat basse pression (pressostat BP)</td></tr>
+    <tr><td>Rôle</td><td>Il contrôle la pression d'aspiration (BP) du compresseur ; il arrête le compresseur si la BP descend en dessous d'une valeur limite — cas d'un manque de charge en fluide, d'un détendeur bloqué fermé, d'un évaporateur pris dans la glace (D'après AFPA, p.8).</td></tr>
+    <tr><td>Où il se branche</td><td>Côté BP de l'installation (aspiration du compresseur).</td></tr>
+    <tr><td>Ce qu'il surveille</td><td>Une pression (la pression basse).</td></tr>
+    <tr><td>Consigne</td><td>Même principe que le pressostat HP : la valeur de pression basse à laquelle l'appareil coupe ou régule. Réglée <b>selon la notice</b>, <b>validée par le professeur</b> — aucune valeur n'est à retenir aujourd'hui.</td></tr>
+    <tr><td>Différentiel</td><td>Même principe que le pressostat HP : écart entre le point de coupure et le point de réenclenchement.</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">Point de vigilance — sécurité vs régulation</b> — La notice AFPA distingue
+  2 usages pour chaque pressostat : <b>sécurité</b> (réarmement manuel le plus souvent, protège la machine d'une
+  dérive dangereuse) et <b>régulation</b> (réarmement automatique, pilote un ventilateur, une électrovanne, le
+  compresseur lui-même en fonctionnement normal). Ce jour, se limiter à la fonction <b>sécurité</b> (plus simple,
+  plus parlante pour une 1ʳᵉ rencontre) ; mentionner l'existence de la régulation en une phrase si un élève pose
+  la question, sans développer (Bloom CAP 1-2).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ THERMOSTAT + MISE EN COMMUN + NOTIONS FORMALISÉES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — carte d'identité, Équipe C (thermostat)</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Champ</th><th>Réponse attendue</th></tr>
+    <tr><td>Nom exact</td><td>Thermostat</td></tr>
+    <tr><td>Rôle</td><td>Maintenir une température (ambiance ou liquide) à la valeur définie par la consigne ; c'est un organe de régulation « tout ou rien » qui ferme ou ouvre un simple contact électrique (D'après : « Thermostat », F. Henninot, 02_CAP-IFCA/Collegues-Partages).</td></tr>
+    <tr><td>Où il se branche</td><td>Dans l'ambiance à réguler (ou sur le liquide) — PAS sur le circuit HP/BP : son organe de détection (bulbe, sonde) est placé là où l'on veut connaître la température.</td></tr>
+    <tr><td>Ce qu'il surveille</td><td>Une température.</td></tr>
+    <tr><td>Consigne</td><td>La température désirée, réglée par le professionnel selon le besoin (ex. température de la chambre froide) — aucune valeur n'est à retenir aujourd'hui.</td></tr>
+    <tr><td>Différentiel</td><td>L'écart entre la température de mise en marche et la température d'arrêt de la machine régulée.</td></tr>
+  </table>
+  <p style="font-size:9pt; color:var(--gris); font-style:italic">Technologies existantes (à nommer, Bloom 1,
+  sans développer) : à <b>bilame</b> (deux métaux à dilatation différente), à <b>tension de vapeur</b> (bulbe et
+  capillaire = « train thermostatique », qui déforme un soufflet), <b>électronique</b> (sonde à résistance
+  variable, plus précis, souvent avec afficheur). Ne pas exiger la mémorisation des 3 technologies : l'objectif
+  est de comprendre que TOUS partagent le même principe — une consigne, un contact qui s'ouvre ou se ferme.</p>
+
+  <h3 class="section">Corrigé — tableau de mise en commun</h3>
+  <table class="mini">
+    <tr><th style="width:16%">Appareil</th><th style="width:28%">Rôle</th><th style="width:20%">Où il se branche</th><th style="width:16%">Ce qu'il surveille</th><th>Consigne / différentiel</th></tr>
+    <tr><td>Pressostat HP</td><td>Sécurité/régulation côté haute pression</td><td>Côté HP, refoulement compresseur</td><td>Une pression</td><td>Coupe/régule si la HP dépasse la consigne ; différentiel = écart enclenchement/coupure</td></tr>
+    <tr><td>Pressostat BP</td><td>Sécurité/régulation côté basse pression</td><td>Côté BP, aspiration compresseur</td><td>Une pression</td><td>Coupe/régule si la BP descend sous la consigne ; même principe de différentiel</td></tr>
+    <tr><td>Thermostat</td><td>Régulation d'une température</td><td>Dans l'ambiance surveillée</td><td>Une température</td><td>Ouvre/ferme un contact selon la consigne de température ; différentiel = écart marche/arrêt</td></tr>
+  </table>
+
+  <h3 class="section">Notions formalisées par le professeur (après les présentations)</h3>
+  <div class="reponse"><b class="t">Consigne</b> — c'est la valeur (de pression ou de température) à laquelle
+  l'appareil doit réagir : au-delà (ou en-deçà) de cette valeur, le contact électrique s'ouvre ou se ferme. Sur
+  une vraie installation, la consigne est toujours réglée selon la notice du fabricant et le cahier des charges,
+  validée par le professeur — jamais devinée ou recopiée d'une autre machine.</div>
+  <div class="reponse"><b class="t">Différentiel</b> — c'est l'écart entre la valeur qui déclenche l'appareil et
+  la valeur qui le fait revenir à l'état initial (ex. : point de coupure et point de réarmement). Sans
+  différentiel, l'appareil « pomperait » (s'enclencherait et se couperait sans arrêt, en très courts cycles) : le
+  différentiel évite ce phénomène.</div>
+  <div class="vigilance"><b class="t">Erreur typique</b> — confondre pressostat et thermostat, ou penser que
+  « surveiller » signifie « juste afficher une valeur » (comme un manomètre) : insister sur la différence entre
+  un manomètre (qui affiche seulement, vu en S3-T1) et un pressostat (qui agit, via un contact électrique).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ EXERCICES 1 ET 2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 1 (associer symbole, nom, rôle)</h3>
+  <table class="mini">
+    <tr><th style="width:16%">Symbole (ordre du document élève)</th><th style="width:22%">Nom</th><th>Rôle</th></tr>
+    <tr><td>1<sup>er</sup> symbole (rectangle large + trait vertical)</td><td><b>A.</b> Pressostat HP</td><td><b>D.</b> Surveille la pression côté refoulement du compresseur ; arrête ou régule si la pression monte trop.</td></tr>
+    <tr><td>2<sup>e</sup> symbole (rectangle un peu plus étroit + trait vertical)</td><td><b>B.</b> Pressostat BP</td><td><b>E.</b> Surveille la pression côté aspiration du compresseur ; arrête ou régule si la pression descend trop.</td></tr>
+    <tr><td>3<sup>e</sup> symbole (petit rectangle + capillaire vers un bulbe)</td><td><b>C.</b> Thermostat</td><td><b>F.</b> Surveille une température ; ferme ou ouvre un contact électrique selon la consigne réglée.</td></tr>
+  </table>
+  <p style="font-size:8.8pt; color:var(--gris); font-style:italic">Symboles issus de la bibliothèque de symboles
+  inerWeb (pressostat_hp, pressostat_bp, thermostat_froid) — même origine que les symboles utilisés en S3-T1 et
+  dans les ateliers électriques S5-E1/E2.</p>
+
+  <h3 class="section">Corrigé — Exercice 2 (la machine réagit)</h3>
+  <table class="mini">
+    <tr><th style="width:38%">Situation</th><th>Réponse attendue</th></tr>
+    <tr><td>La HP monte trop</td><td>Le <b>pressostat HP</b> détecte la pression haute anormale et ouvre son contact électrique : cela coupe l'alimentation de la bobine du contacteur de puissance, qui arrête le compresseur. C'est une protection, pas une panne : le compresseur ne doit jamais forcer contre une pression trop haute.</td></tr>
+    <tr><td>La BP descend trop</td><td>Le <b>pressostat BP</b> détecte la pression basse anormale et ouvre son contact, arrêtant le compresseur. Cela évite qu'il « tourne à vide » avec un manque de fluide, ce qui l'endommagerait (mauvaise lubrification, mauvais refroidissement du moteur pour un compresseur hermétique).</td></tr>
+    <tr><td>La température de la chambre remonte au-dessus de la consigne</td><td>Le <b>thermostat</b> détecte l'écart et ferme son contact pour remettre en marche le groupe froid (ou l'inverse selon le montage) ; quand la température revient sous la consigne moins le différentiel, il coupe à nouveau.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Un élève qui répond « la machine est en panne »
+  pour la 1<sup>re</sup> situation doit être repris : un arrêt sur pressostat HP ou BP est la <b>preuve que la
+  protection fonctionne</b>, pas un dysfonctionnement (même erreur typique que dans le modèle 2A S12, séance 2).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CORRIGÉ EXERCICE 3 + BOÎTIERS COMBINÉS + ERREURS TYPIQUES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 3 (placer sur la croix du frigoriste)</h3>
+  <table class="mini">
+    <tr><th style="width:38%">Emplacement</th><th>Appareil attendu</th></tr>
+    <tr><td>Au niveau du compresseur, côté refoulement</td><td>Pressostat HP</td></tr>
+    <tr><td>Au niveau du compresseur, côté aspiration</td><td>Pressostat BP</td></tr>
+    <tr><td>Dans l'ambiance à réguler</td><td>Thermostat</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Le thermostat n'est PAS positionné « sur » la
+  croix comme les autres organes : il est déporté dans l'ambiance (la chambre froide, la vitrine…), pas sur le
+  circuit fluidique lui-même. Faire constater la différence : les pressostats se raccordent au circuit
+  (fluidique), le thermostat se place où l'on veut connaître la température (souvent hors circuit).</div>
+
+  <h3 class="section">Corrigé — pressostats combinés HP/BP</h3>
+  <div class="reponse"><b class="t">Ce qu'il faut dire, sans plus</b> — « Ce type d'appareil est la combinaison
+  dans un même boîtier d'un pressostat HP et d'un pressostat BP, agissant sur le même contact. Cela simplifie
+  la partie électrique de l'installation. Ils sont principalement utilisés en sécurité HP/BP sur des petites
+  installations. » (D'après : « Pressostat », notice AFPA, F. Cabeza, p.15). Vous en avez déjà vu un exemple en
+  S3-T1, sur la croix du frigoriste. Ne pas aller plus loin (pas de détail de câblage interne, hors Bloom CAP
+  1A ce jour).</div>
+
+  <h3 class="section">Erreurs typiques à anticiper</h3>
+  <table class="mini">
+    <tr><th style="width:34%">Erreur</th><th>Comment la lever</th></tr>
+    <tr><td>Confondre pressostat et manomètre</td><td>Rappeler la distinction déjà vue en S3-T1 : le manomètre affiche seulement (lecture), le pressostat agit (il ouvre ou ferme un contact électrique) — c'est un élément de sécurité ou de régulation, pas un simple indicateur.</td></tr>
+    <tr><td>Confondre pressostat HP et pressostat BP</td><td>Revenir au branchement observé sur l'appareil réel de chaque équipe : HP = côté refoulement (pression qui monte quand ça va mal), BP = côté aspiration (pression qui descend quand ça va mal).</td></tr>
+    <tr><td>Penser que « consigne » veut dire une valeur fixe universelle</td><td>Rappeler que la consigne dépend toujours de la machine, du fluide et du cahier des charges : elle se règle « selon la notice, validée par le professeur », jamais une valeur apprise par cœur.</td></tr>
+    <tr><td>Croire que le thermostat se raccorde comme un pressostat, sur le circuit HP/BP</td><td>Faire remontrer sur l'appareil réel que le thermostat capte une température dans l'ambiance (bulbe, sonde), pas une pression sur le circuit fluidique.</td></tr>
+    <tr><td>Vouloir régler l'appareil pendant l'observation (tourner une vis « pour voir »)</td><td>Rappeler fermement dès l'accroche : aujourd'hui, on observe et on comprend, on ne règle rien — le geste de réglage sera appris en S7-S8, avec la méthode et le contrôle du professeur.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — FICHE MÉMO CORRIGÉE + GRILLE 0-4 + DIFFÉRENCIATION + LIEN SUITE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S5 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Fiche mémo corrigée (trace écrite de référence)</h3>
+  <div class="tbl-wrap">
+  <table class="mini" style="font-size:8.3pt">
+    <tr><th style="width:14%">Appareil</th><th style="width:26%">Rôle</th><th style="width:18%">Où il se branche</th><th style="width:16%">Ce qu'il surveille</th><th>Consigne / différentiel</th></tr>
+    <tr><td>Pressostat HP</td><td>Coupe (ou régule) le circuit électrique selon la pression haute mesurée, en fonction du réglage.</td><td>Côté HP, refoulement du compresseur</td><td>Une pression</td><td>Consigne = valeur de déclenchement, réglée selon notice ; différentiel = écart enclenchement/coupure</td></tr>
+    <tr><td>Pressostat BP</td><td>Coupe (ou régule) le circuit électrique selon la pression basse mesurée, en fonction du réglage.</td><td>Côté BP, aspiration du compresseur</td><td>Une pression</td><td>Même principe que le pressostat HP</td></tr>
+    <tr><td>Thermostat</td><td>Maintient une température à la consigne réglée, via un contact tout ou rien.</td><td>Dans l'ambiance surveillée (hors circuit HP/BP)</td><td>Une température</td><td>Consigne = température désirée ; différentiel = écart marche/arrêt</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Grille <b>légère</b>, statut <b>Découverte</b> (compétence
+  <b>C4.6</b>, savoir <b>S5.6</b> augmenté) : elle sert de repère personnel à l'élève, aucune remontée École
+  Directe.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Ce que l'élève sait faire</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:10%">3</th><th class="niv" style="width:10%">4</th></tr>
+    <tr>
+      <td><b>C4.6</b> Nommer le pressostat HP, le pressostat BP et le thermostat, dire leur rôle et expliquer consigne/différentiel <span class="nuance">Découverte — non noté</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Confond les 3 appareils, même après la mise en commun.</td>
+      <td>Reconnaît les 3 appareils et nomme leur rôle, avec l'aide du professeur ou d'un pair.</td>
+      <td>Nomme seul(e) les 3 appareils, leur rôle, et explique consigne et différentiel avec sa fiche mémo.</td>
+      <td>Comme « Acquis », et explique en plus la différence entre sécurité et régulation à un pair.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — observe avant de conclure, travaille en équipe, honnêteté de l'auto-positionnement</td>
+      <td>Non observé.</td>
+      <td>Répond sans observer l'appareil réel, ne participe pas à son équipe.</td>
+      <td>Observe mais a besoin d'un rappel pour participer activement.</td>
+      <td>Observe avant de répondre, participe à sa carte d'équipe, complète son auto-positionnement honnêtement.</td>
+      <td>Comme « Acquis », et aide un camarade d'une autre équipe à comprendre son appareil.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Réduire les champs de la carte d'identité à 3 (nom, rôle, où il se branche) au lieu de 6 ; fournir directement la définition de consigne/différentiel en fin de mise en commun plutôt que de la faire déduire ; pour l'exercice 3, donner déjà 1 des 3 cases remplies.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : carte complète, mise en commun, 3 exercices en autonomie guidée, correction collective après chacun.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus, à l'oral : « pourquoi un pressostat de sécurité est-il souvent à réarmement MANUEL alors qu'un pressostat de régulation est à réarmement automatique ? » (prépare le raisonnement développé en S7-S8, sans donner le détail du réglage ce jour).</td></tr>
+    <tr><td>FLE</td><td>Les 3 appareils réels restent affichés en support visuel permanent avec une étiquette « mot + photo/symbole » (pressostat HP, pressostat BP, thermostat) ; une carte simplifiée à 2 champs (nom, rôle en une phrase courte) ; phrases courtes à l'oral, une consigne à la fois, gestes montrés sur l'appareil réel autant que dits.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Un seul appareil observé à la fois si le travail en équipe disperse l'attention (rôle « rapporteur » désigné dans l'équipe pour cadrer) ; carte d'identité limitée à des cases courtes déjà présentes dans le document, pas de reformulation libre exigée ; limiter l'observation silencieuse à 4-5 minutes avant relance orale du professeur.</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la formation</h3>
+  <ul class="liste-num">
+    <li>Le vocabulaire vu ici (pressostat HP/BP, thermostat, consigne, différentiel) sera <b>réactivé au fil de
+    l'eau</b> dans les ateliers électriques S5-E1/E2 (câblage de circuits de commande) chaque fois qu'un contact
+    de ce type apparaît sur un schéma ;</li>
+    <li>Le <b>réglage réel</b> d'un pressostat ou d'un thermostat (méthode en plusieurs étapes, observation du
+    déclenchement réel, sous azote) sera appris en <b>S7 et S8</b>, puis approfondi en 2<sup>e</sup> année (voir
+    le modèle allégé pour cette séance : S12, séance 2, 2A) ;</li>
+    <li>Le carnet de bord <b>F3</b> peut accueillir la fiche mémo complétée si le professeur le souhaite (non
+    obligatoire pour ce module).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « Les notions
+  essentielles à la compréhension du fonctionnement des pressostats dans les installations frigorifiques »
+  (F. Henninot, 02_CAP-IFCA/C3-Realiser, fiche extraite le 04/07/2026 — bases physiques P/S/F, non reprises
+  telles quelles ici, niveau trop calculatoire pour ce module) ; « Pressostat », notice technique F. Cabeza,
+  AFPA 2000 (_Archives/Themes/Collegues-Partages/Pressostat.pdf — rôle HP/BP, sécurité/régulation, consigne,
+  différentiel, exemple chiffré p.11, pressostat combiné p.15) ; « Thermostat » (F. Henninot,
+  02_CAP-IFCA/Collegues-Partages — définition, technologies, principe tout ou rien) ; « Activité 2 —
+  Raccordement fluidique d'un pressostat et d'un manomètre » (02_CAP-IFCA/C3-Realiser — contexte professionnel
+  du raccordement, non détaillé ici) ; « reglage bp sous azote » (02_CAP-IFCA/C4-MettreEnService — pour ANNONCER
+  le réglage réel de S7-S8, non pratiqué ce jour) ; méthode et vocabulaire allégés depuis la séance « Pressostats
+  et régulation » (S12, séance 2, 2A, Usine-26-27) ; continuité avec « Les composants frigorifiques » (S3-T1) et
+  la croix du frigoriste (F. Henninot, 2026). Symboles : bibliothèque de symboles inerWeb (pressostat_hp,
+  pressostat_bp, pressostat_nf, thermostat, thermostat_froid).</p>
+
+  <div class="vigilance"><b class="t">Point en attente</b> — le nombre exact d'appareils réels disponibles à
+  l'atelier (pressostats HP, BP, thermostats) reste à confirmer par le professeur avant la séance ; aucune photo
+  de pressostat ou de thermostat n'a été extraite pour ce document : les photos trouvées dans la base indexée
+  portent un filigrane commercial tiers (site e-genieclimatique.com), non reproductible — le document s'appuie
+  sur les symboles de la bibliothèque inerWeb et sur les appareils réels de l'atelier, conformément à la charte
+  (croquis/symboles plutôt que photo, sauf original propre à l'établissement).</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

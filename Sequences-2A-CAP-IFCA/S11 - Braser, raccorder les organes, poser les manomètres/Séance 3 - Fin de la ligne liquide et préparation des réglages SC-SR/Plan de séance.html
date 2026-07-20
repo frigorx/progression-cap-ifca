@@ -1,0 +1,212 @@
+<meta charset="utf-8">
+<title>Plan de séance — S11 · Module A2-c · Fin de la ligne liquide, pose complète des manomètres, relevé des pressions et préréglage au banc</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .annonce{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#fff6cc; color:#7a5b00; border:1px solid #e3cf70}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Braser, raccorder les organes, poser les manomètres — <b>module atelier A2-c</b> (4 h)</td>
+      <td style="width:38%"><span class="lib">Module A2-c · 3<sup>e</sup> des 3 modules atelier de S11</span><b>Fin de la ligne liquide, pose complète des manomètres, relevé des pressions et préréglage au banc</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S11</span> P5 · positionnement : 2<sup>e</sup> année, sem. 6</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 6 · 06/10/2026 (matin)</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier A2 + poste brasage + banc de réglage + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h — une seule demi-journée (pas 4 h + 4 h) — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T14</b> Régler l'installation en fonctionnement</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> <b>S5.2</b> Fluides frigorigènes, huiles · <b>S6.1</b> Santé et sécurité au travail<br><span class="nuance">Travaillés :</span> <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">nouveau (organes de régulation/sécurité, préréglage de consigne)</span> · <b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté (observation d'un écart, formalisé au module théorie T2)</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du relevé · esprit d'analyse (comparer mesuré / attendu) · sécurité</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement → Évaluation</span> <b>C4.5</b> Mesurer, comparer des grandeurs <span class="nuance">sur T11 · S5.2</span><br><span class="statut">Découverte</span> <b>C4.6</b> Paramétrer ou régler les valeurs de consigne sur organe de régulation/sécurité <span class="nuance">sur T14 · S5.6 — préréglage de consigne au banc, hors fluide</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  La ligne liquide a été brasée (module A2-a) puis équipée de ses premiers manomètres (module A2-b). <b>Ordre
+  d'intervention n° OI-2026-S11-03</b> : le client demande de <b>terminer la ligne liquide</b>, de <b>compléter
+  la pose des manomètres</b> restants, puis de <b>relever les pressions BP et HP</b> sur les manomètres posés, et
+  enfin de <b>préparer le préréglage des consignes de régulation</b> — cette dernière étape se fait <b>au banc,
+  hors tension et hors fluide</b>, sans mise en service. <b>Aucune mise sous pression du circuit complet ni
+  sous tension cette semaine</b> — finition, mise sous pression contrôlée et sécurisée du seul montage de
+  relevé, et préréglage à sec uniquement.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>terminer</b> les brasures et raccordements restants de la ligne liquide et <b>compléter la pose</b> des manomètres BP/HP ;</li>
+        <li><b>relever</b>, après mise sous pression contrôlée, les pressions BP et HP sur les manomètres et <b>lire</b> la double graduation (pression↔température) ;</li>
+        <li><b>observer</b> un écart entre température lue et température de saturation, sans en calculer le détail — <b>amorce</b> renvoyée au module théorie T2 ;</li>
+        <li><b>préparer</b> un préréglage de consigne sur un organe de régulation, au banc, hors tension et hors fluide.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>lire un manomètre à double graduation pression↔température (S5.2, acquis au module A2-b) ;</li>
+        <li>convertir une pression en température de saturation à l'aide de la table du fluide (module A2-b) ;</li>
+        <li>respecter les consignes de sécurité de l'atelier (S6.1) sans rappel ;</li>
+        <li>nommer les organes de la ligne liquide (filtre déshydrateur, voyant liquide, détendeur).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode du module : pratique guidée en 2 jalons + démonstration de sécurité imposée pour la mise sous pression</b> —
+  la mise sous pression d'un circuit est un geste à risque : elle se <b>démontre</b>, elle ne se découvre pas.
+  Le professeur réalise et commente intégralement la mise sous pression contrôlée avant toute pratique élève.
+  Les élèves finissent ensuite leur ligne liquide et relèvent leurs pressions par <b>2 jalons successifs
+  validés</b> (<b>jalon 1</b> : finition des brasures/raccordements + complément de pose des manomètres ;
+  <b>jalon 2</b> : relevé des pressions BP/HP sous pression contrôlée + préréglage d'une consigne au banc). En
+  phase 5, une <b>courte observation</b> d'un écart pression/température plante l'amorce de la notion, sans
+  calcul détaillé ni définition formelle : <b>la surchauffe et le sous-refroidissement sont définis et
+  quantifiés au module théorie T2</b>. Module resserré sur 4 h : priorité à la finition du geste et au relevé
+  sécurisé.</div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Permis de feu</b> obligatoire avant toute flamme pour la
+  finition des brasures (mêmes règles qu'au module A2-a : zone dégagée, extincteur et point d'eau localisés,
+  EPI lunettes teintées/gants cuir/tablier ignifugé, balayage d'azote) · pose des derniers manomètres sur
+  vannes de service fermées avant raccordement · <b>mise sous pression contrôlée</b> : montée progressive,
+  jamais de purge brutale, zone dégagée, professeur présent et validant chaque étape · préréglage au banc
+  réalisé <b>hors tension et hors fluide</b> (organe démonté ou banc dédié, jamais sur une installation en
+  fonctionnement). <b>Gestes interdits</b> : jamais de flamme sans permis de feu visé, jamais de mise sous
+  pression sans validation professeur, jamais de réglage d'un organe de sécurité sous tension ou sous
+  pression, ne jamais quitter un poste flamme allumée. <b class="t">🚨 En cas d'incident :</b> couper
+  (bouteilles gaz, alimentation du banc ou vanne de mise sous pression), alerter le professeur, extincteur et
+  point d'eau localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S11 · module atelier A2-c · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.
+  Préparation de chantier (phases 1 à 5) : <b>55 min</b>, sous le plafond d'1 h maximum. Une seule demi-journée,
+  pas de pause méridienne : la pratique tient en 2 jalons.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 55 min)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel du fonctionnement du module (finition ligne liquide, puis relevé sous pression et préréglage au banc, en 2 jalons).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S11-03 : terminer la ligne liquide, compléter la pose des manomètres, relever les pressions BP/HP, préparer le préréglage des consignes hors tension/fluide.</td><td>Présente l'ordre d'intervention et les trois volets du module.</td><td>Reformulent la mission du module.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » lus et affichés ; lien avec la formule (C4.5, C4.6) et avec le positionnement du jour (confortement vers évaluation).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : lire le couple de valeurs BP/HP sur un cadran réaliste EN 837-1 (R-134a) et convertir chaque pression en température de saturation (S5.2, acquis au module A2-b).</td><td>Distribue l'exercice, contrôle les tenues et les EPI au vestiaire.</td><td>Se changent par vagues ; en attente, font l'exercice de lecture/conversion pression-température.</td><td>Cadran EN 837-1 réaliste (image) · table de conversion pression-température · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (permis de feu à faire viser pour la finition des brasures, rappel des règles de mise sous pression contrôlée, extincteur et point d'eau localisés, gestes interdits) puis <b>planter la notion</b> : OBSERVER en binôme un couple de valeurs déjà relevé (température lue au thermomètre de contact ≠ température de saturation lue au manomètre, au même point) → NOMMER l'écart avec ses mots, sans définition formelle → EXPLICITER brièvement par le professeur : « cet écart existe, il a un nom et se quantifie — <b>la surchauffe et le sous-refroidissement sont définis et quantifiés au module théorie T2</b> ». Aucun calcul systématique d'écart aujourd'hui.</td><td>Fait viser le permis de feu, anime le rituel sécurité, présente le couple de valeurs, annonce le renvoi à T2 sans développer.</td><td>Observent le couple de valeurs, formulent une hypothèse orale sur l'écart constaté, notent le renvoi à T2.</td><td>Permis de feu (à viser) · un couple de relevés pression/température (support d'amorce) · fiche de sécurité à cocher</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (a) — démonstration de sécurité imposée</td><td>Démonstration commentée du professeur, resserrée sur le geste central : mise sous pression contrôlée d'un montage (montée progressive, contrôle de l'absence de fuite, lecture immédiate des manomètres BP/HP), sans allumer de flamme. Un seul poste, tous les élèves en arc de cercle à distance de sécurité.</td><td>Réalise et commente chaque geste, insiste sur les points de contrôle et les gestes interdits.</td><td>Observent en silence à distance de sécurité, ne manipulent rien, notent les points de contrôle.</td><td>Montage de démonstration (vanne de mise sous pression, manomètres BP/HP) · EPI professeur</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td>1 h 05</td><td class="ph">6. Guider l'étude (b) — pratique guidée, <span class="jalon">jalon 1</span> : finition + manomètres</td><td>Chaque binôme, sous surveillance rapprochée du professeur : termine les brasures et raccordements restants de la ligne liquide sous balayage d'azote (mêmes règles qu'au module A2-a), puis complète la pose des manomètres BP/HP restants sur les prises de pression, hors pression. Remplissage de la fiche d'auto-contrôle qualité de brasure et de la fiche de contrôle croisé du repérage BP/HP.</td><td>Valide chaque ouverture de gaz, circule poste par poste, contrôle les gestes de sécurité, la qualité des cordons et le repérage couleur des manomètres.</td><td>Terminent l'assemblage et le brasage en binôme sous azote, complètent la pose des manomètres, remplissent leurs fiches d'auto-contrôle et de contrôle croisé.</td><td>Postes de brasage · azote · manomètres BP/HP restants · fiches d'auto-contrôle et de contrôle croisé</td><td class="obs"></td></tr>
+    <tr><td>45 min</td><td class="ph">6. Guider l'étude (c) — pratique guidée, <span class="jalon">jalon 2</span> : relevé des pressions + préréglage au banc</td><td>Sur validation du professeur, chaque binôme réalise la <b>mise sous pression contrôlée</b> de son montage (montée progressive, contrôle d'absence de fuite), <b>relève les pressions BP et HP</b> sur ses manomètres et lit la double graduation (pression↔température de saturation) ; puis, sur banc dédié <b>hors tension et hors fluide</b>, repère l'organe de régulation/sécurité et <b>prérègle aux valeurs de la table de réglage réelle BP ou HP</b> (fluide/T° d'évaporation ou région indiqués par le professeur), sans mise en service.</td><td>Valide chaque mise sous pression poste par poste, contrôle les relevés, vérifie l'état hors tension/fluide du banc avant tout préréglage, valide chaque préréglage.</td><td>Mettent sous pression sous validation, relèvent et notent les pressions BP/HP, lisent la double graduation, prérèglent une consigne au banc et la justifient.</td><td>Vanne de mise sous pression contrôlée · manomètres BP/HP posés · banc de réglage hors tension/fluide · fiche de relevé · fiche de préréglage</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque binôme présente ses relevés de pression et son préréglage ; auto-positionnement par compétence (C4.5, C4.6 + savoir-être) puis validation professeur. <span class="annonce">Annonce de l'évaluation sommative S10-S11 (semaine 7)</span> : contenu, conditions (poste individuel), compétences concernées.</td><td>Organise la mise en commun, recueille les grilles, valide, annonce l'évaluation sommative.</td><td>Présentent leurs relevés et leur préréglage, s'auto-positionnent honnêtement, notent la date de l'évaluation.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (matériel manquant, consommables de brasage, manomètres).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Fermeture et rangement des bouteilles de gaz, dépressurisation et rangement des montages, nettoyage des postes de brasage et du banc de réglage, vérification visuelle de la ligne liquide terminée.</td><td>Supervise la fermeture des gaz, la dépressurisation et la remise en ordre.</td><td>Ferment les bouteilles, dépressurisent, rangent, nettoient, vérifient.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, rappel de l'évaluation sommative S10-S11 en semaine 7 (poste individuel).</td><td>Supervise le vestiaire, clôt et rappelle l'échéance.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Addition de contrôle</b> : 10 + 10 + 5 + 15 + 15
+  (préparation de chantier, phases 1→5) = <b>55 min</b> ; + 20 (démonstration) + 15 (pause) + 1 h 05 (jalon 1) +
+  45 min (jalon 2) = 2 h 25 de pratique encadrée ; + 15 (synthèse) + 10 (bon de commande) + 10 (rangement) + 5
+  (clôture) = 40 min. Total : 55 + 20 + 15 + 65 + 45 + 15 + 10 + 10 + 5 = <b>240 min = 4 h 00 exactes</b>, une
+  seule demi-journée.</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : mathématiques-sciences (lecture de pression, ordre de grandeur) ·
+  prévention des risques (permis de feu, mise sous pression contrôlée, risque électrique du banc) · co-intervention français (carnet de bord) · chef-d'œuvre (vidéo) ·
+  module A2 (chantier de projet) clôturé en S11, préparant l'évaluation sommative S10-S11 et le module théorie T2 (surchauffe/sous-refroidissement).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 05/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

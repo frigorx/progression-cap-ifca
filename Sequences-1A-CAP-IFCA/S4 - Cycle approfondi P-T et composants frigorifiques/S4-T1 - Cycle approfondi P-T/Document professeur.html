@@ -1,0 +1,407 @@
+<meta charset="utf-8">
+<title>Document professeur — S4 · Module théorie T1 · Cycle approfondi P/T</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .legende{font-size:9pt; color:#5d6b7c; font-style:italic; margin:2px 0 12px}
+  img.fig{max-width:100%; height:auto; border:1px solid #d8dee6; border-radius:4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE 2 H ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>La relation entre pression et température, cycle frigorifique approfondi</td>
+      <td style="width:38%"><span class="lib">Module THÉORIE S4-T1 · 2 h — DOCUMENT PROFESSEUR</span><b>Cycle approfondi P/T</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S4</span> · sem. 12</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle</span>Salle de technologie (classe entière), point d'eau + plaque chauffante ou bouilloire nécessaires</td>
+      <td><span class="lib">Durée</span>2 h — cours actif, pas de préparation de chantier</td>
+      <td><span class="lib">Modalité</span>Accroche → démonstration expérimentale commentée → exploitation guidée → application (croix + réglette) → synthèse/trace écrite</td>
+      <td><span class="lib">Encadrement</span>1 professeur, classe entière</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4>Pas de tâche d'atelier ce jour — module théorie de classe entière</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes thermodynamiques à détente directe <span class="nuance">augmenté — prolonge S3-T1 (les composants) en expliquant le POURQUOI du changement d'état</span></div>
+    <div class="case"><h4>Savoir-être</h4>Observer avant d'affirmer · honnêteté de l'auto-positionnement</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Appui — aucune compétence positionnée</span> module d'appui qui prépare le rallye S4-F1 (relevés P/T sur machine, même semaine) et le poste théorie d'É2 (semaine 13) ; aucune grille remontée</div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au cours élève</h3>
+  <p style="font-size:10.3pt">Ce document reprend <b>exactement</b> la même numérotation que le document élève
+  (questions 1 à 4, exercices 1 et 2) et y ajoute le déroulé minuté, le matériel et la sécurité de la démonstration,
+  les réponses attendues, les erreurs typiques et la différenciation. Le cours reste au Bloom CAP 1A 1-2
+  (constater, nommer, lire) : <b>aucun calcul d'enthalpie, aucun cycle P/h</b>, aucune valeur de fluide frigorigène
+  n'est manipulée par les élèves — ils lisent une réglette, ils ne la construisent pas.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.3pt"><b>Démonstration expérimentale + exploitation guidée</b> (méthode imposée par le
+  cadrage S4, aucune reprise d'une méthode déjà utilisée en S1/S2/S3, qui reposaient sur l'observation de photos ou
+  de montages réels). Le professeur fait bouillir de l'eau devant la classe, relève la température au fil du temps
+  avec les élèves, puis exploite ce constat pour construire la notion centrale du module : <b>la pression choisit
+  la température de changement d'état</b>. C'est le principe « planter la notion » de la charte (observer →
+  nommer → expliciter), appliqué ici à une expérience physique plutôt qu'à une observation de composants.</p>
+
+  <h3 class="section">Matériel et sécurité de la démonstration</h3>
+  <table class="mini">
+    <tr><th style="width:30%">Élément</th><th>Détail</th></tr>
+    <tr><td>Matériel</td><td>Une casserole ou bouilloire transparente si possible, une plaque chauffante ou un point de chauffe sécurisé, de l'eau du robinet, un thermomètre de cuisine ou de sonde (déjà utilisé en S2-F2) résistant à 100 °C, un chronomètre ou l'horloge de la salle.</td></tr>
+    <tr><td>Analyse des risques du jour</td><td>Eau bouillante (brûlure par projection ou contact), vapeur d'eau (brûlure), plaque chauffante chaude après l'expérience.</td></tr>
+    <tr><td>Consignes de sécurité</td><td>Le professeur SEUL manipule la source de chaleur et la casserole ; les élèves restent à distance de sécurité (au moins 1 m) ; le thermomètre est plongé et retiré par le professeur, jamais par un élève ; ne jamais laisser la casserole sans surveillance pendant la chauffe ; couper la source de chaleur avant de rapprocher la classe pour l'observation finale.</td></tr>
+    <tr><td>Procédure d'urgence</td><td>En cas de projection ou de contact avec l'eau chaude : refroidir immédiatement la zone brûlée à l'eau froide (plusieurs minutes), alerter le professeur, ne pas percer une éventuelle cloque ; trousse de secours localisée au rituel d'entrée comme pour toute activité, y compris hors atelier.</td></tr>
+    <tr><td>Alternative si point de chauffe indisponible en salle</td><td>Utiliser une bouilloire électrique avec couvercle amovible ou transparent, ou réaliser la démonstration en début de séance dans un local technique voisin puis apporter la casserole isolée (chauffe-plat) pour la phase d'observation ; <b>à confirmer par le professeur selon les moyens de la salle</b>.</td></tr>
+  </table>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:11%">Durée</th><th style="width:20%">Phase</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module théorie — 2 h 00 (pas de préparation de chantier atelier)</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Accroche</td><td>2 min : rappel du fil rouge (le pavillon va recevoir la mise en service de son climatiseur, il faudra comprendre la relation P/T avant de la régler). 3 min : présentation de l'image de la casserole et question de départ notée individuellement (à quelle température l'eau bout-elle ?), réponse volontairement laissée ouverte. 3 min : rappel collectif express de la croix du frigoriste et des 13 composants (S3-T1). 2 min : consigne pour la démonstration à venir (observer le thermomètre, noter toutes les 2 minutes).</td></tr>
+    <tr><td>40 min</td><td class="ph">2. Découverte</td><td>20 min : démonstration commentée — mise à chauffer de l'eau, relevés collectifs de température toutes les 2 min au tableau ET dans le tableau du document élève, jusqu'au palier des 100 °C (prévoir large : une casserole d'eau du robinet à température ambiante met généralement plusieurs minutes à atteindre l'ébullition selon la puissance de chauffe ; démarrer la chauffe en tout début d'accroche si le matériel le permet, pour gagner du temps). Exploitation : question 1 (que se passe-t-il quand la température approche 100 °C), lecture collective du seuil sourcé, notion de chaleur latente. 20 min : « et si on changeait la pression ? » — question 2 en autonomie puis mise en commun orale (discussion guidée, aucune valeur chiffrée d'altitude affirmée), notion centrale « la pression choisit la température de changement d'état », transposition à la machine (tableau évaporateur/condenseur), phénomène de condensation (question 3).</td></tr>
+    <tr><td>50 min</td><td class="ph">3. Application</td><td>Exercice 1 (20 min, dont 5 de correction) : placer ébullition/condensation sur la croix du frigoriste, lien explicite avec le rallye S4-F1 de la même semaine. Exercice 2 (25 min, dont 5 de mise en commun) : principe de lecture d'une réglette P/T — si une réglette réelle ou une photo de réglette est disponible, la montrer/projeter pour rendre concret le principe, SANS faire lire de valeur précise aux élèves à ce stade (la lecture réelle se fait en atelier S4-F1). Question 4 sur le sens de variation. 5 min : retour collectif, questions des élèves.</td></tr>
+    <tr><td>20 min</td><td class="ph">4. Synthèse / trace écrite</td><td>12 min : fiche mémo complétée et corrigée collectivement, phrase à retenir affichée et recopiée — c'est la trace écrite de référence pour S4-F1 et pour É2. 8 min : auto-positionnement 0-4 (appui, non noté) et clôture (rappel explicite : « cette semaine en atelier, vous vérifiez ce que vous venez de comprendre sur une vraie machine »).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 10 + 40 + 50 + 20 = <b>120 min exactes</b>, conforme à la
+  trame « Module THÉORIE — 2 h » du cadrage S4.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ ACCROCHE + DÉMONSTRATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — question de départ (accroche)</h3>
+  <div class="reponse"><b class="t">À quelle température l'eau bout-elle ?</b><br><br>
+  <b>Réponse attendue :</b> aucune n'est exigée à ce stade — accepter toute estimation (l'objectif est de mesurer
+  l'écart entre l'intuition de l'élève et le constat expérimental à venir). La réponse officielle (100 °C à la
+  pression atmosphérique) n'est donnée qu'après la démonstration, jamais avant : c'est la question qui reste
+  « ouverte » du cadrage.</div>
+
+  <h3 class="section">Corrigé — tableau de relevés (démonstration)</h3>
+  <div class="vigilance"><b class="t">Aucune valeur n'est pré-remplie</b> — Les températures relevées dépendent du
+  matériel, du volume d'eau et de la puissance de chauffe du jour : ne jamais donner un tableau de valeurs
+  attendues à l'avance. Ce qui compte pédagogiquement, ce n'est pas le nombre exact de minutes, c'est
+  l'<b>allure</b> de la courbe : montée rapide puis <b>palier</b> autour de 100 °C. Si la démonstration ne peut pas
+  atteindre pile 100 °C (altitude de la salle, thermomètre imprécis), accepter tout palier net entre 95 et 100 °C :
+  l'important est de faire constater le <b>blocage</b> de la température, pas d'obtenir la valeur exacte du manuel.</div>
+
+  <h3 class="section">Corrigé — Question 1 (que se passe-t-il vers 100 °C ?)</h3>
+  <div class="reponse"><b class="t">Réponse attendue</b> — La température monte d'abord assez vite, puis ralentit
+  en approchant 100 °C, puis <b>s'arrête d'augmenter</b> alors que l'eau bout visiblement (bulles, vapeur) et que
+  la flamme continue de chauffer. C'est le constat central de la démonstration.</div>
+
+  <h3 class="section">Corrigé — le seuil sourcé et la chaleur latente</h3>
+  <p style="font-size:10.3pt">Citation exacte du manuel source, à donner telle quelle aux élèves après la
+  démonstration : « 100 °C = seuil d'ébullition de l'eau à la pression atmosphérique. » Et : « lorsque la source de
+  chaleur […] ne peut plus faire monter la température de l'eau […] mais que cette source de chaleur continue à
+  faire changer son état physique (vaporisation), l'eau "attend" ! (la chaleur latente). »</p>
+  <table class="mini">
+    <tr><th style="width:30%">Terme</th><th>Définition sourcée (à donner aux élèves)</th></tr>
+    <tr><td>Chaleur latente de vaporisation</td><td>Quantité de chaleur qu'il faut <i>fournir</i> à 1 kg d'eau, à pression et température constantes, pour obtenir 1 kg de vapeur saturée. Unité : Joule/kilogramme (J/kg), notée Lv.</td></tr>
+    <tr><td>Chaleur latente de condensation</td><td>Quantité de chaleur qu'il faut <i>extraire</i> à 1 kg de vapeur saturée, à pression et température constantes, pour obtenir 1 kg d'eau. Unité : J/kg, notée Lc. Basée sur les mêmes principes que la chaleur latente de vaporisation, mais cède de l'énergie au lieu d'en demander.</td></tr>
+  </table>
+  <div class="reponse"><b class="t">Texte à trous (document élève)</b> — « La source de chaleur ne peut plus faire
+  <b>MONTER</b> la température de l'eau, mais elle continue à faire <b>CHANGER</b> son état physique. »</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas introduire le mot « enthalpie » ni de calcul
+  de chaleur latente (J/kg × masse) : c'est hors Bloom CAP 1A 1A (1-2). Les élèves retiennent le principe qualitatif
+  (« l'énergie sert à changer d'état, pas à chauffer davantage »), pas la formule.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ « ET SI ON CHANGE LA PRESSION » + TRANSPOSITION + CONDENSATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Question 2 (et si on changeait la pression ?)</h3>
+  <div class="reponse"><b class="t">Réponse attendue</b> — Une pression plus basse fait bouillir l'eau à une
+  température plus basse (donc plus tôt, avant 100 °C) ; une pression plus haute demanderait une température plus
+  haute pour atteindre l'ébullition. Sens qualitatif uniquement.</div>
+  <div class="vigilance"><b class="t">Zéro invention — aucun chiffre d'altitude</b> — Le manuel source ne donne pas,
+  dans l'extrait disponible, de valeur chiffrée de température d'ébullition en altitude. <b>Ne jamais affirmer un
+  chiffre de mémoire</b> (par exemple « à 2000 m, l'eau bout à 93 °C ») : si le professeur souhaite illustrer avec
+  un exemple chiffré, il doit le vérifier sur une source fiable avant de le donner à la classe, et le présenter
+  explicitement comme un complément, pas comme un contenu du document. C'est le sens de la mention « voir manuel, à
+  faire valider » du cadrage.</div>
+
+  <h3 class="section">Corrigé — notion centrale et transposition machine</h3>
+  <p style="font-size:10.3pt">La phrase à faire répéter et recopier par les élèves : <b>« la pression choisit la
+  température à laquelle un liquide change d'état. »</b> C'est le cœur du module et la clef de lecture qui sera
+  réinvestie dans S4-F1 (rallye de relevés) et évaluée dans É2.</p>
+  <table class="mini">
+    <tr><th style="width:22%">Organe</th><th style="width:14%">Pression</th><th>Explication à donner</th></tr>
+    <tr><td>Évaporateur (BAS)</td><td>Basse</td><td>Le détendeur, juste avant, a fait chuter brutalement la pression du fluide. À cette pression basse, le fluide bout à basse température : il absorbe la chaleur de l'air ambiant (ou de la chambre froide) pour se vaporiser. C'est ce prélèvement de chaleur qui produit le froid ressenti.</td></tr>
+    <tr><td>Condenseur (HAUT)</td><td>Haute</td><td>Le compresseur, juste avant, a fait monter la pression du fluide (à l'état gazeux). À cette pression haute, le fluide se condense (redevient liquide) à une température plus élevée : il cède la chaleur qu'il avait absorbée à l'évaporateur, plus l'énergie de compression, à l'air extérieur (condenseur à air).</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Rappel charte — condenseur à air uniquement</b> — Ne jamais illustrer avec une
+  tour aéroréfrigérante : la convention FrigorX retient le condenseur à air simple pour ce niveau.</div>
+
+  <h3 class="section">Corrigé — Question 3 (la paroi froide du condenseur)</h3>
+  <div class="reponse"><b class="t">Réponse attendue</b> — C'est l'air extérieur, mis en mouvement par le
+  ventilateur du condenseur (vu en S3-T1), qui joue le rôle de la « paroi froide » de l'expérience de la buée : il
+  reçoit la chaleur cédée par le fluide qui se condense, exactement comme l'assiette du manuel reçoit la chaleur de
+  la vapeur d'eau qui se condense dessus. Accepter aussi « les ailettes du condenseur » comme réponse partielle
+  (c'est la surface d'échange réelle, balayée par l'air).</div>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Citation du manuel, à mobiliser en mise en
+  commun : la buée « se produit lorsque la vapeur d'eau rencontre des parois froides » et « cède de la chaleur à
+  l'assiette en se condensant » ; « c'est un échange d'énergie ».</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — CORRIGÉ EXERCICE 1 (CROIX) + ERREURS TYPIQUES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 1 (placer sur la croix du frigoriste)</h3>
+  <table class="mini">
+    <tr><th style="width:46%">Question</th><th>Réponse attendue</th></tr>
+    <tr><td>Où le fluide BOUT-il ?</td><td>Dans l'évaporateur (BAS de la croix)</td></tr>
+    <tr><td>La pression y est-elle basse ou haute ?</td><td>Basse</td></tr>
+    <tr><td>Où le fluide SE CONDENSE-t-il ?</td><td>Dans le condenseur (HAUT de la croix)</td></tr>
+    <tr><td>La pression y est-elle basse ou haute ?</td><td>Haute</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Rappel — croix jamais inversée</b> — Détendeur GAUCHE · compresseur DROITE ·
+  condenseur HAUT · évaporateur BAS. Cette convention ne change jamais dans aucun document FrigorX.</div>
+
+  <h3 class="section">Erreurs typiques à anticiper</h3>
+  <table class="mini">
+    <tr><th style="width:34%">Erreur</th><th>Comment la lever</th></tr>
+    <tr><td>Croire que « plus on chauffe, plus c'est chaud » pendant l'ébullition</td><td>Revenir explicitement au palier observé pendant la démonstration : montrer que la flamme continue à donner de la chaleur (visible : les bulles s'intensifient) sans que le thermomètre ne bouge. C'est l'erreur centrale du module, à lever avant de passer à la transposition machine.</td></tr>
+    <tr><td>Confondre pression et température</td><td>Rappeler que ce sont deux grandeurs différentes, mesurées avec des instruments différents (manomètre pour la pression, thermomètre pour la température), mais reliées l'une à l'autre pour un changement d'état donné. Utiliser la réglette P/T comme image : deux colonnes différentes, mais chaque ligne les relie.</td></tr>
+    <tr><td>Penser qu'un liquide bout toujours à la même température, quelle que soit la pression</td><td>Revenir sur la précision « à la pression atmosphérique » de la phrase sourcée : c'est elle qui indique qu'à une autre pression, la valeur change. Insister : ce n'est pas 100 °C qui est la règle générale, c'est « la pression choisit la température ».</td></tr>
+    <tr><td>Penser que le froid vient du fait que le fluide est « déjà froid »</td><td>Rappeler que le fluide n'est pas magique : c'est en le faisant bouillir à basse pression, donc à basse température, qu'il devient capable d'absorber la chaleur de l'air ambiant (plus chaud que lui). Le fluide n'est froid que parce qu'on a choisi sa pression.</td></tr>
+    <tr><td>Croire qu'un couple pression/température de fluide frigorigène est universel et à mémoriser</td><td>Rappeler que chaque fluide a SA relation P/T, propre à lui, et qu'aucun professionnel ne la mémorise : il la lit sur une réglette ou un manifold. Aucune valeur n'est à apprendre par cœur en 1A.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — CORRIGÉ EXERCICE 2 (RÉGLETTE P/T) + LIEN S4-F1/É2 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — Exercice 2 (principe de la réglette P/T)</h3>
+  <div class="vigilance"><b class="t">Le tableau élève reste vide dans ce document</b> — Aucune valeur de pression
+  ni de température de fluide frigorigène n'est donnée ici, conformément à la règle zéro invention du cadrage. Si
+  le professeur dispose de la réglette P/T réelle de l'atelier (référence à fournir — point en attente du cadrage
+  S4), il peut la projeter en fin d'exercice pour un remplissage collectif <b>encadré</b>, en insistant sur le fait
+  que ces valeurs viennent de l'outil réel, pas de la mémoire de l'enseignant.</div>
+
+  <div style="border:1.5px solid var(--bleu); border-radius:6px; background:#eef4ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10pt">
+  <b>📄 Ressource fournie — table pression/température.</b> Pour lire une température de saturation à partir d'une pression (ou l'inverse), utilisez la <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Reglette%20P-T%20multi-fluides%20(imprimable).pdf">réglette P/T multi-fluides</a> ou la table du fluide de votre banc : <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R134a%20(saturation,%20-100%20a%20+100%20C).pdf">R134a</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R404A%20(saturation).pdf">R404A</a> · <a href="../../_Ressources-eleve%20(tables%20et%20diagrammes)/Table%20P-T%20R410A%20(saturation).pdf">R410A</a>. N'inventez jamais une valeur : lisez-la sur la table.
+  </div>
+
+  <h3 class="section">Corrigé — Question 4 (sens de variation)</h3>
+  <div class="reponse"><b class="t">Réponse attendue</b> — Si la pression augmente, la température de changement
+  d'état affichée en face augmente aussi (sens qualitatif de variation, cohérent avec le tableau de la feuille 3 :
+  pression haute → température de condensation plus haute).</div>
+
+  <h3 class="section">Lien avec S4-F1 (rallye de relevés, même semaine)</h3>
+  <p style="font-size:10.3pt">Le rallye de S4-F1 reprend exactement le principe de lecture travaillé ici : à
+  chaque station, l'élève lit une pression au manomètre (BP à l'arrêt, BP en marche, HP en marche…), lit la
+  température correspondante sur la réglette P/T réelle, puis mesure la température réelle au thermomètre de sonde
+  et compare. Le sens pédagogique de S4-F1 est la <b>découverte</b> (l'élève CONSTATE avant que la théorie ne
+  formalise) ; S4-T1 fait l'inverse : il <b>formalise</b> ce que S4-F1 fera constater. L'ordre dans la semaine
+  (théorie avant ou après l'atelier) est laissé au professeur selon l'emploi du temps réel ; le module fonctionne
+  dans les deux sens, mais gagne à être placé <b>avant</b> le rallye pour que les élèves arrivent en atelier avec
+  la clef de lecture déjà en tête.</p>
+
+  <h3 class="section">Lien avec É2 (semaine 13, poste théorie)</h3>
+  <p style="font-size:10.3pt">Le poste théorie d'É2 évaluera la relation P/T (lecture de réglette/tableau fourni,
+  « quand la pression monte, la température de changement d'état… ») et les composants (S3-T1). Ce module S4-T1
+  est donc la préparation directe de cette partie du sujet ; le vocabulaire et la phrase « la pression choisit la
+  température de changement d'état » doivent être mobilisables sans aide par l'élève avant É2.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 6 — FICHE MÉMO CORRIGÉE + GRILLE 0-4 + DIFFÉRENCIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S4 · module théorie T1 · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Fiche mémo corrigée (trace écrite de référence)</h3>
+  <div class="tbl-wrap">
+  <table class="mini" style="font-size:8.5pt">
+    <tr><th style="width:30%">Ce que j'ai découvert</th><th>Ce que je retiens</th></tr>
+    <tr><td>La casserole qui bout</td><td>La température de l'eau monte, puis se bloque à un palier quand l'eau se met à bouillir, même si on continue à chauffer.</td></tr>
+    <tr><td>Le seuil de 100 °C</td><td>100 °C = seuil d'ébullition de l'eau à la pression atmosphérique (valeur du manuel).</td></tr>
+    <tr><td>La chaleur latente</td><td>Au palier, la chaleur ne sert plus à monter en température : elle sert à changer l'état physique de l'eau (liquide → vapeur).</td></tr>
+    <tr><td>Et si on change la pression ?</td><td>Une pression plus basse fait bouillir un liquide à une température plus basse ; une pression plus haute demande une température plus haute. Aucun chiffre d'altitude n'est affirmé.</td></tr>
+    <tr><td>Dans l'évaporateur (BAS)</td><td>Pression basse → le fluide bout à basse température → il absorbe la chaleur de l'air ambiant → c'est là qu'on « fabrique » le froid.</td></tr>
+    <tr><td>Dans le condenseur (HAUT)</td><td>Pression haute → le fluide se condense à haute température → il cède sa chaleur à l'air extérieur.</td></tr>
+    <tr><td>La réglette P/T</td><td>Chaque fluide a sa propre relation pression/température ; le professionnel la LIT sur une réglette, il ne la calcule pas et ne la mémorise pas.</td></tr>
+  </table>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'auto-positionnement 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Grille <b>légère</b>, statut <b>Appui — aucune compétence
+  positionnée</b> (savoir <b>S5.1</b> augmenté) : elle sert de repère personnel à l'élève avant É2, aucune remontée
+  École Directe.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:18%">Ce que l'élève sait faire</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv" style="width:10%">3</th><th class="niv" style="width:10%">4</th></tr>
+    <tr>
+      <td><b>S5.1</b> Expliquer pourquoi la pression choisit la température de changement d'état, et placer ébullition/condensation sur la croix du frigoriste <span class="nuance">Appui — non noté</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne relie pas la pression et la température de changement d'état, même avec de l'aide.</td>
+      <td>Sait que la pression joue un rôle, mais a besoin d'aide pour placer évaporateur/condenseur.</td>
+      <td>Explique seul(e) pourquoi l'évaporateur « fabrique » le froid grâce à la basse pression.</td>
+      <td>Comme « Acquis », et sait lire une réglette P/T avec de l'aide.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — observer avant d'affirmer, honnêteté de l'auto-positionnement</td>
+      <td>Non observé.</td>
+      <td>Affirme sans avoir observé la démonstration.</td>
+      <td>Observe mais a besoin d'un rappel pour ne pas répondre trop vite.</td>
+      <td>Observe avant d'affirmer, complète son auto-positionnement seul(e) et honnêtement.</td>
+      <td>Comme « Acquis », et aide un camarade à comprendre la démonstration.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Réduire le tableau de relevés à 3 points de mesure (0, milieu, palier) plutôt que 7 ; donner directement la phrase « la pression choisit la température de changement d'état » avant l'exercice 1 plutôt qu'à la synthèse ; pour l'exercice 1, pré-remplir la moitié du tableau évaporateur/condenseur.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : démonstration, exploitation guidée, les 2 exercices en autonomie guidée, correction collective après chacun.</td></tr>
+    <tr><td>Approfondissement</td><td>Demander en plus, à l'oral : « d'après vous, pourquoi le détendeur est-il placé juste avant l'évaporateur, et le compresseur juste avant le condenseur ? » (fait le lien entre le rôle mécanique des organes vu en S3-T1 et le mécanisme P/T vu aujourd'hui, sans introduire de calcul).</td></tr>
+    <tr><td>FLE</td><td>Vocabulaire clé affiché au tableau en 2 colonnes opposées : « BASSE pression → BOUT → froid » / « HAUTE pression → SE CONDENSE → chaud », avec pictogrammes flamme/flocon ; la démonstration elle-même (regarder, ne pas seulement écouter) est un point fort pour ce public ; phrases courtes à l'oral, une consigne à la fois.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Réduire le nombre de relevés notés pendant la démonstration (observer sans écrire pendant les 2 premières minutes, puis noter) pour ne pas diviser l'attention ; tableaux de l'exercice 2 limités à 2 lignes à compléter plutôt que 3 ; prévoir une pause courte entre la découverte (40 min) et l'application (50 min).</td></tr>
+  </table>
+
+  <h3 class="section">Lien avec la suite de la séquence</h3>
+  <ul class="liste-num">
+    <li>La relation P/T formalisée ici est <b>constatée sur machine</b> dans S4-F1 (même semaine) : le rallye de
+    relevés en stations réutilise directement le vocabulaire et la lecture de réglette travaillés ici ;</li>
+    <li>Elle est <b>évaluée</b> dans É2 (semaine 13, poste théorie), avec la lecture d'une réglette/tableau fourni
+    et les 9 fonctions des composants sourcées en S3-T1 ;</li>
+    <li>Le carnet de bord F3 (issu de S3) peut accueillir la fiche mémo complétée si l'enseignant le souhaite (non
+    obligatoire pour ce module — pas de F3 propre à S4, cf. cadrage).</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « Le froid — exercices
+  élèves » et son corrigé, manuel de physique du froid du Lycée Jacques Raynaud (Enseignement Professionnel,
+  02_CAP-IFCA/S1-Analyse, fiches extraites le 04/07/2026) — sections « Le condenseur : le phénomène de
+  condensation », « La chaleur latente (l) », « La chaleur sensible ». La phrase « 100 °C = seuil d'ébullition de
+  l'eau à la pression atmosphérique » et les définitions de la chaleur latente de vaporisation/condensation sont
+  reprises telles quelles de ce manuel. Illustration de la casserole en ébullition extraite du fichier PDF source
+  (page 41), recadrée. Schéma « La Croix du Frigoriste » (F. Henninot, 2026), convention identique à S1-T1 et
+  S3-T1. Aucune valeur de température d'ébullition en altitude ni aucun couple pression/température de fluide
+  frigorigène n'est affirmé dans ce document : ces valeurs sont à lire sur la réglette P/T réelle de l'atelier,
+  avec le professeur.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 18/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

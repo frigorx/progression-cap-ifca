@@ -1,0 +1,298 @@
+<meta charset="utf-8">
+<title>Document professeur — S15 · Module A6-b · Mise en service autonome et validation</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#fff6cc; color:#8a6d00; border:1px solid #e3cf6b}
+  .statut.conf{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
+  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Mise en service finale AUTONOME — répétition générale du CCF EP3</td>
+      <td style="width:38%"><span class="lib">Module A6-b — DOCUMENT PROFESSEUR</span><b>Mise en service autonome et validation</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S15</span> · sem. 21, 05-09/05/2027</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — poste de mise en service (groupe frigorifique du chantier)</td>
+      <td><span class="lib">Durée prévue</span>4 h (atelier)</td>
+      <td><span class="lib">Modalité</span>Individuel (ou binôme), situation-problème, autonomie maximale, un seul point d'arrêt sécurité</td>
+      <td><span class="lib">Encadrement</span>1 professeur — observation continue</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T13</b> Tirer au vide, charger et contrôler l'installation sous tension<br><b>T14</b> Régler l'installation en fonctionnement<br><b>T15</b> Renseigner les documents de mise en service</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.1</b> Systèmes à détente directe <span class="nuance">prérequis</span><br><b>S5.2</b> Fluides frigorigènes, huiles <span class="nuance">prérequis</span><br><b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">travaillé</span><br><b>S6.1</b> Santé et sécurité au travail <span class="nuance">travaillé</span></div>
+    <div class="case"><h4>Savoir-être</h4>Autonomie totale hors point d'arrêt sécurité · honnêteté de la déclaration · sécurité sans rappel · calme en répétition d'examen</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><b>C4.1</b> Tirer au vide <span class="statut">Évaluation</span><br><b>C4.5</b> Mesurer, comparer <span class="statut">Évaluation</span><br><b>C4.6</b> Régler les consignes <span class="statut conf">Confortement</span></div>
+  </div>
+
+  <h3 class="section">Méthode pédagogique de la séance</h3>
+  <p style="font-size:10.5pt"><b>Situation-problème / autonomie maximale.</b> Ce module est la <b>répétition
+  générale du CCF EP3</b> : c'est la dernière fois, avant l'épreuve, que l'élève rejoue l'intégralité d'une mise en
+  service sans filet méthodique. Le professeur présente l'ordre d'intervention en phase 2, distribue la check-list
+  en phase 6a, puis <b>se retire</b> : il n'explique plus, ne valide plus les choix techniques, ne corrige pas en
+  cours de route. Il observe et renseigne sa grille. <b>Un seul point d'arrêt subsiste</b> : la VAT avant toute
+  remise sous tension, parce que la sécurité électrique ne se découvre jamais, elle s'impose (charte §1, §7).</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Cette autonomie ne s'improvise pas :
+  elle suppose que les prérequis (étanchéité et vide vus en S12, charge et SC/SR vus en A5-b) sont réellement
+  acquis. Si un élève annonce en phase 4 qu'un prérequis lui manque, il vaut mieux le retirer temporairement du
+  format « autonomie maximale » et lui accorder un rappel court plutôt que de le laisser échouer sans recours — le
+  but est la répétition d'examen, pas la sanction d'un manque non travaillé.</div>
+
+  <h3 class="section">Trame horaire conseillée</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:8%">Durée</th><th style="width:26%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Préparation de chantier — 1 h 00 (maximum autorisé)</td></tr>
+    <tr><td>10 min</td><td class="ph">Accueil</td><td>Appel, annonce de l'enjeu : dernière répétition avant le CCF EP3.</td></tr>
+    <tr><td>10 min</td><td class="ph">Mise en situation</td><td>Ordre d'intervention S15-A6-03, rappel du point d'arrêt sécurité unique.</td></tr>
+    <tr><td>5 min</td><td class="ph">Objectifs</td><td>Les 6 « je serai capable de… » affichés et commentés.</td></tr>
+    <tr><td>15 min</td><td class="ph">Prérequis + tenue échelonnée</td><td>Exercice au fil de l'eau : repérage du point de raccordement pompe à vide + rappel des formules SC/SR.</td></tr>
+    <tr><td>20 min</td><td class="ph">Sécurité + notion</td><td>Rappel rejet interdit / chaîne de sécurité / VAT, puis accroche : deux comptes rendus contrastés (impression vs preuve).</td></tr>
+    <tr class="demi"><td colspan="3">Atelier — 2 h 10</td></tr>
+    <tr><td>15 min</td><td class="ph">Organisation autonome (a)</td><td>Distribution de la check-list, rédaction du plan d'intervention personnel, sans correction.</td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="2">Pause — postes en sécurité.</td></tr>
+    <tr><td>1 h 30</td><td class="ph">Intervention autonome complète (b) — POINT D'ARRÊT</td><td>Vide, charge, relevés, calculs, réglages, en autonomie totale hors VAT.</td></tr>
+    <tr><td>10 min</td><td class="ph">Décision finale (c)</td><td>Rédaction de la déclaration « machine validée / non validée ».</td></tr>
+    <tr class="demi"><td colspan="3">Clôture — 50 min</td></tr>
+    <tr><td>10 min</td><td class="ph">Synthèse</td><td>Mise en commun des déclarations et des plans d'intervention.</td></tr>
+    <tr><td>15 min</td><td class="ph">Évaluer et réajuster</td><td>Grille, auto-positionnement puis validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">Carnet + bon de commande</td><td>Rituel chantier hebdomadaire.</td></tr>
+    <tr><td>10 min</td><td class="ph">Rangement</td><td>Outillage, bouteilles, postes.</td></tr>
+    <tr><td>5 min</td><td class="ph">Sortie</td><td>Restitution EPI, annonce du module suivant (T1 dossier technique).</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — REPÈRES D'OBSERVATION PENDANT L'INTERVENTION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé — exercice au fil de l'eau et notion du jour</h3>
+  <div class="reponse"><b class="t">Point de raccordement pompe à vide</b> — sur le schéma fluidique, c'est la voie
+  centrale du manifold (repère non isolable), la même que celle utilisée en S12 pour l'azote et le vide.</div>
+  <div class="reponse"><b class="t">Formules attendues</b> — Surchauffe SC = T° aspiration mesurée − T° saturation
+  BP. Sous-refroidissement SR = T° saturation HP − T° liquide mesurée.</div>
+  <div class="reponse"><b class="t">Réponse attendue à la notion du jour</b> — Un compte rendu « ça marche » n'est
+  pas vérifiable ni transférable : il repose sur l'impression du technicien. Un compte rendu avec relevés, calculs,
+  seuils et décision peut être contrôlé par un tiers (client, collègue, jury) et engage la responsabilité du
+  technicien sur des faits, pas sur une opinion. C'est très exactement l'esprit de la grille du CCF EP3 : chaque
+  étape rapporte des points sur la base d'un observable, jamais d'une déclaration non prouvée.</div>
+
+  <h3 class="section">Ce que le professeur observe pendant l'intervention autonome (phase 6b)</h3>
+  <p style="font-size:10.5pt">Aucune intervention pédagogique n'est attendue ici, sauf sécurité. Le professeur
+  circule silencieusement, renseigne sa grille (feuille 4) au fil de l'observation, et ne répond qu'aux questions de
+  sécurité ou au point d'arrêt VAT. Repères à observer, dans l'ordre où l'élève les rencontre le plus souvent (sans
+  imposer cet ordre) :</p>
+  <table class="mini">
+    <tr><th style="width:22%">Étape observée</th><th>Ce qui doit être vu, sans intervenir</th></tr>
+    <tr><td>Vérification pompe à vide</td><td>Hublot de niveau d'huile vérifié avant mise en route — prérequis S12, ne se rappelle plus.</td></tr>
+    <tr><td>Tirage au vide</td><td>Isolement réalisé, double lecture du vacuomètre espacée dans le temps, conclusion écrite sur la stabilité avant de passer à la charge.</td></tr>
+    <tr><td>Charge</td><td>Bouteille pesée avant et après, méthode annoncée (liquide/vapeur) cohérente avec le fluide, pas de charge « d'un coup » sans re-contrôle.</td></tr>
+    <tr><td>Relevés de fonctionnement</td><td>Les six grandeurs de la partie D sont bien relevées avec leurs unités, table pression-température utilisée pour les deux lectures de saturation.</td></tr>
+    <tr><td>Calculs SC/SR</td><td>Sens des deux soustractions respecté (SC = aspiration − saturation BP ; SR = saturation HP − liquide), comparaison correcte aux seuils 5-10 K / 4-8 K.</td></tr>
+    <tr><td>Réglages</td><td>Consigne cherchée dans la notice, jamais recopiée d'un autre poste ; VAT demandée au professeur avant toute remise sous tension.</td></tr>
+    <tr><td>Déclaration finale</td><td>Cohérence entre les chiffres relevés (parties B à F) et la case cochée « validée / non validée » ; une machine hors seuils mais déclarée « validée » est une alerte savoir-être forte.</td></tr>
+  </table>
+  <div class="vigilance"><b class="t">Valeurs cibles rappelées, seules autorisées</b> — Surchauffe <b>5 à 10 K</b>,
+  sous-refroidissement <b>4 à 8 K</b> (référence de cette séquence). Quantité de charge et valeurs de réglage
+  pressostat/détendeur : <b>selon la plaque signalétique et la notice constructeur de l'installation du poste,
+  à faire valider par le professeur</b> — aucune de ces valeurs n'est fixée à l'avance dans ce document.</div>
+
+  <h3 class="section">Erreurs typiques d'élèves</h3>
+  <div class="vigilance"><b class="t">Erreur 1 —</b> vouloir charger toute la quantité visée en une seule fois sans
+  contrôle intermédiaire (risque de coup de liquide et de surcharge non détectée avant l'étape des relevés).</div>
+  <div class="vigilance"><b class="t">Erreur 2 —</b> inverser le sens d'une des deux soustractions SC/SR : le
+  résultat négatif obtenu doit alerter l'élève lui-même avant qu'il ne sollicite le professeur — c'est un point
+  d'auto-contrôle attendu en autonomie.</div>
+  <div class="vigilance"><b class="t">Erreur 3 —</b> déclarer « machine validée » alors qu'une valeur est hors
+  seuil, par manque de temps ou pour « en finir » : à traiter en savoir-être, pas seulement en compétence technique.</div>
+  <div class="vigilance"><b class="t">Erreur 4 —</b> demander de l'aide méthodique au professeur en dehors du point
+  d'arrêt sécurité : rappeler fermement, dès la phase 2, que ce module n'offre pas de guidage — c'est la condition
+  pour que la répétition d'examen ait un sens.</div>
+  <div class="vigilance"><b class="t">Erreur 5 —</b> oublier de vérifier le niveau d'huile de la pompe à vide avant
+  la mise en route (prérequis S12 mal réactivé) : à signaler en fin de séance si observé, sans interrompre
+  l'intervention en cours pour ne pas casser l'autonomie.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — ORGANISATION MATÉRIELLE + GRILLE D'OBSERVATION CONTINUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Organisation matérielle du plateau</h3>
+  <ul class="liste-num">
+    <li>Un poste (groupe frigorifique du chantier, remis en état) par élève ou binôme, fluide récupéré avant la séance ;</li>
+    <li>Table de correspondance pression-température imprimée pour chaque poste, correspondant EXACTEMENT au fluide présent (erreur de table = diagnostic faux) ;</li>
+    <li>Bouteilles de charge et de récupération réparties pour éviter les files d'attente ;</li>
+    <li>Notices constructeur disponibles par poste ;</li>
+    <li>Check-lists « machine validée » imprimées à l'avance, un jeu par élève ;</li>
+    <li>Prévoir un créneau de VAT rapide pour chaque élève au point d'arrêt : anticiper l'ordre de passage pour ne pas créer d'attente trop longue en autonomie.</li>
+  </ul>
+
+  <h3 class="section">Grille d'observation continue — éléments attendus pour la correction</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Grille renseignée en continu pendant toute l'intervention,
+  pas de poste séparé — l'observation porte sur l'ensemble du déroulé de chaque élève.</p>
+  <div class="tbl-wrap">
+  <table class="mini" style="font-size:8.3pt">
+    <tr><th style="width:13%">Compétence / savoir-être</th><th style="width:17.4%">0 — Non évalué</th><th style="width:17.4%">1 — Non acquis</th><th style="width:17.4%">2 — En cours</th><th style="width:17.4%">3 — Acquis</th><th style="width:17.4%">4 — Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C4.1</b> Tirer au vide le circuit frigorifique</td><td>Compétence non observée ce jour.</td><td>Vide non atteint ou stabilité après isolement non vérifiée, malgré l'enjeu de l'exercice.</td><td>Vide atteint mais méthode incomplète, ou stabilité contrôlée seulement après rappel du professeur.</td><td>Vide atteint et stabilité vérifiée seul(e) après isolement, méthode correcte, en autonomie complète.</td><td>Comme « Acquis », et diagnostique seul(e) une remontée anormale de pression sans solliciter le professeur.</td></tr>
+    <tr><td><b>C4.5</b> Mesurer, comparer des grandeurs</td><td>Compétence non observée ce jour.</td><td>Relevés HP/BP/T manquants ou erronés, calcul SC/SR faux non repéré.</td><td>Relevés et calculs corrects obtenus seulement après sollicitation du professeur hors point d'arrêt.</td><td>Relevés complets, unités correctes, SC et SR calculés et comparés seul(e) aux seuils autorisés.</td><td>Comme « Acquis », et repère de lui/elle-même une valeur aberrante et la re-mesure sans y être invité(e).</td></tr>
+    <tr><td><b>C4.6</b> Paramétrer/régler les valeurs de consigne</td><td>Compétence non observée ce jour.</td><td>Réglage non conforme à la notice ou engagé sans validation professeur au point d'arrêt.</td><td>Réglage cohérent avec le diagnostic mais aide nécessaire sur la lecture de la notice ou le geste.</td><td>Pressostat(s) et/ou détendeur réglés selon la notice, validés par le professeur, en autonomie.</td><td>Comme « Acquis », et explique à un pair le lien entre son diagnostic et le réglage choisi.</td></tr>
+    <tr><td>Savoir-être — autonomie, honnêteté, sécurité</td><td>Non observé ce jour.</td><td>Sollicite le professeur en continu hors point d'arrêt sécurité, ou valeurs arrangées, ou sécurité non respectée.</td><td>Sécurité et rigueur respectées avec rappel ; sollicitations au-delà du point d'arrêt prévu.</td><td>Autonomie complète hors point d'arrêt sécurité, déclaration honnête même en cas d'écart, calme en répétition d'examen.</td><td>Comme « Acquis », et aide spontanément un pair sans compromettre son propre poste ni la rigueur de ses relevés.</td></tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction</b> — Une déclaration finale « machine validée »
+  incohérente avec des relevés hors seuils entraîne automatiquement un niveau <b>1 — Non acquis</b> sur C4.5,
+  quelle que soit la qualité du reste de l'intervention : la cohérence entre preuve et déclaration est le cœur
+  même de la compétence évaluée ici, en miroir direct du CCF EP3.</div>
+
+  <div class="jalon"><h4>Point d'arrêt sécurité — ce que le professeur contrôle avant de viser</h4>
+  <ul class="liste-num">
+    <li>L'installation est hors tension et la VAT est demandée avant tout accès au circuit de commande ;</li>
+    <li>L'élève sait localiser et utiliser correctement son matériel de VAT et son cadenas de consignation ;</li>
+    <li>Aucun organe de sécurité (pressostat) n'a été shunté pour gagner du temps.</li>
+  </ul>
+  <p style="font-size:9.5pt; color:var(--gris); font-style:italic">Ce point d'arrêt est <b>uniquement</b> un contrôle
+  de sécurité : il ne porte aucun jugement sur la qualité du diagnostic ou des réglages projetés, qui restent de la
+  seule responsabilité de l'élève.</p></div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — DIFFÉRENCIATION + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S15 · module A6-b · CAP IFCA 2A — document professeur</div>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:24%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Retirer temporairement du format « autonomie maximale » les élèves dont un prérequis n'est pas assuré (cf. vigilance organisationnelle, feuille 1) : leur accorder, hors temps commun, un rappel court sur le point manquant avant de les remettre en situation d'autonomie sur le reste de l'intervention. Ne jamais transformer ce module en séance guidée pour toute la classe.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : plan d'intervention personnel, puis intervention autonome complète jusqu'à la déclaration finale.</td></tr>
+    <tr><td>Approfondissement</td><td>Après la déclaration finale validée, demander une reformulation orale de l'intervention comme si l'élève la présentait au jury du CCF EP3 (2-3 minutes, sans notes), en insistant sur l'enchaînement preuve → décision.</td></tr>
+    <tr><td>TDAH / DYS</td><td>La check-list (parties A à G) reste le même support que pour tous : sa structure très découpée (une grandeur par ligne) sert déjà de repère. Autoriser une explicitation orale de la déclaration finale avant l'écrit ; prioriser le passage au point d'arrêt VAT pour limiter l'attente, facteur de décrochage en autonomie prolongée.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Électrotechnique</b> — VAT, consignation NFC 18-510, réglage électrique du pressostat ;</li>
+    <li><b>Co-intervention français</b> — rédaction de la déclaration finale et de sa justification, à l'écrit puis à l'oral en approfondissement ;</li>
+    <li><b>Module F3</b> — carnet de bord de la séance ;</li>
+    <li><b>CCF EP3</b> — ce module EST la répétition générale directe de l'épreuve (blanc produit avec S16) : mêmes gestes, même exigence de preuve, même autonomie attendue.</li>
+  </ul>
+
+  <h3 class="section">Ce que ce document ajoute au TP élève</h3>
+  <p style="font-size:10.3pt">Contrairement aux modules précédents de la séquence (S12, A5-a, A5-b), ce document ne
+  fournit <b>aucune valeur chiffrée de corrigé</b> pour la charge et les réglages : par construction, ces valeurs
+  dépendent entièrement de la plaque signalétique et de la notice du poste, comme en situation réelle de CCF EP3.
+  Ce que ce document apporte est donc : la trame horaire, les repères d'observation pendant l'autonomie, les erreurs
+  typiques, la grille d'observation continue, et l'organisation matérielle — pas un jeu de bonnes réponses.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : Série 2 Activité 10 —
+  Mise en service d'un climatiseur (Bac Pro TFCA) ; TP Mise en service du Groupe Frigorifique Sanden ; cahier mise
+  en service (mise sous azote, tirage au vide, charge, surchauffe, sous-refroidissement) ; CAP IFCA EP3 24-25
+  version finale (calibrage du niveau d'autonomie et de la logique « preuve → décision » attendue en épreuve).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 09/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

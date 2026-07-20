@@ -1,0 +1,240 @@
+<meta charset="utf-8">
+<title>Plan de séance — S7-E2 · Coffret clim et câblage</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .passage{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .passage b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .passage .duo{margin:.3em 0 0}
+  .passage .duo>div{background:#fff}
+  .change{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:9.8pt}
+  .change b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .jalon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#ffe9d9; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Pose manomètres HP/BP et tirage au vide — <b>module atelier S7-E2</b> (4 h × 2)</td>
+      <td style="width:38%"><span class="lib">Module S7-E2</span><b>Coffret clim et câblage</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S7</span> P4 · semaines 24-25</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span><b>Passage 1 — semaine 24</b> et <b>passage 2 — semaine 25</b> (dates réelles à caler, cf. <i>_CADRAGE-S7.md</i>) — <b>même contrat, vécu deux fois</b></td>
+      <td><span class="lib">Salle / Zone</span>Atelier Élec — zone des platines coffret + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>4 h par passage — une seule demi-journée à chaque fois — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>1 professeur (demi-groupe ; l'autre demi-groupe est en atelier froid S7-F2)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T10</b> Repérer, raccorder, assembler les réseaux fluidiques, aérauliques et électriques<br><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T12</b> Respecter les consignes de sécurité et protéger la zone de travail</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis (réactivés) :</span> <b>S5.6</b> Réseaux, matériels électriques et de régulation <span class="nuance">(départ moteur complet câblé S5-E2/S6-E1 ; thermostat de régulation vu/réglé en S7-E1, en parallèle)</span><br><span class="nuance">Travaillé :</span> <b>S5.6</b> <span class="nuance">augmenté — l'ajout est l'INTÉGRATION du thermostat dans la commande, pas un contenu électrique inédit</span></div>
+    <div class="case"><h4>Savoir-être</h4>Sécurité électrique sans rappel (NF C 18-510) · <b>communication technique du chef d'équipe</b> (clarté, patience) · écoute et exécution fidèle de l'exécutant · rigueur du contrôle avant appel professeur</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">C3.6 Confortement → vers Maîtrise</span> Câbler, repérer, connecter les liaisons électriques et électroniques <span class="nuance">sur T10 · S5.6</span><br><span class="statut">C3.7 Confortement</span> Contrôler la mise en œuvre des équipements électriques et fluidiques <span class="nuance">— exercée dans le rôle de chef d'équipe</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-S7-4</b> : dans l'arrière-boutique, le coffret électrique de la chambre froide
+  doit être <b>entièrement câblé</b> avant la mise en service : alimentation, départ moteur (déjà maîtrisé depuis
+  S5/S6) et <b>régulation</b> (le thermostat réglé en S7-E1, à intégrer maintenant dans le circuit). Le professeur,
+  responsable du site, confie le chantier à un <b>binôme d'électriciens</b> qui doit s'organiser : l'un lit le plan
+  et guide, l'autre exécute.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>lire un plan de coffret</b> et <b>repérer</b> chaque appareil et chaque borne avant tout câblage
+        (méthode restituée du TP modèle de repérage) ;</li>
+        <li><b>tenir le rôle de chef d'équipe</b> : lire le plan à voix haute, annoncer l'ordre des étapes,
+        contrôler que l'exécutant les respecte, sans câbler à sa place ;</li>
+        <li><b>tenir le rôle d'exécutant</b> : câbler fidèlement ce que le chef d'équipe annonce, signaler toute
+        incompréhension ;</li>
+        <li><b>câbler le coffret complet</b> : puissance (Q1 → KM1 → F1 → M1) et commande (S2 → S1 → auto-maintien
+        → <b>thermostat TH1</b> → bobine, + voyants H1/H2) ;</li>
+        <li><b>réaliser le contrôle hors tension complet</b> avant tout appel au professeur, et observer l'essai
+        <b>avec la régulation en action</b> (le thermostat coupe et enclenche réellement le moteur).</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>câbler le départ moteur complet — puissance et commande avec auto-maintien, sécurité thermique,
+        voyants — acquis S5-E2, consolidé et évalué S6-E1/É3 ;</li>
+        <li>le thermostat de régulation, sa fonction et son réglage de consigne, <b>vu ou en cours</b> en S7-E1
+        (module vécu en parallèle la même semaine) ;</li>
+        <li>réaliser seul(e) une consignation/VAT avant toute intervention (acquis depuis S1) ;</li>
+        <li>mon positionnement à <b>É3, qui est passée</b> (semaine 21) sur le poste ÉLEC (C3.6) : mon plan de
+        progrès personnel (S7-T0) s'applique directement ici.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="change"><b class="t">Ce qui change depuis S6</b> — En S6-E1, vous recâbliez le départ moteur SEUL,
+  avec un contrat de réussite par niveaux. <b>Ici, le circuit s'enrichit</b> : le thermostat réglé en S7-E1 vient
+  se glisser dans la commande, en série, entre l'auto-maintien et la bobine. La méthode change aussi : vous
+  travaillez en <b>binôme organisé</b> (chef d'équipe / exécutant), pas en autonomie solitaire — c'est le
+  <b>contrôle de la mise en œuvre par un tiers</b> qui devient l'objet d'apprentissage (C3.7).</div>
+
+  <div class="plan"><b class="t">Méthode du module : chef d'équipe tournant</b> — le binôme se répartit deux
+  rôles. Le <b>chef d'équipe</b> lit le plan légendé, <b>annonce à voix haute</b> le repère à câbler, l'ordre des
+  étapes et les points de contrôle ; il <b>ne touche ni aux outils ni aux fils</b>. L'<b>exécutant</b> câble
+  fidèlement ce qui est annoncé, sans anticiper de sa propre initiative, et signale toute difficulté au chef
+  d'équipe. <b>Rotation à mi-câblage</b> : les rôles s'échangent entre la partie puissance et la partie commande
+  (à la pause) — chaque élève tient les deux rôles dans la séance. Avant de câbler, les deux membres du binôme
+  réalisent ensemble l'<b>exercice de repérage</b> (lecture du plan, sans câbler) sur l'annexe A3 sans repères.</div>
+
+  <div class="passage"><b class="t">Passage 1 / Passage 2 — ce qui change</b> (module vécu deux fois par élève, semaines 24 et 25)
+    <div class="duo">
+      <div><h4 style="margin-top:0">Passage 1 — semaine 24 — rôles longs, guidage détaillé</h4>
+      Le chef d'équipe annonce <b>étape par étape</b> (un repère, un geste), l'exécutant attend chaque annonce
+      avant d'agir. La rotation a lieu une seule fois, à la pause (fin de puissance / début de commande). Chaque
+      élève découvre le rôle de chef d'équipe pour la première fois.</div>
+      <div><h4 style="margin-top:0">Passage 2 — semaine 25 — rôles raccourcis, plus d'autonomie</h4>
+      Le binôme change de configuration (nouveau partenaire si possible). Le chef d'équipe annonce désormais
+      <b>par blocs</b> (« la partie puissance », « l'auto-maintien ») plutôt que geste par geste, et l'exécutant
+      <b>anticipe</b> les étapes suivantes sans attendre chaque instruction. <b>Deux rotations courtes</b> sont
+      proposées (après la puissance, puis à mi-commande) plutôt qu'une seule longue, pour que chacun pratique
+      davantage le contrôle en situation réelle (C3.7).</div>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : choc électrique par contact direct,
+  pièces tournantes du moteur, borne mal serrée, déclenchement non maîtrisé si un défaut réel est provoqué,
+  <b>mise sous tension avec le thermostat mal câblé</b> (organe de régulation shunté ou hors circuit). <b>EPI</b> :
+  chaussures de sécurité, pas de bijoux ni de montre, manches ajustées, cheveux longs attachés. <b>Gestes
+  interdits</b> : jamais provoquer un vrai défaut thermique — seul le bouton test du relais est autorisé ; jamais
+  toucher un conducteur nu ; <b>jamais shunter</b> le relais thermique, la sécurité ou le thermostat ; jamais
+  s'approcher du moteur en rotation ; <b>jamais mettre le coffret sous tension soi-même</b> — seul le professeur
+  le fait, après contrôle. <b>Consignation NF C 18-510</b>, rituel acquis depuis S1 : couper → VAT → condamner →
+  travailler hors tension. <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence localisé en phase 5),
+  alerter le professeur, ne jamais déplacer un camarade électrisé.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S7-E2 · module atelier (× 2 passages) · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 4 h (canon académique compressé), vécu identiquement en structure aux semaines 24 et 25</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier (phases 1 à 5) :
+  <b>1 h 00</b>, au plafond. Durées <b>identiques</b> aux deux passages (seul le grain du guidage et le nombre de rotations changent).</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Demi-journée — 4 h 00 (préparation de chantier = 1 h 00) — identique aux deux passages</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, rappel de l'organisation du module (coffret clim et câblage).</td><td>Fait l'appel, présente l'organisation du module.</td><td>S'installent, prennent connaissance du déroulé.</td><td>Liste d'appel · déroulé affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-S7-4 : câbler le coffret complet de la chambre — puissance, départ moteur, régulation.</td><td>Présente l'ordre d'intervention et le lien avec S7-E1 (thermostat réglé en parallèle).</td><td>Reformulent la mission et identifient ce qui est nouveau (le thermostat).</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » lus et affichés ; lien avec C3.6 (vers Maîtrise) et C3.7 (Confortement, via le rôle de chef d'équipe).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> : mini-quiz de reprise sur les repères Q1/KM1/F1/S1/S2/H1/H2 (S5/S6) et la fonction du thermostat (S7-E1). <span class="jalon">crochet remédiation</span> Variante consolidation fléchée « élèves fragiles à É3 sur C3.6 » (reprise accompagnée, cf. S7-T0) ; approfondissement = tutorat par un élève solide.</td><td>Distribue le mini-quiz, contrôle les tenues et les EPI, encadre les groupes de besoin issus de S7-T0.</td><td>Se changent par vagues ; en attente, font le mini-quiz ou tutorent un pair.</td><td>Mini-quiz de reprise · EPI complets</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (arrêt d'urgence et trousse relocalisés, gestes interdits rappelés) puis <b>présentation de la méthode chef d'équipe tournant</b> (fiche de rôle distribuée, répartition des binômes). Chaque binôme reçoit l'annexe A3 <i>sans repères</i> et réalise <b>l'exercice de repérage</b> (lecture du plan légendé, inscription des repères et des bornes) avant tout câblage.</td><td>Explique les 2 rôles, répartit les binômes, distribue les annexes A3, valide l'exercice de repérage de chaque binôme avant d'autoriser le câblage.</td><td>Choisissent qui commence chef d'équipe / exécutant, réalisent l'exercice de repérage en binôme.</td><td>Fiche de rôle · annexe A3 sans repères (1/binôme) · schéma légendé (référence)</td><td class="obs"></td></tr>
+    <tr><td><b>55 min</b></td><td class="ph">6. Guider l'étude (a) — <span class="jalon">jalon A</span></td><td>Câblage de la <b>partie puissance</b> (Q1 → KM1 → F1 → M1) : le chef d'équipe annonce et contrôle, l'exécutant câble. <i>Passage 2 uniquement</i> : première rotation courte après les 2/3 de la puissance.</td><td>Circule, vérifie que le chef d'équipe guide bien (sans câbler à la place de l'exécutant), veille à la sécurité.</td><td>Tiennent leur rôle ; le chef d'équipe s'appuie sur l'annexe A3 complétée en phase 5.</td><td>Platines · Q1/KM1/F1/M1 · annexe A3 complétée</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause — <b>rotation des rôles</b> (passage 1 : rotation unique ici ; passage 2 : les rôles ont déjà tourné une fois en phase 6a).</td></tr>
+    <tr><td><b>70 min</b></td><td class="ph">6. Guider l'étude (b) — <span class="jalon">jalon B</span></td><td>Câblage de la <b>partie commande</b> : S2 → S1 → auto-maintien KM1 13-14 → <b>thermostat TH1 en série</b> → bobine, puis voyants H1/H2. <i>Passage 2 uniquement</i> : seconde rotation courte à mi-commande. Puis <b>contrôle hors tension complet</b>, appel du professeur, <b>mise sous tension et essai par le professeur avec la régulation en action</b> (le thermostat coupe/enclenche réellement le moteur).</td><td>Valide chaque contrôle hors tension, réalise seul la mise sous tension, actionne ou simule une variation de consigne pour montrer TH1 en action, questionne les deux rôles tenus.</td><td>Terminent le câblage, contrôlent hors tension, appellent le professeur, observent l'essai avec régulation.</td><td>Multimètres · fiche de contrôle · thermostat réglé (S7-E1)</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun : chaque binôme présente son coffret câblé et raconte ses deux rôles ; auto-positionnement (C3.6 + C3.7 + savoir-être) puis validation professeur.</td><td>Organise la mise en commun, recueille les grilles, valide.</td><td>Présentent leur coffret et leurs rôles, s'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord du module + bon de commande hebdomadaire (fils, cosses, fusibles, voyants de rechange).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Platines remises hors tension et débranchées, multimètres remis sur OFF, fils et outillage rangés, postes vérifiés propres et dégagés.</td><td>Supervise la remise hors tension et le rangement.</td><td>Rangent, vérifient que chaque poste est hors tension.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la suite (passage 2 la semaine suivante, puis S7-T1 lecture de relevés).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0"><b>Vérification des totaux, ligne à ligne :</b>
+  préparation de chantier (phases 1→5) = 10+10+5+15+20 = <b>1 h 00</b> (plafond, identique aux deux passages).
+  Jalon A (55 min) + pause (15 min) + jalon B (70 min) = 2 h 20 ; synthèse 15 + bon de commande 10 + rangement 10 +
+  clôture 5 = 40 min. Total : 1 h 00 + 2 h 20 + 40 min = <b>4 h 00 exactes</b>, identique aux deux passages — seul
+  le grain du guidage et le nombre de rotations changent (cf. encadré Passage 1/2, feuille 1).</p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.2em 0 0">Croisements disciplinaires : prévention des risques
+  électriques (consignation, NF C 18-510, pièces tournantes) · technologie (départ moteur, régulation, S5.6) ·
+  co-intervention français (fiche de rôle, communication technique) · préparation du regard du diagnostiqueur
+  (S7-T1, S9).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud) — passage 1</h4><div style="height:44px"></div></div>
+    <div><h4>Synthèse de la séance (à chaud) — passage 2</h4><div style="height:44px"></div></div>
+  </div>
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:44px"></div></div>
+    <div><h4>Binômes à revoir en priorité (rôle de chef d'équipe fragile)</h4><div style="height:44px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 19/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .passage, .change, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>

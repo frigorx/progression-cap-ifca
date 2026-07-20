@@ -1,0 +1,172 @@
+<meta charset="utf-8">
+<title>Plan de séance — S12 · Séance 1 · Câblage armoire</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  /* ---- LA BARRE DU HAUT (cartouche type TP Henninot) ---- */
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  /* ---- Tableau de déroulement 10 phases (canon académique) ---- */
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+
+  <!-- LA BARRE DU HAUT — cartouche d'identification (invariant, version fiche professeur) -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 2A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Câblage électrotechnique — chantier de remise en état (A3)</td>
+      <td style="width:38%"><span class="lib">Séance n° 1/3</span><b>Câblage de l'armoire électrique — puissance et commande</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S12</span> P6 · positionnement : 2<sup>e</sup> année, sem. 8</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 8 · 03-07/11/2026</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone chantier + vestiaire</td>
+      <td><span class="lib">Durée prévue</span>8 h (4 h + 4 h) — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>Bi-prof (2 pôles)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T11</b> Contrôler les circuits hors fonctionnement<br><b>T13</b> Contrôler l'installation sous tension</div>
+    <div class="case"><h4>Savoirs</h4><b>S5.2</b> Fluides, huiles <span class="nuance">à renforcer</span><br><b>S6.1</b> Santé et sécurité <span class="nuance">à renforcer</span></div>
+    <div class="case"><h4>Savoir-être</h4>Consignation spontanée · EPI sans rappel · poste tenu · binôme</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Confortement</span><br><b>C3.6</b> Câbler, connecter<br><b>C3.7</b> Contrôler la mise en œuvre</div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  Votre entreprise a remporté le <b>chantier de remise en état</b> du parc de machines de l'atelier.
+  <b>Ordre d'intervention n° S12-A3-01</b> : réaliser le câblage complet de l'armoire électrique de la machine
+  confiée à votre binôme, conformément au schéma validé, consignation à l'appui. Le chef de chantier
+  (le professeur) réceptionne les travaux en fin de journée.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>distinguer</b> circuit de puissance / circuit de commande ;</li>
+        <li><b>consigner</b> une armoire avant intervention (NFC 18-510) ;</li>
+        <li><b>câbler</b> puissance (sectionneur, contacteur, relais thermique) et commande (auxiliaires, boutons, voyants) au schéma ;</li>
+        <li><b>contrôler</b> visuellement mon câblage avant mise sous tension.</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà… <i style="text-transform:none">(réactivés par l'exercice au fil de l'eau, phase 4)</i></h4>
+      <ul>
+        <li>lire un schéma unifilaire / multifilaire simple ;</li>
+        <li>identifier les symboles sectionneur, contacteur, relais thermique ;</li>
+        <li>utiliser tournevis et pince à dénuder en sécurité ;</li>
+        <li>dire ce qu'est une habilitation électrique.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Consignation NFC 18-510</b> avant toute intervention (couper, cadenasser, VAT) ·
+  double vérification au schéma avant chaque connexion · gants et outils isolés · cadenas individuel, retrait par le poseur uniquement.
+  <b class="t">🚨 En cas d'incident :</b> couper (arrêt d'urgence), alerter le professeur, ne jamais déplacer un élève électrisé
+  avant coupure confirmée — trousse de secours et arrêt d'urgence localisés en phase 5.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S12 · séance 1/3 · CAP IFCA 2A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — 10 phases (canon académique), intégralité du temps élève</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance (écarts, difficultés, durée effective) et nourrit la synthèse.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:25%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:13%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Matinée — 4 h 00</td></tr>
+    <tr><td>10 min</td><td class="ph">1. Débuter la séance</td><td>Accueil en salle, appel, annonce de l'organisation bi-prof (2 pôles) et du programme.</td><td>Fait l'appel, répartit les binômes.</td><td>S'installent, notent l'organisation au carnet.</td><td>Liste d'appel · planning affiché</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention S12-A3-01 : situer la journée dans le chantier (phase A3) et dans la formation (préparation EP2).</td><td>Présente l'ordre d'intervention, questionne sur l'enjeu.</td><td>Reformulent la mission du jour.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » lus et affichés ; lien avec l'évaluation de fin de séquence.</td><td>Affiche et commente.</td><td>Repèrent l'objectif qui les inquiète.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">4. Vérifier les prérequis</td><td><b>Passage en tenue échelonné + exercice au fil de l'eau</b> (préparation de chantier) : entourer et nommer sectionneur, contacteur, relais thermique sur le schéma plastifié.</td><td>Distribue l'exercice, contrôle les tenues au vestiaire.</td><td>Se changent par vagues ; en attente, font l'exercice.</td><td>Schéma plastifié · feutre effaçable · EPI</td><td class="obs"></td></tr>
+    <tr><td>30 min</td><td class="ph">5. Donner la démarche</td><td><b>Mise en sécurité de la zone</b> (risques du jour, conduite incident, arrêt d'urgence et trousse localisés) puis <b>planter la notion</b> : OBSERVER les 2 armoires (référence / vide) en silence → NOMMER puissance / commande → EXPLICITER par démonstration commentée.</td><td>Anime le rituel sécurité, démontre sur l'armoire de référence.</td><td>Énoncent les risques, observent, verbalisent, notent — ne manipulent pas.</td><td>Armoire de référence · armoires chantier · corrigé de l'exercice phase 4</td><td class="obs"></td></tr>
+    <tr><td>1 h 40</td><td class="ph">6. Guider l'étude (a)</td><td>Ateliers tournants — rotation 1 : pôle Puissance (consignation, sectionneur/contacteur/relais, continuité) ; pôle Commande (auxiliaires, boutons, voyants, repérage). Alternance agir → noter → réfléchir.</td><td>Un professeur par pôle : questionne après chaque sous-étape, valide avant la suite.</td><td>Consignent, câblent par étapes, notent chaque connexion, répondent avant de continuer.</td><td>Schémas · outillage isolé · VAT · cadenas · multimètres · fils (consommables)</td><td class="obs"></td></tr>
+    <tr class="pause"><td>15 min</td><td colspan="6">Pause du matin — armoires consignées.</td></tr>
+    <tr><td>55 min</td><td class="ph">6. Guider l'étude (b)</td><td>Fin de la rotation 1 : achèvement du câblage du pôle, contrôle croisé par le binôme voisin.</td><td>Poursuit le questionnement, contrôle les repérages.</td><td>Terminent, font contrôler.</td><td>idem 6a</td><td class="obs"></td></tr>
+    <tr class="pause"><td>—</td><td colspan="6">Pause méridienne (hors décompte) — armoires consignées, cadenas en place.</td></tr>
+    <tr class="demi"><td colspan="7">Après-midi — 4 h 00</td></tr>
+    <tr><td>2 h 35</td><td class="ph">6. Guider l'étude (c)</td><td>Rotation 2 : échange des pôles, chaque binôme câble le circuit complémentaire. Reconsignation obligatoire à l'arrivée.</td><td>Gère la rotation, réexplique brièvement, questionne.</td><td>Reconsignent, câblent la partie complémentaire.</td><td>idem 6a</td><td class="obs"></td></tr>
+    <tr><td>25 min</td><td class="ph">7. Faire la synthèse</td><td>Mise en commun croisée : chaque binôme explique à un autre le circuit qu'il vient de câbler, schéma à l'appui ; généralisation puissance / commande.</td><td>Organise les paires, corrige le vocabulaire, généralise.</td><td>Expliquent, écoutent, reformulent.</td><td>Schémas</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">8. Évaluer et réajuster</td><td>Auto-positionnement par compétence (C3.6, C3.7 + savoir-être) puis validation professeur sur la grille ; repérage de ce qui sera revu en séance 2.</td><td>Recueille les grilles, valide, annonce les réajustements.</td><td>S'auto-positionnent honnêtement.</td><td>Grilles d'évaluation</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">8 bis. Bon de commande</td><td>Rituel chantier : carnet de bord de la journée + bon de commande hebdomadaire (matériel manquant, quantités).</td><td>Collecte, questionne la pertinence des quantités.</td><td>Rédigent carnet et bon de commande.</td><td>Carnets · bons de commande</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">9. Ranger — nettoyer</td><td>Outillage, tri des chutes, nettoyage des postes, vérification des consignations pour la semaine 9.</td><td>Supervise la remise en ordre.</td><td>Rangent, nettoient, vérifient.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, restitution des EPI, annonce de la séance 2 (pressostats — la machine s'arrêtera toute seule).</td><td>Supervise le vestiaire, clôt et annonce la suite.</td><td>Se changent, restituent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 03/07/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>
