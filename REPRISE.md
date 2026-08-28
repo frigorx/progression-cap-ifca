@@ -11,8 +11,8 @@ Point d'entrée : `index.html` (ou la page GitHub Pages).
 
 - `Sequences-1A-CAP-IFCA/` — S1 à S9, plus `_Illustrations-communes` et
   `_Ressources-eleve (tables et diagrammes)`
-- `Sequences-2A-CAP-IFCA/` — S10 à S14, plus `BIBLIOTHEQUE.md` et
-  `_CARTE-INTERACTIVE-2A.html`
+- `Sequences-2A-CAP-IFCA/` — S10, S11, S12, S14, S15, plus `BIBLIOTHEQUE.md` et
+  `_CARTE-INTERACTIVE-2A.html` (S13 jamais rapatriée, S16 jamais écrite)
 
 Marque **scolaire** : LPP Jacques Raynaud, F. Henninot.
 
@@ -30,10 +30,29 @@ Le tout dormait dans `CLAUDE-ESPACE-TRAVAIL` sans aucune sauvegarde git.
 contre 19/07) mais **plus court** (20 Ko contre 50 Ko) : c'est un travail en
 cours, pas un remplaçant. Rien n'a été écrasé, les deux coexistent.
 
-**À décider avant de reprendre :** la fusion se poursuit-elle depuis le fichier
-du chantier, ou depuis la carte interactive déjà en place ?
+**Question fermée le 28/08** : la fusion a bien abouti hors de ce dépôt. Le livrable
+existe en sortie triple sous le nom `Carte_Progression_2A_CAP_IFCA_2026-2027`
+(HTML + PDF + docx du 16/08, validé par Franck), rangé dans `26-27\` et sur le Drive.
+`_chantier-carte-2A-en-cours/` est donc un **vestige** : il ne reste rien à y reprendre.
+
+## 28/08 — REFONTE de la 2e année (chantier en cours)
+
+Franck a ouvert une refonte complète de la 2e année : le fond est bon, mais il manque
+des images, la charte est recopiée dans chaque fichier, et les modules d'inerweb.fr
+doivent être greffés par QR code. Sortie visée : HTML + PDF + **docx natif**.
+
+**Le plan et l'avancement vivent dans `Sequences-2A-CAP-IFCA/_REFONTE-2A.md`** — c'est
+lui qu'il faut lire pour reprendre le chantier, pas ce fichier.
+
+Décidé : périmètre **S10 → S16** · marque **scolaire** (logo lycée) · **S10 en pilote**
+complet avant de dérouler les autres.
+
+⚠️ **Cet atelier fait foi.** `26-27\Sequences-2A-CAP-IFCA\` est une **copie servie**,
+rafraîchie en fin de chantier — ne jamais l'éditer directement. Les deux copies ont été
+comparées le 28/08 : identiques à cette date.
 
 ## Restes
 
-- Reprendre ou abandonner la fusion de la carte 2A (voir ci-dessus)
+- Refonte 2A en cours — voir `Sequences-2A-CAP-IFCA/_REFONTE-2A.md`
+- `_chantier-carte-2A-en-cours/` : vestige, supprimable (la carte finale est ailleurs)
 - Ce dépôt n'a pas de `CHANGELOG.md` : les décisions se consignent ici
