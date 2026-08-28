@@ -65,9 +65,12 @@ déplaçables sans rien casser), mais elle n'existe qu'à **un seul endroit** et
 - [x] **1.2** Feuille d'impression → `_charte\impression-2a.css`, dérivée de `00-charte\impression.css`
 - [x] **1.3** Script `outils\poser-charte.mjs` — idempotent, mode simulation par défaut
 - [x] **1.4** **Appliqué aux 14 documents de S10**, contrôlés 14/14 (voir plus bas)
-- [ ] **1.5** Logo lycée sur **chaque** feuille : la charte porte la règle, mais le HTML ne pose l'image
-      que sur la 1re des 8 feuilles ; les 7 autres n'ont que le texte « LPP JACQUES RAYNAUD »
-- [ ] **1.6** Appliquer à S11, S12, S14, S15 (après validation de S10 par Franck)
+- [x] **1.6** Appliqué à S11, S12, S14, S15 — **72 documents**, 1964 règles en doublon retirées
+- [ ] **1.5 — À TRANCHER PAR FRANCK, pas fait exprès.** Le logo du lycée n'est posé que sur la 1re des
+      8 feuilles ; les 7 autres portent le texte « LPP JACQUES RAYNAUD ». La charte dit « logo partout »,
+      mais l'établissement est **déjà identifié en toutes lettres** sur chaque feuille, et ajouter une image
+      sur 8 feuilles × 72 documents coûte de l'encre à l'impression pour une information déjà présente.
+      Relève de la règle « élaguer plutôt qu'empiler » : **la question se pose, elle ne se tranche pas seule.**
 
 #### Ce que la mesure a appris (28/08) — et qui a changé la méthode
 - Ce ne sont **pas 73 copies d'une charte** : sur S10, 240 règles distinctes, dont **144 dans un seul
@@ -122,19 +125,38 @@ le corrigé complet vit dans le document professeur. Crescendo : placer avec aid
       - l'exercice 1 devient une **restitution de mémoire, feuille retournée**
       - corrigé professeur réaligné : nouvelle correction de la feuille de travail avec le schéma complet
         projetable, placement attendu, convention rappelée, **erreurs de placement à attendre**
-- [ ] **1b.2 — les autres cas** (relevés le 28/08, non traités) :
+- [x] **1b.2 — S11 · T1, le détendeur** (traité le 28/08, et il y avait plus grave que du prémâché)
+      - 🔴 **erreur métier** : le corrigé professeur plaçait **trois** organes à contresens de la convention
+        — détendeur « en bas à gauche », condenseur « en haut à gauche », évaporateur « en bas à droite ».
+        Le document élève portait la même erreur deux fois. Corrigé : **condenseur en HAUT · compresseur à
+        DROITE · détendeur à GAUCHE · évaporateur en BAS**, et le corrigé rappelle désormais que la
+        convention ne se négocie pas
+      - la légende donnait la réponse de l'observation 1, écrite deux lignes plus bas
+      - l'exercice 1 demandait d'« entourer le détendeur » sur un schéma où il est nommé en toutes lettres,
+        position rappelée dans la consigne : il n'y avait **rien à chercher**. Devenu un replacement sur la
+        croix vierge (rappel actif de T0)
+      - le schéma complet **reste** en découverte : T1 porte sur le rôle du détendeur, pas sur la
+        construction du circuit, et l'élève a déjà construit sa croix en S10
 
-| Où | Ce qui est donné tout fait | Ce qu'on devrait faire produire |
-|---|---|---|
-| **S11 séances 1-2-3** | `schema-ligne-liquide-equipee.svg`, **6 fois** | La ligne liquide est justement ce que l'élève monte — réserve d'organes + ligne vide |
-| **S12 séance 1** | `schema-ccf-complet-puissance-commande.png`, schéma électrique **complet** | Le TP est de câbler : réserve de symboles + grille vierge (⚠️ schéma de commande **vertical**, phase en haut, neutre en bas, retour neutre orange) |
-| **S11 T1** | croix complète redonnée 2 fois + surchauffe | Réutiliser la planche de travail de T0 |
-| **S12 s.2 · S14 A5-a · S15 A6-a/b** | `schema-fluidique-manifold-pompe-a-vide.png`, 7 fois | Raccordement du manifold à tracer par l'élève |
-| **S15 A6-a** | cotes de dégagement et plaque de montage données | Relevé et report de cotes à faire |
+- [x] **1b.3 — les autres cas : examinés un par un, et à laisser tels quels**
 
-*Mesure d'ensemble : 21 documents élève portent des figures, 60 figures au total. Toutes ne sont pas à
-retirer — une photo de plaque signalétique ou un CERFA réel sont des supports de lecture, pas des
-réponses. Ce qui doit partir, c'est le schéma que l'élève est censé produire.*
+  Le relevé du 28/08 (ci-dessous) était **trop mécanique** : il comptait les figures sans regarder leur
+  rôle. En examinant chaque cas, la ligne de partage est nette :
+
+  > **En théorie**, montrer le schéma, c'est donner la réponse → il sort du document élève.
+  > **En atelier**, le schéma est le **plan de chantier** — un frigoriste travaille d'après un plan.
+  > Le retirer serait une erreur pédagogique, pas une exigence.
+
+| Où | Verdict après examen |
+|---|---|
+| **S11 séances 1-2-3** — ligne liquide, 6 fois | **À GARDER.** Sections « mise en situation », « réalisation jalon 2 », « documents à remettre » : c'est le plan de montage du TP |
+| **S12 séance 1** — schéma électrique complet | **À GARDER, et la séance est bien faite** : le schéma est annoncé « à garder sous les yeux pendant tout le câblage », avec une **annexe A3** pour le poste. Les deux cadres demandent déjà de **dessiner les symboles normalisés** du contacteur et du relais thermique |
+| **S14 A5-a · S15 A6-a/b** — manifold, 7 fois | **À GARDER.** « Plan de travail à jalons — gardez le schéma de la page précédente » |
+| **S15 A6-a** — cotes de dégagement | **À GARDER.** Données constructeur à respecter, pas une réponse à trouver |
+
+*Mesure d'ensemble : 21 documents élève portent 60 figures. Après examen, **seuls T0 et T1 relevaient du
+travail prémâché** — les deux modules de théorie. Une plaque signalétique, un CERFA réel ou un plan de
+montage sont des supports de lecture et de travail, pas des corrigés déguisés.*
 
 ### Étape 2 — Les images
 - [ ] **2.1** Relever document par document **où une image manque et ce qu'elle doit montrer** → `_PLAN-IMAGES.md`
