@@ -1,0 +1,156 @@
+/* =====================================================================
+   CHARTE 2A CAP IFCA — la source unique de la mise en forme
+   ---------------------------------------------------------------------
+   Marque : SCOLAIRE — LPP Jacques Raynaud. Pas de logo inerWeb en en-tête ;
+   inerWeb n'apparaît que dans le bloc « Pour aller plus loin » qui porte
+   les QR vers les modules du site.
+
+   POURQUOI CE FICHIER EXISTE (constaté le 28/08/2026)
+   Les 73 documents de la 2e année portaient chacun leur propre bloc <style>
+   recopié à la main : 90 Ko de CSS pour la seule S10, 240 règles distinctes,
+   dont 144 présentes dans un seul fichier. Ce ne sont pas des copies d'une
+   charte, ce sont des chartes cousines qui ont dérivé. Corriger une couleur
+   demandait d'ouvrir 73 fichiers.
+
+   COMMENT ELLE S'APPLIQUE
+   Elle n'est PAS liée par <link> : elle est INJECTÉE dans chaque document par
+   `outils\poser-charte.mjs`. Les documents restent donc autonomes — on peut
+   en envoyer un par courriel, le déplacer, l'ouvrir sur n'importe quel poste,
+   il reste mis en forme. Mais la charte n'existe qu'ici : on la corrige à un
+   seul endroit et on relance le script.
+
+   ⚠️ NE PAS ÉDITER LE <style> D'UN DOCUMENT pour changer la charte : la
+   prochaine passe du script l'écraserait. Ce qui est propre à un document
+   (ses tableaux à lui, ses encadrés à lui) vit dans son bloc « spécifique »,
+   que le script préserve.
+   ===================================================================== */
+
+/* ---- Couleurs et variables ----
+   Vérifié le 28/08 : ces valeurs sont déjà identiques dans les 14 documents
+   de S10. La charte ne change donc AUCUNE couleur, elle les rassemble. */
+:root{
+  --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+  --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+  --violet:#7b5cf5; --marine:#1e2c5e;
+  --corps:13pt;            /* défaut prudent = professeur ; voir ci-dessous */
+  --orange-texte:#c9451a;  /* l'orange d'écran ne fait que 2,8:1 sur blanc :
+                              il ne porte JAMAIS du texte, seulement un filet */
+}
+
+/* ---- LA RÈGLE LA PLUS SENSIBLE DE L'USINE : la taille du corps ----
+   Élève 14 pt, professeur 13 pt. Ce n'est pas un détail de goût : c'est la
+   lisibilité de l'élève, DYS compris, sur un document photocopié.
+   Vérifié sur pièce le 28/08 : la règle était déjà tenue sans exception dans
+   les 14 documents de S10 (5 élève à 14 pt, 8 professeur à 13 pt).
+   Le type est déclaré par `data-public` sur <body> — posé par le script. */
+body[data-public="eleve"]{ --corps:14pt }
+body[data-public="professeur"]{ --corps:13pt }
+
+*{ box-sizing:border-box }
+
+body{
+  background:var(--fond-page); color:var(--encre);
+  font-family:Calibri,'Segoe UI',sans-serif;
+  font-size:var(--corps); line-height:1.45;
+  margin:0; padding:28px 12px; text-align:left;
+}
+
+h2,h3,h4{
+  font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu);
+  line-height:1.2; margin:0 0 .35em; text-wrap:balance;
+}
+
+/* ---- La feuille : un document = une pile de feuilles A4 ---- */
+.feuille{
+  background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+  box-shadow:0 2px 14px rgba(27,58,99,.13);
+  display:flex; flex-direction:column; min-height:1050px;
+}
+
+/* ---- En-tête et pied ---- */
+.entete{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px;
+}
+.entete .logos{ display:flex; align-items:center; gap:12px }
+.entete .logos img{ height:38px; width:auto }   /* le logo du lycée, sur CHAQUE feuille */
+.lockup{ line-height:1.12 }
+.lockup .sigle{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em }
+.lockup .nom{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em }
+.pied{
+  margin-top:auto; padding-top:12px; border-top:1px solid var(--filet);
+  font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;
+}
+
+/* ---- La barre du haut (type TP) ---- */
+.barre{ border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em }
+.barre table{ border-collapse:collapse; width:100%; font-size:10pt }
+.barre td{ border:1px solid var(--filet); padding:5px 10px; vertical-align:middle }
+.barre .lib{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em; text-transform:uppercase; color:var(--gris); display:block }
+.barre .grand{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu) }
+.barre .accent{ background:var(--fond-doux) }
+
+/* ---- La formule tâche + savoir + savoir-être → compétence ---- */
+.formule{ display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt }
+.formule .case{ border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff }
+.formule .case h4{ margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif }
+.formule .case.comp{ border:1.5px solid var(--bleu); background:var(--fond-doux) }
+
+/* ---- Blocs de contenu ---- */
+.situation{ border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt }
+.situation h4, .duo h4{ margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif }
+.duo{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt }
+.duo>div{ background:var(--fond-doux); border-radius:6px; padding:8px 14px }
+.duo ul{ margin:.1em 0 .1em 1.1em; padding:0 }
+.jalon{ border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em }
+.jalon h4{ color:var(--bleu); font-size:10.5pt; margin:0 0 4px }
+.secu{ border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt }
+.secu b.t{ color:var(--orange-texte); font-family:'Trebuchet MS',sans-serif }
+h3.section{ font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em }
+.liste-num{ margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt }
+.liste-num li{ margin-bottom:3px }
+.statut{ display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0 }
+.nuance{ font-size:8pt; color:var(--gris); font-style:italic }
+
+/* ---- Tableaux ---- */
+table{ border-collapse:collapse; width:100% }
+.tbl-wrap{ overflow-x:auto }
+.der{ font-size:8.8pt; margin:.3em 0 .9em }
+.der th{ font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt; letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left }
+.der td{ border:1px solid var(--filet); padding:4px 6px; vertical-align:top }
+.der tr:nth-child(even) td{ background:var(--fond-doux) }
+.der .ph{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal }
+.demi td{ background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt }
+.pause td{ background:#fafbfc!important; color:var(--leger); font-style:italic }
+table.releve{ font-size:9.5pt; margin:.4em 0 .9em }
+table.releve th{ background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px }
+table.releve td{ border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em }
+
+/* ---- Images ---- */
+img.fig{ max-width:100%; height:auto; border:1px solid var(--filet); border-radius:4px }
+.legende{ font-size:9pt; color:var(--gris); font-style:italic; margin:2px 0 12px }
+
+/* ---- « Pour aller plus loin » : la greffe vers inerweb.fr ----
+   Un QR SEUL ne suffit pas : l'élève sans téléphone doit pouvoir taper
+   l'adresse, et le professeur doit savoir où ça mène avant de le donner.
+   Le bloc porte donc toujours les trois : le code, le titre de la station,
+   et l'adresse écrite en clair. */
+.aller-plus-loin{
+  display:flex; align-items:flex-start; gap:14px;
+  border:1.5px solid var(--violet); border-left:5px solid var(--violet);
+  border-radius:6px; background:#f8f6ff;
+  padding:10px 14px; margin:.6em 0 1em; font-size:10pt;
+  break-inside:avoid; page-break-inside:avoid;
+}
+.aller-plus-loin .qr{ flex:0 0 auto; width:82px; height:82px }
+.aller-plus-loin .qr img, .aller-plus-loin .qr svg{ width:82px; height:82px; display:block }
+.aller-plus-loin .txt{ flex:1 1 auto; min-width:0 }
+.aller-plus-loin .quoi{
+  font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--violet);
+  font-size:8pt; letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:2px;
+}
+.aller-plus-loin .titre{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:11pt; display:block }
+.aller-plus-loin .adresse{
+  font-family:Consolas,'Courier New',monospace; font-size:8.5pt; color:var(--gris);
+  word-break:break-all; display:block; margin-top:3px;
+}

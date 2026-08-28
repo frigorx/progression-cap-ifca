@@ -61,10 +61,46 @@ industrialise la forme, et enrichit (images + QR).
 ### Étape 1 — Le gabarit unique (le cœur)
 **Décision** : la charte reste **injectée dans chaque fichier** (documents autonomes, imprimables et
 déplaçables sans rien casser), mais elle n'existe qu'à **un seul endroit** et un script la pose.
-- [ ] **1.1** Mesurer la divergence entre les 73 `<style>`, en extraire la charte commune → `_charte\charte-2a.css`
-- [ ] **1.2** Feuille d'impression dérivée de `00-charte\impression.css`
-- [ ] **1.3** Script `outils\poser-charte.mjs` — idempotent, relançable
-- [ ] **1.4** Logo lycée sur **chaque** feuille, pas seulement la première
+- [x] **1.1** Divergence mesurée sur S10, charte écrite → `_charte\charte-2a.css` (59 règles)
+- [x] **1.2** Feuille d'impression → `_charte\impression-2a.css`, dérivée de `00-charte\impression.css`
+- [x] **1.3** Script `outils\poser-charte.mjs` — idempotent, mode simulation par défaut
+- [x] **1.4** **Appliqué aux 14 documents de S10**, contrôlés 14/14 (voir plus bas)
+- [ ] **1.5** Logo lycée sur **chaque** feuille : la charte porte la règle, mais le HTML ne pose l'image
+      que sur la 1re des 8 feuilles ; les 7 autres n'ont que le texte « LPP JACQUES RAYNAUD »
+- [ ] **1.6** Appliquer à S11, S12, S14, S15 (après validation de S10 par Franck)
+
+#### Ce que la mesure a appris (28/08) — et qui a changé la méthode
+- Ce ne sont **pas 73 copies d'une charte** : sur S10, 240 règles distinctes, dont **144 dans un seul
+  fichier**, et 9 seulement identiques dans les 14. Des chartes cousines qui ont dérivé.
+- **Aucun document n'avait `<!DOCTYPE>`, `<html>`, `<head>` ni `<body>`** — des fragments, rendus en
+  mode « quirks », où l'impression ne se comporte pas comme en mode standard. C'est une part de ce qui
+  rendait ces documents pénibles à imprimer.
+- `@page` n'existait que dans **1 document sur 14** : les 13 autres s'imprimaient aux marges du
+  navigateur, avec ses en-têtes et ses URL en haut de page.
+- `.feuille{page-break-after:always}` sans exception sur la dernière : **une page blanche à la fin de
+  chaque document imprimé**.
+- ⚠️ **Piège évité** : extraire la charte « par vote majoritaire » retenait `body{font-size:13pt}` et
+  aurait **fait passer tous les documents élève de 14 à 13 pt**. Vérification faite : la règle était
+  déjà tenue sans exception (5 documents élève à 14 pt, 8 professeur à 13 pt). La taille est désormais
+  pilotée par `data-public` sur `<body>`, posé par le script — elle cesse d'être recopiée à la main.
+- Les divergences restantes viennent presque toutes du seul « Dossier de séquence », un peu plus aéré
+  que les autres (marges, sigle 13,5 pt). C'est cohérent — un document de pilotage, pas un support
+  élève. **Laissé tel quel** : le CSS propre au document passe après la charte et garde la main.
+
+#### Contrôle sur pièce (mesuré dans le navigateur, avant / après)
+| | avant | après |
+|---|---|---|
+| Mode de rendu | **quirks** | standards |
+| Langue déclarée | aucune | `fr` |
+| Corps, document élève | 14 pt | **14 pt** (inchangé) |
+| Corps, document professeur | 13 pt | **13 pt** (inchangé) |
+| Règles `@page` | 0 | 2 (marges maîtrisées) |
+| Page blanche finale | oui | supprimée |
+| Images cassées | 0 | 0 |
+| Poids CSS | 90 Ko sur S10 | 478 règles en doublon retirées |
+
+Les 14 documents passent le contrôle : doctype, `lang="fr"`, `data-public` juste, un seul bloc de
+style, `@page` présent, et **toutes les images référencées existent sur le disque**.
 
 ### Étape 2 — Les images
 - [ ] **2.1** Relever document par document **où une image manque et ce qu'elle doit montrer** → `_PLAN-IMAGES.md`

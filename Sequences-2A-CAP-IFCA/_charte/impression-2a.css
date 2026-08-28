@@ -1,0 +1,93 @@
+/* =====================================================================
+   IMPRESSION — 2A CAP IFCA
+   ---------------------------------------------------------------------
+   Dérivée de `usine-contenu\00-charte\impression.css`, réduite aux classes
+   réellement employées par les documents de la 2e année.
+
+   PRINCIPE HÉRITÉ DE LA CHARTE : le TRAIT porte le sens, pas la SURFACE.
+   Un filet coûte une goutte d'encre, un aplat de page coûte une cartouche.
+   Les fonds colorés deviennent blancs ; ce qu'ils signifiaient passe dans
+   la bordure et dans le mot.
+
+   CE QUI MANQUAIT AVANT LE 28/08 (constaté sur les 14 documents de S10)
+   Les règles de saut de page étaient déjà là et bonnes (blocs insécables,
+   titres non orphelins) — elles sont reprises telles quelles ci-dessous.
+   Manquaient en revanche :
+     1. `@page` — présent dans 1 document sur 14. Les 13 autres s'impriment
+        aux marges par défaut du navigateur, avec ses en-têtes et ses URL.
+     2. la neutralisation des aplats : si l'utilisateur coche « Graphiques
+        d'arrière-plan » (ce que « Enregistrer au format PDF » fait souvent),
+        tous les fonds bleutés sortent et le PDF les ressort chez QUI
+        L'IMPRIME. On ne compte jamais sur le défaut : on neutralise.
+     3. la page blanche finale : `.feuille{page-break-after:always}` sans
+        exception sur la dernière feuille ajoute une page vide à chaque
+        document imprimé.
+
+   ⚠️ NE JAMAIS écrire `print-color-adjust:exact` ici — c'est l'instruction
+   inverse, elle FORCE l'impression des fonds.
+   ===================================================================== */
+
+@page{ margin:14mm 13mm }
+@page :first{ margin-top:11mm }
+
+/* ---- Fond de page et ombres ---- */
+html, body{ background:#fff !important; padding:0 !important }
+*, *::before, *::after{
+  background-image:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+}
+
+/* ---- La feuille écran devient la page papier ---- */
+.feuille{
+  box-shadow:none !important;
+  margin:0 !important;
+  max-width:none !important;
+  min-height:auto !important;
+  padding:0 !important;
+  page-break-after:always;
+}
+/* ...sauf la dernière : sinon chaque document sort avec une page blanche. */
+.feuille:last-of-type{ page-break-after:auto }
+
+/* ---- Les surfaces partent, les filets restent ----
+   Les conteneurs sont listés nommément : un `background:#fff` universel
+   effacerait aussi les pastilles porteuses de sens dans les schémas. */
+.situation, .duo>div, .jalon, .secu, .formule .case, .formule .case.comp,
+.barre .accent, .der tr:nth-child(even) td, .demi td, .pause td,
+.aller-plus-loin, .statut, table, th, td{
+  background:#fff !important;
+}
+
+/* ---- Ce qui portait le sens par la couleur le porte par le trait ----
+   Deux canaux, pas un : la couleur (belle si on imprime en couleur) ET le
+   style de trait, qui survit au noir et blanc. Converties en gris, les
+   couleurs de sens de la charte tombent quasiment au même endroit : sur une
+   photocopieuse, la couleur seule ne distingue rien. */
+.situation{ border:1.5px dashed var(--bleu) !important }   /* la mise en situation : tireté */
+.jalon    { border:2px double var(--bleu) !important }     /* le jalon : DOUBLE, c'est un cap */
+.secu     { border:2px solid var(--orange-texte) !important } /* la sécurité : plein et sombre */
+.aller-plus-loin{ border:1.5px dotted var(--violet) !important; border-left:4px dotted var(--violet) !important }
+.demi td  { border-top:1.5px solid var(--bleu) !important; font-weight:bold }
+
+/* ---- Texte : l'orange d'écran est illisible sur papier ----
+   #ff6b35 ne fait que 2,8:1 sur blanc. Il reste en FILET, jamais en texte. */
+.secu b.t, .conso{ color:var(--orange-texte) !important }
+
+/* ---- Sauts de page : règles existantes, conservées ---- */
+tr{ page-break-inside:avoid; break-inside:avoid }
+.barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin,
+.notion, .cartouche-methode, .obj, .duo>div, .jalon, .aller-plus-loin,
+.zone-reponse, table.releve, table.grille{
+  page-break-inside:avoid; break-inside:avoid;
+}
+h2, h3, h4{ page-break-after:avoid }
+img.fig{ page-break-inside:avoid; max-width:100% !important }
+.legende{ page-break-before:avoid }
+
+/* ---- Ce qui ne s'imprime pas ---- */
+.no-print{ display:none !important }
+
+/* ---- Les liens : l'adresse est déjà écrite en clair dans le bloc,
+   inutile que le navigateur la répète entre parenthèses. ---- */
+a[href]::after{ content:none !important }
