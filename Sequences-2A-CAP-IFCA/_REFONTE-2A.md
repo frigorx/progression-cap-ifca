@@ -165,11 +165,22 @@ montage sont des supports de lecture et de travail, pas des corrigés déguisés
 - [ ] **2.4** Ce qui reste introuvable → **prompt fourni à Franck**, qui génère avec GPT
 - Règle tenue : une illustration colle parfaitement, ou pas d'illustration.
 
-### Étape 3 — Les QR vers inerweb.fr
-Le site expose ≈ 200 stations sur 4 réseaux (thermo-techno, Législation, HydroMétro, AéroRézo).
-- [ ] **3.1** Table de correspondance **module 2A → station**, avec URL exacte et raison pédagogique → `_QR-INERWEB.md`
-- [ ] **3.2** QR générés **en local**, en SVG (pas de service tiers pendant la fabrication)
-- [ ] **3.3** Bloc « Pour aller plus loin » normalisé : QR + titre de la station + **URL écrite en clair** (l'élève sans téléphone doit pouvoir la taper)
+### Étape 3 — Les QR vers inerweb.fr ✅ FAITE
+- [x] **3.1** Table de correspondance → **`_charte\qr-inerweb.json`** (source unique) : 16 documents élève,
+      29 greffes, chacune avec l'adresse exacte **et la raison pédagogique** de la greffe
+- [x] **3.2** **32 adresses vérifiées une par une** : toutes répondent (code 200). Un QR qui tombe sur une
+      page absente en classe serait pire que pas de QR — à revérifier après toute refonte du site
+- [x] **3.3** QR générés **en local** avec `segno` (Python pur, aucune dépendance) → `_charte\qr\`,
+      21 fichiers SVG, 92 Ko au total. **Aucun service en ligne n'intervient dans la fabrication.**
+- [x] **3.4** Bloc « Pour aller plus loin » posé en fin de document élève par `outils\poser-qr.py`
+      (idempotent) : **QR + titre de la station + adresse écrite en clair**, insécable à l'impression
+- [x] **3.5** QR à **96 px = 2,5 cm sur le papier** — en dessous, le scan devient pénible sur un téléphone
+      d'élève, surtout sur une photocopie. `viewBox` ajouté (segno n'en met pas) : sans lui, la mise à
+      l'échelle n'est pas fiable partout, et la sortie PDF/docx en dépend
+
+**Ce qui n'a PAS reçu de QR, volontairement** : façonnage du cuivre, mise en place mécanique, carnet de
+bord, dossiers techniques. Le site n'a rien à leur apporter aujourd'hui. Mieux vaut pas de QR qu'un QR de
+remplissage — la règle de greffe est écrite en tête de `qr-inerweb.json`.
 
 ### Étape 4 — La sortie imprimable et travaillable
 - [ ] **4.1** PDF depuis le HTML, une fois la feuille d'impression posée
