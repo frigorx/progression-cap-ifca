@@ -66,11 +66,16 @@ function reglesDe(css) {
 }
 
 // ------------------------------------------------------------------ le public
-// La taille du corps en dépend : 14 pt élève, 13 pt professeur.
+// La taille du corps en dépend : 14 pt élève, 13 pt professeur, 14 pt dossier.
 // En cas de doute on retient « professeur » : un document de travail trop
 // petit se corrige, un document élève trop petit part en classe.
+//
+// ⚠️ Le « Dossier de séquence » a sa propre catégorie. Le ranger avec les
+// documents professeur le faisait passer de 14 à 13 pt — régression introduite
+// puis corrigée le 28/08. Les cinq dossiers de la 2e année sont à 14 pt d'origine.
 function publicDe(chemin) {
   const n = basename(chemin).toLowerCase();
+  if (n.startsWith('dossier de séquence') || n.startsWith('dossier de sequence')) return 'dossier';
   if (n.includes('élève') || n.includes('eleve')) return 'eleve';
   if (n.includes('sujet')) return 'eleve';
   return 'professeur';
@@ -220,7 +225,7 @@ for (const f of fichiers) {
   for (const d of r.divergences) toutesDivergences.push({ fichier: relative(cible, f), ...d });
   const delta = r.apres - r.avant;
   console.log(
-    `  ${r.pub === 'eleve' ? 'ÉLÈVE ' : 'prof  '} ` +
+    `  ${{ eleve: 'ÉLÈVE  ', professeur: 'prof   ', dossier: 'DOSSIER' }[r.pub]} ` +
     `${String(r.doublons.length).padStart(3)} doublons retirés  ` +
     `${String(r.divergences.length).padStart(2)} divergences  ` +
     `${(delta >= 0 ? '+' : '') + (delta / 1024).toFixed(1)} Ko  ` +

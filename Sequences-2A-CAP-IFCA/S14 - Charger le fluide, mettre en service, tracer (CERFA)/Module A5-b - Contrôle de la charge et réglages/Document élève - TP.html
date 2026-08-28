@@ -1,67 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TP élève — S14 · Module A5-b · Contrôle de la charge et réglages</title>
 <style>
-  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+/* ===== CHARTE-2A : DÉBUT — zone gérée par outils/poser-charte.mjs ===== */
+/* Zone gérée par outils/poser-charte.mjs — ne rien éditer ici : la
+   prochaine passe l'écrase. La charte, avec ses raisons, se corrige dans
+   Sequences-2A-CAP-IFCA/_charte/charte-2a.css et impression-2a.css. */
+:root{
+  --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+  --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+  --violet:#7b5cf5; --marine:#1e2c5e;
+  --corps:13pt;            
+  --orange-texte:#c9451a;  
+}
+body[data-public="eleve"]{ --corps:14pt }
+body[data-public="professeur"]{ --corps:13pt }
+body[data-public="dossier"]{ --corps:14pt }
+*{ box-sizing:border-box }
+body{
+  background:var(--fond-page); color:var(--encre);
+  font-family:Calibri,'Segoe UI',sans-serif;
+  font-size:var(--corps); line-height:1.45;
+  margin:0; padding:28px 12px; text-align:left;
+}
+h2,h3,h4{
+  font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu);
+  line-height:1.2; margin:0 0 .35em; text-wrap:balance;
+}
+.feuille{
+  background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+  box-shadow:0 2px 14px rgba(27,58,99,.13);
+  display:flex; flex-direction:column; min-height:1050px;
+}
+.entete{
+  display:flex; align-items:center; justify-content:space-between; gap:14px;
+  border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px;
+}
+.entete .logos{ display:flex; align-items:center; gap:12px }
+.entete .logos img{ height:38px; width:auto }   
+.lockup{ line-height:1.12 }
+.lockup .sigle{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em }
+.lockup .nom{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em }
+.pied{
+  margin-top:auto; padding-top:12px; border-top:1px solid var(--filet);
+  font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;
+}
+.barre{ border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em }
+.barre table{ border-collapse:collapse; width:100%; font-size:10pt }
+.barre td{ border:1px solid var(--filet); padding:5px 10px; vertical-align:middle }
+.barre .lib{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em; text-transform:uppercase; color:var(--gris); display:block }
+.barre .grand{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu) }
+.barre .accent{ background:var(--fond-doux) }
+.formule{ display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt }
+.formule .case{ border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff }
+.formule .case h4{ margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif }
+.formule .case.comp{ border:1.5px solid var(--bleu); background:var(--fond-doux) }
+.situation{ border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt }
+.situation h4, .duo h4{ margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif }
+.duo{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt }
+.duo>div{ background:var(--fond-doux); border-radius:6px; padding:8px 14px }
+.duo ul{ margin:.1em 0 .1em 1.1em; padding:0 }
+.jalon{ border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em }
+.jalon h4{ color:var(--bleu); font-size:10.5pt; margin:0 0 4px }
+.secu{ border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt }
+.secu b.t{ color:var(--orange-texte); font-family:'Trebuchet MS',sans-serif }
+h3.section{ font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em }
+.liste-num{ margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt }
+.liste-num li{ margin-bottom:3px }
+.statut{ display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0 }
+.nuance{ font-size:8pt; color:var(--gris); font-style:italic }
+table{ border-collapse:collapse; width:100% }
+.tbl-wrap{ overflow-x:auto }
+.der{ font-size:8.8pt; margin:.3em 0 .9em }
+.der th{ font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt; letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left }
+.der td{ border:1px solid var(--filet); padding:4px 6px; vertical-align:top }
+.der tr:nth-child(even) td{ background:var(--fond-doux) }
+.der .ph{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal }
+.demi td{ background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt }
+.pause td{ background:#fafbfc!important; color:var(--leger); font-style:italic }
+table.releve{ font-size:9.5pt; margin:.4em 0 .9em }
+table.releve th{ background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px }
+table.releve td{ border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em }
+img.fig{ max-width:100%; height:auto; border:1px solid var(--filet); border-radius:4px }
+.legende{ font-size:9pt; color:var(--gris); font-style:italic; margin:2px 0 12px }
+.aller-plus-loin{
+  display:flex; align-items:flex-start; gap:14px;
+  border:1.5px solid var(--violet); border-left:5px solid var(--violet);
+  border-radius:6px; background:#f8f6ff;
+  padding:10px 14px; margin:.6em 0 1em; font-size:10pt;
+  break-inside:avoid; page-break-inside:avoid;
+}
+.aller-plus-loin .qr{ flex:0 0 auto; width:82px; height:82px }
+.aller-plus-loin .qr img, .aller-plus-loin .qr svg{ width:82px; height:82px; display:block }
+.aller-plus-loin .txt{ flex:1 1 auto; min-width:0 }
+.aller-plus-loin .quoi{
+  font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--violet);
+  font-size:8pt; letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:2px;
+}
+.aller-plus-loin .titre{ font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:11pt; display:block }
+.aller-plus-loin .adresse{
+  font-family:Consolas,'Courier New',monospace; font-size:8.5pt; color:var(--gris);
+  word-break:break-all; display:block; margin-top:3px;
+}
+
+@media print{
+  @page{ margin:14mm 13mm }
+  @page :first{ margin-top:11mm }
+  html, body{ background:#fff !important; padding:0 !important }
+  *, *::before, *::after{
+    background-image:none !important;
+    box-shadow:none !important;
+    text-shadow:none !important;
+  }
+  .feuille{
+    box-shadow:none !important;
+    margin:0 !important;
+    max-width:none !important;
+    min-height:auto !important;
+    padding:0 !important;
+    page-break-after:always;
+  }
+  .feuille:last-of-type{ page-break-after:auto }
+  .situation, .duo>div, .jalon, .secu, .formule .case, .formule .case.comp,
+  .barre .accent, .der tr:nth-child(even) td, .demi td, .pause td,
+  .aller-plus-loin, .statut, table, th, td{
+    background:#fff !important;
+  }
+  .situation{ border:1.5px dashed var(--bleu) !important }   
+  .jalon    { border:2px double var(--bleu) !important }     
+  .secu     { border:2px solid var(--orange-texte) !important } 
+  .aller-plus-loin{ border:1.5px dotted var(--violet) !important; border-left:4px dotted var(--violet) !important }
+  .demi td  { border-top:1.5px solid var(--bleu) !important; font-weight:bold }
+  .secu b.t, .conso{ color:var(--orange-texte) !important }
+  tr{ page-break-inside:avoid; break-inside:avoid }
+  .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin,
+  .notion, .cartouche-methode, .obj, .duo>div, .jalon, .aller-plus-loin,
+  .zone-reponse, table.releve, table.grille{
+    page-break-inside:avoid; break-inside:avoid;
+  }
+  h2, h3, h4{ page-break-after:avoid }
+  img.fig{ page-break-inside:avoid; max-width:100% !important }
+  .legende{ page-break-before:avoid }
+  .no-print{ display:none !important }
+  a[href]::after{ content:none !important }
+}
+/* ===== CHARTE-2A : FIN ===== */
+
+/* ----- Propre à ce document ----- */
+:root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
     --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
-  *{box-sizing:border-box}
   body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
-    font-size:14pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
-  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
-  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
-    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
-  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
-    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
-  .lockup{line-height:1.12}
-  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
-  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
-  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
-  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
-  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
-  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
-    text-transform:uppercase; color:var(--gris); display:block}
-  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
-  .barre .accent{background:var(--fond-doux)}
-  table{border-collapse:collapse; width:100%}
-  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
-    display:flex; justify-content:space-between; gap:10px}
-  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
-  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
-  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
-  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
-  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
-    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
-  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
-  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
-  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
-  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
-  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
-  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
-  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+     line-height:1.45; margin:0; padding:28px 12px; text-align:left}
   .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
-  .der{font-size:8.8pt; margin:.3em 0 .9em}
-  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
-    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
-  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
-  .der tr:nth-child(even) td{background:var(--fond-doux)}
-  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
-  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
-  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
-  .tbl-wrap{overflow-x:auto}
-  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
-  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
-  .liste-num li{margin-bottom:3px}
   .conso{color:var(--orange); font-weight:bold; font-size:8.5pt; font-family:'Trebuchet MS',sans-serif}
   .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.6em}
   .lignes{border-bottom:1px dotted var(--leger); display:inline-block; min-width:70%; height:1.3em}
-  table.releve{font-size:9.5pt; margin:.4em 0 .9em}
-  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px}
-  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.4em}
   table.grille{font-size:9pt; margin:.3em 0 .9em}
   table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
   table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
   table.grille tr:nth-child(even) td{background:var(--fond-doux)}
-  .jalon{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.5em 0 .9em}
-  .jalon h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
   .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:10pt}
   .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
   .risque-parade{font-size:9.5pt}
@@ -75,8 +175,12 @@
   .cas-ecole{border:1.5px solid var(--bleu); border-radius:6px; padding:8px 14px; margin:.4em 0 .9em; background:#fff}
   .cas-ecole h4{color:var(--bleu); font-size:10.5pt; margin:0 0 4px}
   @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
-</style>
 
+@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 10mm } }
+@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .cas-ecole, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }
+</style>
+</head>
+<body data-public="eleve">
 <!-- ============ FEUILLE 1 — IDENTIFICATION + MISE EN SITUATION ============ -->
 <div class="feuille">
   <div class="entete">
@@ -370,7 +474,7 @@
 </div>
 
 <!-- ============ ANNEXE 1 : SCHÉMA COMPLET (impression A3 paysage) ============ -->
-<style>@media print{ .annexe-a3{ page: pageA3 } @page pageA3{ size: A3 landscape; margin: 10mm } }</style>
+
 <div class="feuille annexe-a3" style="min-height:auto">
   <div class="surtitre">Annexe — document de travail</div>
   <h2 style="font-family:'Trebuchet MS',sans-serif; color:#1b3a63">Schéma complet — points de mesure de la surchauffe et du sous-refroidissement</h2>
@@ -414,4 +518,5 @@
 </div>
 
 <!-- tableaux-non-coupes -->
-<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .cadre-dessin, .notion, .cartouche-methode, .obj, .duo>div, .cas-ecole, .jalon{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} img.fig{page-break-inside:avoid} }</style>
+</body>
+</html>
