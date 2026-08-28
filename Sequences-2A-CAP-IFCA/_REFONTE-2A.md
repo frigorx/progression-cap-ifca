@@ -102,6 +102,40 @@ déplaçables sans rien casser), mais elle n'existe qu'à **un seul endroit** et
 Les 14 documents passent le contrôle : doctype, `lang="fr"`, `data-public` juste, un seul bloc de
 style, `@page` présent, et **toutes les images référencées existent sur le disque**.
 
+### Étape 1 bis — NE PAS MÂCHER LE TRAVAIL (demandé par Franck le 28/08)
+> « Quand ils vont dessiner ou comprendre la Croix du Frigoriste, il faut mettre les éléments sur le côté
+> et c'est à eux de les positionner, avec l'aide de l'enseignant. Il ne faut pas tout leur donner prémâché.
+> Tu dessines instantanément les bons éléments au bon endroit — il faut les faire dessiner. Des fois tu
+> mâches trop le travail. »
+
+Principe retenu, valable pour toute la 2e année : **le document élève ne contient pas la réponse
+graphique.** Les éléments vont **en réserve, sur le côté, en désordre** ; la zone de travail est vide ;
+le corrigé complet vit dans le document professeur. Crescendo : placer avec aide → redessiner de mémoire.
+
+- [x] **1b.1 — T0, la Croix du Frigoriste** (le cas le plus flagrant, traité le 28/08)
+      - planche `images\croix-frigoriste-planche-de-travail.svg` : réserve de 4 symboles à gauche (en
+        désordre), croix vierge à droite, 4 cadres HP/BP à remplir, sens de circulation à tracer
+      - les emplacements sont repérés par leur **position** (EN HAUT, À GAUCHE…) et **non numérotés** :
+        un numéro d'ordre soufflerait le sens de parcours, qui est justement ce qu'il faut trouver
+      - le schéma complet **sort du document élève** ; découverte refondue en deux questions de réflexion
+        (ce qu'on sait déjà · pourquoi l'arrière d'un réfrigérateur est chaud)
+      - l'exercice 1 devient une **restitution de mémoire, feuille retournée**
+      - corrigé professeur réaligné : nouvelle correction de la feuille de travail avec le schéma complet
+        projetable, placement attendu, convention rappelée, **erreurs de placement à attendre**
+- [ ] **1b.2 — les autres cas** (relevés le 28/08, non traités) :
+
+| Où | Ce qui est donné tout fait | Ce qu'on devrait faire produire |
+|---|---|---|
+| **S11 séances 1-2-3** | `schema-ligne-liquide-equipee.svg`, **6 fois** | La ligne liquide est justement ce que l'élève monte — réserve d'organes + ligne vide |
+| **S12 séance 1** | `schema-ccf-complet-puissance-commande.png`, schéma électrique **complet** | Le TP est de câbler : réserve de symboles + grille vierge (⚠️ schéma de commande **vertical**, phase en haut, neutre en bas, retour neutre orange) |
+| **S11 T1** | croix complète redonnée 2 fois + surchauffe | Réutiliser la planche de travail de T0 |
+| **S12 s.2 · S14 A5-a · S15 A6-a/b** | `schema-fluidique-manifold-pompe-a-vide.png`, 7 fois | Raccordement du manifold à tracer par l'élève |
+| **S15 A6-a** | cotes de dégagement et plaque de montage données | Relevé et report de cotes à faire |
+
+*Mesure d'ensemble : 21 documents élève portent des figures, 60 figures au total. Toutes ne sont pas à
+retirer — une photo de plaque signalétique ou un CERFA réel sont des supports de lecture, pas des
+réponses. Ce qui doit partir, c'est le schéma que l'élève est censé produire.*
+
 ### Étape 2 — Les images
 - [ ] **2.1** Relever document par document **où une image manque et ce qu'elle doit montrer** → `_PLAN-IMAGES.md`
 - [ ] **2.2** Servir d'abord par l'existant (bibliothèque indexée, `bibliotheque-symboles-energie`)
