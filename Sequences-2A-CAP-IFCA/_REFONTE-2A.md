@@ -199,7 +199,27 @@ remplissage — la règle de greffe est écrite en tête de `qr-inerweb.json`.
 Les 13 arbitrages de l'audit du 13/07 restent ouverts. Ils seront remontés **au moment où ils bloquent
 une étape**, pas tous d'un coup.
 
+## Où l'on en est — fin de la journée du 28/08
+
+| Étape | État |
+|---|---|
+| 0 — Assainir | ✅ **33 fichiers périmés écartés** (20 en S10, 13 en S11), péremption prouvée sur le contenu. Les 10 docx de S12 vérifiés **à jour** et conservés |
+| 1 — Gabarit unique | ✅ **72 documents**, 1964 doublons retirés, contrôlés 72/72 |
+| 1 bis — Ne pas mâcher | ✅ T0 et T1 traités · autres cas examinés et laissés (plans de chantier) |
+| 2 — Images | ⬜ **rien de fait** — c'est le prochain pas |
+| 3 — QR inerweb.fr | ✅ **29 greffes**, 16 documents, 32 adresses vérifiées |
+| 4 — PDF + docx natif | ⬜ **en attente du bon à tirer** — règle de l'usine : la sortie triple vient après validation |
+| 5 — Boucler | ⬜ bon à tirer · RAG · rafraîchir la copie servie `26-27\` |
+
+**En attente de Franck** : le **bon à tirer** sur S10 (et sur les autres, au même moule) ; l'arbitrage du
+**logo sur chaque feuille** (étape 1.5) ; le feu vert et le coût pour les images qui manquent (étape 2).
+
 ## Journal
 - **28/08/2026** — Ouverture. État des lieux sur pièce. Doublon atelier/OneDrive levé (copies identiques).
-  Périmètre, marque et ordre tranchés par Franck. Étape 0.1 faite sur S10 : 20 fichiers périmés écartés,
-  péremption prouvée sur le contenu. Aucun document pédagogique modifié à ce stade.
+  Périmètre, marque et ordre tranchés par Franck. Étape 0.1 : 20 fichiers périmés écartés de S10.
+- **28/08/2026 (suite)** — Retour de Franck : « des fois tu mâches trop le travail ». T0 refondu (planche
+  de travail), puis S11-T1 — où **trois erreurs de position** contraires à la convention ont été trouvées
+  dans le corrigé. Charte étendue aux 5 séquences. S11 assainie. Les autres cas de « prémâché » examinés
+  un par un et **laissés tels quels** : en atelier, le schéma est le plan de chantier.
+  Puis « tu envoies la purée » : étape 3 (QR) faite de bout en bout.
+  **Sept jalons commités sur la branche `refonte-2a`. `main` n'a pas bougé.**
