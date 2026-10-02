@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Plan de séance — S0 Séance 2 · Vérifier l'état et constituer les lots</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.6pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .secu, .duo>div, .plan{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Découverte et inventaire de l'atelier — <b>module atelier S0, séance 2</b> (2 h)</td>
+      <td style="width:38%"><span class="lib">Séance 2 · atelier, contrôle qualité</span><b>Vérifier l'état et constituer les lots</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> — avant S1, 1<sup>re</sup> année (à caler sur le calendrier réel)</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Sem. 1 (rentrée 2026), lendemain de la séance 1 — date à confirmer</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — 2 ateliers en parallèle, sans rotation</td>
+      <td><span class="lib">Durée prévue</span>2 h — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>2 encadrants (1 par atelier — Électrique 15 élèves / Façonnage 15 élèves), à confirmer selon ressources réelles</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T6</b> Préparer, vérifier les matériels et outillages</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> <b>S2.1</b> Outils, normes et représentation <span class="nuance">(nouveau en séance 1, réactivé aujourd'hui)</span><br><span class="nuance">Travaillés :</span> <b>S0.2</b> Gestion de l'environnement du site et des déchets <span class="nuance">nouveau</span> · <b>S6.2</b> Principaux risques et moyens de prévention <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du poste, respect du rangement par famille, travail en équipe, <b>manipulation prudente</b> (jamais un test sans contrôle visuel d'abord)</div>
+    <div class="case comp"><h4>Compétence (1 seule, ≤ 4)</h4><span class="statut">Découverte</span> <b>C3.1</b> Organiser le poste de travail <span class="nuance">sur T6 · S0.2</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-2026-S0S2-01</b> : après le tri d'hier, le magasin d'outillage doit maintenant
+  livrer un lot <b>fiable</b> de 15 exemplaires par famille, comme s'il fallait équiper 15 postes de travail réels
+  dès demain. Chaque équipe devient le <b>contrôleur qualité</b> de sa famille : elle teste chaque exemplaire,
+  écarte ce qui est dangereux ou inutilisable, et remonte un <b>bon de commande</b> pour ce qui manque encore —
+  exactement comme le ferait un magasinier avant une intervention.</div>
+
+  <div class="duo">
+    <div><h4>Objectifs — je serai capable de…</h4>
+      <ul>
+        <li><b>vérifier</b> l'état d'un outil selon 3 critères observables (Bon / À réviser / Hors service) ;</li>
+        <li><b>manipuler</b> avec prudence un outil dont je ne connais pas encore l'état ;</li>
+        <li><b>compter</b> les exemplaires « Bon » de ma famille jusqu'à 15 ;</li>
+        <li><b>remplir</b> une fiche de comptage qui signale ce qui manque, comme un bon de commande ;</li>
+        <li><b>expliquer</b> ce que devient un outil hors service (S0.2 — jamais à la poubelle).</li>
+      </ul>
+    </div>
+    <div><h4>Prérequis — je sais déjà…</h4>
+      <ul>
+        <li>nommer et reconnaître les outils de ma famille (acquis hier, séance 1, S2.1) ;</li>
+        <li>les zones et le rangement de l'atelier, mes EPI de base (acquis hier) ;</li>
+        <li>aucune connaissance de réparation n'est requise : <b>je signale, je ne répare pas</b>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="plan"><b class="t">Méthode du module : postes de contrôle</b> — une équipe = une famille fine =
+  un poste où elle teste l'état de <b>chaque exemplaire</b> de sa famille (Bon / À réviser / Hors service, avec
+  pour les pinces électriques la distinction isolée/non isolée, et pour les cintreuses le relevé de la dimension
+  gravée) et compte jusqu'à atteindre 15 exemplaires utilisables, en remontant ce qui manque comme un vrai bon
+  de commande. <b>Atelier Électrique</b> : 9 familles fines (3 pinces + 6 tournevis du coffret isolé). <b>Atelier
+  Façonnage</b> : 5 familles (pince multiprise, coupe-tube, cintreuse cuivre, cintreuse plombier, outils
+  mécaniques — un seul bac, pas de sous-tri). En plus des lots officiels, 3 familles partagées (mètres-rubans,
+  clés à molette, outils mécaniques) sont comptées <b>en indicatif</b> des deux côtés, sans viser 15. Un outil
+  reconnu mais du mauvais atelier part au bac <b>TRANSFERT</b> (pas dans OVNI, réservé aux outils non identifiés)
+  et sera contrôlé par l'atelier concerné. Les deux ateliers (Électrique 15 élèves / Façonnage 15 élèves)
+  tournent <b>en parallèle</b>, chacun sur les familles déjà triées en séance 1. Le professeur ne donne pas les
+  critères d'emblée : il fait d'abord deviner sur 2-3 outils démonstration (observer → nommer → expliciter),
+  puis formalise les 3 critères.</div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : coupure sur une mâchoire ou une lame
+  émoussée/ébréchée, pincement à l'articulation d'une pince ou d'une clé testée en force, <b>risque électrique</b>
+  si un outil isolant (pince, tournevis testeur) est manipulé sans contrôle visuel de son isolant. <b>Gestes
+  interdits</b> : jamais tester un outil <b>électroportatif ou un testeur électrique</b> sans un contrôle visuel
+  complet d'abord (câble, isolant, manche) ; jamais forcer un mécanisme grippé ; jamais utiliser un outil classé
+  « hors service », même « pour essayer ». <b class="t">🚨 En cas d'incident :</b> couper/arrêter, alerter le
+  professeur, déclarer toute coupure même légère.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S0 Séance 2 · module atelier · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 2 h (canon académique compressé), couvre les deux ateliers</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles. Colonne
+  <b>Observations</b> à remplir pendant la séance. Préparation de chantier (phases 1 à 5) : <b>40 min</b>,
+  largement sous le plafond d'1 h. Aucune pause méridienne.</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:13%">Phase</th><th style="width:26%">Contenu et déroulé</th>
+      <th style="width:15%">Professeur</th><th style="width:15%">Élèves</th><th style="width:12%">Docs / matériels</th><th style="width:13%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Module atelier — 2 h 00 (préparation de chantier = 40 min)</td></tr>
+    <tr><td>5 min</td><td class="ph">1. Débuter</td><td>Accueil, appel des 30 élèves scindés en 2 ateliers (15/15) ; rappel de l'organisation (postes de contrôle par famille).</td><td>Fait l'appel dans chaque atelier, rappelle l'organisation.</td><td>S'installent à leur poste de famille (repris de la séance 1).</td><td>Liste d'appel · plan des postes</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S0S2-01 : livrer un lot fiable de 15 exemplaires par famille ; chaque équipe devient contrôleur qualité de sa famille.</td><td>Présente l'ordre d'intervention et l'enjeu du bon de commande.</td><td>Reformulent l'objectif du jour.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 5 « je serai capable de… » affichés ; lien avec la formule (T6 · S0.2 · C3.1, statut Découverte).</td><td>Affiche et commente.</td><td>Repèrent l'objectif de leur poste.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">4. Vérifier les prérequis</td><td>Rituel d'entrée (2<sup>e</sup> fois) : rappel express des zones, de l'arrêt d'urgence, des EPI ; rappel oral des familles reconnues hier.</td><td>Interroge 2-3 élèves par atelier sur les familles vues hier.</td><td>Répondent, retrouvent leur poste de famille.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">5. Donner la démarche</td><td>Sécurité manipulation (contrôle visuel avant tout test, jamais forcer un mécanisme grippé) puis <b>planter la notion</b> : le professeur teste devant la classe 2-3 outils volontairement abîmés et fait deviner Bon / À réviser / Hors service avant de donner les critères.</td><td>Démontre la manipulation prudente, pose la question ouverte sans y répondre.</td><td>Observent, proposent un classement à l'oral.</td><td>2-3 outils démonstration (1 par état)</td><td class="obs"></td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (a) — postes de contrôle, 1<sup>re</sup> moitié</td><td>Chaque équipe teste ses exemplaires selon les 3 critères, les répartit dans 3 bacs, coche sa fiche de comptage. Un outil du mauvais atelier part au bac TRANSFERT (pas testé ici), un outil non identifié va en OVNI. <b>Atelier Électrique</b> : 9 familles fines (pinces coupantes, à dénuder, à bec — avec relevé isolée/non isolée — + 6 tournevis du coffret isolé séparés par taille/type). <b>Atelier Façonnage</b> : 5 familles (pince multiprise, coupe-tube, cintreuse cuivre — dimension gravée relevée avant jugement —, cintreuse plombier à part, outils mécaniques en un seul bac). + 3 familles partagées comptées en indicatif des deux côtés (mètres-rubans, clés à molette, outils mécaniques).</td><td>Passe de poste en poste, valide les classements douteux, rappelle la prudence sur les outils isolants/testeurs.</td><td>Testent, classent, comptent, cochent leur fiche.</td><td>Bacs triés (séance 1) · 3 bacs Bon/À réviser/Hors service par poste · bac TRANSFERT · fiche de comptage</td><td class="obs"></td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="6">Pause.</td></tr>
+    <tr><td>20 min</td><td class="ph">6. Guider l'étude (b) — postes de contrôle, 2<sup>e</sup> moitié</td><td>Suite du contrôle jusqu'à épuisement du bac ; premier calcul du nombre de « Bon » atteint par rapport à 15 (ou comptage indicatif pour les 3 familles partagées).</td><td>Idem, insiste sur l'honnêteté du classement (un outil douteux = à réviser, jamais forcé en Bon).</td><td>Terminent le contrôle, calculent leur écart à 15.</td><td>Idem</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Chaque équipe annonce son nombre de « Bon » et ce qui manque ; le professeur note les écarts (futur bon de commande réel) ; observation orale du savoir-être (rigueur, prudence).</td><td>Anime le tour de table, recueille les manques.</td><td>Annoncent leur résultat, complètent leur fiche de comptage.</td><td>Fiche de comptage complétée</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">9. Ranger — nettoyer</td><td>Rangement des 3 bacs par famille dans les rayons dédiés (Bon en priorité, À réviser à part, Hors service en attente de tri déchets).</td><td>Supervise le rangement et le respect des 3 catégories.</td><td>Rangent chacun leur poste.</td><td>—</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer</td><td>Rappel de la suite (séance 3 : restitution croisée + tri des « hors service » dans la filière déchets) ; retour en tenue de ville.</td><td>Annonce la suite, supervise le vestiaire.</td><td>Se changent, sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:9pt; color:var(--gris); margin:.2em 0 0">Total : préparation de chantier (phases 1→5) =
+  5+5+5+10+15 = <b>40 min</b> ; postes de contrôle (phase 6, pause 10 min incluse) = 20+10+20 = <b>50 min</b> ;
+  synthèse 10 min + rangement 15 min + clôture 5 min = <b>30 min</b>. Total séance : 40+50+30 =
+  <b>2 h 00 exactes</b>. <span style="font-style:italic">Note d'harmonisation : la version corrigée du cadrage
+  ramène la phase 6 de 60 à 50 min (20 min de contrôle + 10 min de pause + 20 min de contrôle) et laisse la
+  phase 9 à 15 min, pour rester cohérente avec la Séance 1 qui corrige la même erreur d'addition du cadrage sur
+  ces mêmes phases.</span></p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.4em 0 0">Croisements disciplinaires : prévention des risques
+  professionnels (manipulation prudente, outils isolants) · gestion de l'environnement et des déchets (filière
+  métaux) · co-intervention français (fiche de comptage rédigée) · vie scolaire (rituel d'atelier).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

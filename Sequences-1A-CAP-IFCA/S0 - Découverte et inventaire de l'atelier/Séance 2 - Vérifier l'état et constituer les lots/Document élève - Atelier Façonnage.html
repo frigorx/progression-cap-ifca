@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Document élève — S0 Séance 2 · Atelier Façonnage</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.5; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10.5pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:9pt; color:var(--leger)}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.8pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:10px 14px; margin:.3em 0 .9em}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:9pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:10px 14px; margin:.3em 0 .9em}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  h3.section{font-size:14pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.2em}
+  .liste-num li{margin-bottom:4px}
+  table.risque-parade{font-size:11pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:9pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:6px}
+  table.critere{font-size:10.5pt}
+  .critere th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:9pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .critere td{border:1px solid var(--filet); padding:6px; vertical-align:top}
+  .critere tr:nth-child(even) td{background:var(--fond-doux)}
+  .bon{color:#2f7d3c; font-weight:bold}
+  .revoir{color:#c14a17; font-weight:bold}
+  .hs{color:#b5241e; font-weight:bold}
+  table.comptage{font-size:11pt}
+  .comptage th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:9pt; text-transform:uppercase; padding:5px 6px}
+  .comptage td{border:1px solid var(--filet); padding:8px 6px; text-align:center; min-height:1.4em}
+  .manip{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:10px 14px; margin:.5em 0 .9em}
+  .manip h4{color:var(--bleu); font-size:11pt; margin:0 0 4px}
+  .tbl-wrap{overflow-x:auto}
+  .critere td.fam img{width:78px; height:auto; display:block; margin:0 0 4px; border-radius:4px; border:1px solid var(--filet)}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .secu, .manip, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 — SITUATION + OBJECTIFS + SÉCURITÉ ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Domaine</span>Découverte de l'atelier — <b>atelier FAÇONNAGE</b></td>
+      <td style="width:38%"><span class="lib">Séance 2 · 2 h</span><b>Vérifier l'état et constituer les lots</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> · rentrée 2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Ma famille</span>________________</td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Ma mission du jour</h4>
+  <b>Ordre d'intervention n° OI-2026-S0S2-01.</b> Hier, vous avez trié les outils par famille. Aujourd'hui, votre
+  équipe devient le <b>contrôleur qualité</b> de sa famille. Vous testez chaque outil, un par un. Vous cherchez
+  <b>15 exemplaires utilisables</b>. Ce qui manque, vous le notez : c'est votre <b>bon de commande</b>.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T6</b> Préparer, vérifier les matériels et outillages</div>
+    <div class="case"><h4>Savoirs</h4><b>S0.2</b> Environnement et déchets <span class="nuance">nouveau</span><br><b>S6.2</b> Risques et prévention <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur, prudence, travail en équipe</div>
+    <div class="case comp"><h4>Compétence</h4><span class="statut">Découverte</span> <b>C3.1</b> Organiser le poste de travail</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>vérifier</b> avec prudence l'état d'un outil selon 3 critères (Bon / À réviser / Hors service) ;</li>
+    <li><b>relever et noter</b> la dimension gravée sur une cintreuse cuivre, <b>avant</b> de juger son état ;</li>
+    <li><b>compter</b> mes outils « Bon » jusqu'à 15, famille par famille, sur ma fiche de comptage ;</li>
+    <li><b>trier</b> à part, dans le bac TRANSFERT, un outil qui n'est pas de mon atelier ;</li>
+    <li><b>expliquer</b> où va un outil hors service (jamais à la poubelle).</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p>Je sais déjà nommer les outils de ma famille (séance 1, hier). Je connais les zones de l'atelier et mes EPI
+  de base. Aujourd'hui, je découvre les 3 critères d'état : c'est nouveau. <b>Je signale, je ne répare pas.</b></p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Le bac de ma famille, trié hier</li>
+    <li>3 bacs vides étiquetés : Bon / À réviser / Hors service</li>
+    <li>Ma fiche de comptage (feuille 2)</li>
+    <li>Ce document + crayon</li>
+  </ol>
+
+  <h3 class="section">Sécurité — risques et parades</h3>
+  <div class="tbl-wrap"><table class="risque-parade">
+    <tr><th style="width:44%">Risque</th><th>Parade</th></tr>
+    <tr><td>Coupure sur la molette d'un coupe-tube</td><td>Je tiens toujours l'outil par le corps, jamais sur le tranchant de la molette.</td></tr>
+    <tr><td>Pincement en testant l'articulation d'une pince ou d'une cintreuse en force</td><td>Je ne force jamais. Si ça bloque : c'est « à réviser », je passe au suivant.</td></tr>
+    <tr><td>Écrasement de doigt en testant le mécanisme d'une cintreuse</td><td>Je garde les doigts hors de la gorge de cintrage pendant le test.</td></tr>
+  </table></div>
+
+  <div class="manip"><h4>⚠ Manipulation prudente</h4>Je ne connais pas encore l'état de cet outil. <b>Avant</b> de
+  le tester ou de m'en servir, je regarde toujours d'abord : la molette ou les mâchoires, l'articulation, le
+  filetage. Un outil <b>électroportatif</b>, s'il s'en trouve un, ne se branche <b>jamais</b> sans ce contrôle
+  visuel préalable (câble, carter).</div>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 2 — CRITÈRES D'ÉTAT + COMPTAGE + TRI DÉCHETS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9.5pt; text-align:right">
+      S0 · Séance 2 · Atelier Façonnage — document élève</div>
+  </div>
+
+  <h3 class="section">Les 3 critères — comment je juge l'état d'un outil</h3>
+  <div class="manip"><h4>Les critères sont affichés à mon poste</h4>
+  Le tableau <b>Bon / À réviser / Hors service</b> de chaque famille est sur l'affiche du poste
+  (atelier Façonnage). Je la lis avant de commencer, et j'y reviens dès que j'hésite.
+  <br><b>Pour une cintreuse</b> : je relève et je note la dimension gravée <b>avant</b> de juger l’état.</div>
+  <p style="font-size:10pt; color:var(--gris)"><b>OVNI</b> : un outil que je ne reconnais pas du tout ne se teste
+  pas — je le pose dans le bac OVNI, pour la restitution de la séance 3. <b>TRANSFERT</b> : un outil que je
+  reconnais mais qui n'est pas du façonnage (ex. une pince à dénuder) ne se teste pas ici non plus — je le pose
+  dans le bac TRANSFERT, l'atelier Électrique le contrôlera.</p>
+
+  <h3 class="section">Réalisation</h3>
+  <ol class="liste-num">
+    <li>Je prends un exemplaire de ma famille dans le bac trié hier.</li>
+    <li>Je regarde l'outil (mâchoires, molette, articulation, filetage) sans forcer.</li>
+    <li>Je compare aux 3 critères et je décide : Bon / À réviser / Hors service.</li>
+    <li>Je pose l'outil dans le bon bac et je coche ma fiche de comptage.</li>
+    <li>Je recommence jusqu'à avoir testé tout le bac de ma famille.</li>
+    <li>Je compte mes « Bon » : si j'atteins 15, ma famille est complète. Sinon, je note combien il en manque.</li>
+  </ol>
+
+  <h3 class="section">Ma fiche de comptage — mon bon de commande</h3>
+  <p style="font-size:10pt; color:var(--gris)">Chaque équipe complète la ligne de sa famille. Les lignes TRANSFERT
+  et OVNI reçoivent les outils qui ne sont pas de mon atelier ou pas identifiés : on ne les teste pas, on ne vise
+  pas 15. <b>Chaque diamètre de cintreuse se compte à part</b> : une cintreuse 1/2" ne remplace pas une 1/4".</p>
+  <div class="tbl-wrap"><table class="comptage">
+    <tr><th>Famille</th><th>Testés</th><th>Bon</th><th>À réviser</th><th>HS</th><th>15 atteint ?</th><th>Manque</th></tr>
+    <tr><td>Pinces multiprise débrayables</td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Coupe-tubes</td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Cintreuse cuivre <b>1/4"</b></td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Cintreuse cuivre <b>3/8"</b></td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Cintreuse cuivre <b>1/2"</b></td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Cintreuse cuivre <b>5/8"</b></td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Cintreuse <b>3 diamètres</b> (1/4 · 5/16 · 1/2)</td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Cintreuse plombier</td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>Outils mécaniques (clé plate, clé à pipe)</td><td></td><td></td><td></td><td></td><td>☐ Oui ☐ Non</td><td></td></tr>
+    <tr><td>TRANSFERT (déposé, non testé)</td><td></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>OVNI (déposé, non testé)</td><td></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+  </table></div>
+
+  <h3 class="section">Familles partagées — comptage indicatif (pas un lot officiel de 15)</h3>
+  <p style="font-size:10pt; color:var(--gris)">Ces familles se comptent aussi côté Électrique. On ne vise pas 15
+  précis, et le contrôle d'état est moins strict : c'est pour que Franck sache combien il en a au total.</p>
+  <div class="tbl-wrap"><table class="comptage">
+    <tr><th>Famille</th><th>Nombre trouvé</th><th>Remarque</th></tr>
+    <tr><td class="fam"><img src="../images/metre-ruban.jpeg" alt="Mètre-ruban">Mètres-rubans</td><td></td><td></td></tr>
+    <tr><td>Clés à molette</td><td></td><td></td></tr>
+  </table></div>
+
+  <h3 class="section">Un outil hors service ne va jamais à la poubelle</h3>
+  <p>Comme les chutes de métal vues hier, un outil hors service part dans le <b>bac de tri des métaux</b>, pour
+  être recyclé. Un outil « à réviser » n'est pas jeté non plus : il attend dans son bac une décision du
+  professeur (réparation ou réforme).</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <p>Ma fiche de comptage complétée (feuille 2 de ce document).</p>
+
+  <p style="font-size:9pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « 01-Outillages et
+  protections.pdf » (DOSSIER MATERIELS &amp; EQUIPEMENTS, désignations et fonctions) ; « Liste outillage élèves —
+  prise en charge caisse.xlsx » (désignations réelles de la dotation). Photos : « 02-Outillage atelier.docx »
+  (pince multiprise) ; « coupe tube C1 TP1.pdf » (coupe-tube) ; « Préparation organisation de mon poste de
+  travail.pptx » (mètre-ruban) ; « CINTREUSE ITE TRIPLE RAYON DE CINTRAGE.pdf » (cintreuse cuivre). Pas de photo
+  fiable trouvée pour la cintreuse plombier ni pour la clé à molette (famille partagée) : croquis simple à
+  l'atelier, à venir.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

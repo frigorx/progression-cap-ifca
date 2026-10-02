@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventaire de l'atelier — S0</title>
+<style>
+  :root{
+    --bleu:#1b3a63;
+    --orange:#c9451a;
+    --fond:#f4f6f9;
+    --carte:#ffffff;
+    --bord:#d8dee6;
+    --texte:#1c1c1c;
+    --bon:#2e7d32;
+    --revoir:#c9781a;
+    --hs:#b3261e;
+    --ovni:#6a4fb3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:Calibri, "Trebuchet MS", Arial, sans-serif;
+    background:var(--fond);
+    color:var(--texte);
+    padding:24px;
+  }
+  header{
+    background:var(--bleu);
+    color:#fff;
+    padding:20px 28px;
+    border-radius:10px;
+    margin-bottom:20px;
+  }
+  header h1{margin:0 0 4px 0; font-size:1.5rem;}
+  header p{margin:0; font-size:0.95rem; opacity:0.9;}
+  .panneau{
+    background:var(--carte);
+    border:1px solid var(--bord);
+    border-radius:10px;
+    padding:20px 24px;
+    margin-bottom:20px;
+  }
+  .panneau h2{
+    margin-top:0;
+    font-size:1.15rem;
+    color:var(--bleu);
+    border-bottom:2px solid var(--orange);
+    padding-bottom:6px;
+  }
+  form{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+    gap:12px;
+    align-items:end;
+  }
+  label{
+    display:block;
+    font-size:0.85rem;
+    font-weight:bold;
+    margin-bottom:4px;
+    color:var(--bleu);
+  }
+  input, select{
+    width:100%;
+    padding:8px;
+    border:1px solid var(--bord);
+    border-radius:6px;
+    font-size:1rem;
+    font-family:inherit;
+  }
+  .champ-large{grid-column:1 / -1;}
+  button{
+    background:var(--orange);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:10px 18px;
+    font-size:1rem;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  button:hover{opacity:0.9;}
+  button.secondaire{background:var(--bleu);}
+  .barre-actions{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;}
+  .filtres{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
+  .filtres select{width:auto; min-width:160px;}
+  table{width:100%; border-collapse:collapse; font-size:0.92rem;}
+  th, td{padding:8px 10px; border-bottom:1px solid var(--bord); text-align:left;}
+  th{background:#eef1f6; color:var(--bleu);}
+  tr:hover{background:#f8f9fb;}
+  .etat{padding:3px 10px; border-radius:12px; color:#fff; font-size:0.8rem; font-weight:bold; display:inline-block;}
+  .etat-bon{background:var(--bon);}
+  .etat-reviser{background:var(--revoir);}
+  .etat-hs{background:var(--hs);}
+  .ovni-tag{background:var(--ovni); color:#fff; padding:2px 8px; border-radius:10px; font-size:0.78rem;}
+  .supprimer{background:none; border:none; color:var(--hs); cursor:pointer; font-size:1.1rem; padding:2px 6px;}
+  .compteurs{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:12px;}
+  .compteur{background:#f8f9fb; border:1px solid var(--bord); border-radius:8px; padding:12px 14px;}
+  .compteur .nom{font-weight:bold; color:var(--bleu); font-size:0.9rem;}
+  .compteur .barre{background:#e2e6ec; border-radius:6px; height:10px; margin:8px 0 4px 0; overflow:hidden;}
+  .compteur .remplissage{background:var(--orange); height:100%;}
+  .compteur .remplissage.complet{background:var(--bon);}
+  .compteur .valeur{font-size:0.85rem; color:#555;}
+  .vide{color:#888; font-style:italic; padding:16px 0;}
+  .msg-import{font-size:0.88rem; align-self:center; color:var(--bon); font-weight:bold;}
+  .msg-import.erreur{color:var(--hs);}
+  footer{text-align:center; font-size:0.8rem; color:#888; margin-top:24px;}
+  @media (max-width:600px){
+    table, thead, tbody, th, td, tr{display:block;}
+    thead{display:none;}
+    tr{border:1px solid var(--bord); border-radius:8px; margin-bottom:10px; padding:8px;}
+    td{border:none; padding:4px 6px;}
+    td::before{content:attr(data-label); font-weight:bold; color:var(--bleu); display:block; font-size:0.75rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Inventaire de l'atelier</h1>
+  <p>Séquence S0 — Découverte et inventaire de l'atelier · 1re année CAP IFCA · LP Jacques Raynaud</p>
+</header>
+
+<section class="panneau">
+  <h2>Ajouter un outil</h2>
+  <form id="formulaire">
+    <div>
+      <label for="nom">Nom de l'outil</label>
+      <input type="text" id="nom" placeholder="ex. Pince coupante diagonale" required>
+    </div>
+    <div>
+      <label for="atelier">Atelier</label>
+      <select id="atelier" required>
+        <option value="">— choisir —</option>
+        <option value="Électrique">Électrique</option>
+        <option value="Façonnage">Façonnage</option>
+      </select>
+    </div>
+    <div>
+      <label for="famille">Famille</label>
+      <input type="text" id="famille" placeholder="ex. Tournevis plat moyen, ou OVNI">
+    </div>
+    <div>
+      <label for="etat">État</label>
+      <select id="etat" required>
+        <option value="Bon">Bon</option>
+        <option value="À réviser">À réviser</option>
+        <option value="Hors service">Hors service</option>
+      </select>
+    </div>
+    <div>
+      <label for="quantite">Quantité</label>
+      <input type="number" id="quantite" min="1" value="1" required>
+    </div>
+    <div>
+      <label for="dimension">Dimension / marquage relevé</label>
+      <input type="text" id="dimension" placeholder="ex. 1/2\", PZ2×125, 3,5×75...">
+    </div>
+    <div>
+      <label for="isole">Isolé ?</label>
+      <select id="isole">
+        <option value="">—</option>
+        <option value="Oui">Oui</option>
+        <option value="Non">Non</option>
+      </select>
+    </div>
+    <div class="champ-large">
+      <label for="remarque">Remarque</label>
+      <input type="text" id="remarque" placeholder="facultatif — ex. mâchoire usée, à commander...">
+    </div>
+    <div>
+      <button type="submit">Ajouter à l'inventaire</button>
+    </div>
+  </form>
+</section>
+
+<section class="panneau">
+  <h2>Progression vers les lots de 15</h2>
+  <div class="compteurs" id="compteurs"></div>
+</section>
+
+<section class="panneau">
+  <h2>Inventaire</h2>
+  <div class="filtres">
+    <select id="filtre-atelier">
+      <option value="">Tous les ateliers</option>
+      <option value="Électrique">Électrique</option>
+      <option value="Façonnage">Façonnage</option>
+    </select>
+    <select id="filtre-etat">
+      <option value="">Tous les états</option>
+      <option value="Bon">Bon</option>
+      <option value="À réviser">À réviser</option>
+      <option value="Hors service">Hors service</option>
+    </select>
+  </div>
+  <div class="barre-actions">
+    <button type="button" class="secondaire" id="btn-csv">Exporter en CSV</button>
+    <button type="button" class="secondaire" id="btn-json">Exporter en JSON</button>
+    <button type="button" class="secondaire" id="btn-import">Importer un JSON</button>
+    <input type="file" id="fichier-import" accept=".json,application/json" style="display:none">
+    <span id="msg-import" class="msg-import"></span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Outil</th><th>Atelier</th><th>Famille</th><th>Dimension</th><th>Isolé</th><th>État</th><th>Qté</th><th>Remarque</th><th></th>
+      </tr>
+    </thead>
+    <tbody id="corps-tableau"></tbody>
+  </table>
+  <p class="vide" id="msg-vide" style="display:none;">Aucun outil enregistré pour l'instant — utilisez le formulaire ci-dessus.</p>
+</section>
+
+<footer>❄ inerWeb Édu — par F. Henninot · outil de travail, données stockées uniquement dans ce navigateur (localStorage)</footer>
+
+<script>
+(function(){
+  const CLE = 'inventaire-atelier-s0';
+  const LOT_CIBLE = 15;
+
+  function charger(){
+    try{
+      const brut = localStorage.getItem(CLE);
+      return brut ? JSON.parse(brut) : [];
+    }catch(e){ return []; }
+  }
+  function sauver(items){
+    try{ localStorage.setItem(CLE, JSON.stringify(items)); }catch(e){}
+  }
+
+  let items = charger();
+
+  const corps = document.getElementById('corps-tableau');
+  const msgVide = document.getElementById('msg-vide');
+  const compteursDiv = document.getElementById('compteurs');
+  const filtreAtelier = document.getElementById('filtre-atelier');
+  const filtreEtat = document.getElementById('filtre-etat');
+
+  function classeEtat(etat){
+    if(etat === 'Bon') return 'etat-bon';
+    if(etat === 'À réviser') return 'etat-reviser';
+    return 'etat-hs';
+  }
+
+  function rendreTableau(){
+    const fa = filtreAtelier.value, fe = filtreEtat.value;
+    const filtres = items.filter(it =>
+      (!fa || it.atelier === fa) && (!fe || it.etat === fe)
+    );
+    corps.innerHTML = '';
+    msgVide.style.display = filtres.length ? 'none' : 'block';
+    filtres.forEach(it => {
+      const tr = document.createElement('tr');
+      const familleAffiche = (it.famille || '').trim().toUpperCase() === 'OVNI'
+        ? '<span class="ovni-tag">OVNI</span>' : (it.famille || '—');
+      tr.innerHTML = `
+        <td data-label="Outil">${escapeHtml(it.nom)}</td>
+        <td data-label="Atelier">${escapeHtml(it.atelier)}</td>
+        <td data-label="Famille">${familleAffiche}</td>
+        <td data-label="Dimension">${escapeHtml(it.dimension || '')}</td>
+        <td data-label="Isolé">${escapeHtml(it.isole || '—')}</td>
+        <td data-label="État"><span class="etat ${classeEtat(it.etat)}">${escapeHtml(it.etat)}</span></td>
+        <td data-label="Qté">${it.quantite}</td>
+        <td data-label="Remarque">${escapeHtml(it.remarque || '')}</td>
+        <td><button class="supprimer" title="Supprimer" data-id="${it.id}">✕</button></td>
+      `;
+      corps.appendChild(tr);
+    });
+    corps.querySelectorAll('.supprimer').forEach(b => {
+      b.addEventListener('click', () => {
+        items = items.filter(it => it.id !== b.dataset.id);
+        sauver(items);
+        rendreTout();
+      });
+    });
+  }
+
+  function rendreCompteurs(){
+    const parFamille = {};
+    items.forEach(it => {
+      if((it.famille || '').trim().toUpperCase() === 'OVNI') return;
+      if(!it.famille) return;
+      const cle = it.atelier + ' — ' + it.famille;
+      const qte = (it.etat === 'Hors service') ? 0 : Number(it.quantite || 0);
+      parFamille[cle] = (parFamille[cle] || 0) + qte;
+    });
+    const cles = Object.keys(parFamille).sort();
+    compteursDiv.innerHTML = '';
+    if(!cles.length){
+      compteursDiv.innerHTML = '<p class="vide">Les familles apparaîtront ici au fur et à mesure de la saisie.</p>';
+      return;
+    }
+    cles.forEach(cle => {
+      const total = parFamille[cle];
+      const pct = Math.min(100, Math.round(total / LOT_CIBLE * 100));
+      const div = document.createElement('div');
+      div.className = 'compteur';
+      div.innerHTML = `
+        <div class="nom">${escapeHtml(cle)}</div>
+        <div class="barre"><div class="remplissage ${total >= LOT_CIBLE ? 'complet' : ''}" style="width:${pct}%"></div></div>
+        <div class="valeur">${total} / ${LOT_CIBLE} utilisables</div>
+      `;
+      compteursDiv.appendChild(div);
+    });
+  }
+
+  function rendreTout(){
+    rendreTableau();
+    rendreCompteurs();
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  document.getElementById('formulaire').addEventListener('submit', function(e){
+    e.preventDefault();
+    const nouvel = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2,7),
+      nom: document.getElementById('nom').value.trim(),
+      atelier: document.getElementById('atelier').value,
+      famille: document.getElementById('famille').value.trim(),
+      dimension: document.getElementById('dimension').value.trim(),
+      isole: document.getElementById('isole').value,
+      etat: document.getElementById('etat').value,
+      quantite: Number(document.getElementById('quantite').value) || 1,
+      remarque: document.getElementById('remarque').value.trim()
+    };
+    if(!nouvel.nom || !nouvel.atelier) return;
+    items.push(nouvel);
+    sauver(items);
+    this.reset();
+    document.getElementById('quantite').value = 1;
+    rendreTout();
+  });
+
+  filtreAtelier.addEventListener('change', rendreTableau);
+  filtreEtat.addEventListener('change', rendreTableau);
+
+  function telecharger(nomFichier, contenu, type){
+    const blob = new Blob([contenu], {type: type});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nomFichier;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById('btn-csv').addEventListener('click', function(){
+    const entetes = ['Nom','Atelier','Famille','Dimension','Isolé','État','Quantité','Remarque'];
+    const lignes = [entetes.join(';')].concat(
+      items.map(it => [it.nom, it.atelier, it.famille, it.dimension, it.isole, it.etat, it.quantite, it.remarque]
+        .map(v => '"' + String(v || '').replace(/"/g,'""') + '"').join(';'))
+    );
+    telecharger('inventaire-atelier.csv', '﻿' + lignes.join('\r\n'), 'text/csv;charset=utf-8');
+  });
+
+  document.getElementById('btn-json').addEventListener('click', function(){
+    telecharger('inventaire-atelier.json', JSON.stringify(items, null, 2), 'application/json;charset=utf-8');
+  });
+
+  // Import : AJOUTE au stock existant, ne remplace jamais (aucune perte possible).
+  const champFichier = document.getElementById('fichier-import');
+  const msgImport = document.getElementById('msg-import');
+
+  function afficherMsgImport(texte, erreur){
+    msgImport.textContent = texte;
+    msgImport.className = erreur ? 'msg-import erreur' : 'msg-import';
+    setTimeout(() => { msgImport.textContent = ''; }, 6000);
+  }
+
+  document.getElementById('btn-import').addEventListener('click', () => champFichier.click());
+
+  champFichier.addEventListener('change', function(){
+    const fichier = this.files && this.files[0];
+    if(!fichier) return;
+    const lecteur = new FileReader();
+    lecteur.onload = function(){
+      let importes;
+      try{
+        importes = JSON.parse(lecteur.result);
+      }catch(e){
+        afficherMsgImport('Fichier illisible : ce n’est pas un JSON valide.', true);
+        return;
+      }
+      if(!Array.isArray(importes)){
+        afficherMsgImport('Fichier inattendu : il devrait contenir une liste d’outils.', true);
+        return;
+      }
+      const idsConnus = new Set(items.map(it => it.id));
+      let ajoutes = 0, ignores = 0;
+      importes.forEach(it => {
+        if(!it || typeof it !== 'object' || !it.nom){ ignores++; return; }
+        const id = it.id && !idsConnus.has(it.id)
+          ? it.id
+          : Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+        if(it.id && idsConnus.has(it.id)){ ignores++; return; }
+        idsConnus.add(id);
+        items.push({
+          id: id,
+          nom: String(it.nom),
+          atelier: String(it.atelier || ''),
+          famille: String(it.famille || ''),
+          dimension: String(it.dimension || ''),
+          isole: String(it.isole || ''),
+          etat: ['Bon','À réviser','Hors service'].indexOf(it.etat) >= 0 ? it.etat : 'Bon',
+          quantite: Number(it.quantite) > 0 ? Number(it.quantite) : 1,
+          remarque: String(it.remarque || '')
+        });
+        ajoutes++;
+      });
+      sauver(items);
+      rendreTout();
+      afficherMsgImport(ajoutes + ' outil(s) ajouté(s)' + (ignores ? ', ' + ignores + ' ignoré(s) (déjà présents ou incomplets)' : '') + '.', false);
+    };
+    lecteur.onerror = function(){ afficherMsgImport('Lecture du fichier impossible.', true); };
+    lecteur.readAsText(fichier, 'utf-8');
+    this.value = '';
+  });
+
+  rendreTout();
+})();
+</script>
+
+</body>
+</html>

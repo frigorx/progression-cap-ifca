@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Plan de séance — S0-Séance 1 · Identifier et trier l'outillage</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.6pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .der .obs{background:repeating-linear-gradient(#fff, #fff 14px, #eef1f5 15px)!important}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  .plan{border:1.5px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .plan b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .atelier-elec td{background:#eef4ff!important}
+  .atelier-facon td{background:#fff3ec!important}
+  .tag-elec{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 6px; background:#dbe7ff; color:#1b3a63; border:1px solid #b7cdf5}
+  .tag-facon{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 6px; background:#ffe2d1; color:#c14a17; border:1px solid #f0b989}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .plan, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Découverte et inventaire de l'atelier — <b>module atelier S0-Séance 1</b> (2 h)</td>
+      <td style="width:38%"><span class="lib">Séance 1 · 2 ateliers parallèles (Électrique 15 / Façonnage 15)</span><b>Identifier et trier l'outillage</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> avant/en tête de S1 · 1<sup>re</sup> année</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Semaine / Date</span>Semaine de rentrée 2026-2027, date à confirmer</td>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone Électrique + zone Façonnage</td>
+      <td><span class="lib">Durée prévue</span>2 h — <span class="lib" style="display:inline">durée effective :</span> ________</td>
+      <td><span class="lib">Encadrement</span>2 encadrants, 1 par atelier <span class="nuance">(dotation réelle à confirmer par Franck)</span></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T5</b> Prendre connaissance et organiser les informations<br><b>T6</b> Préparer, vérifier les matériels et outillages</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> aucun prérequis métier — semaine de rentrée<br><span class="nuance">Travaillé :</span> <b>S2.1</b> Outils, normes et représentation <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du poste, respect des rayons affectés, travail en équipe, manipulation prudente (jamais un outil testé sans contrôle)</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut">Découverte</span> <b>C2.2</b> Contrôler les éléments nécessaires à la réalisation <span class="nuance">sur T6 · S2.1</span></div>
+  </div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-2026-S0-01</b> : reprise en main du magasin d'outillage avant le premier chantier de
+  l'année. L'atelier n'a jamais été inventorié : chaque équipe reçoit un <b>bac mélangé</b> de sa famille d'outils,
+  ainsi que des <b>objets non identifiés (OVNI)</b> communs aux deux ateliers, et doit les <b>identifier puis
+  trier</b> avant que la classe ne puisse constituer, dans les séances suivantes, les caisses individuelles
+  réellement distribuées à chaque élève.</div>
+
+  <div class="plan"><b class="t">Méthode du module : visite-découverte guidée de l'atelier (zones, rayons, arrêt
+  d'urgence, trousse), puis ateliers tournants par famille d'outils</b> — <b>2 ateliers en parallèle, sans
+  rotation</b> : Atelier Électrique (9 familles + OVNI + bac TRANSFERT) et Atelier Façonnage (5 familles + OVNI +
+  bac TRANSFERT), chacun encadré. Tri <b>fin</b>, comme un vrai inventaire de stock : par taille/type quand le stock
+  le justifie (les 6 tournevis, les cintreuses), avec lecture de la dimension gravée sur l'outil plutôt qu'une
+  reconnaissance de forme. Aucun geste technique nouveau n'est enseigné : c'est une activité de <b>tri et de
+  contrôle visuel</b>, la trame du module atelier 4 h (Manuel §2 bis) est donc <b>resserrée sur 2 h</b> en gardant
+  les 10 phases. La sécurité ne se découvre pas : les consignes de manipulation (dont pourquoi une pince est
+  isolée) sont démontrées avant le tri.</div>
+
+  <div class="secu"><b class="t">⚠ Sécurité</b> — <b>Risques du jour</b> : <b>coupure</b> légère au contact des
+  faces tranchantes des pinces coupantes et des coupe-tubes, <b>risque électrique</b> expliqué de façon simple
+  (pourquoi une pince est isolée), aucune manipulation sous tension aujourd'hui. <b>EPI</b> : chaussures de sécurité
+  (obligatoires). <b>Gestes interdits</b> : jamais tester un outil électroportatif sans autorisation du professeur,
+  jamais utiliser un outil qui semble abîmé avant de l'avoir signalé. <b>En cas d'incident :</b> couper (arrêt
+  d'urgence de l'atelier, localisé en phase 4), alerter le professeur, ne pas déplacer un blessé.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 : LE DÉROULEMENT EN 10 PHASES ============ -->
+<div class="feuille" style="min-height:auto">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      Fiche de déroulement — S0-Séance 1 · module atelier · CAP IFCA 1A</div>
+  </div>
+
+  <h3 style="font-size:13pt">Déroulement — module atelier 2 h (canon académique compressé), 2 ateliers en parallèle</h3>
+  <p style="font-size:9.5pt; color:var(--gris); margin:.1em 0 .5em">Détailler les activités réelles (jamais « écoutent, participent »).
+  La colonne <b>Observations</b> se remplit PENDANT la séance et nourrit la synthèse. Préparation de chantier
+  (phases 1 à 5) : <b>40 min</b>, largement sous le plafond d'1 h. Les phases communes (1-5, 7-8, 9, 10) sont
+  vécues en même temps par les deux ateliers ; la phase 6 se déroule en parallèle avec un contenu propre à chaque
+  atelier (repéré par la pastille <span class="tag-elec">ÉLEC</span> / <span class="tag-facon">FAÇON</span>).</p>
+
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr>
+      <th style="width:6%">Durée</th><th style="width:14%">Phase</th><th style="width:24%">Contenu et déroulé</th>
+      <th style="width:14%">Professeur</th><th style="width:14%">Élèves</th><th style="width:14%">Docs / matériels</th><th style="width:14%">Observations</th>
+    </tr>
+    <tr class="demi"><td colspan="7">Séance 1 — 2 h 00 (préparation de chantier = 40 min)</td></tr>
+    <tr><td>5 min</td><td class="ph">1. Débuter la séance</td><td>Accueil commun, appel, répartition en 2 groupes de 15 (Électrique / Façonnage) et présentation de l'organisation en ateliers parallèles.</td><td>Fait l'appel, répartit les groupes, présente l'organisation.</td><td>S'installent, repèrent leur atelier du jour.</td><td>Liste d'appel · plan de répartition des groupes</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S0-01 : reprise en main du magasin d'outillage avant le premier chantier de l'année.</td><td>Présente l'ordre d'intervention et son enjeu.</td><td>Reformulent pourquoi il faut trier avant de pouvoir travailler.</td><td>Ordre d'intervention imprimé</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les « je serai capable de… » affichés et commentés ; lien avec la formule (C2.2) et le statut du jour (Découverte, non remontée).</td><td>Affiche et commente rapidement.</td><td>Repèrent l'objectif qui les concerne le plus aujourd'hui.</td><td>Affiche objectifs</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">4. Vérifier les prérequis</td><td>Aucun prérequis métier : <b>rituel d'entrée</b> — localisation rapide des zones, des rayons de rangement et de l'arrêt d'urgence + trousse de secours de l'atelier.</td><td>Localise ARU, trousse, rayons vides à réorganiser.</td><td>Repèrent zones et rayons.</td><td>Plan de l'atelier affiché · arrêt d'urgence et trousse de secours</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">5. Donner la démarche</td><td><b>Sécurité de manipulation</b> démontrée sur 2-3 outils (comment tenir une pince coupante, pourquoi une pince est isolée), puis <b>planter la notion</b> : question ouverte « à votre avis, comment reconnaît-on à quelle famille appartient un outil ? » — aucune réponse donnée, transition vers le tri.</td><td>Démontre la manipulation sûre, pose la question ouverte sans y répondre.</td><td>Observent, formulent une première hypothèse à l'oral.</td><td>2-3 outils de démonstration</td><td class="obs"></td></tr>
+    <tr class="atelier-elec"><td>50 min</td><td class="ph">6. Guider l'étude — <span class="tag-elec">ÉLEC</span></td><td>Tri fin par famille (3 pinces avec relevé « isolée ? », 6 tournevis triés par taille/type via la dimension lue sur chaque exemplaire) + OVNI et bac TRANSFERT, à l'aide de la fiche d'identification ; comptage et rangement par famille. <span class="nuance">Pause courte de 10 min incluse, aux deux ateliers en même temps.</span></td><td>Encadre l'atelier Électrique, valide les fiches, relance les hypothèses sans donner la réponse trop vite.</td><td>Identifient, comptent, lisent les marquages, rangent par famille, remplissent leur fiche.</td><td>Bac mélangé · fiches d'identification · bacs de tri étiquetés</td><td class="obs"></td></tr>
+    <tr class="atelier-facon"><td>50 min</td><td class="ph">6. Guider l'étude — <span class="tag-facon">FAÇON</span></td><td>Tri fin par famille (pince multiprise, coupe-tube, cintreuse cuivre avec diamètre relevé sur chaque exemplaire, cintreuse plombier, outils mécaniques en bac unique) + OVNI et bac TRANSFERT ; comptage indicatif en parallèle des familles partagées (mètres-rubans, clés à molette). <span class="nuance">Pause courte de 10 min incluse, aux deux ateliers en même temps.</span></td><td>Encadre l'atelier Façonnage, mêmes consignes.</td><td>Identifient, comptent, lisent les marquages, rangent par famille, remplissent leur fiche.</td><td>Bac mélangé · fiches d'identification · bacs de tri étiquetés</td><td class="obs"></td></tr>
+    <tr><td>10 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Mise en commun rapide au sein de chaque atelier (le croisement entre ateliers pour les OVNI est réservé à la séance 3) ; remplissage de la fiche d'inventaire (nombre d'outils trouvés par famille, nombre d'OVNI mis de côté).</td><td>Recueille les fiches d'inventaire, observe sans encore évaluer (statut Découverte).</td><td>Complètent leur fiche, comparent avec les autres équipes de leur atelier.</td><td>Fiche d'inventaire</td><td class="obs"></td></tr>
+    <tr><td>15 min</td><td class="ph">9. Ranger — nettoyer</td><td>Remise en rayon des familles triées (rayons provisoirement étiquetés), restitution des bacs, vérification visuelle du poste par le professeur.</td><td>Supervise le rangement et la remise en rayon.</td><td>Rangent, restituent le matériel.</td><td>Étiquettes de rayon provisoires</td><td class="obs"></td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Annonce de la séance suivante (contrôle de l'état des outils et constitution des lots de 15).</td><td>Annonce la suite.</td><td>Sortent.</td><td>—</td><td class="obs"></td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:8.5pt; color:var(--gris); margin:.2em 0 0"><b>Total vérifié ligne à ligne</b> : 5+5+5+10+15
+  (préparation de chantier) = <b>40 min</b> ; 50 min (phase 6, pause incluse) ; 10 min (synthèse) ; 15 min
+  (rangement) ; 5 min (clôture). 40 + 50 + 10 + 15 + 5 = <b>120 min exacts</b>.
+  <span class="nuance">Note d'harmonisation : le cadrage de séquence indiquait 60 min pour la phase 6 (pause 10 min
+  incluse) et 15 min pour la phase 9, ce qui totalisait 130 min et non 120 ; la phase 6 a été resserrée à 50 min
+  (40 min de tri net + 10 min de pause) pour respecter le total de 2 h annoncé, conformément à la règle « totaux
+  horaires exacts, addition vérifiée ligne à ligne » de la charte.</span></p>
+
+  <p style="font-size:8pt; color:var(--gris); margin:.4em 0 0">Croisements disciplinaires : prévention des risques
+  professionnels (manipulation d'outils tranchants, risque électrique) · technologie (familles d'outils cuivre/acier/
+  électrique) · vie scolaire (rangement, respect du matériel collectif).</p>
+
+  <div class="duo" style="grid-template-columns:1fr 1fr">
+    <div><h4>Synthèse de la séance (à chaud)</h4><div style="height:52px"></div></div>
+    <div><h4>Modifications à porter (pour la prochaine fois)</h4><div style="height:52px"></div></div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

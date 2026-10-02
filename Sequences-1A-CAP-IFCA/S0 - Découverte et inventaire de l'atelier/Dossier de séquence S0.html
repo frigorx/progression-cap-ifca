@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Dossier de séquence — Séquence S0 · CAP IFCA 1A</title>
+<style>
+  :root{
+    --bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c;
+    --leger:#9aa5b1; --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc;
+    --ufa:#0e7a5f;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre);
+    font-family:Calibri,'Segoe UI',sans-serif; font-size:14pt; line-height:1.5;
+    margin:0; padding:28px 12px; text-align:left;}
+  h1,h2,h3,h4{font-family:'Trebuchet MS','Segoe UI',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; text-wrap:balance; margin:0 0 .4em}
+  p{margin:.3em 0 .8em}
+  .feuille{background:#fff; max-width:794px; min-height:1050px; margin:0 auto 30px;
+    padding:34px 46px 20px; box-shadow:0 2px 14px rgba(27,58,99,.13); position:relative;
+    display:flex; flex-direction:column;}
+  /* ---------- INVARIANT : bandeau d'en-tête ---------- */
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:10px; margin-bottom:6px;}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#1e2c5e; letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13.5pt; color:#7b5cf5; letter-spacing:.03em}
+  .logo-eq{display:block}
+  .sous-entete{display:flex; justify-content:space-between; font-size:10pt; color:var(--gris); margin-bottom:22px;}
+  /* ---------- INVARIANT : pied de page ---------- */
+  .pied{margin-top:auto; padding-top:14px; border-top:1px solid var(--filet);
+    font-size:8pt; color:var(--leger); display:flex; justify-content:space-between; gap:10px;}
+  /* ---------- Page de garde ---------- */
+  .garde-centre{flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; gap:6px}
+  .garde-seq{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--orange); font-size:15pt; letter-spacing:.25em; text-transform:uppercase}
+  .garde-titre{font-size:27pt; margin:.15em 0}
+  .garde-soustitre{font-size:14pt; color:var(--gris); font-style:italic; margin-bottom:14px}
+  .garde-meta{display:inline-block; margin:18px auto 6px; border:1px solid var(--filet); border-radius:6px; padding:14px 30px; font-size:12.5pt; text-align:left; background:var(--fond-doux)}
+  .garde-meta b{color:var(--bleu)}
+  .comp-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px}
+  .chip{border:1.5px solid var(--bleu); color:var(--bleu); border-radius:20px; padding:3px 14px; font-size:11pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; background:#fff}
+  .chip small{font-weight:normal; color:var(--gris)}
+  /* ---------- Corps commun ---------- */
+  .titre-page{font-size:19pt; border-left:6px solid var(--orange); padding-left:14px; margin-bottom:4px}
+  .surtitre{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:10pt; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:2px}
+  h3{font-size:13.5pt; margin-top:1.1em; display:flex; align-items:baseline; gap:8px}
+  table{border-collapse:collapse; width:100%; font-size:11pt; margin:.4em 0 1em}
+  th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:9.5pt; letter-spacing:.04em; text-transform:uppercase; padding:6px 9px; text-align:left}
+  td{border:1px solid var(--filet); padding:6px 9px; vertical-align:top}
+  tr:nth-child(even) td{background:var(--fond-doux)}
+  ul,ol{margin:.2em 0 .9em 1.35em; padding:0}
+  li{margin-bottom:.25em}
+  .encadre-secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:12px 18px; margin:.6em 0 1em}
+  .encadre-secu h3{color:#c14a17; margin-top:0}
+  .encadre-secu td{background:transparent!important; border-color:#f3c9b3}
+  .cartouche-methode{background:var(--fond-doux); border:1px solid var(--filet); border-left:6px solid var(--bleu);
+    border-radius:0 6px 6px 0; padding:10px 16px; margin:.4em 0 1em; font-size:11.5pt}
+  .cartouche-methode b{font-family:'Trebuchet MS',sans-serif; color:var(--bleu)}
+  .etiquette{font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; letter-spacing:.08em;
+    text-transform:uppercase; border-radius:3px; padding:1px 7px; vertical-align:2px}
+  .et-inv{background:#e3e9f2; color:var(--bleu)}
+  .et-var{background:#ffe4d6; color:#b4501e}
+  .tbl-wrap{overflow-x:auto}
+  @media print{
+    body{background:#fff; padding:0}
+    .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always}
+  }
+  .tab-der{font-size:10pt}
+  .tab-der td{padding:5px 8px}
+  .regle4{font-size:9.5pt; color:var(--gris); font-style:italic}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:8px; padding:0 7px; vertical-align:1px; white-space:nowrap}
+  .stD{background:#e6f4ee; color:#0e7a5f; border:1px solid #9fd6c2}
+  .stC{background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .stE{background:#fff6cc; color:#8a6d00; border:1px solid #e8d98a}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .credits-bloc{max-width:100%; border:1px solid var(--filet); border-radius:8px; background:var(--fond-doux); padding:22px 28px; font-size:11.5pt; text-align:left; line-height:1.6}
+  .credits-bloc b{color:var(--bleu)}
+  .sources{font-size:9.5pt; color:var(--gris); text-align:left; margin-top:14px}
+  /* ---------- Formule de Bowers : bandeau 4 cases ---------- */
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.5em 0 1em; font-size:10pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:8px 12px; background:#fff}
+  .formule .case h4{margin:0 0 4px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  @media (max-width:700px){.formule{grid-template-columns:1fr 1fr}}
+  /* ---------- Cartes séance (plan de séquence) ---------- */
+  .grille-cartes{display:grid; grid-template-columns:1fr; gap:14px; margin:.4em 0 1em}
+  .carte-module{border:1px solid var(--filet); border-left:5px solid var(--bleu); border-radius:6px; padding:10px 14px; background:#fff}
+  .carte-module h4{margin:0 0 2px; font-size:13pt; color:var(--bleu); display:flex; align-items:baseline; gap:6px; flex-wrap:wrap}
+  .carte-module .meta-ligne{font-size:8.5pt; color:var(--gris); margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em; font-family:'Trebuchet MS',sans-serif}
+  .carte-module p{font-size:10.5pt; margin:.2em 0 .4em}
+  .carte-module .nuance{display:block; margin-bottom:.3em}
+  .badge-type{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold; border-radius:3px; padding:0 6px; background:#e3e9f2; color:var(--bleu)}
+  .eval-row td{background:#fff6cc!important}
+  .incident{font-size:10pt; background:#fdeaea; border:1px solid #e8b4b4; border-radius:4px; padding:6px 12px; margin:.4em 0 1em; color:#8c2f2f}
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .formule, .encadre-secu, .cartouche-methode, .carte-module, .grille-cartes>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============================ FEUILLE 1 : PAGE DE GARDE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>CAP Installateur en Froid et Conditionnement d'Air — 1<sup>re</sup> année</span>
+    <span>Année scolaire 2026-2027 · Semaine de rentrée</span>
+  </div>
+
+  <div class="garde-centre">
+    <div class="garde-seq">Séquence S0</div>
+    <h1 class="garde-titre">Découverte et inventaire<br>de l'atelier</h1>
+    <div class="garde-soustitre">Reprendre en main le magasin d'outillage avant le premier chantier de l'année</div>
+
+    <div class="comp-chips">
+      <span class="chip">C2.2 <small>Contrôler les éléments nécessaires à la réalisation</small></span>
+      <span class="chip">C3.1 <small>Organiser le poste de travail</small></span>
+      <span class="chip">C1.1 <small>Compléter, transmettre</small></span>
+    </div>
+    <p style="font-size:9.5pt; color:var(--gris); margin-top:6px"><span class="statut stD">Découverte</span> en séances 1 et 2 · <span class="statut stE">Évaluation</span> en séance 3 (premier positionnement, poids réduit) — charte §2.</p>
+
+    <div class="garde-meta">
+      <b>Séquence d'OUVERTURE de l'année</b>, avant la séquence S1 — les élèves arrivent, aucun prérequis
+      métier n'est exigé, tout est Découverte.<br>
+      <b>3 séances</b> : 120 min · 120 min · 90 min, en <b>2 ateliers parallèles</b> (Électrique / Façonnage,
+      15 élèves chacun) — pas de rotation, les deux ateliers tournent en même temps.<br>
+      <b>Activité authentique, pas une simulation</b> : la classe remonte le premier inventaire réel de
+      l'atelier et constitue les caisses individuelles des 30 élèves.<br>
+      <span style="font-size:10.5pt; color:var(--gris)">Cadre : référentiel <b>CAP IFCA</b> (activités, tâches, savoirs, compétences) —
+      c'est une séquence de <b>DÉCOUVERTE</b> : contribution certificative réduite à EP1 (communication,
+      préparation) et EP2 (organisation et contrôle du poste). Le positionnement de séance 3 est le premier
+      de l'année sur École Directe, à poids réduit — une entrée en matière, pas un contrôle sommatif classique.<br>
+      Statut du dossier : <b>séquence pilote 1A — en attente du bon à tirer de Franck.</b></span>
+    </div>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot</span>
+    <span>créé le 02/09/2026 · ©</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 2 : ORGANISATION + FORMULE DE BOWERS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S0 — organisation et formule</span>
+    <span>CAP IFCA 1A · semaine de rentrée</span>
+  </div>
+
+  <div class="surtitre">Organisation <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Deux ateliers parallèles, pas de rotation</h2>
+  <p>La classe de <b>30 élèves</b> se scinde en <b>2 ateliers de 15</b>, encadrés chacun, qui tournent
+  <b>en même temps</b> sur les trois séances : l'<b>Atelier Électrique</b> et l'<b>Atelier Façonnage</b>.
+  Contrairement à d'autres séquences de l'année, il n'y a <b>pas de rotation entre groupes</b> : chaque
+  élève reste dans son atelier pour toute la séquence. Chaque atelier se subdivise en équipes, une équipe
+  par famille d'outils.</p>
+
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:16%">Séance</th><th>Atelier Électrique (15 élèves)</th><th>Atelier Façonnage (15 élèves)</th></tr>
+    <tr><td><b>1</b> · 120 min</td><td>Visite-découverte + identification + tri par famille</td><td>Visite-découverte + identification + tri par famille</td></tr>
+    <tr><td><b>2</b> · 120 min</td><td>Contrôle de l'état + constitution des lots de 15 + fiche OVNI</td><td>Contrôle de l'état + constitution des lots de 15 + fiche OVNI</td></tr>
+    <tr><td><b>3</b> · 90 min</td><td colspan="2">Les deux ateliers se réunissent en classe entière — restitution croisée, rangement définitif, évaluation</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em">Le lot de 15 exemplaires par famille que
+  les élèves constituent en fin de séquence <b>est la dotation réelle</b> qui sera distribuée dans les
+  caisses individuelles — l'activité n'est pas une simulation (source : cadrage S0).</p>
+
+  <h3>La formule de Bowers, adaptée à S0 <span class="etiquette et-inv">Invariant</span></h3>
+  <p style="font-size:11pt">Une compétence ne s'évalue jamais « en l'air » : elle s'exerce <b>au travers d'une
+  tâche</b> professionnelle, <b>en mobilisant un savoir</b>, <b>dans une posture</b> (le savoir-être).
+  <span class="regle4">Formule adaptée par F. Henninot — charte pédagogique §2. Jamais plus de 4 compétences
+  évaluées dans une séance : ici exactement 3, plus la ligne savoir-être qui ne compte pas dans les 4.</span></p>
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T6</b> Préparer, vérifier les matériels et outillages (niv. 2) — appuyée par
+    <b>T5</b> Prendre connaissance et organiser les informations (S1) et <b>T1</b> Renseigner et transmettre des
+    documents de suivi d'intervention (S3).</div>
+    <div class="case"><h4>Savoir</h4>Tous <b>nouveaux</b>, aucun prérequis métier : <b>S2.1</b> Outils, normes et
+    représentation (S1) · <b>S0.2</b> Gestion de l'environnement du site et des déchets et <b>S6.2</b> Principaux
+    risques et moyens de prévention (S2) · <b>S3.1</b> Communication technique (S3).</div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du poste, respect du rangement et des rayons/zones affectées,
+    travail en équipe, manipulation prudente, ponctualité.</div>
+    <div class="case comp"><h4>= Compétence</h4><b>C2.2</b> <span class="statut stD">Découverte</span> (S1)
+    <b>C3.1</b> <span class="statut stD">Découverte</span> (S2) — puis en S3 : <b>C1.1</b>
+    <span class="statut stE">Évaluation</span>, C2.2 et C3.1 <span class="statut stC">Confortement</span>.</div>
+  </div>
+  <p style="font-size:9.5pt; color:var(--gris); margin:-.4em 0 1em">⚠ L'ancrage tâche↔compétence ci-dessus est
+  une <b>dérivation pédagogique</b> du chef d'orchestre : le référentiel CAP IFCA ne tabule pas ce lien fin
+  (RAP et RC se relient au niveau activité↔capacité — Préparation du chantier ↔ C2). Elle n'est présentée
+  ici que comme telle, jamais comme une matrice officielle (source : cadrage S0).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot</span>
+    <span>créé le 02/09/2026 · ©</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 3 : PLAN DE SÉQUENCE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S0 — plan de séquence</span>
+    <span>CAP IFCA 1A · semaine de rentrée</span>
+  </div>
+
+  <div class="surtitre">Plan de séquence <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Trois séances, une méthode différente à chaque fois</h2>
+  <p>Enveloppe volontairement <b>allégée</b> : le manuel de conception prévoit 4 h comme <b>plafond</b> pour un
+  module atelier, pas un plancher. Ici, <b>aucun geste technique nouveau</b> n'est enseigné — l'activité est un
+  tri et un contrôle — la trame est compressée en conséquence tout en gardant les 10 phases du canon académique.
+  <span class="regle4">Durées exactes, vérifiées : 120 + 120 + 90 = 330 min (5 h 30) sur la séquence.</span></p>
+
+  <div class="grille-cartes">
+    <div class="carte-module">
+      <h4>Séance 1 <span class="badge-type">Atelier ×2</span> <span class="statut stD">Découverte</span></h4>
+      <div class="meta-ligne">120 min · Électrique // Façonnage, en parallèle</div>
+      <p><b>Identifier et trier l'outillage.</b> Visite-découverte de l'atelier (zones, rayons, arrêt
+      d'urgence, trousse) puis identification et tri par famille d'outils.</p>
+      <span class="nuance">Tâches T5 · T6 — Savoir travaillé S2.1 <i>Outils, normes et représentation</i>
+      (nouveau).</span>
+      <div><b>C2.2</b> <span class="statut stD">Découverte</span> Contrôler les éléments nécessaires à la
+      réalisation</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> <span class="etiquette et-var">Variable</span> —
+      <b>visite-découverte guidée</b> de l'atelier, puis <b>ateliers tournants par famille d'outils</b> :
+      chaque équipe reçoit un bac mélangé de sa famille + un lot d'objets OVNI communs aux deux ateliers.</div>
+    </div>
+
+    <div class="carte-module">
+      <h4>Séance 2 <span class="badge-type">Atelier ×2</span> <span class="statut stD">Découverte</span></h4>
+      <div class="meta-ligne">120 min · Électrique // Façonnage, en parallèle</div>
+      <p><b>Vérifier l'état et constituer les lots.</b> Contrôle de l'état de chaque exemplaire, constitution
+      des lots de 15 par famille, fiche OVNI tenue à jour.</p>
+      <span class="nuance">Tâche T6 — Savoirs travaillés S0.2 <i>Gestion de l'environnement du site et des
+      déchets</i> et S6.2 <i>Principaux risques et moyens de prévention</i> (nouveaux).</span>
+      <div><b>C3.1</b> <span class="statut stD">Découverte</span> Organiser le poste de travail</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> <span class="etiquette et-var">Variable</span> —
+      <b>postes de contrôle</b> : une équipe = une famille = un poste où elle teste l'état de chaque
+      exemplaire (bon / à réviser / hors service) et compte jusqu'à 15.</div>
+    </div>
+
+    <div class="carte-module">
+      <h4>Séance 3 <span class="badge-type">Restitution + évaluation</span> <span class="statut stE">Évaluation</span></h4>
+      <div class="meta-ligne">90 min · les deux ateliers se réunissent en classe entière</div>
+      <p><b>Restituer, ranger et évaluer.</b> Restitution croisée des OVNI entre équipes, rangement définitif
+      des lots dans les rayons, évaluation.</p>
+      <span class="nuance">Tâches T1 · T6 — Savoir travaillé S3.1 <i>Communication technique</i> (nouveau).</span>
+      <div><b>C1.1</b> <span class="statut stE">Évaluation</span> Compléter, transmettre<br>
+      <b>C2.2</b> et <b>C3.1</b> <span class="statut stC">Confortement</span> (renforcées, pas réévaluées)</div>
+      <div class="cartouche-methode"><b>Méthode imposée</b> <span class="etiquette et-var">Variable</span> —
+      <b>restitution croisée entre équipes</b> : chaque équipe devient « client » de l'autre pour les OVNI —
+      elle doit deviner et justifier avant qu'on lui dise — puis auto-positionnement individuel.</div>
+    </div>
+  </div>
+
+  <h3>Montée du statut sur la séquence</h3>
+  <p style="font-size:10pt; color:var(--gris); margin:.1em 0 .4em">S0 étant la toute première séquence de
+  l'année, il n'existe <b>aucun niveau d'entrée</b> à afficher (pas de positionnement I/C/M/V annuel avant
+  cette date). Le tableau ci-dessous ne montre que ce que le cadrage nomme explicitement séance par séance —
+  une compétence non citée pour une séance n'y est pas notée officiellement, même si elle peut être
+  mobilisée en silence dans l'activité.</p>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:16%">Compétence</th><th>Séance 1</th><th>Séance 2</th><th>Séance 3</th></tr>
+    <tr><td><b>C2.2</b> Contrôler les éléments</td><td><span class="statut stD">Découverte</span></td><td>—</td><td><span class="statut stC">Confortement</span></td></tr>
+    <tr><td><b>C3.1</b> Organiser le poste</td><td>—</td><td><span class="statut stD">Découverte</span></td><td><span class="statut stC">Confortement</span></td></tr>
+    <tr><td><b>C1.1</b> Compléter, transmettre</td><td>—</td><td>—</td><td><span class="statut stE">Évaluation</span></td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot</span>
+    <span>créé le 02/09/2026 · ©</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 4 : FIL ROUGE SÉCURITÉ + ÉVALUATION DE FIN DE SÉQUENCE ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S0 — sécurité et évaluation de fin de séquence</span>
+    <span>CAP IFCA 1A · semaine de rentrée</span>
+  </div>
+
+  <div class="encadre-secu">
+    <h3>⚠ Fil rouge sécurité de S0</h3>
+    <p style="margin:.1em 0 .5em">Aucune manipulation sous tension dans cette séquence : les deux risques
+    réels du tri d'outillage sont la coupure et le mauvais choix d'un outil non isolé.</p>
+    <table class="tab-der">
+      <tr><th style="width:42%">Risque</th><th>Explication simple, parade</th></tr>
+      <tr><td>Coupure (faces coupantes des pinces coupantes, coupe-tubes, dénudeurs)</td><td>On ne teste
+      jamais un tranchant au doigt ; on manipule mâchoires fermées ou pointées loin des mains ; gants
+      adaptés au poste de contrôle.</td></tr>
+      <tr><td>Confusion outil isolé / non isolé</td><td>Une pince <b>isolée</b> porte une gaine plastique
+      sur les manches : elle protège la main si l'outil touche par erreur un fil sous tension. Une pince
+      <b>non isolée</b> ne protège pas — elle reste réservée aux tâches sans risque électrique (façonnage
+      cuivre). La pince à bec demi-rond coudé, partagée entre les deux ateliers, sert de cas concret :
+      l'équipe doit dire où elle la range et pourquoi.</td></tr>
+    </table>
+    <div class="incident">🚨 <b>En cas de blessure</b> (invariant, rappelé au rituel d'entrée) : couper —
+    arrêt d'urgence —, alerter immédiatement le professeur. Trousse de secours et arrêt d'urgence localisés
+    dès l'accueil de la séance 1.</div>
+  </div>
+
+  <h3>Évaluation de fin de séquence — séance 3 <span class="etiquette et-inv">Invariant</span></h3>
+  <p style="font-size:11pt; margin-bottom:.2em">Positionnement individuel sur École Directe, <b>3
+  compétences</b> (≤ 4, charte §2) + une ligne savoir-être qui ne compte pas dans les 3. Échelle
+  <b>0-4 à critères observables</b> (charte §5) ; case d'auto-positionnement élève avant correction.
+  Support : la restitution croisée et le rangement définitif de séance 3.</p>
+  <div class="tbl-wrap">
+  <table class="tab-der">
+    <tr><th style="width:16%">Compétence</th><th>1 — Non acquis</th><th>2 — En cours</th><th>3 — Acquis</th><th>4 — Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C2.2</b> Contrôler les éléments<br><small>sur T6 · S2.1</small></td>
+      <td>Classe au hasard, ne teste pas l'état des outils.</td>
+      <td>Teste l'état avec aide ou rappel, quelques erreurs de tri.</td>
+      <td>Teste seul chaque outil (bon / à réviser / hors service), trie et compte juste jusqu'à 15.</td>
+      <td>Teste et trie seul, sûr, explique son choix ou aide un camarade.</td></tr>
+    <tr><td><b>C3.1</b> Organiser le poste<br><small>sur T6 · S0.2</small></td>
+      <td>Poste en désordre, outils mélangés, ne respecte pas sa zone.</td>
+      <td>Poste rangé avec rappel, hésite sur l'emplacement des familles.</td>
+      <td>Poste organisé seul, chaque famille à sa place, déchets triés.</td>
+      <td>Organise, anticipe le rangement des autres, transmet la méthode à un pair.</td></tr>
+    <tr class="eval-row"><td><b>C1.1</b> Compléter, transmettre<br><small>sur T1 · S3.1</small></td>
+      <td>Fiche d'inventaire incomplète ou illisible, ne parvient pas à présenter sa famille à l'autre
+      atelier.</td>
+      <td>Fiche complétée avec aide, présentation hésitante et guidée.</td>
+      <td>Fiche remplie correctement seul, présente sa famille clairement à l'autre atelier.</td>
+      <td>Fiche complète et précise, argumente le classement des OVNI, répond aux questions de l'autre
+      équipe.</td></tr>
+    <tr><td><b>Savoir-être</b><br><small>respect des rayons, sécurité</small></td>
+      <td>Ne respecte pas les rayons ou zones affectées ; manipule sans prudence (teste un outil sans
+      contrôle) ; rappels répétés.</td>
+      <td>Un rappel nécessaire sur le respect des rayons ou la manipulation prudente.</td>
+      <td>Respecte spontanément les rayons et zones affectées, manipule prudemment, travaille en équipe.</td>
+      <td>Respecte les rayons sans aucun rappel, veille au respect des rayons par ses camarades, coopère
+      activement.</td></tr>
+    <tr><td colspan="5" style="font-size:9.5pt; color:var(--gris)">Ligne jaune = compétence <span class="statut stE">Évaluation</span> de la séance (remontée École Directe, poids réduit — premier positionnement de l'année). Case 0 « Non évalué » présente sur chaque ligne, non détaillée ici (pas d'observable, par définition).</td></tr>
+  </table>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot</span>
+    <span>créé le 02/09/2026 · ©</span>
+  </div>
+</div>
+
+<!-- ============================ FEUILLE 5 : RANGEMENT, OUTIL NUMÉRIQUE, CRÉDITS ============================ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <img class="logo-eq" src="images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+  </div>
+  <div class="sous-entete">
+    <span>Séquence S0 — rangement, ressource complémentaire, crédits</span>
+    <span>CAP IFCA 1A · semaine de rentrée</span>
+  </div>
+
+  <div class="surtitre">Rangement de la production <span class="etiquette et-inv">Invariant</span></div>
+  <h2 class="titre-page">Où trouver le plan de séance de chaque séance</h2>
+  <p style="font-size:11pt">Les plans de séance, documents élève (un par atelier) et documents professeur
+  <b>ne sont pas recopiés ici</b> : ils vivent chacun dans leur sous-dossier, à la racine du dossier de
+  séquence S0 (convention usine FrigorX).</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th style="width:30%">Séance</th><th style="width:38%">Sous-dossier</th><th>Contenu attendu</th></tr>
+    <tr><td><b>Séance 1</b></td><td><code>Séance 1 - Identifier et trier l'outillage\</code></td><td>Plan de séance · Document élève - Atelier Électrique · Document élève - Atelier Façonnage · Document professeur - corrigé</td></tr>
+    <tr><td><b>Séance 2</b></td><td><code>Séance 2 - Vérifier l'état et constituer les lots\</code></td><td>idem</td></tr>
+    <tr><td><b>Séance 3</b></td><td><code>Séance 3 - Restituer, ranger et évaluer\</code></td><td>idem, grille d'évaluation 0-4 intégrée au document professeur</td></tr>
+  </table>
+  </div>
+
+  <h3>Ressource complémentaire — outil numérique d'inventaire</h3>
+  <div class="cartouche-methode">
+  Un outil autonome, <code>outil-inventaire\Inventaire-atelier.html</code>, permet de saisir en direct
+  l'inventaire réel de l'atelier au fil des trois séances (formulaire d'ajout, familles, état, quantité,
+  export CSV/JSON). Il n'est <b>pas</b> un document pédagogique charté : c'est un outil technique, produit
+  à part par le chef d'orchestre, hors gabarit — les élèves y saisissent leurs fiches papier au fur et à
+  mesure pour alimenter la page de gestion d'école de Franck. Il complète cette séquence sans s'y
+  substituer.
+  </div>
+
+  <h3>Points en attente (à trancher par Franck)</h3>
+  <ul style="font-size:11pt">
+    <li>Date réelle de la séance à la rentrée 2026-2027.</li>
+    <li>Place exacte dans la progression : avant S1, ou semaine 1 jour 1 — à insérer dans
+    <code>_PROGRESSION-1A-CODEE.md</code>.</li>
+    <li>Photos réelles des outils (à prendre à l'atelier), pour remplacer les croquis provisoires des
+    documents élève à venir.</li>
+    <li>Texte définitif du copyright (point récurrent de l'usine, non encore tranché).</li>
+  </ul>
+
+  <div class="surtitre" style="margin-top:1em">Crédits</div>
+  <div class="credits-bloc">
+    <p style="margin:0 0 .8em"><b>Projet inerWeb</b> — © F. Henninot 2026.</p>
+    <p style="margin:0 0 .8em">Ce document est produit dans le cadre de l'enseignement du CAP Installateur en
+    Froid et Conditionnement d'Air (IFCA), LPP Jacques Raynaud — Campus EQUATIO.</p>
+    <p style="margin:0 0 .8em"><b>Usage pédagogique non commercial</b> : reproduction et adaptation autorisées
+    pour un usage d'enseignement, à condition de mentionner l'origine (F. Henninot — inerWeb Édu) ; toute
+    exploitation commerciale est interdite.</p>
+    <p style="margin:0">Licence équivalente à <b>CC BY-NC 4.0</b> · <b>inerweb.fr</b></p>
+  </div>
+  <div class="sources">
+    <p style="margin:.8em 0 .3em"><b>Sources autoritaires de ce dossier</b> : cadrage
+    <code>_CADRAGE-S0.md</code> (découpage en 3 séances, méthodes imposées, codes officiels, familles
+    d'outils) · référentiel officiel CAP IFCA (codes et libellés T/S/C, <code>HAL-v3\donnees\referentiels\peda\CAP_IFCA.json</code>)
+    · désignations d'outillage : <code>01-Outillages et protections.pdf</code> (DOSSIER MATÉRIELS &amp;
+    ÉQUIPEMENTS) et <code>Liste outillage eleves prise en charge caisse.xlsx</code> (Classe 1 CAP 2022/2023)
+    · charte pédagogique FrigorX (formule de Bowers §2, échelle 0-4 §5, sécurité §7). Aucune valeur ni
+    aucun libellé n'a été inventé pour ce dossier ; la grille d'évaluation (critères observables par case)
+    est une rédaction du chef d'orchestre à partir des activités décrites au cadrage, pas une citation.</p>
+  </div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot</span>
+    <span>créé le 02/09/2026 · ©</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

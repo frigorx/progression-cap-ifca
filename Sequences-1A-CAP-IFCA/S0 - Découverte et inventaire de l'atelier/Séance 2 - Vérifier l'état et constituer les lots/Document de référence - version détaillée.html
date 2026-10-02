@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Document de référence — S0 Séance 2 · Vérifier l'état et constituer les lots</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e;
+    --bon:#2f7d3c; --revoir:#c14a17; --hs:#b5241e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:10.5pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  h3.section{font-size:13.5pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.8pt}
+  .liste-num li{margin-bottom:4px}
+  .manip{border:2px solid var(--bleu); border-radius:6px; background:var(--fond-doux); padding:10px 14px; margin:.5em 0 .9em; font-size:10.5pt}
+  .manip h4{color:var(--bleu); font-size:11pt; margin:0 0 4px}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10.2pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .raison{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:8px 14px; margin:.4em 0 .9em; font-size:10.2pt}
+  .raison b.t{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  table.critere{font-size:9.3pt; margin:.3em 0 .9em}
+  .critere th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .critere td{border:1px solid var(--filet); padding:6px; vertical-align:top}
+  .critere tr:nth-child(even) td{background:var(--fond-doux)}
+  .critere td.fam{font-weight:bold; color:var(--bleu)}
+  .critere td.fam img{width:64px; height:auto; display:block; margin:0 0 4px; border-radius:4px; border:1px solid var(--filet)}
+  table.der{font-size:9pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt; letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  table.grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always}
+    tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .secu, .manip, .vigilance, .raison, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }
+</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 — IDENTIFICATION + SITUATION + OBJECTIFS + PRÉREQUIS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Découverte et inventaire de l'atelier — module atelier S0</td>
+      <td style="width:38%"><span class="lib">Séance 2 · document de référence, 2 ateliers</span><b>Vérifier l'état et constituer les lots</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> · rentrée 2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Atelier</span>☐ Électrique&nbsp;&nbsp;☐ Façonnage</td>
+    </tr>
+  </table></div>
+
+  <p style="font-size:9pt; color:var(--gris); font-style:italic; margin:.1em 0 .8em">Version de référence
+  (≥ 1500 mots) : elle développe ce que les deux <i>Documents élève</i> (Électrique / Façonnage) et l'
+  <i>Affiche de poste</i> résument. Destinée au professeur, aux élèves à l'aise qui veulent aller plus loin,
+  et au réemploi en bac pro MFER. Elle ne remplace pas le document élève, qui reste le support de travail
+  en séance (règle du 20/07/2026, Manuel de conception §3).</p>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T6</b> « Préparer, vérifier les matériels et outillages » (niv. 2)</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> <b>S2.1</b> « Outils, normes et représentation » <span class="nuance">réactivé</span><br><span class="nuance">Travaillés :</span> <b>S0.2</b> « Gestion de l'environnement du site et des déchets » <span class="nuance">nouveau</span> · <b>S6.2</b> « Principaux risques et moyens de prévention » <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du poste, respect du rangement par famille, travail en équipe, manipulation prudente (jamais de test sans contrôle visuel préalable)</div>
+    <div class="case comp"><h4>Compétence (statut)</h4><span class="statut">Découverte</span> <b>C3.1</b> « Organiser le poste de travail » <span class="nuance">sur T6 · S0.2</span></div>
+  </div>
+
+  <h3 class="section">Contexte professionnel — pourquoi ce contrôle n'est pas un exercice</h3>
+  <p>L'atelier de la classe n'a encore jamais été inventorié formellement : le lot de 15 exemplaires par
+  famille que l'équipe constitue aujourd'hui <b>sera la dotation réellement distribuée</b> aux 30 élèves de
+  la promotion, exactement comme si un magasinier préparait 15 postes de travail identiques pour un chantier
+  du lendemain. <b>Ordre d'intervention n° OI-2026-S0S2-01</b> : reprise en main du magasin d'outillage avant
+  le premier chantier de l'année. Hier (séance 1), la classe a trié les outils par famille sans juger de leur
+  état. Aujourd'hui, chaque équipe devient le <b>contrôleur qualité</b> de sa famille : elle teste chaque
+  exemplaire un par un, l'affecte à l'une de trois catégories (Bon / À réviser / Hors service), et remonte ce
+  qui manque comme un vrai bon de commande. Ce geste — contrôler l'état d'un outil avant de s'en servir — est
+  un réflexe professionnel de fond : un frigoriste qui embarque une pince à dénuder dont l'isolant est fendu,
+  ou une cintreuse dont la gorge est ovalisée, ne le découvre pas dans sa caisse en atelier tranquille, il le
+  découvre sur un chantier, chez un client, au pire moment. Le lot de 15 n'est donc pas un décompte
+  administratif : c'est la garantie que chacun des 15 postes futurs dispose d'un outillage sûr et fonctionnel.</p>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>vérifier</b> l'état d'un outil selon 3 critères observables (Bon / À réviser / Hors service), dans
+      un ordre précis de contrôle, jamais au hasard ;</li>
+    <li><b>manipuler</b> avec prudence un outil dont l'état n'est pas encore connu, sans jamais forcer un
+      mécanisme qui résiste ;</li>
+    <li><b>repérer</b>, pour une pince, si elle est isolée, et contrôler son isolant avant tout autre critère ;
+      pour un tournevis, lire la taille ou le type gravé ; pour une cintreuse, relever la dimension gravée ;</li>
+    <li><b>expliquer</b>, pour chaque famille, <b>pourquoi</b> un défaut donné condamne l'outil — pas
+      seulement le reconnaître, mais dire ce qu'il produit sur le geste métier ou sur la pièce travaillée ;</li>
+    <li><b>compter</b> les exemplaires « Bon » de sa famille jusqu'à 15 et calculer l'écart restant, comme un
+      bon de commande réel (référence · désignation · quantité) ;</li>
+    <li><b>trier</b> à part, sans les tester, un outil non identifié (bac OVNI) ou un outil reconnu mais du
+      mauvais atelier (bac TRANSFERT) ;</li>
+    <li><b>expliquer</b> où va un outil hors service et pourquoi il ne part jamais à la poubelle (S0.2).</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p>Nommer et reconnaître les outils de ma famille (acquis hier, séance 1, savoir S2.1). Les zones de
+  l'atelier, le rangement par rayon, mes EPI de base (acquis hier). Aucune connaissance de réparation
+  mécanique ou électrique n'est exigée aujourd'hui : <b>je signale un défaut, je ne le répare pas</b> — cette
+  limite est volontaire, elle protège l'élève d'un geste de réparation non maîtrisé sur un outil dont l'état
+  réel n'est pas encore connu.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 2 — MATÉRIEL + SÉCURITÉ + PRÉPARATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document de référence — matériel, sécurité, préparation</div>
+  </div>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Le bac de ma famille, trié en séance 1 (un poste = une famille) ;</li>
+    <li>3 bacs vides étiquetés Bon / À réviser / Hors service (code couleur vert / orange / rouge) ;</li>
+    <li>Un bac OVNI et un bac TRANSFERT centralisés, communs aux deux ateliers ;</li>
+    <li>La fiche de comptage (support du bon de commande) ;</li>
+    <li>L'affiche de poste — Critères d'état de mon atelier, affichée en permanence au poste ;</li>
+    <li>Ce document, un crayon.</li>
+  </ol>
+
+  <h3 class="section">EPI et analyse des risques du jour</h3>
+  <p style="font-size:10.5pt"><b>EPI</b> : gants de manutention si des chutes coupantes traînent encore du tri
+  de la veille ; chaussures de sécurité, tenue d'atelier fermée. <b>Aucune manipulation sous tension</b> n'a
+  lieu aujourd'hui : le risque électrique tient uniquement à l'état de l'isolant des outils testés, pas à une
+  installation.</p>
+  <div class="tbl-wrap"><table class="critere">
+    <tr><th style="width:38%">Risque</th><th>Parade</th></tr>
+    <tr><td>Coupure sur une mâchoire, une lame ou une molette émoussée/ébréchée</td><td>Tenir l'outil par le manche, jamais par la partie tranchante ou la mâchoire ; poser l'outil sur l'établi entre deux tests, ne pas le passer de main en main ouvert.</td></tr>
+    <tr><td>Pincement ou écrasement à l'articulation d'une pince, d'une cintreuse ou d'un coupe-tube testé en force</td><td>Ne jamais forcer un mécanisme qui résiste : un mécanisme dur se classe « à réviser » sans discussion, on ne cherche pas à le débloquer.</td></tr>
+    <tr><td>Risque électrique si un outil isolant (pince, tournevis testeur) est manipulé sans contrôle visuel de son isolant</td><td>Toujours regarder l'isolant AVANT tout test ; aucun test électrique sur un manche fendu ou marqué en profondeur.</td></tr>
+  </table></div>
+  <div class="secu"><b class="t">Gestes interdits</b> — jamais tester un outil électroportatif ou un
+  testeur électrique sans un contrôle visuel complet préalable (câble, isolant, manche) ; jamais forcer un
+  mécanisme grippé « pour voir » ; jamais utiliser, même un instant, un outil déjà classé « hors service ».
+  <b class="t">🚨 En cas d'incident</b> : couper/arrêter le geste, alerter immédiatement le professeur,
+  déclarer toute coupure même légère, ne jamais poursuivre le contrôle d'un exemplaire suspect seul.</div>
+
+  <h3 class="section">Préparation — la démarche du jour (observer → nommer → expliciter)</h3>
+  <p>Le professeur ne donne pas les 3 critères d'emblée. Il teste devant la classe 2 à 3 outils
+  volontairement abîmés (un de chaque catégorie) et demande à la classe de proposer un classement avant de
+  rien affirmer. Ce détour n'est pas une perte de temps : il oblige l'élève à formuler <i>ce qu'il voit</i>
+  avant qu'on lui donne <i>ce qu'il faut voir</i> — c'est la pédagogie de la découverte (charte §1). Une fois
+  les hypothèses de la classe recueillies, le professeur formalise les 3 critères réels, affichés au poste,
+  et rappelle la règle commune à toutes les familles : <b>un seul défaut disqualifiant suffit</b> pour sortir
+  du « Bon », même si le reste de l'outil est correct — on ne fait pas de moyenne entre un bon manche et une
+  mâchoire ébréchée.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 3 — RÉALISATION : MÉTHODE DE CONTRÔLE DÉTAILLÉE — ATELIER ÉLECTRIQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document de référence — méthode de contrôle, Atelier Électrique</div>
+  </div>
+
+  <h3 class="section">Réalisation — la méthode de contrôle, famille par famille (Atelier Électrique)</h3>
+  <p style="font-size:10.3pt">Pour chaque exemplaire, l'ordre de contrôle est toujours le même : <b>1)</b> je
+  regarde d'abord si l'outil est de la bonne famille et, pour une pince, si elle est isolée ou non (case à
+  cocher sur la fiche) ; <b>2)</b> je contrôle l'isolant en le regardant sous tous les angles, sans jamais
+  brancher ni approcher d'une source électrique ; <b>3)</b> je contrôle la partie mécanique (mâchoires, lame,
+  articulation) en actionnant l'outil à vide, sans effort ; <b>4)</b> pour un tournevis, je lis la taille ou
+  le type gravé sur le manche AVANT de décider dans quelle ligne de la fiche il compte. Le <b>geste de test
+  autorisé</b> est toujours un geste à vide, sans charge : ouvrir-fermer une pince dans l'air, faire tourner
+  une articulation à la main. Le <b>geste interdit</b> est le test en charge ou en force : couper un vrai fil
+  pour « voir si ça coupe », dénuder un câble électrique en tension, brancher un tournevis testeur sur une
+  prise pour vérifier le voyant — ces gestes sortent du cadre du contrôle visuel et créent un risque que rien
+  ne justifie ici.</p>
+
+  <div class="tbl-wrap"><table class="critere">
+    <tr><th style="width:15%">Famille</th><th style="width:19%">Usure débutante (encore « Bon »)</th><th style="width:19%">« À réviser »</th><th style="width:20%">Défaut qui condamne (« Hors service »)</th><th style="width:27%">Pourquoi ce défaut est éliminatoire</th></tr>
+    <tr>
+      <td class="fam"><img src="../images/pince-coupante-diagonale.jpeg" alt="Pince coupante diagonale">Pince coupante diagonale</td>
+      <td>Léger marquage de l'isolant, mâchoires qui coupent encore net</td>
+      <td>Articulation qui commence à durcir ; isolant marqué mais pas fendu</td>
+      <td>Mâchoires ébréchées ; <b>isolant fendu</b> près du pivot</td>
+      <td>Une mâchoire ébréchée n'entaille plus le fil proprement : elle l'écrase et amorce une rupture du
+        conducteur au lieu de le sectionner net. Un isolant fendu, même sur quelques millimètres, annule la
+        protection diélectrique annoncée par le marquage VDE 1000 V : la main n'est plus protégée du tout,
+        pas « un peu moins ».</td>
+    </tr>
+    <tr>
+      <td class="fam"><img src="../images/pince-a-denuder.jpeg" alt="Pince à dénuder">Pince à dénuder</td>
+      <td>Ressort un peu moins vif mais qui rappelle encore ; encoches nettes</td>
+      <td>1 à 2 encoches marquent le fil sans le sectionner</td>
+      <td>Encoches arrondies ; ressort cassé ; isolant fendu</td>
+      <td>Une encoche arrondie par l'usure n'entaille plus seulement l'isolant du fil : elle <b>écrase le
+        cuivre</b> de l'âme conductrice et amorce une rupture différée du conducteur, invisible à l'œil sur
+        le moment mais qui casse plus tard, en service, chez un client. Un ressort cassé rend le dénudage
+        imprévisible : la pince peut serrer trop fort (coupe le fil) ou pas assez (glisse).</td>
+    </tr>
+    <tr>
+      <td class="fam"><img src="../images/pince-a-bec.jpeg" alt="Pince à bec demi-rond coudé">Pince à bec demi-rond coudé</td>
+      <td>Léger désalignement qui ne gêne pas encore la préhension</td>
+      <td>Désalignement plus marqué mais becs encore jointifs</td>
+      <td>Becs désaxés (chute) ; isolant abîmé côté articulation</td>
+      <td>Des becs désaxés ne se referment plus de façon symétrique : la pince glisse sur la pièce tenue au
+        lieu de la maintenir, ce qui provoque un dérapage brutal de la main au moment du serrage — le
+        défaut mécanique se transforme directement en risque de coupure ou de pincement.</td>
+    </tr>
+    <tr>
+      <td class="fam"><img src="../images/jeu-tournevis-isoles.jpeg" alt="Jeu de tournevis isolés">Tournevis testeur</td>
+      <td>Voyant qui s'allume franchement au contact d'une phase connue</td>
+      <td>Voyant faible mais qui s'allume bien</td>
+      <td>Néon grillé (jamais allumé) <b>ou allumé sans contact</b></td>
+      <td>Un néon qui ne s'allume jamais prive l'utilisateur d'une information ; un néon qui s'allume <b>sans
+        contact</b> est pire : il ment activement, il fait croire à une tension absente qui existe, ou
+        l'inverse. C'est le seul défaut de la liste qui met en danger un geste fait <i>ailleurs</i>, sur une
+        autre intervention — d'où l'isolement immédiat, sans attendre le comptage.</td>
+    </tr>
+    <tr>
+      <td class="fam"><img src="../images/tournevis-plat-cruciforme-comparaison.jpeg" alt="Tournevis plat et cruciforme">Tournevis plat / cruciforme
+        <span class="nuance">petit · moyen · gros — même critère pour les 5 tailles</span></td>
+      <td>Lame nette, marquage de taille encore parfaitement lisible</td>
+      <td>Lame un peu arrondie mais qui tient encore dans l'empreinte de la vis</td>
+      <td>Lame « champignonnée » (bord écrasé, qui ripe) ; manche fendu ; marquage illisible</td>
+      <td>Une lame champignonnée sort de l'empreinte de la vis sous couple : elle ripe, use l'empreinte de la
+        vis elle-même (dégât sur la pièce du client, pas seulement sur l'outil) et le dérapage brutal peut
+        blesser la main qui tient la pièce. Un marquage illisible empêche de vérifier qu'on utilise le bon
+        calibre : un tournevis trop petit force sur une empreinte trop grande et l'use encore plus vite.</td>
+    </tr>
+  </table></div>
+  <p style="font-size:9pt; color:var(--gris)">Repère de dimension pour les 6 tournevis : coffret réel
+  « STANLEY® FATMAX® tournevis isolés VDE, 6 pièces » (recherche du 02/09/2026, réf. commerciale à confirmer
+  sur le marquage gravé du coffret réel de l'atelier). Un exemplaire hors coffret peut différer légèrement —
+  l'élève relève toujours la dimension réellement gravée sur SON exemplaire, jamais une valeur mémorisée.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 4 — RÉALISATION : MÉTHODE DE CONTRÔLE DÉTAILLÉE — ATELIER FAÇONNAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document de référence — méthode de contrôle, Atelier Façonnage</div>
+  </div>
+
+  <h3 class="section">Réalisation — la méthode de contrôle, famille par famille (Atelier Façonnage)</h3>
+  <p style="font-size:10.3pt">L'ordre de contrôle change légèrement pour ce plateau, car le façonnage porte
+  sur du tube et non sur des conducteurs électriques : <b>1)</b> je vérifie la famille et, pour une cintreuse,
+  je relève d'abord la dimension gravée sur le corps ou la molette — <b>avant</b> tout jugement d'état, un
+  marquage illisible est déjà en soi un indice de défaut ; <b>2)</b> je contrôle la partie qui touche le tube
+  ou le raccord (molette, gorge, mâchoires) en la faisant fonctionner à vide ; <b>3)</b> je contrôle
+  l'articulation ou le filetage sans forcer. Le <b>geste de test autorisé</b> reste un geste à vide : faire
+  tourner une molette dans le vide, ouvrir-fermer une pince multiprise sans pièce serrée, faire pivoter une
+  cintreuse sans tube engagé. Le <b>geste interdit</b> est le test en charge : cintrer une vraie chute de
+  tube pour « voir si ça marche », serrer une pince multiprise à fond sur un raccord, forcer un mécanisme
+  grippé pour le débloquer — ces gestes usent ou déforment un outil dont l'état n'est pas encore connu, et
+  peuvent produire les mêmes défauts qu'ils sont censés révéler.</p>
+
+  <div class="tbl-wrap"><table class="critere">
+    <tr><th style="width:15%">Famille</th><th style="width:19%">Usure débutante (encore « Bon »)</th><th style="width:19%">« À réviser »</th><th style="width:20%">Défaut qui condamne (« Hors service »)</th><th style="width:27%">Pourquoi ce défaut est éliminatoire</th></tr>
+    <tr>
+      <td class="fam"><img src="../images/pince-multiprise-debrayable.jpeg" alt="Pince multiprise débrayable">Pince multiprise débrayable</td>
+      <td>Crantage encore net, articulation qui coulisse sans forcer</td>
+      <td>Articulation un peu dure mais qui fonctionne</td>
+      <td>Crantage « poli » par l'usure ; articulation grippée par la rouille</td>
+      <td>Un crantage poli glisse sur l'écrou ou le raccord au lieu de mordre dedans : la pince dérape sous
+        l'effort, ce qui arrondit les pans de l'écrou (dégât transmis à la pièce du client) et peut projeter
+        brutalement la main hors de la prise.</td>
+    </tr>
+    <tr>
+      <td class="fam"><img src="../images/coupe-tube-cuivre.jpeg" alt="Coupe-tube cuivre">Coupe-tube</td>
+      <td>Molette qui tourne librement, coupe encore nette</td>
+      <td>Molette un peu émoussée, vis d'avance un peu dure</td>
+      <td>Molette ébréchée ; vis d'avance faussée (chute)</td>
+      <td>Une molette ébréchée ne tranche plus le cuivre proprement : elle <b>marque et écrase</b> le tube au
+        passage au lieu de le sectionner, ce qui fragilise la future zone de brasage et peut amorcer un
+        point de fuite futur sur l'installation. Une vis d'avance faussée produit une coupe non
+        perpendiculaire, donc un raccord mal engagé ensuite.</td>
+    </tr>
+    <tr>
+      <td class="fam"><img src="../images/cintreuse-cuivre.jpeg" alt="Cintreuse cuivre">Cintreuse cuivre
+        <span class="nuance">1/4" · 3/8" · 1/2" · 5/8", plus le modèle 3 diamètres (1/4 · 5/16 · 1/2).
+        Chaque diamètre est une ligne d'inventaire à part — dimension à relever avant jugement.</span></td>
+      <td>Dimension gravée lisible, gorge sans marque profonde, articulation libre</td>
+      <td>Dimension lisible mais articulation un peu dure</td>
+      <td>Gorge ovalisée ; articulation faussée par un cintrage en force ; marquage illisible</td>
+      <td><b>C'est le défaut central de cette famille.</b> Une gorge ovalisée n'a plus le profil circulaire
+        exact du tube : elle l'<b>écrase localement</b> pendant le cintrage, ce qui <b>réduit la section de
+        passage du fluide frigorigène</b> à cet endroit précis (perte de charge localisée) et peut amorcer
+        une fissure sur le rayon extérieur du cintrage — un défaut invisible tant que le circuit n'est pas
+        mis sous pression. Un marquage illisible empêche de vérifier qu'on prend la bonne cintreuse pour le
+        diamètre du tube : une cintreuse trop petite écrase le tube, une cintreuse trop grande ne le guide
+        pas et produit un pli non maîtrisé.</td>
+    </tr>
+    <tr>
+      <td class="fam">Cintreuse plombier <span class="nuance">famille à part, photo à venir</span></td>
+      <td>Gorge nette, mécanisme qui pivote sans forcer</td>
+      <td>Mécanisme un peu dur</td>
+      <td>Gorge marquée ; mécanisme cassé</td>
+      <td>Même raisonnement que la cintreuse cuivre : une gorge marquée déforme localement le tube façonné,
+        au détriment de l'étanchéité et de la section utile de l'ouvrage final.</td>
+    </tr>
+    <tr>
+      <td class="fam">Outils mécaniques <span class="nuance">clé plate, clé à pipe — un seul bac, pas de sous-tri</span></td>
+      <td>Mâchoires ou empreinte nettes, pas de jeu perceptible</td>
+      <td>Mâchoires légèrement arrondies mais qui tiennent encore le boulon</td>
+      <td>Mâchoires ou empreinte arrondies (glissent) ; pièce tordue</td>
+      <td>Des mâchoires arrondies glissent sur les pans du boulon sous l'effort : la clé dérape, arrondit le
+        boulon lui-même (dégât sur le matériel) et peut projeter la main contre une pièce voisine.</td>
+    </tr>
+  </table></div>
+
+  <div class="raison"><b class="t">Pourquoi la dimension se relève avant le jugement</b> — Une cintreuse
+  n'est pas un outil universel : chaque diamètre de tube a sa cintreuse. Juger l'état sans connaître d'abord
+  la dimension expose à comparer un exemplaire à un mauvais gabarit mental, et donc à mal évaluer sa gorge.
+  Relever la dimension gravée avant de juger, c'est déjà appliquer le savoir S2.1 (lire un marquage technique)
+  au service du contrôle qui suit.</div>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 5 — À RÉVISER VS HORS SERVICE + FILIÈRE DÉCHETS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document de référence — À réviser / Hors service, filière déchets</div>
+  </div>
+
+  <h3 class="section">« À réviser » et « Hors service » ne sont pas la même décision</h3>
+  <p>Les deux catégories écartent l'outil du lot « Bon », mais elles n'ont pas le même sens. <b>« À
+  réviser »</b> signale un outil dont le défaut est <b>léger et potentiellement corrigeable</b> :
+  articulation qui a juste besoin d'un point d'huile, léger jeu, isolant marqué mais pas fendu. <b>« Hors
+  service »</b> signale un défaut qui condamne l'outil pour l'usage prévu, sans discussion possible : isolant
+  fendu, lame champignonnée, gorge ovalisée, néon qui ment. La règle commune, rappelée sur l'affiche de
+  poste : <b>un seul défaut disqualifiant suffit</b>, et <b>en cas de doute, l'équipe classe « à réviser » et
+  le professeur tranche</b> — jamais l'inverse, jamais un classement « Bon » par défaut faute de certitude.</p>
+
+  <h3 class="section">Qui décide, et ce qu'on répare vraiment dans un atelier de lycée</h3>
+  <p>L'équipe propose un classement ; le professeur valide ou corrige, en particulier pour tout ce qui touche
+  à la sécurité électrique (isolant, testeur). Ce qui se répare réellement dans un atelier de lycée, avec les
+  moyens du bord : un point d'huile sur une articulation, un resserrage de vis de mécanisme, un léger
+  dérouillage. Ce qui se réforme, sans hésitation : un isolant fendu (aucune réparation ne restitue une
+  protection VDE certifiée), une lame ou une mâchoire champignonnée/ébréchée (l'atelier ne réaffûte pas à
+  l'identique une géométrie de coupe), un ressort cassé ou une gorge ovalisée (pas de pièce détachée
+  disponible pour ces outils de dotation). Cette distinction n'est pas administrative : elle protège
+  l'utilisateur suivant, qui fera confiance à l'étiquette du bac sans refaire le contrôle.</p>
+
+  <h3 class="section">Pourquoi on ne met jamais un outil douteux dans le bac « Bon »</h3>
+  <p>Un lot complété plus vite en fermant les yeux sur un exemplaire douteux coûte plus cher qu'il ne rapporte.
+  Un outil défectueux découvert <b>à l'atelier</b>, pendant le contrôle, se règle en quelques secondes : on le
+  reclasse, on continue. Le même défaut découvert <b>en chantier</b>, chez un client, coûte du temps (arrêt de
+  l'intervention, retour chercher un autre outil), coûte parfois de la casse (un raccord abîmé par une pince
+  qui glisse, un tube marqué par une molette ébréchée qu'il faudra recouper), et dans le pire cas coûte un
+  accident (coupure, choc électrique). Classer « Bon » par complaisance revient à déplacer le problème du
+  poste de contrôle — où il ne coûte rien — vers le chantier futur — où il coûte cher. C'est le sens concret
+  de la rigueur du poste, portée par la ligne savoir-être de cette séance.</p>
+
+  <h3 class="section">La filière déchets — savoir S0.2</h3>
+  <p>Un outil classé « hors service » ne part <b>jamais</b> à la poubelle ordinaire : comme les chutes de
+  métal triées en séance 1, il rejoint le <b>bac de tri des métaux</b>, en vue d'un recyclage. Un métal
+  (acier, alliage de la mâchoire) a une valeur de matière première recyclée ; le jeter avec les déchets
+  ménagers gaspillerait cette matière et pourrait, pour un outil isolant, mélanger métal et plastique sans
+  tri. Un outil « à réviser » n'est pas jeté non plus : il reste dans son bac, en attente d'une décision du
+  professeur (réparation en interne ou réforme définitive au contrôle suivant). <span class="nuance">Le
+  détail exact de la filière de l'établissement (déchetterie, prestataire, séparation métal/isolant sur les
+  manches) reste <b>à confirmer avec les services techniques de l'établissement</b> — cette information n'est
+  documentée dans aucune des sources métier disponibles pour cette séquence, elle ne doit donc pas être
+  inventée ni affirmée comme définitive aux élèves.</span></p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 6 — LOT DE 15, BON DE COMMANDE, OVNI/TRANSFERT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document de référence — lot de 15, bon de commande, OVNI/TRANSFERT</div>
+  </div>
+
+  <h3 class="section">Pourquoi un lot de 15, et pourquoi un lot homogène</h3>
+  <p>Le groupe classe compte 30 élèves répartis en 2 ateliers de 15 : un lot de 15 exemplaires « Bon » par
+  famille équipe donc exactement 15 postes de travail réels, un exemplaire par élève de l'atelier. Un lot
+  homogène — 15 exemplaires qui répondent tous au même critère « Bon » — évite qu'un poste soit mieux équipé
+  qu'un autre : dans un atelier réel, deux postes de travail ne doivent jamais offrir des conditions
+  différentes pour la même tâche, sous peine de fausser une évaluation ou de désavantager un élève sans
+  raison. C'est pour cela que le seuil de 15 n'est pas arrondi ni négocié : soit le lot est complet, soit il
+  manque un nombre précis d'exemplaires, qui devient une demande de réapprovisionnement.</p>
+
+  <h3 class="section">Comment se calcule un manque</h3>
+  <p>Le calcul est simple mais doit être fait sans arrondi : <b>manque = 15 − nombre d'exemplaires classés
+  « Bon »</b>. Les exemplaires « À réviser » et « Hors service » ne comptent <b>pas</b> dans les 15, même
+  s'ils restent physiquement dans l'atelier — tant qu'ils ne sont pas réparés et reclassés « Bon » par le
+  professeur, ils ne couvrent aucun poste de travail. De même, un exemplaire déposé en TRANSFERT ou en OVNI
+  ne compte pour aucune des deux familles tant qu'il n'a pas été identifié et contrôlé.</p>
+
+  <h3 class="section">À quoi ressemble un vrai bon de commande</h3>
+  <p style="font-size:10.3pt">Un bon de commande professionnel ne dit jamais « il en manque » : il précise une
+  référence, une désignation exacte et une quantité. La fiche de comptage de la séance en est la version
+  d'atelier — elle prépare l'élève à ce format, sans encore lui donner de vraies références fournisseur
+  (à faire valider par Franck avant toute commande réelle) :</p>
+  <div class="tbl-wrap"><table class="critere">
+    <tr><th style="width:22%">Référence</th><th style="width:48%">Désignation</th><th style="width:15%">Quantité manquante</th><th style="width:15%">Atelier</th></tr>
+    <tr><td class="nuance">à confirmer sur catalogue fournisseur</td><td>Pince à dénuder 0,5-4 mm²</td><td>________</td><td>Électrique</td></tr>
+    <tr><td class="nuance">à confirmer sur catalogue fournisseur</td><td>Coupe-tube mini 1/8-5/8</td><td>________</td><td>Façonnage</td></tr>
+    <tr><td class="nuance">à confirmer sur catalogue fournisseur</td><td>Tournevis testeur (coffret VDE isolé)</td><td>________</td><td>Électrique</td></tr>
+  </table></div>
+  <p style="font-size:9pt; color:var(--gris)">Exemple de forme uniquement — désignations reprises de la liste
+  réelle de dotation (« Liste outillage élèves — prise en charge caisse.xlsx »), quantités laissées vides :
+  elles se complètent en séance à partir du comptage réel, jamais inventées à l'avance.</p>
+
+  <h3 class="section">OVNI et TRANSFERT — deux bacs, deux effets différents sur les compteurs</h3>
+  <p>Les deux bacs partagent une règle commune : un outil qui y entre <b>n'est pas testé sur place</b>, donc
+  il n'alimente ni la colonne « Testés » ni la colonne « Bon » de la famille en cours. Mais leur sens diffère.
+  <b>TRANSFERT</b> reçoit un outil <b>reconnu</b>, mais qui appartient clairement à l'autre atelier (une
+  cintreuse trouvée côté Électrique, une pince à dénuder trouvée côté Façonnage) : son décompte est simplement
+  <b>déplacé</b>, il sera comptabilisé plus tard par l'atelier compétent — l'effet net sur l'inventaire final
+  est nul, seul le moment du comptage change. <b>OVNI</b> reçoit un outil <b>non identifié</b> par aucun des
+  deux ateliers : son décompte reste <b>suspendu</b> jusqu'à la restitution croisée de la séance 3, où
+  l'atelier qui n'a pas trouvé l'objet le présente à l'autre pour trancher. Confondre les deux bacs fausserait
+  le bon de commande : un TRANSFERT compté à tort en manque ferait apparaître un manque qui n'existe pas.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 7 — CONTRÔLES, RANGEMENT, GRILLE 0-4, DOCUMENTS, CODES, SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document de référence — contrôles, rangement, évaluation, sources</div>
+  </div>
+
+  <h3 class="section">Contrôles et diagnostic — récapitulatif</h3>
+  <p style="font-size:10.3pt">En fin de phase 6, chaque équipe dispose de trois nombres pour sa famille :
+  exemplaires testés, exemplaires « Bon », et l'écart à 15. Le diagnostic à formuler à voix haute pour la
+  synthèse est toujours le même schéma en trois temps : <i>ce que j'ai trouvé</i> (X exemplaires testés),
+  <i>ce qui est utilisable</i> (Y en « Bon »), <i>ce qu'il faut commander</i> (15 − Y). Les 3 familles
+  partagées (mètres-rubans, clés à molette, outils mécaniques) suivent un diagnostic allégé : un simple
+  nombre trouvé, sans viser 15 ni produire un bon de commande — Franck veut seulement connaître le total
+  disponible dans l'atelier.</p>
+
+  <h3 class="section">Remise en état du poste — rangement</h3>
+  <p>Les 3 bacs (Bon / À réviser / Hors service) rejoignent les rayons dédiés : le bac « Bon » en priorité, à
+  l'emplacement de la famille ; le bac « À réviser » à part, visiblement étiqueté, en attente d'une décision
+  professeur ; le bac « Hors service » en attente de départ vers le tri des métaux. Le bac TRANSFERT est
+  relevé par l'atelier concerné dès qu'un encadrant passe ; le bac OVNI reste centralisé jusqu'à la séance 3.</p>
+
+  <h3 class="section">Grille d'évaluation 0-4 et auto-positionnement</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. Statut de la séance : <b>Découverte</b> — aucun poids
+  dans la remontée École Directe, l'auto-positionnement sert à préparer la séance 3 (statut Confortement) et
+  la première évaluation de fin de séquence.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:16%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C3.1</b> Organiser le poste de travail <span class="nuance">sur T6 · S0.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Classe au hasard, ne suit pas les 3 critères ; range hors du rayon indiqué.</td>
+      <td>Classe avec l'aide du professeur ou de l'affiche de poste ; range avec un rappel.</td>
+      <td>Classe seul les exemplaires de sa famille selon les 3 critères, compte et range sans aide.</td>
+      <td>Comme « Acquis », et explique à un pair pourquoi tel défaut condamne l'outil.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — rigueur, prudence, équipe</td>
+      <td>Non observé ce jour.</td>
+      <td>Force un mécanisme, teste un tournevis testeur sans contrôle visuel, jette un outil HS à la poubelle.</td>
+      <td>Respecte les consignes de prudence avec des rappels répétés.</td>
+      <td>Manipule avec prudence de façon autonome, respecte le tri déchets sans rappel.</td>
+      <td>Comme « Acquis », et rappelle spontanément la règle de prudence à un camarade.</td>
+    </tr>
+  </table>
+  </div>
+  <p style="font-size:9.5pt">Auto-positionnement (à remplir avant la validation du professeur) : je pense
+  avoir atteint le niveau ☐0 ☐1 ☐2 ☐3 ☐4 sur C3.1, parce que : ______________________________________</p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <p>Ma fiche de comptage complétée (document élève, feuille 2), avec les écarts à 15 calculés pour chaque
+  famille de mon poste, et mon auto-positionnement rempli sur cette page.</p>
+
+  <h3 class="section">Codes officiels — libellés exacts</h3>
+  <p style="font-size:9.5pt">Source unique : <i>HAL-v3\donnees\referentiels\peda\CAP_IFCA.json</i>, vérifiés
+  dans <i>_CADRAGE-S0.md</i> (02/09/2026). <b>T6</b> « Préparer, vérifier les matériels et outillages » (niv.
+  2) · <b>C3.1</b> « Organiser le poste de travail » · <b>C2.2</b> « Contrôler les éléments nécessaires à la
+  réalisation » (appui, travaillée en séance 1) · <b>S0.2</b> « Gestion de l'environnement du site et des
+  déchets » · <b>S2.1</b> « Outils, normes et représentation » · <b>S6.2</b> « Principaux risques et moyens
+  de prévention ». Rappel référentiel : le lien fin tâche↔compétence n'est pas tabulé dans l'arrêté CAP IFCA
+  (RAP et RC se relient au niveau activité↔capacité) — l'ancrage affiché ici est une dérivation pédagogique
+  du chef d'orchestre, pas une matrice officielle.</p>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « 01-Outillages
+  et protections.pdf » (DOSSIER MATERIELS &amp; EQUIPEMENTS v001-2014, désignations et fonctions officielles) ;
+  « Liste outillage élèves — prise en charge caisse.xlsx » (Classe 1 CAP 2022/2023, désignations réelles de la
+  dotation) ; <i>_CADRAGE-S0.md</i> (chef d'orchestre usine FrigorX, 02/09/2026). Photos : « 001.L'outillage
+  du Frigoriste.pdf » (pince coupante diagonale) ; « TD01 L'outillage.docx » (pince à dénuder) ;
+  « Caracteristique page 139.pdf » (jeu de tournevis) ; « M07-Outillage de base.pdf » (pince à bec, variante
+  bec rond) ; « EDITION 2010 BA BE STAT-1.pdf » (comparaison tournevis plat/cruciforme) ; « 02-Outillage
+  atelier.docx » (pince multiprise) ; « coupe tube C1 TP1.pdf » (coupe-tube) ; « CINTREUSE ITE TRIPLE RAYON DE
+  CINTRAGE.pdf » (cintreuse cuivre). Pas de photo fiable trouvée pour le tournevis testeur, la clé à molette
+  et la cintreuse plombier : croquis simple ou case « à photographier à l'atelier », jamais d'image inventée.
+  Réf. commerciale du coffret de tournevis isolés (STANLEY® FATMAX® 0-65-443) : recherche web du 02/09/2026,
+  <b>à confirmer sur le marquage gravé du coffret réel de l'atelier</b>, à faire valider par Franck.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+</body>
+</html>

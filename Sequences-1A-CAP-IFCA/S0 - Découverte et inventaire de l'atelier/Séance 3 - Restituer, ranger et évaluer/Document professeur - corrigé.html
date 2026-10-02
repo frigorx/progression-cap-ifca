@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Document professeur — S0-Séance 3 · Restituer, ranger et évaluer</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff6cc; color:#8a6d00; border-color:#e3c94a}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .der{font-size:8.8pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04{font-size:8.3pt; margin:.3em 0 .8em}
+  .grille04 th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .grille04 td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .grille04 tr:nth-child(even) td{background:var(--fond-doux)}
+  .grille04 .niv{text-align:center; width:8%; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .secu, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 — IDENTIFICATION + ORGANISATION + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Découverte et inventaire de l'atelier</td>
+      <td style="width:38%"><span class="lib">Module atelier S0-Séance 3 · 1 h 30 — DOCUMENT PROFESSEUR</span><b>Restituer, ranger et évaluer</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> · rentrée 2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zones Électrique + Façonnage réunies, rayons de rangement</td>
+      <td><span class="lib">Durée prévue</span>1 h 30 — classe entière réunie</td>
+      <td><span class="lib">Modalité</span>Restitution croisée (jeu des OVNI) + rangement définitif des lots + grille 0-4</td>
+      <td><span class="lib">Encadrement</span>Professeur(s) des ateliers Électrique et Façonnage, classe réunie</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention (niv. 3)<br><b>T6</b> Préparer, vérifier les matériels et outillages (niv. 2)</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> S2.1, S0.2 <span class="nuance">(introduits S1/S2)</span><br><span class="nuance">Travaillés :</span> <b>S3.1</b> Communication technique <span class="nuance">nouveau</span> · S2.1, S0.2 <span class="nuance">augmentés</span></div>
+    <div class="case"><h4>Savoir-être</h4>Respect des rayons et zones affectées, manipulation prudente, travail d'équipe, ponctualité</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut eval">Évaluation</span> <b>C1.1</b> Compléter, transmettre <span class="nuance">sur T1 · S3.1</span><br><span class="statut">Confortement</span> <b>C2.2</b> Contrôler les éléments <span class="nuance">sur T6 · S2.1</span><br><span class="statut">Confortement</span> <b>C3.1</b> Organiser le poste <span class="nuance">sur T6 · S0.2</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute au document élève</h3>
+  <p style="font-size:10.3pt">Ce document est le <b>pendant exact</b> du document élève de la séance 3 : même
+  structure en 3 étapes (préparation de la présentation, restitution croisée avec tableau des OVNI, rangement),
+  même grille 0-4. Il y ajoute : la conduite détaillée du jeu des OVNI (comment le lancer, comment répartir le
+  temps entre les familles, comment relancer un public silencieux), le corrigé du cas de la pince à bec
+  demi-rond coudé, la grille 0-4 avec critères et exemples plus détaillés, la <b>remédiation</b> (que fait-on des
+  positionnements 1 et 2 ?), le minutage 1 h 30 recompté et la différenciation. <b>Aucune valeur non autorisée
+  n'est donnée</b> : le contenu réel des lots (désignations, quantités) reste <b>« selon le stock réel de
+  l'atelier, à faire valider »</b> ; les familles et OVNI cités restituent le cadrage de la séquence, sans
+  invention au-delà.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Restitution croisée entre équipes, puis rangement définitif.</b> C'est la
+  première fois de l'année que l'élève <b>transmet</b> une information technique à l'oral devant un public
+  autre que son équipe — c'est exactement ce que C1.1 évalue aujourd'hui, en statut Évaluation mais à poids
+  réduit (c'est une découverte, pas un contrôle sommatif classique). Aucun geste technique nouveau : le module
+  reste un tri, un contrôle et une communication, sans manipulation inédite. Les compétences C2.2 et C3.1,
+  déjà rencontrées en séances 1 et 2, sont ici en <b>Confortement</b> : elles se consolident par le rangement
+  définitif et par la nécessité de reconnaître les familles présentées par l'atelier voisin.</p>
+
+  <h3 class="section">Trame horaire — module 1 h 30 (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module 1 h 30 — pas de préparation de chantier lourde (rituel d'entrée allégé)</td></tr>
+    <tr><td>5 min</td><td class="ph">1. Débuter la séance</td><td>Accueil, les deux ateliers de 15 se regroupent, appel, présentation de l'organisation (restitution croisée puis rangement définitif puis évaluation).</td></tr>
+    <tr><td>5 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S0S3-01 : reprise en main du magasin d'outillage avant le premier chantier de l'année ; présentation de la règle du jeu des OVNI.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Présenter les objectifs</td><td>Les 4 « je serai capable de… » affichés et commentés, lien avec la formule (C1.1 Évaluation, C2.2/C3.1 Confortement), poids réduit du premier positionnement.</td></tr>
+    <tr><td>5 min</td><td class="ph">4-5. Rituel d'entrée allégé</td><td>Sécurité déjà posée en S1/S2 : questions flash de rappel (EPI, zones, rayons, arrêt d'urgence), pas de nouvelle démonstration. Répartition des équipes dans les deux zones de présentation.</td></tr>
+    <tr><td>40 min</td><td class="ph">6. Guider l'étude — restitution croisée + échange TRANSFERT</td><td>25 min : passage de chaque équipe (≈ 11 familles/OVNI au total sur les 2 ateliers), présentations courtes et rythmées (≈ 3 min chacune), le public devine et justifie avant la réponse. Cas particulier de la pince à bec demi-rond coudé traité en direct. 15 min : échange des bacs TRANSFERT entre ateliers, chaque atelier compte ce qu'il reçoit et l'ajoute à ses familles (détail ci-dessous).</td></tr>
+    <tr><td>15 min</td><td class="ph">7-8. Synthèse + évaluer et réajuster</td><td>Retour sur les OVNI restés incertains, synthèse courte, auto-positionnement individuel sur la grille 0-4, validation professeur.</td></tr>
+    <tr><td>10 min</td><td class="ph">9. Ranger — nettoyer</td><td>Rangement définitif des lots de 15 dans les rayons assignés (dotation réelle), étiquetage vérifié.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer la séance</td><td>Retour en tenue de ville, annonce du démarrage de la séquence S1.</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 5+5+5+5+40+15+10+5 = <b>1 h 30 exactes</b>, conforme au
+  plan de séance. Pas de pause : le module est court et continu.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CONDUITE DU JEU DES OVNI ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 3 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Comment lancer et conduire le jeu des OVNI</h3>
+  <p style="font-size:10.3pt">Le principe : chaque équipe (une famille d'outils) devient tour à tour
+  <b>présentatrice</b> devant l'atelier voisin, qui joue le rôle de <b>client</b> à convaincre. Le professeur
+  anime, chronomètre et relance — il ne présente jamais à la place de l'élève : c'est le moment C1.1 de la
+  séance.</p>
+  <table class="mini">
+    <tr><th style="width:22%">Étape</th><th>Conduite</th></tr>
+    <tr><td>1. Lancer le jeu</td><td>Annoncer la règle en une phrase : « vous devez deviner avant qu'on vous le dise ». Désigner l'ordre de passage (familles Électrique puis Façonnage, en alternance, pour garder les deux publics actifs).</td></tr>
+    <tr><td>2. Faire présenter</td><td>Chaque équipe montre son lot, nomme sa famille, présente 1 à 2 OVNI. Limiter à ≈ 3 min par passage pour tenir les ≈ 11 présentations en 40 min (les familles nombreuses en tournevis peuvent être groupées en une seule présentation).</td></tr>
+    <tr><td>3. Faire deviner</td><td>Avant toute réponse, demander au public : « à quoi ça sert, à votre avis ? » — exiger une justification, pas seulement un nom. Si le public reste muet plus de 15 secondes, donner un indice (« regardez la forme du bec »), jamais la réponse directement.</td></tr>
+    <tr><td>4. Trancher</td><td>L'équipe présentatrice révèle la réponse ; le professeur valide ou complète. Les OVNI qui ne correspondent à aucune famille prévue restent classés « OVNI » — c'est le principe de l'activité, pas une erreur à corriger.</td></tr>
+  </table>
+
+  <h4 class="section">Échange des bacs TRANSFERT entre ateliers (15 min, dans la phase 6)</h4>
+  <p style="font-size:10.3pt"><b>Pourquoi ce bac existe :</b> pendant le tri (séance 1) et le contrôle (séance
+  2), un outil clairement identifiable comme appartenant à <b>l'autre</b> atelier (ex. une cintreuse trouvée côté
+  Électrique, une pince à dénuder trouvée côté Façonnage) n'est pas inventorié sur place : il est posé dans le
+  bac TRANSFERT de son atelier d'accueil, en attendant cette séance. Différence avec un OVNI : TRANSFERT = outil
+  connu mais mauvais atelier ; OVNI = outil vraiment non identifié.</p>
+  <p style="font-size:10.3pt"><b>Déroulé concret</b> — juste après la restitution croisée, classe toujours
+  réunie : chaque atelier remet physiquement son bac TRANSFERT à l'atelier voisin. L'atelier qui reçoit compte
+  les outils par famille et les ajoute à ses propres compteurs (et à son lot de 15 si la famille n'est pas encore
+  complète).</p>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — après l'échange, les compteurs de familles des
+  <b>deux</b> ateliers doivent être mis à jour : un outil du bac TRANSFERT existe physiquement mais n'a encore
+  été compté nulle part. L'oublier rend l'inventaire final faux.</div>
+  <div class="reponse"><b class="t">Consigne pratique</b> — en fin de séance, reporter les totaux définitifs
+  (après échange des bacs TRANSFERT) dans l'outil numérique d'inventaire (<code>outil-inventaire\Inventaire-atelier.html</code>).</div>
+
+  <h4 class="section">Corrigé — la pince à bec demi-rond coudé (cas particulier)</h4>
+  <div class="reponse"><b class="t">Question posée aux élèves</b> — Dans quel rayon la range-t-on quand elle est
+  isolée, et pourquoi ?<br><br>
+  <b>Réponse attendue :</b> cette pince existe dans les deux ateliers, mais la version <b>isolée</b> (manches
+  gainés, marquage de tension) se range dans le rayon <b>Électrique</b> : elle protège la main d'un contact
+  électrique accidentel si elle touche un conducteur sous tension. La version non isolée reste utile en
+  Façonnage pour des opérations mécaniques (maintien, pliage fin) où le risque électrique n'existe pas. C'est
+  la <b>fonction de protection</b>, pas la forme de l'outil, qui décide du rayon.</div>
+  <div class="vigilance"><b class="t">Point de vigilance</b> — Ne pas laisser un élève répondre « elle va dans les
+  deux rayons au hasard » : faire reformuler le critère de décision (présence ou non de l'isolation) avant de
+  passer à la suite.</div>
+
+  <h4 class="section">Corrigé — les OVNI les plus fréquents (exemples de restitution)</h4>
+  <table class="mini">
+    <tr><th style="width:26%">OVNI observé (exemple)</th><th>Réponse attendue</th></tr>
+    <tr><td>Outil hors des familles prévues, non identifié par l'équipe elle-même</td><td>Reste classé « OVNI » dans l'outil d'inventaire : l'atelier n'a jamais été inventorié avant cette séquence, il est normal que certains objets restent non tranchés après une seule séance de restitution.</td></tr>
+    <tr><td>Outil connu d'un atelier mais jamais vu par l'autre</td><td>L'équipe présentatrice explique son usage avec ses propres mots ; le public reformule pour vérifier sa compréhension avant que l'objet ne rejoigne son rayon.</td></tr>
+  </table>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — GRILLE 0-4 (CORRIGÉ DÉTAILLÉ) + REMÉDIATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 3 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Corrigé de la grille d'évaluation 0-4</h3>
+  <p style="font-size:9pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>C1.1</b> : statut <b>Évaluation</b> — premier
+  positionnement de l'année, remonté sur École Directe à poids réduit. <b>C2.2</b> et <b>C3.1</b> : statut
+  <b>Confortement</b>, non remontées.</p>
+  <div class="tbl-wrap">
+  <table class="grille04">
+    <tr><th style="width:15%">Compétence / savoir-être</th><th class="niv">0</th><th class="niv">1</th><th class="niv">2</th><th class="niv">3</th><th class="niv">4</th></tr>
+    <tr>
+      <td><b>C1.1</b> Compléter, transmettre <span class="nuance">sur T1 · S3.1</span></td>
+      <td>Compétence non observée ce jour (élève absent au moment de sa présentation).</td>
+      <td>Ne présente pas sa famille au groupe, ou refuse de prendre la parole malgré la sollicitation du professeur.</td>
+      <td>Présente sa famille avec l'aide du professeur (relance, questions guidées), phrases hésitantes ou très courtes.</td>
+      <td>Présente seul sa famille et ses OVNI avec des phrases claires, répond aux questions posées par l'autre atelier.</td>
+      <td>Comme « Acquis », et reformule un point pour aider l'autre atelier à mieux comprendre.</td>
+    </tr>
+    <tr>
+      <td><b>C2.2</b> Contrôler les éléments <span class="nuance">sur T6 · S2.1</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Ne sait pas dire si son lot de 15 est complet, confond un OVNI présenté avec un outil déjà connu.</td>
+      <td>Vérifie son lot avec l'aide du professeur ; identifie les familles de son propre atelier mais hésite sur celles de l'atelier voisin.</td>
+      <td>Vérifie seul que son lot est complet (15 outils, état contrôlé) et reconnaît sans aide les familles de son atelier.</td>
+      <td>Comme « Acquis », et aide un pair à vérifier son lot ou à identifier un OVNI de sa propre famille.</td>
+    </tr>
+    <tr>
+      <td><b>C3.1</b> Organiser le poste <span class="nuance">sur T6 · S0.2</span></td>
+      <td>Compétence non observée ce jour.</td>
+      <td>Range son lot au hasard, ne respecte pas le rayon indiqué par son étiquette.</td>
+      <td>Range son lot dans le bon rayon avec l'aide d'un rappel ou du plan des rayons.</td>
+      <td>Range seul son lot de 15 dans le rayon exact indiqué, sans déborder sur un rayon voisin.</td>
+      <td>Comme « Acquis », et remet également en ordre un rayon dérangé par un autre élève.</td>
+    </tr>
+    <tr>
+      <td>Savoir-être — respect des rayons, prudence, équipe</td>
+      <td>Non observé ce jour.</td>
+      <td>Ne respecte pas les rayons et zones affectées, laisse un outil hors de sa place ; ou manipule un outil électroportatif sans contrôle : niveau 1 automatique.</td>
+      <td>Respecte globalement les rayons et zones affectées, quelques rappels nécessaires sur le rangement.</td>
+      <td>Respecte les rayons et zones affectées sans rappel, range chaque outil à sa place, travaille en équipe sans conflit.</td>
+      <td>Comme « Acquis », et veille aussi au rangement d'un camarade en plus du sien.</td>
+    </tr>
+  </table>
+  </div>
+  <div class="vigilance"><b class="t">Point de vigilance correction —</b> un geste interdit (test d'un outil
+  électroportatif sans contrôle) entraîne automatiquement un niveau <b>1 — Non acquis</b> sur le savoir-être,
+  quelle que soit la qualité de la présentation par ailleurs : principe de sécurité non négociable.</div>
+
+  <h3 class="section">Remédiation — que fait-on des positionnements 1 et 2 ?</h3>
+  <table class="mini">
+    <tr><th style="width:22%">Positionnement</th><th>Ce que le professeur met en place</th></tr>
+    <tr><td>Niveau 1 sur C1.1</td><td>Reprise ciblée en tout début de séquence S1 : l'élève présente à nouveau, en aparté avec le professeur, un seul outil de son lot avant la première séance d'atelier — pas devant le groupe entier, pour ne pas bloquer sur la prise de parole.</td></tr>
+    <tr><td>Niveau 1-2 sur C2.2 ou C3.1</td><td>Vérification individuelle du lot et du rayon en tout début de S1, avant que le professeur ne valide définitivement l'attribution des rayons pour l'année.</td></tr>
+    <tr><td>Niveau 1-2 répété sur plusieurs élèves</td><td>Variante consolidation dès S1 : reprendre 5 minutes de rappel « nom + usage » sur les familles les moins bien restituées, avant d'attaquer le geste technique nouveau.</td></tr>
+  </table>
+  <p style="font-size:9.5pt; color:var(--gris)">Aucun redoublement de la séance n'est prévu : le statut
+  Évaluation de C1.1 porte un poids réduit (c'est une découverte, pas un contrôle sommatif) — la remédiation se
+  fait par reprise ciblée au fil de la séquence S1, pas par répétition de l'activité S0.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — DIFFÉRENCIATION + CROISEMENTS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 3 · module atelier · CAP IFCA 1A — document professeur</div>
+  </div>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Le professeur reste à côté de l'équipe pendant sa présentation et pose des questions fermées (« c'est pour couper ou pour dénuder ? ») plutôt que d'attendre une présentation spontanée ; tableau des OVNI pré-rempli d'un exemple pour montrer le modèle attendu.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : présentation autonome, tableau des OVNI complété en écoutant, rangement seul.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après sa propre présentation, l'élève aide un pair d'un autre atelier à formuler sa justification avant la réponse, sans donner directement le nom de l'objet.</td></tr>
+    <tr><td>FLE</td><td>Présentation doublée d'un geste mimé (montrer l'usage plutôt que seulement le décrire) ; vocabulaire de sécurité répété à l'identique (« isolé », « attention », « rayon ») ; tableau des OVNI avec pictogrammes plutôt que texte seul.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Une seule famille écoutée à la fois avant de remplir sa ligne du tableau (pas de rattrapage en fin de séance) ; rangement découpé en deux temps courts (son propre rayon, puis vérification visuelle) plutôt qu'une seule longue tâche.</td></tr>
+  </table>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Co-intervention français</b> — prise de parole en public, restitution orale structurée ;</li>
+    <li><b>Prévention des risques professionnels</b> — rappel sécurité, geste interdit sur l'électroportatif ;</li>
+    <li><b>Vie scolaire</b> — respect du matériel collectif, rangement définitif des rayons de l'année.</li>
+  </ul>
+
+  <div class="secu"><b class="t">⚠ Rappel sécurité du jour</b> — coupure légère (faces coupantes des outils
+  présentés), risque électrique d'un outil isolé mal identifié : aucune consigne nouvelle, rappel express
+  uniquement (phase 4-5). Aucune manipulation sous tension. Point d'eau et trousse de secours déjà localisés en
+  séance 1.</div>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « 01-Outillages et
+  protections » — Dossier matériels et équipements v001-2014 (F. Henninot) ; Liste outillage élèves — prise en
+  charge caisse, Classe 1 CAP 2022/2023 (F. Henninot) ; cadrage de séquence S0 (chef d'orchestre usine FrigorX,
+  02/09/2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

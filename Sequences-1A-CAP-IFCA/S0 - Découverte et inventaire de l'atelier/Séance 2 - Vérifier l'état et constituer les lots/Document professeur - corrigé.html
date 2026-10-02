@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Document professeur — S0 Séance 2 · Vérifier l'état et constituer les lots</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger)}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  .der{font-size:8.6pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt; letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu)}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .pause td{background:#fafbfc!important; color:var(--leger); font-style:italic}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  .mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .mini tr:nth-child(even) td{background:var(--fond-doux)}
+  table.critere{font-size:8.8pt; margin:.3em 0 .9em}
+  .critere th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .critere td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  .critere tr:nth-child(even) td{background:var(--fond-doux)}
+  .tbl-wrap{overflow-x:auto}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:10pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .secu, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 — IDENTIFICATION + MÉTHODE + TRAME HORAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Domaine</span>Découverte et inventaire de l'atelier</td>
+      <td style="width:38%"><span class="lib">Séance 2 · 2 h — DOCUMENT PROFESSEUR (2 ateliers)</span><b>Vérifier l'état et constituer les lots</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> · rentrée 2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — 2 ateliers en parallèle</td>
+      <td><span class="lib">Durée prévue</span>2 h</td>
+      <td><span class="lib">Modalité</span>Postes de contrôle (1 équipe = 1 famille), Électrique 15 élèves / Façonnage 15 élèves</td>
+      <td><span class="lib">Encadrement</span>2 encadrants (1 par atelier), à confirmer</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâche</h4><b>T6</b> Préparer, vérifier les matériels et outillages</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> <b>S2.1</b> Outils, normes et représentation <span class="nuance">réactivé</span><br><span class="nuance">Travaillés :</span> <b>S0.2</b> Environnement et déchets <span class="nuance">nouveau</span> · <b>S6.2</b> Risques et prévention <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur, respect du rangement, travail en équipe, manipulation prudente</div>
+    <div class="case comp"><h4>Compétence (1 seule, ≤ 4)</h4><span class="statut">Découverte</span> <b>C3.1</b> Organiser le poste de travail <span class="nuance">sur T6 · S0.2</span></div>
+  </div>
+
+  <h3 class="section">Ce que ce document ajoute aux deux documents élève</h3>
+  <p style="font-size:10.3pt">Ce document couvre <b>les deux ateliers</b> (Électrique et Façonnage) : il ajoute
+  les critères d'état détaillés avec des exemples de défauts réels par famille, l'organisation du plateau
+  (postes, bacs, circulation), la différenciation, le minutage recompté, et le détail du tri des outils hors
+  service. <b>Aucune valeur non sourcée</b> : les désignations d'outils viennent de « 01-Outillages et
+  protections.pdf » et de « Liste outillage élèves — prise en charge caisse.xlsx » ; la filière de recyclage
+  exacte des outils métalliques reste <b>« à confirmer avec les services techniques de l'établissement »</b> —
+  non documentée dans les sources disponibles.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Postes de contrôle, tri fin comme un vrai inventaire de stock.</b> Une équipe =
+  une famille = un poste où elle teste l'état de chaque exemplaire (Bon / À réviser / Hors service) et compte
+  jusqu'à 15 exemplaires utilisables, en remontant ce qui manque comme un vrai bon de commande. <b>Atelier
+  Électrique : 9 familles</b> (pinces coupantes, à dénuder, à bec — chacune avec relevé isolée/non isolée — + 6
+  tournevis du coffret isolé séparés par taille/type : testeur, plat petit/moyen/gros, cruciforme petit/gros).
+  <b>Atelier Façonnage : 5 familles</b> (pince multiprise, coupe-tube, cintreuse cuivre — dimension gravée
+  relevée avant jugement d'état —, cintreuse plombier à part, outils mécaniques en un seul bac sans sous-tri).
+  <b>Familles partagées</b> (mètres-rubans, clés à molette, outils mécaniques) : comptées des deux côtés en
+  <b>indicatif</b>, sans viser 15 ni un contrôle aussi strict. <b>Bac TRANSFERT</b> (en plus du bac OVNI) : un
+  outil <i>identifié</i> mais qui appartient à l'autre atelier (ex. une cintreuse trouvée côté Électrique) n'est
+  <b>pas testé sur place</b> — il est déposé au TRANSFERT et contrôlé par l'atelier concerné ; OVNI reste réservé
+  aux outils vraiment non identifiés. Le professeur ne donne pas les 3 critères d'emblée : il fait d'abord
+  deviner sur 2-3 outils démonstration volontairement abîmés (observer → nommer → expliciter), puis formalise.
+  Les deux ateliers tournent <b>en parallèle</b>, sans rotation, sur les familles déjà triées en séance 1 (voir
+  <i>_CADRAGE-S0.md</i>).</p>
+  <div class="vigilance"><b class="t">Point de vigilance sécurité</b> — Un tournevis testeur électrique
+  défectueux qui « s'allume sans contact » est un <b>danger</b>, pas un simple défaut d'usure : à isoler
+  immédiatement, jamais réutilisé avant vérification du professeur. C'est l'occasion concrète d'ancrer la règle
+  « <b>jamais de test électrique sans contrôle visuel préalable</b> » (câble, isolant, manche).</div>
+
+  <h3 class="section">Trame horaire — 2 h (recomptée ligne à ligne, alignée sur le plan de séance)</h3>
+  <div class="tbl-wrap"><table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:24%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Module atelier — 2 h 00 (préparation de chantier = 40 min)</td></tr>
+    <tr><td>5 min</td><td class="ph">1. Débuter</td><td>Accueil, appel des 30 élèves scindés en 2 ateliers ; rappel de l'organisation.</td></tr>
+    <tr><td>5 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S0S2-01 : livrer un lot fiable de 15 exemplaires par famille.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Objectifs</td><td>Les 5 « je serai capable de… » affichés, lien avec T6 · S0.2 · C3.1 (Découverte).</td></tr>
+    <tr><td>10 min</td><td class="ph">4. Vérifier les prérequis</td><td>Rituel d'entrée (2<sup>e</sup> fois) ; rappel oral des familles reconnues en séance 1.</td></tr>
+    <tr><td>15 min</td><td class="ph">5. Donner la démarche</td><td>Manipulation prudente démontrée, puis 2-3 outils abîmés testés devant la classe avant de donner les 3 critères.</td></tr>
+    <tr><td>20 min</td><td class="ph">6a. Postes de contrôle (1<sup>re</sup> moitié)</td><td>Tri Bon/À réviser/Hors service par équipe (9 familles fines côté Électrique, 5 côté Façonnage), comptage démarré ; outils du mauvais atelier déposés au bac TRANSFERT, non identifiés en OVNI.</td></tr>
+    <tr class="pause"><td>10 min</td><td colspan="2">Pause.</td></tr>
+    <tr><td>20 min</td><td class="ph">6b. Postes de contrôle (2<sup>e</sup> moitié)</td><td>Fin du contrôle, calcul de l'écart à 15 par famille (comptage indicatif pour les 3 familles partagées).</td></tr>
+    <tr><td>10 min</td><td class="ph">7-8. Synthèse</td><td>Tour de table des écarts (bon de commande), observation orale du savoir-être.</td></tr>
+    <tr><td>15 min</td><td class="ph">9. Ranger — nettoyer</td><td>Rangement des 3 bacs par famille.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer</td><td>Annonce de la séance 3, retour en tenue de ville.</td></tr>
+  </table></div>
+  <p style="font-size:9pt; color:var(--gris)">Total : 5+5+5+10+15 = <b>40 min</b> (prépa) + 20+10+20 =
+  <b>50 min</b> (postes, pause incluse) + 10+15+5 = <b>30 min</b> = <b>2 h 00 exactes</b>. Harmonisation avec la
+  Séance 1 : la phase 6 est ramenée de 60 à 50 min et la phase 9 reste à 15 min, pour corriger la même erreur
+  d'addition du cadrage S0 de la même façon dans les deux séances.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 2 — CRITÈRES DÉTAILLÉS + DÉFAUTS TYPIQUES : ATELIER ÉLECTRIQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document professeur — Atelier Électrique</div>
+  </div>
+
+  <h3 class="section">Critères d'état détaillés — Atelier Électrique</h3>
+  <p style="font-size:10.3pt">Un seul défaut disqualifiant suffit pour classer « À réviser » ou « Hors service »,
+  même si le reste de l'outil est correct. En cas de doute, l'équipe classe « À réviser » et le professeur
+  tranche.</p>
+  <p style="font-size:9.5pt; color:var(--gris)">Pour les 3 pinces, l'équipe relève <b>isolée ? oui/non</b> avant
+  de juger l'isolant. Pour les 6 tournevis, la taille/le type gravé (repère de dimension : coffret STANLEY®
+  FATMAX® VDE 6 pièces isolés, réf. 0-65-443 — à confirmer sur le coffret réel de l'atelier) détermine la case ;
+  un exemplaire hors coffret peut différer légèrement.</p>
+  <div class="tbl-wrap"><table class="critere">
+    <tr><th style="width:20%">Famille</th><th style="width:26%">Bon</th><th style="width:26%">À réviser</th><th style="width:28%">Hors service — défaut typique</th></tr>
+    <tr><td>Pinces coupantes diagonales</td><td>Mâchoires alignées, coupe nette ; isolant intact si isolée</td><td>Articulation dure, léger jeu ; isolant marqué mais pas fendu</td><td>Mâchoires ébréchées (fil non coupé net), <b>isolant fendu près du pivot</b>, articulation cassée</td></tr>
+    <tr><td>Pinces à dénuder</td><td>Encoches nettes par section, ressort qui rappelle ; isolant intact si isolée</td><td>1-2 encoches marquent le fil sans le sectionner</td><td>Encoches arrondies qui <b>entaillent l'âme du fil</b>, ressort fatigué/cassé, ou isolant fendu</td></tr>
+    <tr><td>Pinces à bec demi-rond coudé</td><td>Becs alignés, isolant intact si isolée</td><td>Léger désalignement</td><td>Becs désaxés (chute), isolant abîmé côté articulation</td></tr>
+    <tr><td>Tournevis testeur</td><td>Manche isolant intact ; le voyant s'allume au contact d'une phase connue</td><td>Voyant faible mais fonctionnel</td><td>Néon grillé (ne s'allume jamais) <b>ou s'allume sans contact — danger</b>, isolement immédiat</td></tr>
+    <tr><td>Tournevis plat petit / moyen / gros (≈2,5×50 · 3,5×75 · 5,5×150 mm)</td><td>Taille gravée lisible, lame nette, manche isolant intact</td><td>Lame un peu arrondie mais lisible et utilisable</td><td>Lame « <b>champignonnée</b> » (bord écrasé, ripe), manche fendu, ou marquage illisible</td></tr>
+    <tr><td>Tournevis cruciforme petit / gros (PZ1×100 · PZ2×125 mm)</td><td>Type gravé lisible, lame nette, manche isolant intact</td><td>Lame un peu arrondie mais lisible et utilisable</td><td>Lame « champignonnée », manche fendu, ou marquage illisible</td></tr>
+  </table></div>
+  <div class="vigilance"><b class="t">Point de vigilance — famille partagée</b> — La pince à bec demi-rond coudé
+  est aussi présente en Façonnage. Faire argumenter l'équipe Électrique : elle est isolée, donc rangée côté
+  électrique pour le risque associé, même si le geste de préhension est commun aux deux ateliers.</div>
+
+  <h4 class="section">OVNI et TRANSFERT électrique</h4>
+  <p style="font-size:10.3pt">Tout objet du bac qui ne correspond à aucune des 9 familles et n'est identifiable
+  pour aucun atelier va dans le bac OVNI, <b>sans être testé</b> : il sera débattu en restitution croisée à la
+  séance 3. Un objet <b>reconnu</b> mais qui appartient clairement au Façonnage (ex. une cintreuse) ne s'inventorie
+  <b>pas ici</b> : il part au bac <b>TRANSFERT</b>, contrôlé plus tard par l'atelier Façonnage. Différence à faire
+  tenir aux équipes : TRANSFERT = outil connu, mauvais atelier ; OVNI = outil vraiment non identifié. Ne pas
+  laisser une équipe inventer une famille supplémentaire de son propre chef.</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 3 — CRITÈRES DÉTAILLÉS + DÉFAUTS TYPIQUES : ATELIER FAÇONNAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document professeur — Atelier Façonnage</div>
+  </div>
+
+  <h3 class="section">Critères d'état détaillés — Atelier Façonnage</h3>
+  <p style="font-size:9.5pt; color:var(--gris)">Pour les cintreuses cuivre, l'équipe <b>relève et note la
+  dimension gravée</b> (corps ou molette) <b>avant</b> de juger l'état — un marquage illisible est déjà un
+  indice de défaut. Les diamètres ne sont pas pré-listés : chaque exemplaire porte sa propre dimension.</p>
+  <div class="tbl-wrap"><table class="critere">
+    <tr><th style="width:20%">Famille</th><th style="width:26%">Bon</th><th style="width:26%">À réviser</th><th style="width:28%">Hors service — défaut typique</th></tr>
+    <tr><td>Pinces multiprise débrayables</td><td>Crantage net, articulation coulisse sans forcer</td><td>Articulation dure mais fonctionne</td><td>Crantage « <b>poli</b> » par l'usure (glisse sur l'écrou), articulation grippée par la rouille</td></tr>
+    <tr><td>Coupe-tubes</td><td>Molette libre, coupe nette et perpendiculaire</td><td>Molette un peu émoussée</td><td>Molette ébréchée qui <b>marque le tube</b> au lieu de le trancher, vis d'avance faussée (chute)</td></tr>
+    <tr><td>Cintreuses cuivre — 1/4" · 3/8" · 1/2" · 5/8", plus le modèle 3 diamètres (1/4 · 5/16 · 1/2)</td><td>Dimension gravée lisible et notée, gorge sans marque profonde, articulation libre</td><td>Dimension lisible, articulation un peu dure</td><td>Gorge <b>ovalisée</b> (marque systématiquement le tube), articulation faussée par un cintrage en force, ou marquage illisible</td></tr>
+    <tr><td>Cintreuse plombier <span class="nuance">(famille à part, pas « une cintreuse de plus »)</span></td><td>Gorge nette, mécanisme qui pivote sans forcer</td><td>Mécanisme un peu dur</td><td>Gorge marquée, mécanisme cassé</td></tr>
+    <tr><td>Outils mécaniques (clé plate, clé à pipe) <span class="nuance">— un seul bac, pas de sous-tri : peu d'exemplaires réels, finesse inutile ici</span></td><td>Mâchoires/empreinte nettes, pas de jeu</td><td>Mâchoires légèrement arrondies</td><td>Mâchoires/empreinte arrondies (glissent), pièce tordue</td></tr>
+  </table></div>
+  <div class="vigilance"><b class="t">Point de vigilance — familles partagées</b> — Mètres-rubans et clés à
+  molette sortent des 5 familles officielles : elles se comptent aussi ici, en <b>indicatif</b> (pas de lot
+  visé à 15, contrôle d'état allégé — Franck veut juste savoir combien il en a). Ne pas leur appliquer la même
+  rigueur qu'aux 5 familles ci-dessus.</div>
+
+  <h4 class="section">OVNI et TRANSFERT façonnage</h4>
+  <p style="font-size:10.3pt">Même règle que côté Électrique : tout objet hors des 5 familles (et des familles
+  partagées) va dans le bac OVNI sans être testé, débattu en séance 3. Un objet <b>reconnu</b> mais électrique
+  (ex. une pince à dénuder) ne s'inventorie <b>pas ici</b> : il part au bac <b>TRANSFERT</b>, contrôlé plus tard
+  par l'atelier Électrique.</p>
+
+  <h4 class="section">Erreurs typiques des élèves + remédiation</h4>
+  <table class="mini">
+    <tr><th style="width:32%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Force un mécanisme grippé pour le tester « quand même »</td><td>Arrêt immédiat du geste, rappel : un mécanisme dur qui résiste se classe « à réviser », on ne force jamais.</td></tr>
+    <tr><td>Classe « Bon » un outil douteux pour atteindre 15 plus vite</td><td>Reprendre l'exemplaire devant l'équipe, comparer au critère écrit : la rigueur prime sur la vitesse.</td></tr>
+    <tr><td>Teste un tournevis testeur sans contrôle visuel préalable</td><td>Arrêt du geste, rappel ferme de la règle de manipulation prudente avant tout nouveau test.</td></tr>
+    <tr><td>Jette un outil hors service dans une poubelle classique</td><td>Reprendre le geste, rediriger vers le bac de tri des métaux, relier au savoir S0.2.</td></tr>
+  </table>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- ============ FEUILLE 4 — PLATEAU + DIFFÉRENCIATION + TRI DÉCHETS + SOURCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0 · Séance 2 · document professeur — organisation et différenciation</div>
+  </div>
+
+  <h3 class="section">Organisation du plateau (les deux ateliers)</h3>
+  <p style="font-size:10.3pt">Postes alignés le long des établis, un poste par famille (9 côté Électrique, 5 côté
+  Façonnage) : <b>1 bac trié</b> (venant de la séance 1) + <b>3 bacs vides étiquetés</b> (Bon / À réviser / Hors
+  service, code couleur simple — vert / orange / rouge) + la fiche de comptage sur support. Les bacs <b>OVNI</b>
+  et <b>TRANSFERT</b> sont centralisés sur une table à part : OVNI garde les outils vraiment non identifiés,
+  TRANSFERT reçoit les outils reconnus mais du mauvais atelier — les deux attendent la séance 3 (le TRANSFERT
+  peut être relevé et contrôlé par l'autre atelier dès qu'un encadrant passe). Une équipe teste en plus les
+  3 familles partagées (mètres-rubans, clés à molette, outils mécaniques) en comptage indicatif. Le professeur
+  circule en boucle entre les postes de son atelier ; avec 2 encadrants, chacun couvre un atelier complet.</p>
+
+  <h3 class="section">Différenciation</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Le professeur classe le premier exemplaire de chaque équipe avec elle, à voix haute, avant de la laisser continuer seule.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>L'équipe qui finit avant les autres vérifie aussi les OVNI de sa famille probable et prépare un argument pour la restitution croisée de séance 3.</td></tr>
+    <tr><td>FLE</td><td>Critères reformulés en mots très simples + pictogrammes couleur (vert/orange/rouge) sur la fiche ; démonstration systématique avant chaque nouvel outil testé.</td></tr>
+    <tr><td>TDAH / DYS</td><td>Un seul critère vérifié à la fois (jamais les 3 comparés simultanément) ; fiche de comptage à cases larges ; lot réduit à 5 exemplaires à la fois plutôt que tout le bac d'un coup.</td></tr>
+  </table>
+
+  <h3 class="section">Le tri des outils hors service (S0.2)</h3>
+  <p style="font-size:10.3pt">Un outil hors service ne va <b>jamais</b> à la poubelle : il part dans le bac de tri
+  des métaux, comme les chutes de cuivre. Un outil « à réviser » n'est pas jeté : il reste dans son bac, en
+  attente d'une décision du professeur (réparation en interne ou réforme définitive). <span class="nuance">Le
+  détail exact de la filière (déchetterie, prestataire, séparation métal/isolant sur les manches) reste à
+  confirmer avec les services techniques de l'établissement — non documenté dans les sources métier
+  disponibles.</span></p>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques professionnels</b> — manipulation prudente, outils isolants ;</li>
+    <li><b>Gestion de l'environnement et des déchets</b> — filière métaux, S0.2 ;</li>
+    <li><b>Co-intervention français</b> — rédaction de la fiche de comptage ;</li>
+    <li><b>Vie scolaire</b> — rituel d'entrée d'atelier.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « 01-Outillages et
+  protections.pdf » (DOSSIER MATERIELS &amp; EQUIPEMENTS v001-2014, désignations et fonctions officielles) ;
+  « Liste outillage élèves — prise en charge caisse.xlsx » (Classe 1 CAP 2022/2023, désignations réelles de la
+  dotation) ; <i>_CADRAGE-S0.md</i> (chef d'orchestre usine FrigorX, 02/09/2026).</p>
+
+  <div class="pied">❄ inerWeb Édu — par F. Henninot · créé le 02/09/2026 · ©</div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

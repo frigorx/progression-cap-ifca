@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Document professeur — S0-Séance 1 · Identifier et trier l'outillage</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.45; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:10.5pt}
+  .der{font-size:8.6pt; margin:.3em 0 .9em}
+  .der th{font-family:'Trebuchet MS',sans-serif; background:var(--bleu); color:#fff; font-size:8pt;
+    letter-spacing:.03em; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .der td{border:1px solid var(--filet); padding:4px 6px; vertical-align:top}
+  .der tr:nth-child(even) td{background:var(--fond-doux)}
+  .der .ph{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); white-space:normal}
+  .demi td{background:#e3e9f2!important; font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); font-size:8.5pt}
+  .tbl-wrap{overflow-x:auto}
+  h3.section{font-size:13pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:10.5pt}
+  .liste-num li{margin-bottom:3px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:6px 12px; margin:.3em 0 .8em; font-size:10pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:6px 12px; margin:.3em 0 .8em; font-size:9.8pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9pt; margin:.3em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:7.8pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  table.mini.elec th{background:#2c4e80}
+  table.mini.facon th{background:#c14a17}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .vigilance, .reponse{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 — ORGANISATION + MINUTAGE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Découverte et inventaire de l'atelier</td>
+      <td style="width:38%"><span class="lib">Séance 1 · 2 h — DOCUMENT PROFESSEUR, 2 ateliers</span><b>Identifier et trier l'outillage</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> · rentrée 2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Salle / Zone</span>Atelier Froid — zone Électrique + zone Façonnage</td>
+      <td><span class="lib">Durée prévue</span>2 h — 2 ateliers de 15 en parallèle</td>
+      <td><span class="lib">Modalité</span>Visite-découverte guidée allégée + ateliers tournants par famille d'outils, aucun geste technique nouveau</td>
+      <td><span class="lib">Encadrement</span>2 encadrants, 1 par atelier <span class="nuance">(à confirmer)</span></td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T5</b> Prendre connaissance et organiser les informations<br><b>T6</b> Préparer, vérifier les matériels et outillages</div>
+    <div class="case"><h4>Savoir</h4><b>S2.1</b> Outils, normes et représentation <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Rigueur du poste, respect des rayons affectés, travail en équipe, manipulation prudente</div>
+    <div class="case comp"><h4>Compétence (≤ 4)</h4><span class="statut">Découverte</span> <b>C2.2</b> Contrôler les éléments nécessaires à la réalisation <span class="nuance">sur T6 · S2.1</span></div>
+  </div>
+
+  <div class="vigilance"><b class="t">Ancrage tâche/compétence</b> — L'ancrage T6·S2.1 → C2.2 est une <b>dérivation
+  pédagogique</b> du chef d'orchestre : le lien fin tâche↔compétence n'est pas tabulé tel quel dans l'arrêté CAP
+  IFCA (RAP et RC se relient au niveau activité↔capacité). À ne jamais présenter comme une matrice officielle.</div>
+
+  <h3 class="section">Ce que ce document ajoute aux deux TP élèves</h3>
+  <p style="font-size:10.3pt">Ce document couvre <b>les deux ateliers en une seule fois</b> : réponses attendues
+  pour chaque famille (nom exact, fonction, pourquoi telle particularité), erreurs typiques, organisation du
+  plateau, minutage détaillé et différenciation. <b>Aucune valeur non sourcée</b> : les désignations et fonctions
+  citées proviennent de « 01-Outillages et protections.pdf » (Dossier Matériels & Équipements, v001-2014) et de
+  « Liste outillage élèves prise en charge caisse.xlsx » (Classe 1 CAP 2022/2023). Ce que ces sources ne couvrent
+  pas est signalé « à confirmer », jamais inventé.</p>
+
+  <h3 class="section">Méthode pédagogique du module</h3>
+  <p style="font-size:10.5pt"><b>Visite-découverte guidée allégée, puis ateliers tournants par famille d'outils, en
+  2 ateliers parallèles.</b> Aucun geste technique n'est enseigné ce jour : l'activité est un <b>tri et un
+  contrôle visuel</b>, pas une manipulation d'installation. La sécurité de manipulation (dont « pourquoi une pince
+  est isolée ») est <b>démontrée</b> avant le tri, jamais découverte seule. Le tri lui-même suit la logique
+  observer → nommer → expliciter : les élèves cherchent d'abord la famille par ressemblance, la fiche
+  d'identification ne fait que confirmer.</p>
+  <div class="vigilance"><b class="t">Point de vigilance organisationnel</b> — Les deux ateliers tournent <b>en même
+  temps, sans rotation</b> : chaque élève ne voit que sa famille du jour. Le croisement Électrique ↔ Façonnage (pour
+  les OVNI notamment) est volontairement réservé à la séance 3 — ne pas anticiper en séance 1.</p></div>
+
+  <h3 class="section">Trame horaire — module 2 h (recomptée ligne à ligne)</h3>
+  <div class="tbl-wrap">
+  <table class="der">
+    <tr><th style="width:9%">Durée</th><th style="width:26%">Étape</th><th>Contenu</th></tr>
+    <tr class="demi"><td colspan="3">Séance 1 — 2 h 00 (préparation de chantier = 40 min)</td></tr>
+    <tr><td>5 min</td><td class="ph">1. Débuter</td><td>Accueil commun, appel, répartition en 2 groupes de 15.</td></tr>
+    <tr><td>5 min</td><td class="ph">2. Mettre en situation</td><td>Ordre d'intervention OI-2026-S0-01 : reprise en main du magasin avant le premier chantier.</td></tr>
+    <tr><td>5 min</td><td class="ph">3. Objectifs</td><td>« Je serai capable de… » affichés, lien C2.2, statut Découverte non remontée.</td></tr>
+    <tr><td>10 min</td><td class="ph">4. Vérifier les prérequis</td><td>Rituel d'entrée : zones, rayons, arrêt d'urgence et trousse localisés.</td></tr>
+    <tr><td>15 min</td><td class="ph">5. Donner la démarche</td><td>Sécurité de manipulation démontrée sur 2-3 outils (dont pourquoi une pince est isolée) ; question ouverte sur le critère de tri, sans réponse donnée.</td></tr>
+    <tr><td>50 min</td><td class="ph">6. Guider l'étude — 2 ateliers en parallèle</td><td>Tri par famille + OVNI, fiches d'identification, comptage, rangement en bacs étiquetés. Pause courte de 10 min incluse, commune aux deux ateliers.</td></tr>
+    <tr><td>10 min</td><td class="ph">7-8. Synthèse + évaluer/réajuster</td><td>Mise en commun par atelier (pas de croisement), remplissage de la fiche d'inventaire.</td></tr>
+    <tr><td>15 min</td><td class="ph">9. Ranger — nettoyer</td><td>Remise en rayon des familles triées, restitution des bacs, contrôle visuel du poste.</td></tr>
+    <tr><td>5 min</td><td class="ph">10. Clôturer</td><td>Annonce de la séance 2 (contrôle de l'état, constitution des lots de 15).</td></tr>
+  </table>
+  </div>
+  <p style="font-size:9pt; color:var(--gris)">Total : préparation de chantier (phases 1→5) = 5+5+5+10+15 =
+  <b>40 min</b> ; phase 6 = 50 min ; synthèse 10 min + rangement 15 min + clôture 5 min = 30 min. Total module :
+  40 + 50 + 30 = <b>120 min exactes</b>, conforme au plan de séance. <span class="nuance">Le cadrage de séquence
+  proposait 60 min pour la phase 6 et 15 min pour le rangement (total 130 min) ; la phase 6 a été resserrée à
+  50 min pour respecter les 2 h annoncées — voir la note du plan de séance.</span></p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — CORRIGÉ ATELIER ÉLECTRIQUE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 1 · document professeur — Atelier Électrique</div>
+  </div>
+
+  <h3 class="section">Corrigé — fiche d'identification, Atelier Électrique (9 familles)</h3>
+  <div class="tbl-wrap">
+  <table class="mini elec">
+    <tr><th style="width:24%">Famille</th><th style="width:14%">Isolée ?</th><th style="width:32%">Fonction (réponse attendue)</th><th>Pourquoi cette particularité</th></tr>
+    <tr><td>Pince coupante diagonale</td><td>Oui (gaine VDE)</td><td>Coupe les fils et câbles électriques.</td><td>Mâchoires en biais pour couper au ras d'une surface.</td></tr>
+    <tr><td>Pince à dénuder</td><td>Oui (gaine VDE)</td><td>Retire la gaine isolante sans couper le cuivre.</td><td>Encoches calibrées par section de fil (0,5-4 mm² sur le modèle de la caisse).</td></tr>
+    <tr><td>Pince à bec demi-rond coudé</td><td>Généralement oui — à vérifier sur l'exemplaire réel</td><td>Saisit/plie un petit fil en espace restreint.</td><td>Statut ambigu volontaire (partagée avec Façonnage) : l'équipe doit argumenter son rangement.</td></tr>
+    <tr><td>Tournevis testeur (1 pièce)</td><td>Oui (manche VDE)</td><td>Détecte la présence d'une tension.</td><td>Ne s'utilise <b>jamais en autonomie</b>, uniquement sur consigne du professeur.</td></tr>
+    <tr><td>Tournevis plat petit (≈2,5×50 mm)</td><td>Oui (VDE)</td><td>Visse/dévisse une petite vis à empreinte plate.</td><td rowspan="5">Composition conforme au coffret « STANLEY® FATMAX® tournevis isolés VDE, 6 pièces » (voir tableau des dimensions repères ci-dessous).</td></tr>
+    <tr><td>Tournevis plat moyen (≈3,5×75 mm)</td><td>Oui (VDE)</td><td>Visse/dévisse une vis moyenne à empreinte plate.</td></tr>
+    <tr><td>Tournevis plat gros (≈5,5×150 mm)</td><td>Oui (VDE)</td><td>Visse/dévisse une grosse vis à empreinte plate, forte prise.</td></tr>
+    <tr><td>Tournevis cruciforme (Pozidriv) petit modèle (≈PZ1×100 mm)</td><td>Oui (VDE)</td><td>Visse/dévisse une vis à empreinte cruciforme, petit modèle.</td></tr>
+    <tr><td>Tournevis cruciforme (Pozidriv) gros modèle (≈PZ2×125 mm)</td><td>Oui (VDE)</td><td>Visse/dévisse une vis à empreinte cruciforme, gros modèle.</td></tr>
+  </table>
+  </div>
+
+  <h4 class="section">Dimensions repères — coffret Stanley FATMAX VDE 6 pièces (sourcé)</h4>
+  <p style="font-size:9.5pt">Réf. commerciale <b>0-65-443</b> (recherche web du 02/09/2026, à confirmer sur la
+  référence gravée sur LE coffret réel de l'atelier). L'élève relève la dimension <b>réellement gravée</b> sur son
+  exemplaire : elle peut différer légèrement (usure du marquage, pièce de complément hors coffret) — c'est le
+  marquage qui fait foi, pas ce tableau.</p>
+  <table class="mini">
+    <tr><th style="width:40%">Type</th><th>Dimension repère</th></tr>
+    <tr><td>Testeur</td><td>1 pièce, pas de dimension normée (contrôle de continuité simple)</td></tr>
+    <tr><td>Plat petit</td><td>≈ 2,5 × 50 mm</td></tr>
+    <tr><td>Plat moyen</td><td>≈ 3,5 × 75 mm</td></tr>
+    <tr><td>Plat gros</td><td>≈ 5,5 × 150 mm</td></tr>
+    <tr><td>Cruciforme (Pozidriv) petit</td><td>≈ PZ1 × 100 mm</td></tr>
+    <tr><td>Cruciforme (Pozidriv) gros</td><td>≈ PZ2 × 125 mm</td></tr>
+  </table>
+
+  <div class="reponse"><b class="t">Pourquoi une pince est isolée — réponse attendue, niveau simple</b> — Le manche
+  est recouvert d'une gaine plastique qui empêche le courant de passer dans la main si l'outil touche
+  accidentellement un fil sous tension. Ne pas aller plus loin (pas de classe de tension, pas de norme NF C
+  18-510 ce jour — hors calibre S0, cette notion sera développée en habilitation électrique plus tard dans la
+  formation).</div>
+
+  <h4 class="section">Erreurs typiques et remédiation — Atelier Électrique</h4>
+  <table class="mini">
+    <tr><th style="width:32%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Confond pince coupante diagonale et pince à dénuder (les deux « coupent »)</td><td>Faire chercher la trace laissée : la dénudeuse laisse le fil de cuivre intact, la coupante le sectionne.</td></tr>
+    <tr><td>Range le testeur avec les tournevis plats sans le signaler comme particulier</td><td>Rappeler que le testeur ne se manipule jamais seul : le distinguer visuellement dans le bac de tri.</td></tr>
+    <tr><td>Range la pince à bec demi-rond avec les pinces coupantes sans argumenter</td><td>Relancer la question « à quoi sert-elle en priorité, couper ou saisir ? » avant de trancher.</td></tr>
+    <tr><td>Coche « isolée » sans vérifier toute la longueur du manche</td><td>Faire vérifier qu'aucune partie métallique n'est visible sur le manche, pas seulement l'aspect général de l'outil.</td></tr>
+    <tr><td>Mélange les 6 tournevis en un seul tas « jeu de tournevis »</td><td>Faire relire la dimension gravée sur chaque exemplaire avant de séparer plat/cruciforme puis petit/moyen/gros.</td></tr>
+    <tr><td>Range un OVNI « parce qu'il ressemble » à une famille connue</td><td>Rappeler la consigne : en cas de doute, l'objet va dans le bac OVNI, jamais forcé dans une famille.</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">Mécanisme TRANSFERT vs OVNI</b> — <b>TRANSFERT</b> : l'outil est <b>reconnu</b>
+  mais appartient à l'autre atelier (ex. une cintreuse trouvée côté Électrique) → on ne l'inventorie <b>pas</b> ici,
+  on le pose dans le bac TRANSFERT, l'autre atelier le comptera. <b>OVNI</b> : l'outil n'est <b>identifié par
+  personne</b> → il attend le croisement de séance 3. Si une équipe hésite, la question à poser est : « vous savez
+  ce que c'est, juste pas d'ici ? » (TRANSFERT) ou « vous ne savez vraiment pas ce que c'est ? » (OVNI). Aucune
+  liste d'objets OVNI n'est fournie par les sources (le contenu exact du bac dépend du stock réel préparé par
+  Franck) : à compléter au moment de la préparation, sans anticiper leur identité aux élèves.</div>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — CORRIGÉ ATELIER FAÇONNAGE + DIFFÉRENCIATION + ORGANISATION ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 1 · document professeur — Atelier Façonnage</div>
+  </div>
+
+  <h3 class="section">Corrigé — fiche d'identification, Atelier Façonnage (5 familles propres)</h3>
+  <div class="tbl-wrap">
+  <table class="mini facon">
+    <tr><th style="width:20%">Famille</th><th style="width:36%">Fonction (réponse attendue)</th><th>Pourquoi cette particularité</th></tr>
+    <tr><td>Pince multiprise débrayable</td><td>Saisit/maintient des objets de tailles diverses ; articulation réglable qui agrandit l'écartement des mâchoires.</td><td>Le débrayage change la plage de serrage sans changer d'outil.</td></tr>
+    <tr><td>Coupe-tube</td><td>Coupe un tube de cuivre avec précision et permet l'ébavurage.</td><td>La molette de coupe tourne autour du tube ; ne jamais forcer d'un coup pour éviter d'écraser le tube.</td></tr>
+    <tr><td>Cintreuse cuivre <b>1/4" · 3/8" · 1/2" · 5/8"</b><br>+ modèle <b>3 diamètres</b> (1/4 · 5/16 · 1/2)</td><td>Plie un tube de cuivre sans l'écraser. Une cintreuse par diamètre de tube.</td><td><b>Chaque diamètre est une ligne d'inventaire à part</b> : une 1/2" ne remplace pas une 1/4". L'élève relève la dimension gravée sur le corps ou la molette pour savoir laquelle il tient. <i>Le jeu réel de l'atelier est à confirmer au comptage — c'est justement l'objet de la séance.</i></td></tr>
+    <tr><td>Cintreuse plombier</td><td>Plie un tube (acier/plomb) plus rigide qu'une cintreuse cuivre classique.</td><td>Famille à part, pas « une cintreuse cuivre de plus » : mécanisme et usage différents (à confirmer sur le modèle réel de l'atelier).</td></tr>
+    <tr><td>Outils mécaniques (clé plate, clé à pipe)</td><td>Serre/desserre un écrou ou un boulon ; la clé à pipe accède aux espaces restreints.</td><td>Un seul bac, sans sous-tri : peu d'exemplaires réels en stock, la finesse n'a pas de sens ici.</td></tr>
+  </table>
+  </div>
+
+  <h4 class="section">Erreurs typiques et remédiation — Atelier Façonnage</h4>
+  <table class="mini">
+    <tr><th style="width:32%">Erreur observée</th><th>Remédiation immédiate</th></tr>
+    <tr><td>Confond coupe-tube et lime plate (les deux « travaillent » le tube coupé)</td><td>Faire dire l'ordre d'usage : le coupe-tube coupe, la lime/l'ébavureur reprend l'arête après coupe — ce ne sont pas la même famille.</td></tr>
+    <tr><td>Range toutes les cintreuses ensemble sans relever le diamètre gravé</td><td>Faire chercher le marquage sur le corps ou la molette avant de ranger ; sans marquage lisible, signaler l'exemplaire au professeur plutôt que deviner.</td></tr>
+    <tr><td>Confond cintreuse plombier et cintreuse cuivre (« c'est juste une cintreuse de plus »)</td><td>Faire comparer les deux outils en main : rayon et mécanisme diffèrent, ce sont deux familles distinctes.</td></tr>
+    <tr><td>Sous-trie les outils mécaniques par taille comme les tournevis côté Électrique</td><td>Rappeler que le stock est trop faible ici : un seul bac suffit, pas de sous-catégories.</td></tr>
+  </table>
+
+  <h4 class="section">Familles partagées (comptage indicatif, sur les deux ateliers)</h4>
+  <p style="font-size:9.5pt">« C'est pas vraiment un inventaire officiel, c'est plus pour savoir ce que j'ai » — pas
+  de contrôle d'état aussi strict que les familles propres, pas de total de 15 visé.</p>
+  <table class="mini">
+    <tr><th style="width:26%">Famille</th><th style="width:34%">Fonction</th><th>Remarque</th></tr>
+    <tr><td>Mètre-ruban</td><td>Mesure la longueur d'un tube avant coupe.</td><td>Ruban rétractable, à lire au même point de référence à chaque mesure.</td></tr>
+    <tr><td>Clé à molette (petite/moyenne/grande)</td><td>Serre/desserre un écrou, mâchoire réglable.</td><td>Trois tailles pour couvrir les diamètres rencontrés (12-36 mm sur le modèle de la caisse).</td></tr>
+    <tr><td>Outils mécaniques</td><td>Voir tableau des 5 familles propres ci-dessus.</td><td>Même bac que côté Façonnage ; s'il en traîne côté Électrique, les compter aussi, sans viser un total précis.</td></tr>
+  </table>
+
+  <div class="vigilance"><b class="t">OVNI Atelier Façonnage — piste plausible, à confirmer</b> — La
+  <b>dudgeonnière</b> (désignation exacte de la caisse réelle : « Dudgeonniere 195 3/16-5/8 », source xlsx) ne
+  figure dans <b>aucune</b> des 5 familles décidées avec Franck pour cette séance : c'est une candidate naturelle
+  au bac OVNI. Sa fonction n'est <b>pas nommée telle quelle</b> dans « 01-Outillages et protections.pdf » (le
+  dossier décrit des outils voisins : la pince à emboîture et la matrice pour collet battu) : <b>ne pas donner sa
+  fonction aux élèves avant la séance 3</b>, et faire confirmer la fonction exacte par Franck avant l'élaboration
+  du corrigé de séance 3.</div>
+
+  <h3 class="section">Différenciation (consolidation / standard / approfondissement)</h3>
+  <table class="mini">
+    <tr><th style="width:20%">Profil</th><th>Adaptation</th></tr>
+    <tr><td>Consolidation</td><td>Fiche d'identification pré-remplie avec un exemplaire de chaque famille déjà sorti du bac et posé à côté de sa ligne ; l'élève complète le comptage restant.</td></tr>
+    <tr><td>Standard</td><td>Déroulement tel que décrit dans le document élève : identification par la fiche, puis tri et comptage autonomes.</td></tr>
+    <tr><td>Approfondissement (tutorat)</td><td>Après son propre tri, l'élève explique à un pair la règle qu'il a utilisée pour distinguer deux familles proches (ex. coupante/dénudeuse, coupe-tube/lime), sans regarder la fiche.</td></tr>
+    <tr><td>FLE / TDAH-DYS</td><td>Une seule famille annoncée à la fois, jamais deux consignes simultanées ; fiche d'identification doublée d'un exemplaire réel posé à côté de chaque ligne plutôt que du texte seul.</td></tr>
+  </table>
+
+  <h3 class="section">Organisation du plateau</h3>
+  <p style="font-size:10.3pt">Deux zones distinctes, chacune avec : 1 table par équipe (une équipe = une famille),
+  1 bac mélangé de départ par équipe, autant de bacs de tri étiquetés que de familles + 1 bac « OVNI » commun aux
+  deux ateliers (mis en réserve, pas encore ouvert en séance 1) + 1 bac « TRANSFERT » par atelier (outils reconnus
+  mais du mauvais atelier, remis à l'autre équipe en séance 3). Prévoir un passage du professeur table par table
+  pendant le tri (phase 6) plutôt qu'un contrôle unique en fin d'activité, pour repérer les erreurs de tri au fil
+  de l'eau.</p>
+
+  <h3 class="section">Croisements interdisciplinaires</h3>
+  <ul class="liste-num">
+    <li><b>Prévention des risques professionnels</b> — coupure, risque électrique, manipulation prudente ;</li>
+    <li><b>Technologie</b> — familles d'outils cuivre/acier/électrique, vocabulaire métier ;</li>
+    <li><b>Vie scolaire</b> — rangement, respect du matériel collectif de l'atelier.</li>
+  </ul>
+
+  <p style="font-size:8.5pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « 01-Outillages et
+  protections.pdf » (Dossier Matériels & Équipements, v001-2014, F. Henninot) ; « Liste outillage élèves prise en
+  charge caisse.xlsx » (Classe 1 CAP 2022/2023, F. Henninot) ; « _CADRAGE-S0.md » (chef d'orchestre usine FrigorX,
+  02/09/2026).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

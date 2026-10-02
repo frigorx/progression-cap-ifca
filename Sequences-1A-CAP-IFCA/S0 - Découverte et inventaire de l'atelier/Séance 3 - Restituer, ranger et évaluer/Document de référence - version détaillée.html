@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Document de référence — version détaillée — S0-Séance 3 · Restituer, ranger et évaluer</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:13pt; line-height:1.5; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:10pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:8.5pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:12pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:8pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:9.5pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:7.5pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff6cc; color:#8a6d00; border-color:#e3c94a}
+  .nuance{font-size:8pt; color:var(--gris); font-style:italic}
+  h3.section{font-size:14pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  h4.section{font-family:'Trebuchet MS',sans-serif; font-size:11.5pt; color:var(--bleu); border-left:4px solid var(--orange); padding-left:8px; margin:1.1em 0 .5em}
+  p.dev{font-size:11.3pt; line-height:1.55; margin:.4em 0 .8em; text-align:left}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:11pt}
+  .liste-num li{margin-bottom:4px}
+  .reponse{border-left:3px solid var(--bleu); background:var(--fond-doux); padding:8px 14px; margin:.4em 0 .9em; font-size:10.8pt}
+  .reponse b.t{color:var(--bleu); font-family:'Trebuchet MS',sans-serif}
+  .vigilance{border:1.5px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.4em 0 .9em; font-size:10.6pt}
+  .vigilance b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  table.mini{font-size:9.8pt; margin:.4em 0 .9em}
+  table.mini th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:8.3pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.mini td{border:1px solid var(--filet); padding:6px; vertical-align:top}
+  table.mini tr:nth-child(even) td{background:var(--fond-doux)}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .reponse, .vigilance{page-break-inside:avoid; break-inside:avoid} h2,h3,h4{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 — IDENTIFICATION + RÔLE DU DOCUMENT + CONTEXTE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Découverte et inventaire de l'atelier</td>
+      <td style="width:38%"><span class="lib">Module atelier S0-Séance 3 · 1 h 30 — DOCUMENT DE RÉFÉRENCE, VERSION DÉTAILLÉE</span><b>Restituer, ranger et évaluer</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> · rentrée 2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Public visé</span>Professeur, élèves à l'aise</td>
+      <td><span class="lib">Réemploi</span>Support de fond, réutilisable en bac pro</td>
+      <td><span class="lib">Statut</span>Développe le Plan de séance et le Document professeur, ne les remplace pas</td>
+      <td><span class="lib">Longueur</span>Version détaillée (≥ 1500 mots)</td>
+    </tr>
+  </table></div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention (niv. 3)<br><b>T6</b> Préparer, vérifier les matériels et outillages (niv. 2)</div>
+    <div class="case"><h4>Savoirs</h4><span class="nuance">Prérequis :</span> S2.1, S0.2 <span class="nuance">(introduits S1/S2)</span><br><span class="nuance">Travaillé :</span> <b>S3.1</b> Communication technique <span class="nuance">nouveau</span></div>
+    <div class="case"><h4>Savoir-être</h4>Respect des rayons et zones affectées, manipulation prudente, travail d'équipe, ponctualité</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut eval">Évaluation</span> <b>C1.1</b> Compléter, transmettre<br><span class="statut">Confortement</span> <b>C2.2</b> Contrôler les éléments<br><span class="statut">Confortement</span> <b>C3.1</b> Organiser le poste</div>
+  </div>
+
+  <h3 class="section">Ce que ce document apporte</h3>
+  <p class="dev">Le Plan de séance donne le minutage et le tableau des dix phases. Le Document professeur donne le
+  script de correction : ce qu'on répond, ce qu'on valide. Ce troisième document — la <b>version détaillée</b> —
+  a un rôle différent : expliquer <b>pourquoi</b> la séance est construite ainsi, et détailler le raisonnement
+  pédagogique que les deux autres documents supposent déjà acquis. Il sert de mémoire de fond pour Franck
+  Henninot, de support de formation pour un collègue qui reprendrait ce module, et de brique réemployable pour
+  une version bac pro plus exigeante de cette même situation professionnelle (reprise d'un magasin d'outillage,
+  transmission technique à l'oral). Rien n'y est inventé : chaque affirmation s'appuie sur le cadrage de
+  séquence S0, sur la charte pédagogique FrigorX et sur le manuel de conception qui organisent l'ensemble de la
+  production de l'usine de contenu.</p>
+
+  <h3 class="section">1. Contexte professionnel et pédagogique</h3>
+  <p class="dev">La séquence S0 s'ouvre sur un fait réel, pas une fiction pédagogique : l'atelier du lycée Jacques
+  Raynaud n'a jamais été inventorié dans le détail, et les caisses individuelles de la promotion 2026-2028
+  doivent être constituées à partir de ce même travail. Quand les 30 élèves de 1re année CAP IFCA trient,
+  contrôlent et comptent l'outillage en séances 1 et 2, ils ne simulent pas une tâche professionnelle : le lot de
+  15 outils par famille qu'ils assemblent est la dotation réelle qui leur sera distribuée. Cette authenticité
+  change la nature de l'engagement demandé — un élève qui bâcle son tri bâcle sa propre caisse de l'année, pas un
+  exercice sans conséquence.</p>
+  <p class="dev">La séance 3 ferme ce triptyque. Les séances 1 et 2 ont produit une matière brute : des familles
+  triées, des états contrôlés, des objets non identifiés mis de côté (les OVNI), des outils égarés dans le
+  mauvais atelier (les bacs TRANSFERT). Cette matière n'a de valeur que si elle est <b>mise en commun,
+  vérifiée collectivement et rangée définitivement</b> — c'est l'objet exact de cette dernière séance, qui réunit
+  pour la première fois les deux ateliers de 15 (Électrique et Façonnage) en classe entière. Le statut des
+  compétences change en conséquence : C2.2 et C3.1, en Découverte lors des deux premières séances, passent en
+  <b>Confortement</b> — elles ne sont plus nouvelles, elles se consolident par le rangement définitif et par la
+  nécessité de reconnaître des familles d'outils présentées par l'atelier voisin. C1.1 « Compléter, transmettre »
+  apparaît pour la première fois de l'année, directement en statut <b>Évaluation</b> : la restitution orale
+  devant un public autre que sa propre équipe est un geste professionnel nouveau, et c'est le seul moment de la
+  séquence S0 où il est sollicité.</p>
+  <p class="dev">C'est une séance de semaine 1, sans aucun prérequis métier à l'entrée : le rituel de sécurité et
+  d'organisation, déjà posé en séances 1 et 2, n'est donc pas redémontré — seulement rappelé en quelques
+  questions flash. Le professeur peut ainsi consacrer la quasi-totalité du créneau de 1 h 30 à ce qui fait le
+  cœur pédagogique de la séance : la restitution croisée, développée en détail plus bas.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — STRUCTURE DE LA SÉANCE SELON LE MANUEL §3 ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 3 · document de référence, version détaillée</div>
+  </div>
+
+  <h3 class="section">2. Structure de la séance — les sections du manuel de conception (§3)</h3>
+  <p class="dev">Le manuel de conception FrigorX fixe l'ordre obligatoire des sections d'un TP : situation
+  professionnelle, objectifs, prérequis, matériel, sécurité, réalisation, contrôles, rangement, grille
+  d'évaluation, documents à remettre. La séance 3 de S0 est une séance de restitution et d'évaluation plutôt
+  qu'un TP de manipulation classique, mais elle respecte la même architecture — le détail minute par minute vit
+  dans le Plan de séance, le script de correction vit dans le Document professeur ; ce qui suit en donne la
+  logique d'ensemble.</p>
+  <p class="dev">La <b>situation professionnelle</b> (ordre d'intervention OI-2026-S0S3-01, « reprise en main du
+  magasin d'outillage avant le premier chantier de l'année ») n'est pas un habillage : elle justifie que la
+  classe entière se réunisse, que chaque équipe rende des comptes à l'atelier voisin, et que le rangement soit
+  qualifié de « définitif ». Les <b>objectifs</b> — présenter sa famille et ses OVNI, deviner et justifier ceux de
+  l'atelier voisin, ranger définitivement son lot, s'auto-positionner honnêtement — couvrent les trois
+  compétences visées sans en ajouter une quatrième, conformément au plafond de la charte (§2, jamais plus de
+  quatre compétences évaluées par activité).</p>
+  <p class="dev">Les <b>prérequis</b> ne sont pas des savoirs nouveaux à vérifier : ce sont les acquis des deux
+  séances précédentes (désignations exactes de la caisse, zones et rayons de l'atelier, lot de 15 contrôlé). Le
+  <b>matériel</b> est entièrement produit par les élèves eux-mêmes lors des séances 1 et 2 (lots, fiches OVNI,
+  bacs TRANSFERT, étiquettes de rayon) : la séance 3 ne demande aucun matériel nouveau, ce qui explique
+  l'absence de préparation de chantier lourde. La <b>sécurité</b> reste celle déjà posée en séance 1 (coupure
+  légère au contact des faces coupantes, interdiction de tester un outil électroportatif sans contrôle
+  préalable) — aucune manipulation sous tension n'a lieu ce jour, le rappel se limite à quelques questions
+  flash.</p>
+  <p class="dev">La <b>réalisation</b> se déroule en deux temps successifs à l'intérieur d'une même phase de
+  guidage (phase 6 du canon) : la restitution croisée proprement dite, puis l'échange des bacs TRANSFERT — les
+  deux sont développés séparément plus bas parce qu'ils répondent à des logiques différentes (l'une pédagogique,
+  l'autre logistique). Le <b>contrôle</b> est intégré à cette même phase : c'est le professeur qui valide ou
+  corrige chaque hypothèse formulée par le public. Le <b>rangement</b> conclut la séance par le placement
+  définitif des lots dans les rayons assignés — c'est un contrôle en soi, puisqu'un lot mal rangé se voit
+  immédiatement. La <b>grille d'évaluation 0-4</b> et l'<b>auto-positionnement</b> ferment la boucle avant le
+  retour en tenue de ville ; les <b>documents à remettre</b> sont le document élève complété et la grille
+  d'auto-positionnement.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — LE CŒUR : FAIRE PRODUIRE UN SAVOIR PAR LA RESTITUTION CROISÉE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 3 · document de référence, version détaillée</div>
+  </div>
+
+  <h3 class="section">3. Le cœur de la séance : faire produire un savoir par la restitution croisée</h3>
+  <p class="dev">C'est le passage le plus délicat à conduire de toute la séquence S0, parce qu'il repose sur un
+  principe fragile : un jeu de devinette entre pairs peut vite dégénérer en spectacle sans apprentissage, si
+  l'animation ne le tient pas fermement dans le registre de la <b>découverte</b> voulu par la charte pédagogique
+  (§1) — observer, puis nommer, puis expliciter, jamais l'inverse.</p>
+
+  <h4 class="section">Lancer l'exercice</h4>
+  <p class="dev">Le professeur annonce la règle en une phrase avant toute présentation : « vous devez deviner
+  avant qu'on vous le dise ». Cette phrase unique fait tout le travail de cadrage — elle interdit d'emblée à
+  l'équipe présentatrice de commencer par le nom de l'objet. L'ordre de passage alterne délibérément les deux
+  ateliers (une famille Électrique, puis une famille Façonnage, et ainsi de suite) : garder les deux publics
+  actifs en permanence évite qu'un groupe décroche pendant que l'autre parle. Les familles nombreuses (les cinq
+  variantes de tournevis, par exemple) peuvent être regroupées en une seule présentation pour tenir les onze
+  passages en quarante minutes ; c'est un arbitrage de minutage, pas un renoncement au principe.</p>
+
+  <h4 class="section">Faire formuler une hypothèse avant de donner la réponse</h4>
+  <p class="dev">C'est le point sur lequel un professeur pressé par le temps est le plus tenté de céder — et
+  c'est précisément celui qu'il ne faut jamais lâcher. Face à un objet non identifié, la première question posée
+  au public n'est jamais « qui sait ce que c'est ? » mais « <b>à quoi ça sert, à votre avis</b> ? », suivie
+  systématiquement de « pourquoi tu penses ça ? ». Exiger la justification en même temps que l'hypothèse change
+  la nature de l'exercice : on ne demande plus à l'élève de deviner un mot, on lui demande de raisonner sur un
+  objet. Si le public reste silencieux plus d'une quinzaine de secondes, la relance du professeur prend la forme
+  d'un indice sur l'objet lui-même (« regardez la forme du bec », « qu'est-ce qui est écrit dessus ? ») — jamais
+  la réponse. Un indice relance l'observation ; une réponse la coupe.</p>
+
+  <h4 class="section">Quand une équipe se trompe : la trace de l'erreur est utile</h4>
+  <p class="dev">Une hypothèse fausse n'est pas un incident à effacer vite pour ne pas gêner l'équipe présentatrice
+  : c'est le matériau le plus riche de tout l'exercice. Quand le public propose un usage erroné, le professeur ne
+  corrige pas immédiatement — il fait d'abord dire à l'équipe présentatrice ce qui, dans l'hypothèse du public,
+  est proche et ce qui ne colle pas avec l'objet réel. Cette confrontation entre l'hypothèse et l'objet oblige à
+  revenir sur l'observable qui aurait dû alerter (une forme, une taille, un marquage) plutôt que sur le mot
+  attendu. Le tableau du document élève, où chaque élève note son hypothèse <b>avant</b> la réponse donnée,
+  conserve précisément cette trace : à la relecture, l'écart entre « ce que j'ai cru » et « ce que c'est » vaut
+  davantage, pour l'apprentissage, qu'une ligne juste du premier coup. Une erreur non corrigée dans l'instant
+  mais reprise avec méthode construit une mémoire plus solide qu'une réponse reçue passivement — c'est le même
+  principe qui gouverne le « planter la notion » du canon académique (observer → nommer → expliciter), appliqué
+  ici à un objet plutôt qu'à un phénomène.</p>
+
+  <h4 class="section">Éviter la devinette pure : justifier par la forme, la matière, le marquage, l'usure</h4>
+  <p class="dev">Le risque propre à cet exercice est qu'il se réduise à un jeu de mots sans raisonnement — deviner
+  au hasard jusqu'à tomber juste. Le professeur s'en protège en refusant toute hypothèse qui ne s'appuie sur
+  aucun observable et en réclamant systématiquement l'un des quatre appuis suivants : la <b>forme</b> de l'objet
+  (un bec coudé à 45° suggère une préhension particulière, pas la même que celle d'une pince droite) ; la
+  <b>matière</b> travaillée (un outil dimensionné pour le cuivre, comme une cintreuse ou un coupe-tube, se
+  reconnaît à ses mâchoires ou galets adaptés, à distinguer d'un outil pour le façonnage de l'acier) ; le
+  <b>marquage</b> gravé sur l'outil (dimension, référence, symbole d'isolation électrique) — c'est directement le
+  geste que travaille le savoir S2.1 « Outils, normes et représentation », déjà mobilisé en séances 1 et 2 pour
+  les cintreuses cuivre, dont le diamètre gravé doit être relevé et jamais deviné ; l'<b>usure</b> enfin, visible
+  sur l'objet et déjà qualifiée lors du contrôle d'état de la séance 2 (bon / à réviser / hors service), qui
+  renseigne sur la fréquence d'usage et donc, indirectement, sur la famille d'appartenance probable. Un élève qui
+  répond « je ne sais pas » n'est jamais sanctionné dans l'instant ; un élève qui répond sans pouvoir désigner sur
+  quoi il s'appuie est renvoyé à l'objet avec la question « qu'est-ce que tu vois qui te fait dire ça ? ». C'est
+  cette exigence de preuve, plus que la justesse de la réponse elle-même, que la grille d'évaluation cherche à
+  capter pour C1.1 et pour C2.2.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 4 — ÉVALUATION PAR COMPÉTENCES SEMAINE 1 + LES 3 COMPÉTENCES ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 3 · document de référence, version détaillée</div>
+  </div>
+
+  <h3 class="section">4. L'évaluation par compétences en première semaine</h3>
+  <p class="dev">Positionner une compétence dès la première semaine d'année peut sembler prématuré : les élèves
+  arrivent, personne ne se connaît encore, aucun geste métier n'a été enseigné. C'est précisément pour cette
+  raison que le statut <b>Évaluation</b> porté par C1.1 le 3<sup>e</sup> jour de la séquence S0 est explicitement
+  qualifié, dans le cadrage, de « premier positionnement de l'année, poids réduit — c'est une découverte, pas un
+  contrôle ». Ce poids réduit n'est pas une formule de prudence administrative : il traduit un principe de la
+  charte pédagogique FrigorX (§2) selon lequel le statut d'une compétence dans une activité — Découverte,
+  Confortement ou Évaluation — détermine son poids réel pour le diplôme, indépendamment du fait qu'une note soit
+  ou non remontée sur École Directe. Une Évaluation de semaine 1 compte, mais elle compte moins qu'une Évaluation
+  de fin de séquence sur un geste déjà enseigné plusieurs fois.</p>
+  <p class="dev">La charte distingue deux axes qu'il ne faut jamais confondre (§5) : l'<b>échelle 0-4</b> mesure le
+  <b>positionnement constaté</b> un jour donné — ce que l'élève a montré, ici et maintenant, sur la restitution
+  d'une famille d'outils — tandis que la <b>progression spiralaire Initiation → Consolidation → Maîtrise →
+  Validé</b> mesure le <b>niveau visé</b> sur l'ensemble de l'année scolaire. Un élève positionné à 2 sur C1.1 en
+  semaine 1 n'est pas un élève en échec : il est en phase d'Initiation sur une compétence qui sera retravaillée
+  plusieurs fois au fil des séquences suivantes, avec une exigence croissante à chaque reprise — c'est le sens
+  même de la pédagogie spiralaire (charte §1), où le prérequis d'aujourd'hui devient le savoir travaillé de
+  demain.</p>
+  <p class="dev">Le niveau <b>0 — Non évalué</b> mérite une attention particulière parce qu'il est le plus
+  souvent mal compris hors du cadre FrigorX : il ne signifie <b>jamais</b> « nul » ni « en échec », mais
+  seulement que la compétence n'a pas pu être observée ce jour-là — un élève absent pendant le passage de son
+  équipe, par exemple. La doctrine est la même que celle qui distingue, dans le tableau de bord HAL, l'absence
+  (case noire) du non-évalué (case grise) : deux réalités différentes, jamais interchangeables. Confondre le 0
+  avec un échec reviendrait à sanctionner une absence de mesure comme si c'était une mesure défavorable.</p>
+  <p class="dev">Les positionnements <b>1</b> et <b>2</b> ne restent jamais sans suite. Un niveau 1 sur C1.1
+  déclenche une reprise ciblée en tout début de séquence S1 : l'élève présente à nouveau, en aparté avec le
+  professeur et non devant le groupe entier, un seul outil de son lot — l'objectif est de débloquer la prise de
+  parole, pas de la reproduire à l'identique dans les mêmes conditions qui ont mené à l'échec. Un niveau 1 ou 2
+  sur C2.2 ou C3.1 entraîne une vérification individuelle du lot et du rayon avant que l'attribution des rayons
+  ne soit définitivement validée pour l'année. Si plusieurs élèves se retrouvent au même niveau bas sur les mêmes
+  familles, la réponse n'est plus individuelle mais collective : un bref rappel « nom + usage » en variante
+  consolidation, en tout début de S1, avant d'attaquer le premier geste technique réellement nouveau de l'année.</p>
+
+  <h3 class="section">5. Les trois compétences évaluées</h3>
+  <p class="dev">La charte plafonne à quatre le nombre de compétences évaluées par activité (§2) ; S0-Séance 3 en
+  mobilise exactement trois, chacune ancrée sur une tâche et un savoir précis du référentiel CAP IFCA — l'ancrage
+  tâche-savoir-compétence est une dérivation pédagogique du chef d'orchestre de l'usine, pas une matrice
+  officielle de l'arrêté, qui ne relie ces éléments qu'au niveau de l'activité et de la capacité générale.</p>
+  <table class="mini">
+    <tr><th style="width:14%">Compétence</th><th style="width:34%">Libellé officiel</th><th style="width:16%">Ancrage</th><th>Ce qu'on observe concrètement en séance 3</th></tr>
+    <tr><td><b>C1.1</b></td><td>Compléter, transmettre</td><td>T1 · S3.1</td><td>L'élève présente sa famille d'outils et ses OVNI à voix haute devant l'atelier voisin, avec des phrases compréhensibles, et répond aux questions posées sans se limiter à un mot isolé.</td></tr>
+    <tr><td><b>C2.2</b></td><td>Contrôler les éléments nécessaires à la réalisation</td><td>T6 · S2.1</td><td>L'élève vérifie et confirme que son lot de 15 outils est complet et à l'état attendu, et reconnaît sans hésiter les familles présentées par sa propre équipe comme par l'atelier voisin.</td></tr>
+    <tr><td><b>C3.1</b></td><td>Organiser le poste de travail</td><td>T6 · S0.2</td><td>L'élève range son lot définitivement dans le rayon exact qui lui est assigné, sans déborder sur le rayon voisin, et respecte l'étiquetage en place.</td></tr>
+  </table>
+  <p class="dev">Ces trois compétences ne s'observent jamais isolément d'un contexte professionnel : la charte
+  (§1) rappelle qu'une compétence ne s'évalue qu'au travers d'une situation authentique. Ici, la situation est
+  l'ordre d'intervention de reprise en main du magasin — C1.1 se joue au moment précis où l'élève parle devant le
+  public, C2.2 se joue dans la vérification silencieuse de son propre lot avant et pendant la présentation, C3.1
+  se joue dans le geste physique du rangement final. Le professeur peut donc positionner les trois compétences à
+  des moments différents de la même heure et demie, sans avoir besoin d'un exercice séparé pour chacune.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 5 — SAVOIR-ÊTRE + BACS TRANSFERT + CLÔTURE DE L'INVENTAIRE ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9pt; text-align:right">
+      S0-Séance 3 · document de référence, version détaillée</div>
+  </div>
+
+  <h3 class="section">6. La ligne savoir-être : une exigence professionnelle, pas scolaire</h3>
+  <p class="dev">La grille d'évaluation porte, en plus des trois compétences, une ligne savoir-être obligatoire
+  (charte §2) centrée sur le respect des rayons et des zones affectées. Il serait facile de la lire comme une
+  simple règle de discipline de classe — « range tes affaires » — mais ce serait manquer ce qui la rend
+  réellement professionnelle. Un magasin d'outillage partagé par trente élèves et deux ateliers ne fonctionne que
+  si chaque famille d'outils reste exactement où elle est censée être : c'est une <b>responsabilité collective</b>,
+  pas une préférence individuelle de rangement. Un outil déplacé sans raison, ou reposé au hasard après usage, ne
+  disparaît pas seulement pour celui qui l'a mal rangé — il devient introuvable pour le camarade suivant qui en a
+  besoin, et pour le professeur qui doit pouvoir s'y fier lors d'un contrôle rapide avant une intervention.</p>
+  <p class="dev">C'est cette logique-là, et non une logique de sanction scolaire, qui justifie qu'un geste interdit
+  (tester un outil électroportatif sans contrôle préalable, par exemple) entraîne automatiquement un niveau 1 sur
+  le savoir-être, quelle que soit par ailleurs la qualité de la présentation orale de l'élève : la sécurité n'est
+  jamais négociable contre une bonne performance sur un autre critère (charte §7). À l'inverse, le niveau le plus
+  élevé de la grille savoir-être ne se limite pas à respecter son propre rayon : il récompense l'élève qui veille
+  aussi au rangement d'un camarade — la même logique de responsabilité collective, poussée d'un cran.</p>
+
+  <h3 class="section">7. L'échange des bacs TRANSFERT et la justesse de l'inventaire final</h3>
+  <p class="dev">Pendant le tri de la séance 1 et le contrôle de la séance 2, chaque équipe a nécessairement
+  rencontré des outils qui n'appartiennent pas à son propre atelier — une cintreuse trouvée côté Électrique, une
+  pince à dénuder trouvée côté Façonnage. Ces objets n'ont pas été inventoriés sur place : ils ont été posés dans
+  un bac TRANSFERT propre à chaque atelier, en attendant précisément cette séance 3. La distinction avec un OVNI
+  est nette et ne doit jamais être brouillée : un objet TRANSFERT est un outil <b>connu</b>, seulement rangé dans
+  le mauvais atelier au moment du tri initial ; un OVNI est un outil dont l'usage reste <b>réellement
+  inconnu</b> de l'équipe qui l'a trouvé.</p>
+  <p class="dev">L'échange a lieu juste après la restitution croisée, quinze minutes durant lesquelles chaque
+  atelier remet physiquement son bac TRANSFERT à l'atelier voisin, qui compte alors les outils reçus par famille
+  et les ajoute à ses propres compteurs — et à son lot de 15 si la famille concernée n'était pas encore complète.
+  Cette étape n'est pas secondaire : sans elle, l'inventaire final resterait faux des deux côtés, puisque des
+  outils bien réels, déjà physiquement présents dans l'atelier, n'auraient été comptés nulle part. Le point de
+  vigilance central, à rappeler explicitement aux deux équipes qui encadrent l'échange, est que les compteurs des
+  <b>deux</b> ateliers doivent être mis à jour au même moment — un oubli d'un seul côté suffit à fausser le
+  résultat.</p>
+
+  <h3 class="section">8. La clôture de l'inventaire : ce qu'il reste à faire après la séance</h3>
+  <p class="dev">La séance 3 ne clôt pas l'inventaire au sens administratif du terme, elle en produit la matière
+  définitive. Une fois les bacs TRANSFERT échangés et les lots rangés dans leurs rayons, les totaux par famille —
+  désormais exacts des deux côtés — doivent être reportés dans l'outil numérique d'inventaire
+  (<code>outil-inventaire\Inventaire-atelier.html</code>), une page HTML autonome conçue pour ce report : elle
+  permet de saisir nom de l'outil, atelier, famille, état et quantité, avec un compteur par famille qui donne
+  d'un coup d'œil la progression vers l'objectif de 15. Cette page reste volontairement sans serveur ni base de
+  données partagée — le stockage se fait en local dans le navigateur — mais elle propose un export au format CSV
+  et un export au format JSON, pensés pour être réintégrés plus tard dans la page de gestion d'école que Franck
+  Henninot développe par ailleurs, sans dépendance à un système qui n'existe pas encore à ce jour.</p>
+  <p class="dev">Ce report n'est pas nécessairement fait par les élèves eux-mêmes pendant la séance : le cadrage
+  laisse cette tâche au professeur, en fin ou après la séance, à partir des fiches papier complétées par chaque
+  équipe. Restent également en attente, au moment de la rédaction de ce document : la date réelle de la séance
+  dans le calendrier de la rentrée 2026, la place exacte de S0 dans la progression codée (avant S1 ou en semaine
+  1 jour 1, à trancher par Franck), et le remplacement des croquis provisoires (clé à molette, tournevis testeur,
+  cintreuse plombier) par des photographies réelles prises directement à l'atelier. Ces points sont consignés
+  dans le <code>_ETAT.md</code> de la séquence, conformément à la règle de traçabilité de l'usine de contenu.</p>
+
+  <p style="font-size:9pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : cadrage de séquence
+  S0 (chef d'orchestre usine FrigorX, 02/09/2026) ; « 01-Outillages et protections » — Dossier matériels et
+  équipements v001-2014 (F. Henninot) ; Liste outillage élèves — prise en charge caisse, Classe 1 CAP 2022/2023
+  (F. Henninot) ; Charte pédagogique FrigorX v1.0 ; Manuel de conception pédagogique FrigorX v1.0.</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>

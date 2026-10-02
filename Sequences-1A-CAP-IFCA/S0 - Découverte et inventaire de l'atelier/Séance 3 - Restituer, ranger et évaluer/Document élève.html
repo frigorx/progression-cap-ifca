@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Document élève — S0-Séance 3 · Restituer, ranger et évaluer</title>
+<style>
+  :root{--bleu:#1b3a63; --orange:#ff6b35; --encre:#22303f; --gris:#5d6b7c; --leger:#9aa5b1;
+    --filet:#d8dee6; --fond-page:#eef1f5; --fond-doux:#f5f8fc; --violet:#7b5cf5; --marine:#1e2c5e}
+  *{box-sizing:border-box}
+  body{background:var(--fond-page); color:var(--encre); font-family:Calibri,'Segoe UI',sans-serif;
+    font-size:14pt; line-height:1.5; margin:0; padding:28px 12px; text-align:left}
+  h2,h3,h4{font-family:'Trebuchet MS',sans-serif; font-weight:bold; color:var(--bleu); line-height:1.2; margin:0 0 .35em; text-wrap:balance}
+  .feuille{background:#fff; max-width:794px; margin:0 auto 30px; padding:32px 42px 18px;
+    box-shadow:0 2px 14px rgba(27,58,99,.13); display:flex; flex-direction:column; min-height:1050px}
+  .entete{display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border-bottom:3px solid var(--bleu); padding-bottom:9px; margin-bottom:10px}
+  .entete .logos{display:flex; align-items:center; gap:12px}
+  .lockup{line-height:1.12}
+  .lockup .sigle{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--marine); letter-spacing:.06em}
+  .lockup .nom{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--violet); letter-spacing:.03em}
+  .barre{border:2px solid var(--bleu); border-radius:4px; overflow:hidden; margin:.3em 0 1em}
+  .barre table{border-collapse:collapse; width:100%; font-size:11pt}
+  .barre td{border:1px solid var(--filet); padding:5px 10px; vertical-align:middle}
+  .barre .lib{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:9pt; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--gris); display:block}
+  .barre .grand{font-family:'Trebuchet MS',sans-serif; font-weight:bold; font-size:13pt; color:var(--bleu)}
+  .barre .accent{background:var(--fond-doux)}
+  table{border-collapse:collapse; width:100%}
+  .pied{margin-top:auto; padding-top:12px; border-top:1px solid var(--filet); font-size:9pt; color:var(--leger);
+    display:flex; justify-content:space-between; gap:10px}
+  .formule{display:grid; grid-template-columns:1fr 1fr 1fr 1.15fr; gap:8px; margin:.3em 0 .9em; font-size:10pt}
+  .formule .case{border:1px solid var(--filet); border-radius:6px; padding:6px 10px; background:#fff}
+  .formule .case h4{margin:0 0 3px; font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .formule .case.comp{border:1.5px solid var(--bleu); background:var(--fond-doux)}
+  .statut{display:inline-block; font-size:8pt; font-family:'Trebuchet MS',sans-serif; font-weight:bold;
+    border-radius:8px; padding:0 7px; background:#e9edf6; color:#3a5a8c; border:1px solid #b9c8e0}
+  .statut.eval{background:#fff6cc; color:#8a6d00; border-color:#e3c94a}
+  .nuance{font-size:8.5pt; color:var(--gris); font-style:italic}
+  .situation{border:1.5px dashed var(--bleu); border-radius:6px; padding:8px 14px; margin:.3em 0 .9em; font-size:11pt}
+  .situation h4, .duo h4{margin:0 0 3px; font-size:9pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); font-family:'Trebuchet MS',sans-serif}
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:.3em 0 .9em; font-size:11pt}
+  .duo>div{background:var(--fond-doux); border-radius:6px; padding:8px 14px}
+  .duo ul{margin:.1em 0 .1em 1.1em; padding:0}
+  .secu{border:2px solid var(--orange); border-radius:6px; background:#fff7f3; padding:8px 14px; margin:.3em 0 .9em; font-size:11pt}
+  .secu b.t{color:#c14a17; font-family:'Trebuchet MS',sans-serif}
+  h3.section{font-size:14pt; border-left:4px solid var(--orange); padding-left:8px; margin-top:1em}
+  .liste-num{margin:.3em 0 .9em; padding-left:1.3em; font-size:11pt}
+  .liste-num li{margin-bottom:3px}
+  .conso{color:var(--orange); font-weight:bold; font-size:9pt; font-family:'Trebuchet MS',sans-serif}
+  .zone-reponse{border:1px dashed var(--leger); border-radius:6px; background:var(--fond-doux); padding:8px 12px; margin:.4em 0 .8em; min-height:1.8em}
+  table.releve{font-size:10.5pt; margin:.4em 0 .9em}
+  table.releve th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:9pt; text-transform:uppercase; padding:5px 6px}
+  table.releve td{border:1px solid var(--filet); padding:6px; text-align:center; min-height:1.6em}
+  table.grille{font-size:9.5pt; margin:.3em 0 .9em}
+  table.grille th{background:var(--bleu); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:9pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  table.grille td{border:1px solid var(--filet); padding:5px 6px; vertical-align:top}
+  table.grille tr:nth-child(even) td{background:var(--fond-doux)}
+  .encadre-question{border:1.5px solid var(--violet); border-radius:6px; background:#f8f6ff; padding:6px 12px; margin:.4em 0; font-size:11pt}
+  .encadre-question b{color:var(--violet); font-family:'Trebuchet MS',sans-serif}
+  .risque-parade{font-size:10.5pt}
+  .risque-parade th{background:var(--orange); color:#fff; font-family:'Trebuchet MS',sans-serif; font-size:9pt; text-transform:uppercase; padding:5px 6px; text-align:left}
+  .risque-parade td{border:1px solid var(--filet); padding:5px 6px}
+  .auto-pos{display:inline-block; border:1.5px solid var(--bleu); border-radius:4px; padding:2px 10px; margin-right:6px; font-size:10pt; font-family:'Trebuchet MS',sans-serif}
+  .tbl-wrap{overflow-x:auto}
+  @media print{ body{background:#fff; padding:0} .feuille{box-shadow:none; margin:0; max-width:none; min-height:auto; page-break-after:always} }
+</style>
+<style>@media print{ tr{page-break-inside:avoid; break-inside:avoid} .barre table, .formule, .situation, .encadre-secu, .secu, .duo>div{page-break-inside:avoid; break-inside:avoid} h2,h3{page-break-after:avoid} }</style>
+</head>
+<body>
+<!-- ============ FEUILLE 1 — IDENTIFICATION + SITUATION + OBJECTIFS ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div class="logos">
+      <img src="../images/logo-lycee-jacques-raynaud.png" style="height:54px" alt="Lycée Jacques Raynaud">
+      <img class="logo-eq" src="../images/logo-equatio-officiel.png" style="height:54px" alt="EQUATIO — Créateur d'avenir">
+    </div>
+  </div>
+
+  <!-- BARRE DU HAUT — version ÉLÈVE -->
+  <div class="barre"><table>
+    <tr>
+      <td class="accent" style="width:16%"><span class="lib">Niveau</span><span class="grand">CAP IFCA 1A</span></td>
+      <td style="width:26%"><span class="lib">Thème / Domaine</span>Découverte et inventaire de l'atelier</td>
+      <td style="width:38%"><span class="lib">Séance 3 · 1 h 30</span><b>Restituer, ranger et évaluer</b></td>
+      <td class="accent" style="width:20%"><span class="lib">Séquence</span><span class="grand">S0</span> · rentrée 2026</td>
+    </tr>
+    <tr>
+      <td><span class="lib">Nom</span>________________</td>
+      <td><span class="lib">Prénom</span>________________</td>
+      <td><span class="lib">Date</span>________________</td>
+      <td><span class="lib">Mon atelier</span>☐ Électrique &nbsp; ☐ Façonnage</td>
+    </tr>
+  </table></div>
+
+  <div class="situation"><h4>Mise en situation professionnelle</h4>
+  <b>Ordre d'intervention n° OI-2026-S0S3-01</b> : <b>reprise en main du magasin d'outillage avant le premier
+  chantier</b>. Aujourd'hui, la classe se réunit : chaque équipe présente sa famille et ses OVNI (objets non
+  identifiés) à l'atelier voisin, qui doit deviner leur usage <b>avant qu'on le lui dise</b>. Puis chaque lot de
+  15 rejoint <b>définitivement</b> son rayon : c'est la dotation réelle distribuée.</div>
+
+  <div class="formule">
+    <div class="case"><h4>Tâches</h4><b>T1</b> Renseigner et transmettre des documents de suivi d'intervention<br><b>T6</b> Préparer, vérifier les matériels et outillages</div>
+    <div class="case"><h4>Savoirs</h4><b>S3.1</b> Communication technique <span class="nuance">nouveau</span><br><b>S2.1</b> Outils, normes et représentation <span class="nuance">consolidé</span><br><b>S0.2</b> Environnement et déchets <span class="nuance">consolidé</span></div>
+    <div class="case"><h4>Savoir-être</h4>Respect des rayons et zones affectées · manipulation prudente · travail d'équipe · ponctualité</div>
+    <div class="case comp"><h4>Compétences (≤ 4)</h4><span class="statut eval">Évaluation</span> <b>C1.1</b> Compléter, transmettre<br><span class="statut">Confortement</span> <b>C2.2</b> Contrôler les éléments<br><span class="statut">Confortement</span> <b>C3.1</b> Organiser le poste</div>
+  </div>
+
+  <h3 class="section">Objectifs — je serai capable de…</h3>
+  <ul class="liste-num">
+    <li><b>présenter</b> ma famille d'outils et mes OVNI à l'autre atelier, en expliquant leur usage ;</li>
+    <li><b>deviner et justifier</b> l'usage d'un OVNI présenté par l'autre atelier, avant qu'on me le dise ;</li>
+    <li><b>ranger</b> définitivement mon lot de 15 outils dans le bon rayon ;</li>
+    <li><b>compléter</b> ma grille d'auto-positionnement honnêtement, avant la correction.</li>
+  </ul>
+
+  <h3 class="section">Prérequis — je sais déjà…</h3>
+  <p>Je sais nommer ma famille d'outils avec les désignations vues en séances 1 et 2, situer les zones et
+  rayons de l'atelier. Mon lot de 15 outils est complet et contrôlé (bon / à réviser / hors
+  service).</p>
+
+  <h3 class="section">Matériel</h3>
+  <ol class="liste-num">
+    <li>Ce document + crayon</li>
+    <li>Mon lot de 15 outils de ma famille (séance 2)</li>
+    <li>Mes fiches OVNI (séance 2)</li>
+    <li>Étiquette de mon rayon de rangement</li>
+  </ol>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 2 — SÉCURITÉ + RESTITUTION CROISÉE + RANGEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9.5pt; text-align:right">
+      S0-Séance 3 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Sécurité — ce que je connais déjà</h3>
+  <p>Rien de nouveau : je réapplique les règles vues en séance 1.</p>
+  <div class="tbl-wrap">
+  <table class="risque-parade">
+    <tr><th style="width:34%">Risque</th><th>Parade</th></tr>
+    <tr><td>Coupure légère (faces coupantes d'une pince, d'un coupe-tube)</td><td>Je tiens l'outil par le manche, jamais par la partie coupante.</td></tr>
+    <tr><td>Risque électrique d'un outil isolé mal identifié</td><td>Je n'utilise jamais un outil électroportatif sans contrôle préalable du professeur.</td></tr>
+  </table>
+  </div>
+  <div class="secu"><b class="t">🚨 En cas d'incident :</b> j'alerte le professeur. Point d'eau et trousse de
+  secours déjà localisés en séance 1.</div>
+
+  <h3 class="section">1. Je prépare ma présentation</h3>
+  <p style="font-size:10.5pt">En 2-3 phrases : nom de ma famille, son usage, mon OVNI le plus étonnant.</p>
+  <div class="zone-reponse" style="min-height:2.4em"></div>
+
+  <h3 class="section">2. J'écoute l'autre atelier et je devine</h3>
+  <p style="font-size:10.5pt">Pour chaque OVNI présenté, je note <b>mon hypothèse avant</b> la réponse.</p>
+  <table class="releve">
+    <tr><th style="width:34%">OVNI observé</th><th style="width:33%">Mon hypothèse</th><th>Réponse donnée</th></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+  </table>
+
+  <div class="encadre-question"><b>Question — la pince à bec demi-rond coudé</b><br>Cette pince est utilisée
+  dans les deux ateliers. Dans quel rayon la range-t-on quand elle est <b>isolée</b>, et pourquoi ?</div>
+  <figure style="margin:6px 0 0; text-align:center; page-break-inside:avoid;">
+    <img src="../images/pince-a-bec.jpeg" alt="Photo : pince à bec, variante bec rond — la pince de votre caisse a un bec demi-rond coudé 45°" style="max-width:45%; border:1px solid #d5dbe4; border-radius:6px;">
+    <figcaption style="font-size:9pt; color:#5a6472; margin-top:4px;">D'après : M07-Outillage de base.pdf.</figcaption>
+  </figure>
+  <div class="zone-reponse" style="min-height:1.8em"></div>
+
+  <h3 class="section">3. J'échange mon bac TRANSFERT</h3>
+  <p style="font-size:10.5pt">Mon atelier échange son bac TRANSFERT avec l'atelier voisin. Je compte ce que je
+  reçois et je l'ajoute à mes familles.</p>
+  <table class="releve">
+    <tr><th style="width:30%">Famille</th><th style="width:30%">Nombre reçu</th><th>Complète mon lot ?</th></tr>
+    <tr><td></td><td></td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+    <tr><td></td><td></td><td>☐ Oui &nbsp; ☐ Non</td></tr>
+  </table>
+
+  <h3 class="section">4. Rangement définitif</h3>
+  <p style="font-size:10.5pt">Je range mon lot de 15 outils dans le rayon indiqué, sans
+  déborder sur le rayon voisin.</p>
+  <p style="font-size:10.5pt">☐ Mon lot est complet et rangé à son rayon &nbsp;&nbsp; ☐ L'étiquette est bien
+  posée</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- ============ FEUILLE 3 — GRILLE D'ÉVALUATION 0-4 + AUTO-POSITIONNEMENT ============ -->
+<div class="feuille">
+  <div class="entete">
+    <div class="lockup"><span class="sigle">LPP</span><br><span class="nom">JACQUES RAYNAUD</span></div>
+    <div style="font-family:'Trebuchet MS',sans-serif; color:var(--gris); font-size:9.5pt; text-align:right">
+      S0-Séance 3 · module atelier · CAP IFCA 1A — document élève</div>
+  </div>
+
+  <h3 class="section">Grille d'évaluation</h3>
+  <p style="font-size:9.5pt; color:var(--gris)">Échelle FrigorX : 0 Non évalué · 1 Non acquis · 2 En cours
+  d'acquisition · 3 Acquis · 4 Parfaitement maîtrisé. <b>C1.1</b> : statut <b>Évaluation</b> (premier
+  positionnement de l'année, poids réduit). <b>C2.2</b> et <b>C3.1</b> : statut <b>Confortement</b>.</p>
+  <div class="tbl-wrap">
+  <table class="grille">
+    <tr><th style="width:17%">Compétence / savoir-être</th><th style="width:11%">Ancrage</th><th style="width:14%">0<br>Non évalué</th><th style="width:14.5%">1<br>Non acquis</th><th style="width:14.5%">2<br>En cours</th><th style="width:14.5%">3<br>Acquis</th><th style="width:14.5%">4<br>Parfaitement maîtrisé</th></tr>
+    <tr><td><b>C1.1</b> Compléter, transmettre</td><td>T1 · S3.1</td><td>Non observée ce jour.</td><td>Ne présente pas sa famille au groupe.</td><td>Présente avec l'aide du professeur, phrases hésitantes.</td><td>Présente seul sa famille et ses OVNI, répond aux questions.</td><td>Comme Acquis, et aide l'autre atelier à comprendre.</td></tr>
+    <tr><td><b>C2.2</b> Contrôler les éléments</td><td>T6 · S2.1</td><td>Non observée ce jour.</td><td>Ne sait pas si son lot est complet, confond un OVNI.</td><td>Vérifie son lot avec aide, hésite sur l'autre atelier.</td><td>Vérifie seul son lot complet, reconnaît les familles de son atelier.</td><td>Comme Acquis, et aide un pair à vérifier son lot.</td></tr>
+    <tr><td><b>C3.1</b> Organiser le poste</td><td>T6 · S0.2</td><td>Non observée ce jour.</td><td>Range son lot au hasard, hors du rayon indiqué.</td><td>Range dans le bon rayon avec un rappel.</td><td>Range seul son lot dans le rayon exact, sans déborder.</td><td>Comme Acquis, et range aussi un rayon dérangé par un pair.</td></tr>
+    <tr><td>Savoir-être</td><td>observation continue</td><td>Non observé ce jour.</td><td>Ne respecte pas les rayons et zones affectées, laisse un outil hors de sa place.</td><td>Respecte les rayons avec un rappel, quelques oublis.</td><td>Respecte les rayons et zones affectées sans rappel, range chaque outil à sa place, travaille en équipe.</td><td>Comme Acquis, et veille aussi au rangement d'un camarade.</td></tr>
+  </table>
+  </div>
+
+  <p style="font-size:11pt"><b>Mon auto-positionnement (avant correction professeur) :</b></p>
+  <p style="font-size:10.5pt">C1.1 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C2.2 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span>
+  &nbsp;&nbsp; C3.1 : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+  <p style="font-size:10.5pt">Savoir-être : <span class="auto-pos">0</span><span class="auto-pos">1</span><span class="auto-pos">2</span><span class="auto-pos">3</span><span class="auto-pos">4</span></p>
+
+  <h3 class="section">Documents à remettre</h3>
+  <ol class="liste-num">
+    <li>Ce document complété (préparation, tableau des OVNI, question pince isolée, cases rangement)</li>
+    <li>Ma grille d'auto-positionnement</li>
+  </ol>
+
+  <p style="font-size:9pt; color:var(--leger); font-style:italic; margin-top:1em">D'après : « 01-Outillages et
+  protections » — Dossier matériels et équipements (F. Henninot) ; Liste outillage élèves — prise en charge
+  caisse, Classe 1 CAP 2022/2023 (F. Henninot).</p>
+
+  <div class="pied">
+    <span>❄ inerWeb Édu — par F. Henninot · LPP Jacques Raynaud — Campus EQUATIO</span>
+    <span>créé le 02/09/2026 · © F. Henninot 2026 — diffusion pédagogique autorisée, mention de l'origine requise</span>
+  </div>
+</div>
+
+<!-- tableaux-non-coupes -->
+</body>
+</html>
